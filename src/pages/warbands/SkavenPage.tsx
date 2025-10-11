@@ -25,7 +25,7 @@ const skavenUnits = [
       move: 8,
       fight: "+3",
       shoot: "+1",
-      armor: 10,
+      armour: 10,
       will: "+3",
       health: 14,
       cost: "-",
@@ -49,7 +49,7 @@ const skavenUnits = [
       {
         name: "Equipment",
         description:
-          "Assassins can equip and start with Daggers, Hand Weapons, Light Armor, Slings and Hand Crossbows. They can also start with the Skaven exclusive Fighting Claws.",
+          "Assassins can equip and start with Daggers, Hand Weapons, Light armour, Slings and Hand Crossbows. They can also start with the Skaven exclusive Fighting Claws.",
       },
     ],
   },
@@ -60,17 +60,23 @@ const skavenUnits = [
       move: 8,
       fight: "-1",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+3",
       health: 12,
       cost: "100gc",
+    },
+    spellAffinity: {
+      aligned0: ["Witch"],
+      aligned2: ["Elementalist", "Summoner"],
+      neutral4: ["Distortionist", "Illusionist", "Necromancer", "Spiritualist"],
+      opposed6: ["Soothsayer", "Thaumaturge"],
+      anathema: ["Astromancer", "Sonancer", "Chronomancer", "Enchanter"],
     },
     abilities: [
       {
         name: "Apprentice Spellcaster",
         description:
           "Clan Eshin Sorcerers may cast spells from the Elementalist, Witch and Summoner schools of magic. The figure starts the game with 4 such spells, and always casts them at a -2 Casting roll.",
-        spellAffinity: "clanEshinSorcerer",
       },
       {
         name: "Equipment",
@@ -85,7 +91,7 @@ const skavenUnits = [
       move: 8,
       fight: "-1",
       shoot: "0",
-      armor: 10,
+      armour: 10,
       will: "0",
       health: 8,
       cost: "Free",
@@ -103,7 +109,7 @@ const skavenUnits = [
       move: 6,
       fight: "0",
       shoot: "0",
-      armor: 6,
+      armour: 6,
       will: "0",
       health: 1,
       cost: "Free",
@@ -126,7 +132,7 @@ const skavenUnits = [
       move: 8,
       fight: "+4",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+2",
       health: 10,
       cost: "100gc",
@@ -134,7 +140,7 @@ const skavenUnits = [
     abilities: [
       {
         name: "Equipment",
-        description: "Light Armor, Skaven Fighting Claws",
+        description: "Light armour, Skaven Fighting Claws",
       },
     ],
   },
@@ -145,7 +151,7 @@ const skavenUnits = [
       move: 8,
       fight: "1",
       shoot: "1",
-      armor: 10,
+      armour: 10,
       will: "0",
       health: 10,
       cost: "75gc",
@@ -167,7 +173,7 @@ const skavenUnits = [
       move: 7,
       fight: "+4",
       shoot: "0",
-      armor: 12,
+      armour: 12,
       will: "0",
       health: 16,
       cost: "200gc",
@@ -305,6 +311,9 @@ function SkavenPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
+                  {...(unit.spellAffinity && {
+                    spellAffinity: unit.spellAffinity,
+                  })}
                 />
               </div>
             ))}

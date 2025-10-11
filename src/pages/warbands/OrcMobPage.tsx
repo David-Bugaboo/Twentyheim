@@ -24,7 +24,7 @@ const orcMobUnits = [
       move: 5,
       fight: "+4",
       shoot: "0",
-      armor: 10,
+      armour: 10,
       will: "+2",
       health: 18,
       cost: "-",
@@ -58,17 +58,23 @@ const orcMobUnits = [
       move: 6,
       fight: "+1",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+4",
       health: 12,
       cost: "100gc",
+    },
+    spellAffinity: {
+      aligned0: ["Elementalist"],
+      aligned2: ["Soothsayer", "Distortionist"],
+      neutral4: ["Summoner", "Witch", "Spiritualist"],
+      opposed6: ["Sigilist", "Enchanter", "Astromancer"],
+      anathema: ["Necromancer", "Thaumaturge", "Chronomancer", "Fatecaster"],
     },
     abilities: [
       {
         name: "Apprentice Spellcaster",
         description:
           "The Orc Shaman may cast spells from the Soothsayer, Elementalist and Distortionist schools of magic. The figure starts the game with 4 such spells, and always casts them with a -2 Casting roll.",
-        spellAffinity: "orcShaman",
       },
       {
         name: "Equipment",
@@ -82,7 +88,7 @@ const orcMobUnits = [
       move: 8,
       fight: "0",
       shoot: "0",
-      armor: 8,
+      armour: 8,
       will: "-2",
       health: 4,
       cost: "Free",
@@ -109,7 +115,7 @@ const orcMobUnits = [
       move: 4,
       fight: "+3",
       shoot: "+0",
-      armor: "11",
+      armour: "11",
       will: "+3",
       health: 16,
       cost: "50gc",
@@ -122,7 +128,7 @@ const orcMobUnits = [
       },
       {
         name: "Equipment",
-        description: "2x Hand Weapons, Light Armor.",
+        description: "2x Hand Weapons, Light armour.",
       },
     ],
   },
@@ -133,7 +139,7 @@ const orcMobUnits = [
       move: 4,
       fight: "+2",
       shoot: "0",
-      armor: "11",
+      armour: "11",
       will: "+3",
       health: 16,
       cost: "75gc",
@@ -144,10 +150,10 @@ const orcMobUnits = [
         description:
           "Orc Boyz that didn't activate in the same phase as the Warboz or Orc Shaman act as uncontrolled creatures during the creature phase.",
       },
-      
+
       {
         name: "Equipment",
-        description: "Javelin, Light Armor.",
+        description: "Javelin, Light armour.",
       },
     ],
   },
@@ -158,7 +164,7 @@ const orcMobUnits = [
       move: 4,
       fight: "+4",
       shoot: "+0",
-      armor: "12",
+      armour: "12",
       will: "+3",
       health: 16,
       cost: "125gc",
@@ -186,7 +192,7 @@ const orcMobUnits = [
       move: "1d20/2",
       fight: "+2",
       shoot: "-",
-      armor: 12,
+      armour: 12,
       will: "0",
       health: 8,
       cost: "40gc",
@@ -218,7 +224,7 @@ const orcMobUnits = [
       move: 8,
       fight: "+3",
       shoot: "-",
-      armor: 8,
+      armour: 8,
       will: "-2",
       health: 8,
       cost: "50gc",
@@ -261,7 +267,7 @@ const orcMobUnits = [
       move: 4,
       fight: "+4",
       shoot: "+0",
-      armor: 14,
+      armour: 14,
       will: "+2",
       health: 18,
       cost: "200gc",
@@ -313,10 +319,10 @@ const krumpinsOfTheWaaaagh = [
       "Treat that hit as a critical hit. The figure hit may only use one action during its next activation.",
   },
   {
-    name: "Da Armor Krusha'",
+    name: "Da armour Krusha'",
     when: "Whenever the Warboz has won a combat and dealt at least 5 damage.",
     effect:
-      "If the target was wearing light armor, it suffers -1 Armor for the rest of the game. If it was wearing heavy armor it suffers -2 Armor for the rest of the game.",
+      "If the target was wearing light armour, it suffers -1 armour for the rest of the game. If it was wearing heavy armour it suffers -2 armour for the rest of the game.",
   },
   {
     name: "Grabba' Chief",
@@ -385,6 +391,7 @@ function OrcMobPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
+                  {...(unit.spellAffinity && { spellAffinity: unit.spellAffinity })}
                 />
               </div>
             ))}
@@ -401,7 +408,7 @@ function OrcMobPage() {
               unstoppable green tide.
               <br />
               <br />
-              From smashing armor to screaming enemies into submission, these
+              From smashing armour to screaming enemies into submission, these
               abilities make the Warboz a devastating force that grows more
               dangerous as the battle intensifies. The ultimate expression of
               Orc power is the mighty WAAAAGH!, a once-per-game explosion of

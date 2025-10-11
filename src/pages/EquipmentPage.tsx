@@ -72,9 +72,9 @@ function EquipmentPage() {
       <ContentSection>
         <ContentContainer>
           <QuoteBox>
-            "A sharp blade and sturdy armor can mean the difference between
-            returning home with gold or being left for the rats. Choose your gear
-            wisely, for Mordheim forgives nothing."
+            "A sharp blade and sturdy armour can mean the difference between
+            returning home with gold or being left for the rats. Choose your
+            gear wisely, for Mordheim forgives nothing."
             <QuoteAttribution>
               — Dietrich the Blacksmith, Merchant Quarter
             </QuoteAttribution>
@@ -163,7 +163,7 @@ function EquipmentPage() {
               <br />• <PropertyLabel>
                 Damage vs Demons/Undead:
               </PropertyLabel>{" "}
-              Magical damage, treats target's armor as 8
+              Magical damage, treats target's armour as 8
               <br />• <PropertyLabel>
                 Damage vs Other Creatures:
               </PropertyLabel>{" "}

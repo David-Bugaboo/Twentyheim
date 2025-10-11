@@ -24,7 +24,7 @@ const vampireCourtsUnits = [
       move: 6,
       fight: "+3",
       shoot: "+1",
-      armor: 10,
+      armour: 10,
       will: "+5",
       health: 20,
       cost: "-",
@@ -43,7 +43,7 @@ const vampireCourtsUnits = [
       {
         name: "Superior Undead",
         description:
-          "Vampire Counts have the following traits: Undead, Immune to Control Undead, Magic Attacks, Mind Lock, Thaumaturgic Vulnerability, True Sight, and Partial Immunity to Normal Damage.",
+          "Vampire Counts have the following traits: Undead, Immune to Control Undead, Magic Attacks, Mind Lock, Thaumaturgic Vulnerability, True Sight, and Partial Immunity to Normal Damage, and Fear. However, he has 5 item slots as normal.",
       },
       {
         name: "Undead Constitution",
@@ -64,17 +64,29 @@ const vampireCourtsUnits = [
       move: 5,
       fight: "+1",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+4",
       health: 14,
       cost: "100gc",
+    },
+    spellAffinity: {
+      aligned0: ["Necromancer"],
+      aligned2: ["Spiritualist", "Chronomancer"],
+      neutral4: ["Witch", "Fatecaster", "Sigilist"],
+      opposed6: ["Soothsayer"],
+      anathema: [
+        "Astromancer",
+        "Sonancer",
+        "Enchanter",
+        "Thaumaturge",
+        "Summoner",
+      ],
     },
     abilities: [
       {
         name: "Apprentice Spellcaster",
         description:
           "Necromancers may cast spells from the Necromancer, Spiritualist and Chronomancer schools of magic. The figure starts the game with 4 such spells, and always casts them at a -2 Casting roll.",
-        spellAffinity: "necromancer",
       },
       {
         name: "Equipment",
@@ -94,7 +106,7 @@ const vampireCourtsUnits = [
       move: 4,
       fight: "+1",
       shoot: "+0",
-      armor: 12,
+      armour: 12,
       will: "+0",
       health: 6,
       cost: "free",
@@ -120,7 +132,7 @@ const vampireCourtsUnits = [
       move: 6,
       fight: "+0",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+0",
       health: 5,
       cost: "25gc",
@@ -141,28 +153,24 @@ const vampireCourtsUnits = [
     ],
   },
   {
-    name: "Skeleton",
+    name: "Dire Wolves",
     stats: {
-      move: 6,
-      fight: "+1",
+      move: 7,
+      fight: "+2",
       shoot: "+0",
-      armor: 10,
-      will: "+0",
-      health: 5,
-      cost: "free",
+      armour: 10,
+      will: "+2",
+      health: 10,
+      cost: "50gc",
     },
     abilities: [
       {
         name: "Equipment",
-        description: "Hand Weapon.",
+        description: "None. Dire Wolves kill with their claws and fangs.",
       },
       {
-        name: "Animated Warriors",
-        description: "Skeletons have Undead.",
-      },
-      {
-        name: "Brainless",
-        description: "Skeletons cannot earn XP.",
+        name: "Undead Beast",
+        description: "Dire Wolves have Undead and Fear.",
       },
     ],
   },
@@ -173,7 +181,7 @@ const vampireCourtsUnits = [
       move: 6,
       fight: "+0",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "0",
       health: 10,
       cost: "75gc",
@@ -197,7 +205,7 @@ const vampireCourtsUnits = [
       move: 8,
       fight: "+4",
       shoot: "+0",
-      armor: 12,
+      armour: 12,
       will: "+6",
       health: 14,
       cost: "150gc",
@@ -218,34 +226,8 @@ const vampireCourtsUnits = [
         description: "Ghouls have Undead and Fear.",
       },
     ],
-  },
-  {
-    name: "Dire Wolves",
-    role: "Specialist",
-    stats: {
-      move: 7,
-      fight: "+2",
-      shoot: "+0",
-      armor: 10,
-      will: "+2",
-      health: 10,
-      cost: "50gc",
-    },
-    abilities: [
-      {
-        name: "Equipment",
-        description: "None. Dire Wolves kill with their claws and fangs.",
-      },
-      {
-        name: "Undead Beast",
-        description: "Dire Wolves have Undead, Latch-on and Fear.",
-      },
-      {
-        name: "Pack Hunters",
-        description: "Dire Wolves have Pack Hunter.",
-      },
-    ],
-  },
+  }
+  
 ];
 
 const bloodlineTraditions = [
@@ -275,7 +257,7 @@ const bloodlineTraditions = [
   {
     name: "Tradition of the Moonhunting",
     when: "At any time during the vampire's activation.",
-    effect: `The vampire turns into a Humongous Dire Wolf. The vampire gains Large and Strong, and gains 2 move, but does not benefit from armor and weapons while transformed. The Vampire cannot carry treasure, but does not count as an animal. Any direwolves within 6" of the vampire gain +2 Will while he's transformed and may activate as if they and the vampire have Pack Hunter.`,
+    effect: `The vampire turns into a Humongous Dire Wolf. The vampire gains Large and Strong, and gains 2 move, but does not benefit from armour and weapons while transformed. The Vampire cannot carry treasure, but does not count as an animal. Any direwolves within 6" of the vampire gain +2 Will while he's transformed and may activate as if they and the vampire have Pack Hunter.`,
   },
   {
     name: "Tradition of Tyranny",
@@ -297,7 +279,7 @@ const bloodlineTraditions = [
     name: "Tradition of the Fell Ancestor",
     when: "At any time during the vampire's activation.",
     effect:
-      "The vampire transforms into a Monstrous Fellbat. It gains Flying, Latch-on, and Vampiric Touch, but cannot benefit from armor and weapons until the end of its turn. Creatures attacked by the vampire that take at least 4 damage gain a Bleed Token.",
+      "The vampire transforms into a Monstrous Fellbat. It gains Flying, Latch-on, and Vampiric Touch, but cannot benefit from armour and weapons until the end of its turn. Creatures attacked by the vampire that take at least 4 damage gain a Bleed Token.",
   },
   {
     name: "Tradition of the Bloodhelix",
@@ -393,17 +375,22 @@ function VampireCourtsPage() {
               supernatural beauty and mental dominance rather than brute force,
               bending the will of mortals and making enemies hesitate before
               striking. They move with unnatural grace and prefer subtlety to
-              heavy armor and weapons.
+              heavy armour and weapons.
               <br />
               <br />
               <strong style={{ color: "#c4a870" }}>Special Rules:</strong>
               <br />• <strong>Supernatural Grace:</strong> The Vampire gains +2
               Move and +2 Will, but loses -2 Fight and -2 Health
-              <br />• <strong>Mesmerizing Presence:</strong> Enemy figures in
-              combat with the Vampire have a -2 penalty to their Will and Fight
-              Stats.
+              <br />• <strong>Mesmerizing Presence:</strong> The Lahmian appears
+              stunningly beautiful in the eyes of all living creatures who
+              behold it. Any figure that wishes to attack her must first make a
+              Will roll with a Target Number of 15. If the roll fails, the
+              figure may not attack, but may select another action instead. The
+              Will roll also applies to anyone wishing to cast a spell that
+              would cause an attack on or potential damage to the Lahmian.
+              Undead and constructs are immune to this effect.
               <br />• <strong>Light and Deadly:</strong> The Vampire cannot wear
-              armor and can only use daggers as weapons
+              armour and can only use daggers as weapons
               <br />• <strong>Cult of Seduction:</strong> Dregs are hired at
               50gc (instead of 75gc), but Ghouls are hired at 200gc (instead of
               150gc) and Dire Wolves at 75gc (instead of 50gc)
@@ -424,12 +411,13 @@ function VampireCourtsPage() {
               <br />
               <strong style={{ color: "#c4a870" }}>Special Rules:</strong>
               <br />• <strong>Bestial Monster:</strong> The Vampire gains +2
-              Fight, +2 Move, +2 Armor and +2 Health, and gains Savage
+              Fight, +2 Move, +2 armour and +2 Health, and gains Savage
               <br />• <strong>Feral Nature:</strong> The Vampire cannot use
               equipment and gains Large
               <br />• <strong>Newborn Ghouls:</strong> Strigoi vampires may hire
               Newborn Ghouls instead of Zombies. Newborn Ghouls change the
-              Zombie stats to: Fight +2, Armor 10, Will +2, Move 6 and Health 12
+              Zombie stats to: Fight +2, armour 10, Will +2, Move 6 and Health
+              12
               <br />• <strong>Ghoul Court:</strong> Ghouls are hired at 100gc
               (instead of 150gc)
               <br />• <strong>Hated by the Living:</strong> Necromancers are
@@ -495,6 +483,9 @@ function VampireCourtsPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
+                  {...(unit.spellAffinity && {
+                    spellAffinity: unit.spellAffinity,
+                  })}
                 />
               </div>
             ))}

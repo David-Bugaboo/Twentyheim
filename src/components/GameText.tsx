@@ -45,7 +45,7 @@ const gameTerms: GameTerm[] = [
   {
     term: "Mind Lock",
     description:
-      "This creature is Immune to Mind Control and Immune to Suggestion.",
+      "This creature is Immune to Mind Control, Immune to Suggestion, and Immune to Fear.",
   },
   {
     term: "Large",
@@ -112,7 +112,7 @@ const gameTerms: GameTerm[] = [
       "Figures in combat with this creature may only push back themselves or their opponent only if they do damage. Simply winning the combat is not enough.",
   },
   {
-    term: "Opponent Armor Reduction",
+    term: "Opponent armour Reduction",
     description:
       "If this figure wins a round of combat versus a figure wearing light or heavy armour, its opponent suffers -1 armour against the attack.",
   },
@@ -169,7 +169,7 @@ const gameTerms: GameTerm[] = [
   {
     term: "Elemental Vulnerability",
     description:
-      "This creature is vulnerable to elemental damage. When taking elemental damage, reduce its armor by (X) for the purposes of determining damage.",
+      "This creature is vulnerable to elemental damage. When taking elemental damage, reduce its armour by (X) for the purposes of determining damage.",
   },
   {
     term: "Savage",
@@ -185,6 +185,107 @@ const gameTerms: GameTerm[] = [
     term: "Light Cover",
     description:
       "Shooting attacks against figures in Light Cover suffer -2 to their Shoot rolls.",
+  },
+  {
+    term: "Partial Immunity to Normal Damage",
+    description:
+      "Any time this figure suffers damage from a non-magical attack the damage is halved, rounding down.",
+  },
+  {
+    term: "Thaumaturgic Vulnerability",
+    description:
+      "This creature suffers -1 to all Will Rolls when rolling to resist spells from the Thaumaturge school.",
+  },
+  {
+    term: "Two-Headed",
+    description:
+      "A figure fighting a two-headed creature always counts as having one supporting figure fewer than it actually does (to a minimum of 0).",
+  },
+  // Daemonic Attributes
+  {
+    term: "Armoured Hide",
+    description:
+      "The demon is covered in scales, plates, or some other form of natural armour. Increase its Armour stat by 1.",
+  },
+  {
+    term: "Chameleonic",
+    description:
+      'The demon blends in with its surroundings. No figure may draw line of sight to this figure if they are more than 12" away.',
+  },
+  {
+    term: "Demonic Strength",
+    description:
+      "This demon counts as being armed with a two-handed weapon for the purposes of determining damage in hand-to-hand combat.",
+  },
+  {
+    term: "Explosive Demise",
+    description:
+      'When reduced to 0 Health, exits in a fiery explosion. Every figure within 3" suffers a +3 elemental magic shooting attack.',
+  },
+  {
+    term: "Horrific",
+    description:
+      "Living figures must make a Will roll (TN 14) to move into combat with this demon. Failure doesn't cost the action but prevents the attempt until next activation.",
+  },
+  {
+    term: "Numbing Touch",
+    description:
+      "Figures that lose combat against this demon suffer -1 Fight for the rest of the game (or until healed) in addition to any damage. Not cumulative.",
+  },
+  {
+    term: "Tentacles",
+    description:
+      "The demon has long tentacles. Any time a figure moves within 2\" but doesn't enter combat, the demon may make a free +0 shooting attack.",
+  },
+  {
+    term: "Vestigial Wings",
+    description:
+      "The demon has small wings. While it cannot fly, it never suffers damage from falling, no matter the distance.",
+  },
+  {
+    term: "Acidic Blood",
+    description:
+      "When damaged, attacker makes a Will roll (TN 12+). On failure, suffers 3 damage and non-magic weapons are destroyed (replaced after game).",
+  },
+  {
+    term: "Blinding Aura",
+    description:
+      'Figures activating within 6" make a Will roll (TN 12) or be blinded. While blinded: no attack/shoot/LoS spells, Fight +0, Move 1. Recovery attempt each turn.',
+  },
+  {
+    term: "Insubstantial Movement",
+    description:
+      "Can move through walls and terrain as though not there, provided it has enough movement to reach the other side. Cannot see through terrain.",
+  },
+  {
+    term: "Life Bane",
+    description:
+      'Living figures activating within 3" must make a Will roll (TN 20) or immediately suffer 2 damage.',
+  },
+  {
+    term: "Maelstrom",
+    description:
+      "Surrounded by swirling elemental energy. All shooting attacks against the demon are at -2.",
+  },
+  {
+    term: "Magic Sink",
+    description:
+      "Absorbs magic energy. Any spell targeting this demon requires the caster to roll twice and take the lower result.",
+  },
+  {
+    term: "Regeneration",
+    description:
+      "At the start of each activation, regains 2 points of lost Health. May not exceed starting Health.",
+  },
+  {
+    term: "Serendipitous",
+    description:
+      'Once per turn, when any figure within 12" rolls a natural 1 or 20, the demon may force a reroll. Second result stands.',
+  },
+  {
+    term: "Hellspawner",
+    description:
+      'At the start of each turn, roll a die. On 16+, an imp appears within 3" as an uncontrolled creature.',
   },
   // Weapons & Equipment
   {
@@ -232,39 +333,39 @@ const gameTerms: GameTerm[] = [
       "A simple ranged weapon with 6\" range. Deals -2 damage. Can be used in the offhand, and doesn't cause encumberance when carrying Wyrdstone Shards.",
   },
   {
-    term: "Light Armor",
+    term: "Light armour",
     description:
-      "Leather or light mail armor. Provides +1 Armor. Does not interfere with movement.",
+      "Leather or light mail armour. Provides +1 armour. Does not interfere with movement.",
   },
   {
     term: "Light Armour",
     description:
-      "Leather or light mail armor. Provides +1 Armor. Does not interfere with movement.",
+      "Leather or light mail armour. Provides +1 armour. Does not interfere with movement.",
   },
   {
-    term: "Heavy Armor",
+    term: "Heavy armour",
     description:
-      "Plate mail or full armor. Provides +2 Armor. Have a -1 Penalty to movement.",
+      "Plate mail or full armour. Provides +2 armour. Have a -1 Penalty to movement.",
   },
   {
     term: "Heavy Armour",
     description:
-      "Plate mail or full armor. Provides +2 Armor. Have a -1 Penalty to movement.",
+      "Plate mail or full armour. Provides +2 armour. Have a -1 Penalty to movement.",
   },
   {
     term: "Shield",
     description:
-      "A defensive item that provides +1 Armor. Can be used with one-handed weapons.",
+      "A defensive item that provides +1 armour. Can be used with one-handed weapons.",
   },
   {
     term: "Musket",
     description:
-      'This larger, two-handed firearm is the most common variety of black powder weapon. Deals +2 damage and ignores 2 points of armor from target figures. Muskets have a maximum effective range of 24". A model may only ever carry one musket and can never carry a shield. A musket can be used in hand-to-hand combat. It counts as a two-handed weapon, but does not receive the usual +2 damage bonus.',
+      'This larger, two-handed firearm is the most common variety of black powder weapon. Deals +2 damage and ignores 2 points of armour from target figures. Muskets have a maximum effective range of 24". A model may only ever carry one musket and can never carry a shield. A musket can be used in hand-to-hand combat. It counts as a two-handed weapon, but does not receive the usual +2 damage bonus.',
   },
   {
     term: "Pistol",
     description:
-      'A one-handed firearm with 10" range. Deals +2 damage and ignores 2 points of armor from target figures. Count as a dagger in hand-to-hand combat, including for Two-Weapon Fighting. Requires an action to reload.',
+      'A one-handed firearm with 10" range. Deals +2 damage and ignores 2 points of armour from target figures. Count as a dagger in hand-to-hand combat, including for Two-Weapon Fighting. Requires an action to reload.',
   },
   {
     term: "Blunderbuss",
@@ -320,27 +421,27 @@ const gameTerms: GameTerm[] = [
   {
     term: "Dwarf Greataxe",
     description:
-      "Dwarf Treasure Hunters exclusive. A masterfully crafted weapon designed to pierce through enemy defenses. Counts as a Two-handed weapon that treats enemy figures' armor as being 1 point lower when calculating damage.",
+      "Dwarf Treasure Hunters exclusive. A masterfully crafted weapon designed to pierce through enemy defenses. Counts as a Two-handed weapon that treats enemy figures' armour as being 1 point lower when calculating damage.",
   },
   {
     term: "Dwarf Great Axes",
     description:
-      "Dwarf Treasure Hunters exclusive. Masterfully crafted weapons designed to pierce through enemy defenses. Count as Two-handed weapons that treat enemy figures' armor as being 1 point lower when calculating damage.",
+      "Dwarf Treasure Hunters exclusive. Masterfully crafted weapons designed to pierce through enemy defenses. Count as Two-handed weapons that treat enemy figures' armour as being 1 point lower when calculating damage.",
   },
   {
-    term: "Gromril Armor",
+    term: "Gromril armour",
     description:
-      "Dwarf Treasure Hunters exclusive. Made from the strongest metal in the Dwarf Kingdoms. As strong as full plate, but at less than half the weight. Counts as Heavy Armor, but without the -1 movement penalty.",
+      "Dwarf Treasure Hunters exclusive. Made from the strongest metal in the Dwarf Kingdoms. As strong as full plate, but at less than half the weight. Counts as Heavy armour, but without the -1 movement penalty.",
   },
   {
     term: "Asrai Longbow",
     description:
-      'Wood Elves exclusive. A masterwork bow crafted from the living wood of Athel Loren. Range: 30". Treats the armor of a figure hit by a shooting attack from this bow as 1 point lower.',
+      'Wood Elves exclusive. A masterwork bow crafted from the living wood of Athel Loren. Range: 30". Treats the armour of a figure hit by a shooting attack from this bow as 1 point lower.',
   },
   {
     term: "Moonfire Arrow",
     description:
-      "Wood Elves exclusive. A single magical arrow that may be fired once per game. When declared, automatically hits if target is in range and line of sight (no Shoot roll required). Deals +3 damage and reduces target's armor to 10 for calculating damage. Cost: 30gc.",
+      "Wood Elves exclusive. A single magical arrow that may be fired once per game. When declared, automatically hits if target is in range and line of sight (no Shoot roll required). Deals +3 damage and reduces target's armour to 10 for calculating damage. Cost: 30gc.",
   },
   {
     term: "Blowpipe",
@@ -360,7 +461,7 @@ const gameTerms: GameTerm[] = [
   {
     term: "Holy Water Vial",
     description:
-      "Can be consumed as a healing potion or thrown as a weapon (3\" range). Against Demons/Undead: deals magical damage and treats target's armor as 8. Against other creatures: no effect. Witch Hunters and Sisters of Sigmar start with one and regain it each game.",
+      "Can be consumed as a healing potion or thrown as a weapon (3\" range). Against Demons/Undead: deals magical damage and treats target's armour as 8. Against other creatures: no effect. Witch Hunters and Sisters of Sigmar start with one and regain it each game.",
   },
   {
     term: "Powder Horn",
@@ -381,6 +482,37 @@ const gameTerms: GameTerm[] = [
     term: "Potion of Healing",
     description:
       "This potion restores up to 5 lost points of Health. It may not take a figure above its normal starting Health.",
+  },
+  // Daemonic Pacts
+  {
+    term: "Pentaculum",
+    description:
+      "A magic amulet that imprisons a bound demon. Can be discarded to add +3 to the Casting Roll of one Out of Game spell. Only one pentaculum can be used for any given Casting Roll.",
+  },
+  {
+    term: "Bind Demon",
+    description:
+      "A spell that allows a wizard to take control of a demon. Successfully bound demons can be imprisoned in a pentaculum if the wizard has the appropriate pact boon.",
+  },
+  {
+    term: "Soul Fragment",
+    description:
+      "A piece of the Magister's essence sold to a daemon. At character creation and every 10 levels, the Magister may sell another fragment, gaining access to a Sacrifice and Boon. The more fragments sold, the less humanity remains.",
+  },
+  {
+    term: "Pact",
+    description:
+      "The unholy contract between the Magister and a daemon who holds a fragment of his soul. Requires performing a Sacrifice before each game to maintain the connection and retain the associated Boon.",
+  },
+  {
+    term: "Lance",
+    description:
+      "A Lance count as a hand weapon, but deals +2 damage when mounted. Lances break on a critical hit.",
+  },
+  {
+    term: "Masterwork Crossbow",
+    description:
+      "Count as a crossbow, but with a +1 to Shoot and +6\" range.",
   },
 ];
 

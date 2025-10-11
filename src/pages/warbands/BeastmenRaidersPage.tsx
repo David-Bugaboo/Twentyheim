@@ -18,7 +18,7 @@ const beastmenUnits = [
       move: 7,
       fight: "+4",
       shoot: "0",
-      armor: 10,
+      armour: 10,
       will: "+5",
       health: 14,
       cost: "-",
@@ -41,7 +41,7 @@ const beastmenUnits = [
       {
         name: "Equipment",
         description:
-          "Beastmen chieftains may equip and start with: Two Handed Weapons, Hand Weapons, Shields, Heavy Armor, Light Armor.",
+          "Beastmen chieftains may equip and start with: Two Handed Weapons, Hand Weapons, Shields, Heavy armour, Light armour.",
       },
     ],
   },
@@ -52,32 +52,33 @@ const beastmenUnits = [
       move: 7,
       fight: "+1",
       shoot: "0",
-      armor: 10,
+      armour: 10,
       will: "+5",
       health: 12,
       cost: "-",
+    },
+    spellAffinity: {
+      aligned0: ["Summoner"],
+      aligned2: ["Elementalist", "Distortionist", "Illusionist", "Witch"],
+      neutral4: ["Necromancer", "Chronomancer"],
+      opposed6: ["Sigilist", "Soothsayer", "Enchanter"],
+      anathema: ["Thaumaturge", "Astromancer", "Sonancer", "Fatecaster"],
     },
     abilities: [
       {
         name: "Tribal Sorcerer",
         description:
           "The Beastman Sorcerer is a spellcaster of the Summoner School. He may start with 8 spells from that school and cast them at -2.",
-        spellAffinity: "beastmanSorcerer",
       },
       {
         name: "Pact Broker",
         description:
-          "The Beastmen Sorcerer made vile pacts to gain his power. He starts the game knowing the true name of one demon, and may choose a Pact Boon and Pact Sacrifice. However, unlike the Chaos Magister, he doesn't gain additional Pacts at later levels.",
-      },
-      {
-        name: "Corrupter of the Beastblood",
-        description:
-          "Figures activating alongside him in the Champion's phase activate as if they had Pack Hunter. He is always considered the Pack Leader.",
+          "The Beastmen Sorcerer made vile pacts to gain his power. He starts the game with the same Pact Broker ability as the Magister of Chaos, and may choose a Pact Boon and Pact Sacrifice. However, unlike the Chaos Magister, he doesn't gain additional Pacts at later levels.",
       },
       {
         name: "Equipment",
         description:
-          "Beastmen sorcerers may equip and start with: Two Handed Weapons, Hand Weapons, Shields, Heavy Armor, Light Armor, Staffs.",
+          "Beastmen sorcerers may equip and start with: Two Handed Weapons, Hand Weapons, Shields, Heavy armour, Light armour, Staffs.",
       },
     ],
   },
@@ -85,9 +86,9 @@ const beastmenUnits = [
     name: "Ungor",
     stats: {
       move: 7,
-      fight: "+2",
+      fight: "2",
       shoot: "0",
-      armor: 10,
+      armour: 10,
       will: "-1",
       health: 8,
       cost: "free",
@@ -100,12 +101,30 @@ const beastmenUnits = [
     ],
   },
   {
+    name: "Ungor Spearthrower",
+    stats: {
+      move: 7,
+      fight: "0",
+      shoot: "0",
+      armour: 10,
+      will: "0",
+      health: 8,
+      cost: "25gc",
+    },
+    abilities: [
+      {
+        name: "Equipment",
+        description: "Javelin.",
+      },
+    ],
+  },
+  {
     name: "Gor",
     stats: {
       move: 7,
       fight: "+3",
       shoot: "0",
-      armor: 12,
+      armour: 12,
       will: "-1",
       health: 10,
       cost: "75gc",
@@ -113,7 +132,7 @@ const beastmenUnits = [
     abilities: [
       {
         name: "Equipment",
-        description: "Hand Weapon, Shield, Light Armor.",
+        description: "Hand Weapon, Shield, Light armour.",
       },
     ],
   },
@@ -123,7 +142,7 @@ const beastmenUnits = [
       move: 8,
       fight: "+1",
       shoot: "0",
-      armor: 10,
+      armour: 10,
       will: "-2",
       health: 8,
       cost: "10gc",
@@ -146,7 +165,7 @@ const beastmenUnits = [
       move: 6,
       fight: "+4",
       shoot: "0",
-      armor: 12,
+      armour: 12,
       will: "-1",
       health: 12,
       cost: "125gc",
@@ -158,42 +177,18 @@ const beastmenUnits = [
       },
       {
         name: "Equipment",
-        description: "Two Handed Weapon, Heavy Armor.",
-      },
-    ],
-  },
-  {
-    name: "Gor Spearthrower",
-    role: "Specialist",
-    stats: {
-      move: 7,
-      fight: "+2",
-      shoot: "2",
-      armor: 11,
-      will: "-1",
-      health: 10,
-      cost: "125gc",
-    },
-    abilities: [
-      {
-        name: "Capricious Hunters",
-        description:
-          "A warband that has at least a single Gor Spearthrower gains a +2 initiative in its rolls.",
-      },
-      {
-        name: "Equipment",
-        description: "Javelin, Dagger, Light Armor.",
+        description: "Two Handed Weapon, Heavy armour.",
       },
     ],
   },
   {
     name: "Minotaur",
-    role: "Only one",
+    role: "Specialist",
     stats: {
       move: 6,
       fight: "+4",
       shoot: "0",
-      armor: 12,
+      armour: 12,
       will: "+5",
       health: 18,
       cost: "250gc",
@@ -220,7 +215,7 @@ const giftsOfBeastblood = [
     name: "Gift of Possessed Beast",
     when: "At any point during the Beastman Chieftain activation",
     effect:
-      "Roll on the Minor Demonic Traits table. Reroll any backstabber results. You gain that trait until the end of the turn. If you roll a 20 on this power activation roll, you may roll on the Major Demonic Traits table. A successfully cast banish demon spell ends this effect prematurely.",
+      "Choose one Demonic Attribute. You gain that trait until the end of the turn. A successfully  banish demon spell ends this effect prematurely.",
   },
   {
     name: "Gift of the Bloodcurling Howl",
@@ -284,7 +279,7 @@ const giftsOfBeastblood = [
     name: "Gift of the Contagious Rage",
     when: 'Any time a figure within 3" of the Beastmen Chieftain activates.',
     effect:
-      'The Beastmen Chieftain chooses an enemy figure within 6". That figure must pass a Will check against this power activation roll. If the figure fails that check, it must move towards the Beastmen Raider and must enter combat with it if able. The creature gains +1 Fight, but loses -1 armor. If the creature fails to enter combat with the Combat Chieftain, it loses the rest of its activation.',
+      'The Beastmen Chieftain chooses an enemy figure within 6". That figure must pass a Will check against this power activation roll. If the figure fails that check, it must move towards the Beastmen Raider and must enter combat with it if able. The creature gains +1 Fight, but loses -1 armour. If the creature fails to enter combat with the Combat Chieftain, it loses the rest of its activation.',
   },
 ];
 
@@ -318,6 +313,9 @@ function BeastmenRaidersPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
+                  {...(unit.spellAffinity && {
+                    spellAffinity: unit.spellAffinity,
+                  })}
                 />
               </div>
             ))}

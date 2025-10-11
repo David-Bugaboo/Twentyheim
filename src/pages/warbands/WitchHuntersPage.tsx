@@ -24,7 +24,7 @@ const witchHuntersUnits = [
       move: 6,
       fight: "+3",
       shoot: "+2",
-      armor: 10,
+      armour: 10,
       will: "+5",
       health: 16,
       cost: "-",
@@ -48,7 +48,7 @@ const witchHuntersUnits = [
       {
         name: "Equipment",
         description:
-          "The inquisitor may start with and can equip pistols, torches, hand weapons, hand crossbows, crossbows, handguns and light armor. They start with a Holy Relic, and regain one each game as long as there is a Warrior Priest of Sigmar in the Warband.",
+          "The inquisitor may start with and can equip pistols, torches, hand weapons, hand crossbows, crossbows, handguns and light armour. They start with a Holy Relic, and regain one each game as long as there is a Warrior Priest of Sigmar in the Warband.",
       },
     ],
   },
@@ -59,10 +59,13 @@ const witchHuntersUnits = [
       move: 6,
       fight: "+2",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+4",
       health: 14,
       cost: "100gc",
+    },
+    spellAffinity: {
+      aligned0: ["Thaumaturge"],
     },
     abilities: [
       {
@@ -73,7 +76,7 @@ const witchHuntersUnits = [
       {
         name: "Equipment",
         description:
-          "The priest may equip hand weapons, two-handed weapons, shields, Light and Heavy Armor. The priest starts with a Holy Water Vial and regains it at the start of each game.",
+          "The priest may equip hand weapons, two-handed weapons, shields, Light and Heavy armour. The priest starts with a Holy Water Vial and regains it at the start of each game.",
       },
     ],
   },
@@ -83,7 +86,7 @@ const witchHuntersUnits = [
       move: 6,
       fight: "+1",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+1",
       health: 10,
       cost: "Free",
@@ -101,7 +104,7 @@ const witchHuntersUnits = [
       move: 8,
       fight: "+1",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "0",
       health: 8,
       cost: "10gc",
@@ -124,7 +127,7 @@ const witchHuntersUnits = [
       move: 6,
       fight: "+3",
       shoot: "+2",
-      armor: 11,
+      armour: 11,
       will: "+2",
       health: 12,
       cost: "100gc",
@@ -137,7 +140,7 @@ const witchHuntersUnits = [
       },
       {
         name: "Equipment",
-        description: "Pistol and Hand Weapon OR Musket, Light Armor",
+        description: "Pistol and Hand Weapon OR Musket, Light armour",
       },
     ],
   },
@@ -148,7 +151,7 @@ const witchHuntersUnits = [
       move: 6,
       fight: "+4",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+4",
       health: 12,
       cost: "125gc",
@@ -267,6 +270,7 @@ function WitchHuntersPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
+                  {...(unit.spellAffinity && { spellAffinity: unit.spellAffinity })}
                 />
               </div>
             ))}

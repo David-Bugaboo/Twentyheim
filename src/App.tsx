@@ -8,7 +8,27 @@ import EquipmentPage from "./pages/EquipmentPage";
 import ExplorationPage from "./pages/ExplorationPage";
 import HiredSwordsPage from "./pages/HiredSwordsPage";
 import DramatisPersonaePage from "./pages/DramatisPersonaePage";
-
+import TreasuresAndItemsPage from "./pages/TreasuresAndItemsPage";
+import SpellsPage from "./pages/SpellsPage";
+import PotionsPage from "./pages/treasures-n-items/PotionsPage";
+import MagicArsenalPage from "./pages/treasures-n-items/MagicArsenalPage";
+import MagicItemsPage from "./pages/treasures-n-items/MagicItemsPage";
+import ConstructModificationsPage from "./pages/ConstructModificationsPage";
+import { DruidcraftLizardmenPage } from "./pages/spells/DruidcraftLizardmenPage";
+import { DruidcraftAthelLorenPage } from "./pages/spells/DruidcraftAthelLorenPage";
+import { MagicOfTheHornedRatPage } from "./pages/spells/MagicOfTheHornedRatPage";
+import { LoreOfNecromancyPage } from "./pages/spells/LoreOfNecromancyPage";
+import { MagicOfTheWhiteTowerPage } from "./pages/spells/MagicOfTheWhiteTowerPage";
+import { MagicOfTheWaaghPage } from "./pages/spells/MagicOfTheWaaghPage";
+import { MagicOfKhainePage } from "./pages/spells/MagicOfKhainePage";
+import { PrayersOfUlricPage } from "./pages/spells/PrayersOfUlricPage";
+import { PrayersOfSigmarPage } from "./pages/spells/PrayersOfSigmarPage";
+import { PrayersOfHashutPage } from "./pages/spells/PrayersOfHashutPage";
+import ChaosRitualsPage from "./pages/spells/ChaosRitualsPage";
+import BasePage from "./pages/BasePage";
+import BasesPage from "./pages/base/BasesPage";
+import BaseUpgradesPage from "./pages/base/BaseUpgradesPage";
+import TheStablePage from "./pages/base/TheStablePage";
 import MercenariesPage from "./pages/warbands/MercenariesPage";
 import VampireCourtsPage from "./pages/warbands/VampireCourtsPage";
 import SkavenPage from "./pages/warbands/SkavenPage";
@@ -122,6 +142,55 @@ function App() {
           <Route path="/exploration" element={<ExplorationPage />} />
           <Route path="/hired-swords" element={<HiredSwordsPage />} />
           <Route path="/dramatis-personae" element={<DramatisPersonaePage />} />
+          <Route path="/treasures" element={<TreasuresAndItemsPage />} />
+          <Route path="/base" element={<BasePage />} />
+          <Route path="/base/bases" element={<BasesPage />} />
+          <Route path="/base/upgrades" element={<BaseUpgradesPage />} />
+          <Route path="/base/stable" element={<TheStablePage />} />
+          <Route path="/spells" element={<SpellsPage />} />
+          <Route
+            path="/spells/druidcraft-lizardmen"
+            element={<DruidcraftLizardmenPage />}
+          />
+          <Route
+            path="/spells/druidcraft-athel-loren"
+            element={<DruidcraftAthelLorenPage />}
+          />
+          <Route
+            path="/spells/magic-horned-rat"
+            element={<MagicOfTheHornedRatPage />}
+          />
+          <Route
+            path="/spells/lore-necromancy"
+            element={<LoreOfNecromancyPage />}
+          />
+          <Route
+            path="/spells/magic-white-tower"
+            element={<MagicOfTheWhiteTowerPage />}
+          />
+          <Route path="/spells/magic-waagh" element={<MagicOfTheWaaghPage />} />
+          <Route path="/spells/magic-khaine" element={<MagicOfKhainePage />} />
+          <Route
+            path="/spells/prayers-ulric"
+            element={<PrayersOfUlricPage />}
+          />
+          <Route
+            path="/spells/prayers-sigmar"
+            element={<PrayersOfSigmarPage />}
+          />
+          <Route
+            path="/spells/prayers-hashut"
+            element={<PrayersOfHashutPage />}
+          />
+          <Route path="/spells/chaos-rituals" element={<ChaosRitualsPage />} />
+
+          <Route path="/potions" element={<PotionsPage />} />
+          <Route path="/magic-arsenal" element={<MagicArsenalPage />} />
+          <Route path="/magic-items" element={<MagicItemsPage />} />
+          <Route
+            path="/construct-modifications"
+            element={<ConstructModificationsPage />}
+          />
         </Routes>
       </Router>
     </ThemeProvider>

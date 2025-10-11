@@ -25,7 +25,7 @@ const dwarfUnits = [
       move: 4,
       fight: "+3",
       shoot: "+0",
-      armor: 11,
+      armour: 11,
       will: "+4",
       health: 20,
       cost: "-",
@@ -59,7 +59,7 @@ const dwarfUnits = [
       move: 4,
       fight: "+2",
       shoot: "+2",
-      armor: 11,
+      armour: 11,
       will: "+3",
       health: 18,
       cost: "100gc",
@@ -77,7 +77,7 @@ const dwarfUnits = [
       {
         name: "Equipment",
         description:
-          "A dwarf Engineer can start and equip Pistols, Handguns, Blunderbusses, Crossbows, Hand Crossbows, Light Armor and the Warband's exclusive Flamethrower, Dwarf Axes and Gromril Armor.",
+          "A dwarf Engineer can start and equip Pistols, Handguns, Blunderbusses, Crossbows, Hand Crossbows, Light armour and the Warband's exclusive Flamethrower, Dwarf Axes and Gromril armour.",
       },
     ],
   },
@@ -87,7 +87,7 @@ const dwarfUnits = [
       move: 4,
       fight: "+2",
       shoot: "+0",
-      armor: 11,
+      armour: 11,
       will: "-1",
       health: 12,
       cost: "Free",
@@ -105,7 +105,7 @@ const dwarfUnits = [
       move: 4,
       fight: "+3",
       shoot: "+0",
-      armor: 13,
+      armour: 13,
       will: "+1",
       health: 12,
       cost: "75gc",
@@ -113,7 +113,7 @@ const dwarfUnits = [
     abilities: [
       {
         name: "Equipment",
-        description: "2x Dwarf Axes or Dwarf Greataxe and Gromril Armor.",
+        description: "2x Dwarf Axes or Dwarf Greataxe and Gromril armour.",
       },
     ],
   },
@@ -124,7 +124,7 @@ const dwarfUnits = [
       move: 4,
       fight: "+2",
       shoot: "+3",
-      armor: 13,
+      armour: 13,
       will: "+1",
       health: 12,
       cost: "125gc",
@@ -138,7 +138,7 @@ const dwarfUnits = [
       {
         name: "Equipment",
         description:
-          "Crossbow and Quiver OR Musket and Powder Horn OR Blunderbuss and Powder Horn, Gromril Armor.",
+          "Crossbow and Quiver OR Musket and Powder Horn OR Blunderbuss and Powder Horn, Gromril armour.",
       },
     ],
   },
@@ -149,7 +149,7 @@ const dwarfUnits = [
       move: 4,
       fight: "+2",
       shoot: "+0",
-      armor: 11,
+      armour: 11,
       will: "+1",
       health: 12,
       cost: "25gc",
@@ -178,7 +178,7 @@ const dwarfUnits = [
       move: 4,
       fight: "+3",
       shoot: "+0",
-      armor: 13,
+      armour: 13,
       will: "+1",
       health: 14,
       cost: "60gc",
@@ -196,7 +196,7 @@ const dwarfUnits = [
       },
       {
         name: "Equipment",
-        description: "Staff, Dwarf Axe, Gromril Armor.",
+        description: "Staff, Dwarf Axe, Gromril armour.",
       },
     ],
   },
@@ -211,12 +211,12 @@ const dwarfEquipment = [
   {
     name: "Dwarf Greataxe",
     description:
-      "A Dwarf Greataxe is a masterfully crafted weapon designed to pierce through enemy defenses. Dwarven Greataxes count as Two-handed weapons that treat enemy figures' armor as being 1 point lower when calculating damage.",
+      "A Dwarf Greataxe is a masterfully crafted weapon designed to pierce through enemy defenses. Dwarven Greataxes count as Two-handed weapons that treat enemy figures' armour as being 1 point lower when calculating damage.",
   },
   {
-    name: "Gromril Armor",
+    name: "Gromril armour",
     description:
-      "Gromril Armor is made from the strongest metal in the Dwarf Kingdoms. It is a strong as a full plate, but at less than half the weight. It counts as a Heavy Armor, but without the -1 movement.",
+      "Gromril armour is made from the strongest metal in the Dwarf Kingdoms. It is a strong as a full plate, but at less than half the weight. It counts as a Heavy armour, but without the -1 movement.",
   },
 ];
 
@@ -224,7 +224,7 @@ const slayerSagas = [
   {
     name: "Saga of the Ogreslaying",
     when: "At any point a Trollslayer fights with a figure with Large.",
-    effect: `The Slayer gains +2 to Fight, and ignores 1 point of armor from the enemy figure for that fight only.`,
+    effect: `The Slayer gains +2 to Fight, and ignores 1 point of armour from the enemy figure for that fight only.`,
   },
   {
     name: "Saga of the Violent Bloodletting",
@@ -296,10 +296,10 @@ const undermountainMasterpieces = [
       "The player may immediately add one construct soldier to their crew for no cost. This soldier can be of any type from the Frostgrave Core Book or the Fireheart book, but the warband is subject to its normal limit of soldiers. A Large construct takes up two slots in the limit, and consumes 10% of the warband earnings as upkeep.",
   },
   {
-    name: "Steam Power Armor Masterpiece",
+    name: "Steam Power armour Masterpiece",
     when: "Out of Game.",
     effect:
-      "One soldier of the warband that is equipped or can be equipped with Gromril Armor is equipped with Steam Power Armor. Each game in which this soldier is used, the player must pay 50gc as upkeep for the armor. If the upkeep is not paid or this power is not activated, the soldier does not gain the armor's benefits but can still be used normally. A figure clad in this armor gains +4 Armor. Steam Power Armor counts as carrying a hand weapon, a pistol, and a filter mask — all built in. The filter mask makes the figure Immune to Poison.",
+      "One soldier of the warband that is equipped or can be equipped with Gromril armour is equipped with Steam Power armour. Each game in which this soldier is used, the player must pay 50gc as upkeep for the armour. If the upkeep is not paid or this power is not activated, the soldier does not gain the armour's benefits but can still be used normally. A figure clad in this armour gains +4 armour. Steam Power armour counts as carrying a hand weapon, a pistol, and a filter mask — all built in. The filter mask makes the figure Immune to Poison.",
   },
   {
     name: "Glider Masterpiece",
@@ -316,7 +316,7 @@ const undermountainMasterpieces = [
     name: "Sawblade Bayonet Masterpiece",
     when: "Out of Game.",
     effect:
-      "The engineer mounts a Steam Powered Chainsaw blade on any warband's firearm, taking up a item slot. When that weapon is used as a Close Combat Weapon, it ignores 1 point of armor from the enemy figure, even if it is on an Offhand pistol.",
+      "The engineer mounts a Steam Powered Chainsaw blade on any warband's firearm, taking up a item slot. When that weapon is used as a Close Combat Weapon, it ignores 1 point of armour from the enemy figure, even if it is on an Offhand pistol.",
   },
   {
     name: "Magnetic Boots Masterpiece",
@@ -344,12 +344,12 @@ const undermountainMasterpieces = [
   {
     name: "Portable Welding Kit Masterpiece",
     when: "At any point during the engineer's activation.",
-    effect: `The engineer chooses a construct, broken weapon or broken armor within 1" of it. If he chooses a construct, it recovers 5 Health. If he chooses a broken weapon, it is fixed, and may be used again.`,
+    effect: `The engineer chooses a construct, broken weapon or broken armour within 1" of it. If he chooses a construct, it recovers 5 Health. If he chooses a broken weapon, it is fixed, and may be used again.`,
   },
   {
     name: "Landmine Masterpiece",
     when: "At any point during the engineer's activation.",
-    effect: `The engineer places a landmine on the floor or wall in base contact with themselves". If any creature moves within 1" of the landmine, it explodes, and every figure within 3" of it takes a +5 Shooting attack, ignoring 2 points of armor from the targets. The Engineer may only have 2 landmines active at a time.`,
+    effect: `The engineer places a landmine on the floor or wall in base contact with themselves". If any creature moves within 1" of the landmine, it explodes, and every figure within 3" of it takes a +5 Shooting attack, ignoring 2 points of armour from the targets. The Engineer may only have 2 landmines active at a time.`,
   },
   {
     name: "Hookshot Masterpiece",
@@ -402,6 +402,7 @@ function DwarfTreasureHuntersPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
+                  {...(unit.spellAffinity && { spellAffinity: unit.spellAffinity })}
                 />
               </div>
             ))}

@@ -203,7 +203,7 @@ An Asrai warrior emerges from the shadows, bow drawn and arrow nocked. Their eye
     title: "Freelance Mercenary",
     description: `[Hired Sword - Mercenary Knight]
 
-A lone warrior in battered plate armor steps from the ruins, sword in hand. No banner, no lord — just a fighter seeking gold and glory in the City of the Damned.
+A lone warrior in battered plate armour steps from the ruins, sword in hand. No banner, no lord — just a fighter seeking gold and glory in the City of the Damned.
 
 • Mercenaries, Witch Hunters, Dwarf Treasure Hunters: May hire for 150gc + 10% upkeep
 • Skaven, Vampire Courts, Orcs, Cult of the Possessed: The mercenary recognizes evil when he sees it. Make a Fight check (TN 16)
@@ -317,7 +317,7 @@ The crack of a crossbow bolt splintering stone announces the marksman's presence
 • Any warband except Skaven, Orcs, Undead: May hire for 150gc + 10% upkeep
 • Skaven, Orcs, Undead: The marksman considers you target practice. Make a Fight check (TN 15)
   - Success: Close the distance before he reloads. Gain 50 XP.
-  - Failure: Crossbow bolts pierce armor and flesh. Roll injury roll and start the next game at half health.`,
+  - Failure: Crossbow bolts pierce armour and flesh. Roll injury roll and start the next game at half health.`,
   },
   {
     range: "52-53",
@@ -326,7 +326,7 @@ The crack of a crossbow bolt splintering stone announces the marksman's presence
 
 A sharp rap at your encampment's gate breaks the evening silence. Standing in the shadows is a figure of legend — Aenur, the Elf who single-handedly slaughtered Karl Zimmeran's entire Possessed warband and cleansed the Rat Hole of Beastmen. 
 
-Tall even for an Elf, he stands wrapped in a finely woven cloak, ithilmar armor gleaming beneath. The greatsword on his back is said to possess arcane properties. None struck by it have lived to tell the tale. His pale face betrays no emotion as he offers his services.
+Tall even for an Elf, he stands wrapped in a finely woven cloak, ithilmar armour gleaming beneath. The greatsword on his back is said to possess arcane properties. None struck by it have lived to tell the tale. His pale face betrays no emotion as he offers his services.
 
 Rumors swirl about his origins — some say he's a Swordmaster from the fabled kingdoms of Ulthuan, others claim he's a Wood Elf prince in exile. Aenur himself says nothing of his past, and the wise do not question him. What he seeks in Mordheim's cursed ruins remains his secret alone.
 
@@ -337,7 +337,7 @@ Rumors swirl about his origins — some say he's a Swordmaster from the fabled k
 • Skaven, Undead, Cult of the Possessed: Aenur's hand moves to his sword hilt. The slayer of Karl Zimmeran's warband stands before you, and his hatred of corruption is absolute. He attacks without warning or mercy.
   - Automatic Fight check (TN 19) — there is no negotiation, only survival
   - Success: Through desperate skill or blind luck, you drive back the legendary warrior. Gain 150 XP and earn a permanent enemy — Aenur will hunt your warband. In every future game, there is a 1-in-20 chance he appears as a neutral enemy figure hunting your leader.
-  - Failure: The greatsword's arcane blade cuts through armor like parchment. Roll injury roll twice and take both results.`,
+  - Failure: The greatsword's arcane blade cuts through armour like parchment. Roll injury roll twice and take both results.`,
   },
   {
     range: "54-55",
@@ -346,7 +346,7 @@ Rumors swirl about his origins — some say he's a Swordmaster from the fabled k
 
 The clang of warhammer on steel echoes through the ruins. In a dawn-lit courtyard, a warrior woman practices her forms with relentless precision. Long golden plaits whip as she moves, and her fierce blue eyes could freeze a Goblin at twenty paces.
 
-This is Bertha Bestraufrung, High Matriarch and Abedissa of Sigmar's Rock. Pure Unberogen blood runs in her veins, and her voice commands such authority that strong men tremble before her. Clad in Gromril armor and bearing twin great warhammers, she is the living embodiment of Sigmar's wrath and mercy.
+This is Bertha Bestraufrung, High Matriarch and Abedissa of Sigmar's Rock. Pure Unberogen blood runs in her veins, and her voice commands such authority that strong men tremble before her. Clad in Gromril armour and bearing twin great warhammers, she is the living embodiment of Sigmar's wrath and mercy.
 
 Named successor by the dying Matriarch Cassandra herself, Bertha leads by example — strict discipline, unwavering devotion, and martial perfection. Sometimes she reflects on lost innocence, but such thoughts are buried beneath iron-hard resolve and endless preparation for battle.
 
@@ -387,7 +387,7 @@ He takes his payment in gold... or in Crimson Shade, the drug to which he's thor
 • Skaven, Undead, Vampire Courts, Cult of the Possessed: Johann's contracts are clear — he doesn't work for monsters, and he's killed enough of your kind to earn their bounties three times over. He attacks the moment he recognizes what you are.
   - Automatic Fight check (TN 17) — the master assassin strikes first
   - Success: Turn the tables on the legendary killer. Gain 110 XP and loot 100gp he dropped before melding into the shadows.
-  - Failure: Lightning-fast daggers find every gap in your armor. Roll thrice in the injury table  — You cannot make black market rolls for the next 3 games (Johann's network remembers).`,
+  - Failure: Lightning-fast daggers find every gap in your armour. Roll thrice in the injury table  — You cannot make black market rolls for the next 3 games (Johann's network remembers).`,
   },
   {
     range: "58-59",
@@ -444,65 +444,64 @@ The black gem at her throat pulses with shadow-magic. She has learned its secret
   },
   {
     range: "62-63",
-    title: "Nicodemus, The Cursed Pilgrim",
-    description: `[Dramatis Personae - The Ever-Growing Wizard]
+    title: "Hrothnar, The Vessel Champion",
+    description: `[Dramatis Personae - Possessed Champion]
 
-A figure shambles through the ruins — too large, too wrong. Nicodemus stands nearly eight feet tall now, his robes stretched and torn to accommodate his abnormal size. Wyrdstone shards orbit his body in a slow, sickening spiral, drawn by the potion's magic. His eyes carry the weight of terrible knowledge and desperate hope.
+The warrior stands in the shadow of a collapsed temple, his armour scorched and dented from countless battles. Dark runes writhe across his skin, pulsing with malevolent light. This is Hrothnar — once a champion of the Empire, now a living vessel for daemonic power.
 
-Once a promising apprentice to the legendary Ganthrandir, Nicodemus's ambition led him to disaster. He freed a Daemon imprisoned in an ancient lantern, demanding to become "the greatest wizard known to Mankind." The treacherous entity granted his wish — literally. Now he grows without ceasing, an inch taller each week, his body swelling toward inevitable collapse.
+The transformation began years ago when Hrothnar sought power to save his dying warband. A daemon offered strength beyond mortal limits, and in desperation, he accepted. The entity did not possess him fully — instead, it sealed itself within his flesh, waiting. Now Hrothnar walks a razor's edge between mortal and daemon, his own will barely keeping the creature contained.
 
-Only one remedy delays the curse: a potion discovered in the World's Edge Mountains, requiring constant infusions of wyrdstone. Thus Nicodemus haunts Mordheim, trading his formidable magical skills for the green-glowing shards that keep him alive one more day. His power has grown tremendously in the cursed city — who knows where he will appear next, or how large he will become before the end?
+But the seal weakens with each battle. When his body breaks, the daemon surges forth in terrible glory, healing his wounds and granting horrific power. Hrothnar has learned to control these moments, becoming more monster than man. Yet he still clings to fragments of his former self, seeking those who might understand — or those strong enough to end his cursed existence.
 
-• Any warband except Skaven, Undead, Possessed, Witch Hunters: Make a Will check (TN 14) to withstand the aura of wyrdstone corruption and propose alliance
-  - Success: Nicodemus's haunted eyes show relief. "You have what I need. I have... skills." May hire for 1 Wyrdstone Shard immediately + 1 Wyrdstone Shard after each game (including the first). If you cannot or will not pay in wyrdstone, Nicodemus leaves forever.
-  - Failure: The corruption radiating from him is overwhelming. You cannot bring yourself to approach. No penalty.
+• Cult of the Possessed and Beastmen Raiders: You recognize a kindred spirit — one who embraces the power of Chaos. Make a Will check (TN 13) to forge an alliance
+  - Success: Hrothnar's eyes flicker with dark approval. "You understand the price of power." May hire for 300gc + 20% upkeep. He brings his terrible might to your warband willingly.
+  - Failure: The daemon within him senses weakness. Hrothnar attacks to test your worth. Make a Fight check (TN 15) or your explorer starts the next game at half health.
 
-• Witch Hunters: The cursed wizard represents everything you fight against — dark pacts, Daemonic corruption, forbidden magic. Yet his suffering is genuine. Make a Will check (TN 15) to choose between mercy and duty
-  - Success: Recognize that Nicodemus is victim as much as threat. Offer him Sigmar's mercy (quick death). He refuses and flees. Gain 70 XP for your compassion.
-  - Failure: Righteous fury overcomes wisdom. You attack the cursed mage. He defends himself with desperate magic — your explorer must make an injury roll. If the explorer survives, they are marked by wyrdstone corruption: -1 to all stats durint the next game.
+• Witch Hunters, Sisters of Sigmar, Sea Guard of Ulthuan, Wood Elves and Lizardmen: An abomination stands before you — a living vessel of Chaos that must be purged. Make a Fight check (TN 17) to strike him down
+  - Success: Your righteous fury drives Hrothnar back! But as he falls, the Shattered Seal breaks — the daemon erupts forth in full glory, wreathed in dark power. You must flee. Gain 100 XP for facing such horror.
+  - Failure: Hrothnar's martial prowess overwhelms you. Your explorer takes an injury roll. If they survive, they are marked by the daemon's touch: -1 Will during the next game.
 
-• Sisters of Sigmar: Sigmar's holy presence clashes with the wyrdstone aura. The collision of energies is catastrophic. Make a Will check (TN 17)
-  - Success: Channel Sigmar's light to shield yourself from the backlash. Gain 90 XP.
-  - Failure: The wyrdstone shards orbiting Nicodemus explode in a cascade of corrupted energy. All figures in your warband take 3 damage at the start of your next game. Your explorer rolls on the injury table.
+• Undead and Vampire Courts: The daemon within Hrothnar recognizes the undead as enemies of Chaos. It surges against the seal, forcing confrontation. Make a Will check (TN 16) to escape
+  - Success: You slip away before the daemon can fully manifest. Gain 80 XP for your cunning retreat.
+  - Failure: The Shattered Seal breaks! Hrothnar transforms into something monstrous: Automatic Damage, Elemental Resistance, Immune to Critical Hits, Magic Attacks, Melt Weapon. Your explorer barely escapes with their life — they start the next game at half health and must roll on the injury table.
 
-• Skaven, Undead, Cult of the Possessed: Nicodemus recognizes the taint of true Chaos and flees, but not before unleashing destructive magic in panic. Make a Will check (TN 16)
-  - Success: Resist the magical onslaught. Gain 60 XP.
-  - Failure: Wild magic tears through your explorer. Roll twice on the injury roll the Explorers gain a random mutation from the Grave Mutations supplement.`,
+• All Other Warbands: Hrothnar offers a choice — hire him or leave in peace. Make a Will check (TN 14) to withstand the daemon's aura and negotiate
+  - Success: You sense the danger but also the opportunity. May hire Hrothnar for 300gc + 40% upkeep. His power could turn the tide of battle.
+  - Failure: The corruption emanating from him is too much. You flee without penalty, haunted by what you've seen.
+
+Note: Hrothnar has the Demon trait and can choose 2 Daemonic Attributes at the start of each game. If reduced to 0 health, his Shattered Seal activates: he gains 10 health and Automatic Damage, Elemental Resistance (5), Immune to Critical Hits, Immune to Poison, Magic Attacks, Melt Weapon, and Resistant to Missile Weapons for the rest of the battle.`,
   },
   {
     range: "64-65",
-    title: "Ulli & Marquand",
-    description: `[Dramatis Personae - Infamous Traitors]
+    title: "Rotigus, the Rainfather",
+    description: `[Dramatis Personae - Greater Demon of Nurgle]
 
-Two figures emerge from a ruined merchant house, their footsteps casual despite the gold weighing down their pockets. The Marienburg fop with the cruel smile and deadly blade. The massive Middenheimer with his brutal warhammer. Ulli Leitpold and Marquand Volker — the most villainous pair of rogues in the Empire's history.
+The air thickens with the stench of decay. Flies swarm in impossible numbers, their droning buzz drowning out all other sound. Through the pestilential fog shambles a massive, bloated figure — Rotigus, the Rainfather, Greater Demon of Nurgle.
 
-Once brigands in a mercenary regiment, they were captured by bounty hunters and enslaved into the Count of Stirland's penal legions. They escaped on Mordheim's outskirts and instantly recognized the ruined city as home. Here, among the corrupt and immoral, their martial prowess and ruthless guile earned them infamy.
+Where he walks, the very stones weep with corruption. His cyclopean eye surveys the ruins with ancient malevolence, his massive form dripping with foul ichor. This is no mindless beast, but an intelligence older than empires, a fragment of Nurgle's own putrid divinity made manifest.
 
-Marquand, the Marienburg-born swordsman, killed his first victim before age ten and cut out the Duke of Suddenland's heart while the Duke's wife slept beside him. His throwing knives never miss, and his only real enemy is Gottlieb "The Flayer," the Witch Hunter whose face Marquand horribly disfigured.
+The Garden of Nurgle calls to him here, in this city of the damned. The concentrated wyrdstone and desperate souls provide fertile ground for his master's work. But Rotigus does not serve freely — even demons have their price.
 
-Ulli, the hulking Middenheimer, survived the slaughter at Nuln's third siege. His massive warhammer speaks louder than words, and his greed knows no bounds.
+• Cult of the Possessed and Beastmen Raiders ONLY: The daemon recognizes kindred spirits corrupted by Chaos. Make a Will check (TN 16) to bind the Greater Demon. You may sacrifice a specialist soldier to gain +2 in this roll.
+  - Success: Through dark rituals and blood sacrifice, you forge a pact with the Rainfather. May summon Rotigus as Dramatis Personae (Cost: 2 specialist soldiers as sacrifice + 2 specialist soldiers per game as upkeep). His presence is a blessing... and a curse.
+  - Failure: Your will is insufficient. The daemon's laughter echoes like thunder as pestilential winds wash over you. Your explorer starts the next game poisoned. Gain 50 XP for surviving the encounter.
 
-But their services come with a price beyond gold: their loyalty is as fickle as Chaos winds. They've betrayed employers for a single crown, stabbing them in the back mid-battle. In Mordheim, even the damned don't trust these two.
+• Undead, Vampire Courts: The unliving are anathema to the Lord of Decay. Rotigus attacks immediately, seeking to drag your essence into Nurgle's Garden. Make a Will check (TN 18) to escape the daemon's wrath
+  - Success: You flee before the Greater Demon's terrible power. Your explorer is shaken but alive. Gain 80 XP for surviving an encounter with true daemonic might.
+  - Failure: The Winds of Putrescence overwhelm you. Your explorer starts the next game at half health and poisoned.
 
-• Any warband except Sisters of Sigmar, Witch Hunters: Make a Will check (TN 11) to negotiate with the infamous pair
-  - Success: They accept your offer with wolfish grins. May hire for 30gc as a pair (no upkeep, but see Special Rules below)
-  - Failure: Marquand's smile turns predatory. "Come back when you have steel in your spine." No penalty, but you cannot hire them.
+• All Other Warbands: Rotigus cares nothing for mortal affairs. Make a Will check (TN 14) to resist the Winds of Putrescence as you hastily retreat
+  - Success: You escape the daemon's presence before the pestilent aura can take hold. The memory of his cyclopean gaze will haunt your dreams. Gain 60 XP.
+  - Failure: The putrescent winds catch you before you can flee. Your explorer suffers 4 points of damage and becomes poisoned. The sickness will pass, but the scars remain.
 
-
-• Sisters of Sigmar, Witch Hunters: These men are irredeemable scum — murderers, traitors, thieves. You cannot allow them to walk free. Make a Fight check (TN 16) to bring them to justice
-  - Success: After a brutal fight, you drive off the pair. Gain 100 XP, but they put a bounty on your head. During the next game, the explore have the Bounty(200) trait.
-  - Failure: Two professional killers against one zealot. Marquand's blade and Ulli's hammer work in deadly concert. Roll injury roll twice and take both results. Your warband loses 100gc (looted by the pair as they escape). Your explorer is Out of Action for the next game.
-
-• Undead, Vampire Courts, Cult of the Possessed: Even these hardened criminals have limits. They attack on sight, seeking to claim bounties on undead hunters. Make a Fight check (TN 15)
-  - Success: Survive the ambush. Gain 80 XP and loot 50gc they dropped fleeing.
-  - Failure: The pair's coordinated assault is devastating. Roll injury roll twice and take both results. Your warband loses 100gc (looted by the pair as they escape). Your explorer is Out of Action for the next game.`,
+Note: Rotigus has the following traits: Demon, Immune to Control Demon, Immune to Critical Hits, Immune to Mind Control, Magic Attacks, Spell Reflection. His Winds of Putrescence force Will Rolls (TN14) on all figures activating within 6", dealing 4 damage and poisoning on failure (Undead, Constructs, and Demons are immune).`,
   },
   {
     range: "66-67",
     title: "Abandoned Armory",
     description: `[Discovery - Equipment Cache]
 
-Behind a collapsed wall, you discover a merchant's warehouse still sealed from the inside. Racks of weapons and armor stand covered in dust but intact — whoever locked this place died before they could return.
+Behind a collapsed wall, you discover a merchant's warehouse still sealed from the inside. Racks of weapons and armour stand covered in dust but intact — whoever locked this place died before they could return.
 
 Make a Will check (TN 11) to safely navigate the trapped entrance.
 • Success: Roll 1d3 times on the Magic Weapon/Armour tables. Your warband may purchase these items at 50% normal cost.
@@ -624,8 +623,8 @@ Make a Fight check (TN 11) to force the lock without damaging the contents.
 
 In a hidden workshop, an old craftsman still plies his trade. "I can make your equipment... better," he offers. His hands are steady despite his age. "But my services don't come free, and not all work succeeds."
 
-Pay 50gc and choose one weapon or armor equiped by the explorer. Make a Will check (TN 12).
-• Success: The craftsman's work is flawless. The item gains +1 to damage (weapon) or +1 to armor value (armor) permanently. This stacks with other bonuses. This weapon cannot be made better by the craftsmen again.
+Pay 50gc and choose one weapon or armour equiped by the explorer. Make a Will check (TN 12).
+• Success: The craftsman's work is flawless. The item gains +1 to damage (weapon) or +1 to armour value (armour) permanently. This stacks with other bonuses. This weapon cannot be made better by the craftsmen again.
 • Failure (or cannot pay): The craftsman's hands slip. The item is lost.`,
   },
   {

@@ -24,24 +24,24 @@ const hiredSwords = [
       move: 4,
       fight: "+4",
       shoot: "0",
-      armor: 12,
+      armour: 12,
       will: "+4",
       health: 20,
-      cost: "150gc + 10% upkeep",
+      cost: "200gc + 10% upkeep",
     },
     abilities: [
       {
         name: "Equipment",
         description:
-          "Dwarven Great Axe (Two Handed Weapon that treats enemy figures' armor as being 1 point lower when calculating damage), Dwarf Axe (count as a dagger but without the -1 modifier to damage), Ogre Pelt (+1 Armor)",
+          "Dwarven Great Axe or 2 Dwarf Axes, Ogre Pelt(+1 to armour, already in statblock)",
       },
       {
         name: "Deathwish",
         description:
-          "A Dwarf Trollslayer is immune to the Fear trait and has the Mind Lock trait.",
+          "A Dwarf Trollslayer is immune to Fear and has the Mind Lock trait.",
       },
       {
-        name: "Relentless Destruction",
+        name: "Trained to Destroy",
         description: "The Dwarf Ogreslayer have the Strong trait.",
       },
     ],
@@ -52,23 +52,23 @@ const hiredSwords = [
       move: 7,
       fight: "+2",
       shoot: "+2",
-      armor: 10,
+      armour: 10,
       will: "+2",
       health: 12,
-      cost: "125gc + 10%",
+      cost: "200gc + 10%",
     },
     abilities: [
       {
         name: "Equipment",
-        description: "Elven Bow, Dagger, Light armor.",
+        description: "Asrai Longbow, Dagger, Light armour.",
       },
       {
-        name: "Forest Walker",
+        name: "Forest Ghost",
         description:
-          "Suffers no movement penalties in rough terrain. May move through woods at full speed.",
+          'Suffers no movement penalties in rough terrain. A Figure cannot draw line of sight to the Elf Ranger while further than 16" away or in any kind of cover.',
       },
       {
-        name: "Masterful Scouting",
+        name: "Combat Scouting",
         description: `Furthermore, at the start of the game, after both sides have set up, but before the first Initiative Rolls, a player with a
         Elf Ranger may move it and one other figure in base-to-base contact with it up to 3".
         The Elf Ranger and the other figure must remain in base-to-base contact at the end
@@ -76,11 +76,6 @@ const hiredSwords = [
         allowed to make this special move and should do so in the reverse order to which they
         deployed their crews (so, the player who set up first would be the last to move his
         Elf Ranger).`,
-      },
-      {
-        name: "Elven Bow",
-        description:
-          "Long Bow with 30\" range. Treats enemy figures' armor as being 1 point lower when calculating damage.",
       },
       {
         name: "Hiring Restrictions",
@@ -95,15 +90,15 @@ const hiredSwords = [
       move: 5,
       fight: "+3",
       shoot: "+1",
-      armor: 14,
+      armour: 14,
       will: "+2",
       health: 14,
-      cost: "150gc + 20%",
+      cost: "250gc + 20%",
     },
     abilities: [
       {
         name: "Equipment",
-        description: "Lance, shield, hand weapon, heavy armour, Horse",
+        description: "Lance, Shield, Hand Weapon, Heavy armour, Horse",
       },
       {
         name: "Knight",
@@ -114,11 +109,6 @@ const hiredSwords = [
         name: "Warhorse",
         description:
           "The Warhorse have the Charger and Aggressive Advanced Horsemanship training bonuses. Check the Spellcaster Magazine #1 to check these bonuses",
-      },
-      {
-        name: "Lance",
-        description:
-          "A Lance count as a hand weapon, but deals +2 damage when mounted. Lances break on a critical hit.",
       },
       {
         name: "Horse Lodging",
@@ -138,10 +128,10 @@ const hiredSwords = [
       move: 7,
       fight: "+0",
       shoot: "+3",
-      armor: 10,
+      armour: 10,
       will: "+1",
       health: 8,
-      cost: "140gc + 5%",
+      cost: "150gc + 5%",
     },
     abilities: [
       {
@@ -151,12 +141,11 @@ const hiredSwords = [
       {
         name: "Small",
         description:
-          "A figure may only make a Shooting Attack against a Halfling Scout if the Halfling Scout is the closes model to it.",
+          "A figure may only make a Shooting Attack against a Halfling Scout if the Halfling Scout is the closest model to it. Spells ignore this ability.",
       },
       {
         name: "Nimble",
-        description:
-          "Takes no Penalties for moving before Shooting. Does not suffer any movement penalties for rough terrain or climbing.",
+        description: "Takes no Penalties for moving before Shooting.",
       },
       {
         name: "Lucky",
@@ -164,9 +153,9 @@ const hiredSwords = [
           "Starts each game with a Luck token. May spend the token to reroll any one failed roll of any type.",
       },
       {
-        name: "Stealthy Marksmen",
+        name: "Masterful Guiding",
         description:
-          "When making a Shooting Attack against a creature that still haven't activated, ignore the first piece of intervening terrain (but not cover) between them.",
+          "The Halfling Warband gains a +3 bonus to initiative rolls.",
       },
       {
         name: "Hiring Restrictions",
@@ -181,10 +170,10 @@ const hiredSwords = [
       move: 4,
       fight: "+4",
       shoot: "0",
-      armor: 14,
+      armour: 14,
       will: "+2",
       health: 18,
-      cost: "200gc + 15%",
+      cost: "175gc + 15%",
     },
     abilities: [
       {
@@ -209,10 +198,10 @@ const hiredSwords = [
       move: 6,
       fight: "+1",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+4",
       health: 10,
-      cost: "100gc + 10%",
+      cost: "130gc + 10%",
     },
     abilities: [
       {
@@ -237,15 +226,15 @@ const hiredSwords = [
       move: 6,
       fight: "+1",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+2",
       health: 10,
-      cost: "100gc + 10%",
+      cost: "200gc + 10%",
     },
     abilities: [
       {
         name: "Equipment",
-        description: "Hand Weapon, Light Armor.",
+        description: "Hand Weapon, Light armour.",
       },
       {
         name: "Mercantile Network",
@@ -270,15 +259,15 @@ const hiredSwords = [
       move: 5,
       fight: "+2",
       shoot: "+2",
-      armor: 11,
+      armour: 11,
       will: "+0",
       health: 12,
-      cost: "125gc + 10%",
+      cost: "200gc + 10%",
     },
     abilities: [
       {
         name: "Equipment",
-        description: "hand Weapon, Bow, Quiver, Dagger, Light Armor.",
+        description: "hand Weapon, Bow, Quiver, Dagger, Light armour.",
       },
       {
         name: "Trophy Taking",
@@ -306,7 +295,7 @@ const hiredSwords = [
       move: 7,
       fight: "+3",
       shoot: "+2",
-      armor: 11,
+      armour: 11,
       will: "+2",
       health: 12,
       cost: "200gc + 20%",
@@ -314,7 +303,7 @@ const hiredSwords = [
     abilities: [
       {
         name: "Equipment",
-        description: "2 Pistols, Hand Weapon, Leather Armor, Horse",
+        description: "2 Pistols, Hand Weapon, Leather armour, Horse",
       },
       {
         name: "Ambusher",
@@ -359,15 +348,15 @@ const hiredSwords = [
       move: 7,
       fight: "+2",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+2",
       health: 10,
-      cost: "80gc + 10%",
+      cost: "150gc + 10%",
     },
     abilities: [
       {
         name: "Equipment",
-        description: "Two Daggers, Light Armor.",
+        description: "Two Daggers, Light armour.",
       },
       {
         name: "Black Lotus coated Blades",
@@ -403,15 +392,15 @@ figure for anyone else, even members of their own warband.`,
       move: 5,
       fight: "+3",
       shoot: "+0",
-      armor: 13,
+      armour: 13,
       will: "+2",
       health: 14,
-      cost: "120gc + 20%",
+      cost: "200gc + 20%",
     },
     abilities: [
       {
         name: "Equipment",
-        description: "Hand Weapon, Hand Crossbow, Heavy armor, Horse",
+        description: "Hand Weapon, Hand Crossbow, Heavy armour, Horse",
       },
       {
         name: "Roadwarden",
@@ -455,24 +444,23 @@ figure for anyone else, even members of their own warband.`,
       move: 6,
       fight: "2",
       shoot: "+2",
-      armor: 11,
+      armour: 11,
       will: "+1",
       health: 12,
-      cost: "150gc + 15%",
+      cost: "225gc + 15%",
     },
     abilities: [
       {
         name: "Equipment",
-        description:
-          'MasterworkCrossbow(+1 to Shoot, +6" range), Hand Weapon, Pavise, Light Armor.',
+        description: "Masterwork Crossbow, Hand Weapon, Light armour.",
       },
       {
         name: "Crack Shot",
-        description: `A Tilean Marksman causes critical hits on rolls of 19 or 20. A figure that takes more than 5 damage from a Tilean Marskman Shooting Attack may only use one action during it's next activation.`,
+        description: `A Tilean Marksman causes critical hits on rolls of 19 or 20. A figure that takes more than 5 damage from a Tilean Marskman Shooting Attack gains a Stun Token.`,
       },
       {
         name: "Seagull's Dive",
-        description: `When shooting from a elevated position against an enemy figure, the Tilean Marksman may treat the armor of any enemy figure as being 1 point lower.`,
+        description: `When shooting from a elevated position against an enemy figure, the Tilean Marksman may treat the armour of any enemy figure as being 1 point lower.`,
       },
       {
         name: "Hiring Restrictions",
@@ -541,10 +529,14 @@ function HiredSwordsPage() {
               <strong style={{ color: "#c4a870" }}>
                 Specialist Slot Rules:
               </strong>
-              <br />• Hired Swords and Dramatis Personae each take up{" "}
-              <strong>one Specialist slot</strong> in your warband
-              <br />• This means they count against your warband's specialist
-              limit and total model count
+              <br />• <strong>Hired Swords</strong> take up{" "}
+              <strong>one Specialist slot</strong> in your warband and count as
+              one model
+              <br />• <strong>Dramatis Personae</strong> take up{" "}
+              <strong>two Specialist slots</strong>, but still count as only one
+              model for the warband's 10 model limit
+              <br />• Both count against your warband's specialist limit and
+              total model count
               <br />
               <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
                 Hiring Process

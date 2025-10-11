@@ -25,10 +25,17 @@ const bridesUnits = [
       move: 8,
       fight: "+1",
       shoot: "0",
-      armor: 9,
+      armour: 9,
       will: "+4",
       health: 14,
       cost: "-",
+    },
+    spellAffinity: {
+      aligned0: ["Witch"],
+      aligned2: ["Soothsayer", "Spiritualist", "Fatecaster", "Illusionist"],
+      neutral4: ["Enchanter", "Summoner", "Elementalist"],
+      opposed6: ["Sigilist", "Chronomancer"],
+      anathema: ["Thaumaturge", "Necromancer", "Astromancer"],
     },
     abilities: [
       {
@@ -40,7 +47,6 @@ const bridesUnits = [
         name: "Blessed by Khaine",
         description:
           "The Hag Queen is a spellcaster, and may cast spells from the Soothsayer, Witch, Spiritualist, Fatecaster and Illusion Schools.",
-        spellAffinity: "hagQueen",
       },
       {
         name: "Witchbrew",
@@ -61,7 +67,7 @@ const bridesUnits = [
       move: 8,
       fight: "+3",
       shoot: "0",
-      armor: 9,
+      armour: 9,
       will: "+3",
       health: 14,
       cost: "-",
@@ -75,7 +81,7 @@ const bridesUnits = [
       {
         name: "Equipment",
         description:
-          "The Hag Queen may start with and equip daggers, hand weapons, light armor and the warband's exclusive Sacrificial Dagger.",
+          "The Hag Queen may start with and equip daggers, hand weapons, light armour and the warband's exclusive Sacrificial Dagger.",
       },
     ],
   },
@@ -85,7 +91,7 @@ const bridesUnits = [
       move: 8,
       fight: "+2",
       shoot: "0",
-      armor: 9,
+      armour: 9,
       will: "-1",
       health: 10,
       cost: "Free",
@@ -103,7 +109,7 @@ const bridesUnits = [
       move: 8,
       fight: "+4",
       shoot: "0",
-      armor: 10,
+      armour: 10,
       will: "0",
       health: 10,
       cost: "75gc",
@@ -111,7 +117,7 @@ const bridesUnits = [
     abilities: [
       {
         name: "Equipment",
-        description: "Hand Weapon, Sacrificial Dagger, Light Armor",
+        description: "Hand Weapon, Sacrificial Dagger, Light armour",
       },
     ],
   },
@@ -121,7 +127,7 @@ const bridesUnits = [
       move: 8,
       fight: "+3",
       shoot: "0",
-      armor: 10,
+      armour: 10,
       will: "0",
       health: 10,
       cost: "90gc",
@@ -134,7 +140,7 @@ const bridesUnits = [
       },
       {
         name: "Equipment",
-        description: "Hand Weapon, Sacrificial Dagger, Light Armor",
+        description: "Hand Weapon, Sacrificial Dagger, Light armour",
       },
     ],
   },
@@ -145,7 +151,7 @@ const bridesUnits = [
       move: 8,
       fight: "+3",
       shoot: "0",
-      armor: 10,
+      armour: 10,
       will: "+1",
       health: 12,
       cost: "125gc",
@@ -158,7 +164,7 @@ const bridesUnits = [
       },
       {
         name: "Equipment",
-        description: "Hand Weapon, Sacrificial Dagger, Light Armor",
+        description: "Hand Weapon, Sacrificial Dagger, Light armour",
       },
     ],
   },
@@ -169,7 +175,7 @@ const bridesUnits = [
       move: 6,
       fight: "+2",
       shoot: "0",
-      armor: 9,
+      armour: 9,
       will: "+1",
       health: 12,
       cost: "125gc",
@@ -192,7 +198,7 @@ const bridesUnits = [
       move: 8,
       fight: "+3",
       shoot: "0",
-      armor: 12,
+      armour: 12,
       will: "+2",
       health: 12,
       cost: "25gc",
@@ -250,7 +256,7 @@ const whispersOfPain = [
     name: "Whisper of Flaying",
     when: "Whenever the Slaughter Queen wins a Fight and causes at least 1 damage.",
     effect:
-      "The enemy figure loses 1 armor until the end of the game. This power cannot take a figure to less than 6 armor.",
+      "The enemy figure loses 1 armour until the end of the game. This power cannot take a figure to less than 6 armour.",
   },
   {
     name: "Whisper of Slaughter",
@@ -280,7 +286,7 @@ const whispersOfPain = [
     name: "Whisper of Sacrifice",
     when: "At any point during the Slaughter Queen activation.",
     effect:
-      "The Slaughter Queen gains +2 Damage and +2 Move, but her armor is set to 8 until the start of her next activation.",
+      "The Slaughter Queen gains +2 Damage and +2 Move, but her armour is set to 8 until the start of her next activation.",
   },
   {
     name: "Whisper of Torn Flesh",
@@ -327,6 +333,7 @@ function BridesOfKhainePage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
+                  {...(unit.spellAffinity && { spellAffinity: unit.spellAffinity })}
                 />
               </div>
             ))}

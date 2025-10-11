@@ -25,10 +25,29 @@ const seaGuardUnits = [
       move: 7,
       fight: "+1",
       shoot: "+1",
-      armor: 9,
+      armour: 9,
       will: "+6",
       health: 14,
       cost: "-",
+    },
+    spellAffinity: {
+      aligned0: [
+        "Elementalist",
+        "Enchanter",
+        "Illusionist",
+        "Necromancer",
+        "Sigilist",
+        "Soothsayer",
+        "Summoner",
+        "Thaumaturge",
+        "Witch",
+        "Chronomancer",
+        "Distortionist",
+        "Spiritualist",
+        "Fatecaster",
+        "Astromancer",
+        "Sonancer",
+      ],
     },
     abilities: [
       {
@@ -40,7 +59,6 @@ const seaGuardUnits = [
         name: "Spellcaster",
         description:
           "The Loremaster can learn and cast spells from any school of magic. The loremaster starts with 8 spells from any school.",
-        spellAffinity: "loremasterOfHoeth",
       },
       {
         name: "Equipment",
@@ -55,7 +73,7 @@ const seaGuardUnits = [
       move: 7,
       fight: "+3",
       shoot: "+1",
-      armor: 10,
+      armour: 10,
       will: "+3",
       health: 18,
       cost: "100gc",
@@ -64,7 +82,7 @@ const seaGuardUnits = [
       {
         name: "Tidewall Stance",
         description:
-          "While the Phoenix Guardiann is in base contact with the Loremaster, the Loremaster gains +2 Armor.",
+          "While the Phoenix Guardiann is in base contact with the Loremaster, the Loremaster gains +2 armour.",
       },
       {
         name: "Tides of Hoeth",
@@ -84,7 +102,7 @@ const seaGuardUnits = [
       move: 7,
       fight: "+2",
       shoot: "+0",
-      armor: 9,
+      armour: 9,
       will: "-1",
       health: 10,
       cost: "free",
@@ -102,7 +120,7 @@ const seaGuardUnits = [
       move: 7,
       fight: "+3",
       shoot: "0",
-      armor: 11,
+      armour: 11,
       will: "+1",
       health: 12,
       cost: "75gc",
@@ -110,7 +128,7 @@ const seaGuardUnits = [
     abilities: [
       {
         name: "Equipment",
-        description: "Hand Weapon, Shield, Light Armor.",
+        description: "Hand Weapon, Shield, Light armour.",
       },
     ],
   },
@@ -120,7 +138,7 @@ const seaGuardUnits = [
       move: 7,
       fight: "+3",
       shoot: "0",
-      armor: 10,
+      armour: 10,
       will: "0",
       health: 10,
       cost: "75gc",
@@ -128,7 +146,7 @@ const seaGuardUnits = [
     abilities: [
       {
         name: "Equipment",
-        description: "Elven Warglaive, Light Armor.",
+        description: "Elven Warglaive, Light armour.",
       },
     ],
   },
@@ -139,7 +157,7 @@ const seaGuardUnits = [
       move: 7,
       fight: "+3",
       shoot: "0",
-      armor: 9,
+      armour: 9,
       will: "+4",
       health: 12,
       cost: "100gc",
@@ -162,7 +180,7 @@ const seaGuardUnits = [
       move: 6,
       fight: "+3",
       shoot: "0",
-      armor: 11,
+      armour: 11,
       will: "+1",
       health: 12,
       cost: "100gc",
@@ -175,7 +193,7 @@ const seaGuardUnits = [
       },
       {
         name: "Equipment",
-        description: "Elven Warglaive, Heavy Armor.",
+        description: "Elven Warglaive, Heavy armour.",
       },
     ],
   },
@@ -186,7 +204,7 @@ const seaGuardUnits = [
       move: 7,
       fight: "+1",
       shoot: "+3",
-      armor: 10,
+      armour: 10,
       will: "+2",
       health: 10,
       cost: "125gc",
@@ -199,7 +217,7 @@ const seaGuardUnits = [
       },
       {
         name: "Equipment",
-        description: "Bow, Hand Weapon, Light Armor.",
+        description: "Bow, Hand Weapon, Light armour.",
       },
     ],
   },
@@ -218,7 +236,7 @@ const tidesOfHoeth = [
     name: "Shield of the Tempest",
     when: 'When the Loremaster is targeted by a ranged attack and is Within 3" of the Phoenix Guard.',
     effect:
-      'up to 3 allied models within 3" of the Phoenix Guard gain +2 Armor for the next attack they take or until the end of the turn, whichever comes first.',
+      'up to 3 allied models within 3" of the Phoenix Guard gain +2 armour for the next attack they take or until the end of the turn, whichever comes first.',
   },
   {
     name: "Coral Wall Formation",
@@ -257,7 +275,7 @@ const tidesOfHoeth = [
       "That creature gains an echo token. Any creature from the Warband that makes and succeeds on an attack against a creature with an echo token adds another echo token to it. A creature with an echo token takes 1 extra damage at anytime it takes damage for each echo token it has. The Loremaster may spend an action to consume any number of echo tokens on a creature and gain that number of echo tokens as a bonus to his casting roll. All echo tokens are lost at the start of each turn.",
   },
   {
-    name: "Scrimshawed Armor",
+    name: "Scrimshawed armour",
     when: "At any time the Phoenix Guard is affected by a Spell.",
     effect:
       "The Phoenix Guard gains a +5 Will against that effect. After the end of the battle, if the Phoenix Guard was not knocked out, it may activate this power again. If successful, he creates a scroll from one of the spells this power was used against as if the Write Scroll spell was cast.",
@@ -326,6 +344,9 @@ function SeaGuardPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
+                  {...(unit.spellAffinity && {
+                    spellAffinity: unit.spellAffinity,
+                  })}
                 />
               </div>
             ))}

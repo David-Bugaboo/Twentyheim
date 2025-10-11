@@ -1,4 +1,4 @@
-import { Box, styled, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 import Header from "../components/Header";
@@ -16,16 +16,7 @@ import {
   QuoteAttribution,
 } from "../components/PageComponents";
 
-const AbilityText = styled(Typography)(({ theme }) => ({
-  fontFamily: '"Crimson Text", serif',
-  fontSize: "1.1rem",
-  lineHeight: 1.6,
-  color: "#d4c4a8",
-  [theme.breakpoints.down("sm")]: {
-    fontSize: "1rem",
-    lineHeight: 1.5,
-  },
-}));
+
 
 const dramatisPersonae = [
   {
@@ -34,7 +25,7 @@ const dramatisPersonae = [
       move: 6,
       fight: "+6",
       shoot: "+2",
-      armor: 14,
+      armour: 14,
       will: "+4",
       health: 16,
       cost: "300gc",
@@ -43,7 +34,7 @@ const dramatisPersonae = [
       {
         name: "Equipment",
         description:
-          "Ithilmar Two-Handed Weapon (+1 to Fight and count as magical weapon), Ithilmar Armor (Heavy Armor without -1 to Movement), Sea Dragon Cloak (+1 to Armor against shooting attacks).",
+          "Ithilmar Two-Handed Weapon (+1 to Fight and count as magical weapon), Ithilmar armour (Heavy armour without -1 to Movement), Sea Dragon Cloak (+1 to armour against shooting attacks).",
       },
       {
         name: "Swordmaster",
@@ -54,17 +45,17 @@ const dramatisPersonae = [
       {
         name: "Arcane Edge",
         description:
-          "Any attacks made by Aenur treats the enemy figure's armor as being 10. If the enemy figure is using magical armor, ignore this ability",
+          "Any attacks made by Aenur treats the enemy figure's armour as being 2 points lower. If the enemy figure is using magical armour, ignore this ability",
       },
       {
-        name: "Tidal Parries",
+        name: "Lightning Parries",
         description:
-          "Figures cannot gain bonuses from supporting figures when fighting Aenur.",
+          "Figures cannot gain bonuses to their fight rolls from supporting figures when fighting Aenur.",
       },
       {
         name: "Hiring Restrictions",
         description:
-          "May be hired by any warband except Skaven, Undead, and Cult of the Possessed. Does not require upkeep, instead taking the first treasure roll made after the game.",
+          "May be hired by any warband except Skaven, Undead, and Cult of the Possessed. Will Fight only once for each warband. The Warband must play at least 2 games without him before he can be hired again.",
       },
     ],
   },
@@ -74,7 +65,7 @@ const dramatisPersonae = [
       move: 5,
       fight: "+4",
       shoot: "+0",
-      armor: 14,
+      armour: 14,
       will: "+5",
       health: 18,
       cost: "-",
@@ -83,7 +74,7 @@ const dramatisPersonae = [
       {
         name: "Equipment",
         description:
-          "2x Sigmarite Warhammers, Gromril Armor (Heavy Armor with +1 to Armor).",
+          "2x Sigmarite Warhammers, Gromril armour (Heavy armour with +1 to armour).",
       },
       {
         name: "High Matriarch",
@@ -91,14 +82,9 @@ const dramatisPersonae = [
           As a priestess, she casts at a -4, but may cast while using armors and shields.`,
       },
       {
-        name: "Stormborne Exorcism",
-        description: `Any Demons or Undead that are hit by Bertha's Elemental Sphere spell are immediately subject to the 
-          banish demon or destroy undead spells using the same casting roll.`,
-      },
-      {
         name: "Blessed Warhammers",
         description:
-          "Wields two blessed warhammers. Gains +1 Armor while wielding them this way, but cannot pickup trasure without storing one of them.",
+          "Wields two blessed warhammers. Gains +1 Damage while wielding them this way, but cannot pickup trasure without storing one of them and losing this bonus.",
       },
       {
         name: "Righteous Fury",
@@ -118,15 +104,15 @@ const dramatisPersonae = [
       move: 8,
       fight: "+4",
       shoot: "+2",
-      armor: 11,
+      armour: 11,
       will: "+3",
       health: 14,
-      cost: "200 + 20% upkeep",
+      cost: "250gc + 20% upkeep",
     },
     abilities: [
       {
         name: "Equipment",
-        description: "Unlimited Daggers, Light Armor.",
+        description: "Unlimited Daggers, Light armour.",
       },
       {
         name: "Anatomy Savant",
@@ -141,7 +127,7 @@ const dramatisPersonae = [
       {
         name: "Shadow Walker",
         description:
-          'Figures may not draw line of sight to Johann while further than 20" away or in cover. Johann gains +3 move if every part of his movement is outside of line of sight of every enemy figure',
+          'Figures may not draw line of sight to Johann while further than 16" away or in cover. Johann gains +3 move if every part of his movement is outside of line of sight of every enemy figure',
       },
       {
         name: "Addicted to Crimson Shade",
@@ -156,147 +142,92 @@ const dramatisPersonae = [
     ],
   },
   {
-    name: "Nicodemus, The Cursed Pilgrim",
+    name: "Verskit, High Executioner of Clan Eshin",
+
     stats: {
-      move: 5,
-      fight: "+2",
-      shoot: "+0",
-      armor: 11,
-      will: "+5",
-      health: 18,
-      cost: "2 Magic Items as initial hiring cost + 1 Wyrdstone per game",
+      move: 8,
+      fight: "+4",
+      shoot: "+2",
+      armour: 14,
+      will: "+3",
+      health: 20,
+      cost: "350gc",
     },
     abilities: [
       {
+        name: "Masterwork of Clan Enshin",
+        description:
+          "Each of Verskit Fighting Claws count as a Pistol. This pistol deals 3 damage and ignores 3 points of enemy armour instead of the normal for the pistol, and may be reloaded as normal. Verskit may fire his pistol and fight in the same action.",
+      },
+      {
+        name: "The Flesh is Weak",
+        description: "Verskit is immune to Fear, and have the Mind Lock trait.	",
+      },
+      {
+        name: "Unblinking Eye",
+        description:
+          "Verskit mechanical eye may see thermal signatures through walls and his custom made Warplock Pistols chew through wood and stone like paper. Verskit do not need to have line of sight to shoot with his pistols. Cover and intervening terrain rules apply as normal.",
+      },
+      {
         name: "Equipment",
-        description: "Gigantic Staff",
-      },
-      {
-        name: "Giant Wizard",
-        description: "This creature have the Large trait.",
-      },
-      {
-        name: "Destructive Wyrdtide",
-        description:
-          "Nicodemus is a spellcaster. He may cast spells from the Elementalist, Astromancer and Distortionist schools of magic. When he is hired, the hiring player may choose eight spells from these schools in any combination. He cast those spells at a -2 Casting Roll due to his clumsy size.",
-      },
-      {
-        name: "Gigantic Caster",
-        description: `While Nicodemus size makes incantantions harder to intone and weave, The extra magic contained within his power gives an extra whoomp to his spells. The range of
-          spells he cast is increased by 6" and the damage of any spell is increased by 2.`,
-      },
-      {
-        name: "Growing Curse",
-        description:
-          "If upkeep is not paid, Nicodemus leaves the warband permanently. His curse slowly kills him without wyrdstone.",
-      },
-      {
-        name: "Magic Staff",
-        description: "Counts as a Two-Handed Weapon due to it's size..",
-      },
-      {
-        name: "Hiring Restrictions",
-        description:
-          "May be hired by any warband except Skaven, Undead, Cult of the Possessed, and Witch Hunters. Must be paid in wyrdstone, not gold. Requires 1 wyrdstone shard after each battle or he leaves permanently.",
+        description: "Skaven Fighting Claws, Light armour.",
       },
     ],
   },
   {
-    name: "Ulli Leitpold",
+    name: "Hrothnar, The Vessel Champion",
+
     stats: {
       move: 6,
       fight: "+4",
-      shoot: "+0",
-      armor: 11,
-      will: "+2",
+      shoot: "0",
+      armour: 13,
+      will: "+4",
       health: 14,
-      cost: "125gc + Marquand Cost.",
+      cost: "300gc+20% upkeep",
     },
     abilities: [
       {
+        name: "Slave to Darkness",
+        description:
+          "Hrothnar is a Possessed champion of chaos, and therefore have the Demon trait. At the start of each game, he may choose two Daemonic Attributes. He have those Daemonic Attributes during the game.",
+      },
+      {
+        name: "Shattered Seal",
+        description:
+          "If Hrothnar is reduced to 0 health, he gains 10 health back and gains Automatic Damage, Elemental Resistance (5), Immune to Critical Hits, Immune to Poison, Magic Attacks, Melt Weapon, Resistant to Missile Weapons",
+      },
+      {
         name: "Equipment",
-        description: "Two-Handed Weapon, Light armor.",
-      },
-      {
-        name: "Skull Basher",
-        description:
-          "Whenever Ulli wins a Fight and deals 5 damage to the enemy figure, that enemy figure may only use one action during it's next activation.",
-      },
-      {
-        name: "Unstoppable Charge",
-        description: `When Ulli uses a move action, he may choose a figure that he has  enough movement to enter combat with.
-          During his move action, he cannot be forced into combat, but he must finish the movement into combat with the target figure.
-          If Ulli wins the Fight, he may move that figure 3" in any direction, instead of the normal separate 1"`,
-      },
-      {
-        name: "Hiring Restrictions",
-        description:
-          "Must be hired as a pair with Marquand Volker. May be hired by any warband except Sisters of Sigmar and Witch Hunters. See Special Rules below.",
+        description: "Accursed Weapon, Heavy Armour, Shield.",
       },
     ],
   },
   {
-    name: "Marquand Volker",
+    name: "Rotigus",
     stats: {
-      move: 8,
-      fight: "+2",
-      shoot: "+2",
-      armor: 11,
-      will: "+3",
-      health: 14,
-      cost: "125gc + Ulli Leitpold Cost",
+      move: 4,
+      fight: "+5",
+      shoot: "0",
+      armour: 12,
+      will: "+8",
+      health: 18,
+      cost: "2 specialist soldiers as sacrifice + 2 specialist soldiers as upkeep sacrifice.",
     },
     abilities: [
       {
+        name: "Greater Demon of Nurgle",
+        description:
+          "Rotigus have the Demon, Immune to Control Demon, Immune to Critical Hits, Immune to Mind Control, Magic Attacks, Spell Reflection.",
+      },
+      {
+        name: "Winds of Putrescence",
+        description:
+          "If a figure activates within 6” of this creature, the figure must make an immediate Will Roll (TN14) or suffer 4 points of damagea and become poisoned. Undead, constructs, and demons are immune to this damage and thus do not have to make a Will Roll.",
+      },
+      {
         name: "Equipment",
-        description: "Hand Weapon, Daggers, Light armor.",
-      },
-      {
-        name: "Step Aside",
-        description: `Whenever a figure moves within 3" of Marquand, or Makes a Shooting Attack against him, Marquand may immediately move 3" in any direction. He cannot move into combat with another figure or leave the table during this movement.
-          If Marquand leaves the range of the ranged weapon, the attack is cancelled. If he moves into cover, or behind intervening terrain 
-          it now counts for that Shooting Attack.`,
-      },
-      {
-        name: "Knife Fighter",
-        description:
-          'May throw daggers (12" Shooting Attack, -1 damage ) or use them if offhand for Two Weapon Fighting with the Hand Weapon .',
-      },
-      {
-        name: "Lightning Reflexes",
-        description:
-          "Marquand is ALWAYS the first figure to activate in any turn, irrespective of any phase or initiative rolls.",
-      },
-      {
-        name: "Hiring Restrictions",
-        description:
-          "Must be hired as a pair with Ulli Leitpold. May be hired by any warband except Sisters of Sigmar and Witch Hunters. See Special Rules below.",
-      },
-    ],
-  },
-];
-
-const specialRules = [
-  {
-    name: "Ulli & Marquand Special Rules",
-    description:
-      "These two rogues have unique rules that apply when they're hired together.",
-    rules: [
-      {
-        title: "Wanderers",
-        text: "Ulli and Marquand only stay with a warband for the duration of one battle. After using them in a game, you may not hire them again until you have fought at least one battle without them.",
-      },
-      {
-        title: "A Fistful of Crowns",
-        text: "These rogues will do anything for money. At the start of the game, any opposing player may attempt to bribe the pair by secretly writing down an amount higher than 200gc. The controlling player may write down a counter-bid. If an opponent's bribe is higher than your counter-bid, they gain control of the pair for the rest of the game. Whoever wins (original employer or briber) must pay the written amount.",
-      },
-      {
-        title: "Where's the Money?",
-        text: "If you cannot pay the bribe/counter-bid in crowns, the pair will take an equal amount in Magic Items. Failing that, they will leave the warband and never may be hired again. Any Black Market Contact rolls will be made at -3 from now on.",
-      },
-      {
-        title: "Inseparable",
-        text: 'These two are like brothers and must remain within 4" of each other at all times. If one is taken Out of Action, the other will attempt to drag him to safety and both leave the battlefield.',
+        description: "Accursed Weapon, Heavy Armour, Shield.",
       },
     ],
   },
@@ -360,7 +291,7 @@ function DramatisPersonaePage() {
                 simply bought — they must be encountered through fate or special
                 circumstances.
               </p>
-              <br/>
+              <br />
               <p>
                 Each Dramatis Personae has unique abilities that far exceed
                 normal warriors. They do not count toward your warband's maximum
@@ -384,10 +315,13 @@ function DramatisPersonaePage() {
               <strong style={{ color: "#c4a870" }}>
                 Specialist Slot Rules:
               </strong>
-              <br />• Hired Swords and Dramatis Personae each take up{" "}
-              <strong>one Specialist slot</strong> in your warband
-              <br />• This means they count against your warband's specialist
-              limit and total model count.
+              <br />• <strong>Dramatis Personae</strong> take up{" "}
+              <strong>two Specialist slots</strong> in your warband, but still
+              count as only <strong>one model</strong> for the warband's 10
+              model limit
+              <br />• <strong>Hired Swords</strong> take up{" "}
+              <strong>one Specialist slot</strong> and count as one model
+              <br />• Both count against your warband's specialist limit
               <br />
               <br />
               <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
@@ -478,6 +412,72 @@ function DramatisPersonaePage() {
             </ParchmentText>
           </div>
 
+          {/* Game Terms Section */}
+          <div style={{ marginTop: "3rem", marginBottom: "3rem" }}>
+            <ParchmentText>
+              <strong style={{ color: "#d4af37", fontSize: "1.5rem" }}>
+                Game Terms
+              </strong>
+              <br />
+              <br />
+              Some Dramatis Personae have special abilities that use specific
+              game terms. These are defined below:
+            </ParchmentText>
+
+            <Box sx={{ mt: 3 }}>
+              <ParchmentText>
+                <strong style={{ color: "#c4a870", fontSize: "1.2rem" }}>
+                  Automatic Damage
+                </strong>
+                <br />
+                Any figure that activates while in combat with this creature
+                takes 2 points of elemental magic damage. Creatures with
+                automatic damage are immune to damage from automatic damage.
+              </ParchmentText>
+            </Box>
+
+            <Box sx={{ mt: 3 }}>
+              <ParchmentText>
+                <strong style={{ color: "#c4a870", fontSize: "1.2rem" }}>
+                  Melt Weapon
+                </strong>
+                <br />
+                If a figure that is fighting this creature rolls a natural '1'
+                on their attack roll, then the weapon they are using is
+                immediately destroyed. This attribute has no effect on magic
+                weapons.
+              </ParchmentText>
+            </Box>
+
+            <Box sx={{ mt: 3 }}>
+              <ParchmentText>
+                <strong style={{ color: "#c4a870", fontSize: "1.2rem" }}>
+                  Spell Reflection
+                </strong>
+                <br />
+                Any time a spell is successfully cast upon this creature, roll a
+                die: on a 16+ the spell is reflected back on the figure that
+                originally cast the spell. This spellcaster should make any Will
+                Rolls or Combat Rolls required as the target of the spell. This
+                includes any spells that include the creature in their area of
+                effect.
+              </ParchmentText>
+            </Box>
+
+            <Box sx={{ mt: 3 }}>
+              <ParchmentText>
+                <strong style={{ color: "#c4a870", fontSize: "1.2rem" }}>
+                  Resistant to Missile Weapons
+                </strong>
+                <br />
+                This creature never takes more than 2 points of damage from
+                non-magic bow, crossbow, or javelin attacks. It takes full
+                damage from all other shooting attacks, including attacks made
+                with magic arrows, bolts, or javelins.
+              </ParchmentText>
+            </Box>
+          </div>
+
           <Box sx={{ mb: 4 }}>
             <WarbandIndex sections={sections} />
           </Box>
@@ -494,50 +494,6 @@ function DramatisPersonaePage() {
               />
             </div>
           ))}
-
-          <div id="special-rules">
-            {specialRules.map((section, idx) => (
-              <Box
-                key={idx}
-                sx={{
-                  mb: 4,
-                  p: 3,
-                  backgroundColor: "rgba(28, 24, 18, 0.6)",
-                  border: "2px solid rgba(139, 115, 85, 0.4)",
-                  borderRadius: "4px",
-                }}
-              >
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontFamily: '"Cinzel", serif',
-                    color: "#d4af37",
-                    mb: 2,
-                    fontSize: "1.5rem",
-                  }}
-                >
-                  {section.name}
-                </Typography>
-                <AbilityText sx={{ mb: 2 }}>{section.description}</AbilityText>
-                {section.rules.map((rule, ruleIdx) => (
-                  <Box key={ruleIdx} sx={{ mb: 2 }}>
-                    <Typography
-                      sx={{
-                        fontFamily: '"Cinzel", serif',
-                        fontSize: "1.1rem",
-                        fontWeight: 600,
-                        color: "#e8d4a0",
-                        mb: 0.5,
-                      }}
-                    >
-                      {rule.title}
-                    </Typography>
-                    <AbilityText sx={{ pl: 2 }}>{rule.text}</AbilityText>
-                  </Box>
-                ))}
-              </Box>
-            ))}
-          </div>
         </ContentContainer>
       </ContentSection>
 

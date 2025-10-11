@@ -18,10 +18,17 @@ const sonsOfHashutUnits = [
       move: 4,
       fight: "+2",
       shoot: "0",
-      armor: 11,
+      armour: 11,
       will: "+4",
       health: 16,
       cost: "-",
+    },
+    spellAffinity: {
+      aligned0: ["Enchanter"],
+      aligned2: ["Sigilist", "Elementalist", "Thaumaturge"],
+      neutral4: ["Illusionist", "Summoner", "Soothsayer"],
+      opposed6: ["Witch", "Distortionist"],
+      anathema: ["Necromancer", "Spiritualist", "Chronomancer", "Fatecaster"],
     },
     abilities: [
       {
@@ -33,7 +40,6 @@ const sonsOfHashutUnits = [
         name: "Master Spellcaster",
         description:
           "The Sorcerer is a spellcaster of the enchantment school. He starts with 8 spells.",
-        spellAffinity: "priestArtificer",
       },
       {
         name: "Sorcerer-Artificer",
@@ -54,7 +60,7 @@ const sonsOfHashutUnits = [
       move: 6,
       fight: "+4",
       shoot: "+1",
-      armor: 11,
+      armour: 11,
       will: "+4",
       health: 20,
       cost: "-",
@@ -73,7 +79,7 @@ const sonsOfHashutUnits = [
       {
         name: "Equipment",
         description:
-          "The Bull Centaur may equip and start with hand weapons, two handed weapons, daggers, crossbows, hand crossbows, Light Armor and Heavy Armor.",
+          "The Bull Centaur may equip and start with hand weapons, two handed weapons, daggers, crossbows, hand crossbows, Light armour and Heavy armour.",
       },
     ],
   },
@@ -83,7 +89,7 @@ const sonsOfHashutUnits = [
       move: 4,
       fight: "+3",
       shoot: "0",
-      armor: 14,
+      armour: 14,
       will: "0",
       health: 14,
       cost: "75gc",
@@ -91,7 +97,7 @@ const sonsOfHashutUnits = [
     abilities: [
       {
         name: "Equipment",
-        description: "Hand Weapon, Shield, Heavy Armor.",
+        description: "Hand Weapon, Shield, Heavy armour.",
       },
     ],
   },
@@ -101,7 +107,7 @@ const sonsOfHashutUnits = [
       move: 7,
       fight: "0",
       shoot: "0",
-      armor: 9,
+      armour: 9,
       will: "-2",
       health: 8,
       cost: "free",
@@ -114,7 +120,7 @@ const sonsOfHashutUnits = [
       },
       {
         name: "Equipment",
-        description: "Pistol, Hand Weapon, Light Armor.",
+        description: "Pistol, Hand Weapon, Light armour.",
       },
     ],
   },
@@ -124,7 +130,7 @@ const sonsOfHashutUnits = [
       move: 4,
       fight: "+3",
       shoot: "0",
-      armor: 13,
+      armour: 13,
       will: "1",
       health: 14,
       cost: "80gc",
@@ -136,7 +142,7 @@ const sonsOfHashutUnits = [
       },
       {
         name: "Equipment",
-        description: "Two-Handed Weapon, Heavy Armor.",
+        description: "Two-Handed Weapon, Heavy armour.",
       },
     ],
   },
@@ -147,7 +153,7 @@ const sonsOfHashutUnits = [
       move: 4,
       fight: "2",
       shoot: "2",
-      armor: 13,
+      armour: 13,
       will: "+1",
       health: 12,
       cost: "80gc",
@@ -155,7 +161,7 @@ const sonsOfHashutUnits = [
     abilities: [
       {
         name: "Equipment",
-        description: "Blunderbuss, Hand Weapon, Heavy Armor.",
+        description: "Blunderbuss, Hand Weapon, Heavy armour.",
       },
     ],
   },
@@ -166,7 +172,7 @@ const sonsOfHashutUnits = [
       move: 4,
       fight: "1",
       shoot: "2",
-      armor: 12,
+      armour: 12,
       will: "+1",
       health: 12,
       cost: "100gc",
@@ -179,7 +185,7 @@ const sonsOfHashutUnits = [
       },
       {
         name: "Equipment",
-        description: "Pistol, Hand Weapon, Light Armor.",
+        description: "Pistol, Hand Weapon, Light armour.",
       },
     ],
   },
@@ -190,7 +196,7 @@ const sonsOfHashutUnits = [
       move: 6,
       fight: "2",
       shoot: "0",
-      armor: 13,
+      armour: 13,
       will: "+1",
       health: 14,
       cost: "100gc",
@@ -260,7 +266,7 @@ const doctrinesOfHashut = [
     name: "Doctrine of the Steel Sundering",
     when: "Whenever the Bull Centaur wins a fight and deals at least 1 damage.",
     effect:
-      "The centaur deals no damage, but destroys any armor the enemy figure is using. If the figure is using Heavy Armor, its armor is reduced by 2. If it's using light armor, its armor is reduced by 1, until the end of the game.",
+      "The centaur deals no damage, but destroys any armour the enemy figure is using. If the figure is using Heavy armour, its armour is reduced by 2. If it's using light armour, its armour is reduced by 1, until the end of the game.",
   },
   {
     name: "Doctrine of the Blade Eater",
@@ -316,6 +322,7 @@ function SonsOfHashutPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
+                  {...(unit.spellAffinity && { spellAffinity: unit.spellAffinity })}
                 />
               </div>
             ))}

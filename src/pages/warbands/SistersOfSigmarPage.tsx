@@ -25,10 +25,13 @@ const sistersUnits = [
       move: 6,
       fight: "+3",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+4",
       health: 16,
       cost: "-",
+    },
+    spellAffinity: {
+      aligned0: ["Thaumaturge"],
     },
     abilities: [
       {
@@ -39,7 +42,7 @@ const sistersUnits = [
       {
         name: "Equipment",
         description:
-          "The Sigmarite Matriarch may equip hand weapons, two-handed weapons, shields, Light Armor, Heavy Armor and the warband's exclusive Sigmarite Warhammer. The Sigmarite Matriarch starts with a Holy Water Vial and regains it at the start of each game.",
+          "The Sigmarite Matriarch may equip hand weapons, two-handed weapons, shields, Light armour, Heavy armour and the warband's exclusive Sigmarite Warhammer. The Sigmarite Matriarch starts with a Holy Water Vial and regains it at the start of each game.",
       },
     ],
   },
@@ -50,7 +53,7 @@ const sistersUnits = [
       move: 6,
       fight: "+1",
       shoot: "-",
-      armor: 10,
+      armour: 10,
       will: "+4",
       health: 14,
       cost: "100gc",
@@ -79,7 +82,7 @@ const sistersUnits = [
       move: 5,
       fight: "+2",
       shoot: "0",
-      armor: 11,
+      armour: 11,
       will: "+1",
       health: 10,
       cost: "free",
@@ -97,7 +100,7 @@ const sistersUnits = [
       move: 5,
       fight: "+1",
       shoot: "0",
-      armor: 10,
+      armour: 10,
       will: "+3",
       health: 12,
       cost: "75gp",
@@ -120,7 +123,7 @@ const sistersUnits = [
       move: 5,
       fight: "+3",
       shoot: "0",
-      armor: 12,
+      armour: 12,
       will: "+1",
       health: 12,
       cost: "75gp",
@@ -128,7 +131,7 @@ const sistersUnits = [
     abilities: [
       {
         name: "Equipment",
-        description: "Two-Handed Weapon, Light Armor",
+        description: "Two-Handed Weapon, Light armour",
       },
     ],
   },
@@ -139,7 +142,7 @@ const sistersUnits = [
       move: 5,
       fight: "+3",
       shoot: "0",
-      armor: 13,
+      armour: 13,
       will: "+2",
       health: 14,
       cost: "125gc",
@@ -152,7 +155,7 @@ const sistersUnits = [
       },
       {
         name: "Equipment",
-        description: "Sigmarite Warhammer, Shield, Heavy Armor",
+        description: "Sigmarite Warhammer, Shield, Heavy armour",
       },
     ],
   },
@@ -163,7 +166,7 @@ const sistersUnits = [
       move: 5,
       fight: "+4",
       shoot: "0",
-      armor: "12 (13)",
+      armour: "12 (13)",
       will: "+1",
       health: 12,
       cost: "125gc",
@@ -172,7 +175,7 @@ const sistersUnits = [
       {
         name: "Equipment",
         description:
-          "Sigmarite Warhammer and Shield OR Two Handed Weapon, Heavy Armor.",
+          "Sigmarite Warhammer and Shield OR Two Handed Weapon, Heavy armour.",
       },
     ],
   },
@@ -183,7 +186,7 @@ const sistersUnits = [
       move: 5,
       fight: "+2",
       shoot: "+2",
-      armor: "12",
+      armour: "12",
       will: "+1",
       health: 12,
       cost: "125gc",
@@ -192,7 +195,7 @@ const sistersUnits = [
       {
         name: "Equipment",
         description:
-          "Sigmarite Warhammer, Hand Crossbow, Quiver, Heavy Armor.",
+          "Sigmarite Warhammer, Hand Crossbow, Quiver, Heavy armour.",
       },
     ],
   },
@@ -252,7 +255,7 @@ const wordsOfSigmar = [
     name: "Word of the Holy Wrath",
     when: `When the Augur or another Sister within 3" of the Augur wins a Fight and deals damage.`,
     effect:
-      "That attack counts the Enemy Armor as 4 points lower when calculating damage. If the weapon used was a Sigmarite Warhammer, it always causes it's special effect irrespective of how much damage was actually caused.",
+      "That attack counts the Enemy armour as 4 points lower when calculating damage. If the weapon used was a Sigmarite Warhammer, it always causes it's special effect irrespective of how much damage was actually caused.",
   },
   {
     name: "Word of the Unescapable Fate",
@@ -317,6 +320,7 @@ function SistersOfSigmarPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
+                  {...(unit.spellAffinity && { spellAffinity: unit.spellAffinity })}
                 />
               </div>
             ))}

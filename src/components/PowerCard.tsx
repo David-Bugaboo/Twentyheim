@@ -4,7 +4,7 @@ import GameText from "./GameText";
 
 interface PowerCardProps {
   name: string;
-  when: string;
+  when?: string;
   effect: string;
 }
 
@@ -75,12 +75,14 @@ function PowerCard({ name, when, effect }: PowerCardProps) {
   return (
     <Card>
       <PowerName>{name}</PowerName>
+      {when && (
+        <PowerSection>
+          <PowerLabel>When:</PowerLabel>
+          <GameText component={PowerText}>{when}</GameText>
+        </PowerSection>
+      )}
       <PowerSection>
-        <PowerLabel>When:</PowerLabel>
-        <GameText component={PowerText}>{when}</GameText>
-      </PowerSection>
-      <PowerSection>
-        <PowerLabel>Effect:</PowerLabel>
+        <PowerLabel>{when ? "Effect:" : "Description:"}</PowerLabel>
         <GameText component={PowerText}>{effect}</GameText>
       </PowerSection>
     </Card>

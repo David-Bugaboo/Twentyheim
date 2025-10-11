@@ -24,7 +24,7 @@ const mercenariesUnits = [
       move: 6,
       fight: "+3",
       shoot: "+2",
-      armor: 10,
+      armour: 10,
       will: "+4",
       health: 18,
       cost: "-",
@@ -59,7 +59,7 @@ const mercenariesUnits = [
       move: 6,
       fight: "+2",
       shoot: "+2",
-      armor: 10,
+      armour: 10,
       will: "+3",
       health: 12,
       cost: "100gc",
@@ -84,16 +84,19 @@ const mercenariesUnits = [
       move: 7,
       fight: "+1",
       shoot: "0",
-      armor: 11,
+      armour: 11,
       will: "+3",
       health: 14,
       cost: "120gc",
+    },
+    spellAffinity: {
+      aligned0: ["Thaumaturge"],
     },
     abilities: [
       {
         name: "Equipment",
         description:
-          "The Wolf Priest of Ulric may only equip Two Handed Weapons and may never equip armor or shields. He however, always uses a Wolf Cloak, which gives him =1 armor (already in statblock)",
+          "The Wolf Priest of Ulric may only equip Two Handed Weapons and may never equip armour or shields. He however, always uses a Wolf Cloak, which gives him =1 armour (already in statblock)",
       },
       {
         name: "Priest",
@@ -114,7 +117,7 @@ const mercenariesUnits = [
       move: 6,
       fight: "+3",
       shoot: "0",
-      armor: "11/12",
+      armour: "11/12",
       will: "+1",
       health: 12,
       cost: "75gc",
@@ -134,7 +137,7 @@ const mercenariesUnits = [
       move: 6,
       fight: "+2",
       shoot: "+2",
-      armor: 11,
+      armour: 11,
       will: "+1",
       health: 10,
       cost: "60gc",
@@ -154,7 +157,7 @@ const mercenariesUnits = [
       move: 6,
       fight: "+1",
       shoot: "+2",
-      armor: 11,
+      armour: 11,
       will: "+0",
       health: 10,
       cost: "75gc",
@@ -173,7 +176,7 @@ const mercenariesUnits = [
       move: 6,
       fight: "+4",
       shoot: "+0",
-      armor: 11,
+      armour: 11,
       will: "+1",
       health: 12,
       cost: "100gc",
@@ -196,7 +199,7 @@ const mercenariesUnits = [
       move: 6,
       fight: "2",
       shoot: "0",
-      armor: 10,
+      armour: 10,
       will: "-1",
       health: 10,
       cost: "Free",
@@ -220,7 +223,7 @@ const wardogTactics = [
   {
     name: "Shieldwall, now!",
     when: `When the Captain/Sergeant or any creature within 3" is the target of a Shooting attack.`,
-    effect: `The power activator and up to 3 figure from its warband within 3" gains +2 extra armor for the next attack they take or until the end of the turn, whatever comes first.`,
+    effect: `The power activator and up to 3 figure from its warband within 3" gains +2 extra armour for the next attack they take or until the end of the turn, whatever comes first.`,
   },
   {
     name: "I will sell any maggot with a clean sword to the slave-pits!",
@@ -433,6 +436,7 @@ function MercenariesPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
+                  {...(unit.spellAffinity && { spellAffinity: unit.spellAffinity })}
                 />
               </div>
             ))}

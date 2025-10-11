@@ -25,7 +25,7 @@ const woodElvesUnits = [
       move: 7,
       fight: "0",
       shoot: "+3",
-      armor: 9,
+      armour: 9,
       will: "+5",
       health: 18,
       cost: "-",
@@ -54,7 +54,7 @@ const woodElvesUnits = [
       {
         name: "Equipment",
         description:
-          "The Glade Lord may equip Hand Weapons, Bows, Light Armor and the warband's exclusive Asrai Longbow, Moonfire Arrow and Cloak of Leaves.",
+          "The Glade Lord may equip Hand Weapons, Bows, Light armour and the warband's exclusive Asrai Longbow, Moonfire Arrow and Cloak of Leaves.",
       },
     ],
   },
@@ -65,17 +65,16 @@ const woodElvesUnits = [
       move: 7,
       fight: "0",
       shoot: "0",
-      armor: 8,
+      armour: 8,
       will: "+4",
       health: 12,
       cost: "100gc",
     },
     abilities: [
       {
-        name: "Apprentice Spellcaster",
+        name: "Druid",
         description:
-          "Spellsingers may cast spells from the Elementalist, Soothsayer and Sonancer schools of magic. The figure starts the game with 4 such spells, and always casts them at a -2 Casting roll.",
-        spellAffinity: "spellsinger",
+          "Spellsingers are Druids who channel the primal forces of nature itself. They may only cast spells from the Druid school of magic. The figure starts the game with 4 such spells. Druid spells use the spirits of the world itself rather than the Winds of Magic, so they do not require grimoires to learn and do not cause damage to the caster when failing to cast. However, Druid spells tend to have less raw power than other schools of magic. The Spellsinger always casts Druid spells at a -2 Casting roll.",
       },
       {
         name: "Forest Walk",
@@ -95,7 +94,7 @@ const woodElvesUnits = [
       move: 7,
       fight: "+1",
       shoot: "+0",
-      armor: 9,
+      armour: 9,
       will: "+0",
       health: 10,
       cost: "Free",
@@ -113,7 +112,7 @@ const woodElvesUnits = [
       move: 7,
       fight: "+1",
       shoot: "+2",
-      armor: 10,
+      armour: 10,
       will: "+1",
       health: 10,
       cost: "75gc",
@@ -121,7 +120,7 @@ const woodElvesUnits = [
     abilities: [
       {
         name: "Equipment",
-        description: "Asrai Longbow, Quiver, Dagger, Light Armor.",
+        description: "Asrai Longbow, Quiver, Dagger, Light armour.",
       },
     ],
   },
@@ -131,7 +130,7 @@ const woodElvesUnits = [
       move: 8,
       fight: "+3",
       shoot: "+0",
-      armor: 12,
+      armour: 12,
       will: "+2",
       health: 12,
       cost: "75gc",
@@ -140,7 +139,7 @@ const woodElvesUnits = [
       {
         name: "Wild Hunt Frenzy",
         description:
-          'Wild Riders have Mind Lock. Additionally, if a Wild Rider moves at least 6" before entering combat, they gain +1 Damage for the first fight after that.',
+          'Wild Riders have Mind Lock and are Immune to Fear. Additionally, if a Wild Rider moves at least 6" before entering combat, they gain +1 Damage for the first fight after that.',
       },
       {
         name: "Reckless Abandon",
@@ -154,7 +153,7 @@ const woodElvesUnits = [
       },
       {
         name: "Equipment",
-        description: "Throwing Spear, Hand Weapon, Light Armor, Shield.",
+        description: "Throwing Spear, Hand Weapon, Light armour, Shield.",
       },
     ],
   },
@@ -165,7 +164,7 @@ const woodElvesUnits = [
       move: 8,
       fight: "+4",
       shoot: "+0",
-      armor: 10,
+      armour: 10,
       will: "+1",
       health: 12,
       cost: "150gc",
@@ -174,7 +173,7 @@ const woodElvesUnits = [
       {
         name: "War Dance",
         description:
-          "Wardancers have trained to fight more than one opponent at once, and so their opponents can never claim more than +2 for supporting figures, no matter how many friendly figures are actually in combat with the Wardancer. Furthermore, if the Wardancer wins a hand-to-hand combat against an opponent that is wearing light or heavy armor, that opponent suffers -1 Armor for the purposes of determining damage from the Wardancer's attack.",
+          "Wardancers have trained to fight more than one opponent at once, and so their opponents can never claim more than +2 for supporting figures, no matter how many friendly figures are actually in combat with the Wardancer. Furthermore, if the Wardancer wins a hand-to-hand combat against an opponent that is wearing light or heavy armour, that opponent suffers -1 armour for the purposes of determining damage from the Wardancer's attack.",
       },
       {
         name: "Acrobatic",
@@ -183,7 +182,7 @@ const woodElvesUnits = [
       },
       {
         name: "Equipment",
-        description: "Hand Weapon, Dagger, Light Armor.",
+        description: "Hand Weapon, Dagger, Light armour.",
       },
     ],
   },
@@ -194,7 +193,7 @@ const woodElvesUnits = [
       move: 7,
       fight: "+1",
       shoot: "+3",
-      armor: 10,
+      armour: 10,
       will: "+2",
       health: 10,
       cost: "120gc",
@@ -207,11 +206,11 @@ const woodElvesUnits = [
       },
       {
         name: "Equipment",
-        description: "Asrai Longbow, Hand Weapon, Light Armor.",
+        description: "Asrai Longbow, Hand Weapon, Light armour.",
       },
     ],
   },
- 
+
   {
     name: "Treant",
     role: "Maximum One",
@@ -219,7 +218,7 @@ const woodElvesUnits = [
       move: 4,
       fight: "+2",
       shoot: "-",
-      armor: 15,
+      armour: 15,
       will: "+3",
       health: 24,
       cost: "200gc",
@@ -243,12 +242,12 @@ const woodElvesEquipment = [
   {
     name: "Asrai Longbow",
     description:
-      'An Asrai Longbow is a masterwork bow crafted from the living wood of Athel Loren. Range: 30", treat the armor of a figure hit by a Shooting Attack from this bow as 1 point lower.',
+      'An Asrai Longbow is a masterwork bow crafted from the living wood of Athel Loren. Range: 30", treat the armour of a figure hit by a Shooting Attack from this bow as 1 point lower.',
   },
   {
     name: "Moonfire Arrow",
     description:
-      "A Moonfire Arrow is a single magical arrow that may be fired once per game. When declared, the arrow automatically hits if the target is in range and line of sight (no Shoot roll required). The arrow deals +3 Damage and the target's armor is reduced to 10 for calculating damage. Cost: 30gc (single use).",
+      "A Moonfire Arrow is a single magical arrow that may be fired once per game. When declared, the arrow automatically hits if the target is in range and line of sight (no Shoot roll required). The arrow deals +3 Damage and the target's armour is reduced to 10 for calculating damage. Cost: 30gc (single use).",
   },
 ];
 
@@ -310,7 +309,7 @@ const waysOfTheWildHunt = [
     name: "Way of the Ancient Wrath",
     when: "At any point during the Glade Lord's activation.",
     effect:
-      "The Glade Lord may climb upon a Treant within 2\" of himself. While mounted on the Treant, any attacks directed at him are treated as if against Heavy Cover and use the Treant's Armor. The Glade Lord gains +1 Shoot while upon a Treant.",
+      "The Glade Lord may climb upon a Treant within 2\" of himself. While mounted on the Treant, any attacks directed at him are treated as if against Heavy Cover and use the Treant's armour. The Glade Lord gains +1 Shoot while upon a Treant.",
   },
   {
     name: "Way of the Barkpiercer",
@@ -364,6 +363,7 @@ function WoodElvesPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
+                  
                 />
               </div>
             ))}

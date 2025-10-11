@@ -542,8 +542,9 @@ function RulesPage() {
               When a soldier gains a level, they may increase one of their stats
               by +1. However,{" "}
               <strong>each stat can only be increased once</strong>. Once a
-              soldier has improved a particular stat (Move, Fight, Shoot, Armor,
-              Will, or Health), they cannot improve that same stat again.
+              soldier has improved a particular stat (Move, Fight, Shoot,
+              armour, Will, or Health), they cannot improve that same stat
+              again.
               <br />
               <br />
               For example, a soldier could increase their Fight at level 2,

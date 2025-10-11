@@ -1,14 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import GameText from "./GameText";
-import SpellAffinityTable from "./SpellAffinityTable";
+import SpellAffinityTable, { type SpellAffinity } from "./SpellAffinityTable";
 import { spellAffinities } from "../data/spellAffinities";
 
 interface UnitStats {
   move: number | string;
   fight: string;
   shoot: string;
-  armor: number | string;
+  armour: number | string;
   will: string;
   health: number;
   cost: string;
@@ -25,6 +25,7 @@ interface UnitCardProps {
   role?: string; // Hero, Champion, Specialist, etc.
   stats: UnitStats;
   abilities: UnitAbility[];
+  spellAffinity?: SpellAffinity;
 }
 
 const Card = styled(Box)(({ theme }) => ({
@@ -140,7 +141,13 @@ const AbilityText = styled(Typography)(({ theme }) => ({
   },
 }));
 
-function UnitCard({ name, role, stats, abilities }: UnitCardProps) {
+function UnitCard({
+  name,
+  role,
+  stats,
+  abilities,
+  spellAffinity,
+}: UnitCardProps) {
   const displayName = role ? `${name} (${role})` : name;
 
   return (
@@ -160,8 +167,8 @@ function UnitCard({ name, role, stats, abilities }: UnitCardProps) {
           <StatValue>{stats.shoot}</StatValue>
         </StatItem>
         <StatItem>
-          <StatLabel>Armor</StatLabel>
-          <StatValue>{stats.armor}</StatValue>
+          <StatLabel>armour</StatLabel>
+          <StatValue>{stats.armour}</StatValue>
         </StatItem>
         <StatItem>
           <StatLabel>Will</StatLabel>
@@ -176,6 +183,12 @@ function UnitCard({ name, role, stats, abilities }: UnitCardProps) {
           <StatValue>{stats.cost}</StatValue>
         </StatItem>
       </StatRow>
+
+      {spellAffinity && (
+        <Box sx={{ mt: 2 }}>
+          <SpellAffinityTable affinity={spellAffinity} />
+        </Box>
+      )}
 
       <AbilitySection>
         {abilities.map((ability, index) => (

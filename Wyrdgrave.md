@@ -2,20 +2,20 @@
 
 # **Mercenary Captain**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 6    | \+3   | \+2   | 10    | \+4  | 18     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 6    | \+3   | \+2   | 10     | \+4  | 18     | \-   |
 
 - **Leader:** any figure that activates along with this figure during the Hero's Phase can use the Leader’s Will stat instead of it’s own.
-- **Martial Master:** The activation power for every Mercenary Captain power is 3\. The Mercenary Captain can use any armor and any items from the General Equipment list.
+- **Martial Master:** The activation power for every Mercenary Captain power is 3\. The Mercenary Captain can use any armour and any items from the General Equipment list.
 - **Wardog Tactics:** The Mercenary Captain starts with 5 powers from the **Wardog**  
   **Tactics List**. Refer to the **Martial Master** rule above to define it’s activation numbers.
 
   # **Champion**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | \+2   | \+2   | 10    | \+3  | 12     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | \+2   | \+2   | 10     | \+3  | 12     | 100gc |
 
 - **Equipment:** Any equipment from the General Equipment List.
 - **Wardog Tactics:** The Champion starts with 5 powers from the **Wardog**  
@@ -26,7 +26,7 @@
 
   # **Man-at-Arms**
 
-| Move | Fight | Shoot | Armor    | Will | Health | Cost |
+| Move | Fight | Shoot | armour   | Will | Health | Cost |
 | :--- | :---- | :---- | :------- | :--- | :----- | :--- |
 | 6    | \+3   | 0     | 11 or 12 | \+1  | 12     | 75gc |
 
@@ -34,26 +34,26 @@
 
   # **Marksmen**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 6    | \+2   | \+2   | 11    | \+1  | 10     | 60gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 6    | \+2   | \+2   | 11     | \+1  | 10     | 60gc |
 
 - **Equipment:** Musket OR Blunderbuss, Powder Horn, Leather Armour, Hand Weapon.
 
 # **Swordsmaster**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | \+4   | \+0   | 11    | \+1  | 12     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | \+4   | \+0   | 11     | \+1  | 12     | 100gc |
 
 - **Equipment: Hand Weapon, Dagger, Light Armour**
 - **Blade Murderer:** Swordmasters have trained to fight more than one opponent at once, and so their opponents can never claim more than \+2 for supporting figures, no matter how many friendly figures are actually in combat with the swordmaster. Furthermore, if the swordmaster wins a hand-to-hand combat against an opponent that is wearing light or heavy armour, that opponent suffers \-1 Armour for the purposes of determining damage from the swordmaster’s attack.
 
 # **Youngblood**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 6    | 0     | 0     | 10    | \-1  | 10     | free |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 6    | 0     | 0     | 10     | \-1  | 10     | free |
 
 - **Room for Growth:** Every time a Youngblood participates in a scenario and survives, make a note of it on the warband sheet. Once the youngblood has survived five scenarios, he can be promoted and replaced at no cost with a Man-at-Arms or Marksmen. It keeps his levels and advancements.
 - **Equipment:** Hand Weapon, Sling
@@ -64,9 +64,9 @@
 
 # **Vampire Count**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | \+3   | \+1   | 10    | \+5  | 18     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | \+3   | \+1   | 10     | \+5  | 18     | \-   |
 
 - **Master of Undeath:** any figure that activates along with this figure during the Hero's Phase can use the Figure’s Will stat instead of it’s own.
 - **Bloodline Traditions:** Vampire Counts start with 5 powers from the **Bloodline Traditions.** One of these powers it’s their **Inherited Tradition** and have an activation power of 3\. The others have an activation power of 5\.
@@ -85,9 +85,9 @@
 
 # **Necromancer**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 5    | \+1   | \+0   | 10    | \+4  | 14     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 5    | \+1   | \+0   | 10     | \+4  | 14     | 100gc |
 
 - **Apprentice Spellcaster:** Necromancers may cast spells from the Necromancer, Spiritualist and Chronomancer schools of magic. The figure starts the game with 4 such spells, and always cast them at a \-2 Casting roll.
 - **Equipment:** Necromancers can only choose Hand-weapons, Daggers and Staffs from the General Equipment List. However, they start with a **Bone Fetish**.
@@ -98,18 +98,18 @@
 
 # **Dregs**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | \+1   | \+0   | 10    | 0    | 10     | 10gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | \+1   | \+0   | 10     | 0    | 10     | 10gc |
 
 - **Vampire’s Thrall:** If this figure takes part in a game as part of a vampire’s warband and ends the game without rolling a ‘Dead’ or ‘Badly Wounded’ result on the survival table, it can harvest the blood of the dead and wounded for its master. Count the number of warband members, for all players, that were reduced to 0 Health during the game. Do not count undead, constructs, demons, or animals. The vampire may regain this many points of Health without having to pay for them. For example, if the game ended with eight warband members reduced to 0 Health, a vampire could regain 8 points of Health for free. It would have to pay for any additional healing. A vampire may only benefit from one figure with this attribute after each game.
 - **Equipment:** Dagger, Sling
 
 # **Ghouls**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 6    | \+2   | \+0   | 12    | \+2  | 12     | 30gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 6    | \+2   | \+0   | 12     | \+2  | 12     | 30gc |
 
 - **Equipment:** None. Ghouls attack with their bare hands and have no penalties for that.
 - **Cannibalism:** Whenever the Ghoul takes a creature to 0 HP, it gains 5 health.
@@ -117,9 +117,9 @@
 
 # **Dire Wolves**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | \+1   | \+0   | 10    | \+0  | 8      | 10gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | \+1   | \+0   | 10     | \+0  | 8      | 10gc |
 
 - **Equipment:** None. Dire Wolves kill with their claws and fangs.
 - **Undead Beast:** Dire Wolves have the **Undead**, **Fear** and **Animal** traits.
@@ -127,9 +127,9 @@
 
 # **Zombie**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 4    | \+1   | \+0   | 12    | \+0  | 6      | 10gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 4    | \+1   | \+0   | 12     | \+0  | 6      | 10gc |
 
 - **Equipment:** None.Zombies grab and bite their poor victims.
 - **Undead:** Zombies have the **Undead** trait.
@@ -139,14 +139,14 @@
 
 # **Assassin**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | \+2   | \+0   | 10    | \+3  | 14     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | \+2   | \+0   | 10     | \+3  | 14     | \-   |
 
 - **Shadow Lord:** any figure that activates along with this figure during the Hero's Phase can use the Figure’s Will stat instead of it’s own.
 - **Fangs of the Horned Rat:** Any figure damaged by an assassin’s attack is poisoned and is reduced to one standard action per activation until healed through the use of a Heal spell or Healing potion or until the game ends. Undead and constructs are immune to poison. Furthermore, assassins gain an additional \+2 to their Fight if they are already receiving a bonus from one or more supporting figures (so, an assassin with 1 supporting figure would gain a \+4 modifier). However, assassins themselves never count as a supporting figure for anyone else, even members of their own warband and other assassins.
 - **Clan Eshin Martial Arts:** The Assassin starts with 5 powers from the **Clan Eshin Martial Arts** list.One of these powers is his signature Martial Art and have an activation number of 3\. The rest of the powers have an activation number of 5\.
-- **Gear:** Assassins can equip and start with Daggers, Hand Weapons, Light Armor, Slings and Hand Crossbows. They can also start with the Skaven exclusive Fighting claws.
+- **Gear:** Assassins can equip and start with Daggers, Hand Weapons, Light armour, Slings and Hand Crossbows. They can also start with the Skaven exclusive Fighting claws.
 
 #
 
@@ -154,9 +154,9 @@
 
 # **Clan Eshin Sorcerer**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 8    | \-1   | \+0   | 10    | \+3  | 12     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 8    | \-1   | \+0   | 10     | \+3  | 12     | 100gc |
 
 - **Apprentice Spellcaster:** Clan Eshin Sorcerers may cast spells from the Enchantment, Elementalist and Witchschools of magic. The figure starts the game with 4 such spells, and always cast them with a \-2 Casting roll.
 - **Scurrying Spells:** A Clan Eshin Sorcerer that cast spells while outside of line  
@@ -167,43 +167,43 @@
 
 # **Black Skaven**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 8    | \+4   | \+0   | 10    | \+2  | 10     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 8    | \+4   | \+0   | 10     | \+2  | 10     | 100gc |
 
-- **Equipment:** Light Armor, Skaven Fighting Claws
+- **Equipment:** Light armour, Skaven Fighting Claws
 
 # **Night Runners**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | 1     | 1     | 10    | 0    | 10     | 75gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | 1     | 1     | 10     | 0    | 10     | 75gc |
 
 - **Equipment:** Dagger, Hand Crossbow
 - **Wall Running:** A Night Runner never suffers a movement penalty for climbing and receives \+5 to any Stat Roll that is made for the purpose of climbing. Furthermore, any time a Night runner falls, treat the distances as 2” less than it actually is for the purpose of determining damage (so, if a topman falls 5” this is treated as 3” and the topman takes no damage)
 
 # **Clan Rats**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | \-1   | 0     | 10    | 0    | 8      | 10gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | \-1   | 0     | 10     | 0    | 8      | 10gc |
 
 - **Equipment:** Dagger, Sling
 
 # **Giant Rat**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 6    | 0     | 0     | 6     | 0    | 1      | Free |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 6    | 0     | 0     | 6      | 0    | 1      | Free |
 
 - **Equipment:** None. Giant Rats attack with their yellowed fangs only.
 - **Sewer’s Beast:** Giant rats have the **Animal** and **Pack Hunter** traits.
 
 # **Rat Ogre (May only have one)**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | \+4   | 0     | 15    | 0    | 22     | 200gp |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | \+4   | 0     | 15     | 0    | 22     | 200gp |
 
 - **Equipment:** Jaws, claws and brute force\!.
 - **Moulder’s Monstrosity:** Rat Ogres have the **Large**, **Strong**, **Animal** and **Fear** traits.
@@ -218,58 +218,58 @@
 
 # **Inquisitor**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 6    | \+3   | \+2   | 10    | \+5  | 16     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 6    | \+3   | \+2   | 10     | \+5  | 16     | \-   |
 
 - **Inquisition Captain:** any figure that activates along with this figure during the Hero's Phase can use the Leader’s Will stat instead of it’s own.
 - **Inquisition Edicts:** The Inquisitor starts with 5 powers from the **Inquisition Edicts List**. One of these powers is his signature **Edict** and have an activation number of 3\. The rest of the powers have an activation number of 5\.
 - **Burn the Witch\!:** Inquisitor have \+1 Fight and the Burning Touch trait against any figures that can cast spells.
-- **Equipment:** The inquisitor may start with and can equip pistols, torches, hand weapons, hand crossbows, crossbows, handguns and light armor. They start with a **Holy Relic,** and regain one each game as long as there is a Warrior Priest of Sigmar in the Warband.
+- **Equipment:** The inquisitor may start with and can equip pistols, torches, hand weapons, hand crossbows, crossbows, handguns and light armour. They start with a **Holy Relic,** and regain one each game as long as there is a Warrior Priest of Sigmar in the Warband.
 
 # **Warrior Priest of Sigmar**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 5    | \+1   | \+0   | 10    | \+5  | 14     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 5    | \+1   | \+0   | 10     | \+5  | 14     | 100gc |
 
 - **Priest:** The Warrior Priest of Sigmar is a priest, and have a very limited selection of spells compared to other spellcasters. However, it may cast while using armours and shields, and it’s spells aren’t considered spells for magic resistance effects. The Priest casts at a \-4 Casting Roll. The priest starts with 2 spells from the Thaumartuge school and the **Elemental Hammer** spell.
 - **Figment of Ghal-Mazhak:** The priest may cast the Elemental Hammer targeting himself even if it is in combat. If the Priest is in combat with a spellcaster,or a figure with the Demon of Undead traits, the Difficult number of the spell is 8\.
-- **Equipment:** The priest may equip hand weapons, two-handed weapons, shields Light and Heavy Armor. The priest starts with a **Holy Water Vial** and regains it at the start of each game.
+- **Equipment:** The priest may equip hand weapons, two-handed weapons, shields Light and Heavy armour. The priest starts with a **Holy Water Vial** and regains it at the start of each game.
 
 ---
 
 # **Witch Hunter**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | \+3   | \+2   | 11    | \+2  | 12     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | \+3   | \+2   | 11     | \+2  | 12     | 100gc |
 
 - **Burn the Witch\!:** Witch Hunters have \+1 damage, \+1 Fight, and attacks count as elemental damage against spellcasters of any kind.
-- **Equipment:** Brace of Pistols and Hand Weapon OR Musket, Light Armor
+- **Equipment:** Brace of Pistols and Hand Weapon OR Musket, Light armour
 
 # **Flagellant**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | \+4   | \+0   | 10    | \+4  | 12     | 125gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | \+4   | \+0   | 10     | \+4  | 12     | 125gc |
 
 - **Fanatical:** Flagellants have the Mind Lock trait. they also gain a \+1 Fight, Damage and Will against any creature that deal damage to it or targeted him with spells.
 - **Equipment:** Two-Handed Weapon
 
 # **Zealot**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 6    | \+2   | \+0   | 10    | \+1  | 10     | 10gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 6    | \+2   | \+0   | 10     | \+1  | 10     | 10gc |
 
 - **Equipment:** Hand Weapon.
 
 # **Warhound**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | \+1   | \+0   | 10    | 0    | 8      | 10gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | \+1   | \+0   | 10     | 0    | 8      | 10gc |
 
 - **Equipment:** Hand Weapon.
 - **Trained Battlehound:** The warhound have the Animal trait.
@@ -278,9 +278,9 @@
 
 # **Magister of Chaos**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 4    | \+4   | \+0   | 10    | \+4  | 14     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 4    | \+4   | \+0   | 10     | \+4  | 14     | \-   |
 
 - **Possesser:** any figure that activates along with this figure during the Hero's Phase can use the Leader’s Will stat instead of it’s own.
 - **Master Spellcaster:** The Magister of Chaos may cast spells from the Summoner, Elementalist, Distortionist and Illusion schools of magic. The figure starts the game with 6 such spells.
@@ -289,9 +289,9 @@
 
 # **Possessed**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 7    | \+4   | \-    | 11    | \+3  | 16     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 7    | \+4   | \-    | 11     | \+3  | 16     | 100gc |
 
 - **Demonic Form :** The possessed cannot activate and use any powers. However, it may buy Demonic Traits from the Frostgrave: Forgotten Pacts supplement. A minor demonic trait costs 25gc, and a Major Demonic trait costs 50gc. These can only be taken when the Possessed is first hired, and never at any other point. The Possessed have the Demon trait.
 - **Corrupted Soul:** A Possessed is affected by any bonuses from pacts brokered by the Magister of Chaos**.**
@@ -299,37 +299,37 @@
 
 # **Mutant**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 6    | \+1   | 0     | 10    | 0    | 10     | 50gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 6    | \+1   | 0     | 10     | 0    | 10     | 50gc |
 
 - **Corrupted Mutations :** The mutant have a very weak statline for it’s price. However, it may buy **Demonic Traits** from the **Frostgrave: Forgotten Pacts** supplement. A minor demonic trait costs 25gc, and a Major Demonic trait costs 50gc. These can only be taken when the Mutant is first hired, and never at any other point.  
   **Equipment:** Accursed Weapon and Dagger OR Two-handed Weapon.
 
 # Darksouls
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 6    | \+2   | 0     | 11    | \-1  | 10     | 50gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 6    | \+2   | 0     | 11     | \-1  | 10     | 50gc |
 
 - **Dessecrated Mind:** The Darksoul had his mind completely broken by his possession. He has the Mind Lock trait.
-- **Equipment:** Accursed Weapon, Light Armor
+- **Equipment:** Accursed Weapon, Light armour
 
 # **Brethen**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 6    | \+2   | 0     | 10    | \-1  | 10     | 10gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 6    | \+2   | 0     | 10     | \-1  | 10     | 10gc |
 
 - **Equipment:** Hand Weapon
 
 # Beastman
 
-| Move | Fight | Shoot | Armor   | Will | Health | Cost  |
+| Move | Fight | Shoot | armour  | Will | Health | Cost  |
 | :--- | :---- | :---- | :------ | :--- | :----- | :---- |
 | 7    | \+3   | 0     | 11 (12) | \+4  | 14     | 125gc |
 
-- **Equipment:** Accursed Weapon and Shield OR Two Handed Weapon and Light armor.
+- **Equipment:** Accursed Weapon and Shield OR Two Handed Weapon and Light armour.
 
 ## **Accursed Weapon**
 
@@ -340,20 +340,20 @@ unmodified rolls of 1 in the d20 cause 2 damage on the attacking figure.
 
 # **Sigmarite Matriarch**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 5    | \+3   | \+0   | 10    | \+5  | 18     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 5    | \+3   | \+0   | 10     | \+5  | 18     | \-   |
 
 - **High Priestess:** The Sigmarite Matriarch is a High Priest, and have a very limited selection of spells compared to other spellcasters. However, she may cast while using armours and shields, and it’s spells aren’t considered spells for magic resistance effects. The Priest casts at a \-2 Casting Roll. The priest starts with 3 spells from the Thaumartuge school and the **Elemental Hammer** and **Elemental Sphere** spells.
 - **Cleansing by Thunder:**The Sigmarite Matriarch may cast the Elemental Sphere spell even while engaged in combat. Any figures with the Undead and Demon traits  
   treat her minimum casting roll as 18 instead of 14\.
-- **Equipment:** The Sigmarite Matriarch may equip hand weapons, two-handed weapons, shields and Light Armor, Heavy Armor and the warband’s exclusive Sigmarite Warhammer. The Sigmarite Matriarch starts with a **Holy Water Vial** and regains it at the start of each game.
+- **Equipment:** The Sigmarite Matriarch may equip hand weapons, two-handed weapons, shields and Light armour, Heavy armour and the warband’s exclusive Sigmarite Warhammer. The Sigmarite Matriarch starts with a **Holy Water Vial** and regains it at the start of each game.
 
 # **Augur**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | \+1   | \-    | 10    | \+4  | 14     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | \+1   | \-    | 10     | \+4  | 14     | 100gc |
 
 - **Words of Sigmar:** The sister Superior starts with 5 powers from the **Words of Sigmar** list. One of these powers is his signature **Word** and have an activation number of 5\. The rest of the powers have an activation number of 8\.
 - **Blessed Sight:** The Augur have the Truesight and Magical Attacks ability. Any figures that activated alongside the augur are guided by her blessed sight and gain \+1 in every dice roll.
@@ -361,29 +361,29 @@ unmodified rolls of 1 in the d20 cause 2 damage on the attacking figure.
 
 # **Sister Superior**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 5    | \+3   | 0     | 13    | \+2  | 14     | 125gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 5    | \+3   | 0     | 13     | \+2  | 14     | 125gc |
 
 - **Sergeant of the Sisterhood:** Sister Superiors activate just like any other soldier with one exception. If the Sister Superior is activating in the Soldier Phase, she may declare a Group Activation with one other allied figure within 3” of him who has not yet been activated in the turn. The Sister Superior and this soldier may both move and then both take their second actions.
 - **Destroyer of the Unclean:** The Sister of Sigmar have \+1 Fight and \+1 Damage against figures with the Demon and Undead traits, and her attacks count as holy (count as magical, but ignore magical resistance) against such targets.
-- **Equipment:** .Sigmarite Warhammer, Shield, Heavy Armor
+- **Equipment:** .Sigmarite Warhammer, Shield, Heavy armour
 
 # **Sigmarite Sister**
 
-| Move | Fight | Shoot | Armor   | Will | Health | Cost  |
+| Move | Fight | Shoot | armour  | Will | Health | Cost  |
 | :--- | :---- | :---- | :------ | :--- | :----- | :---- |
 | 5    | \+4   | 0     | 12 (13) | \+1  | 12     | 125gc |
 
-- **Equipment:** Sigmarite Warhammer and Shield OR Two Handed Weapon, Heavy Armor.
+- **Equipment:** Sigmarite Warhammer and Shield OR Two Handed Weapon, Heavy armour.
 
 # **Novitiate Sisters**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 5    | \+2   | \+2   | 13    | \+1  | 12     | 75gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 5    | \+2   | \+2   | 13     | \+1  | 12     | 75gc |
 
-- **Equipment:** Hand Weapon, Shield, Javelins, Heavy Armor.
+- **Equipment:** Hand Weapon, Shield, Javelins, Heavy armour.
 
 ## **Sigmarite Warhammer**
 
@@ -393,9 +393,9 @@ This weapon count as a Hand Weapon, but if it deals 5 or more damage, the target
 
 # **Orc Warboz**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 5    | \+4   | 0     | 10    | \+4  | 20     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 5    | \+4   | 0     | 10     | \+4  | 20     | \-   |
 
 - **Warboz:** any figure that activates along with this figure during the Hero's Phase can use the Captain’s Will stat instead of it’s own.
 - **Krumper Boz:** The Orc Warboz have the **Strong** and **Large** traits.
@@ -406,9 +406,9 @@ This weapon count as a Hand Weapon, but if it deals 5 or more damage, the target
 
 # **Orc Shaman**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | \+1   | \+0   | 10    | \+4  | 12     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | \+1   | \+0   | 10     | \+4  | 12     | 100gc |
 
 - **Apprentice Spellcaster:** The Orc Shaman may cast spells from the Soothsayer, Elementalist and Distortionist schools of magic. The figure starts the game with 4 such spells, and always cast them with a \-2 Casting roll.
 - **Magic of the Waaaagh:** An Orc Shaman gains \+1 in it’s Casting roll for each soldier that activated alongside it.
@@ -416,7 +416,7 @@ This weapon count as a Hand Weapon, but if it deals 5 or more damage, the target
 
 # **Orc Nobz**
 
-| Move | Fight | Shoot | Armor  | Will | Health | Cost  |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
 | :--- | :---- | :---- | :----- | :--- | :----- | :---- |
 | 4    | \+4   | \+0   | 12(13) | \+3  | 16     | 125gc |
 
@@ -425,22 +425,22 @@ This weapon count as a Hand Weapon, but if it deals 5 or more damage, the target
 
   uncontrolled creatures during the creature phase.
 
-- **Equipment:** Choppa and Shield or Choppa and Lil’ Choppa, Heavy Armor
+- **Equipment:** Choppa and Shield or Choppa and Lil’ Choppa, Heavy armour
 
 # **Orc Boyz**
 
-| Move | Fight | Shoot | Armor  | Will | Health | Cost |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
 | :--- | :---- | :---- | :----- | :--- | :----- | :--- |
 | 5    | \+3   | \+0   | 11(12) | \+3  | 16     | 75gc |
 
 - **Riotous:** Orc Boyz that didn’t activate in the same phase as a the Warboz or Orc Shaman act as uncontrolled creatures during the creature phase.
-- **Equipment:** Choppa and Shield or Choppa and Lil’ Choppa, Light Armor.
+- **Equipment:** Choppa and Shield or Choppa and Lil’ Choppa, Light armour.
 
 # **Goblin Warriors**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | 0     | 0     | 8     | \-2  | 4      | free |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | 0     | 0     | 8      | \-2  | 4      | free |
 
 - **Riotous:** Goblin Warriors that didn’t activate in the same phase as the Warboz or Orc Shaman act as uncontrolled creatures during the creature phase.
 - **Runts:** Goblins do not gain experience.
@@ -450,15 +450,15 @@ This weapon count as a Hand Weapon, but if it deals 5 or more damage, the target
 
 **Individual Statblock**
 
-| Move   | Fight | Shoot | Armor | Will | Health | Cost |
-| :----- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 1d20/2 | \+2   | \-    | 12    | 0    | 8      | 30gc |
+| Move   | Fight | Shoot | armour | Will | Health | Cost |
+| :----- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 1d20/2 | \+2   | \-    | 12     | 0    | 8      | 30gc |
 
 **Mount Statblock**
 
-| Move   | Fight | Shoot | Armor | Will | Health | Cost |
-| :----- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 1d20/2 | \+2   | 0     | 0     | 0    | 0      | \-   |
+| Move   | Fight | Shoot | armour | Will | Health | Cost |
+| :----- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 1d20/2 | \+2   | 0     | 0      | 0    | 0      | \-   |
 
 - **Bouncers:** Cave Squigs do not have a set Movement characteristic but move with an ungainly bouncing stride. To represent this, when moving Squigs, roll 1d20 and divide it by 2, rounding up for the distance they move (mininum 3’’). Squigs may never take both actions as movement.
 - **Riotous:** Squigs that aren’t mounted by goblins or didn’t activate along a Goblin Warrior act as uncontrolled creatures in the creature phase.
@@ -467,16 +467,16 @@ This weapon count as a Hand Weapon, but if it deals 5 or more damage, the target
 
 # **Troll (One per warband)**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 4    | \+4   | \+0   | 14    | \+2  | 16     | 200gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 4    | \+4   | \+0   | 14     | \+2  | 16     | 200gc |
 
 - **Infinite Hunger:** A Troll requires an upkeep cost. This upkeep represents the copious amounts of food that must be fed to the Troll in order to keep him loyal to the warband. The warband must pay 10% of any gcs gained by the warband in order to keep the Troll. If this fee is not paid the Troll gets hungry and wanders off in search of food.
 - **Stupid:** Trolls that didn’t activate in the same phase as the Warboz or Orc Shaman act as uncontrolled creatures during the creature phase.
 - **Equipment:** Two handed weapon.
 - **Monstrous Beast:** Trolls have the **Large, Strong** and **Fear** traits.
 - **Regeneration:** Trolls have the **Regeneration** trait unless they take Elemental damage in the turn before they activate.
-- **Vomit:** Trolls can make a \+2 Shooting Attack with 6” range. A creature hit with this attack count it’s armor as being 10 when calculating damage.
+- **Vomit:** Trolls can make a \+2 Shooting Attack with 6” range. A creature hit with this attack count it’s armour as being 10 when calculating damage.
 
 ## **Choppa**
 
@@ -491,9 +491,9 @@ if it is a off-hand weapon. They are also free to replace.
 
 # **Dwarf Trollslayer**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 4    | \+4   | \+1   | 11    | \+4  | 20     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 4    | \+4   | \+1   | 11     | \+4  | 20     | \-   |
 
 - **Grudgemaster:** any figure that activates along with this figure during the Hero's Phase can use the Captain’s Will stat instead of it’s own.
 - **Slayer Sagas:** The Dwarf Trollslayer starts with 5 powers from the **Slayer Saga**s list. One of these powers is his personal **Saga** and it’s activation power is 3\. The other powers have an activation number of 5\.
@@ -503,38 +503,38 @@ if it is a off-hand weapon. They are also free to replace.
 
 # **Dwarf Engineer**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 4    | \+2   | \+2   | 11    | \+3  | 16     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 4    | \+2   | \+2   | 11     | \+3  | 16     | 100gc |
 
 - **Dwarven Masterpieces:** The Dwarf Engineer starts with 5 powers from the **Dwarven Masterpieces** list. One of these powers is his signature **Masterpiece** and it’s activation power is 5\. The other powers have an activation number of 8\.
 - **Military Engineering:** The Dwarf Engineer makes all Firearms and Crossbows of his warband gain a extra 6” of range.
 - **Metal Conoisseur:** The Dwarf Engineer rolls an extra die when rolling on the Trading Post . This roll must be on the Constructs Modification Table. Additionally, a warband with an engineer receives a 20% discount on all purchases made from the Constructs Modification Table.
-- **Equipment:** A dwarf Engineer can start and equip Pistols, Handguns, Blunderbusses, Crossbows, Hand Crossbows, Light Armor and the Warband’s exclusive **Flamethrower**, **Dwarf Axes** and **Gromril Armor.**
+- **Equipment:** A dwarf Engineer can start and equip Pistols, Handguns, Blunderbusses, Crossbows, Hand Crossbows, Light armour and the Warband’s exclusive **Flamethrower**, **Dwarf Axes** and **Gromril armour.**
 
 # **Dwarf Clansmen**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 4    | \+3   | \+0   | 13    | \+1  | 12     | 75gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 4    | \+3   | \+0   | 13     | \+1  | 12     | 75gc |
 
-- **Equipment:** 2x Dwarf Axes or Dwarf Greataxe, Gromril Armor.
+- **Equipment:** 2x Dwarf Axes or Dwarf Greataxe, Gromril armour.
 
 # **Dwarf Thunderers**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 4    | \+2   | \+3   | 13    | \+1  | 12     | 125gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 4    | \+2   | \+3   | 13     | \+1  | 12     | 125gc |
 
 - **Assistant Engineer:** Years of modifying and taking care of their weapons gave the thunderers an valuable engineering knowledge.A warband that has a tinkerer gains a \+1 in the activation roll to one attempt to use the **Masterforged Weapon** or **Gromril Iromen** **Dwarf** **Masterwork**s outside of game. The bonus is \+1 irrespective of the number of Thunderers.
 - **Gun-training:** An Dwarf Thunderer is allowed to take a special ‘aim’ action. If this action is immediately followed by a shoot action in the same activation, the Dwarf Thunderer may ignore the first piece of intervening terrain (but not cover) between him and his target.
-- **Equipment:** Crossbow and Quiver OR Musket and Powder Horn OR Blunderbuss and Powder Horn, Gromril Armor.
+- **Equipment:** Crossbow and Quiver OR Musket and Powder Horn OR Blunderbuss and Powder Horn, Gromril armour.
 
 # **Beardlings**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 4    | \+0   | \+0   | 11    | \-2  | 12     | free |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 4    | \+0   | \+0   | 11     | \-2  | 12     | free |
 
 - **Room for Growth:**. Every time a Beardling participates in a scenario and survives, make a note of it on the warband sheet. Once the cabin boy has survived five scenarios, he can be promoted and replaced at no cost with a Thunderer or Clansmen. It keeps his levels and advancements.
 - **Equipment:** Hand Weapon.
@@ -551,9 +551,9 @@ A Dwarf Greataxe uses a reinforced metal to allows for a longer Shaft. While a b
 
 # Slann Greatmage
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 4    | \-2   | \-2   | 14    | \+6  | 16     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 4    | \-2   | \-2   | 14     | \+6  | 16     | \-   |
 
 - **Master Spellcaster:** The Slann Greatmage may cast spells from every Warden’s Branch of Magic. He start with 6 such spells.
 - **Palankin of the Great:** The Slann Greatmage have the **Flying** trait.
@@ -563,9 +563,9 @@ A Dwarf Greataxe uses a reinforced metal to allows for a longer Shaft. While a b
 
 # Skink Priestmage
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | \+1   | \+0   | 11    | \+4  | 14     | 120gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | \+1   | \+0   | 11     | \+4  | 14     | 120gc |
 
 - **Apprentice Spellcaster:** The Sking Mage-counselor may cast spells from any two Warden’s branches of magic. The figure starts the game with 4 such spells, and always cast them with a \-2 Casting roll.
 - **Tribal Tattooer:** The Skink Priestmage may cast the spell Mystic Brand, and always count as having it.
@@ -575,21 +575,21 @@ A Dwarf Greataxe uses a reinforced metal to allows for a longer Shaft. While a b
 
 # Saurus Totem-warriors
 
-| Move | Fight | Shoot | Armor  | Will | Health | Cost  |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
 | :--- | :---- | :---- | :----- | :--- | :----- | :---- |
 | 5    | \+3   | \+0   | 12(13) | \+4  | 14     | 220gc |
 
 - **Totemic Fury:** Whenever a totem warrior is activated, it may make a Will Roll with a Target Number of 16 as a free action. If successful, choose and apply one of the following bonuses that lasts until its next activation: **\+1 Move**, **\+1 Fight**, **\+1 Armour** or **\+2 Will**.
-- **Crushing Bite:** The Saurus have a humongous jaw that can tear his enemies and crush armor. The Totem-warriors have the **Opponent Armor Reduction trait** due to using his bites alongside his weapons.
+- **Crushing Bite:** The Saurus have a humongous jaw that can tear his enemies and crush armour. The Totem-warriors have the **Opponent armour Reduction trait** due to using his bites alongside his weapons.
 - **Death Roll:** The Saurus Totem-Warriors have the **Latch-on** trait.
 - **Crocodilian Ancestry:** The Saurus Totem-warrior have the **Amphibian** trait.
 - **Equipment:** Hand Weapon and Shield OR Two-Handed weapon.
 
 # Skink Crestwarrior
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 7    | \+2   | \+2   | 11    | \+1  | 10     | 120gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 7    | \+2   | \+2   | 11     | \+1  | 10     | 120gc |
 
 - **Jungleguard:** Skink Crestwarriors are used to fight and charge through terrain way worse than the rubble of Mordheim. They ignore movement penalties for passing through rough ground and not not need to make any swimming rolls.
 - **Sudden Action:** At the start of the game, after both sides have set up, but before the first Initiative Rolls, a player with a Crestwarrior may move it and one other figure in base-to-base contact with it up to 3”. The Creswarrior and the other figure must remain in base-to-base contact at the end of this move. If more than one player has a Crestwarrior in their warband, they are each allowed to make this special move and should do so in the reverse order to which they deployed their warbands.
@@ -598,9 +598,9 @@ A Dwarf Greataxe uses a reinforced metal to allows for a longer Shaft. While a b
 
 # Skink Blowdarter
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | \-1   | \+4   | 11    | \+4  | 14     | 120gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | \-1   | \+4   | 11     | \+4  | 14     | 120gc |
 
 - **Equipment:** Hand weapon, Blowpipe, Dart pouch.
 - **Pinpoint Darts:** Skink Blowdarters are allowed to take a special ‘aim’ action. If this action is immediately followed by a shoot action in the same activation, the Skink Blowdarter may ignore the first piece of intervening terrain (not cover) between him and his target.
@@ -609,29 +609,29 @@ A Dwarf Greataxe uses a reinforced metal to allows for a longer Shaft. While a b
 
 # Skink Braves
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | \+2   | 0     | 11    | \-1  | 10     | 25gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | \+2   | 0     | 11     | \-1  | 10     | 25gc |
 
 - **Reptilian Ancestry:** The Skink Braves have the Amphibian trait.
 - **Equipment:** Hand weapon.
 
 # Saurus Braves
 
-| Move | Fight | Shoot | Armor  | Will | Health | Cost  |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
 | :--- | :---- | :---- | :----- | :--- | :----- | :---- |
 | 5    | \+4   | 0     | 12(13) | 4    | 14     | 150gc |
 
 - **Equipment:** Hand weapon and Shield OR Two-Handed Weapon.
-- **Crushing Bite:** The Saurus have a humongous jaw that can tear his enemies and crush armor. The Totem-warriors have the Opponent Armor Reduction **trait** due to using his bites alongside his weapons.
+- **Crushing Bite:** The Saurus have a humongous jaw that can tear his enemies and crush armour. The Totem-warriors have the Opponent armour Reduction **trait** due to using his bites alongside his weapons.
 - **Crocodilian Ancestry:** The Saurus Brave have the **Amphibian** trait.
 - **Death Roll:** The Saurus Totem-Warriors have the **Latch-on** trait.
 
 # Kroxigor
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 4    | \+4   | 0     | 15    | \+3  | 18     | 300gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 4    | \+4   | 0     | 15     | \+3  | 18     | 300gc |
 
 - **Equipment:** Two-Handed Weapon.
 - **Lumbering River Hunter:** The Kroxigor have the **Large**, **Strong, Fear** and **Amphibian** traits.
@@ -645,9 +645,9 @@ A Blowpipe is a ranged weapon with 16” and a \-4 damage modifier. The blowpipe
 
 ## **Loremaster of Hoeth**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | \+1   | \+1   | 9     | \+6  | 14     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | \+1   | \+1   | 9      | \+6  | 14     | \-   |
 
 - **Arcane Master:** Any figure that activates along with this figure during the Hero’s phase can use the Captain’s Will stat instead of it’s own.
 - **Spellcaster:** The Loremaster can learn and cast spells from any school of magic. The loremaster starts with 8 spells from any school.
@@ -655,62 +655,62 @@ A Blowpipe is a ranged weapon with 16” and a \-4 damage modifier. The blowpipe
 
   ## **Phoenix Guard**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost   |
-| :--- | :---- | :---- | :---- | :--- | :----- | :----- |
-| 7    | \+3   | \+1   | 10    | \+3  | 18     | 100 gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost   |
+| :--- | :---- | :---- | :----- | :--- | :----- | :----- |
+| 7    | \+3   | \+1   | 10     | \+3  | 18     | 100 gc |
 
-- **Tidewall Stance:** While the Phoenix Guardiann is in base contact with the Loremaster, the Loremaster gains \+2 Armor.
+- **Tidewall Stance:** While the Phoenix Guardiann is in base contact with the Loremaster, the Loremaster gains \+2 armour.
 - **Tides of Hoeth:** The Phoenix Guardiann starts with 5 powers from the **Tides of Hoeth** list. One of them is their signature Tide and have an Activation number of 3, and the rest have Activation number of 5\.
 - E**quipment:** The Phoenix Guardiann may equip Hand Weapons, Two-handed weapons, bows, shields, light armour, heavy armour and the Warband’s exclusive **Elven Warglaive.**
 
 ## **Lothern Spearmen**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 7    | \+3   | 0     | 11    | \+1  | 12     | 75 gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 7    | \+3   | 0     | 11     | \+1  | 12     | 75 gc |
 
-- **Equipment:** Hand Weapon, Shield, Light Armor.
+- **Equipment:** Hand Weapon, Shield, Light armour.
 
   ## **Lothern Halberdier**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 7    | \+3   | 0     | 10    | 0    | 10     | 75 gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 7    | \+3   | 0     | 10     | 0    | 10     | 75 gc |
 
-- **Equipment:** Elven Warglaive, Light Armor.
+- **Equipment:** Elven Warglaive, Light armour.
 
 ## **Galespear(Specialist)**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost   |
-| :--- | :---- | :---- | :---- | :--- | :----- | :----- |
-| 7    | \+3   | 0     | 9     | \+4  | 12     | 100 gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost   |
+| :--- | :---- | :---- | :----- | :--- | :----- | :----- |
+| 7    | \+3   | 0     | 9      | \+4  | 12     | 100 gc |
 
 - **Spear of the White Tower:** The Galespear attacks count as magical.
 - **Equipment:** Elven Warglaive.
 
 ## **Lothern Bannerman(Specialist)**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost   |
-| :--- | :---- | :---- | :---- | :--- | :----- | :----- |
-| 6    | \+3   | 0     | 11    | \+1  | 12     | 100 gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost   |
+| :--- | :---- | :---- | :----- | :--- | :----- | :----- |
+| 6    | \+3   | 0     | 11     | \+1  | 12     | 100 gc |
 
 - **Inspiring Banner:** Any allied models within line of sight of this model gain \+2 Will. This bonus can only be gained once per model.
-- **Equipment:** Elven Warglaive, Heavy Armor.
+- **Equipment:** Elven Warglaive, Heavy armour.
 
 ## **Windpiercer (Specialist)**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost   |
-| :--- | :---- | :---- | :---- | :--- | :----- | :----- |
-| 7    | \+1   | \+3   | 10    | \+2  | 10     | 125 gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost   |
+| :--- | :---- | :---- | :----- | :--- | :----- | :----- |
+| 7    | \+1   | \+3   | 10     | \+2  | 10     | 125 gc |
 
 - **Gather the Winds:** The Wind Piercer may use an action to gather the winds around his arrow. The next Shooting Attack made by the wind piercer gains an additional 4’’ of range.
 - **Equipment:** Bow, Hand Weapon, Light Armour.
 
 ## **Sailor-Recruits**
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | \+2   | \+0   | 9     | \-1  | 10     | free |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | \+2   | \+0   | 9      | \-1  | 10     | free |
 
 - **Equipment:** Hand Weapon.
 
@@ -747,12 +747,12 @@ Tides of Hoeth represents the harmonious interplay between mastery of arcane pow
 ### **Shield of the Tempest**
 
 **When:** When the Loremaster is targeted by a ranged attack and is Within 3” of the Phoenix Guardian.  
-**Effect:** All allied models within 3” of the Phoenix Guard gain \+1 Armor until the start of their activation.
+**Effect:** All allied models within 3” of the Phoenix Guard gain \+1 armour until the start of their activation.
 
 ### **Coral Wall Formation**
 
 **When:** Whenever the Phoenix Guardian is within 2” of the Loremaster and the Loremaster is target of an Shooting attack.  
-**Effect:** That attack treats the Loremaster armor as 13\.
+**Effect:** That attack treats the Loremaster armour as 13\.
 
 ### **Reflecting Pool**
 
@@ -810,20 +810,20 @@ Tides of Hoeth represents the harmonious interplay between mastery of arcane pow
 
 ## Glade Lord
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | \+2   | \+3   | 9     | \+5  | 16     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | \+2   | \+3   | 9      | \+5  | 16     | \-   |
 
 - **Lord of the Forest**: Any figure that activates along with this figure during the Hero's phase can use the Glade Lord's Will stat instead of it's own.
 - **Ways of the Wild Hunt**: The Glade Lord starts with 5 powers from the Ways of the Wild Hunt list. One of these powers is his signature Way and have an activation number of 3\. The rest of the powers have an activation number of 5\.
 - **Master Archer:** The Glade Lord is allowed to take a special ‘aim’ action. If this action is immediately followed by a shoot action in the same activation, the Glade Lord may ignore the first piece of intervening terrain (but not cover) between him and his target.
-- **Equipment**: The Glade Lord may equip Hand Weapons, Bows, Light Armor and the warband's exclusive Asrai Longbow and Moonfire Arrow.
+- **Equipment**: The Glade Lord may equip Hand Weapons, Bows, Light armour and the warband's exclusive Asrai Longbow and Moonfire Arrow.
 
 ## Spellsinger
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 7    | 0     | 0     | 8     | \+4  | 12     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 7    | 0     | 0     | 8      | \+4  | 12     | 100gc |
 
 - **Apprentice Spellcaster:** Spellsingers may cast spells from the Elementalist, Soothsayer and Sonancer schools of magic. The figure starts the game with 4 such spells, and always cast them at a \-2 Casting roll.
 - **Equipment:** Spellsingers can start with and equip Daggers, Staffs and Bows.
@@ -832,9 +832,9 @@ Tides of Hoeth represents the harmonious interplay between mastery of arcane pow
 
 ## Wardancer (Specialist)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 8    | \+4   | \+0   | 10    | \+1  | 12     | 150gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 8    | \+4   | \+0   | 10     | \+1  | 12     | 150gc |
 
 - **War Dance**: Wardancers have trained to fight more than one opponent at once, and so their opponents can never claim more than \+2 for supporting figures, no matter how many friendly figures are actually in combat with the Wardancer. Furthermore, if the swordmaster wins a hand-to-hand combat against an opponent that is wearing light or heavy armour, that opponent suffers \-1 Armour for the purposes of determining damage from the Wardancer’s attack.
 - **Acrobatic:** Wardancers never take falling damage from falls of 6" or less.
@@ -842,18 +842,18 @@ Tides of Hoeth represents the harmonious interplay between mastery of arcane pow
 
 ## Waywatcher(Specialist)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 7    | \+1   | \+3   | 10    | \+2  | 10     | 120gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 7    | \+1   | \+3   | 10     | \+2  | 10     | 120gc |
 
 - **Forest Ghost:** Due to their skills in stealth and camouflage, no figure may draw line of sight to a Waywatcher that is more than 16” away or in any kind of cover. Additionally, if a figure can’t draw line of sight to the Waywatcher due to this ability, the Waywatcher may take a special “Snipe” action against that figure. If this action is taken, its next shooting attack may ignore the first piece of intervening terrain between the Waywatcher and the target.
-- **Equipment**: Asrai Longbow, Hand Weapon, Light Armor
+- **Equipment**: Asrai Longbow, Hand Weapon, Light armour
 
 ## Glade Guard
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | \+1   | \+2   | 10    | \+1  | 10     | 75gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | \+1   | \+2   | 10     | \+1  | 10     | 75gc |
 
 - **Equipment:** Asrai Longbow, Quiver, Dagger, Light Armour
 
@@ -861,37 +861,37 @@ Tides of Hoeth represents the harmonious interplay between mastery of arcane pow
 
 ## Bark Guardian
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 6    | \+3   | \+0   | 12    | \+2  | 14     | 50gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 6    | \+3   | \+0   | 12     | \+2  | 14     | 50gc |
 
-- **Bark Armor:** The Bark Guardian has a thick Bark Armor that protects his body from harm. However, it does have Elemental Vulnerability(3).
+- **Bark armour:** The Bark Guardian has a thick Bark armour that protects his body from harm. However, it does have Elemental Vulnerability(3).
 - **Equipment:** Two Handed Weapon
 
 Glade Scout
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | \+1   | \+0   | 9     | \+0  | 10     | Free |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | \+1   | \+0   | 9      | \+0  | 10     | Free |
 
 - **Equipment:** Hand Weapon.
 
 ## Treant (Maximum One)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 4    | \+2   | \-    | 15    | \+3  | 24     | 200gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 4    | \+2   | \-    | 15     | \+3  | 24     | 200gc |
 
 - **Ancient Guardian:** The Treant is a Large construct-like creature that has the **Large** trait. It’s skin is thick like bark, but it does have Elemental Vulnerability(3)
 - **Forest's Presence:** While the Treant has not taken Elemental damage during this turn, All allied figures within 6” of it count as having Heavy Cover.
 
 ## Asrai Longbow
 
-An Asrai Longbow is a masterwork bow crafted from the living wood of Athel Loren. Range: 30",treat the armor of a figure hit by a Shooting Attack from this bow as 1 point lower.
+An Asrai Longbow is a masterwork bow crafted from the living wood of Athel Loren. Range: 30",treat the armour of a figure hit by a Shooting Attack from this bow as 1 point lower.
 
 Moonfire Arrow
 
-A Moonfire Arrow is a single magical arrow that may be fired once per game. When declared, the arrow automatically hits if the target is in range and line of sight (no Shoot roll required). The arrow deals \+3 Damage and the target's armor is reduced to 10 for calculating damage. Cost: 30gc (single use).
+A Moonfire Arrow is a single magical arrow that may be fired once per game. When declared, the arrow automatically hits if the target is in range and line of sight (no Shoot roll required). The arrow deals \+3 Damage and the target's armour is reduced to 10 for calculating damage. Cost: 30gc (single use).
 
 ### Way of the Forest's Blessing
 
@@ -955,7 +955,7 @@ figure ignore the first piece of intervening terrain between him and the figure.
 
 **When**: At any point during the Glade Lord's activation.
 
-**Effect:** The Glade Lord may climb upon a Treant within 2” of himself. While mounted in the Treant, any attacks directed at him are treated as if against Heavy Cover and use the Treant Armor. The Glade Lord gains \+1 Shoot when shooting upon a Treant.
+**Effect:** The Glade Lord may climb upon a Treant within 2” of himself. While mounted in the Treant, any attacks directed at him are treated as if against Heavy Cover and use the Treant armour. The Glade Lord gains \+1 Shoot when shooting upon a Treant.
 
 ### Way of the Barkpiercer
 
@@ -976,9 +976,9 @@ figure ignore the first piece of intervening terrain between him and the figure.
 
 ## Hag Queen (Hero)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | 1     | 0     | 9     | \+4  | 14     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | 1     | 0     | 9      | \+4  | 14     | \-   |
 
 - **Spiritual Leader:** Any figure that activates along with this figure during the Hero's phase can use the Hag Queen's Will stat instead of its own.
 - **Blessed by Khaine:** The Hag Queen is a spellcaster, and may cast spells from the Soothsayer, Witch, Spiritualist, Fatecaster and Illusion Schools.
@@ -987,43 +987,43 @@ figure ignore the first piece of intervening terrain between him and the figure.
 
 ## Slaughter Queen
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | 3     | 0     | 9     | \+3  | 14     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | 3     | 0     | 9      | \+3  | 14     | \-   |
 
 - **Khaine’s Torturer:** The Slaughter Queen may use powers from the **Whispers of Pain**. She starts the game with 5 powers from that list. One of these powers is her signature Whisper, and have an activation number of 5\. The others have an activation number of 8\.
-- **Equipment:** The Hag Queen may start with and equip daggers, hand weapons, light armor and the warband’s exclusive Sacrificial Dagger**.**
+- **Equipment:** The Hag Queen may start with and equip daggers, hand weapons, light armour and the warband’s exclusive Sacrificial Dagger**.**
 
   ## Blood Sister
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | 2     | 0     | 9     | \-1  | 10     | free |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | 2     | 0     | 9      | \-1  | 10     | free |
 
 - **Equipment:** 1x Hand Weapon
 
   ## Slaughter Sister
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | 4     | 0     | 10    | 0    | 10     | 75gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | 4     | 0     | 10     | 0    | 10     | 75gc |
 
-- **Equipment:** 1x Hand Weapon, sacrificial dagger, Light Armor
+- **Equipment:** 1x Hand Weapon, sacrificial dagger, Light armour
 
   ## Witch Elf
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | 3     | 0     | 10    | 0    | 10     | 75gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | 3     | 0     | 10     | 0    | 10     | 75gc |
 
 - **Tongue of pain:** Witch Elves may fight with enemy figures up to 1.5” away. In this case, the enemy figure have a \-2 to it’s fight stat. She may also force combat from a range of 1.5”.
 - **Equipment:** 1x hand weapon,1x Sacrificial Dagger
 
 ## Beastmaster Sister (Specialist)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 8    | 3     | 0     | 10    | 1    | 12     | 125gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 8    | 3     | 0     | 10     | 1    | 12     | 125gc |
 
 - **Cold One Tamer:** For each Beastmaster sister on the Battlefield, this warband may hire two Cold One Beasthounds. The beasthounds leave the warband immediately if their associated Beastmaster Sister dies.
 - **Equipment:** 2x Sacrificial Daggers
@@ -1034,18 +1034,18 @@ figure ignore the first piece of intervening terrain between him and the figure.
 
   ## Khinerai Heartrenders(Specialist)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | 2     | 0     | 9     | 1    | 12     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | 2     | 0     | 9      | 1    | 12     | 100gc |
 
 - **Winged Torturers:** Khinerai Heatrenders have the Flying trait.
 - **Equipment:** 2x Sacrificial Dagger
 
   ## Cold One Beasthound
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | 3     | 0     | 12    | \+2  | 12     | 25gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | 3     | 0     | 12     | \+2  | 12     | 25gc |
 
 - **Wicked Loyalty:** Cold One Beasthounds that do not activate within 6” of a Beastmaster Sister act as uncontrolled creatures. They remain as such until the end of the game. Cold One Beasthounds may not use the **Spiritual Leader** ability of the Hag Queen, their only loyalty is to the beastmaster.
 
@@ -1087,7 +1087,7 @@ activation ends, any unused actions are lost. Whisper of Submission cannot be us
 ### **Whisper of Flaying**
 
 **When:** Whenever the Slaughter Queen wins a Fight and causes at least 1 damage.  
-**Effect:** The enemy figure loses 1 armor until the end of the game. This power cannot take a figure to less than 6 armor.
+**Effect:** The enemy figure loses 1 armour until the end of the game. This power cannot take a figure to less than 6 armour.
 
 ### **Whisper of Slaughter**
 
@@ -1112,7 +1112,7 @@ activation ends, any unused actions are lost. Whisper of Submission cannot be us
 ### **Whisper of Sacrifice**
 
 **When:** At any point during the Slaughter Queen activation.  
-**Effect:** The Slaughter Queen gains \+2 Damage and \+2 Move, but her armor is set to 8 until the start of her next activation.
+**Effect:** The Slaughter Queen gains \+2 Damage and \+2 Move, but her armour is set to 8 until the start of her next activation.
 
 ### **Whisper of Torn Flesh**
 
@@ -1158,7 +1158,7 @@ In short, Wardog Tactics are designed to make the warband fight like a single or
 ### Shieldwall, now\!
 
 **When:** When the Captain\\Champion or any creature within 3” is the target of a Shooting attack.  
-**Effect:** The power activator’s and every figure from it’s warband within 3” gains \+2 extra armor until the start of each figure’s activation.
+**Effect:** The power activator’s and every figure from it’s warband within 3” gains \+2 extra armour until the start of each figure’s activation.
 
 ### I will sell any maggot with a clean sword to the slave-pits\!
 
@@ -1260,7 +1260,7 @@ Bloodline Traditions embody the monstrous legacy of vampiric power — ancient c
 ### Tradition of the Moonhunting
 
 **When:** At any time during the vampire’s activation**.**  
-**Effect:** The vampire turns into a Humongous Dire Wolf. The vampire gains the Large and Strong traits, and gains 2 move, but do not benefit from armor and weapons while transformed. The Vampire cannot carry treasure, but does not count as an animal. Any direwolves within 6” of the vampire gain a \+1 Fight and \+2 Wil and may activate as they and the vampire have the Pack Hunter trait.
+**Effect:** The vampire turns into a Humongous Dire Wolf. The vampire gains the Large and Strong traits, and gains 2 move, but do not benefit from armour and weapons while transformed. The Vampire cannot carry treasure, but does not count as an animal. Any direwolves within 6” of the vampire gain a \+1 Fight and \+2 Wil and may activate as they and the vampire have the Pack Hunter trait.
 
 ### Tradition of Tyranny
 
@@ -1281,7 +1281,7 @@ Bloodline Traditions embody the monstrous legacy of vampiric power — ancient c
 
 **When:** At any time during the vampire’s activation**.**  
 **Effect:** The vampire transforms into a Monstrous Fellbat. It gains the **Flying**, **Latch-on,** and  
-**Vampiric Touch** traits, but cannot benefit from armor and weapons until the end of it’s turn. Creatures attacked by the vampire that take at least 4 damage gain a **Bleed Token.** Creatures with Bleed tokens take 2 damage everytime they move or take damage. Healing spells and potions may remove Bleed Tokens.
+**Vampiric Touch** traits, but cannot benefit from armour and weapons until the end of it’s turn. Creatures attacked by the vampire that take at least 4 damage gain a **Bleed Token.** Creatures with Bleed tokens take 2 damage everytime they move or take damage. Healing spells and potions may remove Bleed Tokens.
 
 ### Tradition of the Bloodhelix
 
@@ -1488,7 +1488,7 @@ Core principles of the design:
 
 - **Divine Blessings**: Rerolls, healing, and combat empowerment highlight the Augur’s role as a spiritual guide who raises her Sisters above mortal limits.
 
-- **Judgment and Wrath**: Some Words punish enemies directly, lowering armor, granting Truesight, or stripping away defenses in moments of holy fury.
+- **Judgment and Wrath**: Some Words punish enemies directly, lowering armour, granting Truesight, or stripping away defenses in moments of holy fury.
 
 - **Faith Beyond Battle**: Certain Words extend their influence to the campaign layer, improving treasure rolls and ensuring divine providence shapes the warband’s fate.
 
@@ -1536,7 +1536,7 @@ bonuses and other special abilities are retained.
 ### Word of the Holy Wrath
 
 **When:** When the Augur or another Sister within 6” of the Augur wins a Fight and deals damage. .  
-**Effect:** That attack counts the Enemy Armor as 4 points lower when calculating damage.
+**Effect:** That attack counts the Enemy armour as 4 points lower when calculating damage.
 
 ### Word of the Unescapable Fate
 
@@ -1591,7 +1591,7 @@ Blood Burn for this ability. If used during the game, the Boz recovers 5 health.
 **When:** whenever the Warboz has won a combat and rolled either an unmodified 18 or 19 on the die.  
 **Effect:** Treat that hit as a critical hit. The figure hit may only use one action during it’s next activation.
 
-### Da Armor Krusha’
+### Da armour Krusha’
 
 **When:** whenever the Warboz has won a combat dealt at least 5 damage.  
 **Effect:** If the target was wearing leather armour, it suffers \-1 Armour for the rest of the game. If it was wearing mail armour it suffers \-2 Armour for the rest of the game.
@@ -1651,7 +1651,7 @@ In short, the Slayer Sagas are designed to make the Trollslayer feel like a **li
 ### Saga of the Ogreslaying
 
 **When:**.At any point a Trollslayer fights with a figure with the Large trait.  
-**Effect:** The Slayer gains a \+2 to Fight, and treats that figure’s armor as 10\.
+**Effect:** The Slayer gains a \+2 to Fight, and treats that figure’s armour as 10\.
 
 ### Saga of the Violent Bloodletting
 
@@ -1741,10 +1741,10 @@ In short, the Undermountain Masterpieces are designed to make the Engineer feel 
 **When:** Out of Game(B).  
 **Effect:** The player may immediately add one construct soldier to their crew for no cost. This soldier can be of any type from the Frostgrave Core Book or the Fireheart book, but the warband is subject to it’s the normal limit of soldiers. A Large construct takes up two slots in the limit, and consumes 10% of the warband earnings as upkeep.
 
-### Steam Power Armor Masterpiece
+### Steam Power armour Masterpiece
 
 **When:** Out of Game(B).  
-**Effect:** The Engineer pays One soldier of the warband that is equipped or can be equipped with a Gromril Armor is equipped with a Steam Power Armor. Each game in which this soldier is used, the player must pay 50gc as upkeep for the armor. This power may be used again to cover this upkeep price, but respecting the normal rules for Out of Game powers. If this power is used on a soldier, the soldier do not have any free item slots. If used on the Engineer itself, it occupies two item slots.
+**Effect:** The Engineer pays One soldier of the warband that is equipped or can be equipped with a Gromril armour is equipped with a Steam Power armour. Each game in which this soldier is used, the player must pay 50gc as upkeep for the armour. This power may be used again to cover this upkeep price, but respecting the normal rules for Out of Game powers. If this power is used on a soldier, the soldier do not have any free item slots. If used on the Engineer itself, it occupies two item slots.
 
 _Rare, costly, and a maintenance nightmare, Steam Power Armour is the ultimate personal protection on the battlefield. Forged from heavy steel and fine-running gears, it encases the wearer completely, providing its own air supply and mechanical strength to bear its infernal weight. A figure clad in this armour gains \+4 Armour. Taking up two gear slots, Steam Power Armour also counts as carrying a hand weapon, a pistol, and a filter mask — all built in, all ready for battle without delay. The filter mask makes the figure Immune to Poison._
 
@@ -1763,7 +1763,7 @@ as if it had the **Fly** trait.
 
 **When:** Out of Game (B).  
 **Effect:** The engineer mounts a Steam Powered Chainsaw blade on any warband’s firearm.  
-When that weapon is used as a Close Combat Weapon, it ignores 1 point of armor from the enemy figure, even if it is on a Offhand pistol.
+When that weapon is used as a Close Combat Weapon, it ignores 1 point of armour from the enemy figure, even if it is on a Offhand pistol.
 
 ### Magnetic Boots Masterpiece
 
@@ -1788,13 +1788,13 @@ When that weapon is used as a Close Combat Weapon, it ignores 1 point of armor f
 ### Portable Welding Kit Masterpiece
 
 **When:** At any point during the engineer’s activation.  
-**Effect:** The engineer chooses a construct, broken weapon or broken armor within 1” of it.  
+**Effect:** The engineer chooses a construct, broken weapon or broken armour within 1” of it.  
 If he choose a construct, it recovers 5 Health. If he chooses a broken weapon, it is fixed, and may be used again.
 
 ### Landmine Masterpiece
 
 **When:** At any point during the engineer’s activation.  
-**Effect:** The engineer places a landmine on the floor or wall. If any creature moves within 1” of the landmine, it explodes, and every figure within 3” of it takes a \+5 Shooting attack, ignoring 2 points of armor from the targets. The Engineer may only have 2 landmines active at a time.
+**Effect:** The engineer places a landmine on the floor or wall. If any creature moves within 1” of the landmine, it explodes, and every figure within 3” of it takes a \+5 Shooting attack, ignoring 2 points of armour from the targets. The Engineer may only have 2 landmines active at a time.
 
 ### Hookshot Masterpiece
 
@@ -1805,9 +1805,9 @@ If he choose a construct, it recovers 5 Health. If he chooses a broken weapon, i
 
 # Priest-Artificer(Hero)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 4    | \+2   | 0     | 11    | \+4  | 16     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 4    | \+2   | 0     | 11     | \+4  | 16     | \-   |
 
 - **Favorite of Hashut:** Any figure that activates along with this figure during the Hero's phase can use the Sorcerer's Will stat instead of its own.
 - **Master Spellcaster:** The Sorcerer is a spellcaster of the enchantment school. He starts with 8 spells.
@@ -1816,66 +1816,66 @@ If he choose a construct, it recovers 5 Health. If he chooses a broken weapon, i
 
 # Bull Centaur(Champion)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 6    | \+4   | \+1   | 11    | \+4  | 20     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 6    | \+4   | \+1   | 11     | \+4  | 20     | \-   |
 
 - **Charger:** The equine build of the Bull Centaur makes his charges as devastating as a battering ram. He have the Horns trait. However, he cannot climb, and rough terrain costs 3 move for 1 inch of movement instead of 2\.
 - **Liutenant of Hatred:** The Bull Centaur may choose powers from the Doctrines of Hashut list. He starts with 5 powers. One of the powers is his signature doctrine, and have an activation number of 5\. The others have an activation power of 8\.
-- **Equipment:** The Bull Centaur may equip and start with hand weapons, two handed weapons, daggers, crossbows, hand crossbows, Light Armor and Heavy Armor.
+- **Equipment:** The Bull Centaur may equip and start with hand weapons, two handed weapons, daggers, crossbows, hand crossbows, Light armour and Heavy armour.
 
 # Forge Guards
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 4    | \+3   | 0     | 14    | 0    | 14     | 75gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 4    | \+3   | 0     | 14     | 0    | 14     | 75gc |
 
-- **Equipment:** Hand Weapon**,** Shield, Heavy Armor.
+- **Equipment:** Hand Weapon**,** Shield, Heavy armour.
 
 # Hobgoblin
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | 0     | 0     | 9     | \-2  | 8      | free |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | 0     | 0     | 9      | \-2  | 8      | free |
 
 - **Corward:** Hobgoblins are naturally cowardly creatures that are forced to fight by their Chaos Dwarf masters. As a result, they take damage easily and at the slightest opportunity try to escape from their captors. When rolling on the Soldier Survival Table, any result of less than 15 results in a dead or fleeing hobgoblin. A result of 16-18 means they will skip a game. on a 19-20 they make a full recovery.
-- **Equipment:** .Pistol, Hand Weapon, Light Armor
+- **Equipment:** .Pistol, Hand Weapon, Light armour
 
   # Gaoler
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 4    | \+3   | 0     | 13    | 1    | 14     | 80gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 4    | \+3   | 0     | 13     | 1    | 14     | 80gc |
 
 - **Manhunters:** Gaolers have the Fear trait.
-- **Equipment:** Two-Handed Weapon, Heavy Armor
+- **Equipment:** Two-Handed Weapon, Heavy armour
 
 # Hordebreaker (Specialist)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 4    | 2     | 2     | 13    | \+1  | 12     | 80gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 4    | 2     | 2     | 13     | \+1  | 12     | 80gc |
 
-- **Equipment:** Blunderbuss**,** Hand Weapon, Heavy Armor.
+- **Equipment:** Blunderbuss**,** Hand Weapon, Heavy armour.
 
 # Foundry Master(Specialist)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 4    | 1     | 2     | 12    | \+1  | 12     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 4    | 1     | 2     | 12     | \+1  | 12     | 100gc |
 
 - **Hellsmith:** A Priest-Artificer that has a Foundry Master in their warband gains a \+1 to one attempt to cast Embed Enchantment or Animate Construct between each game. This bonus can only be gained once, irrespective on how many Foundry masters the warband have.
-- **Equipment:** .Pistol, Hand Weapon, Light Armor
+- **Equipment:** .Pistol, Hand Weapon, Light armour
 
 # Barghests (Specialist)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | 2     | 0     | 13    | \+1  | 14     | 100gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | 2     | 0     | 13     | \+1  | 14     | 100gc |
 
 - **Hellforged Hound:**A Barghest have the Demon and Construct traits, cannot pick up wyrdstone shards or gain xp**.**
 - **Infernal Beacon:** Barghests have the Demon Portal and Construct Spikes construct upgrades by default.
-- **Equipment:** .Pistol, Hand Weapon, Light Armor
+- **Equipment:** .Pistol, Hand Weapon, Light armour
 
 # Doctrines of Hashut
 
@@ -1920,7 +1920,7 @@ make one Leap of up to 1.5 times his Move. When the Bull Centaur finishes this m
 ### Doctrine of the Steel Sundering
 
 **When:** Whenever the Bull Centaur wins a fight and deals at least 1 damage.  
-**Effect:** The centaur deals no damage, but destroy any armor the enemy figure is using. If the figure is using Heavy Armor, it’s armor is reduced by 2\. If it’s using light armor, it’s armor is reduced by 1, until the end of the game.
+**Effect:** The centaur deals no damage, but destroy any armour the enemy figure is using. If the figure is using Heavy armour, it’s armour is reduced by 2\. If it’s using light armour, it’s armour is reduced by 1, until the end of the game.
 
 ### Doctrine of the Blade Eater
 
@@ -1952,77 +1952,77 @@ another figure.
 
 # Beastman Chieftain(Hero)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | \+4   | 0     | 10    | \+5  | 14     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | \+4   | 0     | 10     | \+5  | 14     | \-   |
 
 - **Lord of the Pack:** Beastmen chieftains do not have the same inspiring disposition of other leaders. However, figures activating alongside him in the Hero’s phase activate as if they had the Pack Hunter trait. He is always considered the Pack Leader.
 - **Blessed by the Beast Blood:** Beastmen Chieftains may choose powers of the **Gifts of Beastblood** list. He starts with 5 powers. One of these powers is his signature Gift and have an activation number of 3\. The others have an activation number of 5\.
 - **Violent Warmonger:** Beastmen Chieftains have the Strong and Fear trait.
-- **Equipment:** Beastmen chieftains may equip and start with: Two Handed Weapons, Hand Weapons, Shields, Heavy Armor, Light Armor.
+- **Equipment:** Beastmen chieftains may equip and start with: Two Handed Weapons, Hand Weapons, Shields, Heavy armour, Light armour.
 
 # Beastman Sorcerer(Champion)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | \+1   | 0     | 10    | \+5  | 12     | \-   |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | \+1   | 0     | 10     | \+5  | 12     | \-   |
 
 - **Tribal Sorcerer:** The Beastman Chieftain is a spellcaster of the Summoner School. He may start with 8 spells from that school and cast them at \-2.
 - **Pact Broker:** The Beastmen Sorcerer made vile pacts to gain his power. He starts the game knowing the true name of one demon, and may choose a Pact Boon and Pact Sacrifice. However, unlike the Chaos Magister, he doesn’t gain additional Pacts at later levels.
 - **Corrupter of the Beastblood:** Beastmen chieftains do not have the same inspiring disposition of other leaders. However, figures activating alongside him in the Hero’s phase activate as if they had the Pack Hunter trait. He is always considered the Pack Leader.
-- **Equipment:** Beastmen chieftains may equip and start with: Two Handed Weapons, Hand Weapons, Shields, Heavy Armor, Light Armor.
+- **Equipment:** Beastmen chieftains may equip and start with: Two Handed Weapons, Hand Weapons, Shields, Heavy armour, Light armour.
 
 # Ungor
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | \+2   | 0     | 10    | \-1  | 8      | free |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | \+2   | 0     | 10     | \-1  | 8      | free |
 
 - **Equipment:** Hand Weapon
 
 # Gor
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 7    | \+3   | 0     | 12    | \-1  | 10     | 75gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 7    | \+3   | 0     | 12     | \-1  | 10     | 75gc |
 
-- **Equipment:** Hand Weapon, Shield, Light Armor,
+- **Equipment:** Hand Weapon, Shield, Light armour,
 
 # Warhounds of Chaos
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost |
-| :--- | :---- | :---- | :---- | :--- | :----- | :--- |
-| 8    | \+1   | 0     | 10    | \-2  | 8      | 10gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost |
+| :--- | :---- | :---- | :----- | :--- | :----- | :--- |
+| 8    | \+1   | 0     | 10     | \-2  | 8      | 10gc |
 
 - **Equipment:** Fangs, Horns and Violence\!
 
 # Bestigor(Specialist)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | \+4   | 0     | 12    | \-1  | 12     | 125gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | \+4   | 0     | 12     | \-1  | 12     | 125gc |
 
 - **Horned Warmonger:** The Bestigor have the Horns trait.
-- **Equipment:** Two Handed Weapon, Heavy Armor
+- **Equipment:** Two Handed Weapon, Heavy armour
 
 # Gor Spearthrower(Specialist)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 7    | \+2   | 2     | 11    | \-1  | 10     | 125gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 7    | \+2   | 2     | 11     | \-1  | 10     | 125gc |
 
 - **Capricious Hunters:** A warband that have at least a single Gor Spearthrower gains a \+2 initiative in it’s rolls.
-- **Equipment:** Javelin, Dagger, Light Armor
+- **Equipment:** Javelin, Dagger, Light armour
 
 # Minotaur(Only one)
 
-| Move | Fight | Shoot | Armor | Will | Health | Cost  |
-| :--- | :---- | :---- | :---- | :--- | :----- | :---- |
-| 6    | \+4   | 0     | 12    | \+5  | 12     | 250gc |
+| Move | Fight | Shoot | armour | Will | Health | Cost  |
+| :--- | :---- | :---- | :----- | :--- | :----- | :---- |
+| 6    | \+4   | 0     | 12     | \+5  | 12     | 250gc |
 
 - **Bovine Monstrosity:** The Minotaur have the Large, Strong, Fear and Horns trait.
 - **Keen Senses:** The Minotaur have the Truesight ability.
-- **Equipment:** Two Handed Weapon, Heavy Armor
+- **Equipment:** Two Handed Weapon, Heavy armour
 
 # Gifts of Beastblood
 
@@ -2086,4 +2086,4 @@ another figure.
 ### Gift of the Contagious Rage
 
 **When:** any time a figure within 3” of the Beastmen Chieftain activates.  
- **Effect:** The Beastmen Chieftain chooses an enemy figure within 6”. That figure must pass a Will check against this power activation roll. If the figure fails that check, it must move towards the Beastmen Raider and must enter combat with it if able. The creature gains \+1 Fight, but loses \-1 armor. If the creature fails to enter combat with the Combat Chieftain, it loses the rest of its activation.
+ **Effect:** The Beastmen Chieftain chooses an enemy figure within 6”. That figure must pass a Will check against this power activation roll. If the figure fails that check, it must move towards the Beastmen Raider and must enter combat with it if able. The creature gains \+1 Fight, but loses \-1 armour. If the creature fails to enter combat with the Combat Chieftain, it loses the rest of its activation.
