@@ -5,7 +5,7 @@ import GameText from "./GameText";
 interface MysticBrandCardProps {
   name: string;
   effect: string;
-  type: "Burning" | "Devotional";
+  type: "Totemic" | "Ancestral";
 }
 
 const Card = styled(Box)(({ theme }) => ({

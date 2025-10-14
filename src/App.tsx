@@ -4,27 +4,44 @@ import CssBaseline from "@mui/material/CssBaseline";
 import HomePage from "./pages/HomePage";
 import WarbandsPage from "./pages/WarbandsPage";
 import RulesPage from "./pages/RulesPage";
-import EquipmentPage from "./pages/EquipmentPage";
+
 import ExplorationPage from "./pages/ExplorationPage";
 import HiredSwordsPage from "./pages/HiredSwordsPage";
 import DramatisPersonaePage from "./pages/DramatisPersonaePage";
 import TreasuresAndItemsPage from "./pages/TreasuresAndItemsPage";
-import SpellsPage from "./pages/SpellsPage";
+
 import PotionsPage from "./pages/treasures-n-items/PotionsPage";
 import MagicArsenalPage from "./pages/treasures-n-items/MagicArsenalPage";
 import MagicItemsPage from "./pages/treasures-n-items/MagicItemsPage";
-import ConstructModificationsPage from "./pages/ConstructModificationsPage";
-import { DruidcraftLizardmenPage } from "./pages/spells/DruidcraftLizardmenPage";
-import { DruidcraftAthelLorenPage } from "./pages/spells/DruidcraftAthelLorenPage";
-import { MagicOfTheHornedRatPage } from "./pages/spells/MagicOfTheHornedRatPage";
-import { LoreOfNecromancyPage } from "./pages/spells/LoreOfNecromancyPage";
-import { MagicOfTheWhiteTowerPage } from "./pages/spells/MagicOfTheWhiteTowerPage";
-import { MagicOfTheWaaghPage } from "./pages/spells/MagicOfTheWaaghPage";
-import { MagicOfKhainePage } from "./pages/spells/MagicOfKhainePage";
-import { PrayersOfUlricPage } from "./pages/spells/PrayersOfUlricPage";
-import { PrayersOfSigmarPage } from "./pages/spells/PrayersOfSigmarPage";
-import { PrayersOfHashutPage } from "./pages/spells/PrayersOfHashutPage";
-import ChaosRitualsPage from "./pages/spells/ChaosRitualsPage";
+import CommonItemsPage from "./pages/treasures-n-items/CommonItemsPage";
+import MagicPage from "./pages/spells/MagicPage";
+import ArcaneLoresPage from "./pages/spells/ArcaneLoresPage";
+import LoreOfFirePage from "./pages/spells/LoreOfFirePage";
+import LoreOfHeavensPage from "./pages/spells/LoreOfHeavensPage";
+import LoreOfMetalPage from "./pages/spells/LoreOfMetalPage";
+import LoreOfLifePage from "./pages/spells/LoreOfLifePage";
+import LoreOfLightPage from "./pages/spells/LoreOfLightPage";
+import LoreOfShadowsPage from "./pages/spells/LoreOfShadowsPage";
+import LoreOfDeathPage from "./pages/spells/LoreOfDeathPage";
+import LoreOfBeastsPage from "./pages/spells/LoreOfBeastsPage";
+import DarkLoresPage from "./pages/spells/DarkLoresPage";
+import LoreOfChaosPage from "./pages/spells/LoreOfChaosPage";
+import LoreOfNecromancyPage from "./pages/spells/LoreOfNecromancyPage";
+import LoreOfTheHornedRatPage from "./pages/spells/LoreOfTheHornedRatPage";
+import DivineLoresPage from "./pages/spells/DivineLoresPage";
+import PrayersOfHashutPage from "./pages/spells/PrayersOfHashutPage";
+import PrayersOfSigmarPage from "./pages/spells/PrayersOfSigmarPage";
+import PrayersOfUlricPage from "./pages/spells/PrayersOfUlricPage";
+import GreenskinLoresPage from "./pages/spells/GreenskinLoresPage";
+import LoreOfTheBigWaaaghPage from "./pages/spells/LoreOfTheBigWaaaghPage";
+import SpellScrollsPage from "./pages/spells/SpellScrollsPage";
+import DaemonsPage from "./pages/daemons/DaemonsPage";
+import DaemonStatblocksPage from "./pages/daemons/DaemonStatblocksPage";
+import DaemonicTraitsPage from "./pages/daemons/DaemonicTraitsPage";
+import DaemonicPactsPage from "./pages/daemons/DaemonicPactsPage";
+import ConstructsPage from "./pages/constructs/ConstructsPage";
+import ConstructStatblocksPage from "./pages/constructs/ConstructStatblocksPage";
+import ConstructModsPage from "./pages/constructs/ConstructModsPage";
 import BasePage from "./pages/BasePage";
 import BasesPage from "./pages/base/BasesPage";
 import BaseUpgradesPage from "./pages/base/BaseUpgradesPage";
@@ -137,60 +154,79 @@ function App() {
             path="/warband/:warbandSlug"
             element={<div>Warband Detail Page</div>}
           />
-          <Route path="/rules" element={<RulesPage />} />
-          <Route path="/equipment" element={<EquipmentPage />} />
+
           <Route path="/exploration" element={<ExplorationPage />} />
           <Route path="/hired-swords" element={<HiredSwordsPage />} />
           <Route path="/dramatis-personae" element={<DramatisPersonaePage />} />
           <Route path="/treasures" element={<TreasuresAndItemsPage />} />
+          <Route path="/rules" element={<RulesPage />} />
           <Route path="/base" element={<BasePage />} />
           <Route path="/base/bases" element={<BasesPage />} />
           <Route path="/base/upgrades" element={<BaseUpgradesPage />} />
           <Route path="/base/stable" element={<TheStablePage />} />
-          <Route path="/spells" element={<SpellsPage />} />
+
+          <Route path="/magic" element={<MagicPage />} />
+          <Route path="/magic/arcane-lores" element={<ArcaneLoresPage />} />
+          <Route path="/magic/arcane/fire" element={<LoreOfFirePage />} />
+          <Route path="/magic/arcane/heavens" element={<LoreOfHeavensPage />} />
+          <Route path="/magic/arcane/metal" element={<LoreOfMetalPage />} />
+          <Route path="/magic/arcane/life" element={<LoreOfLifePage />} />
+          <Route path="/magic/arcane/light" element={<LoreOfLightPage />} />
+          <Route path="/magic/arcane/shadows" element={<LoreOfShadowsPage />} />
+          <Route path="/magic/arcane/death" element={<LoreOfDeathPage />} />
+          <Route path="/magic/arcane/beasts" element={<LoreOfBeastsPage />} />
+          <Route path="/magic/dark-lores" element={<DarkLoresPage />} />
+          <Route path="/magic/dark/chaos" element={<LoreOfChaosPage />} />
           <Route
-            path="/spells/druidcraft-lizardmen"
-            element={<DruidcraftLizardmenPage />}
-          />
-          <Route
-            path="/spells/druidcraft-athel-loren"
-            element={<DruidcraftAthelLorenPage />}
-          />
-          <Route
-            path="/spells/magic-horned-rat"
-            element={<MagicOfTheHornedRatPage />}
-          />
-          <Route
-            path="/spells/lore-necromancy"
+            path="/magic/dark/necromancy"
             element={<LoreOfNecromancyPage />}
           />
           <Route
-            path="/spells/magic-white-tower"
-            element={<MagicOfTheWhiteTowerPage />}
+            path="/magic/dark/horned-rat"
+            element={<LoreOfTheHornedRatPage />}
           />
-          <Route path="/spells/magic-waagh" element={<MagicOfTheWaaghPage />} />
-          <Route path="/spells/magic-khaine" element={<MagicOfKhainePage />} />
+          <Route path="/magic/divine-lores" element={<DivineLoresPage />} />
           <Route
-            path="/spells/prayers-ulric"
-            element={<PrayersOfUlricPage />}
-          />
-          <Route
-            path="/spells/prayers-sigmar"
-            element={<PrayersOfSigmarPage />}
-          />
-          <Route
-            path="/spells/prayers-hashut"
+            path="/magic/divine/hashut"
             element={<PrayersOfHashutPage />}
           />
-          <Route path="/spells/chaos-rituals" element={<ChaosRitualsPage />} />
+          <Route
+            path="/magic/divine/sigmar"
+            element={<PrayersOfSigmarPage />}
+          />
+          <Route path="/magic/divine/ulric" element={<PrayersOfUlricPage />} />
+          <Route
+            path="/magic/greenskin-lores"
+            element={<GreenskinLoresPage />}
+          />
+          <Route
+            path="/magic/greenskin/big-waaagh"
+            element={<LoreOfTheBigWaaaghPage />}
+          />
+          <Route path="/magic/spell-scrolls" element={<SpellScrollsPage />} />
+
+          <Route path="/daemons" element={<DaemonsPage />} />
+          <Route
+            path="/daemons/statblocks"
+            element={<DaemonStatblocksPage />}
+          />
+          <Route path="/daemons/traits" element={<DaemonicTraitsPage />} />
+          <Route path="/daemons/pacts" element={<DaemonicPactsPage />} />
+
+          <Route path="/constructs" element={<ConstructsPage />} />
+          <Route
+            path="/constructs/statblocks"
+            element={<ConstructStatblocksPage />}
+          />
+          <Route
+            path="/constructs/modifications"
+            element={<ConstructModsPage />}
+          />
 
           <Route path="/potions" element={<PotionsPage />} />
           <Route path="/magic-arsenal" element={<MagicArsenalPage />} />
           <Route path="/magic-items" element={<MagicItemsPage />} />
-          <Route
-            path="/construct-modifications"
-            element={<ConstructModificationsPage />}
-          />
+          <Route path="/common-items" element={<CommonItemsPage />} />
         </Routes>
       </Router>
     </ThemeProvider>

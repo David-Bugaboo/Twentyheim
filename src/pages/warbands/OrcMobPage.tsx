@@ -134,7 +134,6 @@ const orcMobUnits = [
   },
   {
     name: "Orc Choppa Thrower",
-    role: "Specialist",
     stats: {
       move: 4,
       fight: "+2",
@@ -153,7 +152,7 @@ const orcMobUnits = [
 
       {
         name: "Equipment",
-        description: "Javelin, Light armour.",
+        description: "Throwing Weapon, Light armour.",
       },
     ],
   },
@@ -186,6 +185,36 @@ const orcMobUnits = [
     ],
   },
   {
+    name: "Orc Warchanter",
+    role: "Specialist",
+    stats: {
+      move: 4,
+      fight: "+3",
+      shoot: "+0",
+      armour: "12",
+      will: "+4",
+      health: 16,
+      cost: "125gc",
+    },
+    abilities: [
+      {
+        name: "Riotous",
+        description:
+          "Orc Nobz that didn't activate in the same phase as the Warboz act as uncontrolled creatures during the creature phase.",
+      },
+      {
+        name: "Wardrummer",
+        description:
+          "If a Wardrummer is activated during the Hero`s phase, any figures within 3\" of the Wardrummer may also activate during that same phase.",
+      },
+
+      {
+        name: "Equipment",
+        description: "Two-Handed Weapon",
+      },
+    ],
+  },
+  {
     name: "Cave Squigs",
     role: "Specialist",
     stats: {
@@ -204,16 +233,11 @@ const orcMobUnits = [
       },
       {
         name: "Riotous",
-        description: `Squigs that aren't mounted by goblins or didn't activate along a Goblin Warrior act as uncontrolled creatures in the creature phase.`,
+        description: `Squigs that didn't activate in the Hero's or Champion's phase act as uncontrolled creatures in the creature phase.`,
       },
       {
         name: "Cave Dweller",
         description: "Squigs have Animal.",
-      },
-      {
-        name: "Runtsteed",
-        description:
-          "The Cave Squigs can be mounted by goblins. Follow the rules for mounts in Spellcaster Magazine #1. A goblin mounted in a Squig follows the Bouncer rule.",
       },
     ],
   },
@@ -391,7 +415,9 @@ function OrcMobPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
-                  {...(unit.spellAffinity && { spellAffinity: unit.spellAffinity })}
+                  {...(unit.spellAffinity && {
+                    spellAffinity: unit.spellAffinity,
+                  })}
                 />
               </div>
             ))}

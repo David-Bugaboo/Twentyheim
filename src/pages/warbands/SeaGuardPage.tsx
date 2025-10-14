@@ -189,7 +189,7 @@ const seaGuardUnits = [
       {
         name: "Inspiring Banner",
         description:
-          "Any allied models within line of sight of this model gain +2 Will. This bonus can only be gained once per model.",
+          "Any allied models within 6\" and line of sight of this model gain +1 Will.",
       },
       {
         name: "Equipment",

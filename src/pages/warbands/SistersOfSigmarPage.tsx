@@ -137,7 +137,6 @@ const sistersUnits = [
   },
   {
     name: "Sister Superior",
-    role: "Specialist",
     stats: {
       move: 5,
       fight: "+3",
@@ -161,7 +160,6 @@ const sistersUnits = [
   },
   {
     name: "Sigmarite Sister",
-    role: "Specialist",
     stats: {
       move: 5,
       fight: "+4",

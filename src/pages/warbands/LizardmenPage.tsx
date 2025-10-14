@@ -96,7 +96,7 @@ const lizardmenUnits = [
       move: 7,
       fight: "+1",
       shoot: "0",
-      armour: 11,
+      armour: 12,
       will: "-1",
       health: 10,
       cost: "Free",
@@ -108,7 +108,7 @@ const lizardmenUnits = [
       },
       {
         name: "Equipment",
-        description: "Hand weapon.",
+        description: "Dagger, Shield",
       },
     ],
   },
@@ -130,7 +130,7 @@ const lizardmenUnits = [
           "The Saurus have a humongous jaw that can tear enemies and crush armour. The Saurus have Opponent armour Reduction due to using their bites alongside their weapons.",
       },
       {
-        name: "Crocodilian Ancestry",
+        name: "Reptilian Ancestry",
         description: "The Saurus Brave has Amphibian.",
       },
       {
@@ -143,12 +143,12 @@ const lizardmenUnits = [
     name: "Skink Hunters",
     stats: {
       move: 7,
-      fight: "+1",
-      shoot: "+2",
+      fight: "0",
+      shoot: "0",
       armour: 12,
       will: "0",
       health: 12,
-      cost: "75gc",
+      cost: "25gc",
     },
     abilities: [
       {
@@ -162,13 +162,13 @@ const lizardmenUnits = [
     ],
   },
   {
-    name: "Skink Crestwarrior",
+    name: "Crestwarrior",
     role: "Specialist",
     stats: {
       move: 7,
       fight: "+2",
       shoot: "+2",
-      armour: 11,
+      armour: 12,
       will: "+1",
       health: 10,
       cost: "120gc",
@@ -189,12 +189,12 @@ const lizardmenUnits = [
       },
       {
         name: "Equipment",
-        description: "Hand Weapon and Javelins.",
+        description: "Javelin, Light Armour.",
       },
     ],
   },
   {
-    name: "Skink Blowdarter",
+    name: "Chameleon Blowdarter",
     role: "Specialist",
     stats: {
       move: 6,

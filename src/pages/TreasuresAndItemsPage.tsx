@@ -47,6 +47,13 @@ export default function TreasuresAndItemsPage() {
 
   const itemCategories = [
     {
+      name: "Common Items",
+      path: "/common-items",
+      icon: "⚔️",
+      description:
+        "Basic Equipment — Common weapons and armor available in any market: swords, bows, crossbows, shields, armor, and more.",
+    },
+    {
       name: "Magic Arsenal",
       path: "/magic-arsenal",
       icon: "⚔️🛡️",
@@ -545,7 +552,7 @@ export default function TreasuresAndItemsPage() {
           variant="contained"
           onClick={() => navigate("/")}
         >
-          Voltar ao Início
+          Back to Home
         </StyledNavigationButton>
       </NavigationSection>
     </PageContainer>

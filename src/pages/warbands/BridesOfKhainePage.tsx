@@ -134,9 +134,9 @@ const bridesUnits = [
     },
     abilities: [
       {
-        name: "Tongue of pain",
+        name: "Painlash",
         description:
-          'Witch Elves may fight with enemy figures up to 1.5" away. In this case, the enemy figure have a -2 to it\'s fight stat. She may also force combat from a range of 1.5".',
+          'Witch Elves may make a Shooting Attack up to 1.5" away. If the Witch elf Hand weapon is poisoned, this attack will also be poisoned. Whenever a figure moves within 1.5" with the Witch Elf, she may make a +0 Shooting Attack against that figure, but cannot force combat.',
       },
       {
         name: "Equipment",
@@ -146,22 +146,27 @@ const bridesUnits = [
   },
   {
     name: "Beastmaster Sister",
-    role: "Specialist",
     stats: {
       move: 8,
-      fight: "+3",
+      fight: "0",
       shoot: "0",
       armour: 10,
       will: "+1",
       health: 12,
-      cost: "125gc",
+      cost: "100gc",
     },
     abilities: [
       {
         name: "Cold One Tamer",
         description:
-          "For each Beastmaster Sister on the Battlefield, this warband may hire two Cold One Beasthounds. The beasthounds leave the warband immediately if their associated Beastmaster Sister dies.",
-      },
+          `The Beastmaster Sister counts as one soldier for the purpose of the warband limit.
+          Each Beastmaster Sister, however, also brings one Cold One Beasthound with
+          him, which can only activate in the same phase as the Beastmaster Sister, and cannot 
+          move more than 6" away from the Beastmaster Sister . This Cold One Beasthound may not 
+          pick up treasure or carry items.  If the Cold One Beasthound is killed, it is replaced 
+          between battles.If the Beastmaster Sister is killed, a new one must be hired. The Beastmaster 
+          Sister can pick up treasure, but she may not carry any other item.`,
+        },
       {
         name: "Equipment",
         description: "Hand Weapon, Sacrificial Dagger, Light armour",
@@ -170,7 +175,6 @@ const bridesUnits = [
   },
   {
     name: "Khinerai Heartrenders",
-    role: "Specialist",
     stats: {
       move: 6,
       fight: "+2",
@@ -196,12 +200,12 @@ const bridesUnits = [
     name: "Cold One Beasthound",
     stats: {
       move: 8,
-      fight: "+3",
+      fight: "+1",
       shoot: "0",
-      armour: 12,
+      armour: 11,
       will: "+2",
-      health: 12,
-      cost: "25gc",
+      health: 10,
+      cost: "Beastmaster Sister's ",
     },
     abilities: [
       {
@@ -333,7 +337,9 @@ function BridesOfKhainePage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
-                  {...(unit.spellAffinity && { spellAffinity: unit.spellAffinity })}
+                  {...(unit.spellAffinity && {
+                    spellAffinity: unit.spellAffinity,
+                  })}
                 />
               </div>
             ))}

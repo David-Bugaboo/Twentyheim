@@ -44,17 +44,44 @@ const SpellName = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const SpellMeta = styled(Typography)(({ theme }) => ({
+const SpellMetaContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  gap: "0.75rem",
+  marginBottom: "1.25rem",
+  textAlign: "center",
+  [theme.breakpoints.down("sm")]: {
+    marginBottom: "1rem",
+    gap: "0.6rem",
+  },
+}));
+
+const SpellMetaRow = styled(Box)({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "0.25rem",
+});
+
+const SpellMetaLabel = styled(Typography)(({ theme }) => ({
   fontFamily: '"Cinzel", serif',
-  fontSize: "0.85rem",
+  fontSize: "0.75rem",
+  fontWeight: 700,
+  color: "#d4af37",
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "0.7rem",
+  },
+}));
+
+const SpellMetaValue = styled(Typography)(({ theme }) => ({
+  fontFamily: '"Crimson Text", serif',
+  fontSize: "0.95rem",
   fontWeight: 600,
   color: "#c4a870",
-  marginBottom: "1rem",
-  textAlign: "center",
-  letterSpacing: "0.03em",
   [theme.breakpoints.down("sm")]: {
-    fontSize: "0.8rem",
-    marginBottom: "0.8rem",
+    fontSize: "0.9rem",
   },
 }));
 
@@ -80,9 +107,20 @@ function SpellCard({
   return (
     <Card id={id}>
       <SpellName>{name}</SpellName>
-      <SpellMeta>
-        {school} / {castingNumber} / {range}
-      </SpellMeta>
+      <SpellMetaContainer>
+        <SpellMetaRow>
+          <SpellMetaLabel>TRADIÇÃO</SpellMetaLabel>
+          <SpellMetaValue>{school}</SpellMetaValue>
+        </SpellMetaRow>
+        <SpellMetaRow>
+          <SpellMetaLabel>CLASSE DE DIFICULDADE</SpellMetaLabel>
+          <SpellMetaValue>{castingNumber}</SpellMetaValue>
+        </SpellMetaRow>
+        <SpellMetaRow>
+          <SpellMetaLabel>ALVOS</SpellMetaLabel>
+          <SpellMetaValue>{range}</SpellMetaValue>
+        </SpellMetaRow>
+      </SpellMetaContainer>
       <GameText component={SpellText}>{effect}</GameText>
     </Card>
   );

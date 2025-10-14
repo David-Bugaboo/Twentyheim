@@ -16,38 +16,37 @@ function WarbandsPage() {
   const navigate = useNavigate();
 
   const warbands = [
-    { name: "Mercenaries", slug: "mercenaries" },
-    { name: "Vampire Courts", slug: "vampire-courts" },
-    { name: "Skaven of Clan Eshin", slug: "skaven-clan-eshin" },
-    { name: "Witch Hunters", slug: "witch-hunters" },
-    { name: "Cult of the Possessed", slug: "cult-possessed" },
-    { name: "Sisters of Sigmar", slug: "sisters-sigmar" },
-    { name: "Orc Mob", slug: "orc-mob" },
-    { name: "Dwarf Treasure Hunters", slug: "dwarf-treasure-hunters" },
-    { name: "Lizardmen", slug: "lizardmen" },
-    { name: "Wood Elves of Athel Loren", slug: "wood-elves" },
-    { name: "Sea Guard of Ulthuan", slug: "sea-guard" },
-    { name: "Brides of Khaine", slug: "brides-of-khaine" },
-    { name: "Sons of Hashut", slug: "sons-of-hashut" },
-    { name: "Beastmen Raiders", slug: "beastmen-raiders" },
+    { name: "Mercenários", slug: "mercenaries" },
+    { name: "Cortes Vampíricas", slug: "vampire-courts" },
+    { name: "Skaven do Clã Eshin", slug: "skaven-clan-eshin" },
+    { name: "Caçadores de Bruxas", slug: "witch-hunters" },
+    { name: "Culto dos Possuídos", slug: "cult-possessed" },
+    { name: "Irmãs de Sigmar", slug: "sisters-sigmar" },
+    { name: "Horda Orc", slug: "orc-mob" },
+    { name: "Caçadores de Tesouro Anões", slug: "dwarf-treasure-hunters" },
+    { name: "Homens-Lagarto", slug: "lizardmen" },
+    { name: "Elfos  de Athel Loren", slug: "wood-elves" },
+    { name: "Guarda Marítima de Ulthuan", slug: "sea-guard" },
+    { name: "Noivas de Khaine", slug: "brides-of-khaine" },
+    { name: "Filhos de Hashut", slug: "sons-of-hashut" },
+    { name: "Saqueadores Beastmen", slug: "beastmen-raiders" },
   ];
 
   return (
     <PageContainer>
-      <Header title="Warbands of Mordheim" />
+      <Header title="Bandos de Mordheim" />
 
       <ContentSection>
         <ContentContainer>
           <QuoteBox>
-            "The Count of Middenland offers this much gold! The Count of
-            Reikland offers that much more! The Grand Theogonist offers the
-            blessing of Sigmar — though I’d sooner have his gold! Every power in
-            the Empire wants wyrdstone and will do anything to get it...
-            anything except come here and take it for themselves! So — drink up
-            my lads for tomorrow we do their dirty work for ’em and then...
-            we’ll make ’em pay!"
+            "O Conde de Middenland oferece tanto ouro! O Conde de Reikland
+            oferece ainda mais! O Grão-Teogonista oferece a bênção de Sigmar —
+            embora eu prefira seu ouro! Todo poder no Império quer Pedra-bruxa
+            e fará qualquer coisa para consegui-la... qualquer coisa exceto vir
+            aqui e pegá-la eles mesmos! Então — bebam rapazes, pois amanhã
+            faremos o trabalho sujo deles e depois... os faremos pagar!"
             <QuoteAttribution>
-              — Fernando Pavaroti, Mercenary Captain
+              — Fernando Pavaroti, Capitão Mercenário
             </QuoteAttribution>
           </QuoteBox>
         </ContentContainer>
@@ -85,7 +84,7 @@ function WarbandsPage() {
                 },
               }}
             >
-              Return to Main Page
+              Voltar à Página Principal
             </StyledNavigationButton>
           </Box>
         </Box>

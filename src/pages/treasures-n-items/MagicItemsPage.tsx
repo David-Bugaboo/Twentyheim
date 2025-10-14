@@ -75,19 +75,19 @@ export default function MagicItemsPage() {
       <ContentSection>
         <ContentContainer>
           <ParchmentText>
-            Nas profundezas de Wyrdgrave, entre os destroços de civilizações
-            perdidas, jazem artefatos de poder inimaginável. Anéis que desafiam
-            a gravidade, cajados que canalizam poder arcano, amuletos que
-            repelem feitiços - cada item mágico é uma relíquia de eras passadas,
-            imbuída com encantamentos que transcendem o tempo.
+            In the depths of Wyrdgrave, among the ruins of lost civilizations,
+            lie artifacts of unimaginable power. Rings that defy gravity, staffs
+            that channel arcane power, amulets that repel spells - each magic
+            item is a relic of past ages, imbued with enchantments that
+            transcend time.
           </ParchmentText>
 
           <ParchmentText>
-            Estes itens não são meras ferramentas - são fragmentos de lendas,
-            pedaços de história cristalizados em metal, pedra e osso. Um mago
-            que empunha um Staff of Power carrega o legado de arcanos há muito
-            mortos. Um guerreiro usando Gloves of Strength sente o eco de
-            campeões antigos fluindo através de seus golpes.
+            These items are not mere tools - they are fragments of legends,
+            pieces of history crystallized in metal, stone and bone. A wizard
+            who wields a Staff of Power carries the legacy of long-dead
+            arcanists. A warrior wearing Gloves of Strength feels the echo of
+            ancient champions flowing through their strikes.
           </ParchmentText>
         </ContentContainer>
       </ContentSection>

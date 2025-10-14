@@ -11,7 +11,7 @@ export interface Potion {
 export const potionsData: Potion[] = [
   // LESSER POTIONS
   {
-    name: "Potion of Healing",
+    name: "Tears of Shallya",
     category: "Lesser",
     purchasePrice: "50gc",
     salePrice: "25gc",
@@ -21,7 +21,7 @@ export const potionsData: Potion[] = [
       "This potion restores up to 5 lost points of Health. It may not take a figure above its normal starting Health.",
   },
   {
-    name: "Potion of Strength",
+    name: "Potion of Ogre Arms",
     category: "Lesser",
     purchasePrice: "75gc",
     salePrice: "30gc",
@@ -31,7 +31,7 @@ export const potionsData: Potion[] = [
       "A figure that drinks this potion receives +1 Fight for the rest of the game.",
   },
   {
-    name: "Potion of Toughness",
+    name: "Potion of Ironblood",
     category: "Lesser",
     purchasePrice: "75gc",
     salePrice: "30gc",
@@ -41,7 +41,7 @@ export const potionsData: Potion[] = [
       "The figure that drinks this potion receives +1 Armour for the rest of the game.",
   },
   {
-    name: "Potion of Iron Mind",
+    name: "Bugman's Ale",
     category: "Lesser",
     purchasePrice: "100gc",
     salePrice: "40gc",
@@ -51,7 +51,7 @@ export const potionsData: Potion[] = [
       "A figure that drinks this potion gains +5 Will for the rest of the game.",
   },
   {
-    name: "Elixir of Speed",
+    name: "Elven Elixir",
     category: "Lesser",
     purchasePrice: "75gc",
     salePrice: "30gc",
@@ -61,7 +61,7 @@ export const potionsData: Potion[] = [
       "The figure who drinks this potion receives +2 Move for the rest of the game. This may not take a figure's Move above 9.",
   },
   {
-    name: "Potion of Invisibility",
+    name: "Malekith's Wine",
     category: "Lesser",
     purchasePrice: "200gc",
     salePrice: "80gc",
@@ -71,7 +71,7 @@ export const potionsData: Potion[] = [
       "A figure that drinks this potion is treated as though an Invisibility spell was cast upon it.",
   },
   {
-    name: "Potion of Teleportation",
+    name: "Elixir of the Veilwalker",
     category: "Lesser",
     purchasePrice: "200gc",
     salePrice: "80gc",
@@ -81,7 +81,7 @@ export const potionsData: Potion[] = [
       "A figure that drinks this potion is treated as though it had just cast the Teleport spell.",
   },
   {
-    name: "Explosive Cocktail",
+    name: "Kislevite Cocktail",
     category: "Lesser",
     purchasePrice: "100gc",
     salePrice: "40gc",
@@ -91,7 +91,7 @@ export const potionsData: Potion[] = [
       "Throwing this cocktail follows all the rules of casting the Grenade spell, except that it can be used by a non-spellcaster, no Casting Roll is necessary, and the target point must be within 8\". Use of this potion cannot replace a move action.",
   },
   {
-    name: "Potion of Fire Breath",
+    name: "Kharadron Ale",
     category: "Lesser",
     purchasePrice: "150gc",
     salePrice: "60gc",
@@ -101,7 +101,7 @@ export const potionsData: Potion[] = [
       "A figure that drinks this potion and still has an action remaining in the same activation, may use that action to make a +3 elemental magic shooting attack at a figure within 6\".",
   },
   {
-    name: "Potion of Elemental Absorption",
+    name: "Brimstone Elixir",
     category: "Lesser",
     purchasePrice: "150gc",
     salePrice: "60gc",
@@ -111,7 +111,7 @@ export const potionsData: Potion[] = [
       "A figure that drinks this potion ignores the next 5 points of elemental damage it takes.",
   },
   {
-    name: "Philtre of Fairy Dust",
+    name: "Powdered Daemonbone",
     category: "Lesser",
     purchasePrice: "100gc",
     salePrice: "40gc",
@@ -121,7 +121,7 @@ export const potionsData: Potion[] = [
       "If this dust is sprinkled over a weapon, that weapon counts as a magic weapon for the rest of the game. It may be sprinkled over an arrow or crossbow bolt, though these will be one-use items.",
   },
   {
-    name: "Philtre of Fury",
+    name: "Mad Cap Mushroom Elixir",
     category: "Lesser",
     purchasePrice: "200gc",
     salePrice: "80gc",
@@ -131,7 +131,7 @@ export const potionsData: Potion[] = [
       "The figure gains +1 Fight and receives an additional +1 damage modifier on any successful hand-to-hand attack. However, the figure must, if possible, use all its actions every turn to move into combat with and fight the closest enemy figure (including uncontrolled creatures) in line of sight and not currently in combat.",
   },
   {
-    name: "Poison",
+    name: "Black Lotus Vial",
     category: "Lesser",
     purchasePrice: "50gc",
     salePrice: "20gc",
@@ -141,7 +141,7 @@ export const potionsData: Potion[] = [
       "This sticky poison may be used to coat any weapon except a staff, bow, or crossbow. It can be used on one arrow or crossbow bolt. The next time this weapon causes damage, the figure that takes the damage is poisoned (assuming that figure is not immune to poison). The weapon loses the ability to poison after the first attack with it that causes damage. This potion is not magic and not affected by anything that cancels magic.",
   },
   {
-    name: "Elixir of the Chameleon",
+    name: "Prismskin Brew",
     category: "Lesser",
     purchasePrice: "250gc",
     salePrice: "100gc",
@@ -151,14 +151,14 @@ export const potionsData: Potion[] = [
       "This potion allows a figure to blend in with their surroundings. No other figure may draw line of sight to this figure if they are more than 12\" away. Thus, this figure may only be targeted by an attack or a spell from another figure that is within 12\".",
   },
   {
-    name: "Cordial of Clearsight",
+    name: "Witchsight Mead",
     category: "Lesser",
     purchasePrice: "150gc",
     salePrice: "60gc",
     ingredientCost: "60gc",
     usage: "Drink as an action",
     description:
-      "A figure that drinks this potion ignores the effects of Beauty and Invisibility spells for the rest of the game. Furthermore, if this figure moves into combat with an Illusionary Soldier, the Illusionary Soldier is immediately removed from the table.",
+      "A figure that drinks this potion ignores the effects of Invisibility for the rest of the game. Furthermore, if this figure moves into combat with an Illusionary Soldier, the Illusionary Soldier is immediately removed from the table.",
   },
   {
     name: "Bottle of Burrowing",
@@ -181,7 +181,7 @@ export const potionsData: Potion[] = [
       "After any game, a wizard may use this magic oil on one construct in their warband, giving it a permanent +1 to its Move stat. Each construct may only ever receive the benefit of construct oil once.",
   },
   {
-    name: "Potion of Preservation",
+    name: "Enbalming Solution",
     category: "Lesser",
     purchasePrice: "500gc",
     salePrice: "200gc",
@@ -193,7 +193,7 @@ export const potionsData: Potion[] = [
 
   // GREATER POTIONS
   {
-    name: "Cordial of Empowerment",
+    name: "Witchboon Potion",
     category: "Greater",
     purchasePrice: "500gc",
     salePrice: "200gc",
@@ -203,7 +203,7 @@ export const potionsData: Potion[] = [
       "The next time a spellcaster casts a spell after drinking this potion, they add +4 to their Casting Roll but suffer 2 damage, in addition to any other effects of casting the spell. A spellcaster may only use one cordial of empowerment per game. This potion may not be used to cast Out of Game spells.",
   },
   {
-    name: "Shrinking Potion",
+    name: "Ratling Flask",
     category: "Greater",
     purchasePrice: "500gc",
     salePrice: "200gc",
@@ -213,7 +213,7 @@ export const potionsData: Potion[] = [
       "A figure that is carrying treasure may use the potion to shrink it down to a size that will fit in a pocket. This figure no longer suffers any penalties to Move, Fight, or swimming for carrying this treasure. It may even carry a second treasure token. If the effect of this potion is cancelled while the figure is carrying two treasures, it must choose one and immediately drop it. If the shrunk treasure is dropped for any reason, it returns to its normal size.",
   },
   {
-    name: "Potion of Restoration",
+    name: "Greater Tears of Shallya",
     category: "Greater",
     purchasePrice: "2,000gc",
     salePrice: "300gc",
@@ -223,7 +223,7 @@ export const potionsData: Potion[] = [
       "A figure that drinks this potion is immediately restored to its starting Health and is cured of any poison or temporary stat reductions. This potion may also be used after a game to cure the figure of any permanent injuries.",
   },
   {
-    name: "Bottle of Dreams and Nightmares",
+    name: "Morr`s Milk",
     category: "Greater",
     purchasePrice: "2,000gc",
     salePrice: "300gc",
@@ -233,7 +233,7 @@ export const potionsData: Potion[] = [
       "This potion can only be used by a wizard immediately before a game. The wizard should immediately make a Will Roll (TN12). If successful, then the wizard gains an extra 50 experience points after the game. This does not count towards the 300 experience point maximum in a game. If unsuccessful, the wizard has 30 experience points deducted from those earned during the game (this cannot take the total experience gained for the game below 0). These 30 experience points are deducted from the maximum that can be earned (meaning a wizard that fails can earn a maximum of 270 experience points in the game).",
   },
   {
-    name: "Shatterstar Draught",
+    name: "Maelstrom Draught	",
     category: "Greater",
     purchasePrice: "1,500gc",
     salePrice: "200gc",

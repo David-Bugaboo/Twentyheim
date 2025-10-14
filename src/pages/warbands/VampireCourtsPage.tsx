@@ -127,7 +127,8 @@ const vampireCourtsUnits = [
     ],
   },
   {
-    name: "Skeleton Archer",
+    name: "Skeleton Spearthrower",
+    role: "Specialist",
     stats: {
       move: 6,
       fight: "+0",
@@ -135,12 +136,12 @@ const vampireCourtsUnits = [
       armour: 10,
       will: "+0",
       health: 5,
-      cost: "25gc",
+      cost: "15gc",
     },
     abilities: [
       {
         name: "Equipment",
-        description: "Bow",
+        description: "Javelin",
       },
       {
         name: "Animated Marksmen",
@@ -161,7 +162,7 @@ const vampireCourtsUnits = [
       armour: 10,
       will: "+2",
       health: 10,
-      cost: "50gc",
+      cost: "75gc",
     },
     abilities: [
       {
@@ -170,7 +171,7 @@ const vampireCourtsUnits = [
       },
       {
         name: "Undead Beast",
-        description: "Dire Wolves have Undead and Fear.",
+        description: "Dire Wolves have Undead and Fear traits.",
       },
     ],
   },
@@ -199,14 +200,14 @@ const vampireCourtsUnits = [
     ],
   },
   {
-    name: "Ghouls",
+    name: "Ghoul Champion",
     role: "Specialist",
     stats: {
       move: 8,
       fight: "+4",
       shoot: "+0",
       armour: 12,
-      will: "+6",
+      will: "+4",
       health: 14,
       cost: "150gc",
     },
@@ -214,12 +215,12 @@ const vampireCourtsUnits = [
       {
         name: "Equipment",
         description:
-          "None. Ghouls attack with their bare hands and have no penalties for that.",
+          "None. Ghoul Champions attack with their bare hands and have no penalties for that.",
       },
       {
         name: "Savage",
         description:
-          "Ghoul attacks count as using a Two-handed weapon, dealing increased damage with their brutal claws and fangs.",
+          "Ghoul Champions attacks count as using a Two-handed weapon, dealing increased damage with their brutal claws and fangs.",
       },
       {
         name: "Undead Predator",

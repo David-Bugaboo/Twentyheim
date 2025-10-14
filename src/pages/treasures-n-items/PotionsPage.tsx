@@ -162,25 +162,25 @@ export default function PotionsPage() {
 
   return (
     <PageContainer>
-      <Header title="Poções e Elixires" />
+      <Header title="Potions and Elixirs" />
 
       <ContentSection>
         <ContentContainer>
           <ParchmentText>
-            Nas sombras de Wyrdgrave, alquimistas destemidos e aprendizes
-            desesperados destilam essências arcanas em frascos de vidro negro.
-            Cada poção é uma promessa em líquido - poder momentâneo, cura
-            milagrosa, ou morte súbita. Os mais sábios aprendem a distinguir o
-            brilho de um elixir da vida do veneno que queima como fogo infernal.
+            In the shadows of Wyrdgrave, fearless alchemists and desperate
+            apprentices distill arcane essences in flasks of black glass. Each
+            potion is a promise in liquid form - momentary power, miraculous
+            healing, or sudden death. The wisest learn to distinguish the gleam
+            of a life elixir from the poison that burns like infernal fire.
           </ParchmentText>
 
           <ParchmentText>
-            Estas misturas não são simples remédios de herbalista. São
-            fragmentos líquidos de magia, destilações de poder bruto capturado
-            em âmbar e cristal. Um frasco pode transformar um covarde em herói
-            por minutos preciosos. Outro pode preservar a vida mesmo após a
-            morte reivindicar seu tributo. Mas todo poder tem seu preço, e os
-            alquimistas de Wyrdgrave pagam em cicatrizes e sanidade.
+            These mixtures are not simple herbal remedies. They are liquid
+            fragments of magic, distillations of raw power captured in amber and
+            crystal. One flask can transform a coward into a hero for precious
+            minutes. Another can preserve life even after death claims its
+            tribute. But all power has its price, and the alchemists of
+            Wyrdgrave pay in scars and sanity.
           </ParchmentText>
         </ContentContainer>
       </ContentSection>
@@ -190,10 +190,10 @@ export default function PotionsPage() {
         <ContentContainer>
           <PowerListTitle>Lesser Potions</PowerListTitle>
           <ParchmentText>
-            Poções menores são relativamente comuns nas ruínas de Wyrdgrave,
-            encontradas em laboratórios abandonados, mercados negros e nos
-            cintos de aventureiros mortos. Qualquer alquimista competente pode
-            prepará-las com os ingredientes corretos.
+            Lesser potions are relatively common in the ruins of Wyrdgrave,
+            found in abandoned laboratories, black markets and on the belts of
+            dead adventurers. Any competent alchemist can prepare them with the
+            right ingredients.
           </ParchmentText>
 
           {lesserPotions.map((potion, index) => (
@@ -202,14 +202,14 @@ export default function PotionsPage() {
 
               <PotionMeta>
                 <MetaItem>
-                  <strong>Compra:</strong> {potion.purchasePrice}
+                  <strong>Purchase:</strong> {potion.purchasePrice}
                 </MetaItem>
                 <MetaItem>
-                  <strong>Venda:</strong> {potion.salePrice}
+                  <strong>Sale:</strong> {potion.salePrice}
                 </MetaItem>
                 {potion.ingredientCost && (
                   <MetaItem>
-                    <strong>Ingredientes:</strong> {potion.ingredientCost}
+                    <strong>Ingredients:</strong> {potion.ingredientCost}
                   </MetaItem>
                 )}
               </PotionMeta>
@@ -250,11 +250,11 @@ export default function PotionsPage() {
         <ContentContainer>
           <PowerListTitle>Greater Potions</PowerListTitle>
           <ParchmentText>
-            Poções maiores são obras-primas da alquimia arcana - raras,
-            poderosas e perigosas. Algumas são tão valiosas que não podem ser
-            compradas com ouro comum. Outras são tão instáveis que apenas os
-            mais desesperados ou loucos ousam usá-las. Cada uma representa
-            semanas de trabalho e ingredientes que poucos podem obter.
+            Greater potions are masterpieces of arcane alchemy - rare, powerful
+            and dangerous. Some are so valuable they cannot be bought with
+            common gold. Others are so unstable that only the most desperate or
+            mad dare use them. Each one represents weeks of work and ingredients
+            that few can obtain.
           </ParchmentText>
 
           {greaterPotions.map((potion, index) => (
@@ -263,14 +263,14 @@ export default function PotionsPage() {
 
               <PotionMeta>
                 <MetaItem>
-                  <strong>Compra:</strong> {potion.purchasePrice}
+                  <strong>Purchase:</strong> {potion.purchasePrice}
                 </MetaItem>
                 <MetaItem>
-                  <strong>Venda:</strong> {potion.salePrice}
+                  <strong>Sale:</strong> {potion.salePrice}
                 </MetaItem>
                 {potion.ingredientCost && (
                   <MetaItem>
-                    <strong>Ingredientes:</strong> {potion.ingredientCost}
+                    <strong>Ingredients:</strong> {potion.ingredientCost}
                   </MetaItem>
                 )}
               </PotionMeta>
@@ -309,11 +309,11 @@ export default function PotionsPage() {
       <ContentSection>
         <ContentContainer>
           <ParchmentText>
-            <strong>Nota do Mestre:</strong> Poções marcadas com "—" no preço de
-            compra nunca podem ser compradas em mercados comuns - apenas
-            encontradas, roubadas, ou fabricadas com grande custo e risco. O
-            Elixir of Life, em particular, é lenda mesmo entre alquimistas
-            mestres, e apenas um tolo desesperado venderia tal tesouro.
+            <strong>Game Master's Note:</strong> Potions marked with "—" in the
+            purchase price can never be bought in common markets - only found,
+            stolen, or crafted at great cost and risk. The Elixir of Life, in
+            particular, is legend even among master alchemists, and only a
+            desperate fool would sell such a treasure.
           </ParchmentText>
         </ContentContainer>
       </ContentSection>

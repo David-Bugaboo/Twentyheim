@@ -20,17 +20,18 @@ import {
   ParchmentText,
   ContentContainer,
 } from "../../components/PageComponents";
-import { arsenalItems } from "./data/arsenalData";
+
 import { generateArsenalTable } from "../../data/generateArsenalData";
 import slugify from "slugify";
 import { useScrollToHash } from "../../hooks/useScrollToHash";
+import { arsenalData } from "./data/arsenalData";
 
 export default function MagicArsenalPage() {
   useScrollToHash(); // Fix scroll to anchor
   const navigate = useNavigate();
 
   // Refs para os items
-  const itemRefs = arsenalItems.map((item) => {
+  const itemRefs = arsenalData.map((item) => {
     return {
       id: slugify(item.name, { lower: true, strict: true }),
       ref: useRef<HTMLDivElement>(null),
@@ -189,8 +190,8 @@ export default function MagicArsenalPage() {
                           cursor: "pointer",
                         }}
                         onClick={() => {
-                          const link = row.link as string;
-                          if (link.startsWith("#")) {
+                          
+                          
                             // Scroll para o item usando refs
                             itemRefs
                               .find(
@@ -205,10 +206,7 @@ export default function MagicArsenalPage() {
                                 behavior: "smooth",
                                 block: "start",
                               });
-                          } else {
-                            // Navigate to different page
-                            navigate(link);
-                          }
+                          
                         }}
                       >
                         {row.item}
@@ -282,10 +280,10 @@ export default function MagicArsenalPage() {
                   {category}
                 </Box>
 
-                {arsenalItems
+                {arsenalData
                   .filter(
                     (item) =>
-                      item.section === "Weapons" && item.category === category
+                      item.category === "Weapon" && item.category === category
                   )
                   .map((item, index) => (
                     <MagicItemCard
@@ -299,9 +297,9 @@ export default function MagicArsenalPage() {
                         )?.ref
                       }
                       name={item.name}
-                      type={item.type}
-                      price={item.price}
-                      effect={item.effect}
+                      type={item.category}
+                      price={item.purchasePrice}
+                      effect={item.bonus}
                     />
                   ))}
               </Box>
@@ -347,10 +345,10 @@ export default function MagicArsenalPage() {
                   {category}
                 </Box>
 
-                {arsenalItems
+                {arsenalData
                   .filter(
                     (item) =>
-                      item.section === "Armor" && item.category === category
+                      item.category === "Armor" && item.category === category
                   )
                   .map((item, index) => (
                     <MagicItemCard
@@ -364,9 +362,9 @@ export default function MagicArsenalPage() {
                         )?.ref
                       }
                       name={item.name}
-                      type={item.type}
-                      price={item.price}
-                      effect={item.effect}
+                      type={item.category }
+                      price={item.purchasePrice}
+                      effect={item.bonus}
                     />
                   ))}
               </Box>

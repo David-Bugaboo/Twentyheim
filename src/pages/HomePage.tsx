@@ -15,28 +15,28 @@ function HomePage() {
   const navigate = useNavigate();
 
   const navigationButtons = [
-    { label: "Warbands", path: "/warbands" },
-    { label: "Hired Swords", path: "/hired-swords" },
+    { label: "Bandos", path: "/warbands" },
+    { label: "Guerreiros Profissionais", path: "/hired-swords" },
     { label: "Dramatis Personae", path: "/dramatis-personae" },
-    { label: "Treasures & Items", path: "/treasures" },
-    { label: "Spells", path: "/spells" },
-    { label: "Base & Upgrades", path: "/base" },
-    { label: "New Rules", path: "/rules" },
-    { label: "New Equipment", path: "/equipment" },
-    { label: "Exploring Mordheim", path: "/exploration" },
+    { label: "Tesouros e Itens", path: "/treasures" },
+    { label: "Magia", path: "/magic" },
+    { label: "Demônios", path: "/daemons" },
+    { label: "Construtos", path: "/constructs" },
+    { label: "Base e Melhorias", path: "/base" },
+    { label: "Explorando Mordheim", path: "/exploration" },
   ];
 
   return (
     <PageContainer>
-      <Header title="The City of the Damned" />
+      <Header title="A Cidade dos Condenados" />
 
       <ContentSection>
         <ContentContainer>
           <QuoteBox>
-            "To enter the gargoyle-guarded gates of that place is to pass
-            through the very gates of death!"
+            "Entrar nos portões vigiados por gárgulas daquele lugar é atravessar
+            os próprios portões da morte!"
             <QuoteAttribution>
-              — Last Words of an Unknown Adventurer
+              — Últimas Palavras de um Aventureiro Desconhecido
             </QuoteAttribution>
           </QuoteBox>
         </ContentContainer>
@@ -68,7 +68,7 @@ function HomePage() {
               fontStyle: "italic",
             }}
           >
-            Coming Soon
+            Em Breve
           </Typography>
 
           <StyledNavigationButton
@@ -85,7 +85,7 @@ function HomePage() {
               },
             }}
           >
-            Warband Manager
+            Gerenciador de Bandos
           </StyledNavigationButton>
         </Box>
       </NavigationSection>

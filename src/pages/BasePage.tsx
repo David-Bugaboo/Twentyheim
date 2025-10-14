@@ -21,27 +21,27 @@ export default function BasePage() {
       <ContentSection>
         <ContentContainer>
           <ParchmentText>
-            Entre as batalhas nas ruínas amaldiçoadas de Wyrdgrave, cada warband
-            estabelece uma base de operações - um refúgio temporário onde
-            feridos são tratados, equipamentos são reparados, e planos são
+            Entre as batalhas nas ruínas amaldiçoadas de Mordheim, cada bando
+            estabelece uma base de operações — um refúgio temporário onde os
+            feridos são tratados, equipamentos são reparados e planos são
             traçados. Estas bases variam desde tavernas abandonadas até
             fortalezas em ruínas, cada uma oferecendo diferentes vantagens
             táticas.
           </ParchmentText>
 
           <ParchmentText>
-            Com o tempo e recursos, uma warband pode melhorar sua base,
-            construindo oficinas, bibliotecas arcanas, templos profanos, ou até
-            mesmo estábulos para criaturas de guerra. Cada upgrade representa o
-            crescimento e especialização da warband, transformando um simples
-            acampamento em uma verdadeira fortaleza de poder.
+            Com tempo e recursos, um bando pode melhorar sua base, construindo
+            oficinas, bibliotecas arcanas, templos profanos, ou até estábulos
+            para bestas de guerra. Cada melhoria representa o crescimento e
+            especialização do bando, transformando um simples acampamento em uma
+            verdadeira fortaleza de poder.
           </ParchmentText>
         </ContentContainer>
       </ContentSection>
 
       <NavigationSection>
         <Box sx={{ maxWidth: "700px", width: "100%" }}>
-          <PowerListTitle>Base & Upgrades</PowerListTitle>
+          <PowerListTitle>Base e Melhorias</PowerListTitle>
 
           <StyledNavigationButton
             onClick={() => navigate("/base/bases")}
@@ -58,7 +58,7 @@ export default function BasePage() {
             fullWidth
             sx={{ mb: 2 }}
           >
-            Base Upgrades
+            Melhorias de Base
           </StyledNavigationButton>
 
           <StyledNavigationButton
@@ -67,7 +67,7 @@ export default function BasePage() {
             fullWidth
             sx={{ mb: 2 }}
           >
-            The Stable
+            O Estábulo
           </StyledNavigationButton>
         </Box>
       </NavigationSection>

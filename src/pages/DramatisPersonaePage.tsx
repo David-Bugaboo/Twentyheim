@@ -16,8 +16,6 @@ import {
   QuoteAttribution,
 } from "../components/PageComponents";
 
-
-
 const dramatisPersonae = [
   {
     name: "Aenur, Sword of Twilight",
@@ -270,214 +268,130 @@ function DramatisPersonaePage() {
                 mb: 1,
               }}
             >
-              "he stumps and greasy ashes of the pyres covered the common field
-              as far as the eye could see and the smoke from the witch-fires
-              drifted through the streets. Its stench filled our mouths for days
-              afterwards."
+              "Os tocos e cinzas gordurosas das piras cobriam o campo comum até
+              onde a vista alcançava e a fumaça das fogueiras de bruxas pairava
+              pelas ruas. Seu fedor encheu nossas bocas por dias."
             </Typography>
-            <QuoteAttribution>— Diary of Selestian Bran</QuoteAttribution>
+            <QuoteAttribution>— Diário de Selestian Bran</QuoteAttribution>
           </QuoteBox>
 
           <div id="general-rules">
             <ParchmentText sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
               <strong style={{ color: "#d4af37", fontSize: "1.6rem" }}>
-                Dramatis Personae Rules
+                Regras de Dramatis Personae
               </strong>
               <p>
-                Dramatis Personae are unique individuals, legendary warriors and
-                infamous rogues whose reputations precede them throughout the
-                Empire. Unlike common Hired Swords, these exceptional characters
-                have their own goals, personalities, and stories. They cannot be
-                simply bought — they must be encountered through fate or special
-                circumstances.
+                Dramatis Personae são indivíduos únicos, guerreiros lendários e
+                canalhas infames cujas reputações os precedem por todo o
+                Império. Ao contrário das Espadas Alugadas comuns, esses
+                personagens excepcionais têm seus próprios objetivos,
+                personalidades e histórias. Eles não podem ser simplesmente
+                comprados — devem ser encontrados através do destino ou
+                circunstâncias especiais.
               </p>
               <br />
               <p>
-                Each Dramatis Personae has unique abilities that far exceed
-                normal warriors. They do not count toward your warband's maximum
-                model limit, but they significantly increase your warband's
-                rating. Most cannot gain experience or advance — they are
-                already at the peak of their abilities. Some have special hiring
-                conditions, and a few cannot be hired at all, appearing only
-                through specific events or scenarios.
+                Cada Dramatis Personae possui habilidades únicas que excedem em
+                muito guerreiros normais. Eles não contam para o limite máximo
+                de modelos do seu bando, mas aumentam significativamente a
+                classificação do seu bando. A maioria não pode ganhar
+                experiência ou evoluir — eles já estão no auge de suas
+                habilidades. Alguns têm condições especiais de contratação, e
+                alguns não podem ser contratados de forma alguma, aparecendo
+                apenas através de eventos ou cenários específicos.
               </p>
               <br />
               <br />
               <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Warband Slot Requirements
+                Requisitos de Espaço no Bando
               </strong>
               <br />
               <br />
-              Dramatis Personae are powerful individuals who take up valuable
-              space in your warband's hierarchy.
+              Dramatis Personae são indivíduos poderosos que ocupam espaço
+              valioso na hierarquia do seu bando.
               <br />
               <br />
               <strong style={{ color: "#c4a870" }}>
-                Specialist Slot Rules:
+                Regras de Espaço de Especialista:
               </strong>
-              <br />• <strong>Dramatis Personae</strong> take up{" "}
-              <strong>two Specialist slots</strong> in your warband, but still
-              count as only <strong>one model</strong> for the warband's 10
-              model limit
-              <br />• <strong>Hired Swords</strong> take up{" "}
-              <strong>one Specialist slot</strong> and count as one model
-              <br />• Both count against your warband's specialist limit
+              <br />• <strong>Dramatis Personae</strong> ocupam{" "}
+              <strong>dois espaços de Especialista</strong> no seu bando, mas
+              ainda contam como apenas <strong>um modelo</strong> para o limite
+              de 10 modelos do bando
+              <br />• <strong>Espadas Alugadas</strong> ocupam{" "}
+              <strong>um espaço de Especialista</strong> e contam como um modelo
+              <br />• Ambos contam contra o limite de especialistas do seu bando
               <br />
               <br />
               <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Dramatis Personae Exclusivity
+                Exclusividade dos Dramatis Personae
               </strong>
               <br />
               <br />
-              Unlike common Hired Swords, Dramatis Personae are{" "}
-              <strong>unique individuals</strong> who can only serve one warband
-              at a time. Their legendary status means they cannot be in multiple
-              places at once, and their presence is a matter of fate and
-              opportunity.
+              Ao contrário das Espadas Alugadas comuns, Dramatis Personae são{" "}
+              <strong>indivíduos únicos</strong> que só podem servir um bando
+              por vez. Seu status lendário significa que não podem estar em
+              múltiplos lugares ao mesmo tempo, e sua presença é uma questão de
+              destino e oportunidade.
               <br />
               <br />
               <strong style={{ color: "#c4a870" }}>
-                Unique Service Rules:
+                Regras de Serviço Único:
               </strong>
-              <br />• A Dramatis Personae{" "}
-              <strong>cannot be in two different warbands</strong>{" "}
-              simultaneously (even in different campaigns)
-              <br />• If a Dramatis Personae event is rolled on the Exploration
-              table while that individual is already serving another warband,{" "}
-              <strong>reroll the event</strong>
-              <br />• Once a Dramatis Personae leaves a warband (upkeep not
-              paid, dies, or completes their service), they become available to
-              other warbands again
-              <br />• <strong>
-                Hired Swords do not have this limitation
-              </strong>{" "}
-              — the same Hired Sword type can serve multiple warbands
-              simultaneously
+              <br />• Um Dramatis Personae{" "}
+              <strong>não pode estar em dois bandos diferentes</strong>{" "}
+              simultaneamente
+              <br />• Se um evento de Dramatis Personae é rolado na tabela de
+              Exploração enquanto esse indivíduo já está servindo outro bando,{" "}
+              <strong>role novamente o evento</strong>
+              <br />• Uma vez que um Dramatis Personae deixa um bando
+              (manutenção não paga, morre, ou completa seu serviço), eles ficam
+              disponíveis para outros bandos novamente
+              <br />• <strong>Espadas Alugadas não têm essa limitação</strong> —
+              o mesmo tipo de Espada Alugada pode servir múltiplos bandos
+              simultaneamente
               <br />
               <br />
               <em style={{ color: "#c4a870" }}>
-                Example: If "Aenur, Sword of Twilight" is currently serving your
-                warband and another player rolls his event, they must reroll
-                that event. However, if you have a "Dwarf Troll Slayer" Hired
-                Sword, another player can also hire a Dwarf Troll Slayer — there
-                are many slayers in Mordheim.
+                Exemplo: Se "Aenur, Espada do Crepúsculo" está atualmente
+                servindo seu bando e outro jogador rola seu evento, ele deve
+                rolar novamente esse evento. No entanto, se você tem um "Matador
+                de Trolls Anão" como Espada Alugada, outro jogador também pode
+                contratar um Matador de Trolls Anão — há muitos matadores em
+                Mordheim.
               </em>
               <br />
               <br />
               <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Payment and Upkeep
+                Pagamento e Manutenção
               </strong>
               <br />
               <br />
-              Each Dramatis Personae has their own payment structure and
-              conditions. Some require gold crowns, others demand wyrdstone,
-              magic items, or even special conditions to be met.
+              Cada Dramatis Personae tem sua própria estrutura de pagamento e
+              condições. Alguns exigem coroas de ouro, outros demandam Pedra-bruxa,
+              itens mágicos, ou até condições especiais a serem
+              cumpridas.
               <br />
               <br />
-              <strong style={{ color: "#c4a870" }}>Payment Rules:</strong>
-              <br />• <strong>Initial Hiring Cost:</strong> The price (or
-              conditions) required to initially hire the individual. This may be
-              gold, items, or completing a specific scenario
-              <br />• <strong>Upkeep:</strong> Some Dramatis Personae require
-              payment after each battle to remain with your warband. If upkeep
-              is not paid, they leave permanently (unless their description
-              states otherwise)
-              <br />• <strong>Special Payment:</strong> Some individuals accept
-              alternative forms of payment (wyrdstone, magic items, first
-              treasure roll, etc.)
-              <br />• <strong>No Upkeep:</strong> Some Dramatis Personae serve
-              for free once hired, while others only stay for a single battle
+              <strong style={{ color: "#c4a870" }}>Regras de Pagamento:</strong>
+              <br />• <strong>Custo Inicial de Contratação:</strong> O preço (ou
+              condições) necessário para contratar inicialmente o indivíduo.
+              Pode ser ouro, itens, ou completar um cenário específico
+              <br />• <strong>Manutenção:</strong> Alguns Dramatis Personae
+              exigem pagamento após cada batalha para permanecer com seu bando.
+              Se a manutenção não for paga, eles partem permanentemente (a menos
+              que sua descrição declare o contrário)
+              <br />• <strong>Pagamento Especial:</strong> Alguns indivíduos
+              aceitam formas alternativas de pagamento.
+              <br />• <strong>Sem Manutenção:</strong> Alguns Dramatis Personae
+              servem de graça uma vez contratados, enquanto outros ficam apenas
+              por uma única batalha.
               <br />
               <br />
-              <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Experience and Advancement
-              </strong>
-              <br />
-              <br />
-              Most Dramatis Personae are already legendary warriors at the peak
-              of their abilities. They do not gain experience or advance like
-              normal warband members.
-              <br />
-              <br />
-              <strong style={{ color: "#c4a870" }}>
-                Advancement Restrictions:
-              </strong>
-              <br />• Dramatis Personae <strong>cannot gain experience</strong>{" "}
-              from battles
-              <br />• They <strong>cannot learn new skills</strong> or increase
-              their characteristics
-              <br />• They arrive fully formed and leave the same way
-              <br />• Their abilities and statistics are fixed and cannot be
-              modified (except by temporary effects during battle)
             </ParchmentText>
           </div>
 
           {/* Game Terms Section */}
-          <div style={{ marginTop: "3rem", marginBottom: "3rem" }}>
-            <ParchmentText>
-              <strong style={{ color: "#d4af37", fontSize: "1.5rem" }}>
-                Game Terms
-              </strong>
-              <br />
-              <br />
-              Some Dramatis Personae have special abilities that use specific
-              game terms. These are defined below:
-            </ParchmentText>
-
-            <Box sx={{ mt: 3 }}>
-              <ParchmentText>
-                <strong style={{ color: "#c4a870", fontSize: "1.2rem" }}>
-                  Automatic Damage
-                </strong>
-                <br />
-                Any figure that activates while in combat with this creature
-                takes 2 points of elemental magic damage. Creatures with
-                automatic damage are immune to damage from automatic damage.
-              </ParchmentText>
-            </Box>
-
-            <Box sx={{ mt: 3 }}>
-              <ParchmentText>
-                <strong style={{ color: "#c4a870", fontSize: "1.2rem" }}>
-                  Melt Weapon
-                </strong>
-                <br />
-                If a figure that is fighting this creature rolls a natural '1'
-                on their attack roll, then the weapon they are using is
-                immediately destroyed. This attribute has no effect on magic
-                weapons.
-              </ParchmentText>
-            </Box>
-
-            <Box sx={{ mt: 3 }}>
-              <ParchmentText>
-                <strong style={{ color: "#c4a870", fontSize: "1.2rem" }}>
-                  Spell Reflection
-                </strong>
-                <br />
-                Any time a spell is successfully cast upon this creature, roll a
-                die: on a 16+ the spell is reflected back on the figure that
-                originally cast the spell. This spellcaster should make any Will
-                Rolls or Combat Rolls required as the target of the spell. This
-                includes any spells that include the creature in their area of
-                effect.
-              </ParchmentText>
-            </Box>
-
-            <Box sx={{ mt: 3 }}>
-              <ParchmentText>
-                <strong style={{ color: "#c4a870", fontSize: "1.2rem" }}>
-                  Resistant to Missile Weapons
-                </strong>
-                <br />
-                This creature never takes more than 2 points of damage from
-                non-magic bow, crossbow, or javelin attacks. It takes full
-                damage from all other shooting attacks, including attacks made
-                with magic arrows, bolts, or javelins.
-              </ParchmentText>
-            </Box>
-          </div>
-
           <Box sx={{ mb: 4 }}>
             <WarbandIndex sections={sections} />
           </Box>
