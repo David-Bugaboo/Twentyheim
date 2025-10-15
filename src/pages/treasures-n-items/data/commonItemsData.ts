@@ -17,7 +17,7 @@ export const commonItemsData: EquipmentCategory[] = [
   {
     id: "melee-weapons",
     label: "Melee Weapons",
-    icon: "⚔️",
+    icon: "",
     items: [
       {
         id: "dagger",

@@ -1,95 +1,61 @@
-import { Box, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import {
-  ContentSection,
-  NavigationSection,
-  StyledNavigationButton,
-  QuoteBox,
-  QuoteAttribution,
-  PageContainer,
-  ContentContainer,
-} from "../components/PageComponents";
+import MobileLayout from "../components/MobileLayout";
+import MobileNavigationButtons from "../components/MobileNavigationButtons";
+import MobileText from "../components/MobileText";
+import MobileSection from "../components/MobileSection";
+import MobileHeroHeader from "../components/MobileHeroHeader";
+import headerImage from "../assets/header-art/9ab44e412b8d6632b6c515fa8a0ace15c80d3185.png";
 
 function HomePage() {
-  const navigate = useNavigate();
-
   const navigationButtons = [
-    { label: "Bandos", path: "/warbands" },
-    { label: "Guerreiros Profissionais", path: "/hired-swords" },
-    { label: "Dramatis Personae", path: "/dramatis-personae" },
-    { label: "Tesouros e Itens", path: "/treasures" },
-    { label: "Magia", path: "/magic" },
-    { label: "Demônios", path: "/daemons" },
-    { label: "Construtos", path: "/constructs" },
-    { label: "Base e Melhorias", path: "/base" },
-    { label: "Explorando Mordheim", path: "/exploration" },
+    { label: "Regras", path: "/rules" },
+    { label: "Campanhas", path: "/campaign" },
+    
   ];
 
   return (
-    <PageContainer>
-      <Header title="A Cidade dos Condenados" />
+    <MobileLayout title="">
+      <MobileHeroHeader
+        imageUrl={headerImage}
+        title="A Cidade dos Condenados"
+      />
+      <br/>
 
-      <ContentSection>
-        <ContentContainer>
-          <QuoteBox>
-            "Entrar nos portões vigiados por gárgulas daquele lugar é atravessar
-            os próprios portões da morte!"
-            <QuoteAttribution>
-              — Últimas Palavras de um Aventureiro Desconhecido
-            </QuoteAttribution>
-          </QuoteBox>
-        </ContentContainer>
-      </ContentSection>
-
-      <NavigationSection>
-        <Box sx={{ maxWidth: "600px", width: "100%" }}>
-          {navigationButtons.map((button) => (
-            <StyledNavigationButton
-              key={button.path}
-              onClick={() => navigate(button.path)}
-              variant="outlined"
-              fullWidth
-              sx={{ mb: 2 }}
+      <div className="pb-20">
+        <MobileSection>
+          {/* Quote */}
+          <div className="bg-[#2a1f1f] p-6 rounded-lg border border-[#382929] mb-6">
+            <MobileText
+              variant="quote"
+              className="text-center text-lg leading-relaxed"
             >
-              {button.label}
-            </StyledNavigationButton>
-          ))}
+              "Entrar nos portões vigiados por gárgulas daquele lugar é
+              atravessar os próprios portões da morte!"
+            </MobileText>
+            <MobileText
+              variant="small"
+              className="text-center mt-3 text-[#8b7355]"
+              style={{ fontFamily: "Cinzel, serif" }}
+            >
+              — Últimas Palavras de um Aventureiro Desconhecido
+            </MobileText>
+          </div>
 
-          <Typography
-            sx={{
-              fontFamily: '"Cinzel", serif',
-              fontSize: "0.9rem",
-              color: "#8b7355",
-              textAlign: "center",
-              marginTop: "2rem",
-              marginBottom: "0.5rem",
-              letterSpacing: "0.08em",
-              fontStyle: "italic",
-            }}
-          >
-            Em Breve
-          </Typography>
+          {/* Navigation Buttons */}
+          <MobileNavigationButtons buttons={navigationButtons} />
 
-          <StyledNavigationButton
-            variant="outlined"
-            fullWidth
-            disabled
-            sx={{
-              mb: 2,
-              opacity: 0.5,
-              cursor: "not-allowed",
-              "&.Mui-disabled": {
-                borderColor: "rgba(139, 115, 85, 0.3)",
-                color: "rgba(212, 175, 55, 0.5)",
-              },
-            }}
-          >
-            Gerenciador de Bandos
-          </StyledNavigationButton>
-        </Box>
-      </NavigationSection>
-    </PageContainer>
+          {/* Coming Soon Label */}
+          <div className="mt-8 text-center">
+            <MobileText
+              variant="small"
+              className="italic text-[#8b7355]"
+              style={{ fontFamily: "Cinzel, serif" }}
+            >
+              Em Breve
+            </MobileText>
+          </div>
+        </MobileSection>
+      </div>
+    </MobileLayout>
   );
 }
 

@@ -402,7 +402,7 @@ function DwarfTreasureHuntersPage() {
                   role={unit.role}
                   stats={unit.stats}
                   abilities={unit.abilities}
-                  {...(unit.spellAffinity && { spellAffinity: unit.spellAffinity })}
+                  
                 />
               </div>
             ))}

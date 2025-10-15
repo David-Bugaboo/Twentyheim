@@ -11,7 +11,7 @@ import header4 from "../assets/header-art/874ab363-3678-45ab-84a8-7ffd64527398.p
 import header5 from "../assets/header-art/9ab44e412b8d6632b6c515fa8a0ace15c80d3185.png";
 import header6 from "../assets/header-art/ai-art-generation-v0-iqga0gdkll5c1.png";
 import header7 from "../assets/header-art/c8f4beee-510a-4fa5-8efb-2a0a87762972.png";
-import header8 from "../assets/header-art/dcc67816-fa58-4905-8a55-5a78de230cc6.png";
+
 import header9 from "../assets/header-art/f65e63aeb627cb03a85275b14c4c3e614259946b.png";
 import header10 from "../assets/header-art/images_upscayl_5x_high-fidelity-4x.png";
 import header11 from "../assets/header-art/Mordheim_City_of_the_Damned_Artwork_08_upscayl_5x_high-fidelity-4x.png";
@@ -25,7 +25,6 @@ const headerImages = [
   header5,
   header6,
   header7,
-  header8,
   header9,
   header10,
   header11,

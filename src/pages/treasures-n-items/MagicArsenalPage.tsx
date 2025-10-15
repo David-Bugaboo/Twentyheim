@@ -106,7 +106,7 @@ export default function MagicArsenalPage() {
                 fontFamily: '"Cinzel", serif',
               }}
             >
-              ⚔️🛡️ d100 Random Magic Arsenal Table
+              🛡️ d100 Random Magic Arsenal Table
             </ParchmentText>
 
             <TableContainer
@@ -261,7 +261,7 @@ export default function MagicArsenalPage() {
                 fontFamily: '"Cinzel", serif',
               }}
             >
-              ⚔️ ARMAS MÁGICAS (40 items)
+               ARMAS MÁGICAS (40 items)
             </ParchmentText>
 
             {weaponCategories.map((category) => (

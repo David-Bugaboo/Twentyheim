@@ -102,16 +102,16 @@ export default function PrayersOfSigmarPage() {
               mb: 3,
             }}
           >
-            ⚔️ The Heldenhammer's Divine Protection
+            The Heldenhammer's Divine Protection
           </ParchmentText>
 
           <ParchmentText sx={{ mb: 4 }}>
-            Sigmar Heldenhammer, the founder of the Empire and greatest warrior-king of
-            mankind, ascended to godhood and now watches over his people. His priests
-            are warrior-clerics who wield divine power to smite the enemies of mankind,
-            protect the innocent, and banish the creatures of darkness. The Prayers of
-            Sigmar are a powerful force against Chaos, undead, and all who would
-            threaten the Empire.
+            Sigmar Heldenhammer, the founder of the Empire and greatest
+            warrior-king of mankind, ascended to godhood and now watches over
+            his people. His priests are warrior-clerics who wield divine power
+            to smite the enemies of mankind, protect the innocent, and banish
+            the creatures of darkness. The Prayers of Sigmar are a powerful
+            force against Chaos, undead, and all who would threaten the Empire.
           </ParchmentText>
 
           <PowerListTitle>Prayers of Sigmar</PowerListTitle>
@@ -141,4 +141,3 @@ export default function PrayersOfSigmarPage() {
     </PageContainer>
   );
 }
-

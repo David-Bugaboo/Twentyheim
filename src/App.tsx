@@ -3,7 +3,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import HomePage from "./pages/HomePage";
 import WarbandsPage from "./pages/WarbandsPage";
-import RulesPage from "./pages/RulesPage";
+import RulesPage from "./pages/rules/RulesPage";
+import CampaignPage from "./pages/campanha/CampaignPage";
 
 import ExplorationPage from "./pages/ExplorationPage";
 import HiredSwordsPage from "./pages/HiredSwordsPage";
@@ -61,7 +62,6 @@ import BridesOfKhainePage from "./pages/warbands/BridesOfKhainePage";
 import SonsOfHashutPage from "./pages/warbands/SonsOfHashutPage";
 import BeastmenRaidersPage from "./pages/warbands/BeastmenRaidersPage";
 
-import GlobalNav from "./components/GlobalNav";
 import "./App.css";
 
 const darkTheme = createTheme({
@@ -110,7 +110,6 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Router>
-        <GlobalNav />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/warbands" element={<WarbandsPage />} />
@@ -160,6 +159,7 @@ function App() {
           <Route path="/dramatis-personae" element={<DramatisPersonaePage />} />
           <Route path="/treasures" element={<TreasuresAndItemsPage />} />
           <Route path="/rules" element={<RulesPage />} />
+          <Route path="/campaign" element={<CampaignPage />} />
           <Route path="/base" element={<BasePage />} />
           <Route path="/base/bases" element={<BasesPage />} />
           <Route path="/base/upgrades" element={<BaseUpgradesPage />} />

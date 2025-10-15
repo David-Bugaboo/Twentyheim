@@ -49,14 +49,14 @@ export default function TreasuresAndItemsPage() {
     {
       name: "Common Items",
       path: "/common-items",
-      icon: "⚔️",
+      icon: "",
       description:
         "Basic Equipment — Common weapons and armor available in any market: swords, bows, crossbows, shields, armor, and more.",
     },
     {
       name: "Magic Arsenal",
       path: "/magic-arsenal",
-      icon: "⚔️🛡️",
+      icon: "🛡️",
       description:
         "Weapons & Armor — 61 pieces of enchanted equipment including swords, daggers, bows, throwing spears, combat staffs, shields, helmets, cloaks, and body armor.",
     },
