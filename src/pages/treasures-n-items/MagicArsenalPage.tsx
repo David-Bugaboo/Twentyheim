@@ -9,9 +9,8 @@ import {
   Paper,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
 import Header from "../../components/Header";
-import MagicItemCard from "../../components/MagicItemCard";
+import EquipmentItemCard from "../../components/EquipmentItemCard";
 import {
   PageContainer,
   ContentSection,
@@ -19,45 +18,21 @@ import {
   StyledNavigationButton,
   ParchmentText,
   ContentContainer,
+  PowerListTitle,
 } from "../../components/PageComponents";
-
-import { generateArsenalTable } from "../../data/generateArsenalData";
-import slugify from "slugify";
-import { useScrollToHash } from "../../hooks/useScrollToHash";
-import { arsenalData } from "./data/arsenalData";
+import { commonItemsData } from "./data/commonItemsData";
+import { generateMagicArsenalD20Table } from "../../data/generateArsenalData";
 
 export default function MagicArsenalPage() {
-  useScrollToHash(); // Fix scroll to anchor
   const navigate = useNavigate();
 
-  // Refs para os items
-  const itemRefs = arsenalData.map((item) => {
-    return {
-      id: slugify(item.name, { lower: true, strict: true }),
-      ref: useRef<HTMLDivElement>(null),
-    };
-  });
-
-  const weaponCategories = [
-    "Swords & Blades",
-    "Daggers",
-    "Hammers & Maces",
-    "Staffs",
-    "Bows & Crossbows",
-    "Special Weapons",
-  ];
-
-  const armorCategories = [
-    "Shields",
-    "Helmets",
-    "Cloaks & Capes",
-    "Belts & Bracelets",
-    "Armour & Robes",
-  ];
+  // Get magic weapons and armor from commonItemsData
+  const magicWeapons = commonItemsData.find((cat) => cat.id === "magic-weapons");
+  const magicArmor = commonItemsData.find((cat) => cat.id === "magic-armor");
 
   return (
     <PageContainer>
-      <Header title="Magic Arsenal — Weapons & Armor" />
+      <Header title="Arsenal Mágico — Armas e Armaduras" />
       <ContentSection>
         <ContentContainer>
           <ParchmentText
@@ -69,32 +44,17 @@ export default function MagicArsenalPage() {
               color: "#d4af37",
             }}
           >
-            Steel and Plate Touched by Magic — The Complete Arsenal
+            Aço e Placas Tocadas por Magia — O Arsenal Completo
           </ParchmentText>
 
           <ParchmentText sx={{ mb: 4 }}>
-            In the arsenals and armories of Old Mordheim, master smiths and
-            battlemages worked together to create the finest implements of war
-            the Empire had ever seen. Swords that could cleave through stone.
-            Armor that turned aside arrows like rain. Boots that let warriors
-            run up walls. Helms that granted vision beyond sight.
+            Nos arsenais e armarias da Velha Mordheim, mestres ferreiros e magos de batalha trabalhavam juntos para criar os melhores implementos de guerra que o Império já viu. Espadas que podiam clivar pedra. Armaduras que desviavam flechas como chuva. Botas que permitiam guerreiros correrem pelas paredes. Elmos que concediam visão além da vista.
             <br />
             <br />
-            When the comet fell on 1999 IC, these treasures were scattered,
-            corrupted, and enhanced by wyrdstone's touch. Now they lie in the
-            ruins — some still gleaming with their original glory, others
-            twisted into something darker. Every blade demands blood. Every
-            piece of armor carries a curse. But in Wyrdgrave, the desperate
-            cannot afford to be choosy.
-            <br />
-            <br />
-            <strong>Total Arsenal:</strong> 61 pieces of enchanted equipment (40
-            weapons + 21 armor/wearables)
-            <br />
-            <strong>Price Format:</strong> Purchase Price / Sale Price
+            Quando o cometa caiu em 1999 IC, estes tesouros foram espalhados, corrompidos, e aprimorados pelo toque da pedra-bruxa. Agora jazem nas ruínas — alguns ainda brilhando com sua glória original, outros torcidos em algo mais sombrio. Cada lâmina exige sangue. Cada peça de armadura carrega uma maldição. Mas em Mordheim, os desesperados não podem se dar ao luxo de serem exigentes.
           </ParchmentText>
 
-          {/* ARSENAL d100 TABLE */}
+          {/* ARSENAL d20 TABLE */}
           <Box sx={{ mb: 6 }}>
             <ParchmentText
               sx={{
@@ -106,7 +66,7 @@ export default function MagicArsenalPage() {
                 fontFamily: '"Cinzel", serif',
               }}
             >
-              🛡️ d100 Random Magic Arsenal Table
+              ⚔️🛡️ Tabela de Armas e Armaduras Mágicas (d20)
             </ParchmentText>
 
             <TableContainer
@@ -116,9 +76,10 @@ export default function MagicArsenalPage() {
                 border: "3px solid #8B4513",
                 boxShadow: "0 8px 16px rgba(0, 0, 0, 0.4)",
                 mb: 3,
+                overflowX: "auto",
               }}
             >
-              <Table>
+              <Table sx={{ minWidth: 650 }}>
                 <TableHead>
                   <TableRow
                     sx={{
@@ -131,28 +92,52 @@ export default function MagicArsenalPage() {
                       sx={{
                         color: "#d4af37",
                         fontWeight: 700,
-                        fontSize: "1.1rem",
+                        fontSize: { xs: "0.9rem", sm: "1.1rem" },
                         fontFamily: '"Cinzel", serif',
                         borderRight: "1px solid #8B4513",
-                        width: "100px",
+                        width: "80px",
                       }}
                     >
-                      d100
+                      d20
                     </TableCell>
                     <TableCell
                       sx={{
                         color: "#d4af37",
                         fontWeight: 700,
-                        fontSize: "1.1rem",
+                        fontSize: { xs: "0.9rem", sm: "1.1rem" },
                         fontFamily: '"Cinzel", serif',
+                        borderRight: "1px solid #8B4513",
                       }}
                     >
-                      Item Type
+                      Arma/Armadura Mágica
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        color: "#d4af37",
+                        fontWeight: 700,
+                        fontSize: { xs: "0.9rem", sm: "1.1rem" },
+                        fontFamily: '"Cinzel", serif',
+                        borderRight: "1px solid #8B4513",
+                        width: { xs: "120px", sm: "180px" },
+                      }}
+                    >
+                      Efeitos
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        color: "#d4af37",
+                        fontWeight: 700,
+                        fontSize: { xs: "0.9rem", sm: "1.1rem" },
+                        fontFamily: '"Cinzel", serif',
+                        width: { xs: "100px", sm: "150px" },
+                      }}
+                    >
+                      Preço
                     </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {generateArsenalTable().map((row, index) => (
+                  {generateMagicArsenalD20Table().map((row, index) => (
                     <TableRow
                       key={index}
                       sx={{
@@ -165,7 +150,6 @@ export default function MagicArsenalPage() {
                         "&:hover": {
                           backgroundColor:
                             "rgba(212, 175, 55, 0.15) !important",
-                          cursor: "pointer",
                         },
                         transition: "all 0.2s",
                       }}
@@ -175,7 +159,7 @@ export default function MagicArsenalPage() {
                         sx={{
                           color: "#DAA520",
                           fontWeight: 700,
-                          fontSize: "1rem",
+                          fontSize: { xs: "0.9rem", sm: "1rem" },
                           borderRight: "1px solid #8B4513",
                           fontFamily: '"Cinzel", serif',
                         }}
@@ -185,31 +169,31 @@ export default function MagicArsenalPage() {
                       <TableCell
                         sx={{
                           color: "#d4c5a0",
-                          fontSize: "0.95rem",
+                          fontSize: { xs: "0.85rem", sm: "0.95rem" },
                           fontFamily: '"Crimson Text", serif',
-                          cursor: "pointer",
-                        }}
-                        onClick={() => {
-                          
-                          
-                            // Scroll para o item usando refs
-                            itemRefs
-                              .find(
-                                (ref) =>
-                                  ref.id ===
-                                  slugify(row.item, {
-                                    lower: true,
-                                    strict: true,
-                                  })
-                              )
-                              ?.ref?.current?.scrollIntoView({
-                                behavior: "smooth",
-                                block: "start",
-                              });
-                          
+                          borderRight: "1px solid #8B4513",
                         }}
                       >
                         {row.item}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          color: "#d4c5a0",
+                          fontSize: { xs: "0.85rem", sm: "0.95rem" },
+                          fontFamily: '"Crimson Text", serif',
+                          borderRight: "1px solid #8B4513",
+                        }}
+                      >
+                        {row.effect}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          color: "#DAA520",
+                          fontSize: { xs: "0.8rem", sm: "0.9rem" },
+                          fontFamily: '"Crimson Text", serif',
+                        }}
+                      >
+                        {row.price}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -225,9 +209,90 @@ export default function MagicArsenalPage() {
                 fontSize: "0.9rem",
               }}
             >
-              Roll 1d100 to determine the type of magic item found, then consult
-              the appropriate category below to select or randomize the specific
-              item.
+              Role 1d20 para determinar que tipo de arma ou armadura mágica foi encontrada. Preços no formato: Compra / Venda
+            </ParchmentText>
+          </Box>
+
+          {/* CATEGORY CHOICE BOX */}
+          <Box
+            sx={{
+              mt: 4,
+              mb: 4,
+              p: 3,
+              border: "3px solid #8B7355",
+              borderRadius: "6px",
+              backgroundColor: "rgba(139, 115, 85, 0.1)",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+            }}
+          >
+            <ParchmentText
+              sx={{
+                fontSize: "1.3rem",
+                fontWeight: 700,
+                color: "#d4af37",
+                mb: 2,
+                textAlign: "center",
+                fontFamily: '"Cinzel", serif',
+              }}
+            >
+              Escolha de Item por Categoria
+            </ParchmentText>
+
+            <ParchmentText sx={{ mb: 2 }}>
+              Se uma entrada na tabela especificar apenas uma <strong>classe de item</strong> (ex: "Arma a distância"), o jogador pode escolher <strong>qualquer item específico daquela categoria</strong>. Todos terão o mesmo preço e bônus listados na tabela.
+            </ParchmentText>
+
+            <ParchmentText sx={{ fontStyle: "italic", color: "#c4a870", mb: 1 }}>
+              <strong>Exemplo:</strong>
+            </ParchmentText>
+
+            <ParchmentText sx={{ ml: 3, color: "#d4c5a0" }}>
+              • Ao rolar <em>"Arma a distância obra-prima"</em>, o jogador pode escolher entre um <strong>Arco</strong>, <strong>Besta</strong>, ou <strong>Arma Arremessável</strong>. Todos terão +1 de dano e custarão 300/125 coroas.
+            </ParchmentText>
+          </Box>
+
+          {/* WARBAND SPECIFIC EQUIPMENT BOX */}
+          <Box
+            sx={{
+              mb: 6,
+              p: 3,
+              border: "3px solid #DAA520",
+              borderRadius: "6px",
+              backgroundColor: "rgba(212, 175, 55, 0.1)",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+            }}
+          >
+            <ParchmentText
+              sx={{
+                fontSize: "1.3rem",
+                fontWeight: 700,
+                color: "#d4af37",
+                mb: 2,
+                textAlign: "center",
+                fontFamily: '"Cinzel", serif',
+              }}
+            >
+              ⚔️ Equipamento Exclusivo de Warband
+            </ParchmentText>
+
+            <ParchmentText sx={{ mb: 2 }}>
+              Uma warband pode trocar uma rolagem nesta tabela por um <strong>equipamento equivalente exclusivo</strong> do seu bando com o <strong>mesmo bônus</strong>.
+            </ParchmentText>
+
+            <ParchmentText sx={{ fontStyle: "italic", color: "#c4a870", mb: 1 }}>
+              <strong>Exemplos:</strong>
+            </ParchmentText>
+
+            <ParchmentText sx={{ ml: 3, mb: 1, color: "#d4c5a0" }}>
+              • Uma warband <strong>Skaven</strong> rola uma <em>Adaga Serrilhada (+1 dano)</em>. Pode ao invés ganhar um par de <strong>Garras de Combate Skaven</strong> com +1 de dano.
+            </ParchmentText>
+
+            <ParchmentText sx={{ ml: 3, color: "#d4c5a0" }}>
+              • Uma warband da <strong>Guarda Marítima de Ulthuan</strong> rola um <em>Cajado de Madeira Loreana (+1 Ímpeto)</em>. Pode ao invés ganhar uma <strong>Glaive de Guerra Élfica</strong> com +1 de Ímpeto.
+            </ParchmentText>
+
+            <ParchmentText sx={{ mt: 2, fontSize: "0.9rem", fontStyle: "italic", textAlign: "center", color: "#9d8f7a" }}>
+              O equipamento trocado deve ter o mesmo bônus mecânico do item rolado e ser temático para a warband.
             </ParchmentText>
           </Box>
 
@@ -240,137 +305,73 @@ export default function MagicArsenalPage() {
               mb: 5,
             }}
           />
+        </ContentContainer>
+      </ContentSection>
 
-          {/* WEAPONS SECTION */}
-          <Box
-            sx={{
-              mb: 6,
-              p: 4,
-              border: "3px solid #d4af37",
-              borderRadius: "8px",
-              backgroundColor: "rgba(212, 175, 55, 0.08)",
-            }}
-          >
-            <ParchmentText
+      {/* WEAPONS SECTION */}
+      {magicWeapons && (
+        <ContentSection>
+          <ContentContainer>
+            <Box
               sx={{
-                fontSize: "2rem",
-                fontWeight: 700,
-                mb: 3,
-                textAlign: "center",
-                color: "#d4af37",
-                fontFamily: '"Cinzel", serif',
+                mb: 6,
+                p: 4,
+                border: "3px solid #d4af37",
+                borderRadius: "8px",
+                backgroundColor: "rgba(212, 175, 55, 0.08)",
               }}
             >
-               ARMAS MÁGICAS (40 items)
-            </ParchmentText>
+              <PowerListTitle>
+                {magicWeapons.icon} {magicWeapons.label}
+              </PowerListTitle>
 
-            {weaponCategories.map((category) => (
-              <Box key={category} sx={{ mb: 5 }}>
-                <Box
-                  sx={{
-                    fontFamily: '"Cinzel", serif',
-                    fontSize: "1.6rem",
-                    fontWeight: 700,
-                    color: "#d4af37",
-                    mb: 3,
-                    pb: 1,
-                    borderBottom: "2px solid rgba(212, 175, 55, 0.3)",
-                  }}
-                >
-                  {category}
-                </Box>
+              {magicWeapons.items.map((item) => (
+                <EquipmentItemCard
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  properties={item.properties}
+                  description={item.description}
+                />
+              ))}
+            </Box>
+          </ContentContainer>
+        </ContentSection>
+      )}
 
-                {arsenalData
-                  .filter(
-                    (item) =>
-                      item.category === "Weapon" && item.category === category
-                  )
-                  .map((item, index) => (
-                    <MagicItemCard
-                      key={index}
-                      id={slugify(item.name, { lower: true, strict: true })}
-                      ref={
-                        itemRefs.find(
-                          (ref) =>
-                            ref.id ===
-                            slugify(item.name, { lower: true, strict: true })
-                        )?.ref
-                      }
-                      name={item.name}
-                      type={item.category}
-                      price={item.purchasePrice}
-                      effect={item.bonus}
-                    />
-                  ))}
-              </Box>
-            ))}
-          </Box>
-
-          {/* ARMOR SECTION */}
-          <Box
-            sx={{
-              mb: 6,
-              p: 4,
-              border: "3px solid #d4af37",
-              borderRadius: "8px",
-              backgroundColor: "rgba(212, 175, 55, 0.08)",
-            }}
-          >
-            <ParchmentText
+      {/* ARMOR SECTION */}
+      {magicArmor && (
+        <ContentSection>
+          <ContentContainer>
+            <Box
               sx={{
-                fontSize: "2rem",
-                fontWeight: 700,
-                mb: 3,
-                textAlign: "center",
-                color: "#d4af37",
-                fontFamily: '"Cinzel", serif',
+                mb: 6,
+                p: 4,
+                border: "3px solid #d4af37",
+                borderRadius: "8px",
+                backgroundColor: "rgba(212, 175, 55, 0.08)",
               }}
             >
-              🛡️ ARMADURAS MÁGICAS (24 items)
-            </ParchmentText>
+              <PowerListTitle>
+                {magicArmor.icon} {magicArmor.label}
+              </PowerListTitle>
 
-            {armorCategories.map((category) => (
-              <Box key={category} sx={{ mb: 5 }}>
-                <Box
-                  sx={{
-                    fontFamily: '"Cinzel", serif',
-                    fontSize: "1.6rem",
-                    fontWeight: 700,
-                    color: "#d4af37",
-                    mb: 3,
-                    pb: 1,
-                    borderBottom: "2px solid rgba(212, 175, 55, 0.3)",
-                  }}
-                >
-                  {category}
-                </Box>
+              {magicArmor.items.map((item) => (
+                <EquipmentItemCard
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  properties={item.properties}
+                  description={item.description}
+                />
+              ))}
+            </Box>
+          </ContentContainer>
+        </ContentSection>
+      )}
 
-                {arsenalData
-                  .filter(
-                    (item) =>
-                      item.category === "Armor" && item.category === category
-                  )
-                  .map((item, index) => (
-                    <MagicItemCard
-                      key={index}
-                      id={slugify(item.name, { lower: true, strict: true })}
-                      ref={
-                        itemRefs.find(
-                          (ref) =>
-                            ref.id ===
-                            slugify(item.name, { lower: true, strict: true })
-                        )?.ref
-                      }
-                      name={item.name}
-                      type={item.category }
-                      price={item.purchasePrice}
-                      effect={item.bonus}
-                    />
-                  ))}
-              </Box>
-            ))}
-          </Box>
-
+      <ContentSection>
+        <ContentContainer>
           <ParchmentText
             sx={{
               mt: 6,
@@ -382,13 +383,9 @@ export default function MagicArsenalPage() {
               textAlign: "center",
             }}
           >
-            "In the City of the Damned, your equipment is your life. A good
-            sword can cleave through demons. Good armor can turn aside death
-            itself. But remember — in Wyrdgrave, every magical item has a price.
-            Some demand gold. Others demand blood. And some... demand your
-            soul."
+            "Na Cidade dos Amaldiçoados, seu equipamento é sua vida. Uma boa espada pode clivar demônios. Boa armadura pode desviar a própria morte. Mas lembre-se — em Mordheim, todo item mágico tem um preço. Alguns exigem ouro. Outros exigem sangue. E alguns... exigem sua alma."
             <br />
-            <br />— Marcus the Veteran, Commander of the Lost Legion
+            <br />— Marcus, o Veterano, Comandante da Legião Perdida
           </ParchmentText>
         </ContentContainer>
       </ContentSection>

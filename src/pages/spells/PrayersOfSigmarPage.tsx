@@ -16,74 +16,74 @@ export default function PrayersOfSigmarPage() {
 
   const spells = [
     {
-      name: "Hammer of Sigmar",
+      name: "Martelo de Sigmar",
       castingNumber: 14,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        "This spell is cast upon a weapon. The next time the figure wielding this weapon wins a round of combat and does at least 1 point of damage, this weapon inflicts an additional 5 points of elemental magic damage. If cast on a normal weapon, which is then used against a creature that is Immune to Normal Weapons, this weapon will only deal the 5 points of elemental magic damage. If cast on a bow or crossbow the spell only applies to the next attack.",
+        "O sacerdote invoca a força divina do próprio Ghal Maraz sobre uma arma escolhida. O poder sagrado do Heldenhammer percorre a lâmina com energia divina. Na próxima vez que a figura empunhando esta arma vencer uma rodada de combate e causar pelo menos 1 ponto de dano, a arma inflige 5 pontos adicionais de dano mágico elemental. Se conjurada em uma arma normal usada contra uma criatura Imune a Armas Normais, a arma causará apenas os 5 pontos de dano mágico elemental. Se conjurada em um arco ou besta, a magia só se aplica ao próximo ataque, desaparecendo após o disparo.",
     },
     {
-      name: "Armour of Righteousness",
+      name: "Armadura da Retidão",
       castingNumber: 12,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        "The target of this spell receives +2 Armour for the rest of the game. This spell has no effect on a target that already has Armour of 14 or higher. Multiple castings of Armour of Righteousness on the same figure have no effect.",
+        "A luz dourada de Sigmar envolve o alvo como uma couraça espiritual reluzente, protegendo-o contra os golpes dos inimigos. O alvo desta oração recebe +2 Armadura pelo resto do jogo. As bênçãos de Sigmar não se acumulam com proteções já poderosas - esta magia não tem efeito em um alvo que já possua Armadura 14 ou superior. Múltiplas conjurações de Armadura da Retidão na mesma figura não têm efeito.",
     },
     {
-      name: "Healing Hand",
+      name: "Mão Curadora",
       castingNumber: 10,
-      range: "Touch",
+      range: "Toque",
       effect:
-        "This spell restores up to 5 points of lost Health to a target figure or the caster. This spell cannot take a model above its starting Health. This spell has no effect on undead or constructs.",
+        "O sacerdote canaliza a misericórdia do deus-guerreiro através de suas mãos, fechando ferimentos com pura luz divina. Um toque sagrado restaura até 5 pontos de Vigor perdidos a uma figura alvo ou ao próprio conjurador. A carne se regenera, ossos se reconstroem, e o sangue flui novamente. Esta magia não pode elevar o Vigor de um modelo acima de seu valor inicial. Os mortos-vivos e constructos, desprovidos de alma ou carne verdadeira, não podem ser curados por esta bênção.",
     },
     {
-      name: "Beacon of Courage",
+      name: "Farol da Coragem",
       castingNumber: 16,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        "The target of this spell becomes immune to Mind Control and Suggestion spells for the rest of the game, and any current Mind Control spells on the figure are cancelled. The figure gains +2 Will for the rest of the game.",
+        "Uma aura radiante de determinação inabalável emana do alvo, queimando como uma chama dourada em sua alma. O poder de Sigmar fortalece a mente contra toda forma de manipulação sobrenatural. O alvo desta oração torna-se imune a magias de Controle Mental e Sugestão pelo resto do jogo, e quaisquer magias de Controle Mental atuais sobre a figura são canceladas. A vontade da figura é fortalecida pela fé, recebendo +2 Vontade pelo resto do jogo.",
     },
     {
-      name: "Twin Tailed Comet",
+      name: "Cometa de Cauda Dupla",
       castingNumber: 18,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        'The caster makes a +3 elemental magic shooting attack against a target within 16". This attack does +4 damage. In addition, all figures in contact with the target figure also suffer a +1 elemental magic shooting attack that does +4 damage. Any figure that suffers damage from these attacks is immediately moved 2" in a random direction.',
+        "O sacerdote invoca o presságio mais sagrado do Império - um cometa flamejante desaba dos céus em uma explosão cataclísmica de luz divina! O conjurador faz um ataque a distância mágico elemental +3 contra um alvo a até 40cm. Este ataque causa +4 de dano. Além disso, todas as figuras em contato com a figura alvo também sofrem um ataque a distância mágico elemental +1 que causa +4 de dano. Qualquer figura que sofra dano destes ataques é imediatamente movida 5cm em uma direção aleatória, arremessada pela força do impacto celestial.",
     },
     {
-      name: "Soulfire",
+      name: "Fogo Espiritual",
       castingNumber: 12,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        'The spellcaster makes a +3 elemental shooting attack against a target figure within 16" and line of sight. The attack have +2 damage. If this attack is made against a Daemon, it becomes a +7 holy shooting attack with the same damage bonus.',
+        "Chamas brancas e puras brotam das mãos do sacerdote, queimando não a carne, mas a própria essência espiritual do inimigo. O conjurador faz um ataque a distância elemental +3 contra uma figura alvo a até 40cm e linha de visão. O ataque causa +2 de dano. Se este ataque for feito contra um Daemon, as chamas sagradas se intensificam em um rugido purificador - o ataque se torna um ataque a distância sagrado +7 com o mesmo bônus de dano, banindo a criatura imunda de volta ao Caos.",
     },
     {
-      name: "Scourge of the Wicked",
+      name: "Flagelo dos Ímpios",
       castingNumber: 14,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        "All daemons within line of sight of the spellcaster must pass an immediate Will Roll with a Target Number equal to the Casting Roll. If a demon fails the roll and its current Will is +4 or less, it is immediately reduced to 0 Health and removed from the table. If its current Will is +5 or higher, it suffers damage equal to three times the amount by which it failed the Will Roll.",
+        "O sacerdote ergue seu símbolo sagrado ao alto e proclama um julgamento divino. Ondas de luz purificadora varrem o campo de batalha, queimando a carne corrupta dos servos do Caos. Todos os daemons dentro da linha de visão do conjurador devem passar em uma Rolagem de Vontade imediata com Número Alvo igual à Rolagem de Conjuração. Se um daemon falhar na rolagem e sua Vontade atual for +4 ou menos, é imediatamente reduzido a 0 Vigor e removido da mesa, banido atrás do véu da realidade. Se sua Vontade atual for +5 ou superior, sofre dano igual a três vezes a quantidade pela qual falhou na Rolagem de Vontade.",
     },
     {
-      name: "Sunder the Arcane",
+      name: "Desfazer o Arcano",
       castingNumber: 16,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        "Immediately cancels the ongoing effect of any one casting of any one spell. It cannot unsummon a creature, but it can cancel the control of a creature that is a temporary member of a warband.",
+        "Com uma palavra de poder, o sacerdote rasga os fios da magia que tecem os feitiços dos inimigos. A luz de Sigmar corta através das energias arcanas como uma lâmina através de seda. Esta oração imediatamente cancela o efeito contínuo de qualquer conjuração de qualquer magia. Não pode des-invocar uma criatura permanentemente convocada, mas pode cancelar o controle de uma criatura que seja membro temporário de um bando, libertando-a da influência sobrenatural.",
     },
     {
-      name: "Storm of Soulfire",
+      name: "Tempestade de Fogo Espiritual",
       castingNumber: 16,
-      range: "Area Effect",
+      range: "Efeito de Área",
       effect:
-        "Every demon on the table must make a Will Roll against this spell's Casting Roll or suffer 3 points of holy damage. Additionally, any attempts to cast any spell that would summon or create an undead or daemon creature suffers -4 to the Casting Roll for the rest of the game (non cumulative). The priest takes 1 point of damage every time this spell is successfully cast.",
+        "O sacerdote lança os braços ao céu e invoca uma conflagração santa que varre todo o campo de batalha. Chamas brancas e douradas explodem do solo, purificando toda a área com fogo divino. Todo daemon na mesa deve fazer uma Rolagem de Vontade contra a Rolagem de Conjuração desta magia ou sofrer 3 pontos de dano sagrado. Além disso, o poder residual desta bênção contamina as energias sombrias - qualquer tentativa de conjurar magias que invoquem ou criem criaturas mortas-vivas ou daemons sofre -4 na Rolagem de Conjuração pelo resto do jogo (não cumulativo). Canalizar tanto poder divino cobra seu preço - o sacerdote sofre 1 ponto de dano cada vez que esta magia é conjurada com sucesso.",
     },
     {
-      name: "Righteous Wrath",
+      name: "Ira Justiceira",
       castingNumber: 12,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        "The target figure gains +1 Fight for the rest of the game. Multiple castings of Righteous Wrath on the same target have no effect.",
+        "O sacerdote abençoa um guerreiro com a fúria santa de Sigmar, enchendo suas veias com o poder do Martelo de Guerra. Seus olhos brilham com determinação divina, e seus golpes ganham força sobrenatural. A figura alvo ganha +1 Ímpeto pelo resto do jogo. A fúria de Sigmar não se multiplica desnecessariamente - múltiplas conjurações de Ira Justiceira no mesmo alvo não têm efeito.",
     },
   ];
 
@@ -102,19 +102,21 @@ export default function PrayersOfSigmarPage() {
               mb: 3,
             }}
           >
-            The Heldenhammer's Divine Protection
+            ⚔️ A Proteção Divina do Heldenhammer
           </ParchmentText>
 
           <ParchmentText sx={{ mb: 4 }}>
-            Sigmar Heldenhammer, the founder of the Empire and greatest
-            warrior-king of mankind, ascended to godhood and now watches over
-            his people. His priests are warrior-clerics who wield divine power
-            to smite the enemies of mankind, protect the innocent, and banish
-            the creatures of darkness. The Prayers of Sigmar are a powerful
-            force against Chaos, undead, and all who would threaten the Empire.
+            Sigmar Heldenhammer, o fundador do Império e o maior rei-guerreiro da
+            humanidade, ascendeu à divindade e agora vigia seu povo das alturas
+            celestiais. Seus sacerdotes são clérigos-guerreiros que empunham poder
+            divino para esmagar os inimigos da humanidade, proteger os inocentes e
+            banir as criaturas das trevas. As Orações de Sigmar são uma força poderosa
+            contra o Caos, os mortos-vivos e todos aqueles que ameaçam o Império. Com
+            martelo e fé, os devotos de Sigmar trazem a luz da justiça aos lugares
+            mais sombrios do Velho Mundo.
           </ParchmentText>
 
-          <PowerListTitle>Prayers of Sigmar</PowerListTitle>
+          <PowerListTitle>Orações de Sigmar</PowerListTitle>
 
           {spells.map((spell, index) => (
             <SpellCard

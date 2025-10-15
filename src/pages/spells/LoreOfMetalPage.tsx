@@ -20,42 +20,42 @@ export default function LoreOfMetalPage() {
       castingNumber: 10,
       range: "Linha de Visão",
       effect:
-        "Você invoca orbes cintilantes de aço que rotacionam ao redor do corpo de um aliado e o protegem de ataques vindouros.\n\nO alvo recebe +2 Armadura pelo resto do jogo. Isto não pode levar uma figura acima de Armadura 14 (ou seja, figuras com Armadura 13 vão para Armadura 14). Múltiplas conjurações desta magia no mesmo alvo não têm efeito.",
+        "O alquimista manipula o Vento Amarelo para condensar partículas metálicas suspensas no ar ao redor do alvo. Processo de formação: orbes de liga de aço se materializam através de transmutação controlada, estabelecendo padrão orbital defensivo. Densidade molecular aumentada proporciona proteção física mensurável contra impactos cinéticos.\n\nO alvo recebe +2 Armadura pelo resto do jogo. Limite superior: Armadura 14 (figuras com Armadura 13 são elevadas para Armadura 14). Múltiplas aplicações no mesmo alvo não produzem efeito cumulativo - redundância de sistema.",
     },
     {
       name: "Encantar Equipamento",
       castingNumber: 8,
       range: "Linha de Visão",
       effect:
-        "Esta magia tem como alvo uma arma ou armadura à escolha do conjurador. Se conjurada em uma arma corpo a corpo, esta arma conta como uma arma mágica com +1 Ímpeto. Arcos e bestas contam como armas mágicas com +1 Precisão, mas os ataques feitos com elas não contam como ataques mágicos. Esta magia pode ser conjurada em uma única flecha ou virote de besta, caso em que aquela munição dá +1 Precisão e seu ataque conta como mágico, mas apenas para o próximo ataque a distância. Esta magia só pode ser conjurada uma vez em cada arma. Ao usar tanto uma arma de projétil mágica quanto munição mágica, o atirador pode escolher aplicar o bônus de uma ou outra, mas não ambas. Se conjurada em armadura, a armadura ganha +1 armadura.",
+        "Procedimento: infusão de Chamon em estrutura molecular do equipamento alvo. Resultado observado varia conforme substrato material. Armas corpo a corpo: aumento na eficiência de corte (+1 Ímpeto). Armas de projétil: realinhamento de trajetória balística (+1 Precisão, ataques não classificados como mágicos). Munição individual (flecha/virote): mesma calibração de precisão, ativação única, ataque conta como mágico. Limitação: uma aplicação por item. Nota: efeitos de arma e munição não são cumulativos - operador seleciona um. Armadura: reforço estrutural (+1 armadura).",
     },
     {
       name: "Maldição da Ferrugem",
       castingNumber: 12,
       range: "Linha de Visão",
       effect:
-        "Você enferruja e corrói um equipamento dentro de linha de visão, tornando-o corroído e inútil.\n\nO conjurador seleciona e ataca a arma ou armadura de um alvo, fazendo-a deteriorar e desmoronar, tornando-a inútil pelo resto do jogo. Esta magia não tem efeito em armas mágicas (mesmo aquelas apenas temporariamente encantadas). Esta magia não tem efeito em criaturas (a menos que sejam especificamente identificadas como equipadas com uma arma). Pode ser usada contra um constructo, caso em que faz um ataque a distância mágico +7 contra ele.",
+        "Aceleração controlada de oxidação: o alquimista catalisa reação química de corrosão no metal alvo. Taxa de deterioração: 100-1000x velocidade natural. Processo observado: formação rápida de óxido ferroso, desintegração estrutural, falha catastrófica de material.\n\nAlvo selecionado: arma ou armadura. Resultado: item torna-se não-funcional pelo resto do jogo. Exceção: itens com infusão mágica permanente demonstram resistência completa ao processo (incluindo encantamentos temporários). Nota: procedimento não afeta organismos vivos diretamente (exceto se portando arma identificável). Aplicação em constructo: ataque a distância mágico +7 - corrosão sistêmica.",
     },
     {
       name: "Flechas de Prata de Arha",
       castingNumber: 10,
       range: "Linha de Visão",
       effect:
-        "Você cria várias flechas mágicas de prata e as arremessa em inimigos.\n\nEsta magia dispara flechas de prata conjuradas no alvo. O conjurador faz um ataque a distância +5 contra qualquer figura dentro de linha de visão a até 30cm. Isto não conta como um ataque mágico.",
+        "Transmutação de matéria: conversão de partículas ambientes em projéteis de prata argentum (Ag, número atômico 47). Propriedades: densidade 10.49 g/cm³, ductilidade alta, condutividade térmica superior. Aceleração: força mágica propele projéteis transmutados em trajetória balística calculada.\n\nMétodo de ataque: ataque a distância +5 contra alvo dentro de linha de visão (alcance máximo: 30cm). Classificação: não-mágico (projéteis físicos, apesar de origem transmutativa).",
     },
     {
       name: "Maldição do Chumbo",
       castingNumber: 10,
       range: "Linha de Visão",
       effect:
-        "Você faz o sangue de um inimigo dentro de linha de visão ter o peso de chumbo.\n\nO alvo é reduzido a um máximo de uma ação por ativação (que pode ser qualquer ação, não precisa ser movimento). Ele pode fazer uma Rolagem de Vontade contra a Rolagem de Conjuração no fim de cada uma de suas ativações. Se bem-sucedida, a magia é cancelada.",
+        "Transmutação metálica aplicada a fluidos corporais: conversão parcial de elementos sanguíneos em plumbum (Pb, número atômico 82, densidade 11.34 g/cm³). Efeito observado: aumento significativo de viscosidade sanguínea, redução de mobilidade celular, fadiga muscular exponencial. Sistema nervoso afetado por toxicidade metálica temporária.\n\nResultado mensurável: alvo limitado a uma ação por ativação (qualquer tipo). Procedimento de reversão: Rolagem de Vontade vs Rolagem de Conjuração ao fim de cada ativação. Sucesso = cancelamento de efeito (metabolismo expurga metal transmutado).",
     },
     {
       name: "Alquimia",
       castingNumber: 12,
       range: "Linha de Visão",
       effect:
-        "O conjurador cria uma Poção Menor de sua escolha que pode ser vendida, armazenada no cofre do bando ou dada a um membro do bando. Um Conjurador Herói (apenas um herói!) pode usar esta magia para criar uma Poção Maior. Primeiro, ele deve declarar que poção está tentando preparar e pagar o custo de ingredientes listado. O conjurador deve então rolar para conjurar Preparar Poção com -4 na Rolagem de Conjuração. Se bem-sucedida, a poção é criada e pode ser imediatamente atribuída a uma figura no bando, vendida ou armazenada no cofre do bando. Se malsucedida, a poção não é criada e o dinheiro gasto em ingredientes é perdido.",
+        "Síntese de compostos: o alquimista executa procedimento laboratorial acelerado para produzir solução alquímica. Método padrão: criação de Poção Menor (seleção de fórmula a critério do operador). Produto pode ser: comercializado, armazenado em repositório, ou distribuído a membro de equipe.\n\nProcedimento avançado (restrito a Conjuradores Herói): síntese de Poção Maior. Requisitos: (1) declaração de fórmula específica, (2) aquisição de reagentes (custo conforme especificado), (3) execução de processo com modificador de dificuldade -4 na Rolagem de Conjuração. Resultado positivo: composto sintetizado com sucesso, disponível para uso imediato/armazenamento/venda. Resultado negativo: reação falha, reagentes consumidos sem produção de produto - perda total de investimento em materiais.",
     },
   ];
 
