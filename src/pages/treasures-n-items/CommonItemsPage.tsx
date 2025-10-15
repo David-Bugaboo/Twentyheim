@@ -26,24 +26,17 @@ function CommonItemsPage() {
   return (
     <PageContainer>
       <WarbandIndex sections={sections} />
-      <Header title="Common Items" />
+      <Header title="Itens Comuns" />
 
       <ContentSection>
         <ContentContainer>
           <QuoteBox>
-            "A warrior is only as good as their tools. A sharp blade, a sturdy
-            shield, well-fitted armor — these are the companions that won't
-            abandon you when the blood starts flowing."
-            <QuoteAttribution>— Gunther, Veteran Mercenary</QuoteAttribution>
+            "Um guerreiro é tão bom quanto suas ferramentas. Uma lâmina afiada, um escudo resistente, armadura bem ajustada — estes são os companheiros que não vão te abandonar quando o sangue começar a fluir."
+            <QuoteAttribution>— Gunther, Mercenário Veterano</QuoteAttribution>
           </QuoteBox>
 
           <ParchmentText>
-            Basic equipment is the backbone of any warband in Wyrdgrave. While
-            magical items and relics may be rare and powerful, it is the common
-            weapons and armor that keep warriors alive day to day. This arsenal
-            is available for purchase in virtually any market in the cursed
-            city, and most of it is replaced or bought for free. The following items represent 
-            common equipment available in Mordheim black market stalls.
+            Equipamento básico é a espinha dorsal de qualquer warband em Mordheim. Enquanto itens mágicos e relíquias podem ser raros e poderosos, são as armas e armaduras comuns que mantêm guerreiros vivos dia após dia. Este arsenal está disponível para compra em praticamente qualquer mercado na cidade amaldiçoada, e a maior parte é substituída ou comprada gratuitamente. Os seguintes itens representam equipamento comum disponível nas barracas do mercado negro de Mordheim.
           </ParchmentText>
 
           {/* RENDER ALL CATEGORIES */}
@@ -94,7 +87,7 @@ function CommonItemsPage() {
               },
             }}
           >
-            Back to Treasures & Items
+            Voltar para Tesouros e Itens
           </StyledNavigationButton>
         </Box>
       </NavigationSection>

@@ -37,7 +37,7 @@ export const daemonicAttributes = [
   {
     name: "Forma Enlouquecedora",
     description:
-      "Qualquer figura viva (não mortos-vivos ou constructos) que deseje mover-se para combate com esta figura deve primeiro fazer uma rolagem de Vontade com Número Alvo de 14. Falha não faz a figura perder sua ação, mas ela não pode tentar esta rolagem novamente até sua próxima ativação.",
+      "Qualquer figura viva (não mortos-vivos ou constructos) que deseje mover-se para combate com esta figura deve primeiro fazer uma rolagem de Vontade com Classe de Dificuldade de 14. Falha não faz a figura perder sua ação, mas ela não pode tentar esta rolagem novamente até sua próxima ativação.",
   },
   {
     name: "Grandes Asas da Mutação",
@@ -91,7 +91,7 @@ export const daemonicAttributes = [
   {
     name: "Orquestra de Sussurros",
     description:
-      "Qualquer figura que ative a até 15cm desta figura deve fazer uma rolagem de Vontade contra um Número Alvo de 12 ou enlouquecer. Enquanto louca, a figura não pode atacar, atirar ou conjurar magias de Linha de Visão. Seu atributo de Ímpeto é reduzido a +0 e sua Agilidade a 1. No início de cada turno, a figura pode tentar outra rolagem de Vontade contra o mesmo Número Alvo para se recuperar dos efeitos da loucura. Caso contrário, os efeitos duram até o fim do jogo.",
+      "Qualquer figura que ative a até 15cm desta figura deve fazer uma rolagem de Vontade contra um Classe de Dificuldade de 12 ou enlouquecer. Enquanto louca, a figura não pode atacar, atirar ou conjurar magias de Linha de Visão. Seu atributo de Ímpeto é reduzido a +0 e sua Agilidade a 1. No início de cada turno, a figura pode tentar outra rolagem de Vontade contra o mesmo Classe de Dificuldade para se recuperar dos efeitos da loucura. Caso contrário, os efeitos duram até o fim do jogo.",
   },
   {
     name: "Pele de Enxofre",
@@ -106,7 +106,7 @@ export const daemonicAttributes = [
   {
     name: "Conflagrador de Violência",
     description:
-      "Qualquer figura viva que ative enquanto a até 8cm desta figura deve fazer uma rolagem de Vontade contra um Número Alvo de 14 ou imediatamente sofrer 3 pontos de dano.",
+      "Qualquer figura viva que ative enquanto a até 8cm desta figura deve fazer uma rolagem de Vontade contra um Classe de Dificuldade de 14 ou imediatamente sofrer 3 pontos de dano.",
   },
   {
     name: "Tempestade de Crânios",

@@ -20,42 +20,42 @@ export default function LoreOfFirePage() {
       castingNumber: 10,
       range: "Linha de Visão",
       effect:
-        "Uma espada flamejante se materializa nas mãos de um aliado.\n\nEsta magia é conjurada sobre uma arma. Na próxima vez que a figura empunhando esta arma vencer uma rodada de combate e causar pelo menos 1 ponto de dano, esta arma inflige 5 pontos adicionais de dano mágico elemental. Se conjurada em uma arma normal, que então é usada contra uma criatura Imune a Armas Normais, esta arma causará apenas os 5 pontos de dano mágico elemental. Se conjurada em uma arma de projétil ou arma de fogo, a magia só se aplica ao próximo ataque.",
+        "Chamas vermelhas e alaranjadas envolvem a arma do aliado, transformando-a em uma lâmina incandescente que queima com calor abrasador. O metal brilha branco-quente, e o ar ao redor ondula com o calor intenso. O próximo golpe não apenas corta - carboniza, queima e incendeia.\n\nEsta magia é conjurada sobre uma arma. Na próxima vez que a figura empunhando esta arma vencer uma rodada de combate e causar pelo menos 1 ponto de dano, esta arma inflige 5 pontos adicionais de dano mágico elemental enquanto o fogo consome a vítima. Se conjurada em uma arma normal, que então é usada contra uma criatura Imune a Armas Normais, esta arma causará apenas os 5 pontos de dano mágico elemental - o fogo puro ainda queima. Se conjurada em uma arma de projétil ou arma de fogo, a munição se torna uma flecha ou bala flamejante, e a magia só se aplica ao próximo ataque.",
     },
     {
       name: "Bola de Fogo",
       castingNumber: 12,
       range: "Linha de Visão",
       effect:
-        "O conjurador seleciona uma figura inimiga a até 40cm e linha de visão e arremessa uma bola de fogo ardente nela. O alvo e toda figura a até 3cm e linha de visão do alvo imediatamente sofrem um ataque a distância mágico elemental +5. Role este ataque a distância separadamente para cada figura. Trate a figura alvo como a origem do ataque para fins de determinar cobertura ou terreno interposto para todas as outras figuras sofrendo o ataque. Esta magia não pode ter como alvo uma figura inimiga que esteja mesmo parcialmente obscurecida por outra figura.",
+        "O mago concentra o Vento Vermelho em suas mãos até que uma esfera de chamas incandescentes se forme, crescendo e girando com poder destrutivo contido. Com um grito de guerra, ele a arremessa. A bola de fogo atravessa o ar deixando uma trilha de calor e fumaça antes de EXPLODIR em uma detonação devastadora que carboniza tudo em seu raio. A explosão é tão intensa que até aqueles próximos ao impacto são engolfados pelas chamas.\n\nO conjurador seleciona uma figura inimiga a até 40cm e linha de visão e arremessa uma bola de fogo ardente nela. O alvo e toda figura a até 3cm e linha de visão do alvo imediatamente sofrem um ataque a distância mágico elemental +5 - uma explosão flamejante que não poupa ninguém. Role este ataque a distância separadamente para cada figura. Trate a figura alvo como a origem do ataque para fins de determinar cobertura ou terreno interposto para todas as outras figuras sofrendo o ataque. Esta magia não pode ter como alvo uma figura inimiga que esteja mesmo parcialmente obscurecida por outra figura - o mago precisa de uma linha de arremesso clara.",
     },
     {
       name: "Baforada Flamejante",
       castingNumber: 12,
       range: "Efeito de Área",
       effect:
-        "Você exala uma torrente ondulante de chamas, semelhante à dos dragões da lenda.\n\nO conjurador faz um ataque a distância mágico elemental +0 contra toda figura inimiga (seja de um bando opositor ou criatura descontrolada) a até 30cm e linha de visão. Isto pode incluir figuras inimigas em combate, embora as regras normais para atirar em combate sejam seguidas neste caso.",
+        "O mago respira fundo, enchendo seus pulmões não com ar mas com puro fogo mágico. Então, como um dragão ancestral, ele EXALA uma torrente devastadora de chamas que varre o campo de batalha. Uma parede ondulante de fogo ruge para frente, consumindo tudo em seu caminho. Inimigos gritam enquanto suas roupas e carne chamuscam, o calor intenso os cegando e queimando.\n\nO conjurador faz um ataque a distância mágico elemental +0 contra toda figura inimiga (seja de um bando opositor ou criatura descontrolada) a até 30cm e linha de visão - uma carnificina flamejante que varre a área. Isto pode incluir figuras inimigas em combate, embora as regras normais para atirar em combate sejam seguidas neste caso.",
     },
     {
       name: "Conflagração da Perdição",
       castingNumber: 12,
       range: "Efeito de Área",
       effect:
-        "Este é o feitiço mais destrutivo no arsenal do Mago Flamejante. Quando você invoca uma conflagração da perdição, um inferno flamejante envolve uma área a até 8cm do conjurador.\n\nToda figura nessa área (mas não contando o conjurador) sofre um ataque mágico elemental +5.",
+        "Este é o ápice da destruição flamejante - a magia mais brutal e devastadora que um Mago Flamejante pode conjurar. O mago ergue os braços ao céu e grita uma palavra de poder, e o mundo EXPLODE em chamas. Um inferno apocalíptico irrompe ao redor dele, uma tempestade de fogo que incinera TUDO. Chamas brancas e amarelas rugem em todas as direções, a temperatura sobe a níveis insuportáveis, e tudo não protegido é consumido em uma conflagração cegante. O próprio ar queima.\n\nToda figura em uma área de até 8cm do conjurador (mas não contando o conjurador, protegido no olho da tempestade flamejante) sofre um ataque mágico elemental +5 - aniquilação pura.",
     },
     {
       name: "Chama de Uzhul",
       castingNumber: 12,
       range: "Linha de Visão",
       effect:
-        "Você arremessa um raio de fogo em um oponente a até 40cm e linha de visão.\n\nO conjurador faz um ataque a distância mágico elemental +7 contra o alvo.",
+        "O mago aponta com ambas as mãos para sua vítima e libera o poder destrutivo de Uzhul, o senhor do fogo. Um raio concentrado de chamas brancas super-aquecidas dispara como uma lança incandescente, perfurando o ar com um rugido ensurdecedor. Não é uma chama que se espalha - é um golpe preciso e devastador, focado em pura destruição. O que atingir será incinerado.\n\nO conjurador faz um ataque a distância mágico elemental +7 contra um alvo a até 40cm e linha de visão - um golpe flamejante de poder brutal.",
     },
     {
       name: "Escudo de Aqshy",
       castingNumber: 10,
       range: "Apenas o Conjurador",
       effect:
-        "Você se envolve com correntes do Vento Vermelho, que o protegem contra ataques.\n\nO conjurador forma um escudo flutuante que absorve os próximos 3 pontos de dano que o conjurador normalmente sofreria em combate ou de um ataque a distância. Uma vez que 3 pontos tenham sido absorvidos, a magia é cancelada. Um conjurador só pode ter um Escudo de Aqshy ativo por vez.",
+        "O mago envolve-se em uma aura ondulante de chamas protetoras. Correntes do Vento Vermelho giram ao seu redor como serpentes flamejantes, formando uma barreira ardente. Quando golpes ou flechas se aproximam, as chamas saltam para interceptá-los, vaporizando projéteis e queimando lâminas antes que possam alcançar carne. O calor é intenso - inimigos próximos recuam instintivamente, e o ar estala com energia incandescente.\n\nO conjurador forma um escudo flutuante de fogo que absorve os próximos 3 pontos de dano que o conjurador normalmente sofreria em combate ou de um ataque a distância. Uma vez que 3 pontos tenham sido absorvidos, as chamas se extinguem e a magia é cancelada. Um conjurador só pode ter um Escudo de Aqshy ativo por vez.",
     },
   ];
 

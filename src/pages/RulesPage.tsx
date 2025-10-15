@@ -27,6 +27,7 @@ function RulesPage() {
   const navigate = useNavigate();
 
   const sections = [
+    { id: "atributos-e-rolagens", label: "Atributos e Rolagens", type: "Seção" },
     { id: "criacao-de-bando", label: "Criação de Bando", type: "Seção" },
     { id: "sistema-de-combate", label: "Sistema de Combate", type: "Seção" },
     { id: "acoes", label: "Ações", type: "Seção" },
@@ -105,7 +106,7 @@ function RulesPage() {
           {/* Seções de Regras - A serem preenchidas */}
           <Box sx={{ mt: 6 }}>
             <PowerListTitle sx={{ mb: 3, fontSize: "1.8rem" }}>
-              📜 Índice de Regras
+              Índice de Regras
             </PowerListTitle>
 
             <ParchmentText
@@ -121,10 +122,138 @@ function RulesPage() {
               </em>
             </ParchmentText>
 
+            {/* Atributos e Rolagens */}
+            <Box sx={{ mt: 4, mb: 6 }} id="atributos-e-rolagens">
+              <PowerListTitle sx={{ fontSize: "1.8rem", mb: 3 }}>
+                Atributos e Rolagens
+              </PowerListTitle>
+
+              <ParchmentText sx={{ mb: 3 }}>
+                Em Mordheim, o destino é decidido pelo rolar de dados. Cada combate, cada disparo, cada magia conjurada - tudo depende de rolagens contra números frios e implacáveis. Sobreviver requer entender não apenas as regras, mas os próprios ossos que as governam.
+              </ParchmentText>
+
+              {/* O Dado */}
+              <Box
+                sx={{
+                  mt: 4,
+                  mb: 3,
+                  p: 3,
+                  backgroundColor: "rgba(139, 115, 85, 0.1)",
+                  borderLeft: "4px solid #d4af37",
+                }}
+              >
+                <ParchmentText sx={{ fontSize: "1.2rem", fontWeight: 600, mb: 2, color: "#d4af37" }}>
+                  O Dado de Vinte Faces
+                </ParchmentText>
+                <ParchmentText>
+                  Sempre que o jogo especificar uma <strong>rolagem</strong>, você rola um <strong>d20</strong> (dado de 20 lados). Este único dado determina sucesso e falha, vida e morte. Um 20 natural é triunfo absoluto. Um 1 natural é desastre catastrófico. Entre eles, toda a gama de possibilidades mortais.
+                </ParchmentText>
+              </Box>
+
+              {/* Atributos */}
+              <Box
+                sx={{
+                  mt: 4,
+                  mb: 3,
+                  p: 3,
+                  backgroundColor: "rgba(139, 115, 85, 0.1)",
+                  borderLeft: "4px solid #d4af37",
+                }}
+              >
+                <ParchmentText sx={{ fontSize: "1.2rem", fontWeight: 600, mb: 2, color: "#d4af37" }}>
+                  Os Atributos
+                </ParchmentText>
+                <ParchmentText sx={{ mb: 2 }}>
+                  Cada guerreiro em Mordheim é definido por seus <strong>atributos</strong> - números que separam veteranos de cadáveres, heróis de tolos:
+                </ParchmentText>
+                <ParchmentText sx={{ ml: 3, mb: 1 }}>
+                  • <strong>Agilidade:</strong> Quantos centímetros você se move por ação. A diferença entre alcançar cobertura e sangrar no meio da rua.
+                </ParchmentText>
+                <ParchmentText sx={{ ml: 3, mb: 1 }}>
+                  • <strong>Ímpeto:</strong> Modificador adicionado a rolagens de combate corpo a corpo. Separa veteranos de recrutas.
+                </ParchmentText>
+                <ParchmentText sx={{ ml: 3, mb: 1 }}>
+                  • <strong>Precisão:</strong> Modificador adicionado a rolagens de ataque a distância. Mata antes de ser alcançado.
+                </ParchmentText>
+                <ParchmentText sx={{ ml: 3, mb: 1 }}>
+                  • <strong>Armadura:</strong> Número alvo que ataques devem superar para causar dano. Quanto maior, mais difícil perfurar sua pele.
+                </ParchmentText>
+                <ParchmentText sx={{ ml: 3, mb: 1 }}>
+                  • <strong>Vontade:</strong> Modificador para resistir terror, magia, e a tentação de fugir. Mente forte em corpo que pode não durar.
+                </ParchmentText>
+                <ParchmentText sx={{ ml: 3, mb: 1 }}>
+                  • <strong>Vigor:</strong> Quanto dano você aguenta antes de cair. Quando chega a zero, você tomba.
+                </ParchmentText>
+              </Box>
+
+              {/* Como Rolar */}
+              <Box
+                sx={{
+                  mt: 4,
+                  mb: 3,
+                  p: 3,
+                  backgroundColor: "rgba(139, 115, 85, 0.1)",
+                  borderLeft: "4px solid #d4af37",
+                }}
+              >
+                <ParchmentText sx={{ fontSize: "1.2rem", fontWeight: 600, mb: 2, color: "#d4af37" }}>
+                  Rolagens de Atributo
+                </ParchmentText>
+                <ParchmentText sx={{ mb: 2 }}>
+                  Quando o jogo pedir para rolar um atributo, o processo é simples mas mortal:
+                </ParchmentText>
+                <ParchmentText sx={{ mb: 2, ml: 2, fontFamily: '"Courier New", monospace', color: "#d4af37", fontSize: "1.1rem" }}>
+                  <strong>Rolagem = d20 + Atributo</strong>
+                </ParchmentText>
+                <ParchmentText sx={{ mb: 2 }}>
+                  Em geral, essas rolagens são feitas contra uma <strong>Classe de Dificuldade (CD)</strong>. Se sua rolagem <strong>superar ou igualar</strong> esse número, você tem sucesso. Se ficar abaixo, você falha.
+                </ParchmentText>
+                <ParchmentText sx={{ fontStyle: "italic", color: "#c4a870" }}>
+                  <strong>Exemplo:</strong> Um guerreiro com Vontade 12 precisa resistir a terror (CD 14). Ele rola um 5 no d20. Sua rolagem total é 5 + 12 = 17. Como 17 supera 14, ele resiste ao terror e mantém sua posição. Se tivesse rolado 1, sua rolagem seria 1 + 12 = 13 - insuficiente. Ele fugiria em pânico.
+                </ParchmentText>
+              </Box>
+
+              {/* Rolagens Opostas */}
+              <Box
+                sx={{
+                  mt: 4,
+                  mb: 3,
+                  p: 3,
+                  backgroundColor: "rgba(139, 115, 85, 0.1)",
+                  borderLeft: "4px solid #d4af37",
+                }}
+              >
+                <ParchmentText sx={{ fontSize: "1.2rem", fontWeight: 600, mb: 2, color: "#d4af37" }}>
+                  Rolagens Opostas
+                </ParchmentText>
+                <ParchmentText>
+                  Algumas situações colocam guerreiros diretamente uns contra os outros. Em <strong>rolagens opostas</strong>, ambos os lados rolam d20 + atributo relevante. O resultado maior vence. Em caso de empate, nada acontece - golpes bloqueados, esforços anulados, destino indeciso.
+                </ParchmentText>
+              </Box>
+
+              <ParchmentText
+                sx={{
+                  mt: 3,
+                  p: 3,
+                  border: "2px solid rgba(139, 115, 85, 0.4)",
+                  borderRadius: "4px",
+                  backgroundColor: "rgba(28, 24, 18, 0.4)",
+                  fontStyle: "italic",
+                  textAlign: "center",
+                  color: "#c4a870",
+                }}
+              >
+                "Os dados não mentem. Role alto ou morra. É assim simples, assim brutal."
+                <br />
+                <br />
+                — Gunther, o Veterano
+              </ParchmentText>
+            </Box>
+
             {/* Criação de Bando */}
             <Box sx={{ mt: 4, mb: 6 }} id="criacao-de-bando">
               <PowerListTitle sx={{ fontSize: "1.8rem", mb: 3 }}>
-                ⚔️ Criação de Bando
+                Criação de Bando
               </PowerListTitle>
 
               <ParchmentText sx={{ mb: 3 }}>

@@ -16,95 +16,95 @@ export default function LoreOfTheBigWaaaghPage() {
 
   const spells = [
     {
-      name: "'Ard as Nails",
+      name: "DURO COMO PREDA",
       castingNumber: 16,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        "The target receives +3 Armour for the rest of the game. This may not take a figure above Armour 15 (i.e. figures with Armour 13 go to Armour 14). Multiple castings of 'Ard as Nails on the same target have no effect.",
+        "O Xamã berra umas palavra esquisita e a energia verde do WAAAGH! gruda no pele do muleque. Oxe, o cabra fica duro que só vendo! A pele engrossa que nem couro de bode véi, os músculo tudo incha, e os osso fica mais pesado que bigorna de ferreiro. Qualé, tenta bater agora pra vê se amolece!\n\nO alvo recebe +3 Armadura pro resto do jogo - fica duro que só. Mas num passa de Armadura 15 não (tipo, se tiver 13 vai pra 14). E óia, jogar essa magia no mesmo cabra de novo num adianta não, viu? Já tá duro que é o que dá.",
     },
     {
-      name: "Brain Busta",
+      name: "LASCA COCO",
       castingNumber: 18,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        'The spellcaster makes a +7 elemental magic shooting attack against a target figure within 16" and line of sight. A target hit by this attack gains a Stun Token.',
+        'O Xamã aponta pro inimigo e libera uma bola de energia verde que VUM direto na moleira do coitado! Rapaz, é uma porrada mental que deixa o cabra abestado! O muleque fica tonto, tonto, vendo estrela, sem saber se é dia ou se é noite. O coco quase LASCA de verdade, visse? Fica todo atordoado, sem prestar em nada.\n\nO conjurador faz um ataque a distância mágico elemental +7 contra um alvo a até 40cm e linha de visão. Se acertar, o desgraçado ganha um marcador de Atordoamento - ficou lelé da cuca!',
     },
     {
-      name: "Get em' boys",
+      name: "BORA MANCHU",
       castingNumber: 16,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        "The target receives +3 Fight. Multiple Get em' Boys spells on the same target have no effect.",
+        "O Xamã urra bem alto: 'UMBORA PEGAR ESSE CORNO, RAPAZIADAAAA!', rapaz, os cabra fica tudo doido, viu? Os ói brilha verde, os dente range, e uma vontade de meter a peia que só vendo! Fica tudo empiladíssim, querendo é QUEBRAR o inimigo no meio! É o poder do WAAAGH! deixando os cabra tudo agoniado pra briga!\n\nO alvo recebe +3 Ímpeto - fica brigão que só ele! Mas óia, gritar isso de novo pro mesmo cabra num adianta não. Já tá empiladão que chega."
     },
     {
-      name: "Da Krunch (or Da Foot o' Gork)",
+      name: "A PORRADA",
       castingNumber: 20,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        'The caster makes a +6 elemental magic shooting attack against a target within 16". This attack does +5 damage. In addition, all figures in contact with the target figure also suffer a +2 elemental magic shooting attack that does +5 damage. Any figure that suffers damage from these attacks is immediately moved 4" in a random direction.',
+        'O Xamã invoca o PÉ GIGANTE de Padim Gork (ou será de Mork? Sei lá, os dois é foda memo!) que DESCE DO CÉU e ESTORA o inimigo! Macho do céu, é uma pisada que amassa é tudo, carai! O chão CHACOALHA, o ar É TORADO, e os home tudo voa pros lado que nem saco de bosta! Até quem tá perto do coitado toma na cara também - a pancada é tão forte que espalha pra todo mundo!\n\nO conjurador faz um ataque a distância mágico elemental +6 contra um alvo a até 40cm. Esse ataque causa +5 de dano - é PORRADÃO memo! Além disso, toda figura em contato com o alvo também toma um ataque a distância mágico elemental +2 que causa +5 de dano. Qualquer figura que sofrer dano desses ataque é imediatamente movida 10cm em direção aleatória - saiu voando, viu?',
     },
     {
-      name: "'Eadbutt",
+      name: "MARRADA",
       castingNumber: 18,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        "Make a +6 non-magic shooting attack against the target figure. If it hits, the target immediately suffers -3 Armour (to a minimum of 10) for the purposes of this attack only. Furthermore, in addition to any damage taken due to this attack, move the target figure back in a straight line away from the spellcaster a number of inches equal to the damage taken, or until the figure hits a terrain feature more than 1\" tall.",
+        "O Xamã baixa a cabeça e CORRE que nem macho doido! Mas pera aí - ele num tá correndo de verdade não. É tipo uma marrada DI MINTIRINHA que voa pelo ar! Uma cabeçada invisível voa direto pro inimigo e TOME! Meta uma marrada dessas no capacete de qualquer um e vê o que acontece - o metal amassa, a armadura racha, e o cabra sai voando pra trás que nem foi chutado por jegue brabo!\n\nFaça um ataque a distância não-mágico +6 contra o alvo. Se acertar, o alvo imediatamente sofre -3 Armadura (mínimo de 10) só pra esse ataque - a marrada amassou tudo! Além disso, além de qualquer dano sofrido, o alvo é empurrado pra trás em linha reta, se afastando do conjurador, uma quantidade de centímetros igual ao dano sofrido vezes 2, ou até bater num terreno maior que 3cm de altura.",
     },
     {
-      name: "'Eadsquisha",
+      name: "PAPOCA QUENGO",
       castingNumber: 24,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        'This spell targets a figure within 8". The target must make a Will Roll with a Target Number equal to the Casting Roll or be immediately reduced to 0 Health. All figures may empower their Will Roll to resist this spell, even non-spellcasters. The spellcaster immediately loses 1 Health upon attempting this spell (even if it is cast successfully), in addition to any loss incurred by failure or empowerment. This spell has no effect on undead or constructs. If a creature dies under the effect of this spell, the caster can choose another target figure within 3\'\' of the primary target figure. That figure is also subjected to this spell effects.',
+        'ESSA É A MAGIA MAIS MASSA DO XAMÃ! O velho aponta e PAPOCA o quengo do inimigo com o PODER DA MENTE! Oxe, a cabeça do cabra É TORADA que nem um sapoti podre! É fei demais! Mas se alua, viu? Fazer isso é um trabai de cornopro Xamã também - ele perde um tiquim de vida só de tentar. E se o coco papocar memo, pode escolher outro pra estourar também se tiver alguém pertim!\n\nAlvo a até 20cm deve fazer Rolagem de Vontade com CD igual à Rolagem de Conjuração ou é IMEDIATAMENTE reduzido a 0 Vigor - estourou o quengo! Todo mundo pode potencializar a Rolagem de Vontade pra resistir, até quem num é feiticeiro. O Xamã perde 1 Vigor SÓ DE TENTAR essa magia (mesmo se funcionar), além de qualquer perda por falha ou potencialização. Num funciona em morto-vivo ou constructo não. Se uma criatura morrer com essa magia, o Xamã pode escolher outro alvo a até 8cm do primeiro - e PAPOCA o quengo dele também!',
     },
     {
-      name: "'Ere We Go!",
+      name: "QUEIMA QUENGARAL",
       castingNumber: 18,
-      range: "Out of Game (B)",
+      range: "Fora de Jogo (B)",
       effect:
-        "If this spellcaster is on the table, its warband may add +4 to its Initiative Rolls for the purposes of determining the primary player only. This spell counts as active on the spellcaster during the game and may be cancelled by anything that cancels spells.",
+        "O Xamã fica berrando e pulando que nem maluco antes da briga começar, enchendo a cuca dos muleque com energia do WAAAGH! 'BORA QUE BORA, CAMBADA! NOIS VAMO QUEBRAR ESSES GALADO NA PEIA! QUEIMA QUENGARAAAAAL' Os verde fica tudo com gastura, agoniado, querendo é se meter no mei da xinxa! Isso deixa os cabra tudo mais rápido que num sei o que.\n\nSe o Xamã tiver na mesa, o bando dele adiciona +4 nas Rolagem de Iniciativa só pra determinar o jogador primário. Essa magia conta como ativa no Xamã durante o jogo e pode ser cancelada por qualquer coisa que cancele magia.",
     },
     {
-      name: "'Da Evil Sun",
+      name: "SOL QUENTE DA DESGRACA",
       castingNumber: 18,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        'The spellcaster selects an enemy figure within 16" and line of sight and hurls a sphere of pure fire at it. The target and every figure within 1" and line of sight of the target immediately suffers a +7 elemental magic shooting attack. Roll this shooting attack separately for each figure. Treat the target figure as the origin of the attack for the purposes of determining cover or intervening terrain for all other figures suffering the attack. This spell may not target an enemy figure that is even partially obscured by another figure.',
+        'O Xamã faz uma bola de FOGO VERDE que é quente que nem sol do meio-dia, só que pior! Ele arremessa essa bola ardente no inimigo e ela papoca que é um carai! Todo mundo perto toma quintura também - é calor qie nem presta, macho. Mas óia, tem que ter visão limpa do desgraçado. Se tiver outro na frente atrapalhando, num dá pra jogar não.\n\nO conjurador seleciona um inimigo a até 40cm e linha de visão e arremessa uma esfera de fogo puro. O alvo e toda figura a até 3cm e linha de visão do alvo imediatamente sofrem um ataque a distância mágico elemental +7 - QUEIMA TUDO! Role o ataque separado pra cada figura. Trate o alvo como origem do ataque pra determinar cobertura pros outros. Essa magia num pode mirar em inimigo que tá nem que seja um cadim escondido por outra figura.',
     },
     {
-      name: "Go For Da 'Ead, Boyz!",
+      name: "PORRADA NA PLEURA, CARAI",
       castingNumber: 14,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        "This spell can be cast on a melee weapon. If a figure hits with this weapon, treat its opponent as having Armour -5 (to a minimum of 10).",
+        "O Xamã cospe na arma do muleque e ela fica BRILHANDO! 'VAI LÁ E METE LOGO NA PLEURA DELE, CABRA!' A arma fica carregada com energia bruta do WAAAGH! - não é pra cortar não, é pra ESMAGAR direto onde dói mais! Mira na moleira, na costela, no figado - onde for que a armadura num tá protegendo direito!\n\nEssa magia pode ser conjurada numa arma corpo a corpo. Na próxima vez que a figura acertar com essa arma, trate o oponente como tendo Armadura -5 (mínimo de 10) - a porrada ignora a proteção!",
     },
     {
-      name: "Choppa of Gork",
+      name: "PEIXEIRA DE PADIM GORK",
       castingNumber: 16,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        "This spell is cast upon a melee weapon. The next time the figure wielding this weapon wins a round of combat and does at least 1 point of damage, this weapon inflicts an additional 5 points of elemental magic damage. If cast on a normal weapon, which is then used against a creature that is Immune to Normal Weapons, this weapon will only deal the 5 points of elemental magic damage.",
+        "O Xamã benze a arma com a energia verde do WAAAGH! e ela vira praticamente a PEIXEIRA do próprio Padim Gork! A lâmina brilha que nem raio verde, fica sedenta, querendo é CORTAR! Quando o cabra acerta o inimigo com essa belezura, meu amigo, a arma NUM APENAS corta - ela EXPLODE com poder divino ork! É talho e porrada junto, tudo de uma vez!\n\nEssa magia é conjurada numa arma corpo a corpo. Na próxima vez que a figura empunhando essa arma vencer uma rodada de combate e causar pelo menos 1 ponto de dano, essa arma inflige 5 pontos ADICIONAIS de dano mágico elemental - é o poder de Gork memo! Se conjurada numa arma normal usada contra criatura Imune a Armas Normais, a arma causará só os 5 pontos de dano mágico elemental.",
     },
     {
-      name: "Gaze of Mork",
+      name: "ÓIADA DE PADIM MORK",
       castingNumber: 14,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        "Draw a straight line from the spellcaster to any point on the table. Make a +6 elemental magic shooting attack against any figures along that line that are not completely concealed by cover.",
+        "O Xamã olha fixo pra frente e os ZÓI DELE BRILHA VERDE QUE NEM LAMPARINA! Aí sai um RAIO VERDÃO dos óião do velho que torra tudo que tá na frente! É a bizoiada de Padim Mork, rapaz - quando Mork tá olhando pra você, é melhor se tu sair do mei, viu? O raio passa reto queimando todo corno que tá na linha de tiro. Manchu, é tipo um relâmpago verde que num desvia de nada!\n\nTrace uma linha reta do conjurador até qualquer ponto na mesa. Faça um ataque a distância mágico elemental +6 contra qualquer figura ao longo dessa linha que NÃO esteja completamente escondida por cobertura - o raio pega tudim!",
     },
     {
-      name: "Hand o' Gork",
+      name: "PEIA DE PADIM GORK",
       castingNumber: 18,
-      range: "Line of Sight",
+      range: "Linha de Visão",
       effect:
-        'This spell may target any figure within 12". Move that figure 4" in a random direction. A figure may make a Will Roll with a Target Number equal to the Casting Roll in order to resist this spell. If successful, the figure does not move. Uncontrolled creatures will always attempt this Will Roll.',
+        'Uma MÃO GIGANTE INVISÍVEL de Padim Gork aparece do nada e DÁ UM TAPA no inimigo! Rapaz, é uma mãozada que manda o cabra pra casa do carai! Mas o miserávi pode tentar resistir. Se ele for cabra de vontade forte, consegue ficar no lugar. Mas se num conseguir... vish, sai voando que nem pipa sem linha!\n\nEssa magia pode ter como alvo qualquer figura a até 30cm. Mova essa figura 10cm em direção aleatória - levou um tapão! Uma figura pode fazer Rolagem de Vontade com CD igual à Rolagem de Conjuração pra resistir. Se tiver sucesso, num move não - o cabra é zovudo! Criatura descontrolada sempre vai tentar essa Rolagem de Vontade.',
     },
     {
-      name: "Idol of the WAAAAGH!",
+      name: "ESTAUTA DA WAAAAAAGH!",
       castingNumber: 22,
-      range: "Out of Game (B) or Touch",
+      range: "Fora de Jogo (B) ou Toque",
       effect:
-        'This spell engraves hateful scribbles and snot drawings into a stone surface. This can be the wall of a building or cave, a cliff-face, a statue, or even a free-standing stone. While the caster is within 12" of this stone, it may empower all of its spells and Will Rolls on a 1-for-2 basis (one Health for one increase to the roll) instead of the 1-for-1 that is normal for spellcasters. In addition, the shaman may draw line of sight from the Idol for spellcasting effects. A Shaman may have two of these idols active at any one time, but they must be at least 36" apart. A spellcaster may cancel any casting of this spell at any time. Idols may be destroyed but are immune to non-magic attacks. Treat a idol as Fight +0, Armour 22, Health 1. If this spell is successfully cast before a game, the shaman may place a runic stone anywhere in their deployment zone.',
+        'O Xamã pega uma pedra e começa a RABISCAR ela toda com desenho feio e ranho verde! Faz uns símbolo todo torto de Gork e Mork, cospe nela, MIJA nela (é sério memo, viu?), e fica berrando WAAAGH até a pedra ficar CARREGADA de energia. Pode ser parede de prédio, caverna, penhasco, estátua, ou só uma pedra memo. Aí a pedra vira tipo uma bateria mágica verde arretada! Enquanto o Xamã tá pertinho dela, os feitiço dele fica MAIS FORTE - cada pinguinho de vida que ele usa rende DOBRADO! E olha que doido: o Xamã pode até VER através da pedra pra jogar magia de longe, como se tivesse lá!\n\nEnquanto o conjurador tiver a até 30cm dessa pedra, pode potencializar feitiços e Rolagens de Vontade numa base 1-pra-2 (um Vigor por DOIS ponto na rolagem) ao invés do 1-pra-1 normal - rende dobrado, sô! Além disso, o Xamã pode traçar linha de visão DA PEDRA pra efeito de feitiço. Um Xamã pode ter DUAS dessas pedra ativa ao mesmo tempo, mas tem que tá pelo menos 90cm uma da outra - senão as energia se atropela. Pode cancelar a magia quando quiser. As pedra pode ser quebrada mas é imune a ataque não-mágico - tem que ser magia memo pra quebrar. Trate a pedra como Ímpeto +0, Armadura 22, Vigor 1. Se conjurada antes do jogo, pode botar a pedra em qualquer lugar da zona de implantação do Xamã.',
     },
   ];
 
@@ -123,17 +123,17 @@ export default function LoreOfTheBigWaaaghPage() {
               mb: 3,
             }}
           >
-            💚 DA POWER OF GORK AN' MORK!
+            💚 O PODER DE GORK E MORK!
           </ParchmentText>
 
           <ParchmentText sx={{ mb: 4 }}>
-            The Lore of the Big WAAAGH! is the brutal, primal magic of the Greenskins.
-            Powered by the collective psychic energy of Gork (who is brutally cunning)
-            and Mork (who is cunningly brutal), these spells manifest as raw destructive
-            force. Orc Shamans channel the WAAAGH! energy that builds up when Orcs and
-            Goblins gather in large numbers, turning it into devastating magical attacks
-            that can crush heads, throw enemies around like ragdolls, and make da boyz
-            even 'arder than usual. WAAAGH!
+            A Tradição do Grande WAAAGH! é a magia brutona e primitiva dos Pele-Verde,
+            viu? É alimentada pela energia psíquica coletiva de Gork (que é brutão mas
+            esperto) e Mork (que é esperto mas brutão). Quando os Ork e Goblin se junta
+            tudo num bando só, a energia do WAAAGH! vai crescendo, crescendo, até que
+            os Xamã consegue pegar ela e transformar ela numa puta duma magia! É porrada
+            psíquica que esmaga quengo, joga inimigo pros lado que nem boneca de pano,
+            e deixa os cabra ainda mais casca grossa! WAAAGH!
           </ParchmentText>
 
           <PowerListTitle>Feitiços da Tradição do Grande WAAAGH!</PowerListTitle>
