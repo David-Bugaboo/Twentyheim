@@ -48,7 +48,7 @@ export default function DaemonicPactsPage() {
             }}
           >
             <PowerListTitle sx={{ color: "#ff6b6b", mt: 0 }}>
-              ⚠️ O Preço do Poder
+              O Preço do Poder
             </PowerListTitle>
 
             <ParchmentText>

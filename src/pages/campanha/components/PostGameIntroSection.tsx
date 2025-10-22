@@ -1,7 +1,7 @@
 import CollapsibleSection from "../../../components/CollapsibleSection";
 import MobileText from "../../../components/MobileText";
 
-function PostGameIntroSection() {
+const PostGameIntroSection = () => {
   return (
     <CollapsibleSection id="sequencia-pos-jogo" title="Sequência Pós Jogo">
       <MobileText className="mb-4">
@@ -22,6 +22,6 @@ function PostGameIntroSection() {
       </div>
     </CollapsibleSection>
   );
-}
+};
 
 export default PostGameIntroSection;

@@ -1,13 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import GameText from "./GameText";
+import KeywordContainer from "./KeywordContainer";
 
 interface SpellCardProps {
   id?: string;
   name: string;
   school: string;
   castingNumber: number;
-  range: string;
+  keywords: string[];
   effect: string;
 }
 
@@ -101,7 +102,7 @@ function SpellCard({
   name,
   school,
   castingNumber,
-  range,
+  keywords,
   effect,
 }: SpellCardProps) {
   return (
@@ -117,8 +118,8 @@ function SpellCard({
           <SpellMetaValue>{castingNumber}</SpellMetaValue>
         </SpellMetaRow>
         <SpellMetaRow>
-          <SpellMetaLabel>ALVOS</SpellMetaLabel>
-          <SpellMetaValue>{range}</SpellMetaValue>
+          <SpellMetaLabel>PALAVRAS-CHAVE</SpellMetaLabel>
+          <KeywordContainer keywords={keywords} />
         </SpellMetaRow>
       </SpellMetaContainer>
       <GameText component={SpellText}>{effect}</GameText>

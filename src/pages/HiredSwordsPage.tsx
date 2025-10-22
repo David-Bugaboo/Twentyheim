@@ -1,199 +1,135 @@
-import { Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-
-import Header from "../components/Header";
+import PageTitle from "../components/PageTitle";
+import MobileText from "../components/MobileText";
+import MobileSection from "../components/MobileSection";
+import HeaderH1 from "../components/HeaderH1";
+import HeaderH2 from "../components/HeaderH2";
+import HeaderH3 from "../components/HeaderH3";
+import CornerDecoration from "../components/CornerDecoration";
 import UnitCard from "../components/UnitCard";
 import slugify from "slugify";
-import WarbandIndex from "../components/WarbandIndex";
-import {
-  PageContainer,
-  ContentSection,
-  NavigationSection,
-  StyledNavigationButton,
-  ContentContainer,
-  ParchmentText,
-  QuoteBox,
-  QuoteAttribution,
-} from "../components/PageComponents";
 
 const hiredSwords = [
   {
-    name: "Dwarf Ogreslayer",
-    role: "Hero",
+    name: "Mata Trolls Anão",
+    role: "Herói",
     stats: {
       move: 4,
+      fight: "+4",
+      shoot: "0",
+      armour: 11,
+      will: "+4",
+      health: 20,
+      cost: "100 coroas",
+      upkeep: "nível +10%",
+    },
+    abilities: [
+      {
+        name: "Jurado de Morte",
+        description:
+          "O Mata Trolls anão é Imune a Aterrorizante e tem a característica Mente-Férrea.",
+      },
+      {
+        name: "Fúria Implacável",
+        description:
+          "No começo de cada uma de suas ativações, o Mata Trolls anão pode fazer um teste de vontade com CD 16. Se tiver sucesso, até o fim de sua ativação ele tem um dentre estes bônus: +4 de movimento, +2 de Ímpeto, +2 de Vontade.",
+      },
+    ],
+  },
+  {
+    name: "Patrulheiro Asrai",
+    stats: {
+      move: 7,
+      fight: "+2",
+      shoot: "+2",
+      armour: 9,
+      will: "+5",
+      health: 12,
+      cost: "100 coroas",
+      upkeep: "nível +10%",
+    },
+    abilities: [
+      {
+        name: "Movimento Gracioso",
+        description:
+          "Não gasta movimento extra ao se mover através de terreno difícil ou escalar. Pode pular sem movimento inicial. Tem a característica Furtividade(12)",
+      },
+      {
+        name: "Batedor",
+        description: `No começo do jogo, depois que todas as figuras foram posicionadas, e a iniciativa rolada, o Patrulheiro Asrai e até 3 figuras em contato de base com ele podem se mover até 8cm. As figuras devem terminar o movimento em contato de base. `,
+      },
+      {
+        name: "Explorador Experiente",
+        description: `Um bando com o Patrulheiro Asrai ganha +4 em qualquer rolagem de exploração.`,
+      },
+      {
+        name: "Restrições de Contratação",
+        description:
+          "Só podem ser contratados por bandos de humanos, homens lagarto, elfos silvanos e altos elfos. Caçadores de tesouro anões podem contratar, mas pagam Nível + 20% de todo lucro obtido como manutenção devido a velhos rancores.",
+      },
+    ],
+  },
+  {
+    name: "Batedor Nanico",
+    stats: {
+      move: 8,
+      fight: "+0",
+      shoot: "+3",
+      armour: 9,
+      will: "+4",
+      health: 8,
+      cost: "100 coroas",
+      upkeep: "nível +5%",
+    },
+    abilities: [
+      {
+        name: "Agilidade dos Minúsculos",
+        description:
+          "Uma figura só pode fazer um ataque a distância contra um batedor nanico se ele for a figura mais próxima do atirador, ou se estiver em uma posição mais alta. Pode andar antes de atirar sem nenhuma penalidade.",
+      },
+      {
+        name: "Mestre da Furtividade",
+        description:
+          "O bando do Batedor Nanico ganha +3 nas rolagens de iniciativa.",
+      },
+      {
+        name: "Restrições de Contratação",
+        description:
+          "Pode ser contratado por qualquer bando que não seja Skaven, Mortos-Vivos, Culto dos Possuídos, e Orcs.",
+      },
+    ],
+  },
+  {
+    name: "Guarda Costas Ogro",
+    stats: {
+      move: 5,
       fight: "+4",
       shoot: "0",
       armour: 12,
-      will: "+4",
-      health: 20,
-      cost: "200gc + 10% upkeep",
-    },
-    abilities: [
-      {
-        name: "Equipment",
-        description:
-          "Dwarven Great Axe or 2 Dwarf Axes, Ogre Pelt(+1 to armour, already in statblock)",
-      },
-      {
-        name: "Deathwish",
-        description:
-          "A Dwarf Trollslayer is immune to Fear and has the Mind Lock trait.",
-      },
-      {
-        name: "Trained to Destroy",
-        description: "The Dwarf Ogreslayer have the Strong trait.",
-      },
-    ],
-  },
-  {
-    name: "Elf Ranger",
-    stats: {
-      move: 7,
-      fight: "+2",
-      shoot: "+2",
-      armour: 10,
-      will: "+2",
-      health: 12,
-      cost: "200gc + 10%",
-    },
-    abilities: [
-      {
-        name: "Equipment",
-        description: "Asrai Longbow, Dagger, Light armour.",
-      },
-      {
-        name: "Forest Ghost",
-        description:
-          'Suffers no movement penalties in rough terrain. A Figure cannot draw line of sight to the Elf Ranger while further than 16" away or in any kind of cover.',
-      },
-      {
-        name: "Combat Scouting",
-        description: `Furthermore, at the start of the game, after both sides have set up, but before the first Initiative Rolls, a player with a
-        Elf Ranger may move it and one other figure in base-to-base contact with it up to 3".
-        The Elf Ranger and the other figure must remain in base-to-base contact at the end
-        of this move. If more than one player has a Elf Ranger in their crew, they are each
-        allowed to make this special move and should do so in the reverse order to which they
-        deployed their crews (so, the player who set up first would be the last to move his
-        Elf Ranger).`,
-      },
-      {
-        name: "Hiring Restrictions",
-        description:
-          "May be hired by Mercenaries and Witch Hunters. Cannot be hired by Undead, Skaven, Orcs, Lizardmen, or Cult of the Possessed. Dwarf Treasure Hunters may hire at 20% upkeep (old grudges).",
-      },
-    ],
-  },
-  {
-    name: "Freelancer",
-    stats: {
-      move: 5,
-      fight: "+3",
-      shoot: "+1",
-      armour: 14,
-      will: "+2",
-      health: 14,
-      cost: "250gc + 20%",
-    },
-    abilities: [
-      {
-        name: "Equipment",
-        description: "Lance, Shield, Hand Weapon, Heavy armour, Horse",
-      },
-      {
-        name: "Knight",
-        description:
-          "The Freelancer starts every battle riding a horse. The statblock for the horse and riding rules are in the Spellcaster Magazine #1",
-      },
-      {
-        name: "Warhorse",
-        description:
-          "The Warhorse have the Charger and Aggressive Advanced Horsemanship training bonuses. Check the Spellcaster Magazine #1 to check these bonuses",
-      },
-      {
-        name: "Horse Lodging",
-        description:
-          "A Freelancer takes care of lodging and feeding his own horse. The Stable base upgrade isn't needed. His upkeep is 10% highet to compensate for this.",
-      },
-      {
-        name: "Hiring Restrictions",
-        description:
-          "May be hired by Mercenaries, Witch Hunters, and Dwarf Treasure Hunters. Cannot be hired by Undead, Skaven, Orcs, or Cult of the Possessed.",
-      },
-    ],
-  },
-  {
-    name: "Halfling Scout",
-    stats: {
-      move: 7,
-      fight: "+0",
-      shoot: "+3",
-      armour: 10,
-      will: "+1",
-      health: 8,
-      cost: "150gc + 5%",
-    },
-    abilities: [
-      {
-        name: "Equipment",
-        description: "Short Bow, Dagger.",
-      },
-      {
-        name: "Small",
-        description:
-          "A figure may only make a Shooting Attack against a Halfling Scout if the Halfling Scout is the closest model to it. Spells ignore this ability.",
-      },
-      {
-        name: "Nimble",
-        description: "Takes no Penalties for moving before Shooting.",
-      },
-      {
-        name: "Lucky",
-        description:
-          "Starts each game with a Luck token. May spend the token to reroll any one failed roll of any type.",
-      },
-      {
-        name: "Masterful Guiding",
-        description:
-          "The Halfling Warband gains a +3 bonus to initiative rolls.",
-      },
-      {
-        name: "Hiring Restrictions",
-        description:
-          "May be hired by any warband except Skaven, Undead, Cult of the Possessed, and Orcs.",
-      },
-    ],
-  },
-  {
-    name: "Ogre Bodyguard",
-    stats: {
-      move: 4,
-      fight: "+4",
-      shoot: "0",
-      armour: 14,
       will: "+2",
       health: 18,
-      cost: "175gc + 15%",
+      cost: "200",
+      upkeep: "nível +20%",
     },
     abilities: [
       {
-        name: "Equipment",
-        description: "Two Handed Weapon.",
+        name: "Besta Treinada",
+        description:
+          "O guarda-costas ogro tem as características Grande, Forte e Aterrorizante. Um ogro não pode fazer ativações em grupo mesmo com a Maestria do Tenente. Se um ogro não for ativado junto ao Héroi ou Campeão de um bando ele não pode ativar nesse turno.",
       },
       {
-        name: "Trained Monster",
+        name: "Protetor Poderoso",
         description:
-          "The Ogre Bodyguard have the Large, Strong and Fear traits.",
+          "O guarda-costas ogro pode interceptar figuras inimigas a até 5cm de distância. Quando um ogro vence uma luta, se houver um héroi ou campeão a até 8cm dele, ele pode empurrar a figura inimiga até 8cm ao invés dos 3cm normais.",
       },
       {
-        name: "Hiring Restrictions",
+        name: "Restrições de Contratação",
         description:
-          "May be hired by any warband except Skaven. Requires double upkeep if alignment doesn't match.",
+          "O guarda-costas ogro pode ser contratado por qualquer bando exceto skaven.",
       },
     ],
   },
   {
-    name: "Warlock",
+    name: "Mercador de Araby",
     stats: {
       move: 6,
       fight: "+1",
@@ -201,488 +137,339 @@ const hiredSwords = [
       armour: 10,
       will: "+4",
       health: 10,
-      cost: "130gc + 10%",
+      cost: "100 coroas",
+      upkeep: "nível +10%",
     },
     abilities: [
       {
-        name: "Equipment",
-        description: "Staff.",
+        name: "Conexões no Mercado Negro",
+        description:
+          "Depois de cada jogo em que o Mercador de Araby não foi reduzido a 0 de vida, o bando pode rolar 2 dados extras quando fizer suas Rolagens de Mercado Negro. Ele adiciona um bônus de +3 a essas rolagens de dados extras.",
       },
       {
-        name: "Hedge Mage",
-        description:
-          "The Warlock is a Spellcaster. He starts with the Elemental Bolt, Enchant Weapon and Suggestion spells and may not learn any other spells. He cast these spells at -4.",
+        name: "Mestre do Comércio",
+        description: "O bando compra e vende itens com um desconto de 10%.",
       },
       {
-        name: "Hiring Restrictions",
+        name: "Restrições de Contratação",
         description:
-          "May be hired by any warband except Witch Hunters and Sisters of Sigmar. Good-aligned warbands suffer -1 Will while he's in the warband (corruption).",
+          "O Mercador de Araby pode ser contratado por bandos de mercenários, caçadores de bruxas, caçadores de tesouro anões, elfos silvanos e altos elfos.",
       },
     ],
   },
   {
-    name: "Arabian Merchant",
+    name: "Caça-Bestas",
     stats: {
       move: 6,
-      fight: "+1",
-      shoot: "+0",
-      armour: 10,
-      will: "+2",
-      health: 10,
-      cost: "200gc + 10%",
-    },
-    abilities: [
-      {
-        name: "Equipment",
-        description: "Hand Weapon, Light armour.",
-      },
-      {
-        name: "Mercantile Network",
-        description:
-          "After each game in which the Arabian Merchant was not taken out of action, the warband  may roll two extra dice when rolling Black Market Contacts. He add a +3 Bonus to these extra dice rolls.",
-      },
-      {
-        name: "Trader",
-        description:
-          "The warband sells items at a 20% bonus. The warband buys items at a 10% discount.",
-      },
-      {
-        name: "Hiring Restrictions",
-        description:
-          "May be hired by Mercenaries, Dwarfs, Witch Hunters, Sisters of Sigmar, and Lizardmen.",
-      },
-    ],
-  },
-  {
-    name: "Beast Hunter",
-    stats: {
-      move: 5,
       fight: "+2",
       shoot: "+2",
-      armour: 11,
-      will: "+0",
+      armour: 10,
+      will: "+3",
       health: 12,
-      cost: "200gc + 10%",
+      cost: "100 coroas",
+      upkeep: "nível +10%",
     },
     abilities: [
       {
-        name: "Equipment",
-        description: "hand Weapon, Bow, Quiver, Dagger, Light armour.",
-      },
-      {
-        name: "Trophy Taking",
-        description: `Because of their experience hunting ‘prize animals’ they gain
-       +1 Shoot when shooting at prize animals and +1 Fight when fighting them. Any figures 
-       with the Animal or Large traits count for this skill. Whenever the Beast Hunter kills such
-       a creature, every figure in the warband gains 5XP and an extra 5gc is gained at the end of the game. The Hunter does not 
-       the warband's do not need to pay upkeep to the Beast Hunter in the turn it killed such a creature.
+        name: "Colecionador de Troféus",
+        description: `O caçador de bestas ganha +1 de Ímpeto e +1 de Precisão quando lutar ou fizer ataque a distância contra uma criatura com a característica Animal ou Grande. Dobrando o bonus se a criatura 
+        tiver ambas as habilidades. Quando o caçador de besas mata uma criatura com essas características, ele ganha 10 de XP e o bando ganha 10 coroas.
        `,
       },
       {
-        name: "Trapper",
-        description: "The Beast Hunter have the Set Traps trait.",
+        name: "Armadilheiro",
+        description: `O Caça-Bestas posiciona uma Área de Efeito de Armadilha Pequena em contato de base com ele. Ao posicionar a armadilha, a figura pode escolher entre posicionar uma armadilha de poço ou de espetos.
+        \n Armadilha de Poço: A figura faz um teste de Movimento CD 28. Se não obtiver sucesso, seu movimento encerra e ela é reduzida a 0 ações.
+        \n Armadilha de Espetos: A figura toma um ataque +1.
+        \n O Caça-Bestas só pode ter 3 armadilhas montadas por vez. `,
       },
       {
-        name: "Hiring Restrictions",
+        name: "Restrições de Contratação",
         description:
-          "May be hired by any warband except Skaven, Undead, Orcs, and Cult of the Possessed.",
+          "O Caça-Bestas pode ser contratado por qualquer bando que não seja Skaven, Cortes Vampiricas, Horda Orc, e Culto dos Possuídos.",
       },
     ],
   },
   {
-    name: "Highwayman",
-    stats: {
-      move: 7,
-      fight: "+3",
-      shoot: "+2",
-      armour: 11,
-      will: "+2",
-      health: 12,
-      cost: "200gc + 20%",
-    },
-    abilities: [
-      {
-        name: "Equipment",
-        description: "2 Pistols, Hand Weapon, Leather armour, Horse",
-      },
-      {
-        name: "Ambusher",
-        description:
-          'During deployment, may me placed anywhere on the table further than 6" of enemy figures and outside of line of sight of every enemy figure. ',
-      },
-      {
-        name: "Mobile Bandit",
-        description:
-          "The Highwayman starts every battle riding a horse. The statblock for the horse and riding rules are in the Spellcaster Magazine #1",
-      },
-      {
-        name: "Draft Horse",
-        description:
-          "The horse have the Surefooted Advanced Horsemanship training bonus. Check the Spellcaster Magazine #1 to check these bonuses",
-      },
-      {
-        name: "Horse Lodging",
-        description:
-          "A Highwayman takes care of lodging and feeding his own horse. The Stable base upgrade isn't needed. His upkeep is 10% highet to compensate for this.",
-      },
-      {
-        name: "Quick Draw",
-        description:
-          'May make a Shooting Attack and Fight attack during the same activation. He may move 3" as an free action between both attacks. This movement may be used to enter combat, but not to leave the table.',
-      },
-      {
-        name: "No honor between thieves",
-        description:
-          "A Highwayman, despite all his skill and bravado, is not to be trusted. At the end of each battle roll a D20, on a roll of a 1-5 the warband loses 1 Wyrdstone Shard than they would normally as the Highwayman has stolen it for himself (this Wyrdstone Shard is lost!). Obviously, if this keeps happening it will be up to warband leader to keep the Highwayman in his employ or not.",
-      },
-      {
-        name: "Hiring Restrictions",
-        description:
-          "May be hired by any warband except Sisters of Sigmar and Witch Hunters.",
-      },
-    ],
-  },
-  {
-    name: "Imperial Assassin",
+    name: "Assassino Mercenário",
     stats: {
       move: 7,
       fight: "+2",
       shoot: "+0",
       armour: 10,
-      will: "+2",
+      will: "+4",
       health: 10,
-      cost: "150gc + 10%",
+      cost: "100 coroas",
+      upkeep: "nível +10%",
     },
     abilities: [
       {
-        name: "Equipment",
-        description: "Two Daggers, Light armour.",
-      },
-      {
-        name: "Black Lotus coated Blades",
-        description: "The Imperial Assassin has the Poison trait.",
-      },
-      {
-        name: "Stealth",
+        name: "Laminas Envenenadas",
         description:
-          'Enemies cannot draw line of sight to the Imperial Assassin while further than  12" away.',
+          "Se o assassino estiver usando apenas adagas, espadas, arcos, bestas de mão, ou bestas, ele tem a característica Venenoso.",
       },
       {
-        name: "Backstabber",
-        description: `Imperial Assassins gain an additional +2 to their Fight if they are already receiving
-a bonus from one or more supporting figures (so, an assassin with 1 supporting figure
-would gain a +4 modifier). However, assassins themselves never count as a supporting
-figure for anyone else, even members of their own warband.`,
-      },
-      {
-        name: "Rapelling Death",
-        description: `Once per game, if not in combat, the Assasin may as an action, be removed from the table. Then,
-        during its next activation, as an action, it may then be positioned at any point that is not within 8" of an enemy figure and outside of every enemy figure line of sight. If a enemy figure is outside of light of sight of every other figure of it's warband, the Assassin may be setup in combat with it.`,
-      },
-      {
-        name: "Hiring Restrictions",
+        name: "Apunhalador pelas Costas",
         description:
-          "May be hired by any warband except Witch Hunters, Sisters of Sigmar, Orcs, and Skaven.",
+          "O assassino imperial tem Furtividade(12). Assassinos Imperials ganham um bonus de +1 em Ímpeto e Precisão sempre que fazem ataques com uma figura que também esteja em combate com outra figura.",
+      },
+
+      {
+        name: "Restriçòes de Contratação",
+        description:
+          "O Assassino Mercenário pode ser contratado por qualquer bando que não seja Caçadores de Bruxas, Irmãs de Sigmar, Horda Orc, e Skaven.",
       },
     ],
   },
   {
-    name: "Roadwarden",
-    stats: {
-      move: 5,
-      fight: "+3",
-      shoot: "+0",
-      armour: 13,
-      will: "+2",
-      health: 14,
-      cost: "200gc + 20%",
-    },
-    abilities: [
-      {
-        name: "Equipment",
-        description: "Hand Weapon, Hand Crossbow, Heavy armour, Horse",
-      },
-      {
-        name: "Roadwarden",
-        description:
-          "The Roadwarden starts every battle riding a horse. The statblock for the horse and riding rules are in the Spellcaster Magazine #1",
-      },
-      {
-        name: "Stalwart Horsemanship",
-        description:
-          "The Warhorse have the Barding and Loyal Advanced Horsemanship training bonuses. Check the Spellcaster Magazine #1 to check these bonuses",
-      },
-      {
-        name: "Horse Lodging",
-        description:
-          "A Roadwarden takes care of lodging and feeding his own horse. The Stable base upgrade isn't needed. His upkeep is 10% highet to compensate for this.",
-      },
-      {
-        name: "Sworn Protector",
-        description:
-          'Whenever a enemy figure moves into combat with a friendly figure within 3" of the Roadwarden, the Roadwarden may move up to 3" and also move into that combat.',
-      },
-      {
-        name: "Stalwart",
-        description: "May never leave the table and have the Mind Lock trait.",
-      },
-      {
-        name: "Criminal Arrester",
-        description:
-          "The Roadwarden chooses one figure from the enemy warband at the start of the game. That figure have the Bounty(100) trait to the Bounty Hunter only. That figure does not roll on the Injury table if taken out of action, making a full recovery automatically.",
-      },
-      {
-        name: "Hiring Restrictions",
-        description:
-          "May be hired by Witch Hunters, Sisters of Sigmar, Dwarfs, Mercenaries, and Lizardmen.",
-      },
-    ],
-  },
-  {
-    name: "Tilean Marksman",
+    name: "Atirador Tileano",
     stats: {
       move: 6,
       fight: "2",
       shoot: "+2",
-      armour: 11,
-      will: "+1",
+      armour: 10,
+      will: "+3",
       health: 12,
-      cost: "225gc + 15%",
+      cost: "100coroas",
+      upkeep: "nível +10%",
     },
     abilities: [
       {
-        name: "Equipment",
-        description: "Masterwork Crossbow, Hand Weapon, Light armour.",
+        name: "Tiro Entre os Olhos",
+        description: `Qualquer figura que receber um ataque a distância de um Atirador Tileano, cuja rolagem de ataque foi 18,19 ou 20 recebe um marcador de Atordoamento.`,
       },
       {
-        name: "Crack Shot",
-        description: `A Tilean Marksman causes critical hits on rolls of 19 or 20. A figure that takes more than 5 damage from a Tilean Marskman Shooting Attack gains a Stun Token.`,
+        name: "Mergulho da Gaivota",
+        description: `O Atirador Tileano tem +2 de Precisão quando atirando de uma elevação maior que seu alvo.`,
       },
       {
-        name: "Seagull's Dive",
-        description: `When shooting from a elevated position against an enemy figure, the Tilean Marksman may treat the armour of any enemy figure as being 1 point lower.`,
-      },
-      {
-        name: "Hiring Restrictions",
+        name: "Restrições de Contratação",
         description:
-          "May be hired by any warband except Skaven, Orcs, and Undead.",
+          "Pode ser contratado por qualquer bando exceto Skaven, Horda Orc e Cortes Vampíricas.",
+      },
+    ],
+  },
+  {
+    name: "Bardo",
+    stats: {
+      move: 6,
+      fight: "+2",
+      shoot: "0",
+      armour: 10,
+      will: "+4",
+      health: 12,
+      cost: "100 coroas",
+      upkeep: "nível +10%",
+    },
+    abilities: [
+      {
+        name: "Performance Inspiradora",
+        description: `Todas as figuras dentro de 20cm do Bardo e em linha de visão dele ganham um bônus de +1 de Vontade. Um bardo só tem 3 espaços de items, e deve sempre carregar sua ferramenta artística em uma das mãos.`,
+      },
+      {
+        name: "Fãs em todos os lugares",
+        description: `O bando que tem um bardo pode rerolar um dado quando faz Rolagens de Mercado Negro.`,
+      },
+      {
+        name: "Restrições de Contratação",
+        description:
+          "Pode ser contratado por qualquer bando que não seja Skaven, Orcs, Cortes Vampíricas, Culto dos Possuídos e Saqueadores Homem Besta.",
+      },
+    ],
+  },
+  {
+    name: "Caçador de Recompensas",
+    stats: {
+      move: 6,
+      fight: "+3",
+      shoot: "+1",
+      armour: 10,
+      will: "+3",
+      health: 14,
+      cost: "100 coroas",
+      upkeep: "nível +10%",
+    },
+    abilities: [
+      {
+        name: "Rastreador de Procurados",
+        description: `No começo de cada jogo, antes das figuras serem posicionadas, o Caçador de Recompensas escolhe uma figura do bando inimigo. O caçador de recompensas ganha +2 de Movimento e +1 de Ímpeto e Precisão para declarar cargas ou atacar aquela figura. A figura escolhida ganha a característica recompensa(seu valor em coroas), mas sempre considera-se que sobrevive com um resultade de "Recuperação Completa" na tabela de sobrevivência.`,
+      },
+      {
+        name: "Restrições de Contratação",
+        description:
+          "O Caçador de Recompensas pode ser contratado por qualquer bando que não seja Skaven, Horda Orc, Culto dos Possuídos e Saqueadores Homem Besta.",
       },
     ],
   },
 ];
 
 function HiredSwordsPage() {
-  const navigate = useNavigate();
-
-  const sections = [
-    {
-      id: "general-rules",
-      label: "General Rules",
-      type: "Rules",
-    },
-    ...hiredSwords.map((unit) => ({
-      id: slugify(unit.name, { lower: true }),
-      label: unit.name,
-      type: "Units",
-    })),
-  ];
-
   return (
-    <PageContainer>
-      <Header title="Hired Swords of Mordheim" />
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <CornerDecoration />
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <MobileSection>
+            <PageTitle>Mercenários de Mordheim</PageTitle>
 
-      <ContentSection>
-        <ContentContainer>
-          <QuoteBox>
-            "Gold buys swords, but it cannot buy loyalty. These mercenaries come
-            and go like shadows, fighting for whoever pays the most. Today they
-            stand beside you. Tomorrow? Who knows."
-            <QuoteAttribution>
-              — Captain Hermann Todbringer, Reikland Mercenaries
-            </QuoteAttribution>
-          </QuoteBox>
-
-          <div id="general-rules">
-            <ParchmentText sx={{ marginTop: "2rem", marginBottom: "2rem" }}>
-              <strong style={{ color: "#d4af37", fontSize: "1.6rem" }}>
-                Hired Swords Rules
-              </strong>
-              <p>
-                The City of the Damned draws warriors from across the Old World.
-                Mercenaries, outcasts, and fortune-seekers all come seeking
-                gold, glory, or redemption in Mordheim's cursed streets. These
-                Hired Swords fight for coin rather than conviction, their
-                loyalty lasting only as long as the gold keeps flowing.
-              </p>
-              <br />
-              <br />
-              <br />
-              <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Warband Slot Requirements
-              </strong>
-              <br />
-              <br />
-              Hired Swords are professional warriors who take up valuable space
-              in your warband's hierarchy.
-              <br />
-              <br />
-              <strong style={{ color: "#c4a870" }}>
-                Specialist Slot Rules:
-              </strong>
-              <br />• <strong>Hired Swords</strong> take up{" "}
-              <strong>one Specialist slot</strong> in your warband and count as
-              one model
-              <br />• <strong>Dramatis Personae</strong> take up{" "}
-              <strong>two Specialist slots</strong>, but still count as only one
-              model for the warband's 10 model limit
-              <br />• Both count against your warband's specialist limit and
-              total model count
-              <br />
-              <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Hiring Process
-              </strong>
-              <br />
-              <br />
-              Hired Swords can be recruited during if a warband finds them
-              through exploration events. battle.
-              <br />
-              <br />
-              <strong style={{ color: "#c4a870" }}>Hiring Steps:</strong>
-              <br />• <strong>Meet Hiring Conditions:</strong> Your warband must
-              meet any specific hiring conditions listed for that individual
-              (alignment, warband type, special challenges, etc.)
-              <br />• <strong>Pay the Hiring Cost:</strong> If conditions are
-              met, you may immediately pay the hiring cost listed on the Hired
-              Sword's card to recruit them
-              <br />• <strong>Add to Warband:</strong> The new recruit joins
-              your warband immediately and can be used in your next game
-              <br />• <strong>Hiring Restrictions:</strong> Each Hired Sword
-              lists which warbands may hire them. Some may not work with certain
-              factions due to racial tensions, moral conflicts, or other reasons
-              <br />
-              <br />
-              <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Upkeep Costs
-              </strong>
-              <br />
-              <br />
-              Unlike regular warriors, Hired Swords demand payment for their
-              continued service. They are mercenaries first and foremost, and
-              will leave if their payment is not met.
-              <br />
-              <br />
-              <strong style={{ color: "#c4a870" }}>Paying Upkeep:</strong>
-              <br />• Upkeep must be paid <strong>
-                between each game
-              </strong>{" "}
-              (during the post-game phase before the next battle)
-              <br />• The upkeep cost is listed on each Hired Sword's card
-              (example: "10% upkeep" means 10% of their hiring cost, rounded up)
-              <br />• If you cannot or choose not to pay upkeep, the Hired Sword{" "}
-              <strong>leaves your warband permanently</strong>
-              <br />• Some individuals may accept alternative payment
-              (Wyrdstone, Crimson Shade, magic items, etc.) as noted in their
-              abilities
-              <br />• Upkeep represents payment, bribes, equipment maintenance,
-              and other costs of keeping a mercenary satisfied
-              <br />
-              <br />
-              <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Experience and Advancement
-              </strong>
-              <br />
-              <br />
-              Hired Swords are already experienced warriors at the peak of their
-              abilities. Unlike regular warband members, they do not grow or
-              learn through battle.
-              <br />
-              <br />
-              <strong style={{ color: "#c4a870" }}>
-                Advancement Restrictions:
-              </strong>
-              <br />• Hired Swords <strong>cannot gain experience</strong> from
-              battles
-              <br />• They <strong>cannot learn new skills</strong> or increase
-              their characteristics
-              <br />• They arrive fully trained and leave the same way
-              <br />• Their abilities and statistics are fixed and cannot be
-              modified (except by temporary effects during battle)
-              <br />• This is balanced by their immediate availability and high
-              skill level
-              <br />
-              <br />
-              <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Availability
-              </strong>
-              <br />
-              <br />
-              Unlike Dramatis Personae (unique named individuals), Hired Swords
-              represent types of mercenaries rather than specific individuals.
-              <br />
-              <br />
-              <strong style={{ color: "#c4a870" }}>
-                Multiple Hiring Rules:
-              </strong>
-              <br />•{" "}
-              <strong>
-                The same type of Hired Sword can serve multiple warbands
-              </strong>{" "}
-              simultaneously
-              <br />• There is no exclusivity — if you hire a "Dwarf
-              Trollslayer," another player can also hire a different Dwarf
-              Trollslayer
-              <br />• Each represents a different individual of that profession,
-              not a single unique person
-              <br />• This is different from Dramatis Personae, who are unique
-              individuals and can only serve one warband at a time
-              <br />
-              <br />
-              <em style={{ color: "#c4a870" }}>
-                Example: Your warband has hired an "Elf Ranger" — this
-                represents one of many elven rangers wandering Mordheim. Another
-                player can also hire an Elf Ranger; these are different
-                individuals with the same profession and training.
-              </em>
-            </ParchmentText>
-          </div>
-
-          <Box sx={{ mb: 4 }}>
-            <WarbandIndex sections={sections} />
-          </Box>
-
-          {hiredSwords.map((unit) => (
-            <div
-              key={slugify(unit.name, { lower: true })}
-              id={slugify(unit.name, { lower: true })}
+            <MobileText
+              variant="quote"
+              className="text-center italic text-lg leading-relaxed mb-6 p-4 bg-[#2a1f1f] border border-[#382929] rounded-lg"
             >
-              <UnitCard
-                name={unit.name}
-                stats={unit.stats}
-                abilities={unit.abilities}
-              />
-            </div>
-          ))}
-        </ContentContainer>
-      </ContentSection>
+              "O ouro compra espadas, mas não pode comprar lealdade. Estes
+              mercenários vêm e vão como sombras, lutando por quem paga mais.
+              Hoje eles estão ao seu lado. Amanhã? Quem sabe."
+              <br />
+              <span className="text-sm text-[#d4af37] mt-2 block">
+                — Capitão Hermann Todbringer, Mercenários de Reikland
+              </span>
+            </MobileText>
 
-      <NavigationSection>
-        <Box sx={{ maxWidth: "600px", width: "100%" }}>
-          <StyledNavigationButton
-            onClick={() => navigate("/")}
-            variant="outlined"
-            fullWidth
-            sx={{
-              backgroundColor: "rgba(20, 18, 14, 0.6)",
-              "&:hover": {
-                backgroundColor: "rgba(28, 24, 18, 0.8)",
-              },
-            }}
-          >
-            Return to Home
-          </StyledNavigationButton>
-        </Box>
-      </NavigationSection>
-    </PageContainer>
+            <MobileText>
+              A Cidade Amaldiçoada atrai guerreiros de todo o Velho Mundo.
+              Mercenários, párias e caçadores de fortuna vêm em busca de ouro,
+              glória ou redenção nas ruas amaldiçoadas de Mordheim. Estes
+              Mercenários lutam por moedas ao invés de convicção, sua lealdade
+              durando apenas enquanto o ouro continuar fluindo.
+            </MobileText>
+
+            <HeaderH1>Regras dos Mercenários</HeaderH1>
+
+            <HeaderH2>Requisitos de Espaços no Bando</HeaderH2>
+            <MobileText>
+              Mercenários são guerreiros profissionais que ocupam espaço valioso
+              na hierarquia do seu bando.
+            </MobileText>
+
+            <HeaderH3>Regras de Espaços de Especialista:</HeaderH3>
+            <MobileText>
+              • <strong>Mercenários</strong> ocupam{" "}
+              <strong>um espaço de Especialista</strong> no seu bando e contam
+              como um modelo
+              <br />• <strong>Dramatis Personae</strong> ocupam{" "}
+              <strong>dois espaços de Especialista</strong>, mas ainda contam
+              como apenas um modelo para o limite de 10 modelos do bando
+              <br />• Ambos contam contra o limite de especialistas do seu bando
+              e total de modelos
+            </MobileText>
+
+            <HeaderH2>Processo de Contratação</HeaderH2>
+            <MobileText>
+              Mercenários podem ser recrutados se um bando os encontrar através
+              de eventos de exploração.
+            </MobileText>
+
+            <HeaderH3>Passos da Contratação:</HeaderH3>
+            <MobileText>
+              • <strong>Cumprir Condições de Contratação:</strong> Seu bando
+              deve cumprir quaisquer condições específicas listadas para esse
+              indivíduo (alinhamento, tipo de bando, desafios especiais, etc.)
+              <br />• <strong>Pagar o Custo de Contratação:</strong> Se as
+              condições forem atendidas, você pode imediatamente pagar o custo
+              de contratação listado no cartão do Mercenário para recrutá-lo
+              <br />• <strong>Adicionar ao Bando:</strong> O novo recruta se
+              junta ao seu bando imediatamente e pode ser usado no seu próximo
+              jogo
+              <br />• <strong>Restrições de Contratação:</strong> Cada
+              Mercenário lista quais bandos podem contratá-los. Alguns podem não
+              trabalhar com certas facções devido a tensões raciais, conflitos
+              morais, ou outras razões
+            </MobileText>
+
+            <HeaderH2>Custos de Manutenção</HeaderH2>
+            <MobileText>
+              Diferentemente de guerreiros regulares, Mercenários exigem
+              pagamento por seus serviços contínuos. Eles são mercenários em
+              primeiro lugar, e sairão se o pagamento não for atendido.
+            </MobileText>
+
+            <HeaderH3>Pagar Manutenção:</HeaderH3>
+            <MobileText>
+              • A manutenção deve ser paga <strong>entre cada jogo</strong>{" "}
+              (durante a fase pós-jogo antes da próxima batalha)
+              <br />• O custo de manutenção está listado no cartão de cada
+              Mercenário (exemplo: "10% manutenção" significa 10% do custo de
+              contratação, arredondado para cima)
+              <br />• Se você não puder ou escolher não pagar a manutenção, o
+              Mercenário <strong>deixa seu bando permanentemente</strong>
+              <br />• Alguns indivíduos podem aceitar pagamento alternativo
+              (Pedra-Bruxa, Sombra Carmesim, itens mágicos, etc.) como notado em
+              suas habilidades
+              <br />• A manutenção representa pagamento, subornos, manutenção de
+              equipamentos, e outros custos de manter um mercenário satisfeito
+            </MobileText>
+
+            <HeaderH2>Experiência e Progressão</HeaderH2>
+            <MobileText>
+              Mercenários já são guerreiros experientes no auge de suas
+              habilidades. Diferentemente de membros regulares do bando, eles
+              não crescem ou aprendem através da batalha.
+            </MobileText>
+
+            <HeaderH3>Restrições de Progressão:</HeaderH3>
+            <MobileText>
+              • Mercenários <strong>não podem ganhar experiência</strong> de
+              batalhas
+              <br />• Eles <strong>
+                não podem aprender novas habilidades
+              </strong>{" "}
+              ou aumentar suas características
+              <br />• Eles chegam totalmente treinados e saem da mesma forma
+              <br />• Suas habilidades e estatísticas são fixas e não podem ser
+              modificadas (exceto por efeitos temporários durante a batalha)
+              <br />• Isso é balanceado por sua disponibilidade imediata e alto
+              nível de habilidade
+            </MobileText>
+
+            <HeaderH2>Disponibilidade</HeaderH2>
+            <MobileText>
+              Diferentemente dos Dramatis Personae (indivíduos únicos nomeados),
+              Mercenários representam tipos de mercenários ao invés de
+              indivíduos específicos.
+            </MobileText>
+
+            <HeaderH3>Regras de Múltiplas Contratações:</HeaderH3>
+            <MobileText>
+              •{" "}
+              <strong>
+                O mesmo tipo de Mercenário pode servir múltiplos bandos
+              </strong>{" "}
+              simultaneamente
+              <br />• Não há exclusividade — se você contratar um "Mata Trolls
+              Anão," outro jogador também pode contratar um Mata Trolls Anão
+              diferente
+              <br />• Cada um representa um indivíduo diferente dessa profissão,
+              não uma pessoa única
+              <br />• Isso é diferente dos Dramatis Personae, que são indivíduos
+              únicos e podem servir apenas um bando por vez
+            </MobileText>
+
+            <MobileText className="italic text-[#c4a870]">
+              Exemplo: Seu bando contratou um "Patrulheiro Élfico" — isso
+              representa um dos muitos patrulheiros élficos vagando por
+              Mordheim. Outro jogador também pode contratar um Patrulheiro
+              Élfico; estes são diferentes indivíduos com a mesma profissão e
+              treinamento.
+            </MobileText>
+
+            <HeaderH1>Mercenários Disponíveis</HeaderH1>
+
+            {hiredSwords.map((unit) => (
+              <div
+                key={slugify(unit.name, { lower: true })}
+                id={slugify(unit.name, { lower: true })}
+              >
+                <UnitCard
+                  name={unit.name}
+                  stats={unit.stats}
+                  abilities={unit.abilities}
+                />
+              </div>
+            ))}
+          </MobileSection>
+        </div>
+      </div>
+    </div>
   );
 }
 

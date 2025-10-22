@@ -1,0 +1,50 @@
+[
+  {
+    "id": "alma-daemoniaca",
+    "name": "Alma Daemônica",
+    "description": "O mutante tem +3 de Vontade para resistir ao efeito de magias.",
+    "cost": "20 coroas"
+  },
+  {
+    "id": "garra-colossal",
+    "name": "Garra Colossal",
+    "description": "A mão secundária do mutante vira uma grande garra. Ele sempre conta como tendo um ataque com modificador de dano +2, que pode ser usada para a regra de lutar com duas mãos se tiver uma arma na mão principal. Não pode mais usar escudos ou armas na mão secundária.",
+    "cost": "50 coroas"
+  },
+  {
+    "id": "cascos-fendidos",
+    "name": "Cascos Fendidos",
+    "description": "O mutante ganha +2 de Movimento.",
+    "cost": "40 coroas"
+  },
+  {
+    "id": "tentáculo",
+    "name": "Tentáculo",
+    "description": "Uma vez por turno, se uma figura inimiga anda dentro de 5cm do mutante, este pode fazer um ataque a distância +0 contra aquela criatura. Para cada vez que essa mutação é selecionada essa reação pode ser usado uma vez adicional, mas deve ser usado contra criaturas diferentes.",
+    "cost": "35 coroas"
+  },
+  {
+    "id": "sangue-profano",
+    "name": "Sangue Profano",
+    "description": "Sempre que uma figura causa dano ao mutante, deve fazer um teste de Vontade CD 12. Se falhar a figura imediatamente sofre 3 de dano. Adicionalmente, uma figura que role um 1 natural em uma luta contra o mutante perde qualquer arma sem modificadores ou mágica usada para fazer o ataque permanentemente.",
+    "cost": "30 coroas"
+  },
+  {
+    "id": "espinhos",
+    "name": "Espinhos",
+    "description": "Qualquer figura não Morta-Viva ou Construto que começe sua ativação a até 8cm do mutante deve rolar um teste de Vontade CD 12. Se falhar imediatamente recebe 2 de dano.",
+    "cost": "35 coroas"
+  },
+  {
+    "id": "cauda-de-escorpiao",
+    "name": "Cauda de Escorpião",
+    "description": "O Mutante é considerado como estando sempre equipado com uma arma com modificador de dano +2 e a característica Venenosa. Um alvo imune a veneno reduz esse modificador de dano a -1.",
+    "cost": "40 coroas"
+  },
+  {
+    "id": "terceiro-braço",
+    "name": "Terceiro Braço",
+    "description": "O mutante ganha +1 de ímpeto.",
+    "cost": "40 coroas"
+  }
+]

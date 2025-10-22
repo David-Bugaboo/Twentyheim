@@ -6,7 +6,7 @@ interface MobileFooterProps {
 
 const MobileFooter: React.FC<MobileFooterProps> = ({ onToggleTOC }) => {
   return (
-    <div>
+    <div className="md:hidden">
       <div className="fixed bottom-0 left-0 right-0 z-40 flex gap-2 border-t border-[#382929] bg-[#261c1c] px-4 pb-3 pt-2">
         <a
           className="flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-white"
@@ -74,7 +74,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({ onToggleTOC }) => {
         </a>
       </div>
       {/* Spacer for fixed footer height */}
-      <div className="h-14 bg-transparent" />
+      <div className="h-14 bg-transparent md:hidden" />
     </div>
   );
 };

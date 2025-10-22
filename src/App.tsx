@@ -1,81 +1,68 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import HomePage from "./pages/HomePage";
-import WarbandsPage from "./pages/WarbandsPage";
-import RulesPage from "./pages/rules/RulesPage";
-import CampaignPage from "./pages/campanha/CampaignPage";
-
-import ExplorationPage from "./pages/ExplorationPage";
-import HiredSwordsPage from "./pages/HiredSwordsPage";
-import DramatisPersonaePage from "./pages/DramatisPersonaePage";
-import TreasuresAndItemsPage from "./pages/TreasuresAndItemsPage";
-
-import PotionsPage from "./pages/treasures-n-items/PotionsPage";
-import MagicArsenalPage from "./pages/treasures-n-items/MagicArsenalPage";
-import MagicItemsPage from "./pages/treasures-n-items/MagicItemsPage";
-import CommonItemsPage from "./pages/treasures-n-items/CommonItemsPage";
-import MagicPage from "./pages/spells/MagicPage";
-import ArcaneLoresPage from "./pages/spells/ArcaneLoresPage";
-import LoreOfFirePage from "./pages/spells/LoreOfFirePage";
-import LoreOfHeavensPage from "./pages/spells/LoreOfHeavensPage";
-import LoreOfMetalPage from "./pages/spells/LoreOfMetalPage";
-import LoreOfLifePage from "./pages/spells/LoreOfLifePage";
-import LoreOfLightPage from "./pages/spells/LoreOfLightPage";
-import LoreOfShadowsPage from "./pages/spells/LoreOfShadowsPage";
-import LoreOfDeathPage from "./pages/spells/LoreOfDeathPage";
-import LoreOfBeastsPage from "./pages/spells/LoreOfBeastsPage";
-import DarkLoresPage from "./pages/spells/DarkLoresPage";
-import LoreOfChaosPage from "./pages/spells/LoreOfChaosPage";
-import LoreOfNecromancyPage from "./pages/spells/LoreOfNecromancyPage";
-import LoreOfTheHornedRatPage from "./pages/spells/LoreOfTheHornedRatPage";
-import DivineLoresPage from "./pages/spells/DivineLoresPage";
-import PrayersOfHashutPage from "./pages/spells/PrayersOfHashutPage";
-import PrayersOfSigmarPage from "./pages/spells/PrayersOfSigmarPage";
-import PrayersOfUlricPage from "./pages/spells/PrayersOfUlricPage";
-import GreenskinLoresPage from "./pages/spells/GreenskinLoresPage";
-import LoreOfTheBigWaaaghPage from "./pages/spells/LoreOfTheBigWaaaghPage";
-import SpellScrollsPage from "./pages/spells/SpellScrollsPage";
-import DaemonsPage from "./pages/daemons/DaemonsPage";
-import DaemonStatblocksPage from "./pages/daemons/DaemonStatblocksPage";
-import DaemonicTraitsPage from "./pages/daemons/DaemonicTraitsPage";
-import DaemonicPactsPage from "./pages/daemons/DaemonicPactsPage";
-import ConstructsPage from "./pages/constructs/ConstructsPage";
-import ConstructStatblocksPage from "./pages/constructs/ConstructStatblocksPage";
-import ConstructModsPage from "./pages/constructs/ConstructModsPage";
-import BasePage from "./pages/BasePage";
-import BasesPage from "./pages/base/BasesPage";
-import BaseUpgradesPage from "./pages/base/BaseUpgradesPage";
-import TheStablePage from "./pages/base/TheStablePage";
-import MercenariesPage from "./pages/warbands/MercenariesPage";
-import VampireCourtsPage from "./pages/warbands/VampireCourtsPage";
-import SkavenPage from "./pages/warbands/SkavenPage";
-import WitchHuntersPage from "./pages/warbands/WitchHuntersPage";
-import CultOfThePossessedPage from "./pages/warbands/CultOfThePossessedPage";
-import SistersOfSigmarPage from "./pages/warbands/SistersOfSigmarPage";
-import OrcMobPage from "./pages/warbands/OrcMobPage";
-import DwarfTreasureHuntersPage from "./pages/warbands/DwarfTreasureHuntersPage";
-import LizardmenPage from "./pages/warbands/LizardmenPage";
-import WoodElvesPage from "./pages/warbands/WoodElvesPage";
-import SeaGuardPage from "./pages/warbands/SeaGuardPage";
-import BridesOfKhainePage from "./pages/warbands/BridesOfKhainePage";
-import SonsOfHashutPage from "./pages/warbands/SonsOfHashutPage";
-import BeastmenRaidersPage from "./pages/warbands/BeastmenRaidersPage";
+import Navbar from "./components/Navbar";
 
 import "./App.css";
+import { TOCProvider } from "./context/table-of-contents.context";
+
+import RulesIntroPage from "./pages/rules/intro/RulesIntroPage";
+import FiguresAndAttributesPage from "./pages/rules/FiguresAndAttributesPage";
+import EquipmentRulesPage from "./pages/rules/EquipmentRulesPage";
+import CombatSystemPage from "./pages/rules/CombatSystemPage";
+import MovementActionsPage from "./pages/rules/MovementActionsPage";
+import CombatActionsPage from "./pages/rules/CombatActionsPage";
+import RangedActionsPage from "./pages/rules/RangedActionsPage";
+import SpellcastingActionsPage from "./pages/rules/SpellcastingActionsPage";
+import PowerActionsPage from "./pages/rules/PowerActionsPage";
+import OtherActionsPage from "./pages/rules/OtherActionsPage";
+import WyrdstoneActionsPage from "./pages/rules/WyrdstoneActionsPage";
+import GameEndPage from "./pages/rules/GameEndPage";
+import PostGamePage from "./pages/rules/PostGamePage";
+import GameSetupPage from "./pages/rules/GameSetupPage";
+import MagicRulesPage from "./pages/rules/MagicRulesPage";
+import HomePage from "./pages/HomePage";
+import RulesPage from "./pages/RulesPage";
+import WarbandCreationPage from "./pages/rules/WarbandCreationPage";
+
+// Post-Game Sequence Pages
+import PostGameSequencePage from "./pages/campanha/PostGameSequencePage";
+import ExperienceRollPage from "./pages/campanha/ExperienceRollPage";
+import SurvivalTestPage from "./pages/campanha/SurvivalTestPage";
+import HealingPage from "./pages/campanha/HealingPage";
+import RewardsPage from "./pages/campanha/RewardsPage";
+import BlackMarketPage from "./pages/campanha/BlackMarketPage";
+import AdvancementsPage from "./pages/campanha/AdvancementsPage";
+import HiringPage from "./pages/campanha/HiringPage";
+import MaintenancePage from "./pages/campanha/MaintenancePage";
+import ExplorationPage from "./pages/campanha/ExplorationPage";
+import UpdateStatsPage from "./pages/campanha/UpdateStatsPage";
+import RitualsPage from "./pages/campanha/RitualsPage";
+import WyrdstoneSellingPage from "./pages/campanha/WyrdstoneSellingPage";
+import PowersPage from "./pages/campanha/SkillsPage";
+import WeaponsAndEquipmentsPage from "./pages/weapons and equipments/WeaponsAndEquipmentsPage";
+import MeleeWeaponsPage from "./pages/weapons and equipments/MeleeWeaponsPage";
+import ArmorAndShieldsPage from "./pages/weapons and equipments/ArmorAndShieldsPage";
+import RangedWeaponsPage from "./pages/weapons and equipments/RangedWeaponsPage";
+import FirearmsPage from "./pages/weapons and equipments/FirearmsPage";
+import ModifiersPage from "./pages/weapons and equipments/ModifiersPage";
+import RemediesAndPoisonsPage from "./pages/weapons and equipments/RemediesAndPoisonsPage";
+import AccessoriesPage from "./pages/weapons and equipments/AccessoriesPage";
+import HomemFerasRaidersPage from "./pages/warbands/beastman-raiders/BeastmenRaidersPage";
+import CultOfThePossessedPage from "./pages/warbands/cult-of-the-possessed/CultOfThePossessedPage";
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#d4af37",
+      main: "#ffffff",
     },
     secondary: {
       main: "#8b7355",
     },
     background: {
-      default: "#0a0a0a",
-      paper: "#1a1a1a",
+      default: "#1a1a1a",
+      paper: "#2a2a2a",
     },
     text: {
       primary: "#e0e0e0",
@@ -107,129 +94,136 @@ const darkTheme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/warbands" element={<WarbandsPage />} />
-          <Route path="/warband/mercenaries" element={<MercenariesPage />} />
-          <Route
-            path="/warband/vampire-courts"
-            element={<VampireCourtsPage />}
-          />
-          <Route path="/warband/skaven-clan-eshin" element={<SkavenPage />} />
-          <Route path="/warband/witch-hunters" element={<WitchHuntersPage />} />
-          <Route
-            path="/warband/cult-possessed"
-            element={<CultOfThePossessedPage />}
-          />
-          <Route
-            path="/warband/sisters-sigmar"
-            element={<SistersOfSigmarPage />}
-          />
-          <Route path="/warband/orc-mob" element={<OrcMobPage />} />
-          <Route
-            path="/warband/dwarf-treasure-hunters"
-            element={<DwarfTreasureHuntersPage />}
-          />
-          <Route path="/warband/lizardmen" element={<LizardmenPage />} />
-          <Route path="/warband/wood-elves" element={<WoodElvesPage />} />
-          <Route path="/warband/sea-guard" element={<SeaGuardPage />} />
-          <Route
-            path="/warband/brides-of-khaine"
-            element={<BridesOfKhainePage />}
-          />
-          <Route
-            path="/warband/sons-of-hashut"
-            element={<SonsOfHashutPage />}
-          />
-          <Route
-            path="/warband/beastmen-raiders"
-            element={<BeastmenRaidersPage />}
-          />
+    <TOCProvider>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/rules" element={<RulesPage />} />
+            <Route path="/rules/intro" element={<RulesIntroPage />} />
+            <Route
+              path="/rules/figures-and-attributes"
+              element={<FiguresAndAttributesPage />}
+            />
+            <Route
+              path="/rules/equipment-rules"
+              element={<EquipmentRulesPage />}
+            />
+            <Route path="/rules/combat-system" element={<CombatSystemPage />} />
+            <Route
+              path="/rules/movement-actions"
+              element={<MovementActionsPage />}
+            />
+            <Route
+              path="/rules/combat-actions"
+              element={<CombatActionsPage />}
+            />
+            <Route
+              path="/rules/ranged-actions"
+              element={<RangedActionsPage />}
+            />
+            <Route
+              path="/rules/spellcasting-actions"
+              element={<SpellcastingActionsPage />}
+            />
+            <Route path="/rules/power-actions" element={<PowerActionsPage />} />
+            <Route path="/rules/other-actions" element={<OtherActionsPage />} />
+            <Route
+              path="/rules/wyrdstone-actions"
+              element={<WyrdstoneActionsPage />}
+            />
+            <Route path="/rules/game-end" element={<GameEndPage />} />
+            <Route path="/rules/game-setup" element={<GameSetupPage />} />
+            <Route
+              path="/rules/warband-creation"
+              element={<WarbandCreationPage />}
+            />
+            <Route path="/rules/post-game" element={<PostGamePage />} />
 
-          <Route
-            path="/warband/:warbandSlug"
-            element={<div>Warband Detail Page</div>}
-          />
+            <Route path="campaign/powers" element={<PowersPage />} />
 
-          <Route path="/exploration" element={<ExplorationPage />} />
-          <Route path="/hired-swords" element={<HiredSwordsPage />} />
-          <Route path="/dramatis-personae" element={<DramatisPersonaePage />} />
-          <Route path="/treasures" element={<TreasuresAndItemsPage />} />
-          <Route path="/rules" element={<RulesPage />} />
-          <Route path="/campaign" element={<CampaignPage />} />
-          <Route path="/base" element={<BasePage />} />
-          <Route path="/base/bases" element={<BasesPage />} />
-          <Route path="/base/upgrades" element={<BaseUpgradesPage />} />
-          <Route path="/base/stable" element={<TheStablePage />} />
+            <Route path="/campaign/post-game" element={<PostGamePage />} />
+            <Route path="/campaign/hired-swords" element={<PostGamePage />} />
 
-          <Route path="/magic" element={<MagicPage />} />
-          <Route path="/magic/arcane-lores" element={<ArcaneLoresPage />} />
-          <Route path="/magic/arcane/fire" element={<LoreOfFirePage />} />
-          <Route path="/magic/arcane/heavens" element={<LoreOfHeavensPage />} />
-          <Route path="/magic/arcane/metal" element={<LoreOfMetalPage />} />
-          <Route path="/magic/arcane/life" element={<LoreOfLifePage />} />
-          <Route path="/magic/arcane/light" element={<LoreOfLightPage />} />
-          <Route path="/magic/arcane/shadows" element={<LoreOfShadowsPage />} />
-          <Route path="/magic/arcane/death" element={<LoreOfDeathPage />} />
-          <Route path="/magic/arcane/beasts" element={<LoreOfBeastsPage />} />
-          <Route path="/magic/dark-lores" element={<DarkLoresPage />} />
-          <Route path="/magic/dark/chaos" element={<LoreOfChaosPage />} />
-          <Route
-            path="/magic/dark/necromancy"
-            element={<LoreOfNecromancyPage />}
-          />
-          <Route
-            path="/magic/dark/horned-rat"
-            element={<LoreOfTheHornedRatPage />}
-          />
-          <Route path="/magic/divine-lores" element={<DivineLoresPage />} />
-          <Route
-            path="/magic/divine/hashut"
-            element={<PrayersOfHashutPage />}
-          />
-          <Route
-            path="/magic/divine/sigmar"
-            element={<PrayersOfSigmarPage />}
-          />
-          <Route path="/magic/divine/ulric" element={<PrayersOfUlricPage />} />
-          <Route
-            path="/magic/greenskin-lores"
-            element={<GreenskinLoresPage />}
-          />
-          <Route
-            path="/magic/greenskin/big-waaagh"
-            element={<LoreOfTheBigWaaaghPage />}
-          />
-          <Route path="/magic/spell-scrolls" element={<SpellScrollsPage />} />
-
-          <Route path="/daemons" element={<DaemonsPage />} />
-          <Route
-            path="/daemons/statblocks"
-            element={<DaemonStatblocksPage />}
-          />
-          <Route path="/daemons/traits" element={<DaemonicTraitsPage />} />
-          <Route path="/daemons/pacts" element={<DaemonicPactsPage />} />
-
-          <Route path="/constructs" element={<ConstructsPage />} />
-          <Route
-            path="/constructs/statblocks"
-            element={<ConstructStatblocksPage />}
-          />
-          <Route
-            path="/constructs/modifications"
-            element={<ConstructModsPage />}
-          />
-
-          <Route path="/potions" element={<PotionsPage />} />
-          <Route path="/magic-arsenal" element={<MagicArsenalPage />} />
-          <Route path="/magic-items" element={<MagicItemsPage />} />
-          <Route path="/common-items" element={<CommonItemsPage />} />
-        </Routes>
-      </Router>
-    </ThemeProvider>
+            {/* Post-Game Sequence Pages */}
+            <Route path="/post-game" element={<PostGameSequencePage />} />
+            <Route
+              path="/post-game/experience-roll"
+              element={<ExperienceRollPage />}
+            />
+            <Route
+              path="/post-game/survival-test"
+              element={<SurvivalTestPage />}
+            />
+            <Route path="/post-game/healing" element={<HealingPage />} />
+            <Route path="/post-game/rewards" element={<RewardsPage />} />
+            <Route
+              path="/post-game/black-market"
+              element={<BlackMarketPage />}
+            />
+            <Route
+              path="/post-game/advancements"
+              element={<AdvancementsPage />}
+            />
+            <Route path="/post-game/hiring" element={<HiringPage />} />
+            <Route
+              path="/post-game/maintenance"
+              element={<MaintenancePage />}
+            />
+            <Route
+              path="/post-game/exploration"
+              element={<ExplorationPage />}
+            />
+            <Route
+              path="/post-game/update-stats"
+              element={<UpdateStatsPage />}
+            />
+            <Route path="/post-game/rituals" element={<RitualsPage />} />
+            <Route
+              path="/campaign/wyrdstone-selling"
+              element={<WyrdstoneSellingPage />}
+            />
+            <Route
+              path="/equipment/weapons-and-equipments"
+              element={<WeaponsAndEquipmentsPage />}
+            />
+            <Route
+              path="/equipment/melee-weapons"
+              element={<MeleeWeaponsPage />}
+            />
+            <Route
+              path="/equipment/armor-and-shields"
+              element={<ArmorAndShieldsPage />}
+            />
+            <Route
+              path="/equipment/ranged-weapons"
+              element={<RangedWeaponsPage />}
+            />
+            <Route path="/equipment/firearms" element={<FirearmsPage />} />
+            <Route path="/equipment/modifiers" element={<ModifiersPage />} />
+            <Route
+              path="/equipment/remedies-and-poisons"
+              element={<RemediesAndPoisonsPage />}
+            />
+            <Route
+              path="/equipment/accessories"
+              element={<AccessoriesPage />}
+            />
+            <Route path="/magic/magic-rules" element={<MagicRulesPage />} />
+            <Route
+              path="/warbands/beastman-raiders"
+              element={<HomemFerasRaidersPage />}
+            />
+            <Route
+              path="/warbands/cult-of-the-possessed"
+              element={<CultOfThePossessedPage />}
+            />
+          </Routes>
+        </Router>
+      </ThemeProvider>
+    </TOCProvider>
   );
 }
 

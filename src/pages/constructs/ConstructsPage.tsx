@@ -37,16 +37,17 @@ export default function ConstructsPage() {
             mágica. Diferente de mortos-vivos ou demônios, constructos não são
             criaturas corrompidas ou invocadas — eles são construídos, peça por
             peça, por artífices habilidosos e então trazidos à vida através de
-            magia poderosa. Cada constructo é uma criação única, uma fusão de
+            magia poderosa. Cada Construto é uma criação única, uma fusão de
             proeza de engenharia e poder arcano.
           </ParchmentText>
 
           <ParchmentText sx={{ mb: 4 }}>
             As duas grandes tradições de criação de constructos vêm de fontes
-            vastamente diferentes: os Anões de Kharadron, que constroem maravilhas
-            mecânicas precisas alimentadas por engenharia e encantamentos menores,
-            e os Filhos de Hashut, cujas criações sombrias misturam latão,
-            essência demoníaca e magias proibidas em armas de guerra aterrorizantes.
+            vastamente diferentes: os Anões de Kharadron, que constroem
+            maravilhas mecânicas precisas alimentadas por engenharia e
+            encantamentos menores, e os Filhos de Hashut, cujas criações
+            sombrias misturam latão, essência demoníaca e magias proibidas em
+            armas de guerra aterrorizantes.
           </ParchmentText>
 
           <Box
@@ -59,7 +60,7 @@ export default function ConstructsPage() {
             }}
           >
             <PowerListTitle sx={{ color: "#c4a870", mt: 0 }}>
-              ⚙️ A Natureza dos Constructos
+              A Natureza dos Constructos
             </PowerListTitle>
 
             <ParchmentText>
@@ -73,8 +74,8 @@ export default function ConstructsPage() {
               animais ou da maioria dos mortos-vivos, constructos podem pegar e
               carregar fichas de tesouro
               <br />• <strong>Sem Espaços de Item:</strong> Constructos não têm
-              espaços de item e não podem carregar itens (embora alguns possam ter
-              equipamento enxertado)
+              espaços de item e não podem carregar itens (embora alguns possam
+              ter equipamento enxertado)
               <br />• <strong>Modificáveis:</strong> Constructos podem ser
               modificados com melhorias especiais que alteram suas capacidades
             </ParchmentText>
@@ -92,7 +93,7 @@ export default function ConstructsPage() {
             fullWidth
             sx={{ mb: 2, py: 2.5, fontSize: "1.1rem" }}
           >
-            ⚙️ Fichas de Constructos
+            Fichas de Constructos
           </StyledNavigationButton>
 
           <StyledNavigationButton

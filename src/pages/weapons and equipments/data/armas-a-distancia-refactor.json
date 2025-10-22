@@ -1,0 +1,283 @@
+[
+  {
+    "roll": "1-3",
+    "id": "funda",
+    "name": "Funda",
+    "type": "Arma a Distância",
+    "damageModifier": "-2",
+    "purchaseCost": "2 coroas",
+    "rarity": 1,
+    "availability": ["Todos"],
+    "maxRange": "20cm",
+    "exclusive": null,
+    "flavorText": "Fundas são raramente usadas, principalmente porque não são mais poderosas que arcos e têm um alcance menor. Uma funda é pouco mais que uma tira de pano ou couro em laço na qual uma pedra é colocada. A funda é girada ao redor da cabeça do fundeiro e a pedra da funda é então lançada em direção ao alvo. Embora essa arma seja desprezada pela maioria dos arqueiros, um fundeiro habilidoso pode matar um homem de uma distância considerável, e a munição é fácil de encontrar: pedras estão por toda parte e são gratuitas!",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Leve",
+        "value": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item."
+      },
+      {
+        "label": "Giros Brutais",
+        "value": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de Agilidade para girar sua funda com mais força. Aumente o alcance do próximo ataque a distancia em 6cm."
+      },
+      {
+        "label": "Arma de Tecido",
+        "value": "Embora não possa ser usada para ganhar +1 de impeto em lutas, uma figura carregando uma arma na mão principal e uma funda na mão secundária ainda pode pode pegar Fragmentos de Pedra-Bruxa, mas não pode usar a funda para atirar enquanto estiver carregando o fragmento.."
+      }
+    ]
+  },
+  {
+    "id": "javelin",
+    "name": "Javelin",
+    "type": "Arma a Distância",
+    "damageModifier": "0",
+    "purchaseCost": "5 coroas",
+    "rarity": 1,
+    "availability": ["Todos"],
+    "exclusive": null,
+    "flavorText": "Javelins são lanças curtas de arremesso especialmente ponderadas para percorrer uma distância considerável. Embora tenham um alcance muito reduzido quando comparadas a uma flecha, podem causar danos bastante consideráveis quando arremessadas por uma pessoa de grande força.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Alcance de Arremesso", "value": "25cm" },
+      {
+        "label": "Especial",
+        "value": "Pode ser usada como arma de mão em combate corpo a corpo."
+      }
+    ]
+  },
+  {
+    "id": "arco-curto",
+    "name": "Arco Curto",
+    "type": "Arma a Distância",
+    "damageModifier": "-1",
+    "purchaseCost": "5 coroas",
+    "rarity": 1,
+    "availability": ["Todos"],
+    "maxRange": "40cm",
+    "exclusive": null,
+    "flavorText": "Arcos curtos são arcos pequenos e de curto alcance que são baratos e requerem pouca força para usar. Alguns cavaleiros carregam um arco encurtado que é mais fácil de atirar montado do que um arco maior. Halflings também usam arcos curtos, pois lhes falta a força e altura necessárias para usar um arco longo.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": "Aljava",
+    "specialRules": [
+      {
+        "label": "Duas Mãos",
+        "value": "Uma arma com essa característica não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
+      }
+    ]
+  },
+  {
+    "roll": "9-10",
+    "id": "arco",
+    "name": "Arco",
+    "type": "Arma a Distância",
+    "damageModifier": "0",
+    "purchaseCost": "10 coroas",
+    "rarity": 1,
+    "availability": ["Todos"],
+    "maxRange": "60cm",
+    "exclusive": null,
+    "flavorText": "O arco é carregado pela maioria das raças e usado extensivamente na guerra. É uma arma compacta mas poderosa, que é barata de fazer e fácil de manter.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": "Aljava",
+    "specialRules": [
+      {
+        "label": "Duas Mãos",
+        "value": "Uma arma com essa característica não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
+      }
+    ]
+  },
+  {
+    "roll": "11-12",
+    "id": "arco-longo",
+    "name": "Arco Longo",
+    "type": "Arma a Distância",
+    "damageModifier": "0",
+    "purchaseCost": "15 coroas",
+    "rarity": 1,
+    "availability": ["Todos"],
+    "maxRange": "75cm",
+    "exclusive": null,
+    "flavorText": "Um arco longo é feito de camadas alternadas de teixo ou olmo. Um arqueiro habilidoso pode acertar uma folha escolhida em uma árvore de trezentos passos com esta arma. O arco longo é favorecido por arqueiros experientes devido ao seu grande alcance e precisão.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": "Aljava",
+    "specialRules": [
+      {
+        "label": "Corda de Alta Tensão",
+        "value": "Devido a alta tensão necessária para disparar uma flecha, um usuário de arco longo precisa de todo folego. Figuras inimigas ganhamn +1 de bonus adicional para sua rolagem de impeto contra tiros feitos pelo portador desse arco caso ele tenha movido antes de atirar."
+      },
+      {
+        "label": "Duas Mãos",
+        "value": "Uma arma com essa característica não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
+      }
+    ]
+  },
+  {
+    "id": "besta",
+    "name": "Besta",
+    "type": "Arma a Distância",
+    "damageModifier": "+2",
+    "purchaseCost": "25 coroas",
+    "rarity": 1,
+    "availability": ["Todos"],
+    "maxRange": "60cm",
+    "exclusive": null,
+    "flavorText": "Uma besta consiste em um arco curto e forte montado em uma coronha de madeira ou aço. As bestas do Império são feitas de aço e frequentemente incluem um mecanismo de corda para puxar a corda. Leva muito tempo para preparar uma besta, mas um virote disparado de uma tem um alcance tremendo e pode penetrar armaduras facilmente. Bestas levam muito mais tempo que outros arcos para fazer, então são armas caras e relativamente raras. Ainda assim, são a arma preferida de muitos em Mordheim devido ao seu poder e longo alcance.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": "Aljava",
+    "specialRules": [
+      {
+        "label": "Recarga",
+        "value": "A Besta requer o uso de uma ação para recarregá-la e poder atirar novamente. Contudo, essa ação pode substituir a ação de Agilidade."
+      },
+      {
+        "label": "Duas Mãos",
+        "value": "Uma arma com essa característica não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
+      }
+    ]
+  },
+  {
+    "id": "besta-de-mao",
+    "name": "Besta de Mão",
+    "type": "Arma a Distância",
+    "damageModifier": "+1",
+    "purchaseCost": "35 coroas",
+    "rarity": 16,
+    "availability": ["Todos"],
+    "maxRange": "25cm",
+    "exclusive": null,
+    "flavorText": "Bestas de mão são obras-primas feitas por armeiros especialistas. São bestas em miniatura com todo o poder e precisão das verdadeiras. Como essas armas podem ser facilmente ocultadas, são a arma favorita de assassinos.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": "Aljava",
+    "specialRules": [
+      {
+        "label": "Recarga",
+        "value": "A Besta de Mão requer o uso de uma ação para recarregá-la e poder atirar novamente. Contudo, essa ação pode substituir a ação de Agilidade."
+      },
+      {
+        "label": "Pistola",
+        "value": "Uma arma com essa característica é leve e prática, podendo ser usada com apenas uma mão. Ela conta como uma adaga em combate corpo a corpo, inclusive para Lutar com Duas Armas."
+      }
+    ]
+  },
+  {
+    "id": "besta-repetidora",
+    "name": "Besta Repetidora",
+    "type": "Arma a Distância",
+    "damageModifier": "+1",
+    "purchaseCost": "80 coroas",
+    "rarity": 15,
+    "availability": ["Todos"],
+    "maxRange": "60cm",
+    "exclusive": null,
+    "flavorText": "Bestas repetidoras são dispositivos extremamente complexos, caros de adquirir e difíceis de fazer. Embora isso as torne raras, elas certamente têm seus usos: podem fazer chover uma chuva mortal de virotes nos inimigos, e um guerreiro usando uma pode se mover bastante rápido e ainda assim disparar sua arma.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": "Aljava",
+    "specialRules": [
+      {
+        "label": "Recarga",
+        "value": "A Besta repetidora requer o uso de uma ação para recarregá-la e poder atirar novamente. Contudo, essa ação pode substituir a ação de Agilidade."
+      },
+      {
+        "label": "Duas Mãos",
+        "value": "Uma arma com essa característica não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
+      },
+      {
+        "label": "Capacidade (3)",
+        "value": "Uma arma com essa característica pode disparar um número de vezes igual ao número entre parênteses antes de precisar recarregar. Cada flecha ou bala deve ser recarregada individualmente com uma ação de recarga."
+      },
+      {
+        "label": "Engenharia Complexa",
+        "value": "Uma arma com essa característica trava em casos específicos. Quando o portador rola um 1 natural em um ataque, a arma trava, e só pode ser usada novamente gastando uma ação, que pode substituir a ação de Agilidade."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "zarabatana",
+    "name": "Zarabatana",
+    "type": "Arma a Distância",
+    "damageModifier": "-4",
+    "purchaseCost": "25 coroas",
+    "rarity": 12,
+    "availability": ["Reptilianos", "Skaven"],
+    "maxRange": "40cm",
+    "exclusive": "Homens Lagarto, Skaven",
+    "flavorText": "A zarabatana é um tubo oco curto que pode ser usado para disparar dardos envenenados. Embora os dardos por si só sejam muito pequenos para causar dano significativo, o veneno usado pode causar agonia ardente e eventual morte. A outra vantagem de uma zarabatana é que ela é silenciosa, e um atirador bem escondido pode disparar os dardos sem ser detectado.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": "Bolsa de Dardos",
+    "specialRules": [
+      {
+        "label": "Venenosa",
+        "value": "Uma arma com essa característica envenena o alvo em um ataque bem-sucedido, mesmo se não causar dano."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "bolas",
+    "name": "Bolas",
+    "type": "Arma a Distância",
+    "damageModifier": "0",
+    "purchaseCost": "5 coroas",
+    "rarity": 1,
+    "availability": ["Reptilianos"],
+    "maxRange": "16cm",
+    "exclusive": null,
+    "flavorText": "Bolas são um conjunto de três bolas de bronze em cordas amarradas juntas. São arremessadas de forma similar a uma funda e giradas ao redor da cabeça para ganhar velocidade. A bolas é uma arma de caça e não machuca o animal. Ela o imobiliza e permite ao caçador subjugá-lo ou abatê-lo com sua lança.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Enredar",
+        "value": "Um modelo atingido pelas bolas não recebe dano, mas suas pernas ficam enredadas e ele é incapaz de se mover. O modelo também recebe -2 em Ímpeto. Um modelo pode gastar uma ação para se libertar das bolas."
+      },
+      {
+        "label": "Uso Único",
+        "value": "As bolas só podem ser usadas uma vez por batalha. Elas são automaticamente recuperadas após cada batalha."
+      }
+    ]
+  }
+]

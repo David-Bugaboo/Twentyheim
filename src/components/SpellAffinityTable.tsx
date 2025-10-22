@@ -64,40 +64,18 @@ function SpellAffinityTable({ affinity }: SpellAffinityTableProps) {
 
       {affinity.aligned0 && affinity.aligned0.length > 0 && (
         <TableRow>
-          <TableCell header>Primary School (+0)</TableCell>
+          <TableCell header>Tradição Principal</TableCell>
           <TableCell>{affinity.aligned0.join(", ")}</TableCell>
         </TableRow>
       )}
 
       {affinity.aligned2 && affinity.aligned2.length > 0 && (
         <TableRow>
-          <TableCell header>Aligned (+2)</TableCell>
+          <TableCell header>Tradições Associadas (+4)</TableCell>
           <TableCell>{affinity.aligned2.join(", ")}</TableCell>
         </TableRow>
       )}
 
-      {affinity.neutral4 && affinity.neutral4.length > 0 && (
-        <TableRow>
-          <TableCell header>Neutral (+4)</TableCell>
-          <TableCell>{affinity.neutral4.join(", ")}</TableCell>
-        </TableRow>
-      )}
-
-      {affinity.opposed6 && affinity.opposed6.length > 0 && (
-        <TableRow>
-          <TableCell header>Opposed (+6)</TableCell>
-          <TableCell>{affinity.opposed6.join(", ")}</TableCell>
-        </TableRow>
-      )}
-
-      {affinity.anathema && affinity.anathema.length > 0 && (
-        <TableRow>
-          <TableCell header>Anathema</TableCell>
-          <TableCell sx={{ color: "#c44" }}>
-            {affinity.anathema.join(", ")}
-          </TableCell>
-        </TableRow>
-      )}
     </TableContainer>
   );
 }

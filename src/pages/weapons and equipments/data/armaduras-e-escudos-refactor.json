@@ -1,0 +1,149 @@
+[
+  {
+    "id": "escudo",
+    "name": "Escudo",
+    "type": "Armadura",
+    "damageModifier": null,
+    "purchaseCost": "10 coroas",
+
+    "exclusive": null,
+    "flavorText": "Há dois tipos de escudo comuns aos guerreiros de Mordheim: o primeiro é feito de madeira, ocasionalmente reforçado com placas de metal. Este tipo básico de escudo, embora forte, tende a estilhaçar, mas isso às vezes pode salvar a vida do usuário quando a arma de seu inimigo fica presa, permitindo que ele contra-ataque enquanto seu inimigo luta para libertar sua arma. Escudos de metal são pesados e desajeitados, mas duram muito mais e podem aguentar pancadas. Um escudo típico do Império é redondo ou triangular, e carrega o emblema da província ou cidade de seu dono.",
+    "user": null,
+    "armorBonus": "+1",
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": []
+  },
+  {
+    "id": "armadura-leve",
+    "name": "Armadura Leve",
+    "type": "Armadura",
+    "damageModifier": null,
+    "purchaseCost": "20 coroas",
+
+    "exclusive": null,
+    "flavorText": "A armadura leve abrange uma grande variedade de materiais, desde túnicas de couro endurecido até camisas de cota de malha forjadas de aço. Ela não oferece proteção completa contra flechas ou espadas, mas é melhor do que não ter nada. A armadura leve não inibe o Agilidade.",
+    "user": null,
+    "armorBonus": "+1",
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": []
+  },
+  {
+    "id": "armadura-pesada",
+    "name": "Armadura Pesada",
+    "type": "Armadura",
+    "damageModifier": null,
+    "purchaseCost": "50 coroas",
+    "exclusive": null,
+    "flavorText": "A armadura pesada típica é feita de elos de metal e é chamada de cota de malha. Forjar cota de malha é um processo trabalhoso e demorado, pois o ferreiro deve juntar centenas, às vezes milhares, de elos de metal. Isso torna a cota de malha cara, mas este tipo de armadura fornece excelente proteção para qualquer um que possa pagar por ela. Há outros tipos de armadura pesada também, dos quais os mais conhecidos são as peitorais e caneleiras de aço usadas pelos cavaleiros templários das ordens templárias.",
+    "user": null,
+    "armorBonus": "+2",
+    "movePenalty": "-2cm",
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": []
+  },
+  {
+    "id": "elmo",
+    "name": "Elmo",
+    "type": "Armadura",
+    "damageModifier": null,
+    "purchaseCost": "10 coroas",
+    "exclusive": null,
+    "flavorText": "Dos capacetes de aço brilhante dos cavaleiros Bretonnianos às toucas de couro dos Skaven, todos os guerreiros sensatos tentam proteger a parte mais vulnerável de seu corpo – sua cabeça. Até os lutadores mais vaidosos ainda usam um capacete, pois pode ser enfeitado com penachos, chifres e outras decorações.",
+    "user": null,
+    "armorBonus": "0",
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "proteger a cabeça",
+        "value": "O primeiro dano crítico que o jogador receberia na partida é transformado em um dano normal. O elmo então é descartado."
+      }
+    ]
+  },
+  {
+    "id": "pavise",
+    "name": "Pavise",
+    "type": "Armadura",
+    "damageModifier": null,
+    "purchaseCost": "25 coroas",
+    "availability": ["Todos"],
+    "rarity": 16,
+    "exclusive": null,
+    "flavorText": "Um pavise é um escudo enorme comumente usado por regimentos de guerreiros em batalha para se defender das flechas de seus inimigos. É um item pesado e de pouca utilidade em um combate longo e prolongado, mas excelente contra tiros.",
+    "user": null,
+    "armorBonus": "0",
+    "movePenalty": "-2cm",
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Cobertura",
+        "value": "Apesar de não oferecer um bônus de armadura, figuras equipadas com um pavise sempre contam como estando no mínimo em cobertura leve."
+      }
+    ]
+  },
+  {
+    "id": "armadura-lamelar",
+    "name": "Armadura Lamelar",
+    "type": "Armadura",
+    "damageModifier": null,
+    "purchaseCost": "120 coroas",
+    "exclusive": null,
+    "flavorText": "Os ferreiros forjam essas armaduras pesadas na Cathay para que aqueles nobres cavaleiros protejam as fazendas. Especialmente entre a Guarda do Palácio do Imperador Cathayano, a armadura de placas é muito comum. A armadura cobre não apenas o torso de seu usuário, mas também a parte superior do braço e da coxa.",
+    "user": null,
+    "rarity": 18,
+    "availability": ["Todos"],
+    "armorBonus": "+3",
+    "movePenalty": "-2cm",
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": []
+  },
+  {
+    "id": "couraça-do-campeao-caos",
+    "name": "Couraça do Campeão do Caos",
+    "type": "Armadura",
+    "damageModifier": null,
+    "purchaseCost": "185 coroas",
+    "exclusive": null,
+    "flavorText": "A Armadura do Caos é um conjunto de metal estranhamente trabalhado e sobrenatural. É a marca do favor de um Deus Sombrio. Embora a maioria dos conjuntos de Armadura do Caos sejam recebidos como Dons de um Patrono Infernal, eles podem ser adquiridos, embora apenas de Anões do Caos em uma troca exclusiva por muitos cativos ou talvez alguma façanha impossível para promover seus interesses.",
+    "user": null,
+    "rarity": 23,
+    "availability": [
+      "Saqueadores Homem-Fera",
+      "Culto dos Possuídos",
+      "Filhos de Hashut"
+    ],
+    "armorBonus": "+4",
+    "movePenalty": "-2cm",
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Sacrificios para o Octagrama",
+        "value": "Um héroi que busca esse item ganha +1 em sua rolagem de buscar item para cada figura que reduziu a 0 de vida pessoalmente na partida anterior."
+      },
+      {
+        "label": "Campeão do Caos",
+        "value": "Essa armadura é 5 coroas mais baratas para cada nível do héroi que encontrou essa armadura."
+      },
+      {
+        "label": "Presente do Caos",
+        "value": "A figura que encontra essa armadura é um abençoado pelo caos, e deve imediatamente vesti-la. A armadura é fundida ao seu corpo e nunca pode ser removida. A conexão inerente da armadura do caos faz com que conjuradores possam conjurar enquanto usam essa armadura, mas não escudos."
+      }
+    ]
+  }
+]

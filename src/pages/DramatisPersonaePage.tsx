@@ -26,7 +26,7 @@ const dramatisPersonae = [
       armour: 14,
       will: "+4",
       health: 16,
-      cost: "300gc",
+      cost: "300 coroas",
     },
     abilities: [
       {
@@ -39,7 +39,6 @@ const dramatisPersonae = [
         description:
           "As one of the legendary Swordmasters of Hoeth, Aenur may fight twice per activation.",
       },
-
       {
         name: "Arcane Edge",
         description:
@@ -105,7 +104,7 @@ const dramatisPersonae = [
       armour: 11,
       will: "+3",
       health: 14,
-      cost: "250gc + 20% upkeep",
+      cost: "250 coroas + 20% upkeep",
     },
     abilities: [
       {
@@ -130,7 +129,7 @@ const dramatisPersonae = [
       {
         name: "Addicted to Crimson Shade",
         description:
-          "May pay Johann's upkeep cost in Crimson Shade instead of gold. His Will stat is 0 for each game where his upkeep is paid in Shade, but the upkeep cost is only 15gc.",
+          "May pay Johann's upkeep cost in Crimson Shade instead of gold. His Will stat is 0 for each game where his upkeep is paid in Shade, but the upkeep cost is only 15 coroas.",
       },
       {
         name: "Hiring Restrictions",
@@ -149,7 +148,7 @@ const dramatisPersonae = [
       armour: 14,
       will: "+3",
       health: 20,
-      cost: "350gc",
+      cost: "350 coroas",
     },
     abilities: [
       {
@@ -182,7 +181,7 @@ const dramatisPersonae = [
       armour: 13,
       will: "+4",
       health: 14,
-      cost: "300gc+20% upkeep",
+      cost: "300 coroas+20% upkeep",
     },
     abilities: [
       {
@@ -368,8 +367,8 @@ function DramatisPersonaePage() {
               <br />
               <br />
               Cada Dramatis Personae tem sua própria estrutura de pagamento e
-              condições. Alguns exigem coroas de ouro, outros demandam Pedra-bruxa,
-              itens mágicos, ou até condições especiais a serem
+              condições. Alguns exigem coroas de ouro, outros demandam
+              Pedra-bruxa, itens mágicos, ou até condições especiais a serem
               cumpridas.
               <br />
               <br />

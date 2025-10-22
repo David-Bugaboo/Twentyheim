@@ -1,9 +1,25 @@
 import CollapsibleSection from "../../../components/CollapsibleSection";
 import MobileText from "../../../components/MobileText";
 
-function InjuriesAndDeathSection() {
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@mui/material";
+
+const InjuriesAndDeathSection = () => {
+
+
   return (
-    <CollapsibleSection id="ferimentos-e-morte" title="1. Ferimentos e Morte">
+    <CollapsibleSection
+      id="ferimentos-e-morte"
+      title="1. Ferimentos e Morte"
+    
+    >
       <MobileText className="mb-4">
         Para cada modelo que foi reduzido a 0 de Vigor durante o jogo, existe a
         possibilidade de que aquele modelo sofra ferimentos permanentes ou
@@ -11,176 +27,481 @@ function InjuriesAndDeathSection() {
         significa algo pior.
       </MobileText>
 
-      <div className="bg-[#2a1f1f] p-4 rounded-lg border border-[#382929] mb-6">
-        <MobileText variant="heading" className="mb-3">
-          Sobrevivência de Soldados
-        </MobileText>
+      <MobileText variant="heading" className="mb-3">
+        Sobrevivência de Soldados
+      </MobileText>
 
-        <MobileText className="mb-3">
-          Para cada soldado que foi reduzido a 0 de Vigor, role um d20 e
-          consulte a tabela abaixo:
-        </MobileText>
+      <MobileText className="mb-3">
+        Para cada soldado que caiu, role um d20:
+      </MobileText>
 
-        <div className="bg-[#382929] p-3 rounded mb-4">
-          <table className="w-full text-white text-sm">
-            <thead>
-              <tr className="bg-[#8b7355] text-[#d4af37] font-bold">
-                <th className="p-2 text-left">Rolagem</th>
-                <th className="p-2 text-left">Resultado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-[#382929]">
-                <td className="p-2">1-10</td>
-                <td className="p-2">Morte</td>
-              </tr>
-              <tr className="border-b border-[#382929]">
-                <td className="p-2">11-15</td>
-                <td className="p-2">Ferimento Permanente</td>
-              </tr>
-              <tr>
-                <td className="p-2">16-20</td>
-                <td className="p-2">Recuperação Completa</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <TableContainer
+        component={Paper}
+        sx={{
+          backgroundColor: "#1a1a1a",
+          border: "1px solid #382929",
+          mb: 3,
+        }}
+      >
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell
+                sx={{
+                  backgroundColor: "#8b7355",
+                  color: "#d4af37",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  width: "20%",
+                }}
+              >
+                d20
+              </TableCell>
+              <TableCell
+                sx={{
+                  backgroundColor: "#8b7355",
+                  color: "#d4af37",
+                  fontWeight: "bold",
+                }}
+              >
+                Resultado
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                1-4
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                <strong>Morto.</strong> O soldado não sobreviveu. Simples assim.
+                Remova-o da lista de campanha. Alguém terá que cavar uma cova...
+                se houver tempo.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                5-8
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                <strong>Gravemente Ferido.</strong> O soldado vive, mas mal. Não
+                poderá ser usado no próximo jogo. O soldado ferido pode ser
+                substituído temporariamente por qualquer figura de custo
+                gratuito que o bando possa recrutar.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                9+
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                <strong>Sobrevive.</strong> O soldado volta, talvez com novas
+                cicatrizes e pesadelos, mas funcional. Em Mordheim, isso conta
+                como sorte.
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
 
-        <MobileText className="mb-3">
-          <strong>Morte:</strong> O soldado morreu. Remova-o permanentemente do
-          seu bando. Em Mordheim, a morte é barata e comum.
-        </MobileText>
+      <MobileText variant="heading" className="mb-3">
+        Sobrevivência de Heróis e Campeões
+      </MobileText>
 
-        <MobileText className="mb-3">
-          <strong>Ferimento Permanente:</strong> O soldado sobreviveu, mas com
-          sequelas. Role na tabela de ferimentos permanentes e aplique o
-          resultado. Ele permanece no bando, mas pode ter suas capacidades
-          reduzidas.
-        </MobileText>
+      <MobileText className="mb-3">
+        Heróis e campeões são mais resistentes — ou mais teimosos — que soldados
+        comuns. Mas até eles podem cair permanentemente. Role um d20{" "}
+        <strong>+1</strong>:
+      </MobileText>
 
-        <MobileText>
-          <strong>Recuperação Completa:</strong> O soldado se recuperou
-          completamente. Ele volta ao jogo na próxima batalha sem penalidades.
-        </MobileText>
-      </div>
+      <TableContainer
+        component={Paper}
+        sx={{
+          backgroundColor: "#1a1a1a",
+          border: "1px solid #382929",
+          mb: 3,
+        }}
+      >
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell
+                sx={{
+                  backgroundColor: "#8b7355",
+                  color: "#d4af37",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  width: "20%",
+                }}
+              >
+                d20
+              </TableCell>
+              <TableCell
+                sx={{
+                  backgroundColor: "#8b7355",
+                  color: "#d4af37",
+                  fontWeight: "bold",
+                }}
+              >
+                Resultado
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                1
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                <strong>Morto.</strong> O líder caiu. Para sempre. Veja as
+                regras de Novos Recrutas para substituí-lo.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                2-4
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                <strong>Ferimento Permanente.</strong> A figura sofre um
+                ferimento que nunca cicatriza completamente. Role na Tabela de
+                Ferimentos Permanentes abaixo para determinar a natureza exata
+                do ferimento. A figura retorna para o próximo jogo com Vigor
+                completo — mas nunca mais será a mesma.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                5-6
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                <strong>Gravemente Ferido.</strong> A figura recebeu ferimentos
+                que levarão tempo para curar. O jogador escolhe: gastar{" "}
+                <strong>75 coroas em ervas medicinais especializadas</strong> (e
+                a figura joga o próximo jogo normalmente), ou a figura começa o
+                próximo jogo com <strong>-5 de Vigor</strong>. Cura rápida custa
+                caro.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                7-8
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                <strong>Por um Triz.</strong> A figura escapa sem ferimentos
+                maiores. Contudo, perde{" "}
+                <strong>todos os itens que estava carregando</strong>. Perdidos
+                nos escombros, roubados por saqueadores, ou simplesmente
+                esquecidos no caos da retirada.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                9-20
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                <strong>Recuperação Completa.</strong> Os ferimentos provam ser
+                relativamente menores. A figura retorna para o próximo jogo com
+                Vigor completo. Sorte. Resistência. Ou talvez os deuses ainda
+                não terminaram com ela.
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
 
-      <div className="bg-[#2a1f1f] p-4 rounded-lg border border-[#382929] mb-6">
-        <MobileText variant="heading" className="mb-3">
-          Sobrevivência de Heróis e Campeões
-        </MobileText>
+      <MobileText variant="heading" className="mb-3">
+        Tabela de Ferimentos Permanentes
+      </MobileText>
 
-        <MobileText className="mb-3">
-          Heróis e campeões são mais resistentes que soldados comuns. Para cada
-          herói ou campeão que foi reduzido a 0 de Vigor, role um d20 e consulte
-          a tabela abaixo:
-        </MobileText>
+      <MobileText className="mb-4">
+        Quando uma figura recebe um ferimento permanente, ele deve ser listado
+        nas anotações daquela figura na sua ficha de campanha. Estas são as
+        cicatrizes que nunca curam, os lembretes físicos de que Mordheim não
+        perdoa.
+      </MobileText>
 
-        <div className="bg-[#382929] p-3 rounded mb-4">
-          <table className="w-full text-white text-sm">
-            <thead>
-              <tr className="bg-[#8b7355] text-[#d4af37] font-bold">
-                <th className="p-2 text-left">Rolagem</th>
-                <th className="p-2 text-left">Resultado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-[#382929]">
-                <td className="p-2">1-5</td>
-                <td className="p-2">Morte</td>
-              </tr>
-              <tr className="border-b border-[#382929]">
-                <td className="p-2">6-15</td>
-                <td className="p-2">Ferimento Permanente</td>
-              </tr>
-              <tr>
-                <td className="p-2">16-20</td>
-                <td className="p-2">Recuperação Completa</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <TableContainer
+        component={Paper}
+        sx={{
+          backgroundColor: "#1a1a1a",
+          border: "1px solid #382929",
+          mb: 3,
+        }}
+      >
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell
+                sx={{
+                  backgroundColor: "#8b7355",
+                  color: "#d4af37",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  width: "15%",
+                }}
+              >
+                d20
+              </TableCell>
+              <TableCell
+                sx={{
+                  backgroundColor: "#8b7355",
+                  color: "#d4af37",
+                  fontWeight: "bold",
+                  width: "25%",
+                }}
+              >
+                Ferimento
+              </TableCell>
+              <TableCell
+                sx={{
+                  backgroundColor: "#8b7355",
+                  color: "#d4af37",
+                  fontWeight: "bold",
+                }}
+              >
+                Efeito
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                1-2
+              </TableCell>
+              <TableCell sx={{ color: "#d4af37", fontWeight: "bold" }}>
+                Dedos do Pé Perdidos
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                -1 permanente em Movimento. Pode ser recebido duas vezes
+                (cumulativo -2). Rolagem adicional deve ser rerolada. Difícil
+                correr quando seus pés são só tocos.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                3-5
+              </TableCell>
+              <TableCell sx={{ color: "#d4af37", fontWeight: "bold" }}>
+                Perna Destroçada
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                -2 permanentes em Movimento. Pode ser recebido duas vezes
+                (cumulativo -4). Rolagem adicional deve ser rerolada. Mancar é
+                melhor que rastejar. Mal.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                6-10
+              </TableCell>
+              <TableCell sx={{ color: "#d4af37", fontWeight: "bold" }}>
+                Braço Esmagado
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                -1 permanente em Ímpeto. Pode ser recebido duas vezes
+                (cumulativo -2). Rolagem adicional deve ser rerolada. O aço
+                ainda pesa o mesmo. O braço é que não levanta igual.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                11-12
+              </TableCell>
+              <TableCell sx={{ color: "#d4af37", fontWeight: "bold" }}>
+                Dedos Perdidos
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                -1 permanente em Precisão. Pode ser recebido duas vezes
+                (cumulativo -2). Rolagem adicional deve ser rerolada. Mirar é
+                difícil quando você conta nos dedos e chega a sete.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                13-14
+              </TableCell>
+              <TableCell sx={{ color: "#d4af37", fontWeight: "bold" }}>
+                Nunca Mais Tão Forte
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                -2 permanentes em Vigor. Pode ser recebido duas vezes
+                (cumulativo -4). Rolagem adicional deve ser rerolada. Os órgãos
+                cicatrizam. Mas nunca da mesma forma.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                15-16
+              </TableCell>
+              <TableCell sx={{ color: "#d4af37", fontWeight: "bold" }}>
+                Cicatrizes Psicológicas
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                -1 permanente em Vontade. Pode ser recebido duas vezes
+                (cumulativo -2). Rolagem adicional deve ser rerolada. Os
+                pesadelos nunca param. As mãos nunca param de tremer.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                17-18
+              </TableCell>
+              <TableCell sx={{ color: "#d4af37", fontWeight: "bold" }}>
+                Ferimento Persistente
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                Gaste 20 coroas antes de cada jogo ou comece com -3 de Vigor.
+                Pode ser recebido duas vezes (40 coroas ou -4 Vigor). Dor
+                crônica tem preço crônico.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                19
+              </TableCell>
+              <TableCell sx={{ color: "#d4af37", fontWeight: "bold" }}>
+                Maxilar Destroçado
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                Herói ativa apenas 2 soldados (ao invés de 3). Campeão ativa
+                apenas 1 soldado (ao invés de 2). Ordens murmuradas através de
+                dentes quebrados raramente inspiram.
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell
+                sx={{
+                  color: "#d4c4a8",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                20
+              </TableCell>
+              <TableCell sx={{ color: "#d4af37", fontWeight: "bold" }}>
+                Olho Perdido
+              </TableCell>
+              <TableCell sx={{ color: "#d4c4a8" }}>
+                -1 em Ímpeto quando alvo de ataque à distância. Duas vezes =
+                cego permanentemente, retire da campanha. Difícil lutar nas
+                sombras quando você não vê nem a luz.
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
 
-        <MobileText className="mb-3">
-          <strong>Morte:</strong> O herói ou campeão morreu. Esta é uma perda
-          significativa para o bando. Você pode requisitar um novo herói
-          seguindo as regras específicas.
-        </MobileText>
+      <MobileText variant="heading" className="mb-3">
+        Registrando Ferimentos Permanentes
+      </MobileText>
 
-        <MobileText className="mb-3">
-          <strong>Ferimento Permanente:</strong> O herói sobreviveu, mas com
-          sequelas. Role na tabela de ferimentos permanentes e aplique o
-          resultado. Ele permanece no bando, mas pode ter suas capacidades
-          reduzidas.
-        </MobileText>
-
-        <MobileText>
-          <strong>Recuperação Completa:</strong> O herói se recuperou
-          completamente. Ele volta ao jogo na próxima batalha sem penalidades.
-        </MobileText>
-      </div>
-
-      <div className="bg-[#2a1f1f] p-4 rounded-lg border border-[#382929] mb-6">
-        <MobileText variant="heading" className="mb-3">
-          Registrando Ferimentos Permanentes
-        </MobileText>
-
-        <MobileText className="mb-3">
-          Quando um modelo sofre um ferimento permanente, role um d20 e consulte
-          a tabela abaixo:
-        </MobileText>
-
-        <div className="bg-[#382929] p-3 rounded mb-4">
-          <table className="w-full text-white text-sm">
-            <thead>
-              <tr className="bg-[#8b7355] text-[#d4af37] font-bold">
-                <th className="p-2 text-left">Rolagem</th>
-                <th className="p-2 text-left">Ferimento</th>
-                <th className="p-2 text-left">Efeito</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-[#382929]">
-                <td className="p-2">1-2</td>
-                <td className="p-2">Ferimento na Cabeça</td>
-                <td className="p-2">-1 Vontade</td>
-              </tr>
-              <tr className="border-b border-[#382929]">
-                <td className="p-2">3-4</td>
-                <td className="p-2">Ferimento no Braço</td>
-                <td className="p-2">-1 Ímpeto</td>
-              </tr>
-              <tr className="border-b border-[#382929]">
-                <td className="p-2">5-6</td>
-                <td className="p-2">Ferimento na Perna</td>
-                <td className="p-2">-1 Movimento</td>
-              </tr>
-              <tr className="border-b border-[#382929]">
-                <td className="p-2">7-8</td>
-                <td className="p-2">Ferimento no Tórax</td>
-                <td className="p-2">-1 Vigor</td>
-              </tr>
-              <tr className="border-b border-[#382929]">
-                <td className="p-2">9-10</td>
-                <td className="p-2">Ferimento no Olho</td>
-                <td className="p-2">-1 Precisão</td>
-              </tr>
-              <tr>
-                <td className="p-2">11-20</td>
-                <td className="p-2">Ferimento Menor</td>
-                <td className="p-2">Nenhum efeito</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <MobileText>
-          <strong>Nota:</strong> Ferimentos permanentes são cumulativos. Um
-          modelo pode ter múltiplos ferimentos, cada um com seus próprios
-          efeitos. Em Mordheim, a sobrevivência tem seu preço.
-        </MobileText>
-      </div>
+      <MobileText>
+        Quando uma figura recebe um ferimento que causa diminuição em um de seus
+        atributos, escreva como <strong>atributo dividido</strong>. Por exemplo:
+        um herói com Ímpeto +3 que sofre Braço Esmagado agora tem Ímpeto{" "}
+        <strong>+3/+2</strong>. O primeiro número é a habilidade real (para
+        determinar potencial máximo e nível). O segundo número é a capacidade
+        física atual (para todas as rolagens). Lembre-se: em Mordheim, o que
+        você era importa menos do que o que você é agora.
+      </MobileText>
     </CollapsibleSection>
   );
-}
+};
 
 export default InjuriesAndDeathSection;

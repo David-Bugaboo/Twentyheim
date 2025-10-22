@@ -18,44 +18,79 @@ export default function LoreOfLifePage() {
     {
       name: "Sangue da Terra",
       castingNumber: 8,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão"],
       effect:
-        "O druida toca o solo e sente o pulso da própria terra - o fluxo constante de seiva através de raízes antigas, a respiração lenta das árvores milenares, o ciclo eterno de crescimento e renovação. Com reverência, ele direciona essa energia vital para um aliado. Veias de luz verde percorrem o corpo do alvo enquanto a vitalidade da natureza o preenche, fortalecendo-o como uma árvore que resiste às tempestades.\n\nEscolha um alvo a até 30cm. Esta magia concede ao alvo +2 Vigor pelo resto do jogo - enraizado na força da terra. Isto pode levar uma figura acima de seu Vigor inicial. Uma figura só pode ter uma magia Sangue da Terra conjurada sobre ela por jogo.",
+        "Escolha um alvo a até 30cm. Esta magia concede ao alvo +2 Vigor pelo resto do jogo - enraizado na força da terra. Isto pode levar uma figura acima de seu Vigor inicial. Uma figura só pode ter uma magia Sangue da Terra conjurada sobre ela por jogo.",
     },
     {
       name: "Portal dos Dolmens",
       castingNumber: 10,
-      range: "Apenas o Conjurador",
+      keywords: ["Conjurador Apenas"],
       effect:
-        "O druida invoca o poder dos círculos de pedra ancestrais, os portais naturais que conectam lugares sagrados. Seu corpo se dissolve em folhas e luz verde, fundindo-se momentaneamente com a teia de vida que conecta toda a natureza. Por um breve instante, ele caminha através das raízes profundas da terra, viajando pelos caminhos invisíveis que apenas os druidas conhecem. Então reemerge, como uma semente brotando, em outro lugar.\n\nO conjurador imediatamente se move para qualquer lugar dentro de linha de visão, viajando através da rede natural, mas não pode realizar outras ações neste turno após conjurar esta magia. Esta magia não pode ser usada para entrar em combate ou para sair da mesa.",
+        "O conjurador imediatamente se move para qualquer lugar dentro de linha de visão, viajando através da rede natural, mas não pode realizar outras ações neste turno após conjurar esta magia. Esta magia não pode ser usada para entrar em combate ou para sair da mesa.",
     },
     {
       name: "Gêiser",
-      castingNumber: 12,
-      range: "Linha de Visão",
+      castingNumber: 14,
+      keywords: ["Alcance(30)", "Area de Efeito(Pilar Médio)"],
       effect:
-        "O druida bate seu cajado no chão e desperta as águas primordiais que dormem nas profundezas. Com um rugido da terra, um gêiser de água fervente irrompe violentamente do solo. É a fúria natural da terra - não maligna, mas selvagem e indomável como um rio em cheia. A água queima com o calor das entranhas do mundo, vapor subindo em nuvens densas que obscurecem a visão.\n\nColoque um pilar circular de água fervente de 5cm de diâmetro, 8cm de altura em qualquer ponto dentro de linha de visão a até 30cm do conjurador. Este pilar não pode ser colocado em contato com uma figura. Sempre que uma figura se mover em contato com este gêiser, ou ativar enquanto em contato com ele, ela sofre um ataque mágico elemental +3. O pilar bloqueia linha de visão. No fim de cada turno, role um dado. Em 1-2 o gêiser cessa naturalmente e deve ser removido da mesa.",
+        "Essa área de efeito não pode ser colocado em contato com uma figura. Sempre que uma figura se mover em contato com essa área de efeito, ou ativar enquanto em contato com ela, sofre um ataque mágico +3 e é movida 2 vezes o dano que tomou diretamente para cima em centímetros. A Área de Efeito bloqueia linha de visão como se fosse uma peça de terreno. No fim de cada turno, role um dado. Em 1-2 o gêiser cessa naturalmente e deve ser removido da mesa.",
     },
     {
       name: "Parede de Espinhos",
       castingNumber: 8,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão", "Area de Efeito (Muro)"],
       effect:
-        "O druida convoca o aspecto defensivo da natureza. Do solo brotam vinhas retorcidas cobertas por espinhos afiados como adagas, crescendo em segundos até formar uma barreira densa e ameaçadora. São os mesmos espinhos que protegem as rosas mais belas - a natureza não diferencia beleza de perigo. Tocar essas plantas requer coragem, pois elas não cedem gentilmente.\n\nCria uma linha de espinhos densos de 15cm de comprimento, 3cm de largura e 3cm de altura. Os espinhos não bloqueiam linha de visão, mas podem contar como terreno interveniente. Qualquer figura que deseje escalar sobre os espinhos deve primeiro fazer uma Rolagem de Vontade com Classe de Dificuldade de 14. Se falhar, a hesitação domina e sua ação atual termina imediatamente.",
+        "A área de efeito não bloqueia linha de visão, mas pode conta como terreno interveniente. Qualquer figura que deseje escalar sobre a Área de Efeito deve primeiro fazer uma Rolagem de Vontade com CD de 14. Se falhar, a hesitação domina e sua ação atual termina imediatamente.",
     },
     {
       name: "Ímpeto da Vida",
       castingNumber: 10,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão"],
       effect:
         "O druida canaliza a força vital renovadora da natureza através do alvo, acelerando os processos naturais de cura e revitalizando o corpo exausto. A magia responde ao estado da criatura - para os feridos, traz regeneração; para os saudáveis, traz vigor explosivo. É como a primavera chegando após o inverno: aqueles à beira da morte florescem novamente, enquanto aqueles já fortes sentem uma energia súbita que os impele à ação.\n\nSe o alvo tiver menos da metade de seu Vigor máximo, a energia vital preenche suas feridas - ele ganha Vigor suficiente para ter metade do seu Vigor máximo +1. Se o alvo já tiver mais da metade de seu Vigor máximo, a vitalidade se manifesta como energia pura - ele ganha uma ação extra na sua próxima ativação.",
     },
     {
       name: "Nascente",
       castingNumber: 10,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão", "Área de Efeito (Zona Pequena)"],
       effect:
-        "O druida ergue as mãos e invoca o ciclo das águas - a chuva que cai, a neve que derrete, os rios que fluem. O Vento Verde concentra-se, e do solo brota uma nascente cristalina. A água surge do nada, enchendo a área como se sempre estivesse destinada a estar ali. É a dádiva da vida - onde há água, há esperança de crescimento. Mas água profunda também pode afogar os incautos.\n\nTodo solo a até 8cm de um ponto alvo se torna água profunda - uma piscina natural criada pela vontade do druida.",
+        "Posicione uma Área de Efeito em um ponto alvo. Essa área de efeito conta como água profunda com +2 no CD para nadar. Uma figura aliada a menos de 3cm da Área de Efeito pode gastar uma ação para recuperar 3 de vida, mas a Área de Efeito é imediatameente tirada da mesa, seu efeito mágico dissipado com cura. o conjurador pode dissipar a poça como uma ação livre na sua ativação. ",
+    },
+    {
+      name: "Dádiva da Terra",
+      castingNumber: 14,
+      keywords: ["Ritual"],
+      effect:
+        "Se esse ritual for conjurado com sucesso, depois do próximo jogo, o bando ganha +2 nas rolagens de sobrevivência de qualquer figura reduzida a 0 de vida. O bando também começa o próximo jogo com +1 de Vontade. ",
+    },
+    {
+      name: "Verão Escaldante",
+      castingNumber: 10,
+      keywords: ["Linha de Visão"],
+      effect:
+        "O alvo é reduzido a um máximo de uma ação por ativação até o fim do jogo (que pode ser qualquer ação, não precisa ser movimento). Ele pode fazer uma Rolagem de Vontade contra a Rolagem de Conjuração no fim de cada uma de suas ativações. Se bem-sucedida, a magia é cancelada.",
+    },
+    {
+      name: "Proclamação dos Rios",
+      castingNumber: 8,
+      keywords: ["Linha de Visão"],
+      effect:
+        "O alvo desta magia deve estar na água ou dentro de 10cm de um corpo de água que tenha pelo menos 5cm de diâmetro. Esta figura sofre um ataque imediato +5.",
+    },
+    {
+      name: "Florescer da Primavera",
+      castingNumber: 8,
+      keywords: ["Linha de Visão"],
+      effect:
+        "O alvo desta magia fica enredado em ervas daninhas e videiras que se agarram até o fim do jogo. Cada vez que o alvo é ativado, ele deve fazer uma Rolagem de Luta com Número Alvo de 15 (criaturas com a característica 'Grande' recebem +4 nesta rolagem). Se o alvo falhar, ele pode realizar apenas uma ação durante sua próxima ativação, que não pode ser movimento. Uma vez que um alvo fez sua Rolagem de Luta, ele escapou das videiras e não está mais enredado.",
+    },
+    {
+      name: "Curar Praga",
+      castingNumber: 12,
+      keywords: ["Alcance(60)"],
+      effect:
+        "A figura aliada alvo imediatamente perde quaisquer marcadores negativos que carrega. (sangramento, reverberação, marcado pela lua...)",
     },
   ];
 
@@ -99,7 +134,7 @@ export default function LoreOfLifePage() {
               name={spell.name}
               school="Tradição da Vida"
               castingNumber={spell.castingNumber}
-              range={spell.range}
+              keywords={spell.keywords}
               effect={spell.effect}
             />
           ))}

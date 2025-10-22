@@ -1,518 +1,358 @@
-import { Typography, Tooltip, styled, ClickAwayListener } from "@mui/material";
+import {
+  Typography,
+  Tooltip,
+  styled,
+  ClickAwayListener,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+} from "@mui/material";
 import { type ReactNode, useState } from "react";
+import WeaponTooltipCard from "./WeaponTooltipCard";
+import {
+  commonItemsData,
+  type EquipmentItem,
+} from "../pages/weapons and equipments/data/commonItemsData";
 
 interface GameTerm {
   term: string;
   description: string;
 }
 
+// Função para criar mapeamento de equipamentos dos dados comuns
+const createEquipmentMap = () => {
+  const equipmentMap = new Map<string, EquipmentItem>();
+
+  commonItemsData.forEach((category) => {
+    category.items.forEach((item) => {
+      equipmentMap.set(item.name, item);
+    });
+  });
+
+  return equipmentMap;
+};
+
+const equipmentMap = createEquipmentMap();
+
 const gameTerms: GameTerm[] = [
   {
-    term: "Bleed Token",
+    term: "Marcador de Sangramento",
     description:
-      "A creature with a Bleed Token takes 2 damage whenever it moves or takes damage. Healing potions or healing spells/powers can remove Bleed Tokens.",
+      "Uma criatura com um Marcador de Sangramento sofre 2 de dano sempre que se move ou sofre dano. Poções de cura ou magias/poderes de cura podem remover Marcadores de Sangramento.",
   },
   {
-    term: "Stun Token",
+    term: "Marcador de Atordoamento",
     description:
-      "A Figure with a Stun Token must spend an action to remove the Stun Token. It then acts normaly with any actions left.",
+      "Uma figura com um Marcador de Atordoamento deve gastar uma ação para remover o Marcador de Atordoamento. Ela então age normalmente com quaisquer ação restantes. Uma criatura nunca pode ter mais que dois marcadores de atordoamento por vez.",
   },
   {
-    term: "Ablaze Token",
+    term: "Marcador de Chamas",
     description:
-      "A creature with an Ablaze Token (on fire) takes 3 elemental damage at the start of each of its activations until it spends an action to put the fire out.",
+      "Uma criatura com um Marcador de Chamas  sofre 3 de dano elemental no início de cada uma de suas ativações até gastar uma ação para apagar o fogo.",
   },
   {
-    term: "Echo Token",
+    term: "Marcador de Reverberação",
     description:
-      "A creature with an echo token takes 1 extra damage at any time it takes damage for each echo token it has.",
+      "Uma criatura com um marcador de eco sofre 1 de dano extra sempre que sofre dano para cada marcador de eco que possui.",
   },
   {
-    term: "Guidance Token",
+    term: "Marcador de Sabedoria",
     description:
-      "Can be discarded to reroll a Combat Roll, Shooting Roll, or Stat Roll. The figure must take the result of the reroll. No figure may have more than one guidance token at one time.",
+      "Pode ser descartado para rerrolar uma Rolagem de Combate, Rolagem de Tiro ou teste de Atributo. A figura deve aceitar o resultado da rerrolagem. Nenhuma figura pode ter mais de um marcador de sabedoria por vez.",
   },
   {
-    term: "Hatred Token",
+    term: "Marcador de Ódio",
     description:
-      "Can be spent to reroll any Fight or Shooting Attack roll that figure makes.No figure may have more than one guidance token at one time. ",
+      "Pode ser gasto para rerrolar qualquer rolagem de Luta ou Ataque a Distância que a figura faça. Nenhuma figura pode ter mais de um marcador de ódio por vez.",
   },
   {
-    term: "Marked by The Moon",
-    description:
-      "Wood Elves shooting against this figure ignore the first piece of intervening terrain. Effects that prevent line of sight beyond X distance stop working. Lost at the start of the figure's activation.",
+    term: "Mente de Ferro",
+    description: "Esta criatura é Imune a Qualquer Efeito Psicológico.",
   },
   {
-    term: "Mind Lock",
+    term: "Grande",
     description:
-      "This creature is Immune to Mind Control, Immune to Suggestion, and Immune to Fear.",
+      "Esta criatura enorme é mais fácil de mirar com ataques a distância. Ela sofre do modificador Alvo Grande (-2) ao se defender contra ataques a distância.",
   },
   {
-    term: "Large",
-    description:
-      "This huge creature is easier to target with shooting attacks. It suffers from the Large Target modifier (-2) when defending against shooting attacks.",
+    term: "Forte",
+    description: "Esta criatura causa +2 de dano.",
   },
   {
-    term: "Strong",
-    description: "This creature does +2 damage.",
+    term: "Aterrorizante",
+    description:
+      "Inimigos devem passar em um teste de Vontade CD 12 para declarar carga contra com esta criatura. Falha não custa a ação mas impede a tentativa até a próxima ativação.",
   },
   {
-    term: "Fear",
+    term: "Morto-Vivo",
     description:
-      "Enemies must pass a TN 12 Will test to move into combat with this creature.",
-  },
-  {
-    term: "Undead",
-    description:
-      "This creature is immune to poison and never counts as wounded. Undead creatures can pick up and carry treasure tokens but have no item slots.",
+      "Esta criatura é imune a veneno e nunca conta como ferida. Criaturas mortas-vivas podem pegar e carregar marcadores de tesouro mas não têm espaços de itens.",
   },
   {
     term: "Animal",
     description:
-      "A natural creature with less-than-human intelligence. Even if they become a member of a warband, animals cannot pick up treasure tokens and have no item slots.",
+      "Uma criatura natural com inteligência menor que humana. Mesmo se se tornarem membros de um bando, animais não podem pegar marcadores de tesouro e não têm espaços de itens. Animais não ganham experiência.",
   },
   {
-    term: "Amphibian",
+    term: "Anfíbio",
     description:
-      "This creature is perfectly happy on land or in the water. It automatically passes all Swimming Rolls, treats water as normal instead of rough ground, and suffers no Fight penalties for being in the water.",
+      "Esta criatura é perfeitamente feliz em terra ou na água. Ela automaticamente passa em todas as Rolagens de Natação, trata água como normal ao invés de terreno acidentado, e não sofre penalidades de Luta por estar na água.",
   },
   {
-    term: "Flying",
+    term: "Voador",
     description:
-      "This creature ignores all terrain and movement penalties when moving. Furthermore, it never takes damage from falling. Flying creatures automatically pass all Swimming Rolls.",
+      "Esta criatura ignora todas as penalidades de terreno e movimento ao se mover. Além disso, nunca sofre dano de queda. Criaturas voadoras automaticamente passam em todas as Rolagens de Natação.",
   },
   {
-    term: "Levitate",
+    term: "Levitar",
     description:
-      "Ignore any castings of Beauty or Invisibility when determining this creature’s actions. Furthermore, if this figure is ever in combat with an Illusionary Soldier, the Illusionary Soldier is immediately removed from the table.",
+      "Ignore quaisquer penalidades de movimento por terreno acidentado e escalar.",
   },
   {
-    term: "Bounty",
+    term: "Recompensa",
     description:
-      "There is a reward of (X) awaiting the warband that kills this creature",
+      "Há uma recompensa de (X) aguardando o bando que matar esta criatura",
   },
   {
-    term: "Truesight",
+    term: "Visão Verdadeira",
     description:
-      "The figure can see through illusions and magical concealment.",
+      "Ignore qualquer efeito psicológico e invisibilidade ao determinar as ações desta criatura. Além disso, se esta figura estiver em combate com um membro de um bando gerado pela magia Ilusão, essa figura é imediatamente removida da mesa.",
   },
   {
-    term: "Poison",
+    term: "Veneno",
     description:
-      "Attacks from this creature are venomous and deal poison damage.",
+      "Ataques desta criatura são venenosos e envenenam a figura alvo.",
   },
   {
-    term: "Regeneration",
-    description:
-      "The figure recovers health at the start of its activation unless prevented by specific damage types.",
+    term: "Regeneração",
+    description: "A figura recupera 2 de vida no início de sua ativação .",
   },
   {
-    term: "Latch-on",
+    term: "Agarrar",
     description:
-      "Figures in combat with this creature may only push back themselves or their opponent only if they do damage. Simply winning the combat is not enough.",
+      "Figuras em combate com esta criatura só podem empurrar a si mesmas ou seu oponente se causarem dano. Simplesmente vencer o combate não é suficiente.",
   },
   {
-    term: "Opponent armour Reduction",
+    term: "Dreno de Energia",
     description:
-      "If this figure wins a round of combat versus a figure wearing light or heavy armour, its opponent suffers -1 armour against the attack.",
+      "Esta criatura causa dano dobrado em combate. mortos-vivos e construtos são imunes a este dano extra e só sofrem a quantidade padrão.",
   },
   {
-    term: "Energy Drain",
+    term: "Toque Vampírico",
     description:
-      "This creature deals double damage in combat. Undead and constructs are immune to this extra damage and just take the standard amount.",
+      "Esta figura ganha 2 de vida sempre que causa pelo menos 1 de dano. Esse efeito não é desencadeado em mortos-vivos e construtos.",
   },
   {
-    term: "Vampiric Touch",
+    term: "Caçador de Matilha",
     description:
-      "This figure gains 2 health whenever it deals at least 1 damage.",
-  },
-  {
-    term: "Pack Hunter",
-    description:
-      "Whenever a pack hunter is activated, all other pack hunters in contact with it should be activated and moved as one. Roll randomly to see which creature is the ‘pack leader’ and determine the pack’s actions using that figure.",
+      "Sempre que um caçador de matilha é ativado, todos os outros caçadores de matilha em contato com ele devem ser ativados e movidos como um. Role aleatoriamente para ver qual criatura é o 'líder da matilha' e determine as ações da matilha usando essa figura.",
   },
 
   {
-    term: "Elemental Resistance",
+    term: "Resistência Elemental (X)",
     description:
-      "Whenever this creature takes elemental damage, increase its armour by (X) for the purposes of determining damage from that attack.",
+      "Sempre que esta criatura sofre dano elementar, aumente sua armadura em (X) para determinar o dano daquele ataque.",
   },
   {
-    term: "Burning Touch",
-    description: "Attacks from this figure deal elemental damage.",
+    term: "Toque Ardente",
+    description: "Ataques desta figura causam 2 de dano extra elemental.",
   },
   {
-    term: "Horns",
+    term: "Chifres",
     description:
-      "If this creature moves into combat and spends an action to fight as part of the same activation, it receives +2 Fight for that attack only..",
+      "Se esta criatura se move para combate e gasta uma ação para lutar como parte da mesma ativação, ela recebe +2 de Luta apenas para aquele ataque.",
   },
   {
-    term: "Construct",
+    term: "Construto",
     description:
-      "This creature is immune to poison and never counts as wounded. Constructs can pick up and carry treasure tokens but have no item slots. Although constructsmay never carry items, some items may be permanently grafted to them – if available, this option will be noted in the item’s description.",
+      "Esta criatura é imune a veneno e nunca conta como ferida. Construtos podem pegar e carregar marcadores de tesouro mas não têm espaços de itens. Embora construtos nunca possam carregar itens, alguns itens podem ser permanentemente enxertados neles – se disponível, esta opção será notada na descrição do item.",
   },
   {
-    term: "Demon",
+    term: "Daemônio",
     description:
-      "All attacks made by this creature count as magic attacks. This creature is immune to poison. Demons can pick up and carry treasure tokens but have no item slots.",
+      "Todos os ataques feitos por esta criatura contam como ataques mágicos. Esta criatura é imune a veneno. Daemônios podem pegar e carregar marcadores de tesouro mas não têm espaços de itens.",
   },
   {
-    term: "Demon",
+    term: "Vulnerabilidade Elemental",
     description:
-      "This creature is a demon from the Realm of Chaos. Demons are immune to psychology effects and poison.",
+      "Esta criatura é vulnerável a dano elementar. Ao sofrer dano elementar, reduza sua armadura em (X) para determinar o dano.",
   },
   {
-    term: "Construct",
+    term: "Selvagem",
     description:
-      "This creature is an animated construct. Constructs are immune to poison and psychology effects, and never count as wounded.",
+      "Os ataques desta criatura contam como usando uma Arma de Duas Mãos, causando dano aumentado com golpes brutais.",
   },
   {
-    term: "Elemental Vulnerability",
+    term: "Cobertura Pesada",
     description:
-      "This creature is vulnerable to elemental damage. When taking elemental damage, reduce its armour by (X) for the purposes of determining damage.",
+      "Ataques a distância contra figuras em Cobertura Pesada sofrem -4 em suas rolagens de Tiro.",
   },
   {
-    term: "Savage",
+    term: "Cobertura Leve",
     description:
-      "This creature's attacks count as using a Two-handed weapon, dealing increased damage with brutal strikes.",
+      "Ataques a distância contra figuras em Cobertura Leve sofrem -2 em suas rolagens de Tiro.",
   },
   {
-    term: "Heavy Cover",
+    term: "Imunidade Parcial a Dano Normal",
     description:
-      "Shooting attacks against figures in Heavy Cover suffer -4 to their Shoot rolls.",
+      "Sempre que esta figura sofre dano de um ataque não-mágico o dano é reduzido pela metade, arredondando para baixo.",
   },
   {
-    term: "Light Cover",
+    term: "Vulnerabilidade Sagrada",
     description:
-      "Shooting attacks against figures in Light Cover suffer -2 to their Shoot rolls.",
+      "Esta criatura sofre -1 em todas as Rolagens de Vontade ao rolar para resistir a magias de Tradições Divinas.",
   },
   {
-    term: "Partial Immunity to Normal Damage",
+    term: "Duas Cabeças",
     description:
-      "Any time this figure suffers damage from a non-magical attack the damage is halved, rounding down.",
+      "Uma figura lutando contra uma criatura de duas cabeças sempre conta como tendo uma figura de apoio a menos do que realmente tem (mínimo de 0).",
   },
   {
-    term: "Thaumaturgic Vulnerability",
+    term: "Vulnerabilidade Elemental",
     description:
-      "This creature suffers -1 to all Will Rolls when rolling to resist spells from the Thaumaturge school.",
+      "Esta criatura é vulnerável a dano elementar. Ao sofrer dano elementar, reduza sua armadura em (X) para determinar o dano.",
   },
   {
-    term: "Two-Headed",
+    term: "Duas Mãos",
     description:
-      "A figure fighting a two-headed creature always counts as having one supporting figure fewer than it actually does (to a minimum of 0).",
+      "Uma arma com essa característica ocupa dois espaços de items, e não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem.",
   },
-  // Daemonic Attributes
   {
-    term: "Armoured Hide",
+    term: "Penetração de Armadura (X)",
     description:
-      "The demon is covered in scales, plates, or some other form of natural armour. Increase its Armour stat by 1.",
+      "Essa arma trata a armadura de inimigos que atinge como (X) pontos menor.",
   },
   {
-    term: "Chameleonic",
+    term: "Leve",
     description:
-      'The demon blends in with its surroundings. No figure may draw line of sight to this figure if they are more than 12" away.',
+      "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas.",
   },
   {
-    term: "Demonic Strength",
+    term: "Versátil",
     description:
-      "This demon counts as being armed with a two-handed weapon for the purposes of determining damage in hand-to-hand combat.",
+      "Uma arma com essa característica pode ser usado com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano. Mesmo se usada com uma mão, não pode se beneficiar de uma arma leve na mão secundária, apenas de escudos.",
   },
   {
-    term: "Explosive Demise",
+    term: "Par",
     description:
-      'When reduced to 0 Health, exits in a fiery explosion. Every figure within 3" suffers a +3 elemental magic shooting attack.',
+      "Armas com essa característica devem sempre ser usadas em pares, ocupando ambas as mãos, mas provendo o bônus de +1 Ímpeto de lutar com duas armas se for leve. A figura equipada nunca pode desequipar apenas uma arma de par, e se perder a arma perde ambas.",
   },
   {
-    term: "Horrific",
+    term: "Venenosa",
     description:
-      "Living figures must make a Will roll (TN 14) to move into combat with this demon. Failure doesn't cost the action but prevents the attempt until next activation.",
+      "Uma arma com essa característica envenena o alvo em um ataque bem-sucedido, mesmo se não causar dano.",
   },
   {
-    term: "Numbing Touch",
+    term: "Concussiva(X)",
     description:
-      "Figures that lose combat against this demon suffer -1 Fight for the rest of the game (or until healed) in addition to any damage. Not cumulative.",
+      "Uma arma com essa característica dá ao alvo de qualquer ataque bem-sucedido que cause mais que (X) de dano um marcador de Atordoamento.",
   },
   {
-    term: "Tentacles",
+    term: "Abençoada (X)",
     description:
-      "The demon has long tentacles. Any time a figure moves within 2\" but doesn't enter combat, the demon may make a free +0 shooting attack.",
+      "Essa arma ignora (X) pontos de armadura do alvo, se esta tiver as caracteristicas Morto-vivo ou Daemônio.",
   },
   {
-    term: "Vestigial Wings",
+    term: "Desbalanceada",
     description:
-      "The demon has small wings. While it cannot fly, it never suffers damage from falling, no matter the distance.",
+      "Uma arma com essa característica nunca pode ser usada com uma arma leve na mão secundária, apenas escudos.",
   },
   {
-    term: "Acidic Blood",
+    term: "Defensiva",
     description:
-      "When damaged, attacker makes a Will roll (TN 12+). On failure, suffers 3 damage and non-magic weapons are destroyed (replaced after game).",
+      "Inimigos causam -1 de dano no portador de uma arma com essa característica.",
   },
   {
-    term: "Blinding Aura",
+    term: "Cruel",
     description:
-      'Figures activating within 6" make a Will roll (TN 12) or be blinded. While blinded: no attack/shoot/LoS spells, Fight +0, Move 1. Recovery attempt each turn.',
+      "Uma arma com essa característica conta como tendo causado um ataque crítico em uma rolagem natural de 19 ou 20. Essa característica só é aplicada se esta for a arma da mão principal.",
   },
   {
-    term: "Insubstantial Movement",
+    term: "Chicote(X)",
     description:
-      "Can move through walls and terrain as though not there, provided it has enough movement to reach the other side. Cannot see through terrain.",
+      "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de (X)cm, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de (X)cm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno.",
   },
   {
-    term: "Life Bane",
+    term: "Giros Brutais",
     description:
-      'Living figures activating within 3" must make a Will roll (TN 20) or immediately suffer 2 damage.',
+      "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de Agilidade para girar sua funda com mais força. Aumente o alcance do próximo ataque a distancia em 6cm.",
   },
   {
-    term: "Maelstrom",
+    term: "Arma de Tecido",
     description:
-      "Surrounded by swirling elemental energy. All shooting attacks against the demon are at -2.",
+      "Embora não possa ser usada para ganhar +1 de impeto em lutas, uma figura carregando uma arma na mão principal e uma funda na mão secundária ainda pode pode pegar Fragmentos de Pedra-Bruxa, mas não pode usar a funda para atirar enquanto estiver carregando o fragmento..",
   },
   {
-    term: "Magic Sink",
+    term: "Hibrida",
     description:
-      "Absorbs magic energy. Any spell targeting this demon requires the caster to roll twice and take the lower result.",
+      "Pode ser usada como arma corpo a corpo ou a distância, recebendo -1 de dano se for usada como arma a distância.",
   },
   {
-    term: "Regeneration",
+    term: "Corda de Alta Tensão",
     description:
-      "At the start of each activation, regains 2 points of lost Health. May not exceed starting Health.",
+      "Devido a alta tensão necessária para disparar uma flecha, um usuário de arco longo precisa de todo folego. Figuras inimigas ganhamn +1 de bonus adicional para sua rolagem de impeto contra tiros feitos pelo portador desse arco caso ele tenha movido antes de atirar.",
   },
   {
-    term: "Serendipitous",
+    term: "Recarga",
     description:
-      'Once per turn, when any figure within 12" rolls a natural 1 or 20, the demon may force a reroll. Second result stands.',
+      "Essa arma requer o uso de uma ação para recarregá-la e poder atirar novamente. Contudo, essa ação pode substituir a ação de Agilidade.",
   },
   {
-    term: "Hellspawner",
+    term: "Pistola",
     description:
-      'At the start of each turn, roll a die. On 16+, an imp appears within 3" as an uncontrolled creature.',
+      "Uma arma com essa característica é leve e prática, podendo ser usada com apenas uma mão. Ela conta como uma adaga em combate corpo a corpo, inclusive para Lutar com Duas Armas.",
   },
-  // Weapons & Equipment
   {
-    term: "Hand Weapon",
+    term: "Capacidade (X)",
     description:
-      "A standard melee weapon (sword, axe, mace, etc.). No special modifiers. Can be dual-wielded with a dagger or another hand weapon for +1 Fight.",
+      "Uma arma com essa característica pode disparar (X) vezes  antes de precisar recarregar. Cada flecha ou bala deve ser recarregada individualmente com uma ação de recarga.",
   },
   {
-    term: "Dagger",
+    term: "Engenharia Complexa",
     description:
-      "A small blade. Deals -1 damage. Can be used in the offhand with a hand weapon or equivalent for +1 Fight.",
+      "Uma arma com essa característica trava em casos específicos. Quando o portador rola um 1 natural em um ataque, a arma trava, e só pode ser usada novamente gastando uma ação, que pode substituir a ação de Agilidade.",
   },
   {
-    term: "Two-handed Weapon",
+    term: "Coice Violento",
     description:
-      "A large weapon (greatsword, halberd, etc.) that requires both hands. Deals +2 damage. Cannot be used with a shield or in the offhand. Occupies two item slots.",
+      "A explosão da pólvora faz a arma ter um recuo violento ao atirar. Ataques à distância com armas com essa característica são feitos a -1.",
   },
   {
-    term: "Staff",
-    description:
-      "A wooden staff favored by spellcasters and travellers. Deals -1 damage, but enemy hand-to-hand combat damage is reduced by 1.",
-  },
-  {
-    term: "Bow",
-    description: 'A ranged weapon with 24" range. Requires both hands.',
-  },
-  {
-    term: "Crossbow",
-    description:
-      "Crossbows take one action to load and one action to fire. If a figure wishes, it may replace its movement action with a ‘reload’ action. Crossbows have a +2 damage modifier. Crossbows also have a maximum range of 24”. It is assumed that all crossbows start the game loaded and ready to fire. In order to use a crossbow, a figure must also be carrying a quiver (which fills another item slot) or some type of magic ammunition.",
-  },
-  {
-    term: "Hand Crossbow",
-    description:
-      'Hand Crossbows take one action to load and one action to fire. If a figure wishes, it may replace its movement action with a ‘reload’ action. However, they may be used and loaded with only one hand. Crossbows have a +1 damage modifier and a maximum range of 12". Additionally, Hand Crossbows count as daggers in close combat, including for Two-Weapon Fighting. It is assumed that all hand crossbows start the game loaded and ready to fire.',
-  },
-  {
-    term: "Javelin",
-    description:
-      "Javelins are treated as hand weapons when used in hand-to-hand combat. They can also be thrown up to 10”. A thrown javelin is treated as a standard shooting attack and follows all of the rules for bows and crossbows. Any spell or special affect that causes a penalty to bow and crossbow attacks will also affect attacks with thrown javelins.",
-  },
-  {
-    term: "Sling",
-    description:
-      "A simple ranged weapon with 6\" range. Deals -2 damage. Can be used in the offhand, and doesn't cause encumberance when carrying Wyrdstone Shards.",
-  },
-  {
-    term: "Light armour",
-    description:
-      "Leather or light mail armour. Provides +1 armour. Does not interfere with movement.",
-  },
-  {
-    term: "Light Armour",
-    description:
-      "Leather or light mail armour. Provides +1 armour. Does not interfere with movement.",
-  },
-  {
-    term: "Heavy armour",
-    description:
-      "Plate mail or full armour. Provides +2 armour. Have a -1 Penalty to movement.",
-  },
-  {
-    term: "Heavy Armour",
-    description:
-      "Plate mail or full armour. Provides +2 armour. Have a -1 Penalty to movement.",
-  },
-  {
-    term: "Shield",
-    description:
-      "A defensive item that provides +1 armour. Can be used with one-handed weapons.",
-  },
-  {
-    term: "Musket",
-    description:
-      'This larger, two-handed firearm is the most common variety of black powder weapon. Deals +2 damage and ignores 2 points of armour from target figures. Muskets have a maximum effective range of 24". A model may only ever carry one musket and can never carry a shield. A musket can be used in hand-to-hand combat. It counts as a two-handed weapon, but does not receive the usual +2 damage bonus.',
-  },
-  {
-    term: "Pistol",
-    description:
-      'A one-handed firearm with 10" range. Deals +2 damage and ignores 2 points of armour from target figures. Count as a dagger in hand-to-hand combat, including for Two-Weapon Fighting. Requires an action to reload.',
-  },
-  {
-    term: "Blunderbuss",
-    description:
-      'Usually falling between a pistol and a musket in size, a blunderbuss is a two-handed weapon that fires a spread of pellets instead of a single bullet. It has a maximum effective range of 14". When firing a blunderbuss, pick your target figure, and then make a shooting attack against that target and every other figure within 1" of it. Roll against your initial target first. If this roll is a misfire, do not roll against the other figures. Rolls of 1 when rolling against additional targets do not count as misfires. A blunderbuss can be used in hand-to-hand combat in the same way as a pistol, except it does not count for two-weapon fighting.',
-  },
-  {
-    term: "Throwing Spear",
-    description:
-      'Single-use ranged weapon with 8" range. +1 damage modifier when used for shooting, -1 damage modifier in hand-to-hand combat. Once thrown, it is crossed off but replaced for free after the game. Only one may be carried per model.',
-  },
-  // Warband-Specific Equipment
-  {
-    term: "Sacrificial Dagger",
-    description:
-      "Brides of Khaine exclusive. A hooked and cruel knife designed to flay skin with each strike. Counts as a dagger, but scores critical hits on rolls of 19 or 20 on any attack with it in the main hand or offhand.",
-  },
-  {
-    term: "Elven Warglaive",
-    description:
-      "Sea Guard of Ulthuan exclusive. An elegant and slender weapon, used for both brutal attacking and cunning defense. Counts as a staff, but with a +1 bonus to damage.",
-  },
-  {
-    term: "Skaven Fighting Claws",
-    description:
-      "Skaven exclusive. Count as if the user is using two daggers (+1 to Fight due to Two-Weapon Fighting and -1 damage) and occupies both hands. Figures equipped with Skaven Fighting Claws can climb with no movement penalties.",
-  },
-  {
-    term: "Fighting Claws",
-    description:
-      "Skaven exclusive. Count as if the user is using two daggers (+1 to Fight due to Two-Weapon Fighting and -1 damage) and occupies both hands. Figures equipped with Fighting Claws can climb with no movement penalties.",
-  },
-  {
-    term: "Accursed Weapon",
-    description:
-      "Cult of the Possessed exclusive. Counts as a hand weapon, except it deals an extra +1 damage. However, any unmodified rolls of 1 on the d20 cause 2 damage to the attacking figure.",
-  },
-  {
-    term: "Sigmarite Warhammer",
-    description:
-      "Sisters of Sigmar exclusive. Counts as a hand weapon, but if it deals 5 or more damage, the target get a Stun Token..",
-  },
-  {
-    term: "Dwarf Axe",
-    description:
-      "Dwarf Treasure Hunters exclusive. A masterfully built axe that is way lighter than other axes. Counts as a dagger, but without the -1 modifier to damage.",
-  },
-  {
-    term: "Dwarf Axes",
-    description:
-      "Dwarf Treasure Hunters exclusive. Masterfully built axes that are way lighter than other axes. Count as daggers, but without the -1 modifier to damage.",
-  },
-  {
-    term: "Dwarf Greataxe",
-    description:
-      "Dwarf Treasure Hunters exclusive. A masterfully crafted weapon designed to pierce through enemy defenses. Counts as a Two-handed weapon that treats enemy figures' armour as being 1 point lower when calculating damage.",
-  },
-  {
-    term: "Dwarf Great Axes",
-    description:
-      "Dwarf Treasure Hunters exclusive. Masterfully crafted weapons designed to pierce through enemy defenses. Count as Two-handed weapons that treat enemy figures' armour as being 1 point lower when calculating damage.",
-  },
-  {
-    term: "Gromril armour",
-    description:
-      "Dwarf Treasure Hunters exclusive. Made from the strongest metal in the Dwarf Kingdoms. As strong as full plate, but at less than half the weight. Counts as Heavy armour, but without the -1 movement penalty.",
-  },
-  {
-    term: "Asrai Longbow",
-    description:
-      'Wood Elves exclusive. A masterwork bow crafted from the living wood of Athel Loren. Range: 30". Treats the armour of a figure hit by a shooting attack from this bow as 1 point lower.',
-  },
-  {
-    term: "Moonfire Arrow",
-    description:
-      "Wood Elves exclusive. A single magical arrow that may be fired once per game. When declared, automatically hits if target is in range and line of sight (no Shoot roll required). Deals +3 damage and reduces target's armour to 10 for calculating damage. Cost: 30gc.",
-  },
-  {
-    term: "Blowpipe",
-    description:
-      'Lizardmen exclusive. A ranged weapon with 16" range and -4 damage modifier. The blowpipe has the Poison trait, making it deadly despite low damage.',
-  },
-  {
-    term: "Bone Fetish",
-    description:
-      "Necromancer starting equipment. A dark talisman made from bones and dark materials, can be consumed to gain +2 in the casting roll of the next raise zombie or animate skull spell.",
-  },
-  {
-    term: "Holy Relic",
-    description:
-      "Witch Hunters exclusive. A blessed item imbued with the power of Sigmar. Inquisitors start with one and regain it each game as long as a Warrior Priest of Sigmar is in the warband. Can be consumed to gain +3 in a single Will stat check.",
-  },
-  {
-    term: "Holy Water Vial",
-    description:
-      "Can be consumed as a healing potion or thrown as a weapon (3\" range). Against Demons/Undead: deals magical damage and treats target's armour as 8. Against other creatures: no effect. Witch Hunters and Sisters of Sigmar start with one and regain it each game.",
-  },
-  {
-    term: "Powder Horn",
-    description:
-      "Required accessory for black powder weapons. Contains the gunpowder needed to reload and fire muskets, pistols, and blunderbusses.",
-  },
-  {
-    term: "Quiver",
-    description:
-      "Contains arrows or bolts for bows and crossbows. Required to use ranged weapons unless using magic ammunition. Fills one item slot.",
-  },
-  {
-    term: "Dart Pouch",
-    description:
-      "Lizardmen equipment. Contains poisoned darts for use with blowpipes. Required for blowpipe attacks.",
-  },
-  {
-    term: "Potion of Healing",
-    description:
-      "This potion restores up to 5 lost points of Health. It may not take a figure above its normal starting Health.",
-  },
-  // Daemonic Pacts
-  {
-    term: "Pentaculum",
-    description:
-      "A magic amulet that imprisons a bound demon. Can be discarded to add +3 to the Casting Roll of one Out of Game spell. Only one pentaculum can be used for any given Casting Roll.",
+    term: "Falha de Ignição (X-Y)",
+    description: `Quando o portador de uma arma com essa característica faz uma rolagem natural entre e incluindo os numeros (X) e (Y) na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n
+      1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de Agilidade, para consertar.
+      6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
+      11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
+      16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
+      `,
   },
   {
-    term: "Bind Demon",
+    term: "Trovejante(X-Y)",
     description:
-      "A spell that allows a wizard to take control of a demon. Successfully bound demons can be imprisoned in a pentaculum if the wizard has the appropriate pact boon.",
+      "Ao rolar naturalmente qualquer número dentre incluindo, (X) e (Y) na rolagem de dado, um encontro aleatório é imediatamente rolado na borda do mapa mais próxima da figura que atirou.",
   },
   {
-    term: "Soul Fragment",
+    term: "Pistola do Duelista",
     description:
-      "A piece of the Magister's essence sold to a daemon. At character creation and every 10 levels, the Magister may sell another fragment, gaining access to a Sacrifice and Boon. The more fragments sold, the less humanity remains.",
+      "Uma arma com essa característica é leve e precisa, podendo ser usada com apenas uma mão. Ela conta como uma espada em combate corpo a corpo, inclusive para Lutar com Duas Armas.",
   },
   {
-    term: "Pact",
+    term: "Construção Robusta",
     description:
-      "The unholy contract between the Magister and a daemon who holds a fragment of his soul. Requires performing a Sacrifice before each game to maintain the connection and retain the associated Boon.",
+      "Essa arma pode ser usada em combate corpo a corpo como uma arma de duas mãos, mas sem o bonus de +2 de dano que é comum a elas.",
   },
   {
-    term: "Lance",
+    term: "Tripé",
     description:
-      "A Lance count as a hand weapon, but deals +2 damage when mounted. Lances break on a critical hit.",
+      "Uma figura só pode atirar com essa arma se esta estiver montada em um tripé. Montar o tripé gasta uma ação que pode substituir a ação de Agilidade. Desmontar não custa ações, mas deverá montar se quiser atirar de novo.",
   },
   {
-    term: "Masterwork Crossbow",
+    term: "Tiro de Dispersão",
     description:
-      "Count as a crossbow, but with a +1 to Shoot and +6\" range.",
+      "Quando o portador dessa arma atira contra um alvo, ele pode atirar em todos os alvos a até 3cm do alvo inicial. Role uma rolagem diferente para cada alvo, e considere o ponto de origem para terreno interposto e cobertura o alvo inicial. Rolagens além da primeira não causam Falha na Ignição.",
   },
 ];
 
@@ -530,6 +370,157 @@ const StyledTooltipTerm = styled("span")({
     color: "#c4a870",
   },
 });
+
+// Component for equipment table
+interface EquipmentTableProps {
+  equipmentList: string[];
+}
+
+function EquipmentTable({ equipmentList }: EquipmentTableProps) {
+  // Organiza os equipamentos em colunas (2 colunas)
+  const columns = 2;
+  const rows = Math.ceil(equipmentList.length / columns);
+
+  const equipmentRows = [];
+  for (let i = 0; i < rows; i++) {
+    const row = [];
+    for (let j = 0; j < columns; j++) {
+      const index = i * columns + j;
+      if (index < equipmentList.length) {
+        row.push(equipmentList[index]);
+      } else {
+        row.push(null);
+      }
+    }
+    equipmentRows.push(row);
+  }
+
+  return (
+    <TableContainer
+      component={Paper}
+      sx={{
+        margin: "8px 0",
+        backgroundColor: "rgba(28, 24, 18, 0.05)",
+        border: "1px solid rgba(212, 175, 55, 0.3)",
+        borderRadius: "8px",
+      }}
+    >
+      <Table size="small">
+        <TableBody>
+          {equipmentRows.map((row, rowIndex) => (
+            <TableRow key={rowIndex}>
+              {row.map((equipment, colIndex) => (
+                <TableCell
+                  key={colIndex}
+                  sx={{
+                    border: "none",
+                    padding: "8px 16px",
+                    textAlign: "left",
+                    width: "50%",
+                  }}
+                >
+                  {equipment ? (
+                    <EquipmentTooltip equipmentName={equipment}>
+                      {equipment}
+                    </EquipmentTooltip>
+                  ) : null}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
+
+// Component for equipment tooltips
+interface EquipmentTooltipProps {
+  equipmentName: string;
+  children: React.ReactNode;
+}
+
+function EquipmentTooltip({ equipmentName, children }: EquipmentTooltipProps) {
+  const [open, setOpen] = useState(false);
+  const equipment = equipmentMap.get(equipmentName);
+
+  if (!equipment) {
+    return <span>{children}</span>;
+  }
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipToggle = () => {
+    setOpen(!open);
+  };
+
+  return (
+    <ClickAwayListener onClickAway={handleTooltipClose}>
+      <span>
+        <Tooltip
+          title={
+            <div style={{ maxWidth: "400px" }}>
+              <div
+                style={{
+                  marginBottom: "8px",
+                  fontWeight: "bold",
+                  fontSize: "1.1rem",
+                }}
+              >
+                {equipment.name}
+              </div>
+              {equipment.properties && equipment.properties.length > 0 && (
+                <div style={{ marginBottom: "8px" }}>
+                  {equipment.properties.map((prop, index) => (
+                    <div
+                      key={index}
+                      style={{ marginBottom: "4px", fontSize: "0.9rem" }}
+                    >
+                      <strong>{prop.label}:</strong> {prop.value}
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div style={{ fontSize: "0.9rem", lineHeight: "1.3" }}>
+                {equipment.description}
+              </div>
+            </div>
+          }
+          arrow
+          placement="top"
+          open={open}
+          onClose={handleTooltipClose}
+          disableFocusListener
+          disableHoverListener
+          disableTouchListener
+          sx={{
+            "& .MuiTooltip-tooltip": {
+              backgroundColor: "rgba(28, 24, 18, 0.95)",
+              border: "1px solid rgba(212, 175, 55, 0.5)",
+              fontSize: "1rem",
+              maxWidth: "500px",
+              padding: "1rem 1.25rem",
+              fontFamily: '"Crimson Text", serif',
+            },
+            "& .MuiTooltip-arrow": {
+              color: "rgba(28, 24, 18, 0.95)",
+            },
+          }}
+        >
+          <StyledTooltipTerm
+            onClick={handleTooltipToggle}
+            onMouseEnter={() => setOpen(true)}
+            onMouseLeave={() => setOpen(false)}
+          >
+            {children}
+          </StyledTooltipTerm>
+        </Tooltip>
+      </span>
+    </ClickAwayListener>
+  );
+}
 
 // Component for individual tooltip terms with mobile support
 interface TooltipTermProps {
@@ -600,6 +591,51 @@ function escapeRegex(str: string): string {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+// Função para processar texto de equipamento disponível e adicionar tooltips
+function processEquipmentText(text: string): ReactNode[] {
+  // Verifica se o texto contém "Equipamento Disponível" ou similar
+  if (!text.toLowerCase().includes("equipamento")) {
+    return [text];
+  }
+
+  // Encontra a parte do texto que contém a lista de equipamentos
+  const equipmentMatch = text.match(/(Equipamento Disponível[^.]*)/i);
+  if (!equipmentMatch) {
+    return [text];
+  }
+
+  const equipmentPart = equipmentMatch[1];
+  const matchIndex = equipmentMatch.index || 0;
+  const beforeEquipment = text.substring(0, matchIndex);
+  const afterEquipment = text.substring(matchIndex + equipmentPart.length);
+
+  // Divide a lista de equipamentos por vírgula e espaço
+  const equipmentList = equipmentPart
+    .replace(/^Equipamento Disponível[:\s]*/i, "") // Remove o prefixo
+    .split(/[,\s]+/)
+    .map((item) => item.trim())
+    .filter((item) => item.length > 0);
+
+  // Retorna o texto com a tabela de equipamentos
+  return [
+    beforeEquipment,
+    <div key="equipment-section" style={{ margin: "12px 0" }}>
+      <Typography
+        variant="subtitle2"
+        sx={{
+          fontWeight: "bold",
+          marginBottom: "8px",
+          color: "#d4af37",
+        }}
+      >
+        Equipamento Disponível:
+      </Typography>
+      <EquipmentTable equipmentList={equipmentList} />
+    </div>,
+    afterEquipment,
+  ];
+}
+
 function GameText({
   children,
   component = Typography,
@@ -608,11 +644,37 @@ function GameText({
   const Component = component;
 
   const processText = (text: string): ReactNode[] => {
+    // Primeiro, processa equipamentos se o texto contém "Equipamento Disponível"
+    if (text.toLowerCase().includes("equipamento")) {
+      return processEquipmentText(text);
+    }
+
     const elements: ReactNode[] = [];
     let remainingText = text;
     let keyCounter = 0;
 
-    // Sort terms by length (longest first) to match longer terms before shorter ones
+    // Lista de armas que devem usar o tooltip especial
+    const weaponTerms = [
+      "Adaga",
+      "Machado",
+      "Espada",
+      "Arma de Duas Mãos",
+      "Cajado",
+      "Arma de Concussão",
+      "Arma de Haste",
+      "Funda",
+      "Arma Arremessável",
+      "Arco",
+      "Besta",
+      "Besta de Mão",
+      "Pistola",
+      "Arcabuz",
+      "Bacamarte",
+      "Armadura Leve",
+      "Armadura Pesada",
+      "Escudo",
+    ];
+
     const sortedTerms = [...gameTerms].sort(
       (a, b) => b.term.length - a.term.length
     );
@@ -626,13 +688,12 @@ function GameText({
         matchedText: string;
       } | null = null;
 
-      // Find the earliest match among all terms
       for (const { term, description } of sortedTerms) {
-        // Escape special regex characters in the term
         const escapedTerm = escapeRegex(term);
 
         // Create regex that matches the term (case insensitive)
         // Allow optional 's' at the end for plurals
+        // Match word boundaries and allow for punctuation after
         const regex = new RegExp(`\\b${escapedTerm}s?\\b`, "i");
         const match = remainingText.match(regex);
 
@@ -657,14 +718,26 @@ function GameText({
         }
 
         // Add the matched term with tooltip
-        elements.push(
-          <TooltipTerm
-            key={`tooltip-${keyCounter++}`}
-            term={earliestMatch.matchedText}
-            description={earliestMatch.description}
-            termKey={`tooltip-${keyCounter}`}
-          />
-        );
+        // Check if it's a weapon term to use special tooltip
+        if (weaponTerms.includes(earliestMatch.term)) {
+          elements.push(
+            <WeaponTooltipCard
+              key={`weapon-tooltip-${keyCounter++}`}
+              weaponName={earliestMatch.term}
+            >
+              {earliestMatch.matchedText}
+            </WeaponTooltipCard>
+          );
+        } else {
+          elements.push(
+            <TooltipTerm
+              key={`tooltip-${keyCounter++}`}
+              term={earliestMatch.matchedText}
+              description={earliestMatch.description}
+              termKey={`tooltip-${keyCounter}`}
+            />
+          );
+        }
 
         // Update remaining text
         remainingText = remainingText.substring(
@@ -686,4 +759,305 @@ function GameText({
   return <Component {...props}>{processText(children)}</Component>;
 }
 
+// Advanced weapon data with detailed stats
+interface WeaponData {
+  name: string;
+  type: "Melee" | "Ranged" | "Armor" | "Shield" | "Special";
+  damage: string;
+  range?: string;
+  hands: number;
+  slots: number;
+  special: string[];
+  description: string;
+  cost?: string;
+}
+
+const weaponDatabase: WeaponData[] = [
+  {
+    name: "Arma de Mão",
+    type: "Melee",
+    damage: "0",
+    hands: 1,
+    slots: 1,
+    special: ["Pode ser empunhada com duas mãos"],
+    description:
+      "Uma arma corpo a corpo padrão (espada, machado, maça, etc.). Sem modificadores especiais. Pode ser empunhada com duas mãos com uma adaga ou outra arma de mão para +1 de Luta.",
+  },
+  {
+    name: "Adaga",
+    type: "Melee",
+    damage: "-1",
+    hands: 1,
+    slots: 1,
+    special: ["Lutar com Duas Mãos", "Mão secundária"],
+    description:
+      "Uma lâmina pequena. Causa -1 de dano. Pode ser usada na mão secundária com uma arma de mão ou equivalente para +1 de Luta.",
+  },
+  {
+    name: "Arma de Duas Mãos",
+    type: "Melee",
+    damage: "+2",
+    hands: 2,
+    slots: 2,
+    special: ["Não pode usar escudo", "Não pode mão secundária"],
+    description:
+      "Uma arma grande (espada grande, alabarda, etc.) que requer ambas as mãos. Causa +2 de dano. Não pode ser usada com escudo ou na mão secundária. Ocupa dois espaços de itens.",
+  },
+  {
+    name: "Cajado",
+    type: "Melee",
+    damage: "-1",
+    hands: 1,
+    slots: 1,
+    special: ["Reduz dano inimigo em 1"],
+    description:
+      "Um bastão de madeira favorecido por conjuradores e viajantes. Causa -1 de dano, mas o dano de combate corpo a corpo inimigo é reduzido em 1.",
+  },
+  {
+    name: "Arco",
+    type: "Ranged",
+    damage: "0",
+    range: "60cm",
+    hands: 2,
+    slots: 1,
+    special: ["Requer aljava"],
+    description:
+      "Uma arma a distância com alcance de 60cm. Requer ambas as mãos.",
+  },
+  {
+    name: "Besta",
+    type: "Ranged",
+    damage: "+2",
+    range: "60cm",
+    hands: 2,
+    slots: 1,
+    special: ["Ação para carregar", "Requer aljava"],
+    description:
+      "Bestas requerem uma ação para carregar e uma ação para disparar. Se uma figura desejar, pode substituir sua ação de movimento por uma ação de 'recarregar'. Bestas têm um modificador de dano +2. Bestas também têm um alcance máximo de 60cm. Assume-se que todas as bestas começam o jogo carregadas e prontas para disparar. Para usar uma besta, uma figura deve também estar carregando uma aljava (que ocupa outro espaço de item) ou algum tipo de munição mágica.",
+  },
+  {
+    name: "Besta de Mão",
+    type: "Ranged",
+    damage: "+1",
+    range: "30cm",
+    hands: 1,
+    slots: 1,
+    special: [
+      "Ação para carregar",
+      "Conta como adaga em combate",
+      "Lutar com Duas Mãos",
+    ],
+    description:
+      "Bestas de Mão requerem uma ação para carregar e uma ação para disparar. Se uma figura desejar, pode substituir sua ação de movimento por uma ação de 'recarregar'. No entanto, podem ser usadas e carregadas com apenas uma mão. Bestas têm um modificador de dano +1 e um alcance máximo de 30cm. Além disso, Bestas de Mão contam como adagas em combate corpo a corpo, incluindo para Lutar com Duas Mãos. Assume-se que todas as bestas de mão começam o jogo carregadas e prontas para disparar.",
+  },
+  {
+    name: "Lança de Arremesso",
+    type: "Ranged",
+    damage: "+1 (tiro) / -1 (combate)",
+    range: "25cm",
+    hands: 1,
+    slots: 1,
+    special: ["Uso único", "Substituída após jogo"],
+    description:
+      "Lanças de Arremesso são tratadas como armas de mão quando usadas em combate corpo a corpo. Elas também podem ser arremessadas até 25cm. Uma lança arremessada é tratada como um ataque a distância padrão e segue todas as regras para arcos e bestas. Qualquer magia ou efeito especial que cause penalidade a ataques de arco e besta também afetará ataques com lanças arremessadas.",
+  },
+  {
+    name: "Funda",
+    type: "Ranged",
+    damage: "-2",
+    range: "15cm",
+    hands: 1,
+    slots: 1,
+    special: ["Mão secundária", "Sem sobrecarga com Pedra-Bruxa"],
+    description:
+      "Uma arma a distância simples com alcance de 15cm. Causa -2 de dano. Pode ser usada na mão secundária, e não causa sobrecarga ao carregar Fragmentos de Pedra-Bruxa.",
+  },
+  {
+    name: "Armadura Leve",
+    type: "Armor",
+    damage: "N/A",
+    hands: 0,
+    slots: 1,
+    special: ["+1 Armadura", "Sem penalidade de movimento"],
+    description:
+      "Armadura de couro ou cota de malha leve. Fornece +1 de armadura. Não interfere com movimento.",
+  },
+  {
+    name: "Armadura Pesada",
+    type: "Armor",
+    damage: "N/A",
+    hands: 0,
+    slots: 1,
+    special: ["+2 Armadura", "-1 Movimento"],
+    description:
+      "Armadura de placas ou armadura completa. Fornece +2 de armadura. Tem uma penalidade de -1 ao movimento.",
+  },
+  {
+    name: "Escudo",
+    type: "Shield",
+    damage: "N/A",
+    hands: 1,
+    slots: 1,
+    special: ["+1 Armadura", "Apenas com armas de uma mão"],
+    description:
+      "Um item defensivo que fornece +1 de armadura. Pode ser usado com armas de uma mão.",
+  },
+  {
+    name: "Arcabuz",
+    type: "Ranged",
+    damage: "+2",
+    range: "60cm",
+    hands: 2,
+    slots: 1,
+    special: [
+      "Ignora 2 Armadura",
+      "Apenas um por modelo",
+      "Não pode usar escudo",
+      "Conta como arma de duas mãos em combate",
+    ],
+    description:
+      "Esta arma de fogo maior, de duas mãos, é a variedade mais comum de arma de pólvora negra. Causa +2 de dano e ignora 2 pontos de armadura de figuras alvo. Arcabuzes têm um alcance efetivo máximo de 60cm. Um modelo pode carregar apenas um arcabuz e nunca pode carregar um escudo. Um arcabuz pode ser usado em combate corpo a corpo. Conta como uma arma de duas mãos, mas não recebe o bônus usual de +2 de dano.",
+  },
+  {
+    name: "Pistola",
+    type: "Ranged",
+    damage: "+2",
+    range: "25cm",
+    hands: 1,
+    slots: 1,
+    special: [
+      "Ignora 2 Armadura",
+      "Ação para recarregar",
+      "Conta como adaga em combate",
+      "Lutar com Duas Mãos",
+    ],
+    description:
+      "Uma arma de fogo de uma mão com alcance de 25cm. Causa +2 de dano e ignora 2 pontos de armadura de figuras alvo. Conta como uma adaga em combate corpo a corpo, incluindo para Lutar com Duas Mãos. Requer uma ação para recarregar.",
+  },
+  {
+    name: "Bacamarte",
+    type: "Ranged",
+    damage: "Variável",
+    range: "35cm",
+    hands: 2,
+    slots: 1,
+    special: [
+      "Dispersão",
+      "Ataque em área",
+      "Não conta para lutar com duas armas",
+    ],
+    description:
+      "Geralmente ficando entre uma pistola e um arcabuz em tamanho, um bacamarte é uma arma de duas mãos que dispara uma dispersão de pelotas ao invés de uma única bala. Tem um alcance efetivo máximo de 35cm. Ao disparar um bacamarte, escolha sua figura alvo, e então faça um ataque a distância contra esse alvo e toda outra figura a 2,5cm dele. Role contra seu alvo inicial primeiro. Se esta rolagem for uma falha, não role contra as outras figuras. Rolagens de 1 ao rolar contra alvos adicionais não contam como falhas. Um bacamarte pode ser usado em combate corpo a corpo da mesma forma que uma pistola, exceto que não conta para lutar com duas armas.",
+  },
+];
+
+// Advanced weapon tooltip component
+interface WeaponTooltipProps {
+  weaponName: string;
+  children: React.ReactNode;
+}
+
+function WeaponTooltip({ weaponName, children }: WeaponTooltipProps) {
+  const [open, setOpen] = useState(false);
+  const weapon = weaponDatabase.find((w) => w.name === weaponName);
+
+  if (!weapon) {
+    return <span>{children}</span>;
+  }
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipToggle = () => {
+    setOpen(!open);
+  };
+
+  return (
+    <ClickAwayListener onClickAway={handleTooltipClose}>
+      <span>
+        <Tooltip
+          title={
+            <div style={{ maxWidth: "400px" }}>
+              <div
+                style={{
+                  marginBottom: "8px",
+                  fontWeight: "bold",
+                  fontSize: "1.1rem",
+                }}
+              >
+                {weapon.name}
+              </div>
+              <div
+                style={{
+                  marginBottom: "8px",
+                  fontSize: "0.9rem",
+                  opacity: 0.8,
+                }}
+              >
+                {weapon.type} • {weapon.hands} mão{weapon.hands > 1 ? "s" : ""}{" "}
+                • {weapon.slots} espaço{weapon.slots > 1 ? "s" : ""}
+              </div>
+              {weapon.damage !== "N/A" && (
+                <div style={{ marginBottom: "4px" }}>
+                  <strong>Dano:</strong> {weapon.damage}
+                </div>
+              )}
+              {weapon.range && (
+                <div style={{ marginBottom: "4px" }}>
+                  <strong>Alcance:</strong> {weapon.range}
+                </div>
+              )}
+              {weapon.special.length > 0 && (
+                <div style={{ marginBottom: "8px" }}>
+                  <strong>Especial:</strong>
+                  <ul style={{ margin: "4px 0", paddingLeft: "16px" }}>
+                    {weapon.special.map((spec, index) => (
+                      <li key={index} style={{ fontSize: "0.85rem" }}>
+                        {spec}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <div style={{ fontSize: "0.9rem", lineHeight: "1.3" }}>
+                {weapon.description}
+              </div>
+            </div>
+          }
+          arrow
+          placement="top"
+          open={open}
+          onClose={handleTooltipClose}
+          disableFocusListener
+          disableHoverListener
+          disableTouchListener
+          sx={{
+            "& .MuiTooltip-tooltip": {
+              backgroundColor: "rgba(28, 24, 18, 0.95)",
+              border: "1px solid rgba(212, 175, 55, 0.5)",
+              fontSize: "1rem",
+              maxWidth: "500px",
+              padding: "1rem 1.25rem",
+              fontFamily: '"Crimson Text", serif',
+            },
+            "& .MuiTooltip-arrow": {
+              color: "rgba(28, 24, 18, 0.95)",
+            },
+          }}
+        >
+          <StyledTooltipTerm
+            onClick={handleTooltipToggle}
+            onMouseEnter={() => setOpen(true)}
+            onMouseLeave={() => setOpen(false)}
+          >
+            {children}
+          </StyledTooltipTerm>
+        </Tooltip>
+      </span>
+    </ClickAwayListener>
+  );
+}
+
+export { WeaponTooltip, weaponDatabase };
 export default GameText;

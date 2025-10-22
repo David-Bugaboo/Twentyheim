@@ -49,103 +49,103 @@ export default function ConstructModificationsPage() {
       name: "Zoocida",
       cost: "100 coroas Compra / 75 coroas Venda",
       description:
-        "Esta modificação inclui gravar runas de poder específicas no corpo do constructo para torná-lo especialmente mortal ao lutar contra animais. Sempre que este constructo estiver lutando contra um animal, ele ganha +1 Ímpeto e +1 Dano.",
+        "Esta modificação inclui gravar runas de poder específicas no corpo do Construto para torná-lo especialmente mortal ao lutar contra animais. Sempre que este Construto estiver lutando contra um animal, ele ganha +1 Ímpeto e +1 Dano.",
     },
     {
       name: "Blindagem",
       cost: "100 coroas Compra / 90 coroas Venda",
       description:
-        "Esta modificação dá armadura adicional ao constructo. O constructo recebe +1 Armadura.",
+        "Esta modificação dá armadura adicional ao Construto. O Construto recebe +1 Armadura.",
     },
     {
       name: "Martelo Hidráulico",
       cost: "125 coroas Compra / 100 coroas Venda",
       description:
-        "Este martelo grande e encantado só pode ser adaptado a constructos Defensores Kharadron ou Demônios da Fundição. Um constructo que recebe esta modificação é tratado como portando uma arma mágica e recebe modificador +2 de dano.",
+        "Este martelo grande e encantado só pode ser adaptado a constructos Defensores Kharadron ou Demônios da Fundição. Um Construto que recebe esta modificação é tratado como portando uma arma mágica e recebe modificador +2 de dano.",
     },
     {
       name: "Lubrificante Vulcânico",
       cost: "125 coroas Compra / 100 coroas Venda",
       description:
-        "Este é um barril de óleo borrachoso usado para aumentar a velocidade e eficiência dos constructos. Um constructo que recebe esta modificação ganha +1 Agilidade.",
+        "Este é um barril de óleo borrachoso usado para aumentar a velocidade e eficiência dos constructos. Um Construto que recebe esta modificação ganha +1 Agilidade.",
     },
     {
       name: "Chifres de Aríete",
       cost: "150 coroas Compra / 100 coroas Venda",
       description:
-        "Este constructo é equipado com grandes espinhos ou chifres enormes. Ele ganha a característica Chifres.",
+        "Este Construto é equipado com grandes espinhos ou chifres enormes. Ele ganha a característica Chifres.",
     },
     {
       name: "Sobreplacas de Gromril",
       cost: "300 coroas Compra / 120 coroas Venda",
       description:
-        "Este constructo é composto primariamente de placas de gromril. Por essa razão, é muito difícil danificá-lo com armas de projétil pequenas. Este constructo nunca pode sofrer mais que 3 pontos de dano de qualquer ataque de arma de mísseis ou armas de fogo, a menos que aquele ataque seja mágico. Neste caso, aumente o máximo pela adição total que a munição deu tanto a Precisão quanto a Dano. Por exemplo, uma flecha que concedeu +1 Precisão e +1 Dano poderia causar no máximo 5 pontos de dano.",
+        "Este Construto é composto primariamente de placas de gromril. Por essa razão, é muito difícil danificá-lo com armas de projétil pequenas. Este Construto nunca pode sofrer mais que 3 pontos de dano de qualquer ataque de arma de mísseis ou armas de fogo, a menos que aquele ataque seja mágico. Neste caso, aumente o máximo pela adição total que a munição deu tanto a Precisão quanto a Dano. Por exemplo, uma flecha que concedeu +1 Precisão e +1 Dano poderia causar no máximo 5 pontos de dano.",
     },
     {
       name: "Broca de Diamante",
       cost: "300 coroas Compra / 150 coroas Venda",
       description:
-        "O constructo é equipado com uma broca, ou outros meios de escavar rapidamente através do terreno. O constructo ganha a característica Escavador. Contudo, em qualquer ativação que ele use esta característica, ele sofre -1 Agilidade (até um mínimo de 1).",
+        "O Construto é equipado com uma broca, ou outros meios de escavar rapidamente através do terreno. O Construto ganha a característica Escavador. Contudo, em qualquer ativação que ele use esta característica, ele sofre -1 Agilidade (até um mínimo de 1).",
     },
     {
       name: "Lança-Chamas Dracônico",
       cost: "150 coroas Compra / 100 coroas Venda",
       description:
-        "Uma vez por jogo, este constructo pode fazer um ataque a distância mágico elemental +3 com alcance máximo de 20 cm. Isso segue todas as regras normais de ataque a distância.",
+        "Uma vez por jogo, este Construto pode fazer um ataque a distância mágico elemental +3 com alcance máximo de 20 cm. Isso segue todas as regras normais de ataque a distância.",
     },
     {
       name: "Amortecedores Hidraulicos",
       cost: "100 coroas Compra / 75 coroas Venda",
       description:
-        "Este constructo foi modificado para minimizar o dano de qualquer queda. Trate toda distância caída por este constructo como metade da quantidade real para fins de determinar dano. Esta modificação não causa penalidade de modificação.",
+        "Este Construto foi modificado para minimizar o dano de qualquer queda. Trate toda distância caída por este Construto como metade da quantidade real para fins de determinar dano. Esta modificação não causa penalidade de modificação.",
     },
     {
       name: "Propulsor Aetérico",
       cost: "250 coroas Compra / 140 coroas Venda",
       description:
-        "O constructo é equipado com asas, ou algum outro meio de voo limitado. O constructo ganha a característica Voador. Além da penalidade usual de modificação por receber esta modificação, este constructo não pode mais pegar ou carregar fichas de tesouro.",
+        "O Construto é equipado com asas, ou algum outro meio de voo limitado. O Construto ganha a característica Voador. Além da penalidade usual de modificação por receber esta modificação, este Construto não pode mais pegar ou carregar fichas de tesouro.",
     },
     {
       name: "Mecânica Modular",
       cost: "150 coroas Compra / 100 coroas Venda",
       description:
-        "Este constructo é construído usando peças comuns que podem ser facilmente desconectadas e substituídas. Este constructo recebe +1 em todas as Rolagens de Sobrevivência. Um mago recebe +2 em todas as rolagens de conjuração de Animar Constructo para trazer este constructo de volta dos mortos ou para curar um ferimento permanente.",
+        "Este Construto é construído usando peças comuns que podem ser facilmente desconectadas e substituídas. Este Construto recebe +1 em todas as Rolagens de Sobrevivência. Um mago recebe +2 em todas as rolagens de conjuração de Animar Construto para trazer este Construto de volta dos mortos ou para curar um ferimento permanente.",
     },
     {
       name: "Múltiplos Membros",
       cost: "150 coroas Compra / 100 coroas Venda",
       description:
-        "O constructo tem mais membros tornando mais difícil de ganhar superioridade numérica contra ele em uma luta. Figuras apoiando uma luta contra este constructo concedem apenas +1 de bônus de figura de suporte ao invés dos +2 normais.",
+        "O Construto tem mais membros tornando mais difícil de ganhar superioridade numérica contra ele em uma luta. Figuras apoiando uma luta contra este Construto concedem apenas +1 de bônus de figura de suporte ao invés dos +2 normais.",
     },
     {
       name: "Juntas Omnidirecionais",
       cost: "150 coroas Compra / 100 coroas Venda",
       description:
-        "Esta modificação aumenta a rapidez de um constructo tornando-o tanto mais difícil de acertar quanto mais mortal em combate. O constructo ganha +1 Ímpeto. Esta modificação não pode ser feita em um Defensor Kharadron ou Demônio da Fundição.",
+        "Esta modificação aumenta a rapidez de um Construto tornando-o tanto mais difícil de acertar quanto mais mortal em combate. O Construto ganha +1 Ímpeto. Esta modificação não pode ser feita em um Defensor Kharadron ou Demônio da Fundição.",
     },
     {
       name: "Runa Anti-bruxo",
       cost: "100 coroas Compra / 60 coroas Venda",
       description:
-        "O constructo recebe mais força de vontade independente do que é comum em constructos. Ele ganha +5 Vontade para resistir a quaisquer magias. Esta modificação pode ser feita sem penalidade de modificação.",
+        "O Construto recebe mais força de vontade independente do que é comum em constructos. Ele ganha +5 Vontade para resistir a quaisquer magias. Esta modificação pode ser feita sem penalidade de modificação.",
     },
     {
       name: "Tanque Químico",
       cost: "100 coroas Compra / 60 coroas Venda",
       description:
-        "Este constructo pode carregar uma poção como se tivesse um espaço de item. Contudo, ele não pode usar esta poção. Ao invés disso, qualquer figura aliada a até 3 cm pode gastar uma ação para consumir esta poção, desde que nenhuma figura esteja em combate. Esta modificação não causa penalidade de modificação.",
+        "Este Construto pode carregar uma poção como se tivesse um espaço de item. Contudo, ele não pode usar esta poção. Ao invés disso, qualquer figura aliada a até 3 cm pode gastar uma ação para consumir esta poção, desde que nenhuma figura esteja em combate. Esta modificação não causa penalidade de modificação.",
     },
     {
       name: "Campo de Força Rúnico",
       cost: "100 coroas Compra / 60 coroas Venda",
       description:
-        "O constructo ganha +2 Armadura e +2 Ímpeto sempre que fizer uma Rolagem de Combate contra um ataque a distância de arma de mísseis ou arma de fogo, incluindo mágicas. O constructo ainda está sujeito à regra de armadura máxima.",
+        "O Construto ganha +2 Armadura e +2 Ímpeto sempre que fizer uma Rolagem de Combate contra um ataque a distância de arma de mísseis ou arma de fogo, incluindo mágicas. O Construto ainda está sujeito à regra de armadura máxima.",
     },
     {
       name: "Runa da Automação",
       cost: "150 coroas Compra / 100 coroas Venda",
       description:
-        "Este constructo pode se reparar. Talvez seja composto de material que pode fluir e preencher áreas danificadas ou talvez carregue ferramentas para trabalhar em suas próprias partes quebradas. Qualquer que seja o mecanismo, cada vez que o constructo ativa, ele pode gastar uma ação (que pode substituir a ação de movimento) para reparar um ponto de dano, até seu Vigor inicial. Ele pode até fazer isso enquanto em combate.",
+        "Este Construto pode se reparar. Talvez seja composto de material que pode fluir e preencher áreas danificadas ou talvez carregue ferramentas para trabalhar em suas próprias partes quebradas. Qualquer que seja o mecanismo, cada vez que o Construto ativa, ele pode gastar uma ação (que pode substituir a ação de movimento) para reparar um ponto de dano, até seu Vigor inicial. Ele pode até fazer isso enquanto em combate.",
     },
   ];
 
@@ -154,25 +154,25 @@ export default function ConstructModificationsPage() {
       name: "Turreta Mecanica",
       cost: "125 coroas Compra / 100 coroas Venda",
       description:
-        "O atributo de Precisão do constructo é aumentado para +2 se for menor que isso, e seu atributo de Agilidade é reduzido em 2. O constructo ganha uma Besta e uma Aljava ou um Bacamarte e um Barril de Pólvora, à escolha do jogador. Estes itens devem ser adicionados às notas do constructo. Estes itens seguem todas as regras normais. Contudo, o constructo ainda não tem espaços de item, então não pode receber uma versão mágica de qualquer destes itens. Se esta modificação for feita em um constructo pequeno ou médio, aquele constructo agora conta como soldado especialista.",
+        "O atributo de Precisão do Construto é aumentado para +2 se for menor que isso, e seu atributo de Agilidade é reduzido em 2. O Construto ganha uma Besta e uma Aljava ou um Bacamarte e um Barril de Pólvora, à escolha do jogador. Estes itens devem ser adicionados às notas do Construto. Estes itens seguem todas as regras normais. Contudo, o Construto ainda não tem espaços de item, então não pode receber uma versão mágica de qualquer destes itens. Se esta modificação for feita em um Construto pequeno ou médio, aquele Construto agora conta como soldado especialista.",
     },
     {
       name: "Exorcista de Grimnir",
       cost: "100 coroas Compra / 60 coroas Venda",
       description:
-        "Esta modificação inclui gravar runas de poder específicas no corpo do constructo para rasgar o dhar que vincula um demônio a este plano de existência. Sempre que este constructo estiver lutando contra um demônio, ele ganha +1 Ímpeto e +1 Dano.",
+        "Esta modificação inclui gravar runas de poder específicas no corpo do Construto para rasgar o dhar que vincula um demônio a este plano de existência. Sempre que este Construto estiver lutando contra um demônio, ele ganha +1 Ímpeto e +1 Dano.",
     },
     {
       name: "Runa de Controle Remoto",
       cost: "120 coroas Compra / 100 coroas Venda",
       description:
-        "Este constructo pode ser ativado na fase do Campeão contanto que esteja a até 30 cm e em linha de visão (ao invés dos 8 cm normais) do Engenheiro. O constructo ainda conta como um dos três soldados que podem ser ativados nestas fases.",
+        "Este Construto pode ser ativado na fase do Campeão contanto que esteja a até 30 cm e em linha de visão (ao invés dos 8 cm normais) do Engenheiro. O Construto ainda conta como um dos três soldados que podem ser ativados nestas fases.",
     },
     {
       name: "Guardião de Mausoléu de Grimnir",
       cost: "100 coroas Compra / 60 coroas Venda",
       description:
-        "Esta modificação inclui gravar runas de poder específicas no corpo do constructo, para rasgar o dhar animando os mortos-vivos. Sempre que este constructo estiver lutando contra um oponente morto-vivo, ele ganha +1 Ímpeto e +1 Dano.",
+        "Esta modificação inclui gravar runas de poder específicas no corpo do Construto, para rasgar o dhar animando os mortos-vivos. Sempre que este Construto estiver lutando contra um oponente morto-vivo, ele ganha +1 Ímpeto e +1 Dano.",
     },
     {
       name: "Propulsor de Girocóptero",
@@ -187,31 +187,31 @@ export default function ConstructModificationsPage() {
       name: "Núcleo Daemoníaco",
       cost: "200 coroas Compra / 100 coroas Venda",
       description:
-        "Este constructo gera uma pequena quantidade de energia do caos excedente que pode ser explorada por um conjurador em seu bando. Essencialmente, o constructo tem 3 pontos de poder a cada jogo que podem ser explorados pelo Sacerdote-Artífice em seu bando, contanto que estejam a até 30 cm e em linha de visão, para empoderar uma Rolagem de Conjuração ou Rolagem de Vontade.",
+        "Este Construto gera uma pequena quantidade de energia do caos excedente que pode ser explorada por um conjurador em seu bando. Essencialmente, o Construto tem 3 pontos de poder a cada jogo que podem ser explorados pelo Sacerdote-Artífice em seu bando, contanto que estejam a até 30 cm e em linha de visão, para empoderar uma Rolagem de Conjuração ou Rolagem de Vontade.",
     },
     {
       name: "Biomecânica",
       cost: "125 coroas Compra / 60 coroas Venda",
       description:
-        "Este constructo contém quantidades significativas de material vivo, em seu design. Este constructo é afetado por magias de cura como se não fosse um constructo. Esta modificação pode ser feita sem penalidade de modificação. Adicionalmente, a aparência grotesca do constructo dá a ele a trait Medo.",
+        "Este Construto contém quantidades significativas de material vivo, em seu design. Este Construto é afetado por magias de cura como se não fosse um Construto. Esta modificação pode ser feita sem penalidade de modificação. Adicionalmente, a aparência grotesca do Construto dá a ele a trait Medo.",
     },
     {
       name: "Tanque Alquímico",
       cost: "200 coroas Compra / 120 coroas Venda",
       description:
-        "Este constructo é equipado com um reservatório de veneno que é injetado em uma vítima quando ele acerta um golpe corpo a corpo bem-sucedido. Os ataques do Constructo são venenosos.",
+        "Este Construto é equipado com um reservatório de veneno que é injetado em uma vítima quando ele acerta um golpe corpo a corpo bem-sucedido. Os ataques do Construto são venenosos.",
     },
     {
       name: "Daemonincubadora Integrada",
       cost: "350 coroas Compra / 250 coroas Venda",
       description:
-        "Sempre que este constructo ativa, role um d20. Em um 14+, gere um diabrete a 15 cm em uma direção aleatória. Se o diabrete for colocado fora do mapa, ele desaparece e a invocação é desperdiçada.",
+        "Sempre que este Construto ativa, role um d20. Em um 14+, gere um diabrete a 15 cm em uma direção aleatória. Se o diabrete for colocado fora do mapa, ele desaparece e a invocação é desperdiçada.",
     },
     {
       name: "Devorador de Caos",
       cost: "100 coroas Compra / 90 coroas Venda",
       description:
-        "Estes constructos podem drenar energia mágica para reparar danos a seus corpos. Sempre que este constructo for alvo de uma magia conjurada com sucesso, ele recupera 2 pontos de Vigor perdido, independente do efeito da magia (embora magias que não tenham efeito contra constructos não ativem esta habilidade).",
+        "Estes constructos podem drenar energia mágica para reparar danos a seus corpos. Sempre que este Construto for alvo de uma magia conjurada com sucesso, ele recupera 2 pontos de Vigor perdido, independente do efeito da magia (embora magias que não tenham efeito contra constructos não ativem esta habilidade).",
     },
   ];
 
@@ -225,13 +225,13 @@ export default function ConstructModificationsPage() {
             Embora constructos não tenham espaços de item, e portanto nunca
             possam carregar itens, eles podem ser <strong>modificados</strong>{" "}
             para mudar suas capacidades. Na maioria dos casos, isso melhorará um
-            aspecto do constructo ao custo de algum outro aspecto. Um mago pode
-            tentar modificar um constructo ou no momento de sua criação ou antes
-            de qualquer jogo em que o constructo vai participar.
+            aspecto do Construto ao custo de algum outro aspecto. Um mago pode
+            tentar modificar um Construto ou no momento de sua criação ou antes
+            de qualquer jogo em que o Construto vai participar.
           </ParchmentText>
 
           <ParchmentText sx={{ mb: 4 }}>
-            <strong>Importante:</strong> Nenhum constructo pode ter mais de uma
+            <strong>Importante:</strong> Nenhum Construto pode ter mais de uma
             modificação.
           </ParchmentText>
 
@@ -334,33 +334,33 @@ export default function ConstructModificationsPage() {
             }}
           >
             <PowerListTitle sx={{ color: "#cd853f", mt: 0 }}>
-              ⚙️ Como Funcionam as Modificações
+              Como Funcionam as Modificações
             </PowerListTitle>
 
             <ParchmentText sx={{ mb: 2 }}>
-              <strong>Criando Novo Constructo com Modificação:</strong>
+              <strong>Criando Novo Construto com Modificação:</strong>
               <br />
-              Use Forja Demoniaca ou Obra Prima do Homem de Ferro com sucesso, com
-              uma <strong>penalidade adicional de -2</strong> à Rolagem de
+              Use Forja Demoniaca ou Obra Prima do Homem de Ferro com sucesso,
+              com uma <strong>penalidade adicional de -2</strong> à Rolagem de
               Conjuração. Isso é cumulativo com penalidades de tamanho. Se
-              bem-sucedido, o constructo é criado com a modificação e as peças
+              bem-sucedido, o Construto é criado com a modificação e as peças
               são consumidas.
             </ParchmentText>
 
             <ParchmentText>
-              <strong>Modificando Constructo Existente:</strong>
+              <strong>Modificando Construto Existente:</strong>
               <br />
-              Faça a Rolagem com <strong>-2</strong> apenas para a
-              modificação (tamanho não é considerado). Se bem-sucedido, o
-              constructo é modificado. Se falhar, o constructo não é modificado
-              mas as peças permanecem no cofre para outra tentativa.
+              Faça a Rolagem com <strong>-2</strong> apenas para a modificação
+              (tamanho não é considerado). Se bem-sucedido, o Construto é
+              modificado. Se falhar, o Construto não é modificado mas as peças
+              permanecem no cofre para outra tentativa.
             </ParchmentText>
           </Box>
 
           <PowerListTitle>Modificações Genéricas</PowerListTitle>
 
           <ParchmentText sx={{ mb: 3 }}>
-            Estas modificações podem ser aplicadas a qualquer constructo,
+            Estas modificações podem ser aplicadas a qualquer Construto,
             independentemente de seu criador:
           </ParchmentText>
 
@@ -478,7 +478,7 @@ export default function ConstructModificationsPage() {
                       fontFamily: '"Crimson Text", serif',
                     }}
                   >
-                    Constructo de Torreta
+                    Construto de Torreta
                   </TableCell>
                 </TableRow>
                 <TableRow

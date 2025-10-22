@@ -1,0 +1,703 @@
+[
+  {
+    "id": "golpe-para-ferir",
+    "name": "Golpe para Ferir",
+    "trigger": "Ativador vence uma luta",
+    "type": "Combate",
+    "description": "A figura perdedora da luta sofre 3 de dano além do dano normal que sofreria."
+  },
+  {
+    "id": "mestre-do-combate",
+    "name": "Mestre do Combate",
+    "trigger": "Uma figura usa uma ação de luta contra o ativador enquanto ele está em combate com mais de um inimigo.",
+    "type": "Combate",
+    "description": "Aquela figura recebe bônus de suporte por combate múltiplo como se tivesse uma figura a menos em combate com o ativador da habilidade."
+  },
+  {
+    "id": "mestre-do-combate",
+    "name": "Mestre do Combate",
+    "trigger": "Uma figura usa uma ação de luta contra o ativador enquanto ele está em combate com mais de um inimigo.",
+    "type": "Combate",
+    "description": "Aquela figura recebe bônus de suporte por combate múltiplo como se tivesse uma figura a menos em combate com o ativador da habilidade."
+  },
+  {
+    "id": "teia-de-ferro",
+    "name": "Teia de Ferro",
+    "trigger": "Criatura se move dentro de 8cm do ativador da habilidade, sem nenhuma outra figura entre eles",
+    "type": "Combate",
+    "description": "O ativador pode interceptar aquela figura, seguindo as regras normais de interceptação. Isso inclui regras que negam interceptação, que fariam com que essa atividade não funcionasse corretamente."
+  },
+  {
+    "id": "desarmar",
+    "name": "Desarmar",
+    "trigger": "Criatura vence uma luta",
+    "type": "Combate",
+    "description": "Ao invés de causar dano, a figura pode fazer com que uma das armas usada pela figura que perdeu a luta seja derrubada. A figura recuperará a arma depois da partida gratuitamente, mas ela não poderá mais ser usada durante esse jogo."
+  },
+  {
+    "id": "aparar",
+    "name": "Aparar",
+    "trigger": "Criatura recebe mais de 5 de dano de uma única fonte",
+    "type": "Combate",
+    "description": "O ativador reduz aquele dano para exatamente 5."
+  },
+  {
+    "id": "tiro-rapido",
+    "name": "Tiro Rápido",
+    "trigger": "No início da ativação do ativador da habilidade.",
+    "type": "Atirador",
+    "description": "Durante essa ativação, o ativador pode usar suas duas ações para fazer ataques a distância. Regras de recarga ainda se aplicam como normal."
+  },
+  {
+    "id": "pistoleiro",
+    "name": "Pistoleiro",
+    "trigger": "Em qualquer momento em que o ativador da habilidade atira com uma pistola.",
+    "type": "Atirador",
+    "description": "Durante essa ativação, o usuário da habilidade pode recarregar sem gastar ações se usar qualquer arma de fogo com a palavra-chave Pistola."
+  },
+  {
+    "id": "olhos-de-falcao",
+    "name": "Olhos de Falcão",
+    "trigger": "Em qualquer momento ponto da ativação do usuário da habilidade.",
+    "type": "Atirador",
+    "description": "O usuário da habilidade ganha 10cm de alcance no próximo ataque a distância feito por ele."
+  },
+  {
+    "id": "tiro-habilidoso",
+    "name": "Tiro Habilidoso",
+    "trigger": "O usuário da habilidade faz um ataque a distância.",
+    "type": "Atirador",
+    "description": "O usuário da habilidade nega todos os bônus para a rolagem de defesa da figura alvo por terreno interposto e cobertura."
+  },
+  {
+    "id": "atirador-agil",
+    "name": "Tiro Habilidoso",
+    "trigger": "O usuário usa uma ação de movimento enquanto ainda não usou uma ação de ataque a distância no seu turno.",
+    "type": "Atirador",
+    "description": "A figura não recebe penalidades por ter se movido no seu próximo ataque a distância."
+  },
+  {
+    "id": "disparo-de-precisão",
+    "name": "Disparo de Precisão",
+    "trigger": "O usuário atinge uma figura inimiga com um ataque a distância com uma rolagem natural de 18, 19 ou 20.",
+    "type": "Atirador",
+    "description": "Aquele ataque é considerado um ataque crítico."
+  },
+  {
+    "id": "battle-tongue",
+    "name": "Battle Tongue",
+    "trigger": "No começo da ativação do usuário da habilidade.",
+    "type": "Academica",
+    "description": "Caso o usuário seja um Líder, ele poder ativar uma figura extra com sua habilidade Líder durante essa ativação. Caso seja um héroi, essa figura pode comandar uma ativação em grupo com até um outro soldado a 8cm de si durante essa ativação."
+  },
+  {
+    "id": "conhecimento-das-ruas",
+    "name": "Conhecimento das Ruas",
+
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Academica",
+    "description": "Se o poder for ativado com sucesso, qualquer figura que fizer a atividade de exploração \"Visitar o Mercado Negro\" ganha +2 na rolagem da atividade. Esse bônus não acumula, independente de quantas figuras ativaram durante esse turno."
+  },
+  {
+    "id": "barganhar",
+    "name": "Barganhar",
+
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Academica",
+    "description": "Se o poder for ativado com sucesso, o bando ganha 20% de desconto em qualquer item comprado nessa sequência pós-jogo. Os descontos não acumulam, independente de quantas figuras ativaram esse poder."
+  },
+  {
+    "id": "caçador-de-pedra-bruxa",
+    "name": "Caçador de Pedra-Bruxa",
+
+    "trigger": "Fora do Jogo, na fase de Atividades.",
+    "type": "Academica",
+    "description": "Se o poder for ativado com sucesso, O jogador pode rerolar um dos dados rolados na Atividade de Exploração \"Adentrar as Ruínas\" ."
+  },
+  {
+    "id": "subornar",
+    "name": "Subornar",
+
+    "trigger": "Fora do Jogo, na fase de Atividades.",
+    "type": "Academica",
+    "description": "Se o poder for ativado com sucesso, durante o próximo jogo, em qualquer momento em que um inimigo vença uma luta ou acerte um ataque a distância, você pode tornar aquele ataque em um fracasso. Essa habilidade custa 5 coroas para ser ativada, e só pode ser utilizada uma vez por jogo."
+  },
+  {
+    "id": "intuicao-treinada",
+    "name": "Intuição Treinada",
+    "trigger": "No começo do turno, antes de todas as criaturas agirem.",
+    "type": "Academica",
+    "description": "O bando do usuário da habilidade imediatamente é considerada como tendo ganho a iniciativa. Ainda se rola iniciativa, para o caso de habilidades e efeitos de cenário que se importam com a rolagem de iniciative. Se dois bandos estãon sob o efeito dessa habilidade, eles rolam entre si para definir a ordem."
+  },
+  {
+    "id": "golpe-poderoso",
+    "name": "Golpe Poderoso",
+    "trigger": "Quando o usuário da habilidade ganha uma luta com uma rolagem de 18, 19 ou 20.",
+    "type": "Força",
+    "description": "O ataque é considerado um ataque crítico."
+  },
+  {
+    "id": "resiliente",
+    "name": "Resiliente",
+    "trigger": "Quando o usuário da habilidade recebe dano de qualquer fonte.",
+    "type": "Força",
+    "description": "Reduza o dano em 4 pontos. Se isso reduzir o dano a 0, quaisquer outros efeitos especiais do ataque são anulados."
+  },
+  {
+    "id": "intimidação",
+    "name": "Intimidação",
+    "trigger": "Quando uma figura declara carga para o usuário da habilidade.",
+    "type": "Força",
+    "description": "A figura que declarou a carga deve fazer um teste de vontade com CD 16. Caso falhe, a figura deve fazer a carga, mas para a 3cm do usuário da habilidade, a carga falha e a ativação da figura termina, com quaisquer ações restantes perdidas."
+  },
+  {
+    "id": "intimidação",
+    "name": "Intimidação",
+    "trigger": "Quando uma figura se move dentro de 3cm do usuário da habilidade após ter declarado uma carga contra ele.",
+    "type": "Força",
+    "description": "A figura que declarou a carga tem seu movimento interrompido, a carga falha e a sua ativação termina imediatamente, quaisquer ações restante perdidas."
+  },
+  {
+    "id": "halterofilista",
+    "name": "Halterofilista",
+    "trigger": "Em qualquer momento em que o usuário da habilidade faz um teste de Ímpeto que não seja para uma ação de luta ou para defender-se de ataques a distância.",
+    "type": "Força",
+    "description": "O usuário da habilidade ganha +5 em sua rolagem para aquele teste de Ímpeto. Alternativamente, o poder pode ser usado para aumentar o dano de um ataque corpo a corpo em 1 ponto."
+  },
+  {
+    "id": "carga-imparável",
+    "name": "Carga Imparável",
+    "trigger": "Quando o usuário da habilidade declara uma carga.",
+    "type": "Força",
+    "description": "Se a carga for completada, e a figura usar uma ação de luta, e vencer a luta subsequente, ela causa 1 de dano adicional, e deve escolher empurrar a figura inimiga 8cm. Esse movimento pode fazer a criatura inimiga atravessar terrenos e outras figuras e pode move-la direto para contato de base, fazendo-a entrar em combate."
+  },
+  {
+    "id": "investida",
+    "name": "Investida",
+    "trigger": "No começo da ação de movimento do usuário da habilidade.",
+    "type": "Velocidade",
+    "description": "Ao invés  de fazer um movimento normal, o usuário da habilidade faz uma investida, movendo seu movimento inteiro em linha reta, inclusive verticalmente, contanto que aquela linha reta esteja livre de obstáculos. Se o jogador terminar o movimento no ar, ele cai, tomando dano de queda como normal. Esse movimento pode ser usado para declarar e completar cargas, mas não pode ser usado em combate. Se estiver carregando fragmentos de pedra-bruxa, o usuário ainda se move apenas metade do seu movimento. O usuário pode gastar suas duas ações para usar uma ação de disparada usando esse movimento especial."
+  },
+  {
+    "id": "corrida",
+    "name": "Corrida",
+    "trigger": "Em qualquer ponto da ativação do usuário da habilidade.",
+    "type": "Velocidade",
+    "description": "O usuário da habilidade ganha +4 de movimento até o fim da sua ativação."
+  },
+  {
+    "id": "acrobata",
+    "name": "Acrobata",
+    "trigger": "Em qualquer ponto da ativação do usuário da habilidade.",
+    "type": "Velocidade",
+    "description": "Durante essa ativação, o usuário da habilidade pode cair de até 20cm sem tomar dano de queda."
+  },
+  {
+    "id": "escalar-superficies-ingremes",
+    "name": "Escalar Superfícies Ingremes",
+    "trigger": "No começo da ação de movimento do usuário da habilidade.",
+    "type": "Velocidade",
+    "description": "O usuário da habilidade ganha a característica Escalador até o fim dessa ação de movimento."
+  },
+  {
+    "id": "reflexos-instantaneos",
+    "name": "Reflexos Instantâneos",
+    "trigger": "O usuário da habilidade é o alvo de um ataque a distância ou uma ação de luta é declarada contra ela.",
+    "type": "Velocidade",
+    "description": "A figura pode mover imediatamente até 3cm, incluindo para fora de combate, negando a ação de luta se o fizer. Se ela era alvo de um ataque a distância, e terminou o movimento em cobertura ou com terreno interposto, pode se beneficiar desses bonus na sua rolagem de Ímpeto."
+  },
+  {
+    "id": "corrida-evasiva",
+    "name": "Corrida Evasiva",
+    "trigger": "No começo da ação de movimento do usuário da habilidade.",
+    "type": "Velocidade",
+    "description": "Nenhuma figura pode interceptar os movimentos do usuário."
+  },
+
+  {
+    "id": "sinal-de-sigmar",
+    "name": "Sinal de Sigmar",
+    "trigger": "O usuário da habilidade é alvo de um ataque de um Morto-Vivo ou Daemônio.",
+    "type": "Irmãs de Sigmar",
+    "description": "O ataque é cancelado automaticamente, sem rolagens feitas."
+  },
+  {
+    "id": "proteção-de-sigmar",
+    "name": "Proteção de Sigmar",
+    "trigger": "O usuário da habilidade é alvo de uma magia.",
+    "type": "Irmãs de Sigmar",
+    "description": "A magia é cancelada automaticamente, sem rolagens feitas. "
+  },
+  {
+    "id": "determinação-inabalável",
+    "name": "Proteção de Sigmar",
+    "trigger": "O usuário da habilidade faz um teste de Vontade.",
+    "type": "Irmãs de Sigmar",
+    "description": "O usuário da habilidade ganha +5 de Vontade para esse teste apenas."
+  },
+  {
+    "id": "missa-da-guerra-santa",
+    "name": "Missa da Guerra Santa",
+
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Irmãs de Sigmar",
+    "description": "Se o poder for ativado com sucesso, a usuária da habilidade ganha a característica Ódio(Culto dos Possuídos, Saqueadores Homem-Fera, Elfos Negros, Filhos de Hashut, Skaven e Cortes Vampíricas)."
+  },
+  {
+    "id": "fé-absoluta",
+    "name": "Fé Absoluta",
+    "trigger": "O bando do usuário da habilidade faz uma testagem de debandada.",
+    "type": "Irmãs de Sigmar",
+    "description": "O bando ganha +5 naquela rolagem de debandada."
+  },
+
+  {
+    "id": "fome-voraz",
+    "name": "Fome Voraz",
+    "trigger": "Durante a ativação do ativador da habilidade.",
+    "type": "Skaven do Clã Enshin",
+    "description": "A figura ganha +1 de Ímpeto, +1 de Dano e +2 de movimento durante essa ativação. Contudo, deve declarar e completar uma carga e lutar durante esse turno. Caso falhe em fazer isso, toma 3 de dano que não pode ser reduzido de nenhuma forma."
+  },
+  {
+    "id": "tail-fighting",
+    "name": "Lutar com a Cauda",
+    "trigger": "O usuário usa uma ação de luta.",
+    "type": "Skaven do Clã Enshin",
+    "description": "O usuário ganha +2 de Ímpeto durante aquela luta."
+  },
+  {
+    "id": "rastejar-pelas-paredes",
+    "name": "rastejar-pelas-paredes",
+    "trigger": "No começo da ação de movimento do usuário da habilidade.",
+    "type": "Skaven do Clã Enshin",
+    "description": "Durante essa ação de movimento o usuário da habilidade pode se mover através de terrenos como se eles não estivesse lá. Contudo, não pode terminar seu movimento dentro de uma parede ou obstáculo."
+  },
+  {
+    "id": "infiltração-silenciosa",
+    "name": "Infiltração Silenciosa",
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Skaven do Clã Enshin",
+    "description": "Se o poder for ativado com sucesso, durante o próximo jogo do bando, o usuário da habilidade pode começar o jogo em qualquer lugar do tabuleiro, contanto que fora da linha de visão de todas as figuras inimigas e a mais de 30cm de todas as figuras inimigas."
+  },
+  {
+    "id": "arte-da-morte-silenciosa",
+    "name": "Arte da Morte Silenciosa",
+    "trigger": "No final da ativação do usuário da habilidade.",
+    "type": "Skaven do Clã Enshin",
+    "description": "A figura é removida do tabuleiro. Então, como uma ação de movimento, ela pode se posicionar de volta no tabuleiro. Ela deve ser posicionada fora da linha de visão de todas as figuras inimigas e mais de 20cm de todas as figuras inimigas. Se uma figura está fora da linha de visão de todas as figuras aliadas, ou a menos de 8cm da borda do tabuleiro, ele pode ser posicionado em combate com essa figura. Isso não conta como declarar e completar carga. "
+  },
+  {
+    "id": "arte-da-morte-silenciosa",
+    "name": "Arte da Morte Silenciosa",
+    "trigger": "No final da ativação do usuário da habilidade.",
+    "type": "Skaven do Clã Enshin",
+    "description": "A figura é removida do tabuleiro. Então, como uma ação de movimento, ela pode se posicionar de volta no tabuleiro. Ela deve ser posicionada fora da linha de visão de todas as figuras inimigas e mais de 20cm de todas as figuras inimigas. Se uma figura está fora da linha de visão de todas as figuras aliadas, ou a menos de 8cm da borda do tabuleiro, ele pode ser posicionado em combate com essa figura. Isso não conta como declarar e completar carga. "
+  },
+  {
+    "id": "emaranhar-pelo",
+    "name": "Emaranhar Pelo",
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Saqueadores Homem-Fera",
+    "description": "Se essa habilidade for ativada com sucesso, O usuário da habilidade tem +2 de Armadura bonus durante o próximo jogo do bando. Esse bonus não pode levar a figura a mais de 15 de armadura. "
+  },
+  {
+    "id": "linhagem-corrompida",
+    "name": "Linhagem Corrompida",
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Saqueadores Homem-Fera",
+    "description": "Se essa habilidade for ativada com sucesso, o usuário da habilidade começa o próximo jogo com uma Mutação do bando Culto dos Possuídos. A mutação é cancelada no fim do jogo. "
+  },
+  {
+    "id": "fúria-bestial",
+    "name": "Fúria Bestial",
+    "trigger": "Quando o usuário da habilidade declara carga .",
+    "type": "Saqueadores Homem-Fera",
+    "description": "A figura é imune a característica Aterrorizante durante essa carga. "
+  },
+  {
+    "id": "investida-córnea",
+    "name": "Investida Córnea",
+    "trigger": "Quando ao usuário da habilidade declara carga.",
+    "type": "Saqueadores Homem-Fera",
+    "description": "A figura ganha a catacterística Chifres durante essa ativação se completar a carga. "
+  },
+  {
+    "id": "berro-de-guerra",
+    "name": "Berro de Guerra",
+    "trigger": "Quando o bando do usuário da habilidade faz um teste de debandada.",
+    "type": "Saqueadores Homem-Fera",
+    "description": "O bando ganha +5 nesse teste de debandada. Esse bonus só pode ser ganho uma vez por rolagem, independente de quantas figuras do bando possuam essa habilidade.  "
+  },
+  {
+    "id": "misantropia",
+    "name": "Misantropia",
+    "trigger": "Sempre que o usuário da habilidade luta com uma figura da raça humana.",
+    "type": "Saqueadores Homem-Fera",
+    "description": "O usuário da habilidade ganha Ódio(Humanos) durante essa luta.  "
+  },
+  {
+    "id": "mestre-das-laminas",
+    "name": "Mestre das Lâminas",
+    "trigger": "Quando o usuário da habilidade luta.",
+    "type": "Caçadores de Tesouro Anões",
+    "description": "O usuário da habilidade causa dano mesmo se perder a luta, como se tivesse empatado. "
+  },
+  {
+    "id": "sangue-da-montanha",
+    "name": "Sangue da Montanha",
+    "trigger": "Quando o usuário recebe qualquer quantidade de dano maior que 1.",
+    "type": "Caçadores de Tesouro Anões",
+    "description": "Reduza o dano recebido pela metade. Quaisquer efeitos adicionais do ataque são negados. "
+  },
+  {
+    "id": "minerador-experiente",
+    "name": "Minerador Experiente",
+    "trigger": "Fora do Jogo, na fase de Atividades.",
+    "type": "Caçadores de Tesouro Anões",
+    "description": "Se o poer for ativado com sucesso, durante a fase de exploração, o bando do usuário da habilidade pode modificar o resultado de um dos dados de exploração por em +3/-3. "
+  },
+  {
+    "id": "garra-exemplar",
+    "name": "Garra Exemplar",
+    "trigger": "O usuário da habilidade é reduzido a 0 de vida, uma vez por jogo.",
+    "type": "Caçadores de Tesouro Anões",
+    "description": "O ativador da habilidade é reduzido a 1 de vida ao invés disso. "
+  },
+  {
+    "id": "crânio-duro",
+    "name": "Crânio Duro",
+    "trigger": "O usuário da habilidade recebe um marcado de atordoamento.",
+    "type": "Caçadores de Tesouro Anões",
+    "description": "O marcador de Atordoamento é imediatamente descartado. "
+  },
+  {
+    "id": "carga-feroz",
+    "name": "Carga Feroz",
+    "trigger": "O usuário da habilidade declara carga.",
+    "type": "Mata-Trolls Anão",
+    "description": "Se a carga for completada, e a figura usar uma ação de luta, e vencer a luta subsequente, o usuário da habilidade pode imediatamente lutar novamente contra a figura inimiga ou outra figura em combnate. "
+  },
+  {
+    "id": "matador-de-monstros",
+    "name": "Matador de Monstros",
+    "trigger": "O usuário da habilidade vence uma luta.",
+    "type": "Mata-Trolls Anão",
+    "description": "O usuário da habilidade ganha a palavra-chave Penentração de Armadura(2) nesse ataque. "
+  },
+  {
+    "id": "beserker",
+    "name": "Beserker",
+    "trigger": "Durante a ativação do usuário da habilidade.",
+    "type": "Mata-Trolls Anão",
+    "description": "O usuário da habilidade ignora a condição Ferido durante essa ativação, mas só podem utilizar ações de luta e ações de movimento para declarar carga."
+  },
+  {
+    "id": "construir-planador",
+    "name": "Construir Planador",
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Engenheiro Anão",
+    "description": "O usuário da habilidade constrói um planador, que vai para o cofre do bando. O planador ocupa 2 espaços de item. Uma figura equipada com um planador pode se mover entre uma posicão mais alta para uma mais baixa como se tivesse a característica voador."
+  },
+  {
+    "id": "construir-arpéu",
+    "name": "Construir Arpéu",
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Engenheiro Anão",
+    "description": "O usuário da habilidade constrói um arpéu, que vai para o cofre do bando. O arpéu ocupa 1 espaço de item. Uma figura equipada com um arpéu pode como uma ação mirar qualquer parte de uma peça de terreno ou uma figura dentro de 40cm de si, contanto que possa traçar uma linha reta inobstruida entre ela e o alvo. A figura então se move em linha reta até alcançar o alvo. Se terminar o movimento no ar, ela cai, tomando dano de queda como normal. Se o alvo é uma figura, o usuário do arpéu deve gastar uma ação de movimento, mas pode declarar carga com o movimento causado pelo arpéu. O arpéu só pode ser usado uma vez por jogo."
+  },
+  {
+    "id": "construir-botas-estaqueadas-de-gromril",
+    "name": "Construir Botas Estaqueadas de Gromril",
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Engenheiro Anão",
+    "description": "O usuário da habilidade constrói botas estaqueadas de gromril, que vão para o cofre do bando. As botas estaqueadas de gromril ocupam 1 espaço de item. Uma figura equipada com botas estaqueadas de gromril tem a característica Escalador."
+  },
+  {
+    "id": "construir-canhão-de-cerco",
+    "name": "Construir Arpéu",
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Engenheiro Anão",
+    "description": "O usuário da habilidade constrói um canhão de cerco, que conta como um soldado do bando. O canhão de cerco pode ser tripulado por uma figura. O canhão de cerco pode se mover 4cm se uma figura o tripular, mas nunca pode escalar, pular, disparar ou atravessar terreno dificil ou água ou tomar ações de ataque, luta, ou declarar cargas. Uma figura tripulando um canhão de cerco pode usar uma ação de ataque a distância usando o canhão de cerco como arma. O canhão tem as palavras-chave Coice Violento, Recarga, Penetração de Armadura (3), Falha na Ignição(1-3), Tiro Dispersivo, Alcance Máximo 60cm, e Modificador de dano +4. O canhão de cerco gasta duas ações para ser recarregado. Uma figura tripulando um canhão de cerco tem cobertura pesada contra ataques a distância, mas pode ser cargada normalmente. O canhão de cerco em si tem Vida 3, Armadura 20 e conta como um construto. "
+  },
+  {
+    "id": "construir-armadura-mecânica",
+    "name": "Construir Armadura Mecânica",
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Engenheiro Anão",
+    "description": "O usuário da habilidade constrói uma armadura mecânica, que vai para o cofre do bando. O bando deve pagar 50 coroas para que uma figura possa usar essa armadura durante o jogo. A armadura ocupa 2 espaços de item, e seu bônus de armadura é +4 e bonus de movimento +4. Apenas figuras que podem vestir armaduras pesadas podem utilizar a armadura mecânica."
+  },
+  {
+    "id": "transfixar",
+    "name": "Transfixar",
+    "trigger": "O ativador da habilidade é alvo de um ataque a distância ou uma figura inimiga luta contra ele.",
+    "type": "Habilidades Von Carstein",
+    "description": "A figura atiradora ou que declarou a carga deve fazer um teste de vontade com CD 16. Caso falhe, o ataque falha, sem nenhuma rolagem feita. Esse é um efeito tratado como tendo a palavra-chave PSICOLÓGICO."
+  },
+  {
+    "id": "aura-de-majestosidade",
+    "name": "Aura de Majestosidade",
+    "trigger": "No começo da ativação do usuário da habilidade.",
+    "type": "Habilidades Von Carstein",
+    "description": "A figura pode ativar figuras a até 14cm, ao invés dos 8cm normais."
+  },
+  {
+    "id": "invocar-morcegos",
+    "name": "Invocar Morcegos",
+    "trigger": "No começo da ativação do usuário da habilidade.",
+    "type": "Habilidades Von Carstein",
+    "description": "O usuário da habilidade invoca um Morcego Corrompido como membro temporário do bando, a até 14cm de usuário da habilidade, e a mais de 14cm de figuras inimigas. Esse poder é tratado como tendo a palavra-chave INVOCAÇÃO."
+  },
+  {
+    "id": "convocar-ventos",
+    "name": "Convocar Ventos",
+    "trigger": "No começo da ativação do usuário da habilidade.",
+    "type": "Habilidades Von Carstein",
+    "description": "Imponha -2 a rolagem de qualquer ataque a distância feita contra o usuário da habilidade durante esse turno."
+  },
+  {
+    "id": "Esgrimista-Extraordinário",
+    "name": "Esgrimista Extraordinário",
+    "trigger": "Quando o usuário vence uma luta.",
+    "type": "Habilidades Von Carstein",
+    "description": "O usuário pode imediatamente lutar novamente, sem gastar ações. Se vencer a segunda luta, recupera 2 de vida e a figura inimiga ganha um marcador de sangramento."
+  },
+  {
+    "id": "furia-carmesim",
+    "name": "Fúria Carmesim",
+    "trigger": "Quando o usuário vence uma luta contra uma figura com um marcador de sangramento.",
+    "type": "Habilidades de Dragão Carmesim",
+    "description": "A figura inimiga ganha outro marcador de sangramento, e recebe 3 de dano adicional durante aquela luta."
+  },
+  {
+    "id": "perfurar-coração",
+    "name": "Perfurar Coração",
+    "trigger": "No começo da ativação do usuário da habilidade.",
+    "type": "Habilidades de Dragão Carmesim",
+    "description": "Se o usuário da habilidade declarar uma multi-carga durante essa ativação, e completar a multi-carga com sucesso, ele pode lutar contra todas as figuras contra quem completou a multi-carga. Cada figura atingida ganha um marcador de sangramento."
+  },
+  {
+    "id": "aço-sobrenatural",
+    "name": "Aço Sobrenatural",
+    "trigger": "Quando o usuário da habilidade luta.",
+    "type": "Habilidades de Dragão Carmesim",
+    "description": "O usuário ganha +2 de Ímpeto durante essa luta. Caso vença a luta, a figura inimiga ganha um marcador de sangramento."
+  },
+  {
+    "id": "glamour",
+    "name": "Glamour",
+    "trigger": "Em qualquer ponto da ativação do usuário da habilidade.",
+    "type": "Habilidades de Lahmia",
+    "description": "Até o fim do turno, qualquer figura que tentar declarar uma carga ou declarar o usuário da habilidade como alvo de um ataque a distância deve fazer um teste de vontade com CD 16. Caso falhe, não pode escolher o usuário da habilidade como alvo da carga ou ataque a distância, mas pode escolher outros alvos. Esse é um efeito tratado como tendo a palavra-chave PSICOLÓGICO e ILUSÃO."
+  },
+  {
+    "id": "sedução",
+    "name": "Sedução",
+    "trigger": "Em qualquer ponto da ativação do usuário da habilidade, como uma ação.",
+    "type": "Habilidades de Lahmia",
+    "description": "Uma figura inimiga alvo em linha de visão em até 15cm do usuário da habilidade deve fazer um teste de vontade com CD 15. Caso falhe, o usuário da habilidade pode imediatamente mover a figura em direção a ele, até 8cm. Se a figura estava segurando um fragmento de pedra-bruxa, ela o solta em qualquer ponto do movimento a escolha do usuário da habilidade. A figura não pode ser movida em combate, mas pode ter o movimento interceptado."
+  },
+  {
+    "id": "inocencia-perdida",
+    "name": "Inocência Perdida",
+    "trigger": "O usuário da habilidade luta.",
+    "type": "Habilidades de Lahmia",
+    "description": "A figura inimiga rola um teste de Vontade com CD 16. Caso falhe, o usuário da habilidade ganha +3 de Ímpeto durante essa luta. Esse é um efeito tratado como tendo a palavra-chave PSICOLÓGICO e ILUSÃO."
+  },
+  {
+    "id": "beleza-dominadora",
+    "name": "Beleza-Dominadora",
+    "trigger": "Em qualquer ponto da ativação do usuário da habilidade, como uma ação.",
+    "type": "Habilidades de Lahmia",
+    "description": "Um soldado inimigo em linha de visãp rola um teste de Vontade com CD 14. Caso falhe, a figura se torna um membro temporário do bando do usuário da habilidade até o fim do turno ou até receber dano. A figura não pode sair da mesa ou tomar açòes detrimentais como cair de propósito, mas pode lutar e fazer ataques normalmente. Esse é um efeito tratado como tendo a palavra-chave PSICOLÓGICO e ILUSÃO."
+  },
+  {
+    "id": "maldicao-do-regresso",
+    "name": "Maldição do Regresso",
+    "trigger": "Em qualquer ponto em que usuário da habilidade recebe dano não-sagrado.",
+    "type": "Habilidades de Strigoi",
+    "description": "O dano é reduzido a zero, e nenhum efeito adicional do ataque é aplicado."
+  },
+  {
+    "id": "abominação-resiliente",
+    "name": "Abominação Resiliente",
+    "trigger": "Em qualquer ponto da ativação do usuário, se não tiver recebido dano sagrado nesse turno.",
+    "type": "Habilidades de Strigoi",
+    "description": "O usuário da habilidade recupera 3 de vida, remove quaisquer quantidade de marcadores negativos e ignora a condição ferido durante essa ativação."
+  },
+  {
+    "id": "ossos-ferréos",
+    "name": "Ossos Ferréos",
+    "trigger": "o usuário da habilidade declara carga.",
+    "type": "Habilidades de Strigoi",
+    "description": "Se a carga for completada, o usuário ganha a característica Chifres durante essa ativação."
+  },
+  {
+    "id": "odio-infinito",
+    "name": "Ódio Infinito",
+    "trigger": "O usuário da habilidade vence uma luta.",
+    "type": "Habilidades de Strigoi",
+    "description": "O usuário da habilidade pode imediatamente lutar novamente, sem gastar ações."
+  },
+  {
+    "id": "furia-de-khaine",
+    "name": "Fúria de Khaine",
+    "trigger": "O usuário da habilidade vence uma luta e reduz todas as figuras em combate a 0 de vida.",
+    "type": "Elfos Negros Corsários",
+    "description": "O usuário da habilidade se move até 10cm, e pode declarar carga com esse movimento, mesmo que já tenha declarado carga durante esse turno."
+  },
+  {
+    "id": "reflexos-feericos",
+    "name": "Reflexos Feéricos",
+    "trigger": "Quando o usuário da habilidade é o alvo de um ataque a distância.",
+    "type": "Elfos Negros Corsários",
+    "description": "Se o usuário da habilidade tiver sucesso na sua rolagem de defesa, ele deflete o projétil de volta ao atirador. O atirador recebe dano igual a rolagem de Ímpeto do usuário da habilidade menos sua armadura, tomando quaisquer efeitos especiais e palavras-chave do seu ataque."
+  },
+  {
+    "id": "caminhante-das-sombras",
+    "name": "Caminhante das Sombras",
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Elfos Negros Corsários",
+    "description": "Se o poder for ativado com sucesso, durante o próximo jogo do bando, o usuário da habilidade pode começar o jogo em qualquer lugar do tabuleiro, contanto que fora da linha de visão de todas as figuras inimigas e a mais de 30cm de todas as figuras inimigas."
+  },
+  {
+    "id": "mestre-dos-venenos",
+    "name": "Mestre dos Venenos",
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Elfos Negros Corsários",
+    "description": "Se o poder for ativado com sucesso, o bando adiciona um frasco de qualquer item do tipo Veneno ao cofre do bando."
+  },
+  {
+    "id": "especialista-em-emboscada",
+    "name": "Especialista em Emboscada",
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Habilidades de Geckos",
+    "description": "Se o poder for ativado com sucesso, durante o próximo jogo do bando, o usuário da habilidade pode começar o jogo em qualquer lugar do tabuleiro, contanto que fora da linha de visão de todas as figuras inimigas e a mais de 30cm de todas as figuras inimigas."
+  },
+  {
+    "id": "movimentação-furtiva",
+    "name": "Movimentação Furtiva",
+    "trigger": "Quando o usuário da habilidade for alvo de um ataque a distância enquanto está em cobertura ou há peças de terreno entre ele e o atirador.",
+    "type": "Habilidades de Geckos",
+    "description": "O ataque erra automaticamente, sem rolagens feitas. O usuário da habilidade pode então se mover até 10cm, contanto que termine o movimento em cobertura."
+  },
+  {
+    "id": "urro-aterrorizante",
+    "name": "Urro Aterrorizante",
+    "trigger": "durante a ativação do usuário da habilidade, como uma ação.",
+    "type": "Habilidades de Saúrios",
+    "description": "Centralize uma ÁREA DE EFEITO(EXPLOSÃO PEQUENA) no usuário da habilidade. Todas as figuras dentro dessa área de efeito devem fazer um teste de Vontade com CD 15. Caso falhe, a figura ganha -2 de Ímpeto até o final de sua próxima ativação. Essa habilidade é tratada como tendo a palavra-chave PSICOLÓGICO."
+  },
+  {
+    "id": "escamas-impenetráveis",
+    "name": "escamas-impenetráveis",
+    "trigger": "o usuário da habilidade é reduzido a 0 de vida, uma vez por jogo.",
+    "type": "Habilidades de Saúrios",
+    "description": "O usuário da habilidade é ao invés disso reduzido a 1 de vida."
+  },
+  {
+    "id": "quengo-duro",
+    "name": "QUENGO DURO!",
+    "trigger": "Quando o usuário da habilidade recebe um marcador de atordoamento.",
+    "type": "Hordas Orc",
+    "description": "O marcador de atordoamento é imediatamente removido."
+  },
+  {
+    "id": "umbora-cambada",
+    "name": "UMBORA CAMBADA!",
+    "trigger": "Quando o usuário da habilidade declara carga.",
+    "type": "Hordas Orc",
+    "description": "A figura se torna Imune a Aterrorizante durante essa carga."
+  },
+  {
+    "id": "sabido-e-brutal",
+    "name": "SABIDO E BRUTAL!",
+    "trigger": "Quando o bando rola um teste de debandada.",
+    "type": "Hordas Orc",
+    "description": "O bando ganha +5 no teste de debandada."
+  },
+  {
+    "id": "cascudo",
+    "name": "CASCUDO!",
+    "trigger": "Quando o usuário da habilidade recebe pelo menos 1 de dano de qualquer fonte.",
+    "type": "Hordas Orc",
+    "description": "O usuário da habilidade reduz o dano a 0 e ignora quaisquer efeitos especiais e palavras-chave do ataque."
+  },
+  {
+    "id": "quebra-cuca",
+    "name": "QUEBRA CUCA!",
+    "trigger": "Quando o usuário da habilidade vence uma luta.",
+    "type": "Hordas Orc",
+    "description": "O usuário da habilidade ganha a palavra-chave Concussiva(4) no seu ataque. Se a arma que ele usa já tem a palavra-chave concussiva, ao invés disso ganha Concussiva(2)."
+  },
+
+  {
+    "id": "sangue-arcano",
+    "name": "Sangue Arcano",
+    "trigger": "Quando um conjurador falha em uma rolagem de conjuração a 14cm do usuário da habilidade.",
+    "type": "Guarda Marinha de Ulthuan",
+    "description": "O usuário da habilidade pode gastar pontos de vida em uma proporção de 1:1 para aumentar a rolagem de conjuração."
+  },
+  {
+    "id": "vigilia-do-atirador",
+    "name": "Vigilia do Atirador",
+    "trigger": "Quando uma figura declara carga contra o usuário da habilidade ou contra um conjurador a até 10cm do usuário da habilidade.",
+    "type": "Guarda Marinha de Ulthuan",
+    "description": "O usuário da habilidade pode imediatamente fazer uma ataque a distância contra a figura declarando carga. Se a figura tiver um Marcador de Vigilia, ela pode consumí-lo para ganhar +2 na rolagem de precisão."
+  },
+  {
+    "id": "miniath",
+    "name": "Miniath",
+    "trigger": "Quando uma figura luta contra o usuário da habilidade.",
+    "type": "Guarda Marinha de Ulthuan",
+    "description": "A ação de luta falha automaticamente, sem rolagens feitas."
+  },
+  {
+    "id": "tiro-perfeito",
+    "name": "Tiro Perfeito",
+    "trigger": "Quando uma figura usa uma ação de ataque a distância.",
+    "type": "Guarda Marinha de Ulthuan",
+    "description": "A figura pode rolar dois dados e escolher o melhor para sua rolagem de Precisão."
+  },
+  {
+    "id": "tiro-perfeito",
+    "name": "Tiro Perfeito",
+    "trigger": "Quando uma figura usa uma ação de ataque a distância.",
+    "type": "Guarda Marinha de Ulthuan",
+    "description": "A figura pode rolar dois dados e escolher o melhor para sua rolagem de precisão."
+  },
+  {
+    "id": "reflexos-feericos",
+    "name": "Reflexos Feéricos",
+    "trigger": "Quando o usuário da habilidade é o alvo de um ataque a distância.",
+    "type": "Guarda Marinha de Ulthuan",
+    "description": "Se o usuário da habilidade tiver sucesso na sua rolagem de defesa, ele deflete o projétil de volta ao atirador. O atirador recebe dano igual a rolagem de Ímpeto do usuário da habilidade menos sua armadura, tomando quaisquer efeitos especiais e palavras-chave do seu ataque."
+  },
+  {
+    "id": "sangue-feerico",
+    "name": "Sangue Feérico",
+    "trigger": "O usuário da habilidade é alvo de uma magia.",
+    "type": "Elfos Silvanos de Athel Loren",
+    "description": "A magia é cancelada automaticamente, sem nenhuma rolagem feita."
+  },
+  {
+    "id": "abençoado-pela-sorte",
+    "name": "Abençoado pela Sorte",
+    "trigger": "o usuário da habilidade rola um dado, e vê o resultado, uma vez por jogo.",
+    "type": "Elfos Silvanos de Athel Loren",
+    "description": "O usuário da habilidade rola outro dado e escolhe o melhor resultado."
+  },
+  {
+    "id": "fantasma-da-floresta",
+    "name": "Fantasma da Floresta",
+    "trigger": "Fora do jogo, na fase de Atividades.",
+    "type": "Habilidades de Geckos",
+    "description": "Se o poder for ativado com sucesso, durante o próximo jogo do bando, o usuário da habilidade pode começar o jogo em qualquer lugar do tabuleiro, contanto que fora da linha de visão de todas as figuras inimigas e a mais de 30cm de todas as figuras inimigas."
+  },
+  {
+    "id": "rastreador",
+    "name": "rastreador",
+    "trigger": "Fora do Jogo, na fase de Atividades.",
+    "type": "Caçadores de Tesouro Anões",
+    "description": "Se o poer for ativado com sucesso, durante a fase de exploração, o bando do usuário da habilidade pode modificar o resultado de um dos dados de exploração por em +3/-3. "
+  }
+]

@@ -1,0 +1,192 @@
+[
+  {
+    "id": "lótus-negro",
+    "name": "Lótus Negro",
+    "type": "Veneno",
+    "damageModifier": null,
+    "purchaseCost": "15 coroas",
+    "rarity": 18,
+    "availability": [
+      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas, Guarda Marítica de Ulthuan, Elfos Silvanos de Athel Loren"
+    ],
+    "exclusive": null,
+    "flavorText": "Nas florestas mais profundas das Terras do Sul cresce uma planta extremamente venenosa. É conhecida como Lótus Negro e é muito procurada por alquimistas, assassinos, magos da Costa Ocidental e esposas entediadas.",
+    "user": "Aplicar em arma como ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Envenenar Arma",
+        "value": "Uma figura pode envenenar sua arma com esse veneno como ação. Até o fim do jogo, aquela arma tem a característica Venenoso."
+      }
+    ]
+  },
+  {
+    "id": "sombra-carmesim",
+    "name": "Sombra Carmesim",
+    "type": "Droga",
+    "damageModifier": null,
+    "purchaseCost": "40 coroas",
+    "rarity": 14,
+    "availability": [
+      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas, Guarda Marítica de Ulthuan, Elfos Silvanos de Athel Loren"
+    ],
+    "exclusive": null,
+    "flavorText": "Sombra Carmesim é o nome dado pelos habitantes do Velho Mundo às folhas do carvalho sangrento da Estália. É uma droga extremamente viciante, mas concede a seus usuários velocidade e força desumanas.",
+    "user": "Beber antes da batalha",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Droga Estimulante",
+        "value": "Uma figura pode beber a sombra carmesim como uma ação, ganhando  +4 de movimento, +1 de ímpeto e +1 de dano, mas tem -2 de Vontade até o fim do jogo."
+      }
+    ]
+  },
+  {
+    "id": "veneno-sombrio",
+    "name": "Veneno Sombrio",
+    "type": "Veneno",
+    "damageModifier": null,
+    "purchaseCost": "30 coroas",
+    "rarity": 12,
+    "availability": [
+      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas, Guarda Marítica de Ulthuan, Elfos Silvanos de Athel Loren"
+    ],
+    "exclusive": null,
+    "flavorText": "Este é um veneno extraído de Heldrakes, serpentes marinhas gigantes que assolam o Oceano Ocidental e a costa de Naggaroth. O menor ferimento infectado por Veneno Sombrio causa dor excruciante, incapacitando os mais bravos dos homens.",
+    "user": "Aplicar em arma como ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Veneno Potente",
+        "value": "Pode aplicar o veneno na arma como uma ação. Até o fim do jogo, aquela arma causa +1 de dano."
+      }
+    ]
+  },
+  {
+    "id": "bálsamo-curtativo",
+    "name": "Bálsamo Curtativo",
+    "type": "Remédio",
+    "damageModifier": null,
+    "purchaseCost": "25",
+    "rarity": 1,
+    "availability": ["Todos"],
+    "exclusive": null,
+    "flavorText": "Certas plantas que crescem nas margens do Rio Stir têm propriedades curativas. Herbalistas coletam suas raízes e folhas e as usam para tratar doentes e feridos.",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Cura Completa",
+        "value": "Uma figura pode usar o bálsamo como uma ação para para recuperar 3 de vida."
+      }
+    ]
+  },
+  {
+    "id": "cogumelos-chapeu-da-morte",
+    "name": "Cogumelos Chapéu da Morte",
+    "type": "Remédio",
+    "damageModifier": null,
+    "purchaseCost": "35 coroas",
+    "rarity": 1,
+    "availability": ["Hordas Orc"],
+    "exclusive": null,
+    "flavorText": "O temido culto dos Fanáticos Goblin das Montanhas da Borda do Mundo usa estes cogumelos alucinógenos para se levar a um estado frenético.",
+    "user": "Comer antes da batalha",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Efeito",
+        "value": "Qualquer guerreiro que tome Cogumelos Chapéu da Morte antes de uma batalha será ganha +1 de Ímpeto, +1 de Dano e +2 em testes de conjuração, mas tem -2 de vontade. A criatura toma -2 em seu teste de sobrevivência caso seja reduzido a 0 de vida. Apenas goblins e o Orc Véio podem usar esse remédio."
+      }
+    ]
+  },
+  {
+    "id": "raiz-de-mandragora",
+    "name": "Raiz de Mandrágora",
+    "type": "Remédio",
+    "damageModifier": null,
+    "purchaseCost": "25 coroas",
+    "rarity": 16,
+    "availability": ["Todos"],
+    "exclusive": null,
+    "flavorText": "A Raiz de Mandrágora em forma de homem cresce nos pântanos apodrecidos da Silvânia. É uma planta nociva e mortal que é altamente viciante e lentamente mata seus usuários, mas também lhes permite resistir a quase qualquer dor.",
+    "user": "Consumir antes da batalha",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Efeito",
+        "value": "A figura pode usar a raiz de mandrágora como uma ação. Até o fim do jogo, ela é imune a veneno, mas seu vigor máximo é reduzido em 3 pontos. Caso a figura seja reduzida a 0 de vida, ela tem -2 na tabela de sobrevivência."
+      }
+    ]
+  },
+  {
+    "id": "esterco-de-manticora",
+    "name": "Esterco de Manticora",
+    "type": "Veneno",
+    "damageModifier": null,
+    "purchaseCost": "30",
+    "rarity": 17,
+    "availability": [
+      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas, Guarda Marítica de Ulthuan, Elfos Silvanos de Athel Loren"
+    ],
+    "exclusive": null,
+    "flavorText": "Uma substância soporífera tão letal quanto a besta que a excretou. A penetração da carne da vítima pela lâmina de um guerreiro manchada com fezes frescas de uma Manticora induz um estado de sono sem sonhos seguido de morte quase certa.",
+    "user": "Aplicar em arma como ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Veneno Mortal",
+        "value": "Uma figura pode aplicar o esterco de mantícora em uma arma como uma ação. Até o fim do jogo, aquela arma ganha ganha Concussivo (4). "
+      }
+    ]
+  },
+  {
+    "id": "lagrimas-de-shallaya",
+    "name": "Lágrimas de Shallaya",
+    "type": "Poção",
+    "damageModifier": null,
+    "purchaseCost": "50 coroas",
+    "rarity": 3,
+    "availability": ["Todos exceto Culto dos Possuídos e Cortes Vampiricas"],
+    "exclusive": null,
+    "flavorText": "Lágrimas de Shallaya são frascos de água da nascente sagrada em Couronne. Shallaya é a deusa da cura e misericórdia e diz-se que esta água tem propriedades curativas e é prova contra qualquer veneno.",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Cura",
+        "value": "Use um frasco de Shallaya como uma ação. O modelo cura 5 de vida e remove quaisquer marcadores negativos que tenha."
+      }
+    ]
+  }
+]

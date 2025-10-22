@@ -58,7 +58,7 @@ export default function DaemonsPage() {
             }}
           >
             <PowerListTitle sx={{ color: "#ff6b6b", mt: 0 }}>
-              ⚠️ A Natureza dos Daemônios
+              A Natureza dos Daemônios
             </PowerListTitle>
 
             <ParchmentText>
@@ -90,7 +90,7 @@ export default function DaemonsPage() {
             fullWidth
             sx={{ mb: 2, py: 2.5, fontSize: "1.1rem" }}
           >
-            💀 Fichas de Daemônios
+            Fichas de Daemônios
           </StyledNavigationButton>
 
           <StyledNavigationButton
@@ -99,7 +99,7 @@ export default function DaemonsPage() {
             fullWidth
             sx={{ mb: 2, py: 2.5, fontSize: "1.1rem" }}
           >
-            🔮 Atributos Daemônicos
+            Atributos Daemônicos
           </StyledNavigationButton>
 
           <StyledNavigationButton
@@ -108,7 +108,7 @@ export default function DaemonsPage() {
             fullWidth
             sx={{ mb: 2, py: 2.5, fontSize: "1.1rem" }}
           >
-            📜 Pactos Daemônicos
+            Pactos Daemônicos
           </StyledNavigationButton>
 
           <StyledNavigationButton

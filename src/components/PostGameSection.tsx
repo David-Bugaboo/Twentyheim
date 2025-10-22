@@ -22,7 +22,7 @@ function PostGameSection() {
       id="a-campanha"
     >
       <PowerListTitle sx={{ fontSize: "2rem", mb: 4, textAlign: "center" }}>
-        ⚜️ A Campanha ⚜️
+        A Campanha
       </PowerListTitle>
 
       <Box

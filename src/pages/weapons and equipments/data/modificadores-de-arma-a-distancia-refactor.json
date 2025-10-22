@@ -1,0 +1,59 @@
+[
+  {
+    "id": "asrai",
+    "name": "Asrai",
+    "type": "Modificador de Arma a Distancia",
+    "availability": [
+      "Elfos Silvanos de Athel Loren",
+      "Guarda Marítima de Ulthuan"
+    ],
+    "rarity": 20,
+    "damageModifier": null,
+    "purchaseCost": "base * 3",
+    "exclusive": null,
+    "flavorText": "Construída de madeira do Bosque Sagrado de Athel Loren, e com cordas tecidas do cabelo de donzelas élficas.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": "Ganha a característica Penetração de Armadura(1)",
+    "requirements": null,
+    "specialRules": []
+  },
+  {
+    "id": "sonica",
+    "name": "Sônica",
+    "type": "Modificador de Arma a Distancia",
+    "availability": ["Todos"],
+    "rarity": 18,
+    "damageModifier": null,
+    "purchaseCost": "base * 4",
+    "exclusive": null,
+    "flavorText": "Infundida com magia sonora de Azyr, o Vento Celestial, esta arma sônica emite ondas de choque devastadoras.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": "Uma figura atingida por um ataque feito por uma arma com o modificador Sônico recebe um marcador de Atordoamento se receber 5 ou mais de dano.",
+    "requirements": null,
+    "specialRules": []
+  },
+  {
+    "id": "perfura-vento",
+    "name": "Perfura-Vento",
+    "type": "Modificador de Arma a Distancia",
+    "availability": ["Todos"],
+    "rarity": 14,
+    "damageModifier": null,
+    "purchaseCost": "base * 3",
+    "exclusive": null,
+    "flavorText": "Forjada em Ulthuan, esta arma é usada pelos lendários Perfura-Vento da Guarda Marítima, sua madeira encantada canalizando os ventos ao seu redor para impulsionar suas flechas com um alcance ímpar.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": "Uma arma com esse modificador ganha 15cm de alcance adicional.",
+    "requirements": null,
+    "specialRules": []
+  }
+]

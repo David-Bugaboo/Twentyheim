@@ -18,44 +18,72 @@ export default function LoreOfFirePage() {
     {
       name: "Espada Fulgurante de Rhuin",
       castingNumber: 10,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão"],
       effect:
-        "Chamas vermelhas e alaranjadas envolvem a arma do aliado, transformando-a em uma lâmina incandescente que queima com calor abrasador. O metal brilha branco-quente, e o ar ao redor ondula com o calor intenso. O próximo golpe não apenas corta - carboniza, queima e incendeia.\n\nEsta magia é conjurada sobre uma arma. Na próxima vez que a figura empunhando esta arma vencer uma rodada de combate e causar pelo menos 1 ponto de dano, esta arma inflige 5 pontos adicionais de dano mágico elemental enquanto o fogo consome a vítima. Se conjurada em uma arma normal, que então é usada contra uma criatura Imune a Armas Normais, esta arma causará apenas os 5 pontos de dano mágico elemental - o fogo puro ainda queima. Se conjurada em uma arma de projétil ou arma de fogo, a munição se torna uma flecha ou bala flamejante, e a magia só se aplica ao próximo ataque.",
+        "A arma alvo irrompe em chamas arcanas até o fim do jogo. A arma conta como uma arma mágica com bonus de +2 de Ímpeto e que causa dano flamejante.",
     },
     {
       name: "Bola de Fogo",
       castingNumber: 12,
-      range: "Linha de Visão",
+      keywords: ["Alcance(16)", "Área de Efeito (Zona Pequena)"],
       effect:
-        "O mago concentra o Vento Vermelho em suas mãos até que uma esfera de chamas incandescentes se forme, crescendo e girando com poder destrutivo contido. Com um grito de guerra, ele a arremessa. A bola de fogo atravessa o ar deixando uma trilha de calor e fumaça antes de EXPLODIR em uma detonação devastadora que carboniza tudo em seu raio. A explosão é tão intensa que até aqueles próximos ao impacto são engolfados pelas chamas.\n\nO conjurador seleciona uma figura inimiga a até 40cm e linha de visão e arremessa uma bola de fogo ardente nela. O alvo e toda figura a até 3cm e linha de visão do alvo imediatamente sofrem um ataque a distância mágico elemental +5 - uma explosão flamejante que não poupa ninguém. Role este ataque a distância separadamente para cada figura. Trate a figura alvo como a origem do ataque para fins de determinar cobertura ou terreno interposto para todas as outras figuras sofrendo o ataque. Esta magia não pode ter como alvo uma figura inimiga que esteja mesmo parcialmente obscurecida por outra figura - o mago precisa de uma linha de arremesso clara.",
+        "Centralize a Área de Efeito em uma figura alvo que o conjurador enxergue completamente. O conjurador ataca todas as figuras dentro da área de efeito com um ataque flamejante +5. Trate a figura alvo como ponto de origem para determinar cobertura ou terreno interposto para todas as outras figuras sofrendo ataques.",
     },
     {
       name: "Baforada Flamejante",
       castingNumber: 12,
-      range: "Efeito de Área",
+      keywords: ["Área de Efeito (Cone)"],
       effect:
-        "O mago respira fundo, enchendo seus pulmões não com ar mas com puro fogo mágico. Então, como um dragão ancestral, ele EXALA uma torrente devastadora de chamas que varre o campo de batalha. Uma parede ondulante de fogo ruge para frente, consumindo tudo em seu caminho. Inimigos gritam enquanto suas roupas e carne chamuscam, o calor intenso os cegando e queimando.\n\nO conjurador faz um ataque a distância mágico elemental +0 contra toda figura inimiga (seja de um bando opositor ou criatura descontrolada) a até 30cm e linha de visão - uma carnificina flamejante que varre a área. Isto pode incluir figuras inimigas em combate, embora as regras normais para atirar em combate sejam seguidas neste caso.",
+        "Todas as figuras dentro da Área de Efeito sofrem um ataque a distância flamejante +2. Trate o conjurador como ponto de origem para determinar cobertura ou terreno interposto para todas as outras figuras sofrendo o ataque. Qualquer criatura que sofrer mais de 5 de dano ganha um Marcador de Chamas.",
     },
     {
       name: "Conflagração da Perdição",
       castingNumber: 12,
-      range: "Efeito de Área",
+      keywords: ["Area de Efeito (Explosão Média)"],
       effect:
-        "Este é o ápice da destruição flamejante - a magia mais brutal e devastadora que um Mago Flamejante pode conjurar. O mago ergue os braços ao céu e grita uma palavra de poder, e o mundo EXPLODE em chamas. Um inferno apocalíptico irrompe ao redor dele, uma tempestade de fogo que incinera TUDO. Chamas brancas e amarelas rugem em todas as direções, a temperatura sobe a níveis insuportáveis, e tudo não protegido é consumido em uma conflagração cegante. O próprio ar queima.\n\nToda figura em uma área de até 8cm do conjurador (mas não contando o conjurador, protegido no olho da tempestade flamejante) sofre um ataque mágico elemental +5 - aniquilação pura.",
+        "Centre a Área de Efeito no Conjurador. Todas as figuras na área de efeito (mas não contando o conjurador, protegido no olho da tempestade flamejante) sofrem um ataque a distancia flamejante +5. Trate o conjurador como ponto de origem para determinar cobertura ou terreno interposto para todas as outras figuras sofrendo o ataque. Todas as figuras atingidas ganham um Marcador de Chamas.",
     },
     {
       name: "Chama de Uzhul",
       castingNumber: 12,
-      range: "Linha de Visão",
+      keywords: ["Alcance(40cm)", "Míssil Magico (Flamejante)(+7)"],
       effect:
-        "O mago aponta com ambas as mãos para sua vítima e libera o poder destrutivo de Uzhul, o senhor do fogo. Um raio concentrado de chamas brancas super-aquecidas dispara como uma lança incandescente, perfurando o ar com um rugido ensurdecedor. Não é uma chama que se espalha - é um golpe preciso e devastador, focado em pura destruição. O que atingir será incinerado.\n\nO conjurador faz um ataque a distância mágico elemental +7 contra um alvo a até 40cm e linha de visão - um golpe flamejante de poder brutal.",
+        "O conjurador faz um ataque com o míssil mágico em uma figura alvo.",
     },
     {
       name: "Escudo de Aqshy",
       castingNumber: 10,
-      range: "Apenas o Conjurador",
+      keywords: ["Conjurador Apenas"],
       effect:
         "O mago envolve-se em uma aura ondulante de chamas protetoras. Correntes do Vento Vermelho giram ao seu redor como serpentes flamejantes, formando uma barreira ardente. Quando golpes ou flechas se aproximam, as chamas saltam para interceptá-los, vaporizando projéteis e queimando lâminas antes que possam alcançar carne. O calor é intenso - inimigos próximos recuam instintivamente, e o ar estala com energia incandescente.\n\nO conjurador forma um escudo flutuante de fogo que absorve os próximos 3 pontos de dano que o conjurador normalmente sofreria em combate ou de um ataque a distância. Uma vez que 3 pontos tenham sido absorvidos, as chamas se extinguem e a magia é cancelada. Um conjurador só pode ter um Escudo de Aqshy ativo por vez.",
+    },
+    {
+      name: "Cauterizar",
+      castingNumber: 8,
+      keywords: ["Toque"],
+      effect:
+        "A figura alvo Ferida não conta mais como Ferida até tomar dano novamente e perde quaisquer Marcadores de Sangramento.",
+    },
+    {
+      name: "Coroa de Chamas",
+      castingNumber: 12,
+      keywords: ["Conjurador Apenas"],
+      effect:
+        "Se o conjurador estiver na mesa, seu bando pode adicionar +2 às suas Rolagens de Iniciativa para determinar o jogador principal até o fim do jogo. Esta magia conta como ativa no conjurador durante o jogo e pode ser cancelada por qualquer coisa que cancele magias.",
+    },
+    {
+      name: "Pilares Flamejantes",
+      castingNumber: 14,
+      keywords: ["Linha de Visão", "Área de Efeito (Zona Pequena)"],
+      effect:
+        "Posicione 3 Áreas de Efeito em 3 pontos alvos, que devem estar a pelo menos 20cm um do outro e a não menos de 20cm de uma figura. Qualquer figura que atravessar ou começar sua ativação em cima de uma dessas áreas de efeito ganha um Marcador de Chamas. Os pilares permanecem ativos até o fim do jogo. O Conjurador só pode ter até 3 pilares ativos por vez, e só pode cancelar um pilar por vez como uma ação livre durante sua ativação.",
+    },
+    {
+      name: "Corações em Chamas",
+      castingNumber: 12,
+      keywords: ["Linha de Visão"],
+      effect:
+        "A figura aliada alvo ganha a característica Mente Férrea até o fim do jogo.",
     },
   ];
 
@@ -100,7 +128,7 @@ export default function LoreOfFirePage() {
               name={spell.name}
               school="Tradição do Fogo"
               castingNumber={spell.castingNumber}
-              range={spell.range}
+              keywords={spell.keywords}
               effect={spell.effect}
             />
           ))}

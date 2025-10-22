@@ -1,0 +1,301 @@
+[
+  {
+    "id": "nobre-druchii",
+    "name": "Nobre Druchii",
+    "role": "Lider",
+    "quantity": "1 (obrigatório)",
+    "stats": {
+      "move": 20,
+      "fight": "+3",
+      "shoot": "0",
+      "armour": 9,
+      "will": "+3",
+      "health": 14,
+      "cost": "70 coroas",
+      "skills": [
+        "Combate",
+        "Atirador",
+        "Academico",
+        "Agilidade",
+        "Corsários Druchii"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+      },
+      {
+        "name": "Habilidades",
+        "description": "O Nobre Druchii começa com 5 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Arma de Haste", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta de Repetição", "cost": "35 coroas" },
+        { "name": "Besta de Mão", "cost": "35 coroas" }
+      ],
+      "armor": [
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" },
+        { "name": "Armadura Leve", "cost": "20 coroas" }
+      ],
+      "miscellaneous": [
+        { "name": "Veneno Sombrio", "cost": "15 coroas" },
+        { "name": "Manto de Dragão Marinho", "cost": "50 coroas" }
+      ],
+      "modifiers": [{ "name": "De Aço Negro", "cost": "+20 coroas" }]
+    }
+  },
+
+  {
+    "id": "domador-de-feras",
+    "name": "Domador de Feras",
+    "role": "Herói",
+    "quantity": "0-1",
+    "stats": {
+      "move": 20,
+      "fight": "2",
+      "shoot": "2",
+      "armour": 9,
+      "will": "+4",
+      "health": 14,
+      "cost": "45 coroas",
+      "skills": ["Combate", "Agilidade", "Corsários Druchii"]
+    },
+    "abilities": [
+      {
+        "name": "Seleção de Habilidades",
+        "description": "Quando contratado, o Domador de Feras pode comprar uma ou mais das habilidades disponíveis na tabela de habilidades nessa página. Cada habilidade custa 50 coroas e é permanente."
+      },
+      {
+        "name": "Domador de Feras Gélidas",
+        "description": "Um bando com um Domador de Feras pode contratar até duas Feras Gélidas. O Domador de Feras pode fazer uma ativação em grupo com até duas Feras Gélidas que estejam até 8cm de distância dele."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Arma de Haste", "cost": "10 coroas" },
+        { "name": "Chicote de Domador", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta de Repetição", "cost": "35 coroas" },
+        { "name": "Besta de Mão", "cost": "35 coroas" }
+      ],
+      "armor": [
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" },
+        { "name": "Armadura Leve", "cost": "20 coroas" }
+      ],
+      "miscellaneous": [
+        { "name": "Veneno Sombrio", "cost": "15 coroas" },
+        { "name": "Manto de Dragão Marinho", "cost": "50 coroas" }
+      ],
+      "modifiers": [{ "name": "De Aço Negro", "cost": "+20 coroas" }]
+    }
+  },
+  {
+    "id": "bruxa-druchii",
+    "name": "Bruxa Druchii",
+    "role": "Herói",
+    "quantity": "0-1",
+    "stats": {
+      "move": 20,
+      "fight": "+2",
+      "shoot": "0",
+      "armour": 9,
+      "will": "4",
+      "health": 10,
+      "cost": "55 coroas"
+    },
+    "spellAffinity": {
+      "aligned0": ["Tradição das Sombras"],
+      "aligned2": [
+        "Tradição do Fogo",
+        "Tradição do Metal",
+        "Tradição do Caos",
+        "Tradição da Morte"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Conjurador",
+        "description": "A Bruxa Druchii é um conjuradora da Tradição das Sombras. Ele começa o jogo com 3 magias, de quaisquer tradições presentes na tabela de tradições mágicas."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Arma de Haste", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta de Repetição", "cost": "35 coroas" },
+        { "name": "Besta de Mão", "cost": "35 coroas" }
+      ],
+      "armor": [
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" },
+        { "name": "Armadura Leve", "cost": "20 coroas" }
+      ],
+      "miscellaneous": [
+        { "name": "Veneno Sombrio", "cost": "15 coroas" },
+        { "name": "Manto de Dragão Marinho", "cost": "50 coroas" }
+      ],
+      "modifiers": [{ "name": "De Aço Negro", "cost": "+20 coroas" }]
+    }
+  },
+  {
+    "id": "lamina-do-massacre",
+    "name": "Lâmina do Massacre",
+    "role": "Herói",
+    "quantity": "0-2",
+    "stats": {
+      "move": 20,
+      "fight": "+4",
+      "shoot": "0",
+      "armour": 9,
+      "will": "+4",
+      "health": 12,
+      "cost": "40 coroas",
+      "skills": ["Combate", "Agilidade", "Corsários Druchii"]
+    },
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "O Lâmina do Massacre começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 8."
+      },
+      {
+        "name": "Massacre Violento",
+        "description": "Sempre que causa um dano crítico em uma luta, pode imediatamente lutar novamente. Resolva a segunda luta antes de quaisquer outros efeitos especiais."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Arma de Haste", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta de Repetição", "cost": "35 coroas" },
+        { "name": "Besta de Mão", "cost": "35 coroas" }
+      ],
+      "armor": [
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" },
+        { "name": "Armadura Leve", "cost": "20 coroas" }
+      ],
+      "miscellaneous": [
+        { "name": "Veneno Sombrio", "cost": "15 coroas" },
+        { "name": "Manto de Dragão Marinho", "cost": "50 coroas" }
+      ],
+      "modifiers": [{ "name": "De Aço Negro", "cost": "+20 coroas" }]
+    }
+  },
+  {
+    "id": "corsario-druchii",
+    "name": "Corsário Druchii",
+    "quantity": "ilimitado",
+    "stats": {
+      "move": 20,
+      "fight": "+2",
+      "shoot": "0",
+      "armour": 9,
+      "will": "-1",
+      "health": 8,
+      "cost": "35 coroas"
+    },
+    "abilities": [],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Arma de Haste", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta de Repetição", "cost": "35 coroas" },
+        { "name": "Besta de Mão", "cost": "35 coroas" }
+      ],
+      "armor": [
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" },
+        { "name": "Armadura Leve", "cost": "20 coroas" }
+      ],
+      "miscellaneous": [
+        { "name": "Manto de Dragão Marinho", "cost": "50 coroas" }
+      ]
+    }
+  },
+  {
+    "id": "sombra",
+    "name": "Sombra",
+    "quantity": "0-5",
+    "stats": {
+      "move": 20,
+      "fight": "1",
+      "shoot": "2",
+      "armour": 9,
+      "will": "+1",
+      "health": 10,
+      "cost": "30 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Andarilho Sombrio",
+        "description": "A sombra tem a característica Furtividade(16)"
+      }
+    ]
+  },
+  {
+    "id": "cold-one-beasthound",
+    "name": "Cold One Beasthound",
+    "quantity": "0-2",
+    "stats": {
+      "move": 16,
+      "fight": "+1",
+      "shoot": "0",
+      "armour": 11,
+      "will": "+2",
+      "health": 10,
+      "cost": "30 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Predador Primitivo",
+        "description": "Bestas Gélidas tem a característica Animal."
+      },
+      {
+        "name": "Leadade Ferrenha",
+        "description": "Bestas Gélidas não podem ser ativadas pela Habilidade Líder do Nobre Druchii. Se não forem ativados em uma ativação em grupo junto com o Domador de Feras, eles agem como criaturas não controladas e permanecem assim até o fim do jogo."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [],
+      "ranged": [],
+      "armor": [],
+      "miscellaneous": []
+    }
+  }
+]

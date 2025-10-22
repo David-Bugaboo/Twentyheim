@@ -18,44 +18,79 @@ export default function LoreOfMetalPage() {
     {
       name: "Guarda de Aço",
       castingNumber: 10,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão"],
       effect:
         "O alquimista manipula o Vento Amarelo para condensar partículas metálicas suspensas no ar ao redor do alvo. Processo de formação: orbes de liga de aço se materializam através de transmutação controlada, estabelecendo padrão orbital defensivo. Densidade molecular aumentada proporciona proteção física mensurável contra impactos cinéticos.\n\nO alvo recebe +2 Armadura pelo resto do jogo. Limite superior: Armadura 14 (figuras com Armadura 13 são elevadas para Armadura 14). Múltiplas aplicações no mesmo alvo não produzem efeito cumulativo - redundância de sistema.",
     },
     {
-      name: "Encantar Equipamento",
+      name: "Lei da Lógica",
       castingNumber: 8,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão"],
       effect:
-        "Procedimento: infusão de Chamon em estrutura molecular do equipamento alvo. Resultado observado varia conforme substrato material. Armas corpo a corpo: aumento na eficiência de corte (+1 Ímpeto). Armas de projétil: realinhamento de trajetória balística (+1 Precisão, ataques não classificados como mágicos). Munição individual (flecha/virote): mesma calibração de precisão, ativação única, ataque conta como mágico. Limitação: uma aplicação por item. Nota: efeitos de arma e munição não são cumulativos - operador seleciona um. Armadura: reforço estrutural (+1 armadura).",
+        "A figura alvo recebe +5 em testes de atributo que não envolvem combate ou resistir a magia, poderes e items até o fim do jogo.",
+    },
+    {
+      name: "Refinamento Molecular",
+      castingNumber: 8,
+      keywords: ["Linha de Visão"],
+      effect:
+        "Esta magia tem como alvo uma arma ou armadura escolhida pelo conjurador. Se conjurada em uma arma corpo a corpo, esta arma conta como uma arma mágica com +1 Ímpeto. Arcos e bestas contam como armas mágicas com +1 Precisão, mas os ataques feitos com elas não contam como ataques mágicos. Esta magia pode ser conjurada em uma única flecha ou virote de besta, caso em que essa munição dá +1 Precisão e seu ataque conta como mágico, mas apenas para o próximo ataque a distância. Esta magia pode ser conjurada apenas uma vez em cada arma. Ao usar tanto uma arma mágica de projétil quanto munição mágica, o atirador pode escolher aplicar o bônus de um ou outro, mas não ambos. Esta magia só pode ser conjurada em uma figura usando armadura. se conjurada em uma armadura, esta agoraconta como armadura mágica e concede +1 Armadura pelo resto do jogo. Múltiplas conjurações desta magia no mesmo alvo não têm efeito.",
     },
     {
       name: "Maldição da Ferrugem",
       castingNumber: 12,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão"],
       effect:
-        "Aceleração controlada de oxidação: o alquimista catalisa reação química de corrosão no metal alvo. Taxa de deterioração: 100-1000x velocidade natural. Processo observado: formação rápida de óxido ferroso, desintegração estrutural, falha catastrófica de material.\n\nAlvo selecionado: arma ou armadura. Resultado: item torna-se não-funcional pelo resto do jogo. Exceção: itens com infusão mágica permanente demonstram resistência completa ao processo (incluindo encantamentos temporários). Nota: procedimento não afeta organismos vivos diretamente (exceto se portando arma identificável). Aplicação em constructo: ataque a distância mágico +7 - corrosão sistêmica.",
+        "Aceleração controlada de oxidação: o alquimista catalisa reação química de corrosão no metal alvo. Taxa de deterioração: 100-1000x velocidade natural. Processo observado: formação rápida de óxido ferroso, desintegração estrutural, falha catastrófica de material.\n\nAlvo selecionado: arma ou armadura. Resultado: item torna-se não-funcional pelo resto do jogo. Exceção: itens com infusão mágica permanente demonstram resistência completa ao processo (incluindo encantamentos temporários). Nota: procedimento não afeta organismos vivos diretamente (exceto se portando arma identificável). Aplicação em Construto: ataque a distância mágico +7 - corrosão sistêmica.",
     },
     {
       name: "Flechas de Prata de Arha",
       castingNumber: 10,
-      range: "Linha de Visão",
+      keywords: ["Alcance(30)", "Missil Mágico(Normal)(+5) "],
       effect:
-        "Transmutação de matéria: conversão de partículas ambientes em projéteis de prata argentum (Ag, número atômico 47). Propriedades: densidade 10.49 g/cm³, ductilidade alta, condutividade térmica superior. Aceleração: força mágica propele projéteis transmutados em trajetória balística calculada.\n\nMétodo de ataque: ataque a distância +5 contra alvo dentro de linha de visão (alcance máximo: 30cm). Classificação: não-mágico (projéteis físicos, apesar de origem transmutativa).",
+        "ataque a figura alvo com o Míssil Mágico. Apesar de seu dano ser normal, ele conta como mágico contra mortos vivos e lobisomens devido a prata.",
     },
     {
-      name: "Maldição do Chumbo",
+      name: "Transmutação em Chumbo",
       castingNumber: 10,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão"],
       effect:
-        "Transmutação metálica aplicada a fluidos corporais: conversão parcial de elementos sanguíneos em plumbum (Pb, número atômico 82, densidade 11.34 g/cm³). Efeito observado: aumento significativo de viscosidade sanguínea, redução de mobilidade celular, fadiga muscular exponencial. Sistema nervoso afetado por toxicidade metálica temporária.\n\nResultado mensurável: alvo limitado a uma ação por ativação (qualquer tipo). Procedimento de reversão: Rolagem de Vontade vs Rolagem de Conjuração ao fim de cada ativação. Sucesso = cancelamento de efeito (metabolismo expurga metal transmutado).",
+        "O alvo é reduzido a um máximo de uma ação por ativação até o fim do jogo (que pode ser qualquer ação, não precisa ser movimento). Ele pode fazer uma Rolagem de Vontade contra a Rolagem de Conjuração no fim de cada uma de suas ativações. Se bem-sucedida, a magia é cancelada. Adicionalmente, pode como uma ação remover sua armadura, perdendo o bônus de armaduras mas cancelando o efeito da magia.",
     },
     {
-      name: "Alquimia",
+      name: "Transmutação Alquímica",
       castingNumber: 12,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão"],
       effect:
         "Síntese de compostos: o alquimista executa procedimento laboratorial acelerado para produzir solução alquímica. Método padrão: criação de Poção Menor (seleção de fórmula a critério do operador). Produto pode ser: comercializado, armazenado em repositório, ou distribuído a membro de equipe.\n\nProcedimento avançado (restrito a Conjuradores Herói): síntese de Poção Maior. Requisitos: (1) declaração de fórmula específica, (2) aquisição de reagentes (custo conforme especificado), (3) execução de processo com modificador de dificuldade -4 na Rolagem de Conjuração. Resultado positivo: composto sintetizado com sucesso, disponível para uso imediato/armazenamento/venda. Resultado negativo: reação falha, reagentes consumidos sem produção de produto - perda total de investimento em materiais.",
+    },
+    {
+      name: "Transmutação da Mente Instável",
+      castingNumber: 12,
+      keywords: ["Linha de Visão"],
+      effect:
+        "Se a magia for conjurada com sucesso, cancela quaisquer efeito de magias ou poderes com a palavra-chave Psicológico na figura alvo.",
+    },
+    {
+      name: "Transmutação da Permanência",
+      castingNumber: 14,
+      keywords: ["Ritual"],
+      effect:
+        "Se o ritual for conjurado com sucesso, os bonus dados a uma arma ou armadura com Refinamento Molecular se tornam permanentes.",
+    },
+    {
+      name: "Lei do Ouro",
+      castingNumber: 16,
+      keywords: ["Alcance(40)"],
+      effect:
+        "O portador de um item mágico alvo faz um teste de vontade com CD igual à Rolagem de Conjuração. Se falhar, o item mágico alvo não tem mais nenhum efeito ou bônus até o fim do jogo. No começo de cada ativação, o portador do item pode refazer o teste de Vontade. Se passar, ele cancela o efeito dessa magia.",
+    },
+    {
+      name: "Manipular Minério",
+      castingNumber: 16,
+      keywords: ["Linha de Visão"],
+      effect:
+        "O conjurador manipula os minérios dos fragmentos de pedra-bruxa movendo eles rumo a si. O conjurador pode mover qualquer fragmento de pedra-bruxa até 10cm desde que esteja no chão, permaneça em linha de visão e evite qualquer terreno. Esta magia não tem efeito em qualquer fragmento de pedra-bruxa que tenha requisitos especiais para ser coletado.",
     },
   ];
 
@@ -103,7 +138,7 @@ export default function LoreOfMetalPage() {
               name={spell.name}
               school="Tradição do Metal"
               castingNumber={spell.castingNumber}
-              range={spell.range}
+              keywords={spell.keywords}
               effect={spell.effect}
             />
           ))}

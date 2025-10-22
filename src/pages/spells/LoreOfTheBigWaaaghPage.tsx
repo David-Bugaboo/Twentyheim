@@ -18,93 +18,105 @@ export default function LoreOfTheBigWaaaghPage() {
     {
       name: "DURO COMO PREDA",
       castingNumber: 16,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão"],
       effect:
-        "O Xamã berra umas palavra esquisita e a energia verde do WAAAGH! gruda no pele do muleque. Oxe, o cabra fica duro que só vendo! A pele engrossa que nem couro de bode véi, os músculo tudo incha, e os osso fica mais pesado que bigorna de ferreiro. Qualé, tenta bater agora pra vê se amolece!\n\nO alvo recebe +3 Armadura pro resto do jogo - fica duro que só. Mas num passa de Armadura 15 não (tipo, se tiver 13 vai pra 14). E óia, jogar essa magia no mesmo cabra de novo num adianta não, viu? Já tá duro que é o que dá.",
+        "O alvo recebe +3 Armadura pelo resto do jogo. Isto não pode levar uma figura acima da Armadura 15 (ou seja, figuras com Armadura 14 vão para Armadura 15). Múltiplas conjurações de DURO COMO PREDA no mesmo alvo não têm efeito.",
     },
     {
       name: "LASCA COCO",
       castingNumber: 18,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão", "Missil Mágico(Mágico)(+7)"],
       effect:
-        'O Xamã aponta pro inimigo e libera uma bola de energia verde que VUM direto na moleira do coitado! Rapaz, é uma porrada mental que deixa o cabra abestado! O muleque fica tonto, tonto, vendo estrela, sem saber se é dia ou se é noite. O coco quase LASCA de verdade, visse? Fica todo atordoado, sem prestar em nada.\n\nO conjurador faz um ataque a distância mágico elemental +7 contra um alvo a até 40cm e linha de visão. Se acertar, o desgraçado ganha um marcador de Atordoamento - ficou lelé da cuca!',
+        "Atire o Míssil Mágico contra a figura alvo. Se a criatura alvo for atingida, ganha um Marcador de Atordoamento.",
     },
     {
       name: "BORA MANCHU",
       castingNumber: 16,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão"],
       effect:
-        "O Xamã urra bem alto: 'UMBORA PEGAR ESSE CORNO, RAPAZIADAAAA!', rapaz, os cabra fica tudo doido, viu? Os ói brilha verde, os dente range, e uma vontade de meter a peia que só vendo! Fica tudo empiladíssim, querendo é QUEBRAR o inimigo no meio! É o poder do WAAAGH! deixando os cabra tudo agoniado pra briga!\n\nO alvo recebe +3 Ímpeto - fica brigão que só ele! Mas óia, gritar isso de novo pro mesmo cabra num adianta não. Já tá empiladão que chega."
+        "A figura aliada alvo recebe +3 de Ímpeto pelo resto do jogo. Multiplas conjurações de BORA MANCHU no mesmo alvo não tem efeito.",
     },
     {
-      name: "A PORRADA",
+      name: "A PISADA: O PEZÃO DE PADIM GORK",
       castingNumber: 20,
-      range: "Linha de Visão",
+      range: ["Alcance(60cm)", "Área de Efeito(Explosão Grande)"],
       effect:
-        'O Xamã invoca o PÉ GIGANTE de Padim Gork (ou será de Mork? Sei lá, os dois é foda memo!) que DESCE DO CÉU e ESTORA o inimigo! Macho do céu, é uma pisada que amassa é tudo, carai! O chão CHACOALHA, o ar É TORADO, e os home tudo voa pros lado que nem saco de bosta! Até quem tá perto do coitado toma na cara também - a pancada é tão forte que espalha pra todo mundo!\n\nO conjurador faz um ataque a distância mágico elemental +6 contra um alvo a até 40cm. Esse ataque causa +5 de dano - é PORRADÃO memo! Além disso, toda figura em contato com o alvo também toma um ataque a distância mágico elemental +2 que causa +5 de dano. Qualquer figura que sofrer dano desses ataque é imediatamente movida 10cm em direção aleatória - saiu voando, viu?',
+        "O conjurador posiciona a Área de Efeito em um ponto alvo em que a Área de Efeito fique totalmente em linha de visão do conjurador. No inicio da próxima ativação do conjurador, criaturas na Área de Efeito tomam um Ataque Normal +7. Criaturas acertadas pelo ataca são lançadas 8cm em uma direção aleatória, recebendo um marcador de atordoamento se encostarem na borda do tabuleiro ou uma peça de terreno mais alta que 2cm. ",
     },
     {
       name: "MARRADA",
       castingNumber: 18,
-      range: "Linha de Visão",
-      effect:
-        "O Xamã baixa a cabeça e CORRE que nem macho doido! Mas pera aí - ele num tá correndo de verdade não. É tipo uma marrada DI MINTIRINHA que voa pelo ar! Uma cabeçada invisível voa direto pro inimigo e TOME! Meta uma marrada dessas no capacete de qualquer um e vê o que acontece - o metal amassa, a armadura racha, e o cabra sai voando pra trás que nem foi chutado por jegue brabo!\n\nFaça um ataque a distância não-mágico +6 contra o alvo. Se acertar, o alvo imediatamente sofre -3 Armadura (mínimo de 10) só pra esse ataque - a marrada amassou tudo! Além disso, além de qualquer dano sofrido, o alvo é empurrado pra trás em linha reta, se afastando do conjurador, uma quantidade de centímetros igual ao dano sofrido vezes 2, ou até bater num terreno maior que 3cm de altura.",
+      keywords: ["Linha de Visão", "Míssil Mágico(Normal)(+6)"],
+      effect: `Faça um ataque a distância não-mágico +6 contra o alvo. Se acertar, o alvo imediatamente sofre -4 Armadura (mínimo de 10) só pra esse ataque. além de qualquer dano sofrido, o alvo é empurrado pra trás em linha reta, se afastando do conjurador, uma quantidade de centímetros igual ao dano sofrido vezes 2, ou até bater num terreno maior que 3cm de altura.`,
     },
     {
       name: "PAPOCA QUENGO",
       castingNumber: 24,
       range: "Linha de Visão",
       effect:
-        'ESSA É A MAGIA MAIS MASSA DO XAMÃ! O velho aponta e PAPOCA o quengo do inimigo com o PODER DA MENTE! Oxe, a cabeça do cabra É TORADA que nem um sapoti podre! É fei demais! Mas se alua, viu? Fazer isso é um trabai de cornopro Xamã também - ele perde um tiquim de vida só de tentar. E se o coco papocar memo, pode escolher outro pra estourar também se tiver alguém pertim!\n\nAlvo a até 20cm deve fazer Rolagem de Vontade com CD igual à Rolagem de Conjuração ou é IMEDIATAMENTE reduzido a 0 Vigor - estourou o quengo! Todo mundo pode potencializar a Rolagem de Vontade pra resistir, até quem num é feiticeiro. O Xamã perde 1 Vigor SÓ DE TENTAR essa magia (mesmo se funcionar), além de qualquer perda por falha ou potencialização. Num funciona em morto-vivo ou constructo não. Se uma criatura morrer com essa magia, o Xamã pode escolher outro alvo a até 8cm do primeiro - e PAPOCA o quengo dele também!',
+        "Alvo a até 20cm deve fazer um teste de Vontade com CD igual à Rolagem de Conjuração ou é IMEDIATAMENTE reduzido a 0 Vigor. Qualquer figura pode forçar esse teste de Vontade, sacrificando pontos de vida para aumentá-lo. O Xamã perde 1 de vida em todas as tentativas de conjuração dessa magia, além do valor de dano tomado por falha. Se uma criatura for reduzida a 0 de Vigor por conta dessa magia, o Xamã pode escolher outro alvo a até 8cm do primeiro e tentar conjurar a magia novamente contra ele, mas a magia custará 2 de vida para conjurar. A cadeia acaba quando não tem mais figuras a 8cm de um alvo ou o conjurador falhar na rolagem de conjuração.",
     },
     {
       name: "QUEIMA QUENGARAL",
-      castingNumber: 18,
-      range: "Fora de Jogo (B)",
+      castingNumber: 16,
+      range: "Ritual",
       effect:
-        "O Xamã fica berrando e pulando que nem maluco antes da briga começar, enchendo a cuca dos muleque com energia do WAAAGH! 'BORA QUE BORA, CAMBADA! NOIS VAMO QUEBRAR ESSES GALADO NA PEIA! QUEIMA QUENGARAAAAAL' Os verde fica tudo com gastura, agoniado, querendo é se meter no mei da xinxa! Isso deixa os cabra tudo mais rápido que num sei o que.\n\nSe o Xamã tiver na mesa, o bando dele adiciona +4 nas Rolagem de Iniciativa só pra determinar o jogador primário. Essa magia conta como ativa no Xamã durante o jogo e pode ser cancelada por qualquer coisa que cancele magia.",
+        "Se o Xamã estiver na mesa, o bando dele adiciona +4 nas Rolagens de Iniciativa só pra determinar a ordem do turno. Essa magia conta como ativa no Xamã durante o jogo e pode ser cancelada por qualquer efeito que cancele magias.",
     },
     {
       name: "SOL QUENTE DA DESGRACA",
       castingNumber: 18,
-      range: "Linha de Visão",
+      range: ["Alcance(40cm)", "Área de Efeito(Explosão Média)"],
       effect:
-        'O Xamã faz uma bola de FOGO VERDE que é quente que nem sol do meio-dia, só que pior! Ele arremessa essa bola ardente no inimigo e ela papoca que é um carai! Todo mundo perto toma quintura também - é calor qie nem presta, macho. Mas óia, tem que ter visão limpa do desgraçado. Se tiver outro na frente atrapalhando, num dá pra jogar não.\n\nO conjurador seleciona um inimigo a até 40cm e linha de visão e arremessa uma esfera de fogo puro. O alvo e toda figura a até 3cm e linha de visão do alvo imediatamente sofrem um ataque a distância mágico elemental +7 - QUEIMA TUDO! Role o ataque separado pra cada figura. Trate o alvo como origem do ataque pra determinar cobertura pros outros. Essa magia num pode mirar em inimigo que tá nem que seja um cadim escondido por outra figura.',
+        "Centralize a Área de Efeito em uma figura alvo. Todas as figuras na área de efeito sofrem um ataque a distância flamejante +9. Role o ataque separado para cada figura, e considere a figura alvo como ponto de origem para calcular cobertura e terreno interposto. Figuras que sofram dano do ataque ganham um Marcador de Chamas.",
     },
     {
       name: "PORRADA NA PLEURA, CARAI",
-      castingNumber: 14,
-      range: "Linha de Visão",
+      castingNumber: 16,
+      range: ["Linha de Visão"],
       effect:
-        "O Xamã cospe na arma do muleque e ela fica BRILHANDO! 'VAI LÁ E METE LOGO NA PLEURA DELE, CABRA!' A arma fica carregada com energia bruta do WAAAGH! - não é pra cortar não, é pra ESMAGAR direto onde dói mais! Mira na moleira, na costela, no figado - onde for que a armadura num tá protegendo direito!\n\nEssa magia pode ser conjurada numa arma corpo a corpo. Na próxima vez que a figura acertar com essa arma, trate o oponente como tendo Armadura -5 (mínimo de 10) - a porrada ignora a proteção!",
+        "Essa magia pode ser conjurada numa arma corpo a corpo. Na próxima vez que a figura acertar com essa arma, trate o oponente como tendo Armadura -5 (mínimo de 10) - a porrada ignora a proteção!",
     },
     {
       name: "PEIXEIRA DE PADIM GORK",
       castingNumber: 16,
-      range: "Linha de Visão",
+      range: ["Linha de Visão"],
       effect:
-        "O Xamã benze a arma com a energia verde do WAAAGH! e ela vira praticamente a PEIXEIRA do próprio Padim Gork! A lâmina brilha que nem raio verde, fica sedenta, querendo é CORTAR! Quando o cabra acerta o inimigo com essa belezura, meu amigo, a arma NUM APENAS corta - ela EXPLODE com poder divino ork! É talho e porrada junto, tudo de uma vez!\n\nEssa magia é conjurada numa arma corpo a corpo. Na próxima vez que a figura empunhando essa arma vencer uma rodada de combate e causar pelo menos 1 ponto de dano, essa arma inflige 5 pontos ADICIONAIS de dano mágico elemental - é o poder de Gork memo! Se conjurada numa arma normal usada contra criatura Imune a Armas Normais, a arma causará só os 5 pontos de dano mágico elemental.",
+        "Escolha uma arma alma. Na próxima vez que a figura empunhando essa arma vencer uma rodada de combate e causar pelo menos 1 ponto de dano, essa arma inflige 5 pontos adicionais de dano mágico mágico - Se conjurada numa arma normal usada contra criatura Imune a Armas Normais, a arma causará só os 5 pontos de dano mágico.",
     },
     {
       name: "ÓIADA DE PADIM MORK",
       castingNumber: 14,
-      range: "Linha de Visão",
+      range: ["Linha de Visão"],
       effect:
-        "O Xamã olha fixo pra frente e os ZÓI DELE BRILHA VERDE QUE NEM LAMPARINA! Aí sai um RAIO VERDÃO dos óião do velho que torra tudo que tá na frente! É a bizoiada de Padim Mork, rapaz - quando Mork tá olhando pra você, é melhor se tu sair do mei, viu? O raio passa reto queimando todo corno que tá na linha de tiro. Manchu, é tipo um relâmpago verde que num desvia de nada!\n\nTrace uma linha reta do conjurador até qualquer ponto na mesa. Faça um ataque a distância mágico elemental +6 contra qualquer figura ao longo dessa linha que NÃO esteja completamente escondida por cobertura - o raio pega tudim!",
+        "Trace uma linha reta de 3cm de diâmetro do conjurador até qualquer ponto alvo. Qualquer figura ao longo dessa linha que não esteja completamente escondida por cobertura toma um ataque flamejante +6. ",
     },
     {
-      name: "PEIA DE PADIM GORK",
+      name: "PUNHO DE PADIM MORK",
       castingNumber: 18,
-      range: "Linha de Visão",
-      effect:
-        'Uma MÃO GIGANTE INVISÍVEL de Padim Gork aparece do nada e DÁ UM TAPA no inimigo! Rapaz, é uma mãozada que manda o cabra pra casa do carai! Mas o miserávi pode tentar resistir. Se ele for cabra de vontade forte, consegue ficar no lugar. Mas se num conseguir... vish, sai voando que nem pipa sem linha!\n\nEssa magia pode ter como alvo qualquer figura a até 30cm. Mova essa figura 10cm em direção aleatória - levou um tapão! Uma figura pode fazer Rolagem de Vontade com CD igual à Rolagem de Conjuração pra resistir. Se tiver sucesso, num move não - o cabra é zovudo! Criatura descontrolada sempre vai tentar essa Rolagem de Vontade.',
+      keywords: ["Linha de Visão", "Míssil Mágico(Normal)(+10)"],
+      effect: "Ataque a figura alvo com um Míssil Mágico.",
     },
     {
-      name: "ESTAUTA DA WAAAAAAGH!",
+      name: "LEVANTAR IDOLO DE PADIM GORK E PADIM MORK",
       castingNumber: 22,
-      range: "Fora de Jogo (B) ou Toque",
+      keywords: ["Ritual", "Toque"],
       effect:
-        'O Xamã pega uma pedra e começa a RABISCAR ela toda com desenho feio e ranho verde! Faz uns símbolo todo torto de Gork e Mork, cospe nela, MIJA nela (é sério memo, viu?), e fica berrando WAAAGH até a pedra ficar CARREGADA de energia. Pode ser parede de prédio, caverna, penhasco, estátua, ou só uma pedra memo. Aí a pedra vira tipo uma bateria mágica verde arretada! Enquanto o Xamã tá pertinho dela, os feitiço dele fica MAIS FORTE - cada pinguinho de vida que ele usa rende DOBRADO! E olha que doido: o Xamã pode até VER através da pedra pra jogar magia de longe, como se tivesse lá!\n\nEnquanto o conjurador tiver a até 30cm dessa pedra, pode potencializar feitiços e Rolagens de Vontade numa base 1-pra-2 (um Vigor por DOIS ponto na rolagem) ao invés do 1-pra-1 normal - rende dobrado, sô! Além disso, o Xamã pode traçar linha de visão DA PEDRA pra efeito de feitiço. Um Xamã pode ter DUAS dessas pedra ativa ao mesmo tempo, mas tem que tá pelo menos 90cm uma da outra - senão as energia se atropela. Pode cancelar a magia quando quiser. As pedra pode ser quebrada mas é imune a ataque não-mágico - tem que ser magia memo pra quebrar. Trate a pedra como Ímpeto +0, Armadura 22, Vigor 1. Se conjurada antes do jogo, pode botar a pedra em qualquer lugar da zona de implantação do Xamã.',
+        "O conjurador extrai a frenesi mental dos orcs e a materializa em uma grande estátua de sucata de Gork e Mork. Adicione um Marcador de Estátua para marcar a posição da mesma na mesa, com o tamanho de uma Área de Efeito de Explosão Média. Enquanto o conjurador estiver a até 30cm deste ídolo, pode potencializar todos os seus feitiços e Rolagens de Vontade numa base 1-para-2 (um Vigor por 2 aumentos na rolagem) ao invés do 1-para-1 que é normal para conjuradores. Além disso, o conjurador pode usar o ídolo para traçar linha de visão e alcance para suas magias. Um conjurador pode ter doiss desses ídolos ativos a qualquer momento, mas elas devem estar a pelo menos 90cm de distância. Um conjurador pode cancelar qualquer conjuração desta magia a qualquer momento. Ídolos de Gork e Mork podem ser destruídas mas são imunes a ataques não-mágicos. Trate uma Estátua da Waaaaagh! como Ímpeto +0, Armadura 22, Vigda 1. Se esta magia for conjurada com sucesso como ritual, o conjurador pode colocar a estátua como uma figura do bando durante o posicionamento de figuras.",
+    },
+    {
+      name: "PADIM MORK QUER VOCÊ!",
+      castingNumber: 14,
+      keywords: ["Linha de Visão"],
+      effect:
+        "A figura alvo sofre um ataque imediato +10. Ao invés de sofrer dano deste ataque, o alvo é movido 2cm diretamente para longe do conjurador para cada ponto de dano que teria sofrido. Se isso empurrar o alvo para a borda da mesa ou uma peça de terreno com mais de 1,5cm de altura , ele para imediatamente e ganha um Marcador de Atordoamento. Outras figuras não param (ou são atingidas por) uma figura empurrada - assume-se que elas saem do caminho. Se esta magia for conjurada de baixo de uma figura, ela será empurrada para cima. Se o alvo for empurrado para cima ou para fora de uma altura, sofre dano de queda normalmente. Esta magia pode empurrar uma figura para fora do combate, e como não é um ataque a distância, o alvo não é randomizado.",
+    },
+    {
+      name: "MÃO DE PADIM GORK!",
+      castingNumber: 14,
+      keywords: ["Linha de Visão"],
+      effect:
+        "Esta magia só pode ser conjurada em um membro do bando do conjurador. Imediatamente mova a figura alvo até 25cm em qualquer direção, incluindo verticalmente. Este movimento deve ser em linha reta ou em arco. Não pode curvar ao redor de cantos. Se este movimento deixar a figura acima do chão, ela imediatamente cai, sofrendo dano normalmente. Se o alvo estiver carregando tesouro, este movimento é reduzido para 12,5cm. Este movimento não pode levar uma figura para fora da mesa ou para contato de base com outra figura, mas pode ser usado para retirar uma figura de combate. O alvo da magia MÃO DE GORK não pode realizar outras ações neste turno, embora possa ter realizado ações anteriormente.",
     },
   ];
 
@@ -127,16 +139,19 @@ export default function LoreOfTheBigWaaaghPage() {
           </ParchmentText>
 
           <ParchmentText sx={{ mb: 4 }}>
-            A Tradição do Grande WAAAGH! é a magia brutona e primitiva dos Pele-Verde,
-            viu? É alimentada pela energia psíquica coletiva de Gork (que é brutão mas
-            esperto) e Mork (que é esperto mas brutão). Quando os Ork e Goblin se junta
-            tudo num bando só, a energia do WAAAGH! vai crescendo, crescendo, até que
-            os Xamã consegue pegar ela e transformar ela numa puta duma magia! É porrada
-            psíquica que esmaga quengo, joga inimigo pros lado que nem boneca de pano,
-            e deixa os cabra ainda mais casca grossa! WAAAGH!
+            A Tradição do Grande WAAAGH! é a magia brutona e primitiva dos
+            Pele-Verde, viu? É alimentada pela energia psíquica coletiva de Gork
+            (que é brutão mas esperto) e Mork (que é esperto mas brutão). Quando
+            os Ork e Goblin se junta tudo num bando só, a energia do WAAAGH! vai
+            crescendo, crescendo, até que os Xamã consegue pegar ela e
+            transformar ela numa puta duma magia! É porrada psíquica que esmaga
+            quengo, joga inimigo pros lado que nem boneca de pano, e deixa os
+            cabra ainda mais casca grossa! WAAAGH!
           </ParchmentText>
 
-          <PowerListTitle>Feitiços da Tradição do Grande WAAAGH!</PowerListTitle>
+          <PowerListTitle>
+            Feitiços da Tradição do Grande WAAAGH!
+          </PowerListTitle>
 
           {spells.map((spell, index) => (
             <SpellCard
@@ -145,7 +160,13 @@ export default function LoreOfTheBigWaaaghPage() {
               name={spell.name}
               school="Tradição do Grande WAAAGH!"
               castingNumber={spell.castingNumber}
-              range={spell.range}
+              keywords={
+                Array.isArray(spell.keywords)
+                  ? spell.keywords
+                  : Array.isArray(spell.range)
+                  ? spell.range
+                  : [spell.range || ""]
+              }
               effect={spell.effect}
             />
           ))}
@@ -163,4 +184,3 @@ export default function LoreOfTheBigWaaaghPage() {
     </PageContainer>
   );
 }
-

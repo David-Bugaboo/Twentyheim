@@ -77,12 +77,12 @@ function PowerCard({ name, when, effect }: PowerCardProps) {
       <PowerName>{name}</PowerName>
       {when && (
         <PowerSection>
-          <PowerLabel>When:</PowerLabel>
+          <PowerLabel>Quando:</PowerLabel>
           <GameText component={PowerText}>{when}</GameText>
         </PowerSection>
       )}
       <PowerSection>
-        <PowerLabel>{when ? "Effect:" : "Description:"}</PowerLabel>
+        <PowerLabel>{when ? "Efeito:" : "Descrição:"}</PowerLabel>
         <GameText component={PowerText}>{effect}</GameText>
       </PowerSection>
     </Card>

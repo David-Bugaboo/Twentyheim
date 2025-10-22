@@ -53,9 +53,9 @@ export default function DivineLoresPage() {
             <br />
             Além disso, como encantamentos complexos não são necessários para
             conjurar estas magias, Sacerdotes podem conjurar enquanto usam
-            qualquer tipo de armadura ou escudos. Para compensar estas
-            vantagens, eles têm uma seleção limitada de magias e seus feitiços
-            são mais difíceis de conjurar do que magias de escopo similar.
+            qualquer tipo de armadura ou escudos, mas tomam uma penalidade de -4
+            quando fazendo-o, e só podem conjurar magia de sua tradição
+            principal, sem tradições associadas como outros conjuradores.
           </ParchmentText>
 
           <Box
@@ -73,11 +73,8 @@ export default function DivineLoresPage() {
 
             <ParchmentText>
               Orações que causam dano geralmente causam dano{" "}
-              <strong>sagrado</strong> ou <strong>profano</strong>. Os dois
-              tipos de dano funcionam da mesma forma, separados apenas por
-              razões temáticas. Dano sagrado pode danificar tudo que dano mágico
-              pode, mas não é afetado por traços que reduzem ou negam dano
-              mágico.
+              <strong>sagrado</strong>. Dano sagrado ignora imunidade e
+              resistência a dano normal, mágico e elemental.
             </ParchmentText>
           </Box>
 

@@ -12,13 +12,13 @@ const MobileHeroHeader: React.FC<MobileHeroHeaderProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`w-screen -mx-4 -mt-4 ${className}`}>
+    <div className={`relative w-full mb-6 ${className}`}>
       <div
-        className="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-[#181111] min-h-80"
+        className="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-[#181111] min-h-80 rounded-lg"
         style={{ backgroundImage: `url(${imageUrl})` }}
       >
         {title ? (
-          <div className="bg-[rgba(0,0,0,0.35)] backdrop-blur-[2px] px-4 py-3">
+          <div className="bg-[rgba(0,0,0,0.35)] backdrop-blur-[2px] px-4 py-3 rounded-b-lg">
             <h1
               className="text-white text-xl font-bold leading-tight tracking-[-0.015em] text-center"
               style={{ fontFamily: "Cinzel, serif" }}

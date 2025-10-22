@@ -118,7 +118,7 @@ export default function TheStablePage() {
           <ParchmentText sx={{ mb: 4 }}>
             To acquire a mount, a warband must first purchase the{" "}
             <strong>Stable base resource</strong>. A mount then costs{" "}
-            <strong>200gc</strong>. Such is the burden a mount places on
+            <strong>200 coroas</strong>. Such is the burden a mount places on
             resources, a warband may only ever have{" "}
             <strong>one mount at a time</strong>.
           </ParchmentText>
@@ -146,7 +146,7 @@ export default function TheStablePage() {
             }}
           >
             <PowerListTitle sx={{ mt: 0 }}>
-              ⚠️ Regras de Combate Montado
+              Regras de Combate Montado
             </PowerListTitle>
 
             <ParchmentText sx={{ mb: 2 }}>

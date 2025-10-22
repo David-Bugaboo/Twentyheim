@@ -152,7 +152,7 @@ export default function BaseUpgradesPage() {
               borderRadius: "6px",
             }}
           >
-            <PowerListTitle sx={{ mt: 0 }}>⚠️ Importante</PowerListTitle>
+            <PowerListTitle sx={{ mt: 0 }}>Importante</PowerListTitle>
             <ParchmentText>
               Ao mudar-se para uma nova base, todas as melhorias de base
               existentes são <strong>perdidas</strong>. Planeje suas expansões

@@ -1,8 +1,10 @@
-import { commonItemsData } from "../pages/treasures-n-items/data/commonItemsData";
+import { commonItemsData } from "../pages/weapons and equipments/data/commonItemsData";
 
 export function generateRelicTable(): { roll: string; text: string }[] {
   // Get magic items from commonItemsData
-  const magicItemsCategory = commonItemsData.find((cat) => cat.id === "magic-items");
+  const magicItemsCategory = commonItemsData.find(
+    (cat) => cat.id === "magic-items"
+  );
   const items = magicItemsCategory?.items || [];
 
   const table = [];

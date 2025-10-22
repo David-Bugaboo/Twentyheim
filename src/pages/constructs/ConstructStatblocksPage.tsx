@@ -37,7 +37,7 @@ const RandomAttributeTable = ({
         fontFamily: '"Cinzel", serif',
       }}
     >
-      🎲 Atributo Demoníaco Aleatório (role d20 quando animado)
+      Atributo Demoníaco Aleatório (role d20 quando animado)
     </ParchmentText>
     <TableContainer
       component={Paper}
@@ -138,7 +138,7 @@ export default function ConstructStatblocksPage() {
         {
           name: "Drone Anão",
           description:
-            "Esta figura tem a característica Constructo. Ela também conta como se estivesse equipada com uma besta de mão. O drone pode ser afetado por quaisquer efeitos que alvejam armas.",
+            "Esta figura tem a característica Construto. Ela também conta como se estivesse equipada com uma besta de mão. O drone pode ser afetado por quaisquer efeitos que alvejam armas.",
         },
       ],
     },
@@ -157,7 +157,7 @@ export default function ConstructStatblocksPage() {
         {
           name: "Defensor Anão",
           description:
-            "Esta figura tem a característica Constructo. Esta figura tem a característica Chifrudo.",
+            "Esta figura tem a característica Construto. Esta figura tem a característica Chifrudo.",
         },
       ],
     },
@@ -180,7 +180,7 @@ export default function ConstructStatblocksPage() {
         {
           name: "Defensor Anão",
           description:
-            "Esta figura tem a característica Constructo. Ela também tem as características Grande e Forte. O Defensor Kharadron pode ser afetado por quaisquer efeitos que alvejam armas, armadura e escudos.",
+            "Esta figura tem a característica Construto. Ela também tem as características Grande e Forte. O Defensor Kharadron pode ser afetado por quaisquer efeitos que alvejam armas, armadura e escudos.",
         },
       ],
     },
@@ -202,7 +202,7 @@ export default function ConstructStatblocksPage() {
         {
           name: "Cão de Guarda de Naggaroth",
           description:
-            "Esta figura tem as características Constructo e Daemônio. Ela não pode pegar tesouro.",
+            "Esta figura tem as características Construto e Daemônio. Ela não pode pegar tesouro.",
         },
       ],
     },
@@ -221,7 +221,7 @@ export default function ConstructStatblocksPage() {
         {
           name: "Besta Laminada de Naggaroth",
           description:
-            "Esta figura tem as características Constructo e Demônio. Sempre que uma figura se move para combate com este constructo, ela imediatamente sofre 2 de dano.",
+            "Esta figura tem as características Construto e Demônio. Sempre que uma figura se move para combate com este Construto, ela imediatamente sofre 2 de dano.",
         },
       ],
     },
@@ -240,7 +240,7 @@ export default function ConstructStatblocksPage() {
         {
           name: "Demônio Mecânico",
           description:
-            "Esta figura tem as características Constructo, Demônio, Grande e Canhão Elemental. Sempre que esta figura for colocada ou animada, role um d20. Ela ganha um atributo demoníaco aleatório dependendo da rolagem.",
+            "Esta figura tem as características Construto, Demônio, Grande e Canhão Elemental. Sempre que esta figura for colocada ou animada, role um d20. Ela ganha um atributo demoníaco aleatório dependendo da rolagem.",
         },
       ],
       randomAttributes: [

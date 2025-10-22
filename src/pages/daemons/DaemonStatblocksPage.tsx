@@ -37,7 +37,7 @@ const RandomAttributeTable = ({
         fontFamily: '"Cinzel", serif',
       }}
     >
-      🎲 Atributo Aleatório (role d6 ao invocar)
+      Atributo Aleatório (role d6 ao invocar)
     </ParchmentText>
     <TableContainer
       component={Paper}

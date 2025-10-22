@@ -11,6 +11,7 @@ interface EquipmentItemCardProps {
   name: string;
   properties: Property[];
   description: string;
+  ref?: React.RefObject<HTMLDivElement> | React.RefObject<null>;
 }
 
 const Card = styled(Box)({
@@ -55,12 +56,13 @@ const PropertyLabel = styled("span")({
 
 function EquipmentItemCard({
   id,
+  ref,
   name,
   properties,
   description,
 }: EquipmentItemCardProps) {
   return (
-    <Card id={id}>
+    <Card id={id} ref={ref}>
       <Title>{name}</Title>
       {properties.map((prop, index) => (
         <Description key={index}>
@@ -68,7 +70,7 @@ function EquipmentItemCard({
         </Description>
       ))}
       <Description>
-        <PropertyLabel>Description:</PropertyLabel>
+        <PropertyLabel>Descrição:</PropertyLabel>
         <br />
         <Box
           component="span"

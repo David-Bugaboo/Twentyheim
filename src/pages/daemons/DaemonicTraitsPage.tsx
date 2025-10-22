@@ -17,17 +17,17 @@ export default function DaemonicTraitsPage() {
 
   return (
     <PageContainer>
-      <Header title="Daemonic Traits" />
+      <Header title="Atributos Daemônicos" />
 
       <ContentSection>
         <ContentContainer>
           <ParchmentText sx={{ mb: 4 }}>
-            Each daemon is a unique manifestation of Chaos, bearing physical and
-            metaphysical traits that reflect the nature of its patron god. These
-            daemonic attributes make each summoned entity unpredictable and
-            dangerous. When a daemon is summoned, it may possess one or more of
-            these traits, determined randomly by the Gamemaster or chosen to fit
-            the narrative.
+            Cada daemônio é uma manifestação única do Caos, portando traços
+            físicos e metafísicos que refletem a natureza de seu deus patrono.
+            Esses atributos daemônicos tornam cada entidade invocada
+            imprevisível e perigosa. Quando um daemônio é invocado, ele pode
+            possuir um ou mais desses traços, determinados aleatoriamente pelo
+            Mestre do Jogo ou escolhidos para se adequar à narrativa.
           </ParchmentText>
 
           <Box
@@ -40,18 +40,18 @@ export default function DaemonicTraitsPage() {
             }}
           >
             <PowerListTitle sx={{ color: "#a78bfa", mt: 0 }}>
-              The Mark of Chaos
+              A Marca do Caos
             </PowerListTitle>
 
             <ParchmentText>
-              These traits represent the blessings (or curses) of the Chaos Gods
-              upon their servants. A daemon bearing multiple traits becomes
-              exponentially more dangerous, combining abilities in ways that can
-              devastate unprepared warbands.
+              Esses traços representam as bênçãos (ou maldições) dos Deuses do
+              Caos sobre seus servos. Um daemônio portando múltiplos traços se
+              torna exponencialmente mais perigoso, combinando habilidades de
+              formas que podem devastar bandos despreparados.
             </ParchmentText>
           </Box>
 
-          <PowerListTitle>Daemonic Attributes</PowerListTitle>
+          <PowerListTitle>Atributos Daemônicos</PowerListTitle>
 
           {daemonicAttributes.map((attribute, index) => (
             <Box
@@ -86,28 +86,6 @@ export default function DaemonicTraitsPage() {
               </ParchmentText>
             </Box>
           ))}
-
-          <Box
-            sx={{
-              p: 3,
-              mt: 4,
-              backgroundColor: "rgba(139, 0, 0, 0.1)",
-              border: "2px solid rgba(139, 0, 0, 0.3)",
-              borderRadius: "6px",
-            }}
-          >
-            <PowerListTitle sx={{ mt: 0, color: "#ff6b6b" }}>
-              ⚠️ Gamemaster's Note
-            </PowerListTitle>
-            <ParchmentText>
-              When determining a daemon's attributes, consider the narrative
-              context. A daemon of Khorne might have <strong>Ravenous</strong>{" "}
-              or <strong>Violence Conflagrator</strong>, while a daemon of
-              Nurgle might possess <strong>Plaguebearer</strong> or{" "}
-              <strong>Gifts of Nurgle</strong>. The combinations should reflect
-              the daemon's patron and purpose.
-            </ParchmentText>
-          </Box>
         </ContentContainer>
       </ContentSection>
 
@@ -116,7 +94,7 @@ export default function DaemonicTraitsPage() {
           variant="contained"
           onClick={() => navigate("/daemons")}
         >
-          Back to Daemons
+          Voltar aos Daemônios
         </StyledNavigationButton>
       </NavigationSection>
     </PageContainer>

@@ -1,0 +1,254 @@
+[
+  {
+    "id": "magistrado-do-caos",
+    "name": "Magistrado do Caos",
+    "role": "Líder",
+    "quantity": "1",
+    "stats": {
+      "move": 15,
+      "fight": "+2",
+      "shoot": "+0",
+      "armour": 10,
+      "will": "+5",
+      "health": 14,
+      "cost": "70 coroas",
+      "equipment": {
+        "hand-to-hand": [
+          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+          { "name": "Porrete", "cost": "3 coroas" },
+          { "name": "Arma de Concussão", "cost": "5 coroas" },
+          { "name": "Machado", "cost": "5 coroas" },
+          { "name": "Espada", "cost": "10 coroas" },
+          { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+          { "name": "Arma de Haste", "cost": "10 coroas" }
+        ],
+        "ranged": [
+          { "name": "Arco", "cost": "15 coroas" },
+          { "name": "Arco Curto", "cost": "10 coroas" }
+        ],
+        "armor": [
+          { "name": "Armadura Leve", "cost": "20 coroas" },
+          { "name": "Armadura Pesada", "cost": "50 coroas" },
+          { "name": "Escudo", "cost": "5 coroas" },
+          { "name": "Capacete", "cost": "10 coroas" }
+        ],
+        "acessories": [],
+        "modifiers": []
+      }
+    },
+    "spellAffinity": {
+      "aligned0": ["Tradição do Caos"],
+      "aligned2": [
+        "Tradição das Sombras",
+        "Tradição do Fogo",
+        "Tradição da Morte",
+        "Tradição dos Céus"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+      },
+      {
+        "name": "Conjurador",
+        "description": "O Magistrado do Caos é um conjurador da Tradição do Caos. Ele começa o jogo com 5 magias, de quaisquer tradições presentes na tabela de tradições mágicas."
+      }
+    ]
+  },
+  {
+    "id": "possuido",
+    "name": "Possuído",
+    "role": "Héroi",
+    "quantity": "0-2",
+    "stats": {
+      "move": 18,
+      "fight": "+4",
+      "shoot": "-",
+      "armour": 11,
+      "will": "+3",
+      "health": 18,
+      "cost": "90 coroas (+ custo das mutações)",
+      "skills": ["Combate", "Força", "Agilidade"]
+    },
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "O Possuído começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+      },
+      {
+        "name": "Mutações",
+        "description": "Quando contratado, o Possuído pode comprar uma ou mais das mutações disponíveis na tabela de mutações nessa página. Essa mutação é permanente e não pode ser alterada ou removida."
+      },
+      {
+        "name": "Presença Sombria",
+        "description": "O Possuído é uma figura aberrante com uma presença que causa horror. Ele tem as características Aterrorizante e Demônio."
+      },
+      {
+        "name": "Seleção de Habilidades",
+        "description": "Quando contratado, o Possuído pode comprar uma ou mais das habilidades disponíveis na tabela de habilidades nessa página. Cada habilidade custa 50 coroas e é permanente."
+      }
+    ]
+  },
+  {
+    "id": "mutante",
+    "name": "Mutante",
+    "role": "Héroi",
+    "quantity": "0-2",
+    "stats": {
+      "move": 15,
+      "fight": "+2",
+      "shoot": "0",
+      "armour": 10,
+      "will": "+2",
+      "health": 10,
+      "cost": "25 coroas (+ custo das mutações)",
+      "skills": ["Combate", "Agilidade"],
+      "equipment": {
+        "hand-to-hand": [
+          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+          { "name": "Porrete", "cost": "3 coroas" },
+          { "name": "Arma de Concussão", "cost": "5 coroas" },
+          { "name": "Machado", "cost": "5 coroas" },
+          { "name": "Espada", "cost": "10 coroas" },
+          { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+          { "name": "Arma de Haste", "cost": "10 coroas" }
+        ],
+        "ranged": [
+          { "name": "Arco", "cost": "15 coroas" },
+          { "name": "Arco Curto", "cost": "10 coroas" }
+        ],
+        "armor": [
+          { "name": "Armadura Leve", "cost": "20 coroas" },
+          { "name": "Armadura Pesada", "cost": "50 coroas" },
+          { "name": "Escudo", "cost": "5 coroas" },
+          { "name": "Capacete", "cost": "10 coroas" }
+        ],
+        "acessories": [],
+        "modifiers": []
+      }
+    },
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "O Mutante começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 8."
+      },
+      {
+        "name": "Mutações",
+        "description": "Quando contratado, o Mutante pode comprar uma ou mais das mutações disponíveis na tabela de mutações nessa página. Essa mutação é permanente e não pode ser alterada ou removida."
+      }
+    ]
+  },
+  {
+    "id": "insanos",
+    "name": "Insanos",
+    "quantity": "ilimitado",
+    "stats": {
+      "move": 15,
+      "fight": "+2",
+      "shoot": "0",
+      "armour": 10,
+      "will": "-1",
+      "health": 10,
+      "cost": "25 coroas",
+      "equipment": {
+        "hand-to-hand": [
+          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+          { "name": "Porrete", "cost": "3 coroas" },
+          { "name": "Arma de Concussão", "cost": "5 coroas" },
+          { "name": "Machado", "cost": "5 coroas" },
+          { "name": "Espada", "cost": "10 coroas" },
+          { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+          { "name": "Arma de Haste", "cost": "10 coroas" }
+        ],
+        "ranged": [
+          { "name": "Arco", "cost": "15 coroas" },
+          { "name": "Arco Curto", "cost": "10 coroas" }
+        ],
+        "armor": [
+          { "name": "Armadura Leve", "cost": "20 coroas" },
+          { "name": "Armadura Pesada", "cost": "50 coroas" },
+          { "name": "Escudo", "cost": "5 coroas" },
+          { "name": "Capacete", "cost": "10 coroas" }
+        ],
+        "acessories": [],
+        "modifiers": []
+      }
+    },
+    "abilities": []
+  },
+  {
+    "id": "alma-sombria",
+    "name": "Alma Sombria",
+    "quantity": "0-5",
+    "stats": {
+      "move": 15,
+      "fight": "0",
+      "shoot": "0",
+      "armour": 10,
+      "will": "+5",
+      "health": 10,
+      "cost": "35 coroas",
+      "equipment": {
+        "hand-to-hand": [
+          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+          { "name": "Porrete", "cost": "3 coroas" },
+          { "name": "Arma de Concussão", "cost": "5 coroas" },
+          { "name": "Machado", "cost": "5 coroas" },
+          { "name": "Espada", "cost": "10 coroas" },
+          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        ],
+        "ranged": [],
+        "armor": [
+          { "name": "Armadura Leve", "cost": "20 coroas" },
+          { "name": "Armadura Pesada", "cost": "50 coroas" },
+          { "name": "Escudo", "cost": "5 coroas" },
+          { "name": "Capacete", "cost": "10 coroas" }
+        ],
+        "acessories": [],
+        "modifiers": []
+      }
+    },
+    "abilities": [
+      {
+        "name": "Mente Profanada",
+        "description": "O Alma sombria teve sua mente completamente destruido pelo seu antigo processo de possessão. Ele tem a característica Mente de Ferro."
+      }
+    ]
+  },
+  {
+    "id": "homem-fera",
+    "name": "Homem-Fera",
+    "quantity": "0-3",
+    "stats": {
+      "move": 18,
+      "fight": "+3",
+      "shoot": "0",
+      "armour": "11 (12)",
+      "will": "-1",
+      "health": 14,
+      "cost": "45 coroas",
+      "equipment": {
+        "hand-to-hand": [
+          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+          { "name": "Porrete", "cost": "3 coroas" },
+          { "name": "Arma de Concussão", "cost": "5 coroas" },
+          { "name": "Machado", "cost": "5 coroas" },
+          { "name": "Espada", "cost": "10 coroas" },
+          { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+          { "name": "Maça de Correntes", "cost": "15 coroas" }
+        ],
+        "ranged": [],
+        "armor": [
+          { "name": "Armadura Leve", "cost": "20 coroas" },
+          { "name": "Armadura Pesada", "cost": "50 coroas" },
+          { "name": "Escudo", "cost": "5 coroas" },
+          { "name": "Capacete", "cost": "10 coroas" }
+        ],
+        "acessories": [],
+        "modifiers": []
+      }
+    },
+    "abilities": []
+  }
+]

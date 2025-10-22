@@ -27,7 +27,11 @@ function RulesPage() {
   const navigate = useNavigate();
 
   const sections = [
-    { id: "atributos-e-rolagens", label: "Atributos e Rolagens", type: "Seção" },
+    {
+      id: "atributos-e-rolagens",
+      label: "Atributos e Rolagens",
+      type: "Seção",
+    },
     { id: "criacao-de-bando", label: "Criação de Bando", type: "Seção" },
     { id: "sistema-de-combate", label: "Sistema de Combate", type: "Seção" },
     { id: "acoes", label: "Ações", type: "Seção" },
@@ -129,7 +133,11 @@ function RulesPage() {
               </PowerListTitle>
 
               <ParchmentText sx={{ mb: 3 }}>
-                Em Mordheim, o destino é decidido pelo rolar de dados. Cada combate, cada disparo, cada magia conjurada - tudo depende de rolagens contra números frios e implacáveis. Sobreviver requer entender não apenas as regras, mas os próprios ossos que as governam.
+                Em Mordheim, o destino é decidido pelo rolar de dados. Cada
+                combate, cada disparo, cada magia conjurada - tudo depende de
+                rolagens contra números frios e implacáveis. Sobreviver requer
+                entender não apenas as regras, mas os próprios ossos que as
+                governam.
               </ParchmentText>
 
               {/* O Dado */}
@@ -142,11 +150,23 @@ function RulesPage() {
                   borderLeft: "4px solid #d4af37",
                 }}
               >
-                <ParchmentText sx={{ fontSize: "1.2rem", fontWeight: 600, mb: 2, color: "#d4af37" }}>
+                <ParchmentText
+                  sx={{
+                    fontSize: "1.2rem",
+                    fontWeight: 600,
+                    mb: 2,
+                    color: "#d4af37",
+                  }}
+                >
                   O Dado de Vinte Faces
                 </ParchmentText>
                 <ParchmentText>
-                  Sempre que o jogo especificar uma <strong>rolagem</strong>, você rola um <strong>d20</strong> (dado de 20 lados). Este único dado determina sucesso e falha, vida e morte. Um 20 natural é triunfo absoluto. Um 1 natural é desastre catastrófico. Entre eles, toda a gama de possibilidades mortais.
+                  Sempre que o jogo especificar uma <strong>rolagem</strong>,
+                  você rola um <strong>d20</strong> (dado de 20 lados). Este
+                  único dado determina sucesso e falha, vida e morte. Um 20
+                  natural é triunfo absoluto. Um 1 natural é desastre
+                  catastrófico. Entre eles, toda a gama de possibilidades
+                  mortais.
                 </ParchmentText>
               </Box>
 
@@ -160,29 +180,47 @@ function RulesPage() {
                   borderLeft: "4px solid #d4af37",
                 }}
               >
-                <ParchmentText sx={{ fontSize: "1.2rem", fontWeight: 600, mb: 2, color: "#d4af37" }}>
+                <ParchmentText
+                  sx={{
+                    fontSize: "1.2rem",
+                    fontWeight: 600,
+                    mb: 2,
+                    color: "#d4af37",
+                  }}
+                >
                   Os Atributos
                 </ParchmentText>
                 <ParchmentText sx={{ mb: 2 }}>
-                  Cada guerreiro em Mordheim é definido por seus <strong>atributos</strong> - números que separam veteranos de cadáveres, heróis de tolos:
+                  Cada guerreiro em Mordheim é definido por seus{" "}
+                  <strong>atributos</strong> - números que separam veteranos de
+                  cadáveres, heróis de tolos:
                 </ParchmentText>
                 <ParchmentText sx={{ ml: 3, mb: 1 }}>
-                  • <strong>Agilidade:</strong> Quantos centímetros você se move por ação. A diferença entre alcançar cobertura e sangrar no meio da rua.
+                  • <strong>Agilidade:</strong> Quantos centímetros você se move
+                  por ação. A diferença entre alcançar cobertura e sangrar no
+                  meio da rua.
                 </ParchmentText>
                 <ParchmentText sx={{ ml: 3, mb: 1 }}>
-                  • <strong>Ímpeto:</strong> Modificador adicionado a rolagens de combate corpo a corpo. Separa veteranos de recrutas.
+                  • <strong>Ímpeto:</strong> Modificador adicionado a rolagens
+                  de combate corpo a corpo. Separa veteranos de recrutas.
                 </ParchmentText>
                 <ParchmentText sx={{ ml: 3, mb: 1 }}>
-                  • <strong>Precisão:</strong> Modificador adicionado a rolagens de ataque a distância. Mata antes de ser alcançado.
+                  • <strong>Precisão:</strong> Modificador adicionado a rolagens
+                  de ataque a distância. Mata antes de ser alcançado.
                 </ParchmentText>
                 <ParchmentText sx={{ ml: 3, mb: 1 }}>
-                  • <strong>Armadura:</strong> Número alvo que ataques devem superar para causar dano. Quanto maior, mais difícil perfurar sua pele.
+                  • <strong>Armadura:</strong> Número alvo que ataques devem
+                  superar para causar dano. Quanto maior, mais difícil perfurar
+                  sua pele.
                 </ParchmentText>
                 <ParchmentText sx={{ ml: 3, mb: 1 }}>
-                  • <strong>Vontade:</strong> Modificador para resistir terror, magia, e a tentação de fugir. Mente forte em corpo que pode não durar.
+                  • <strong>Vontade:</strong> Modificador para resistir terror,
+                  magia, e a tentação de fugir. Mente forte em corpo que pode
+                  não durar.
                 </ParchmentText>
                 <ParchmentText sx={{ ml: 3, mb: 1 }}>
-                  • <strong>Vigor:</strong> Quanto dano você aguenta antes de cair. Quando chega a zero, você tomba.
+                  • <strong>Vigor:</strong> Quanto dano você aguenta antes de
+                  cair. Quando chega a zero, você tomba.
                 </ParchmentText>
               </Box>
 
@@ -196,20 +234,44 @@ function RulesPage() {
                   borderLeft: "4px solid #d4af37",
                 }}
               >
-                <ParchmentText sx={{ fontSize: "1.2rem", fontWeight: 600, mb: 2, color: "#d4af37" }}>
+                <ParchmentText
+                  sx={{
+                    fontSize: "1.2rem",
+                    fontWeight: 600,
+                    mb: 2,
+                    color: "#d4af37",
+                  }}
+                >
                   Rolagens de Atributo
                 </ParchmentText>
                 <ParchmentText sx={{ mb: 2 }}>
-                  Quando o jogo pedir para rolar um atributo, o processo é simples mas mortal:
+                  Quando o jogo pedir para rolar um atributo, o processo é
+                  simples mas mortal:
                 </ParchmentText>
-                <ParchmentText sx={{ mb: 2, ml: 2, fontFamily: '"Courier New", monospace', color: "#d4af37", fontSize: "1.1rem" }}>
+                <ParchmentText
+                  sx={{
+                    mb: 2,
+                    ml: 2,
+                    fontFamily: '"Courier New", monospace',
+                    color: "#d4af37",
+                    fontSize: "1.1rem",
+                  }}
+                >
                   <strong>Rolagem = d20 + Atributo</strong>
                 </ParchmentText>
                 <ParchmentText sx={{ mb: 2 }}>
-                  Em geral, essas rolagens são feitas contra uma <strong>Classe de Dificuldade (CD)</strong>. Se sua rolagem <strong>superar ou igualar</strong> esse número, você tem sucesso. Se ficar abaixo, você falha.
+                  Em geral, essas rolagens são feitas contra uma{" "}
+                  <strong>Classe de Dificuldade (CD)</strong>. Se sua rolagem{" "}
+                  <strong>superar ou igualar</strong> esse número, você tem
+                  sucesso. Se ficar abaixo, você falha.
                 </ParchmentText>
                 <ParchmentText sx={{ fontStyle: "italic", color: "#c4a870" }}>
-                  <strong>Exemplo:</strong> Um guerreiro com Vontade 12 precisa resistir a terror (CD 14). Ele rola um 5 no d20. Sua rolagem total é 5 + 12 = 17. Como 17 supera 14, ele resiste ao terror e mantém sua posição. Se tivesse rolado 1, sua rolagem seria 1 + 12 = 13 - insuficiente. Ele fugiria em pânico.
+                  <strong>Exemplo:</strong> Um guerreiro com Vontade 12 precisa
+                  resistir a característica Aterrorizante (CD 14). Ele rola um 5
+                  no 1d20. Sua rolagem total é 5 + 12 = 17. Como 17 supera 14,
+                  ele resiste ao terror e completa sua carga. Se tivesse rolado
+                  1, sua rolagem seria 1 + 12 = 13 - insuficiente. Ele fugiria
+                  em pânico.
                 </ParchmentText>
               </Box>
 
@@ -223,11 +285,22 @@ function RulesPage() {
                   borderLeft: "4px solid #d4af37",
                 }}
               >
-                <ParchmentText sx={{ fontSize: "1.2rem", fontWeight: 600, mb: 2, color: "#d4af37" }}>
-                  Rolagens Opostas
+                <ParchmentText
+                  sx={{
+                    fontSize: "1.2rem",
+                    fontWeight: 600,
+                    mb: 2,
+                    color: "#d4af37",
+                  }}
+                >
+                  Rolagem Contestada
                 </ParchmentText>
                 <ParchmentText>
-                  Algumas situações colocam guerreiros diretamente uns contra os outros. Em <strong>rolagens opostas</strong>, ambos os lados rolam d20 + atributo relevante. O resultado maior vence. Em caso de empate, nada acontece - golpes bloqueados, esforços anulados, destino indeciso.
+                  Algumas situações colocam guerreiros diretamente uns contra os
+                  outros. Em <strong>rolagens contestadas</strong>, ambos os
+                  lados rolam 1d20 + atributo relevante. O resultado maior
+                  vence. Em caso de empate, nada acontece - golpes bloqueados,
+                  esforços anulados, destino indeciso.
                 </ParchmentText>
               </Box>
 
@@ -243,10 +316,9 @@ function RulesPage() {
                   color: "#c4a870",
                 }}
               >
-                "Os dados não mentem. Role alto ou morra. É assim simples, assim brutal."
+                "Os dados não mentem. Role alto ou morra."
                 <br />
-                <br />
-                — Gunther, o Veterano
+                <br />— Gunther, o Veterano
               </ParchmentText>
             </Box>
 
@@ -445,7 +517,7 @@ function RulesPage() {
                     textAlign: "center",
                   }}
                 >
-                  📜 Conto do Veterano: A Primeira Leva de Klaus
+                  Conto do Veterano: A Primeira Leva de Klaus
                 </PowerListTitle>
 
                 <ParchmentText sx={{ fontStyle: "italic", mb: 2 }}>
@@ -497,7 +569,7 @@ function RulesPage() {
 
             <Box sx={{ mt: 4, mb: 6 }} id="sistema-de-combate">
               <PowerListTitle sx={{ fontSize: "1.8rem", mb: 3 }}>
-                ⚔️ Sistema de Combate
+                Sistema de Combate
               </PowerListTitle>
 
               <ParchmentText sx={{ mb: 4 }}>
@@ -644,7 +716,7 @@ function RulesPage() {
                 <PowerListTitle
                   sx={{ fontSize: "1.1rem", mb: 2, mt: 0, color: "#d4af37" }}
                 >
-                  ⚡ Resumo do Ciclo de Turno
+                  Resumo do Ciclo de Turno
                 </PowerListTitle>
                 <ParchmentText sx={{ mb: 1 }}>
                   1. <strong>Início do Turno:</strong> Role iniciativa (d20)
@@ -2309,7 +2381,7 @@ function RulesPage() {
               <PowerListTitle
                 sx={{ fontSize: "2rem", mb: 4, textAlign: "center" }}
               >
-                ⚜️ A Campanha ⚜️
+                A Campanha
               </PowerListTitle>
 
               <Box
@@ -2410,26 +2482,107 @@ function RulesPage() {
                       Para cada soldado que caiu, role um d20:
                     </ParchmentText>
 
-                    <TableContainer component={Paper} sx={{ backgroundColor: "rgba(28, 24, 18, 0.8)", border: "2px solid #8b7355" }}>
+                    <TableContainer
+                      component={Paper}
+                      sx={{
+                        backgroundColor: "rgba(28, 24, 18, 0.8)",
+                        border: "2px solid #8b7355",
+                      }}
+                    >
                       <Table>
                         <TableHead>
                           <TableRow>
-                            <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355", textAlign: "center", width: "20%" }}>d20</TableCell>
-                            <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355" }}>Resultado</TableCell>
+                            <TableCell
+                              sx={{
+                                backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                color: "#d4af37",
+                                fontWeight: "bold",
+                                fontSize: "0.9rem",
+                                borderBottom: "2px solid #8b7355",
+                                textAlign: "center",
+                                width: "20%",
+                              }}
+                            >
+                              d20
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                color: "#d4af37",
+                                fontWeight: "bold",
+                                fontSize: "0.9rem",
+                                borderBottom: "2px solid #8b7355",
+                              }}
+                            >
+                              Resultado
+                            </TableCell>
                           </TableRow>
                         </TableHead>
                         <TableBody>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>1-4</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}><strong>Morto.</strong> O soldado não sobreviveu. Simples assim. Remova-o da lista de campanha. Alguém terá que cavar uma cova... se houver tempo.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              1-4
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              <strong>Morto.</strong> O soldado não sobreviveu.
+                              Simples assim. Remova-o da lista de campanha.
+                              Alguém terá que cavar uma cova... se houver tempo.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>5-8</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}><strong>Gravemente Ferido.</strong> O soldado vive, mas mal. Não poderá ser usado no próximo jogo. O soldado ferido pode ser substituído temporariamente por qualquer figura de custo gratuito que o bando possa recrutar.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              5-8
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              <strong>Gravemente Ferido.</strong> O soldado
+                              vive, mas mal. Não poderá ser usado no próximo
+                              jogo. O soldado ferido pode ser substituído
+                              temporariamente por qualquer figura de custo
+                              gratuito que o bando possa recrutar.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "none", textAlign: "center" }}>9+</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "none" }}><strong>Sobrevive.</strong> O soldado volta, talvez com novas cicatrizes e pesadelos, mas funcional. Em Mordheim, isso conta como sorte.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "none",
+                                textAlign: "center",
+                              }}
+                            >
+                              9+
+                            </TableCell>
+                            <TableCell
+                              sx={{ color: "#d4c4a8", borderBottom: "none" }}
+                            >
+                              <strong>Sobrevive.</strong> O soldado volta,
+                              talvez com novas cicatrizes e pesadelos, mas
+                              funcional. Em Mordheim, isso conta como sorte.
+                            </TableCell>
                           </TableRow>
                         </TableBody>
                       </Table>
@@ -2456,34 +2609,167 @@ function RulesPage() {
                       permanentemente. Role um d20:
                     </ParchmentText>
 
-                    <TableContainer component={Paper} sx={{ backgroundColor: "rgba(28, 24, 18, 0.8)", border: "2px solid #8b7355" }}>
+                    <TableContainer
+                      component={Paper}
+                      sx={{
+                        backgroundColor: "rgba(28, 24, 18, 0.8)",
+                        border: "2px solid #8b7355",
+                      }}
+                    >
                       <Table>
                         <TableHead>
                           <TableRow>
-                            <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355", textAlign: "center", width: "20%" }}>d20</TableCell>
-                            <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355" }}>Resultado</TableCell>
+                            <TableCell
+                              sx={{
+                                backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                color: "#d4af37",
+                                fontWeight: "bold",
+                                fontSize: "0.9rem",
+                                borderBottom: "2px solid #8b7355",
+                                textAlign: "center",
+                                width: "20%",
+                              }}
+                            >
+                              d20
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                color: "#d4af37",
+                                fontWeight: "bold",
+                                fontSize: "0.9rem",
+                                borderBottom: "2px solid #8b7355",
+                              }}
+                            >
+                              Resultado
+                            </TableCell>
                           </TableRow>
                         </TableHead>
                         <TableBody>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>1</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}><strong>Morto.</strong> O líder caiu. Para sempre. Veja as regras de Novos Recrutas para substituí-lo.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              1
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              <strong>Morto.</strong> O líder caiu. Para sempre.
+                              Veja as regras de Novos Recrutas para
+                              substituí-lo.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>2-4</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}><strong>Ferimento Permanente.</strong> A figura sofre um ferimento que nunca cicatriza completamente. Role na Tabela de Ferimentos Permanentes abaixo para determinar a natureza exata do ferimento. A figura retorna para o próximo jogo com Vigor completo — mas nunca mais será a mesma.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              2-4
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              <strong>Ferimento Permanente.</strong> A figura
+                              sofre um ferimento que nunca cicatriza
+                              completamente. Role na Tabela de Ferimentos
+                              Permanentes abaixo para determinar a natureza
+                              exata do ferimento. A figura retorna para o
+                              próximo jogo com Vigor completo — mas nunca mais
+                              será a mesma.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>5-6</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}><strong>Gravemente Ferido.</strong> A figura recebeu ferimentos que levarão tempo para curar. O jogador escolhe: gastar <strong>75 coroas em ervas medicinais especializadas</strong> (e a figura joga o próximo jogo normalmente), ou a figura começa o próximo jogo com <strong>-5 de Vigor</strong>. Cura rápida custa caro.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              5-6
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              <strong>Gravemente Ferido.</strong> A figura
+                              recebeu ferimentos que levarão tempo para curar. O
+                              jogador escolhe: gastar{" "}
+                              <strong>
+                                75 coroas em ervas medicinais especializadas
+                              </strong>{" "}
+                              (e a figura joga o próximo jogo normalmente), ou a
+                              figura começa o próximo jogo com{" "}
+                              <strong>-5 de Vigor</strong>. Cura rápida custa
+                              caro.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>7-8</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}><strong>Por um Triz.</strong> A figura escapa sem ferimentos maiores. Contudo, perde <strong>todos os itens que estava carregando</strong>. Perdidos nos escombros, roubados por saqueadores, ou simplesmente esquecidos no caos da retirada.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              7-8
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              <strong>Por um Triz.</strong> A figura escapa sem
+                              ferimentos maiores. Contudo, perde{" "}
+                              <strong>
+                                todos os itens que estava carregando
+                              </strong>
+                              . Perdidos nos escombros, roubados por
+                              saqueadores, ou simplesmente esquecidos no caos da
+                              retirada.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "none", textAlign: "center" }}>9-20</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "none" }}><strong>Recuperação Completa.</strong> Os ferimentos provam ser relativamente menores. A figura retorna para o próximo jogo com Vigor completo. Sorte. Resistência. Ou talvez os deuses ainda não terminaram com ela.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "none",
+                                textAlign: "center",
+                              }}
+                            >
+                              9-20
+                            </TableCell>
+                            <TableCell
+                              sx={{ color: "#d4c4a8", borderBottom: "none" }}
+                            >
+                              <strong>Recuperação Completa.</strong> Os
+                              ferimentos provam ser relativamente menores. A
+                              figura retorna para o próximo jogo com Vigor
+                              completo. Sorte. Resistência. Ou talvez os deuses
+                              ainda não terminaram com ela.
+                            </TableCell>
                           </TableRow>
                         </TableBody>
                       </Table>
@@ -3109,38 +3395,174 @@ function RulesPage() {
                       Experiência de Heróis
                     </PowerListTitle>
 
-                    <TableContainer component={Paper} sx={{ backgroundColor: "rgba(28, 24, 18, 0.8)", border: "2px solid #8b7355" }}>
+                    <TableContainer
+                      component={Paper}
+                      sx={{
+                        backgroundColor: "rgba(28, 24, 18, 0.8)",
+                        border: "2px solid #8b7355",
+                      }}
+                    >
                       <Table>
                         <TableHead>
                           <TableRow>
-                            <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355", textAlign: "center", width: "20%" }}>XP</TableCell>
-                            <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355" }}>Por</TableCell>
+                            <TableCell
+                              sx={{
+                                backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                color: "#d4af37",
+                                fontWeight: "bold",
+                                fontSize: "0.9rem",
+                                borderBottom: "2px solid #8b7355",
+                                textAlign: "center",
+                                width: "20%",
+                              }}
+                            >
+                              XP
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                color: "#d4af37",
+                                fontWeight: "bold",
+                                fontSize: "0.9rem",
+                                borderBottom: "2px solid #8b7355",
+                              }}
+                            >
+                              Por
+                            </TableCell>
                           </TableRow>
                         </TableHead>
                         <TableBody>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+40</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Por cada jogo em que o herói sobrevive. Viver já é vitória.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              +40
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Por cada jogo em que o herói sobrevive. Viver já é
+                              vitória.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+60</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Se o herói ou seu bando captura o fragmento central de Pedra-bruxa. O maior prêmio para o maior risco.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              +60
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Se o herói ou seu bando captura o fragmento
+                              central de Pedra-bruxa. O maior prêmio para o
+                              maior risco.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+40</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Para cada fragmento de Pedra-bruxa normal capturado pelo herói ou seu bando. Ganância recompensada.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              +40
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Para cada fragmento de Pedra-bruxa normal
+                              capturado pelo herói ou seu bando. Ganância
+                              recompensada.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+5<br/>+20<br/>+10</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Para cada criatura ou membro de bando inimigo que o herói pessoalmente retire do jogo. <strong>+20 XP se for herói inimigo</strong>, <strong>+10 XP se for campeão inimigo</strong>. Matar líderes vale mais que matar massa.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              +5
+                              <br />
+                              +20
+                              <br />
+                              +10
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Para cada criatura ou membro de bando inimigo que
+                              o herói pessoalmente retire do jogo.{" "}
+                              <strong>+20 XP se for herói inimigo</strong>,{" "}
+                              <strong>+10 XP se for campeão inimigo</strong>.
+                              Matar líderes vale mais que matar massa.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+5</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Para cada tentativa falhada de conjurar um feitiço que resulte em dano ao herói. Até falhas ensinam.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              +5
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Para cada tentativa falhada de conjurar um feitiço
+                              que resulte em dano ao herói. Até falhas ensinam.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "none", textAlign: "center" }}>+10</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "none" }}>Para cada feitiço conjurado com sucesso pelo herói. Poder controlado é lição aprendida.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "none",
+                                textAlign: "center",
+                              }}
+                            >
+                              +10
+                            </TableCell>
+                            <TableCell
+                              sx={{ color: "#d4c4a8", borderBottom: "none" }}
+                            >
+                              Para cada feitiço conjurado com sucesso pelo
+                              herói. Poder controlado é lição aprendida.
+                            </TableCell>
                           </TableRow>
                         </TableBody>
                       </Table>
@@ -3161,30 +3583,132 @@ function RulesPage() {
                       Experiência de Campeões
                     </PowerListTitle>
 
-                    <TableContainer component={Paper} sx={{ backgroundColor: "rgba(28, 24, 18, 0.8)", border: "2px solid #8b7355" }}>
+                    <TableContainer
+                      component={Paper}
+                      sx={{
+                        backgroundColor: "rgba(28, 24, 18, 0.8)",
+                        border: "2px solid #8b7355",
+                      }}
+                    >
                       <Table>
                         <TableHead>
                           <TableRow>
-                            <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355", textAlign: "center", width: "20%" }}>XP</TableCell>
-                            <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355" }}>Por</TableCell>
+                            <TableCell
+                              sx={{
+                                backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                color: "#d4af37",
+                                fontWeight: "bold",
+                                fontSize: "0.9rem",
+                                borderBottom: "2px solid #8b7355",
+                                textAlign: "center",
+                                width: "20%",
+                              }}
+                            >
+                              XP
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                color: "#d4af37",
+                                fontWeight: "bold",
+                                fontSize: "0.9rem",
+                                borderBottom: "2px solid #8b7355",
+                              }}
+                            >
+                              Por
+                            </TableCell>
                           </TableRow>
                         </TableHead>
                         <TableBody>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+60</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Por sobreviver ao jogo. Campeões precisam trabalhar mais duro para provar seu valor.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              +60
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Por sobreviver ao jogo. Campeões precisam
+                              trabalhar mais duro para provar seu valor.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+5<br/>+20<br/>+10</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Para cada criatura ou membro de bando inimigo que o campeão pessoalmente retire do jogo. <strong>+20 XP se for herói inimigo</strong>, <strong>+10 XP se for campeão inimigo</strong>. A mesma matemática sangrenta.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              +5
+                              <br />
+                              +20
+                              <br />
+                              +10
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Para cada criatura ou membro de bando inimigo que
+                              o campeão pessoalmente retire do jogo.{" "}
+                              <strong>+20 XP se for herói inimigo</strong>,{" "}
+                              <strong>+10 XP se for campeão inimigo</strong>. A
+                              mesma matemática sangrenta.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+5</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Para cada tentativa falhada de conjurar um feitiço que resulte em dano ao campeão. Aprender através da dor.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              +5
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Para cada tentativa falhada de conjurar um feitiço
+                              que resulte em dano ao campeão. Aprender através
+                              da dor.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "none", textAlign: "center" }}>+10</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "none" }}>Para cada feitiço conjurado com sucesso pelo campeão. Menos que heróis ganham, mas ainda assim ganham.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "none",
+                                textAlign: "center",
+                              }}
+                            >
+                              +10
+                            </TableCell>
+                            <TableCell
+                              sx={{ color: "#d4c4a8", borderBottom: "none" }}
+                            >
+                              Para cada feitiço conjurado com sucesso pelo
+                              campeão. Menos que heróis ganham, mas ainda assim
+                              ganham.
+                            </TableCell>
                           </TableRow>
                         </TableBody>
                       </Table>
@@ -3205,30 +3729,131 @@ function RulesPage() {
                       Experiência de Soldados
                     </PowerListTitle>
 
-                    <TableContainer component={Paper} sx={{ backgroundColor: "rgba(28, 24, 18, 0.8)", border: "2px solid #8b7355" }}>
+                    <TableContainer
+                      component={Paper}
+                      sx={{
+                        backgroundColor: "rgba(28, 24, 18, 0.8)",
+                        border: "2px solid #8b7355",
+                      }}
+                    >
                       <Table>
                         <TableHead>
                           <TableRow>
-                            <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355", textAlign: "center", width: "20%" }}>XP</TableCell>
-                            <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355" }}>Por</TableCell>
+                            <TableCell
+                              sx={{
+                                backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                color: "#d4af37",
+                                fontWeight: "bold",
+                                fontSize: "0.9rem",
+                                borderBottom: "2px solid #8b7355",
+                                textAlign: "center",
+                                width: "20%",
+                              }}
+                            >
+                              XP
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                color: "#d4af37",
+                                fontWeight: "bold",
+                                fontSize: "0.9rem",
+                                borderBottom: "2px solid #8b7355",
+                              }}
+                            >
+                              Por
+                            </TableCell>
                           </TableRow>
                         </TableHead>
                         <TableBody>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+50</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Por sobreviver ao jogo. Para soldados, cada dia acima da terra é triunfo.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              +50
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Por sobreviver ao jogo. Para soldados, cada dia
+                              acima da terra é triunfo.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+60</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Se esta figura capturou o fragmento central de Pedra-bruxa. Glória rara para os comuns.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              +60
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Se esta figura capturou o fragmento central de
+                              Pedra-bruxa. Glória rara para os comuns.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+40</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Para cada fragmento de Pedra-bruxa capturado por esta criatura. A ganância tem suas recompensas.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              +40
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Para cada fragmento de Pedra-bruxa capturado por
+                              esta criatura. A ganância tem suas recompensas.
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "none", textAlign: "center" }}>+5<br/>+20<br/>+10</TableCell>
-                            <TableCell sx={{ color: "#d4c4a8", borderBottom: "none" }}>Para cada criatura ou membro de bando inimigo que o soldado pessoalmente retire do jogo. <strong>+20 XP se for herói inimigo</strong>, <strong>+10 XP se for campeão inimigo</strong>. Mesmo soldados podem derrubar gigantes... às vezes.</TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "none",
+                                textAlign: "center",
+                              }}
+                            >
+                              +5
+                              <br />
+                              +20
+                              <br />
+                              +10
+                            </TableCell>
+                            <TableCell
+                              sx={{ color: "#d4c4a8", borderBottom: "none" }}
+                            >
+                              Para cada criatura ou membro de bando inimigo que
+                              o soldado pessoalmente retire do jogo.{" "}
+                              <strong>+20 XP se for herói inimigo</strong>,{" "}
+                              <strong>+10 XP se for campeão inimigo</strong>.
+                              Mesmo soldados podem derrubar gigantes... às
+                              vezes.
+                            </TableCell>
                           </TableRow>
                         </TableBody>
                       </Table>
@@ -3336,78 +3961,536 @@ function RulesPage() {
                         <Table>
                           <TableHead>
                             <TableRow>
-                              <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355", textAlign: "center" }}>Raça</TableCell>
-                              <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355", textAlign: "center" }}>Movimento</TableCell>
-                              <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355", textAlign: "center" }}>Ímpeto</TableCell>
-                              <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355", textAlign: "center" }}>Precisão</TableCell>
-                              <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355", textAlign: "center" }}>Vigor</TableCell>
-                              <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355", textAlign: "center" }}>Vontade</TableCell>
+                              <TableCell
+                                sx={{
+                                  backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  fontSize: "0.9rem",
+                                  borderBottom: "2px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Raça
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  fontSize: "0.9rem",
+                                  borderBottom: "2px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Movimento
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  fontSize: "0.9rem",
+                                  borderBottom: "2px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Ímpeto
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  fontSize: "0.9rem",
+                                  borderBottom: "2px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Precisão
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  fontSize: "0.9rem",
+                                  borderBottom: "2px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Vigor
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  fontSize: "0.9rem",
+                                  borderBottom: "2px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Vontade
+                              </TableCell>
                             </TableRow>
                           </TableHead>
                           <TableBody>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Humano</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>8</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+5</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+5</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>20</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+8</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Humano
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                8
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +5
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +5
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                20
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +8
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Anão</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>4</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+6</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+3</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>26</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+10</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Anão
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                4
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +6
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +3
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                26
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +10
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Elfo</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>10</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+6</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+6</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>18</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+12</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Elfo
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                10
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +6
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +6
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                18
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +12
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Orc</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>6</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+6</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+0</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>22</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+6</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Orc
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                6
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +6
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +0
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                22
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +6
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Skaven</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>12</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+5</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+6</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>18</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+5</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Skaven
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                12
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +5
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +6
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                18
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +5
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Skink</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>9</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+5</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+6</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>24</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+6</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Skink
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                9
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +5
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +6
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                24
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +6
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Saurus</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>8</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+6</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+2</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>26</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355", textAlign: "center" }}>+6</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Saurus
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                8
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +6
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +2
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                26
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +6
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "none", textAlign: "center" }}>Vampiro</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "none", textAlign: "center" }}>8</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "none", textAlign: "center" }}>+7</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "none", textAlign: "center" }}>+7</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "none", textAlign: "center" }}>30</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "none", textAlign: "center" }}>+12</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "none",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Vampiro
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "none",
+                                  textAlign: "center",
+                                }}
+                              >
+                                8
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "none",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +7
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "none",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +7
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "none",
+                                  textAlign: "center",
+                                }}
+                              >
+                                30
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "none",
+                                  textAlign: "center",
+                                }}
+                              >
+                                +12
+                              </TableCell>
                             </TableRow>
                           </TableBody>
                         </Table>
@@ -3422,7 +4505,6 @@ function RulesPage() {
                           carrega suas bênçãos e maldições na própria carne.
                         </em>
                       </ParchmentText>
-
                     </Box>
 
                     <Box sx={{ pl: 2, mb: 2 }}>
@@ -3496,65 +4578,329 @@ function RulesPage() {
                         momento certo. Não há segunda chance.
                       </ParchmentText>
 
-                      <TableContainer component={Paper} sx={{ backgroundColor: "rgba(28, 24, 18, 0.8)", border: "2px solid #8b7355" }}>
+                      <TableContainer
+                        component={Paper}
+                        sx={{
+                          backgroundColor: "rgba(28, 24, 18, 0.8)",
+                          border: "2px solid #8b7355",
+                        }}
+                      >
                         <Table>
                           <TableHead>
                             <TableRow>
-                              <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.85rem", borderBottom: "2px solid #8b7355", textAlign: "center" }}>Truque</TableCell>
-                              <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.85rem", borderBottom: "2px solid #8b7355", textAlign: "center" }}>Efeito</TableCell>
-                              <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.85rem", borderBottom: "2px solid #8b7355", textAlign: "center" }}>Quando Declarar</TableCell>
+                              <TableCell
+                                sx={{
+                                  backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  fontSize: "0.85rem",
+                                  borderBottom: "2px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Truque
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  fontSize: "0.85rem",
+                                  borderBottom: "2px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Efeito
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  fontSize: "0.85rem",
+                                  borderBottom: "2px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Quando Declarar
+                              </TableCell>
                             </TableRow>
                           </TableHead>
                           <TableBody>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Ataque Furioso</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>+3 Ímpeto para um ataque</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Antes das rolagens serem feitas</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Ataque Furioso
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                +3 Ímpeto para um ataque
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                Antes das rolagens serem feitas
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Ripostar</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>+1 Ímpeto para um ataque</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Após as rolagens serem feitas</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Ripostar
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                +1 Ímpeto para um ataque
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                Após as rolagens serem feitas
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Golpe de Misericórdia</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>+2 Dano para qualquer ataque corpo a corpo que causou ao menos 1 ponto de dano</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Após o dano ser calculado</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Golpe de Misericórdia
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                +2 Dano para qualquer ataque corpo a corpo que
+                                causou ao menos 1 ponto de dano
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                Após o dano ser calculado
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Mão Firme</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>+3 Precisão para um ataque</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Antes das rolagens serem feitas</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Mão Firme
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                +3 Precisão para um ataque
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                Antes das rolagens serem feitas
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Olhos de Águia</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>+1 Precisão para um ataque</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Após as rolagens serem feitas</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Olhos de Águia
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                +1 Precisão para um ataque
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                Após as rolagens serem feitas
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Firmar</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>+3 Armadura para um ataque</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Antes das rolagens serem feitas</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Firmar
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                +3 Armadura para um ataque
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                Antes das rolagens serem feitas
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Esquivar</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>+1 Armadura para um ataque</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Após as rolagens serem feitas</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Esquivar
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                +1 Armadura para um ataque
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                Após as rolagens serem feitas
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Nervos de Aço</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>+4 Vontade para uma rolagem de Vontade</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Antes da rolagem ser feita</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Nervos de Aço
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                +4 Vontade para uma rolagem de Vontade
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                Antes da rolagem ser feita
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>Coração de Ferro</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>+2 Vontade para uma rolagem de Vontade</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Após a rolagem ser feita</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "1px solid #8b7355",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Coração de Ferro
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                +2 Vontade para uma rolagem de Vontade
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4c4a8",
+                                  borderBottom: "1px solid #8b7355",
+                                }}
+                              >
+                                Após a rolagem ser feita
+                              </TableCell>
                             </TableRow>
                             <TableRow>
-                              <TableCell sx={{ color: "#d4af37", fontWeight: "bold", borderBottom: "none", textAlign: "center" }}>Corrida Frenética</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "none" }}>+2 Movimento pelo resto do turno</TableCell>
-                              <TableCell sx={{ color: "#d4c4a8", borderBottom: "none" }}>Na ativação</TableCell>
+                              <TableCell
+                                sx={{
+                                  color: "#d4af37",
+                                  fontWeight: "bold",
+                                  borderBottom: "none",
+                                  textAlign: "center",
+                                }}
+                              >
+                                Corrida Frenética
+                              </TableCell>
+                              <TableCell
+                                sx={{ color: "#d4c4a8", borderBottom: "none" }}
+                              >
+                                +2 Movimento pelo resto do turno
+                              </TableCell>
+                              <TableCell
+                                sx={{ color: "#d4c4a8", borderBottom: "none" }}
+                              >
+                                Na ativação
+                              </TableCell>
                             </TableRow>
                           </TableBody>
                         </Table>
@@ -3664,37 +5010,480 @@ function RulesPage() {
                       Tabela de Venda de Pedra-Bruxa
                     </PowerListTitle>
 
-                    <TableContainer component={Paper} sx={{ backgroundColor: "rgba(28, 24, 18, 0.8)", border: "2px solid #8b7355" }}>
+                    <TableContainer
+                      component={Paper}
+                      sx={{
+                        backgroundColor: "rgba(28, 24, 18, 0.8)",
+                        border: "2px solid #8b7355",
+                      }}
+                    >
                       <Table>
                         <TableHead>
                           <TableRow>
-                            <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355", textAlign: "center", width: "30%" }}>Rolagem (d20)</TableCell>
-                            <TableCell sx={{ backgroundColor: "rgba(139, 115, 85, 0.5)", color: "#d4af37", fontWeight: "bold", fontSize: "0.9rem", borderBottom: "2px solid #8b7355" }}>Recompensa</TableCell>
+                            <TableCell
+                              sx={{
+                                backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                color: "#d4af37",
+                                fontWeight: "bold",
+                                fontSize: "0.9rem",
+                                borderBottom: "2px solid #8b7355",
+                                textAlign: "center",
+                                width: "30%",
+                              }}
+                            >
+                              Rolagem (d20)
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                backgroundColor: "rgba(139, 115, 85, 0.5)",
+                                color: "#d4af37",
+                                fontWeight: "bold",
+                                fontSize: "0.9rem",
+                                borderBottom: "2px solid #8b7355",
+                              }}
+                            >
+                              Recompensa
+                            </TableCell>
                           </TableRow>
                         </TableHead>
                         <TableBody>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>1</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>20 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>2</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>30 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>3</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>40 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>4</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>50 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>5</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>75 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>6</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>75 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>7</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>100 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>8</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>100 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>9</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Poção</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>10</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Poção + 10 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>11</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Poção + 30 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>12</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Poção (2×)</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>13</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Equipamento Obra-Prima</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>14</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Equipamento Obra-Prima</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>15</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Equipamento Obra-Prima + 10 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>16</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Equipamento Obra-Prima + 30 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>17</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Relíquia</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>18</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Relíquia + 10 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>19</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Relíquia + 30 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>20</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Mapa de Mordheim</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "1px solid #8b7355", textAlign: "center" }}>21</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}>Mapa de Mordheim + 20 coroas</TableCell></TableRow>
-                          <TableRow><TableCell sx={{ color: "#d4c4a8", fontWeight: "bold", borderBottom: "none", textAlign: "center" }}>22</TableCell><TableCell sx={{ color: "#d4c4a8", borderBottom: "none" }}>Mapa de Mordheim + 50 coroas</TableCell></TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              1
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              20 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              2
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              30 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              3
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              40 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              4
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              50 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              5
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              75 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              6
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              75 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              7
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              100 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              8
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              100 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              9
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Poção
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              10
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Poção + 10 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              11
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Poção + 30 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              12
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Poção (2×)
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              13
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Equipamento Obra-Prima
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              14
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Equipamento Obra-Prima
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              15
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Equipamento Obra-Prima + 10 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              16
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Equipamento Obra-Prima + 30 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              17
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Relíquia
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              18
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Relíquia + 10 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              19
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Relíquia + 30 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              20
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Mapa de Mordheim
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "1px solid #8b7355",
+                                textAlign: "center",
+                              }}
+                            >
+                              21
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                borderBottom: "1px solid #8b7355",
+                              }}
+                            >
+                              Mapa de Mordheim + 20 coroas
+                            </TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell
+                              sx={{
+                                color: "#d4c4a8",
+                                fontWeight: "bold",
+                                borderBottom: "none",
+                                textAlign: "center",
+                              }}
+                            >
+                              22
+                            </TableCell>
+                            <TableCell
+                              sx={{ color: "#d4c4a8", borderBottom: "none" }}
+                            >
+                              Mapa de Mordheim + 50 coroas
+                            </TableCell>
+                          </TableRow>
                         </TableBody>
                       </Table>
                     </TableContainer>

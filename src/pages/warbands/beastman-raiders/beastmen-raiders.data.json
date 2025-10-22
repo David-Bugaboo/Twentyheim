@@ -1,0 +1,320 @@
+[
+  {
+    "id": "chefe-tribal-homem-fera",
+    "name": "Chefe Tribal Homem-Fera",
+    "role": "Líder",
+    "quantity": "1",
+    "stats": {
+      "move": 16,
+      "fight": "+4",
+      "shoot": "0",
+      "armour": 10,
+      "will": "+5",
+      "health": 14,
+      "cost": "65 coroas",
+      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"],
+      "equipment": {
+        "hand-to-hand": [
+          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+          { "name": "Porrete", "cost": "3 coroas" },
+          { "name": "Arma de Concussão", "cost": "5 coroas" },
+          { "name": "Machado", "cost": "5 coroas" },
+          { "name": "Espada", "cost": "10 coroas" },
+          { "name": "Arma de Haste", "cost": "10 coroas" },
+          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        ],
+        "ranged": [],
+        "armor": [
+          { "name": "Armadura Leve", "cost": "20 coroas" },
+          { "name": "Armadura Pesada", "cost": "50 coroas" },
+          { "name": "Escudo", "cost": "5 coroas" },
+          { "name": "Capacete", "cost": "10 coroas" }
+        ],
+        "acessories": [],
+        "modifiers": []
+      }
+    },
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+      },
+      {
+        "name": "Abominação Bestial",
+        "description": "O Lider Tribal Homem-Fera tem as características Forte e Aterrorizante."
+      }
+    ]
+  },
+  {
+    "id": "xama-homem-fera",
+    "name": "Xamã Homem-Fera",
+    "role": "Héroi",
+    "quantity": "0-1",
+    "stats": {
+      "move": 16,
+      "fight": "+1",
+      "shoot": "0",
+      "armour": 10,
+      "will": "+5",
+      "health": 12,
+      "cost": "45 coroas",
+      "equipment": {
+        "hand-to-hand": [
+          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+          { "name": "Porrete", "cost": "3 coroas" },
+          { "name": "Arma de Concussão", "cost": "5 coroas" },
+          { "name": "Machado de Batalha", "cost": "5 coroas" },
+          { "name": "Espada", "cost": "10 coroas" },
+          { "name": "Arma de Haste", "cost": "10 coroas" },
+          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        ],
+        "ranged": [],
+        "acessories": [],
+        "modifiers": []
+      }
+    },
+    "spellAffinity": {
+      "aligned0": ["Tradição do Caos"],
+      "aligned2": [
+        "Tradição do Fogo",
+        "Tradição das Sombras",
+        "Tradição das Bestas",
+        "Tradição da Vida"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Magia",
+        "description": "O Feiticeiro Homem-Fera é um feiticeiro da Tradição do Caos. Ele começa com 3 spells, de qualquer um de suas tradições disponíveis. Magias de tradições associadas são adicionadas com +4 na Classe de Dificuldade."
+      }
+    ]
+  },
+  {
+    "id": "bestigor",
+    "name": "Bestigor",
+    "role": "Héroi",
+    "quantity": "0-2",
+    "stats": {
+      "move": 16,
+      "fight": "+4",
+      "shoot": "0",
+      "armour": 10,
+      "will": "-1",
+      "health": 12,
+      "cost": "45 coroas",
+      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"],
+      "equipment": {
+        "hand-to-hand": [
+          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+          { "name": "Porrete", "cost": "3 coroas" },
+          { "name": "Arma de Concussão", "cost": "5 coroas" },
+          { "name": "Machado de Batalha", "cost": "5 coroas" },
+          { "name": "Espada", "cost": "10 coroas" },
+          { "name": "Arma de Haste", "cost": "10 coroas" },
+          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        ],
+        "ranged": [],
+        "armor": [
+          { "name": "Armadura Leve", "cost": "20 coroas" },
+          { "name": "Armadura Pesada", "cost": "50 coroas" },
+          { "name": "Escudo", "cost": "5 coroas" },
+          { "name": "Capacete", "cost": "10 coroas" }
+        ],
+        "acessories": [],
+        "modifiers": []
+      }
+    },
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "O Bestigor começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 8."
+      },
+      {
+        "name": "Aniquilador Córneo",
+        "description": "O Bestigor tem a característica Chifres."
+      }
+    ]
+  },
+  {
+    "id": "centigor",
+    "name": "Centigor",
+    "role": "Héroi",
+    "quantity": "0-1",
+    "stats": {
+      "move": 20,
+      "fight": "+3",
+      "shoot": "0",
+      "armour": 10,
+      "will": "-1",
+      "health": 12,
+      "cost": "80 coroas",
+      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"],
+      "equipment": {
+        "hand-to-hand": [
+          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+          { "name": "Porrete", "cost": "3 coroas" },
+          { "name": "Arma de Concussão", "cost": "5 coroas" },
+          { "name": "Machado de Batalha", "cost": "5 coroas" },
+          { "name": "Espada", "cost": "10 coroas" },
+          { "name": "Arma de Haste", "cost": "10 coroas" },
+          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        ],
+        "ranged": [],
+        "armor": [
+          { "name": "Armadura Leve", "cost": "20 coroas" },
+          { "name": "Armadura Pesada", "cost": "50 coroas" },
+          { "name": "Escudo", "cost": "5 coroas" },
+          { "name": "Capacete", "cost": "10 coroas" }
+        ],
+        "acessories": [],
+        "modifiers": []
+      }
+    },
+    "abilities": [
+        {
+            "name": "Habilidades",
+            "description": "O Centigor começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 8."
+          },
+      {
+        "name": "Carga Violenta",
+        "description": "O Centigor tem a característica Chifres. Uma ação de movimento de declaração de carga do Centigor não pode ser interceptada."
+      },
+      {
+        "name": "Movimentação Equina",
+        "description": "O Centigor não pode escalar construções, e deve gastar 3 de movimento para cada 1 de movimento em terreno acidentado. Centigors não perdem metade do movimento por carregar Fragmentos de Pedra-Bruxa"
+      }
+    ]
+  },
+  {
+    "id": "ungor",
+    "name": "Ungor",
+    "quantity": "ilimitado",
+    "stats": {
+      "move": 16,
+      "fight": "+2",
+      "shoot": "0",
+      "armour": 10,
+      "will": "-1",
+      "health": 8,
+      "cost": "25 coroas",
+      "equipment": {
+        "hand-to-hand": [
+          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+          { "name": "Maça", "cost": "3 coroas" },
+          { "name": "Martelo", "cost": "3 coroas" },
+          { "name": "Machado de Batalha", "cost": "5 coroas" },
+          { "name": "Lança", "cost": "10 coroas" }
+        ],
+        "ranged": [],
+        "armor": [{ "name": "Escudo", "cost": "5 coroas" }],
+        "acessories": [],
+        "modifiers": []
+      }
+    },
+    "abilities": [
+      {
+        "name": "Descartável",
+        "description": "Ungors são tratados como párias e nunca serão aceitos no círculo de guerreiros de sua Manada. Eles só podem subir 1 ponto em cada atributo e nunca podem aprender Maestrias de Combate."
+      }
+    ]
+  },
+  {
+    "id": "gor",
+    "name": "Gor",
+    "quantity": "0-5",
+    "stats": {
+      "move": 16,
+      "fight": "+3",
+      "shoot": "0",
+      "armour": 10,
+      "will": "-1",
+      "health": 10,
+      "cost": "35 coroas",
+      "equipment": {
+        "hand-to-hand": [
+          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+          { "name": "Porrete", "cost": "3 coroas" },
+          { "name": "Arma de Concussão", "cost": "5 coroas" },
+          { "name": "Machado de Batalha", "cost": "5 coroas" },
+          { "name": "Espada", "cost": "10 coroas" },
+          { "name": "Arma de Haste", "cost": "10 coroas" },
+          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        ],
+        "ranged": [],
+        "armor": [
+          { "name": "Armadura Leve", "cost": "20 coroas" },
+          { "name": "Armadura Pesada", "cost": "50 coroas" },
+          { "name": "Escudo", "cost": "5 coroas" },
+          { "name": "Capacete", "cost": "10 coroas" }
+        ],
+        "acessories": [],
+        "modifiers": []
+      }
+    },
+    "abilities": []
+  },
+  {
+    "id": "cao-guerra-caos",
+    "name": "Cão de Guerra do Caos",
+    "quantity": "0-5",
+    "stats": {
+      "move": 16,
+      "fight": "+1",
+      "shoot": "0",
+      "armour": 10,
+      "will": "-2",
+      "health": 8,
+      "cost": "15 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Bestialidade",
+        "description": "Cães de Guerra do Caos têm a característica Animal."
+      }
+    ]
+  },
+  {
+    "id": "minotauro",
+    "name": "Minotauro",
+    "quantity": "0-1",
+    "stats": {
+      "move": 15,
+      "fight": "+4",
+      "shoot": "0",
+      "armour": 12,
+      "will": "+5",
+      "health": 18,
+      "cost": "200 coroas",
+      "equipment": {
+        "hand-to-hand": [
+          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+          { "name": "Porrete", "cost": "3 coroas" },
+          { "name": "Arma de Concussão", "cost": "5 coroas" },
+          { "name": "Machado de Batalha", "cost": "5 coroas" },
+          { "name": "Espada", "cost": "10 coroas" },
+          { "name": "Arma de Haste", "cost": "10 coroas" },
+          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        ],
+        "ranged": [],
+        "armor": [
+          { "name": "Armadura Leve", "cost": "20 coroas" },
+          { "name": "Armadura Pesada", "cost": "50 coroas" },
+          { "name": "Escudo", "cost": "5 coroas" },
+          { "name": "Capacete", "cost": "10 coroas" }
+        ],
+        "acessories": [],
+        "modifiers": []
+      }
+    },
+    "abilities": [
+      {
+        "name": "Abominação Bovina",
+        "description": "O Minotauro tem as características Grande, Forte, Aterrorizante e Chifres."
+      },
+      {
+        "name": "Sentidos Bestiais",
+        "description": "O Minotauro pode declarar cargas contra criaturas para quem não tem linha de visão, contanto que esteja dentro de 15cm dele."
+      }
+    ]
+  }
+]

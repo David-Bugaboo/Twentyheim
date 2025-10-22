@@ -1,65 +1,66 @@
-import React, { useState } from "react";
-import MobileText from "./MobileText";
+import React, { forwardRef } from "react";
 
 interface CollapsibleSectionProps {
   id?: string;
-  title: string;
+  title: string | React.ReactNode;
   children: React.ReactNode;
   className?: string;
   defaultExpanded?: boolean;
+  titleVariant?: "h1" | "h2" | "h3" | "h4";
 }
 
-const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
-  id,
-  title,
-  children,
-  className = "",
-  defaultExpanded = true,
-}) => {
-  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
-
-  const toggleExpanded = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  return (
-    <section id={id} className={`mb-6 ${className}`}>
-      <div className="relative">
-        <button
-          onClick={toggleExpanded}
-          className="w-full flex items-center justify-between py-3 hover:bg-[#2a1f1f] hover:bg-opacity-30 rounded transition-colors group"
-        >
-          <h2
-            className="text-white text-xl font-bold leading-tight tracking-[-0.015em] text-left flex-1"
-            style={{ fontFamily: "Cinzel, serif" }}
-          >
-            {title}
-          </h2>
-          <div className="text-white flex items-center ml-4 opacity-70 group-hover:opacity-100 transition-opacity">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20px"
-              height="20px"
-              fill="currentColor"
-              viewBox="0 0 256 256"
-              className={`transform transition-transform duration-200 ${
-                isExpanded ? "rotate-180" : "rotate-0"
-              }`}
+const CollapsibleSection = forwardRef<HTMLElement, CollapsibleSectionProps>(
+  (
+    {
+      id,
+      title,
+      children,
+      className = "",
+      defaultExpanded = true,
+      titleVariant = "h2",
+    },
+    ref
+  ) => {
+    return (
+      <section ref={ref} id={id} className={`mb-8 ${className}`}>
+        {/* Título com linha decorativa */}
+        <div className="relative mb-6">
+          {typeof title === "string" ? (
+            <h2
+              className="text-white text-2xl font-bold text-left mb-3"
+              style={{
+                fontFamily: "Cinzel, serif",
+                textTransform: "none",
+                letterSpacing: "0.05em",
+                fontWeight: "700",
+                lineHeight: "1.2",
+              }}
             >
-              <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
-            </svg>
+              <span
+                className="text-3xl inline-block mr-1"
+                style={{ fontFamily: "Cinzel, serif" }}
+              >
+                {title.charAt(0)}
+              </span>
+              {title.slice(1)}
+            </h2>
+          ) : (
+            <div className="text-left mb-3">{title}</div>
+          )}
+
+          {/* Linha decorativa */}
+          <div className="flex items-center justify-start">
+            <div className="w-full h-px bg-gray-400"></div>
           </div>
-        </button>
-        <hr className="border-[#382929] mt-2" />
-      </div>
-      
-      {isExpanded && (
-        <div className="mt-4 space-y-4">
-          {children}
         </div>
-      )}
-    </section>
-  );
-};
+
+        {/* Conteúdo */}
+        <div className="space-y-4">{children}</div>
+      </section>
+    );
+  }
+);
+
+CollapsibleSection.displayName = "CollapsibleSection";
 
 export default CollapsibleSection;

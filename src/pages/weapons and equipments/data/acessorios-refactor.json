@@ -1,0 +1,1493 @@
+[
+  {
+    "roll": null,
+    "id": "aljava",
+    "name": "Aljava",
+    "type": "Armazenamento de Munição",
+    "availability": ["Todos"],
+    "rarity": 1,
+    "damageModifier": null,
+    "purchaseCost": "5 coroas",
+    "exclusive": null,
+    "flavorText": " A aljava é tão essencial quanto o arco - sem ela, você tem um pedaço de madeira curvada inútil. Cada flecha é morte potencial; cada virote, uma vida terminada. Necessária para usar armas a distância, a menos que use munição mágica. Ocupa um espaço de item.\n\nSem aljava, um arco é apenas uma clava cara e desajeitada. Todo arqueiro precisa de uma, e arqueiros experientes mantêm suas flechas afiadas, secas, e prontas para voar verdadeiro. A diferença entre ter munição e estar desarmado é a diferença entre caçador e caçado.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": []
+  },
+  {
+    "roll": null,
+    "id": "bolsa-de-dardos",
+    "name": "Bolsa de Dardos",
+    "type": "Armazenamento de Munição",
+    "availability": ["Todos"],
+    "rarity": 1,
+    "damageModifier": null,
+    "purchaseCost": "5 coroas",
+    "exclusive": null,
+    "flavorText": "A bolsa de dardos é essencial para quem usa zarabatanas - sem ela, você tem apenas um tubo oco inútil. Cada dardo é morte potencial, especialmente quando envenenado. Necessária para usar zarabatanas, a bolsa contém dardos afiados e venenosos, prontos para serem soprados através do tubo. Ocupa um espaço de item e é indispensável para assassinos silenciosos e caçadores furtivos em Mordheim.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": []
+  },
+  {
+    "roll": null,
+    "id": "chifre-de-polvora",
+    "name": "Chifre de Polvora",
+    "availability": ["Todos"],
+    "rarity": 1,
+    "type": "Armazenamento de Munição",
+    "damageModifier": null,
+    "purchaseCost": "10 coroas",
+    "exclusive": null,
+    "flavorText": "Pólvora - o ingrediente que transforma ferro morto em trovão vivo. Acessório necessário para armas de fogo. Contém a pólvora necessária para recarregar e disparar mosquetes, pistolas e bacarmartes. Ocupa um espaço de item.\n\nSem pólvora, uma arma de fogo é apenas metal caro e inútil - um porrete pior que um pedaço de pau. Mantenha sua pólvora seca - molhada, ela não vale nada. Exposta a faíscas ou chamas, ela explode e mata você antes dos inimigos. Cada veterano com armas de fogo tem histórias de tolos que aprenderam essa lição tarde demais.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": []
+  },
+  {
+    "roll": null,
+    "id": "escada",
+    "name": "Escada",
+    "type": "Utilidade",
+    "availability": ["Todos"],
+    "rarity": 1,
+    "damageModifier": null,
+    "purchaseCost": "15 coroas",
+    "exclusive": null,
+    "flavorText": "Uma escada de madeira resistente, essencial para navegar as ruínas de Mordheim. Em uma cidade onde cada prédio é uma fortaleza em potencial, a capacidade de escalar pode significar a diferença entre vida e morte.\n\nEscadas são pesadas e volumosas, mas permitem acesso a posições elevadas estratégicas. Muitos guerreiros experientes carregam uma escada, sabendo que a vantagem do terreno alto pode decidir o resultado de uma batalha. Em Mordheim, onde cada esquina pode esconder perigo, ter uma rota de fuga ou ataque pode salvar sua vida.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Escalável",
+        "value": "Embora seja extremamente volumosa, uma escada é muito útil para se mover por mordheim, provendo uma forma fácil de subir a posições estratégicas de terreno alto. Uma figura em posse de uma escada pode utilizar uma ação para posicioná-la em uma parede específica de alguma peça de terreno. Até o fim do jogo, qualquer figura que escalar essa parede não gasta nenhum movimento extra."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "barricada",
+    "name": "Barricada",
+    "type": "Utilidade",
+    "availability": ["Todos"],
+    "rarity": 10,
+    "damageModifier": null,
+    "purchaseCost": "15 coroas",
+    "exclusive": null,
+    "flavorText": "Uma barricada portátil feita de madeira e metal, projetada para criar cobertura rápida nas ruas de Mordheim. Em uma cidade onde cada esquina pode esconder inimigos, ter proteção móvel pode ser a diferença entre sobreviver e ser abatido.\n\nBarricadas são pesadas e ocupam espaço valioso, mas oferecem proteção crucial contra tiros e ataques. Guerreiros experientes sabem que posicionar uma barricada no momento certo pode virar o rumo de uma batalha. Em Mordheim, onde a sobrevivência depende de cada vantagem, uma barricada bem posicionada pode salvar vidas.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Barreira Móvel",
+        "value": "Uma figura carregando uma barricada conta como se carregasse um fragmento de pedra-bruxa. Uma figura pode gastar uma ação para posicionar uma barricada em contato de base com ela. A barricada tem 5cm de altura, 2.5cm de profundidade e 5cm de comprimento. Barricadas contam como terreno interposto e cobertura. Uma figura pode gastar uma ação para pegar uma barricada, contando como se ocupasse um fragmento de pedra-bruxa. Uma figura deve ter dois espaços de item livres para carregar uma barricada."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "tocha",
+    "name": "Tocha",
+    "type": "Iluminação",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 1,
+    "purchaseCost": "5 coroas",
+    "exclusive": null,
+    "flavorText": "Uma tocha simples de madeira e pano embebido em óleo, essencial para iluminar as sombras de Mordheim. Nas ruínas da cidade amaldiçoada, onde a escuridão esconde perigos mortais, a luz pode ser sua maior aliada.\n\nTochas são baratas e fáceis de fazer, mas duram apenas um jogo. Ainda assim, a capacidade de ver através da escuridão e revelar inimigos furtivos vale o custo. Em Mordheim, onde cada sombra pode esconder morte, uma tocha pode ser a diferença entre ser caçado e ser o caçador.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Iluminar",
+        "value": "Uma tocha deve ser carregada em uma das mãos de uma figura, ocupando a mão que seria usada por um escudo ou arma leve. Uma figura portando uma tocha pode traçar linha de visão para uma figura com a habilidade Furtividade(X) como se X fosse 2 numeros maior. Uma tocha só dura um jogo. Figuras portando tochas não podem se aproveitar do traço Furtividade(X) "
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "lanterna",
+    "name": "Lanterna",
+    "type": "Iluminação",
+    "availability": ["Todos"],
+    "rarity": 7,
+    "damageModifier": null,
+    "purchaseCost": "50 coroas",
+    "exclusive": null,
+    "flavorText": "Uma lanterna de metal alimentada por óleo de baleia, muito mais eficiente que uma tocha comum. Em Mordheim, onde a escuridão é uma inimiga constante, ter iluminação confiável pode salvar sua vida.\n\nLanternas são caras, mas duram indefinidamente e iluminam melhor que tochas. A luz brilhante pode revelar inimigos furtivos e iluminar caminhos seguros através das ruínas. Em uma cidade onde cada sombra pode esconder morte, uma lanterna é um investimento que vale cada coroa.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Iluminar",
+        "value": "Uma lanterna deve ser carregada em uma das mãos de uma figura, ocupando a mão que seria usada por um escudo ou arma leve. Uma figura portando uma lanterna pode traçar linha de visão para uma figura com o traço Furtividade(X) como se X fosse 3 numeros maior. Uma lanterna dura indefinidamente. Figuras portando tochas não podem se aproveitar do traço Furtividade(X) "
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "mina-terrestre",
+    "name": "Mina Terrestre",
+    "type": "Explosivo",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 15,
+    "purchaseCost": "50 coroas",
+    "exclusive": null,
+    "flavorText": "Uma mina terrestre perigosa e letal, contendo pólvora e fragmentos de metal mortais. Em Mordheim, onde cada passo pode ser o último, armadilhas explosivas são uma forma cruel mas eficaz de eliminar inimigos.\n\nMinas terrestres são caras e perigosas de carregar, mas podem causar devastação massiva quando ativadas. A explosão pode eliminar grupos inteiros de inimigos ou criar uma barreira de medo. Em uma cidade onde a sobrevivência depende de cada vantagem, uma mina bem posicionada pode ser a diferença entre vitória e derrota.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Explosivo de Proximidade",
+        "value": " Uma figura que carrega uma mina terrestre conta como carregando um fragmento de pedra-bruxa. Uma figura pode gastar uma ação para posicionar uma mina terrestre em contato de base com ela. Qualquer figura que chege a 3cm de uma mina terrestre recebe um ataque a distância +5."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "amuleto-da-lua",
+    "name": "Amuleto da Lua",
+    "type": "Amuleto",
+    "damageModifier": null,
+    "availability": ["Reptilianos"],
+    "rarity": 20,
+    "purchaseCost": "50 coroas",
+    "exclusive": null,
+    "flavorText": "Este antigo amuleto cria uma aura cintilante ao redor do reptiliano que torna mais difícil para os inimigos vê-las. Forjado sob a luz da lua cheia e consagrado pelos antigos rituais reptilianos, o Amuleto da Lua canaliza os poderes místicos da noite para proteger seu portador.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Furtividade Lunar",
+        "value": "Uma figura equipada com esse amuleto é sempre tratada como estando no mínimo em cobertura leve contra ataques a distância."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "flecha-serpentina",
+    "name": "flecha-serpentina",
+    "type": "Munição",
+    "damageModifier": null,
+    "availability": ["Reptilianos", "Elfos Silvanos de Athel Loren"],
+    "rarity": 0,
+    "purchaseCost": "10 coroas",
+    "exclusive": null,
+    "flavorText": "Feitas dos restos de cobras venenosas, essas flechas são guiadas pelo ar através de magia antiga. Cada flecha serpentina é uma obra de arte mortífera, criada pelos mestres reptilianos que dominam tanto a magia quanto o veneno.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Flecha Envenenanda",
+        "value": "Um ataque feito usando uma flecha envenenada tem a característica Venenoso."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "Estandarte",
+    "name": "Estandarte",
+    "type": "Estandarte",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 16,
+    "purchaseCost": "10 coroas",
+    "exclusive": null,
+    "flavorText": "Muitos bando estabelecidos carregam um estandarte ou bandeira, não apenas para anunciar sua presença, mas também para agir como uma fonte de inspiração durante a batalha.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Estandarte",
+        "value": "Um estandarte requer uma mão para ser usado e pode ser carregado por qualquer herói no bando. Figuras que tenham linha de visão e estejam a pelo menos 14cm do portador ganham +1 de vontade."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "manto-de-pelo-abençoado",
+    "name": "Manto de Pelo Abençoado",
+    "type": "Manto",
+    "damageModifier": null,
+    "availability": [
+      "NMercenários",
+      "Caçadores de Bruxas",
+      "Caçadores de Tesouro Anões",
+      "Elfos Silvanos de Athel Loren",
+      "Guarda Marítima de Ulthuan",
+      "Irmãs de Sigmar"
+    ],
+    "rarity": 14,
+    "purchaseCost": "40 coroas",
+    "exclusive": null,
+    "flavorText": "A pele do animal é usada como uma capa e é um símbolo de honra outrora abençoado pelos hierarcas de Taal.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Iniciativa da Besta Sagrada",
+        "value": "Esse item só pode ser equipado por hérois. Para cada héroi equipado com esse item no bando, ganhe +2 na rolagem de iniciativa, para um máximo de +4 de bonus oferecido pelo item."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "agua-benta",
+    "name": "Água Benta",
+    "type": "Frasco",
+    "damageModifier": null,
+    "availability": [
+      "Todos menos Cortes Vampíricas, Filhos de Hashut, Saqueadores Homem-Fera e Skaven"
+    ],
+    "rarity": 10,
+    "purchaseCost": "20 coroas",
+    "exclusive": null,
+    "flavorText": "Os sacerdotes de Ulric, Sigmar, Mórr e Manann detêm grande poder sobre o mal. Água pura de uma fonte cristalina, abençoada por um desses sacerdotes, é dita queimar inimigos da virtude.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Banir o mal",
+        "value": "Uma figura pode fazer um ataque a distância sagrado contra um inimigo morto-vivo, ou daemônio a até 12cm de distância. O ataque tem modificador de dano +2. O ataque a distância segue as regras normais de uma ação de ataque a distância."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "necronomicon",
+    "name": "Necronomicon",
+    "type": "Livro",
+    "damageModifier": null,
+    "availability": ["Cortes Vampíricas"],
+    "rarity": 20,
+    "purchaseCost": "300 coroas",
+    "exclusive": null,
+    "flavorText": "Este é um livro que contém transcrições das famosas escrituras de Nagash, o Grande Necromante. Suas páginas antigas estão repletas de conhecimento proibido sobre magia das trevas e necromancia.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Conhecimento Necromântico",
+        "value": "Um Vampiro pode aprender uma magia da tradição da necromancia ao usar esse livro. O livro então é perdido."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "Cantil de Couro",
+    "name": "Cantil de Couro",
+    "type": "Bolsa",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 1,
+    "purchaseCost": "5 coroas",
+    "exclusive": null,
+    "flavorText": "Uma bota de couro resistente, tradicionalmente usada para carregar água e outros líquidos.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Armazenamento de Frascos",
+        "value": "O personagem pode equipar até 2 itens extra do tipo frasco, mas ambos devem ser o mesmo item."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "cerveja-de-bugman",
+    "name": "Cerveja de Bugman",
+    "type": "Bebida Alcóolica",
+    "damageModifier": null,
+    "availability": ["Todos exceto Elfos"],
+    "rarity": 16,
+    "purchaseCost": "60 coroas",
+    "exclusive": null,
+    "flavorText": "De todos os mestres cervejeiros Anões, Josef Bugman é o mais famoso. Sua cerveja é conhecida em todo o Velho Mundo e amplamente considerada a melhor.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Cerveja de Batalha",
+        "value": "Um bando que bebe um barril da Cerveja de Bugman durante a fase de atividades da sequência pós jogo será Imune a Aterrorizante durante o próximo jogo. Elfos não podem beber a Cerveja de Bugman, pois são muito delicados para lidar com seus efeitos. Há cerveja suficiente para suprir o bando por uma batalha."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "estrepes",
+    "name": "Estrepes",
+    "type": "Armadilha",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 10,
+    "purchaseCost": "20 coroas",
+    "exclusive": null,
+    "flavorText": "Originalmente usados no campo de batalha para impedir cargas de cavalaria, um caltrop é uma pequena bola de ferro com espinhos. Na Cidade dos Condenados, uma bolsa desses pequenos itens pode ser suficiente para deter qualquer atacante que arrisque ferimentos sérios ao tentar carregar sobre eles.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Fura Botas",
+        "value": "A estrepes suficientes para durar apenas um uso. Podem ser usados quando um oponente que declarou carga se move dentro de 8cm do usuário das estrepes. A figura que está cargando faz um teste de Vontade com CD 14. Se falhar, seu movimento é interrompido, a carga falha, e a figura que estava cargando toma 2 de dano. Ela ainda tem outras ações."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "roupas-de-seda-cathay",
+    "name": "Manto de Seda Cathay",
+    "type": "Manto",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 14,
+    "purchaseCost": "60 coroas",
+    "exclusive": null,
+    "flavorText": "Alguns líderes de bandos ricos gostam de exibir sua riqueza e compram roupas feitas de seda da distante Cathay. Esta seda é o tecido mais caro do mundo conhecido, e usar tais roupas é uma forma certa de atrair atenção - especialmente de ladrões e assassinos!",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Roupas de Luxo",
+        "value": "Qualquer bando Mercenário cujo líder esteja usando roupas de seda pode re-rolar o primeiro teste de debandada falho. No entanto, após cada batalha em que o líder é retirado de ação, role um dado. Em um resultado de 1-10 as roupas são arruinadas e devem ser descartadas."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "bussola",
+    "name": "Bússola",
+    "type": "Ferramenta",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 14,
+    "purchaseCost": "50 coroas",
+    "exclusive": null,
+    "flavorText": "Uma bússola pode ser de grande ajuda para se guiar com mais precisão pelas ruínas aparentemente aleatórias da cidade dos condenados.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Navegação",
+        "value": "Antes de qualquer jogo, depois de rolar para ver quem escolherá primeiro o lado do tabuleiro em que posicionára suas figuras, seu bando pode rolar novamente o resultado e escolher o melhor. Isso só pode ser feito se a figura com a bússola estiver em jogo! Note que apenas uma rolagem extra é permitida, mesmo se múltiplos figuras tiverem uma Bússola, e se ambos os lados tiverem uma então nenhuma rolagem extra é permitido."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "goblin-vigia",
+    "name": "Goblin Vigia",
+    "type": "Servo",
+    "damageModifier": null,
+    "availability": ["Hordas Orcs", "Guarda Costas Ogro"],
+    "rarity": 14,
+    "purchaseCost": "20 coroas",
+    "exclusive": null,
+    "flavorText": "Um pequeno Goblin que serve como vigia para seu mestre Orc. Estes pequenos criados são ágeis e alertas, capazes de avisar seus mestres sobre perigos iminentes.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Servo Vigia",
+        "value": "Só pode ser equipado por hérois. Um orc com um Goblin Vigia ganha a habilidade Reflexos Instantâneos da lista de habilidades de Agilidade."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "goblin-sortudo",
+    "name": "Gnoblar Sortudo",
+    "type": "Servo",
+    "damageModifier": null,
+    "availability": ["Hordas Orcs", "Guarda Costas Ogro"],
+    "rarity": 14,
+    "purchaseCost": "25 coroas",
+    "exclusive": null,
+    "flavorText": "Um Goblin supersticioso que carrega amuletos e talismãs da sorte. Acredita-se que sua presença traz boa fortuna ao seu mestre durante a batalha.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Servo Sortudo",
+        "value": "Só pode ser equipado por hérois. Um orc com um Goblin Sortudo pode uma vez por jogo, rerolar uma rolagem de dado e escolher o melhor resultado."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "goblin-espadachim",
+    "name": "Goblin Espadachim",
+    "type": "Servo",
+    "damageModifier": null,
+    "availability": ["Hordas Orcs", "Guarda Costas Ogro"],
+    "rarity": 16,
+    "purchaseCost": "30 coroas",
+    "exclusive": null,
+    "flavorText": "Um Gnoblar armado com uma pequena espada que luta ao lado de seu mestre. Embora pequeno, pode ser uma surpresa desagradável para inimigos que subestimam sua presença.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Servo Guerreiro",
+        "value": "Só pode ser equipado por hérois. Um orc com um Goblin Espadachim causa 1 de dano extra em ataques corpo a corpo."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "botas-elficas",
+    "name": "Botas Élficas",
+    "type": "Calçado",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 20,
+    "purchaseCost": "100 coroas",
+    "exclusive": null,
+    "flavorText": "Um item raro mas altamente valorizado, as botas élficas são feitas dos melhores materiais. São leves e flexíveis, concedendo ao usuário velocidade quase sobrenatural para igualar a da raça feérica que as criou.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Velocidade Élfica",
+        "value": "As botas élficas aumentam o atributo de movimento da figura equipado em +4. Isso pode levar o valor de movimento de um guerreiro acima de seu limite racial."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "manto-elfico",
+    "name": "Manto Élfico",
+    "type": "Manto",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 20,
+    "purchaseCost": "120 coroas",
+    "exclusive": null,
+    "flavorText": "Feito do cabelo de donzelas élficas e entrelaçado com folhas de árvores vivas, um manto élfico é uma maravilha de se contemplar. Um guerreiro usando tal manto se misturará com as sombras, tornando muito difícil atirar nele com armas de projétil.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Camuflagem Élfica",
+        "value": "Uma figura equipada com um manto élfico ganha a característica Furtividade(12)."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "runas-elficas",
+    "name": "Runas Élficas",
+    "type": "Amuleto",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 11,
+    "purchaseCost": "60 coroas",
+    "exclusive": null,
+    "flavorText": "Os magos Altos Élficos são bem conhecidos como mestres da magia defensiva. Para ajudá-los, desenvolveram várias runas místicas de poder. Frequentemente inscrevem essas runas em pedras semipreciosas, que podem ajudar a fortalecer as defesas mágicas de uma criatura.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Runas Defensivas",
+        "value": "Uma vez por jogo, uma figura equipada com runas élficas pode ganhar +5 em seu teste de Vontade para resistir aos efeitos de uma magia. Pode ser usado depois de saber o resultado da rolagem."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "vinho-elfico",
+    "name": "Vinho Élfico",
+    "type": "Bebida Alcóolica",
+    "damageModifier": null,
+    "availability": [
+      "Elfos Silvanos de Athel Loren",
+      "Guarda Marítima de Ulthuan",
+      "Elfos Sombrios"
+    ],
+    "rarity": 10,
+    "purchaseCost": "50 coroas",
+    "exclusive": null,
+    "flavorText": "Os vinhos Altos Élficos são bem conhecidos por serem os melhores do mundo, e alguns são até rumores de ter qualidades mágicas. Um bom Vinho Élfico pode expulsar dúvidas e medos e deixar uma sensação geral de bem-estar em uma figura.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Vinho de Batalha",
+        "value": "Um bando que bebe Vinho Élfico durante a fase de atividades da sequência pós jogo será Imune a Aterrorizante por toda o próximo jogo que jogar."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "peles-ritualisticas",
+    "name": "Peles Ritualisticas",
+    "type": "Manto",
+    "damageModifier": null,
+    "availability": ["Reptilianos"],
+    "rarity": 10,
+    "purchaseCost": "20 coroas",
+    "exclusive": null,
+    "flavorText": "As peles protetoras e amuletos que os reptlianos usam foram protegidos com magia defensiva. Estes itens ancestrais carregam a bênção dos espíritos de lustria.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Proteção Mágica",
+        "value": "Uma figura equipada com esse manto ganha +1 de armadura. Adicionalmente uma vez durante o jogo, uma magia que tenha a figura usuária como albo é imediatamente cancelada, sem rolagens feitas."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "familiar",
+    "name": "Familiar",
+    "type": "Servo",
+    "damageModifier": null,
+    "availability": ["Apenas Usuários de Magia"],
+    "rarity": 0,
+    "purchaseCost": "50 coroas",
+    "exclusive": null,
+    "flavorText": "Magos são frequentemente solitários, geralmente evitados por aqueles que mal conseguem conceber, muito menos entender, o poder que esses indivíduos possuem. Como tal, frequentemente compartilham suas vidas com companheiros animais, ao invés de seres mais 'conscientes'. Às vezes um vínculo mágico se desenvolve entre um desses animais e o mago, a ponto do mago começar a ver através dos olhos do animal e ouvir seus pensamentos.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "specialRules": [
+      {
+        "label": "Vínculo Mágico",
+        "value": "Familiars não podem ser comprados como equipamento normal. O custo representa materiais para o ritual de invocação. Apenas usuários de magia podem tentar encontrar um familiar. Um mago com um familiar ganha +2 de vida máxima. O mago pode conjurar magias usando o familiar como ponto de origem para calcular linha de visão e alcance."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "flechas-de-fogo",
+    "name": "Flechas de Fogo",
+    "type": "Munição",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 9,
+    "purchaseCost": "35 coroas",
+    "exclusive": null,
+    "flavorText": "Flechas de fogo são amarradas com trapos embebidos em óleo empacotados até uma bolsa apertada que explode ao atingir o alvo, incendiando roupas e equipamentos.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Flechas Incendiárias",
+        "value": "Um ataque feito com uma flecha incendiária ganha a palavra-chave Incendiária(4)."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "bomba-incendiária",
+    "name": "Bomba incendiária",
+    "type": "Explosivo",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 9,
+    "purchaseCost": "30 coroas",
+    "exclusive": null,
+    "flavorText": "Projetada pelos engenheiros anões das Montanhas da Borda do Mundo, as bombas de fogo são uma arma rara e mortal. Uma pequena quantidade de pólvora é selada dentro de uma caixa de ferro com um pavio curto inserido nela.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Bomba Incendiária",
+        "value": "Uma bomba de fogo pode ser lançada como uma arma a distância com 16cm de alcance. Caso acerte, posicione uma ÁREA DE EFEITO (EXPLOSÃO PEQUENA) centralizada no alvo. Todos os modelos dentro da área de efeito recebem um marcador de chamas e sofrem um ataque flamejante +3."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "fogos-de-artificio",
+    "name": "Fogos de Artifício",
+    "type": "Armadilha",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 9,
+    "purchaseCost": "20 coroas",
+    "exclusive": null,
+    "flavorText": "Essas pequenas explosões são fracas demais para incendiar algo ou ferir seres humanos. Bombinhas geram um ruído alto, causando alarme em animais.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Espanta-Besta",
+        "value": "Há fogos de artificio suficiente para durar apenas um uso. Podem ser usados quando uma figura inimigo com a característica Animal que declarou carga se move dentro de 8cm da figura equipada. A figura que está cargando faz um teste de Vontade com CD 16. Se falhar, seu movimento é interrompido, a carga falha e a ativaçãp da figura se encerra imediatamente, quaisquer açòes restantes perdidas."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "polvora-branca",
+    "name": "Pólvora Branca",
+    "type": "Armadilha",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 8,
+    "purchaseCost": "30 coroas",
+    "exclusive": null,
+    "flavorText": "Uma criação antiga dos Anões, a pólvora branca é usado em minas para iluminar fissuras escurecidas na busca por ouro e outros minerais preciosos.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Explosão Cegante",
+        "value": "Há pólvora branca suficiente para durar apenas um uso. Podem ser usados quando um oponente que declarou carga se move dentro de 8cm da figura equipada. A figura que está cargando faz um teste de Vontade com CD 14. Se falhar, seu movimento é interrompido, a carga falha, e a figura que estava cargando tem 0 de Ímpeto e Precisão até o começo da sua próxima ativação. Ela ainda tem outras ações"
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "cabeca-de-alho",
+    "name": "Cabeça de Alho",
+    "type": "Amuleto",
+    "damageModifier": null,
+    "availability": ["Todos exceto Mortos-Vivos"],
+    "rarity": 1,
+    "purchaseCost": "1 coroa",
+    "exclusive": null,
+    "flavorText": "O alho é uma erva comum cultivada na maioria dos jardins do Império. Diz-se que afasta Vampiros e outros habitantes das trevas.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Proteção contra Vampiros",
+        "value": "Um Vampiro deve passar em um teste de Vontade com CD 12 ou será incapaz de declarar carga contra um modelo carregando uma cabeça de alho. O alho sempre apodrece e é descartado após uma batalha."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "livro-de-receitas-halfling",
+    "name": "Livro de Receitas Halfling",
+    "type": "Livro",
+    "damageModifier": null,
+    "availability": ["Todos exceto Mortos-Vivos"],
+    "rarity": 12,
+    "purchaseCost": "40 coroas",
+    "exclusive": null,
+    "flavorText": "Todos os chefs Halflings têm suas próprias receitas secretas, e estas são registradas em tomos escritos à mão em Mootland, o país natal dos Halflings. Comida preparada de acordo com essas receitas atrairá guerreiros durante estes tempos difíceis.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Receitas Secretas",
+        "value": "O número máximo de guerreiros permitidos em seu bando é aumentado em +1 (note que um bando de Mortos-Vivos não pode usar este item)."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "martelo-das-bruxas",
+    "name": "Martelo das Bruxas",
+    "type": "Livro",
+    "damageModifier": null,
+    "availability": ["Caçadores de Bruxas"],
+    "rarity": 18,
+    "purchaseCost": "100 coroas",
+    "exclusive": null,
+    "flavorText": "As páginas neste tomo descrevem os servos do Caos, bruxas, hereges, desviantes, mutantes, feiticeiros, blasfemos, necromantes, pecadores e outros inimigos de Sigmar em toda sua perversidade.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Conhecimento dos Inimigos",
+        "value": "Um Herói equipado com o Martelo das Bruxas ganha a característica Ódio(Skaven, Homens-Fera, Daemônios, Elfos Sombrios, Orcs & Goblins e Irmãs de Sigmar)."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "reliquia-sagrada=profana",
+    "name": "Relíquia Sagrada/Profana",
+    "type": "Relíquia",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 12,
+    "purchaseCost": "20 coroas",
+    "exclusive": null,
+    "flavorText": "Nesta era de superstição e fanatismo religioso, objetos sagrados são uma parte importante da vida. Relíquias abundam no Velho Mundo: cabelos de Sigmar, pedaços do martelo de Ulric, dentes de Príncipes Daemon, todos são vendidos para homens precisando de encorajamento antes da batalha e como amuletos contra feitiçaria.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Proteção Divina",
+        "value": "Um modelo com uma relíquia sagrada ganhará +5 no primeiro teste de Vontade feito durante o jogo. Se usado pelo líder, permitirá que ele ganhe +5 no primeiro teste de debandada feita durante o jogo, mas deve optar por não usar o efeito de ganhar +5 em testes de Vontade. Você só pode ignorar o primeiro teste de Vontade OU Debandada feito no jogo - possuir duas ou mais relíquias sagradas não permitirá que você ignore segundo e subsequentes testes."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "escrituras-sagradas",
+    "name": "Escrituras Sagradas",
+    "type": "Livro",
+    "damageModifier": null,
+    "availability": [
+      "Caçadores de Bruxas",
+      "Irmãs de Sigmar",
+      "Mercenários (Middenheim)"
+    ],
+    "rarity": 16,
+    "purchaseCost": "150 coroas",
+    "exclusive": null,
+    "flavorText": "Livros de orações e descrições dos feitos sagrados de heróis religiosos como Sigmar Heldenhammer são copiados à mão nos scriptoriums de Sigmar e Ulric, e dados ou vendidos aos fiéis. Destes tomos, o Deus Sigmar é o mais comum e bem conhecido, mas outros textos como as Escrituras de Sigmar também são vendidos àqueles que seguem a fé. Um homem santo pode recitar suas orações de tal livro, fortalecendo sua fé e crença.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Orações Sagradas",
+        "value": "Um Sacerdote Guerreiro, Irmã de Sigmar ou Sacerdote Lupino de Ulric equipados com um tomo sagrado adiciona +2 as suas rolagens de conjuração."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "flechas-de-caca",
+    "name": "Flechas de Caça",
+    "type": "Munição",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 14,
+    "purchaseCost": "30 coroas",
+    "exclusive": null,
+    "flavorText": "As melhores flechas de caça são feitas pelos caçadores da floresta de Drakwald. Elas têm pontas afiadas e farpadas que causam dor excruciante quando atingem seu alvo. Um arqueiro habilidoso pode ferir gravemente seu alvo com uma única flecha.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Flechas Farpaadas",
+        "value": "Um modelo usando um Arco Curto, Arco, Arco Longo ou Arco Élfico pode usar essas flechas. Um ataque feito com essas flechas ganha um modificador de dano +2."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "botas-de-ferro",
+    "name": "Botas de Ferro",
+    "type": "Calçado",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 14,
+    "purchaseCost": "25 coroas",
+    "exclusive": null,
+    "flavorText": "Se um guerreiro procurar com determinação suficiente, ele pode ter sorte de encontrar um sapateiro que fará um par de botas de ferro para ele. Elas são mais resistentes que até mesmo as botas ordinárias de Reikland, tão resistentes que podem ser usadas para desferir um ataque de chute vicioso.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Chute de Ferro",
+        "value": "Um guerreiro equipado com botas de ferro sempre conta como equipado com uma adaga, inclusive para fins de lutar com duas armas, mesmo se não tiver nada na mão secundária. Não pode se beneficiar do bonus de lutar com duas armas se tiver um escudo ou uma arma com a característica Duas Mãos equipada. A figura tem -2 de movimento, mesmo se for um anão, devido ao peso das botas."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "lampada-do-djinn",
+    "name": "Lâmpada do Djinn",
+    "type": "Artefato",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 12,
+    "purchaseCost": "60 coroas",
+    "exclusive": null,
+    "flavorText": "Estes são itens excepcionalmente raros que datam da época do Sultão Jaffar. Dizia-se que o Sultão usou magia e ritual sombrio para vincular entidades demoníacas estranhas a objetos mundanos e cotidianos para que ele pudesse invocar seus poderes, mas esconder sua verdadeira identidade.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Três Desejos",
+        "value": "Cada vez que um herói usa a lâmpada, na fase de atividades ela lhe concede três desejos, mas cada vez que você rola na 'Tabela da Luz' você deve rolar na 'Tabela da Escuridão' e aplicar os resultados. \n Tabela da Luz\n 1-4: Ganhe 10 XP,\n 5-9: Ganhe um equipamento aleatório da lista da facção\n10-13:Ganhe um equipamento a sua escolha da lista da facção,\n14-17: Ganhe 1d20x10 coroas,\n18-20: Aprenda uma nova magia ou poder que a figura tenha acesso.\nTabela Sombria:\n 1-4:Nada acontece,\n 5-9: Uma figura aleatória do bando perde todo seu equipamento,\n 10-13:o bando perde 1d20x10 coroas,\n 14-17:A lampada é perdida,\n 18-20:O líder do bando rola na tabela de sobrevivência."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "gazua",
+    "name": "Gazua",
+    "type": "Ferramenta",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 8,
+    "purchaseCost": "15 coroas",
+    "exclusive": null,
+    "flavorText": "Uma peça padrão de equipamento para guerreiros menos escrupulosos. Um conjunto de gazuas pode ser usado por aqueles que dependem mais de habilidade com armas e velocidade de pensamento do que força bruta para abrir portas que outros protegeram.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Arrombamento",
+        "value": "Uma figura equipado com um conjunto de gazuas pode fazer qualquer teste para desbloquear fragmentos de pedra-bruxa trancada com +5 no teste."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "amuleto-da-sorte",
+    "name": "Amuleto da Sorte",
+    "type": "Amuleto",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 6,
+    "purchaseCost": "10 coroas",
+    "exclusive": null,
+    "flavorText": "Estes assumem muitas formas, mas os mais comuns são martelos simbólicos que um Sacerdote Sigmarita piedoso tocou, ou cabeças esculpidas de antigos deuses Anões.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Proteção da Sorte",
+        "value": "A primeira vez que uma figura equipada com um amuleto da sorte é atingida em uma batalha, ela rola um D20. Em um 10+ o ataque é cancelado e nenhum dado é sofrido."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "tapete-magico",
+    "name": "Tapete Mágico",
+    "type": "Manto",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 20,
+    "purchaseCost": "100 coroas",
+    "exclusive": null,
+    "flavorText": "Estes itens maravilhosos de uma era esquecida são ainda mais raros que as lâmpadas do Gênio e pensa-se que se originaram das distantes e há muito mortas Ilhas dos Feiticeiros.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Voo Mágico",
+        "value": "Uma figura equipada com um tapete mágico tem a característica Voador e +4 de movimento. Esse efeito é encerrado até o fim do jogo se a figura sofrer dano flamejante."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "tralha-magica",
+    "name": "Tralha Mágica",
+    "type": "Amuleto",
+    "damageModifier": null,
+    "availability": ["Horda Orc"],
+    "rarity": 18,
+    "purchaseCost": "50 coroas",
+    "exclusive": null,
+    "flavorText": "Estas são coisas aleatórias carregadas pelo Xamã para focar seus poderes. A maioria são pés de morcego, lábios de lagarto e similares, mas ainda parecem fornecer benefícios ao seu proprietário.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Foco Xamânico",
+        "value": "A figura equipada ganha +2 em rolagens de conjuração."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "rede",
+    "name": "Rede",
+    "type": "Rede",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 1,
+    "purchaseCost": "5 coroas",
+    "exclusive": null,
+    "flavorText": "Redes de aço, como aquelas usadas por Lutadores de Arena, podem ser usadas em batalhas.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Captura",
+        "value": "Pode ser atirada como uma arma a distância. Se acertar, o alvo deve imediatamente fazer um teste de Ímpeto com CD 14. Se passar no teste, ele rasga a rede. Se for falhar, ele perde a próxima ativação rasgando a rede. A rede sempre se perde após o uso."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "papagaio",
+    "name": "Papagaio",
+    "type": "Servo",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 16,
+    "purchaseCost": "15 coroas",
+    "exclusive": null,
+    "flavorText": "Squawk! Pedaços de Pedra-Bruxa, Pedaços de Pedra-Bruxa! Um papagaio bem treinado é excelente para distrair oponentes, seja gritando alto para eles ou voando ao redor atrapalhando o caminho.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Distração",
+        "value": "Todos os inimigos em combate com a figura equipada devem fazer um teste de Vontade com CD 12. Se falhar, recebe -2 de Ímpeto na primeira vez que lutar contra a figura equipada."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "pe-de-coelho",
+    "name": "Pé de Coelho",
+    "type": "Amuleto",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 14,
+    "purchaseCost": "10 coroas",
+    "exclusive": null,
+    "flavorText": "O pé de coelho é um símbolo de boa sorte e frequentemente usado no pescoço em um cordão de couro fino por guerreiros supersticiosos.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Sorte do Coelho",
+        "value": "Um pé de coelho permite que uma vez por jogo o guerreiro ganhe +5 em qualquer rolagem de dadoo durante a batalha. Se não usado na batalha, pode ser usado para rolar novamente o dado de exploração desse héroi e escolher o melhor resultado."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "rosario",
+    "name": "Rosário",
+    "type": "Amuleto",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 10,
+    "purchaseCost": "10 coroas",
+    "exclusive": null,
+    "flavorText": "Um rosário é feito de contas de pedra ou marfim e outros ornamentos abençoados alinhados em uma corrente. Ajuda a concentrar enquanto ora ou medita.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Concentração",
+        "value": "Um conjurador de orações equipado com um rosário ganha +5 em uma rolagem de conjuração falhada se gastar uma ação como reação (pode substituir a ação de movimento) para horar. Um Rosário não pode ser usado em combate."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "anel-do-escorpiao",
+    "name": "Anel do Escorpião",
+    "type": "Anel",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 19,
+    "purchaseCost": "15 coroas",
+    "exclusive": null,
+    "flavorText": "Um anel mágico que pode invocar escorpiões do deserto para lutar ao lado do portador.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Invocação",
+        "value": "No início da batalha, o guerreiro é capaz de invocar um único Escorpião da Tumba. Se ele for capaz de passar em um teste cotestado de Vontade contra o escorpião, o escorpião é invocado como membro temporário do bando. Se falhar, o escorpião é uma criatura descontrolada."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "manto-do-dragao-marinho",
+    "name": "Manto do Dragão Marinho",
+    "type": "Manto",
+    "damageModifier": null,
+    "availability": ["Elfos Sombrios", "Guarda Marítima de Ulthuan"],
+    "rarity": 16,
+    "purchaseCost": "60 coroas",
+    "exclusive": null,
+    "flavorText": "Corsários Elfos Sombrios e Guardas Marinhos de Ulthuan usam mantos especiais feitos de Monstros Marinhos que habitam as profundezas dos oceanos. Estes mantos são resistentes e oferecem aos Elfos uma quantidade muito boa de proteção.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Escamas Protetoras",
+        "value": "A figura equipada ganha +2 de Armadura contra ataques a distância."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "bomba-de-fumaca",
+    "name": "Bomba de Fumaça",
+    "type": "Arma de Arremesso",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 16,
+    "purchaseCost": "35 coroas",
+    "exclusive": null,
+    "flavorText": "Os Cathayans são especialistas em trabalhar com pólvora, venenos e outros ingredientes naturais estranhos muito superiores a qualquer coisa conhecida pelos alquimistas do Velho Mundo. Bombas de fumaça são especialmente populares com ladrões e assassinos.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Cortina de Fumaça",
+        "value": "A figura equipada pode posicionar uma ÁREA DE EFEITO(ZONA MÉDIA) a até 10cm de si. A Zona bloqueia linha de visão para fora e para dentro. Figuras dentro da Zona tem 0 de Ímpeto e 0 de Precisão. No final de cada turno role um dado. Em 1-8 a novem de fumaça se dissipa."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "aguilhão-de-pe-duro",
+    "name": "Aguilhão de Pé Duro",
+    "type": "Ferramenta",
+    "damageModifier": null,
+    "availability": ["Hordas Orc"],
+    "rarity": 1,
+    "purchaseCost": "15 coroas",
+    "exclusive": null,
+    "flavorText": "Este item é uma haste longa com um trio de espinhos na ponta. É usado por pastores de Pé-Duro para manter seu gado na linha. Pés-Duros da cavernas reconhecerão um aguilhão e automaticamente obedecerão ao portador, lembrando a dor de serem furados pelo aguilhão.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Controle de Squig",
+        "value": "Um Goblin com um aguilhão de squig pode manter todos os Cave Squigs dentro de 12\" de ficarem selvagens, ao invés dos normais 6\". Além disso, um aguilhão de squig é tratado exatamente como uma lança em combate corpo a corpo."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "polvora-superior",
+    "name": "Pólvora Superior",
+    "type": "Recurso",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 19,
+    "purchaseCost": "30 coroas",
+    "exclusive": null,
+    "flavorText": "O modelo adquiriu uma pólvora de melhor qualidade do que normalmente disponível.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Qualidade Superior",
+        "value": "Todas as armas a distância usadas pelo bando no próximo jogo ganham um bônus de +1 ao dano."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "cartas-de-tarot",
+    "name": "Cartas de Tarot",
+    "type": "Livro",
+    "damageModifier": null,
+    "availability": ["Todos exceto Caçadores de Bruxas e Irmãs de Sigmar"],
+    "rarity": 14,
+    "purchaseCost": "50 coroas",
+    "exclusive": null,
+    "flavorText": "Embora declarado blasfemo e ilegal pelo Grande Teogonista, o Tarot das Estrelas é dito prever o futuro para aqueles que ousam consultá-lo. Não disponível para Caçadores de Bruxas ou Irmãs de Sigmar.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Previsão",
+        "value": "Um Herói com um baralho de cartas de tarot pode consultá-las antes de cada jogo. Faça um teste de Vontade CD 15. Se bem-sucedido, o Herói ganha uma visão favorável do futuro e você pode modificar o resultado de qualquer dado na fase de Exploração por -3/+3. Se o teste de Liderança falhar por 6 ou mais, o Herói se recusa a lutar na próxima batalha."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "telescopio",
+    "name": "Telescópio",
+    "type": "Ferramenta",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 18,
+    "purchaseCost": "90 coroas",
+    "exclusive": null,
+    "flavorText": "Comum aos grandes astrônomos nos observatórios em Nuln, telescópios são um item útil, embora altamente raro, para ter na Cidade dos Condenados. A visão aguçada oferecida por estes instrumentos torna o tiro mais fácil e dá uma consciência incomparável do ambiente do guerreiro.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Visão Aprimorada",
+        "value": "Qualquer herói usando um telescópio pode aumentar o alcance de qualquer ataque a distância que ele esteja usando em 10cm. Além disso, ele trata a característica Furtividade(X) de qualquer figura inimiga que possa ver como Furtividade(X*3)."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "tomo-de-magia",
+    "name": "Tomo de Magia",
+    "type": "Livro",
+    "damageModifier": null,
+    "availability": ["Todos exceto Caçadores de Bruxas e Irmãs de Sigmar"],
+    "rarity": 20,
+    "purchaseCost": "300 coroas",
+    "exclusive": null,
+    "flavorText": "Às vezes livros de conhecimento proibido são oferecidos para venda nos mercados e becos escuros dos assentamentos ao redor de Mordheim.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Conhecimento Proibido",
+        "value": "Se o bando inclui uma figura capaz de conjurar magias de Tradições Arcanas, ela aprende uma magia de uma de suas tradiçòes. O livro é então descartado."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "anel-de-ramo-de-mandragora",
+    "name": "Anel de Ramo de Mandragora",
+    "type": "Anel",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 18,
+    "purchaseCost": "25 coroas",
+    "exclusive": null,
+    "flavorText": "Um anel mágico que torna o portador imune aos efeitos de todos os venenos.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Imunidade ao Veneno",
+        "value": "O Anel do Veneno dá a figura equipada a característica Imune a Veneno."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "provisoes",
+    "name": "Provisões",
+    "type": "Recurso",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 1,
+    "purchaseCost": "8 coroas",
+    "exclusive": null,
+    "flavorText": "Comida e suprimentos essenciais para manter o bando alimentado durante as expedições em Mordheim.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Sustento",
+        "value": "Se o bando vender Tesouros, o bando é considerado um tamanho menor (então um bando com 10-12 membros é considerado composto por 7-9 membros). Um bando pode usar quantas provisões desejar, mas o tamanho do bando não pode ser considerado menor que 1-3 modelos."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "chifre-de-guerra",
+    "name": "Chifre de Guerra",
+    "type": "Instrumento",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 15,
+    "purchaseCost": "40 coroas",
+    "exclusive": null,
+    "flavorText": "O som estridente de uma corneta de guerra pode ser suficiente para inflamar os corações de qualquer bando que esteja tentando encorajar. Concede coragem aos homens e lhes dá a vontade de lutar desafiadoramente.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Encorajamento",
+        "value": "Uma corneta de guerra pode ser usada uma vez por batalha no início de qualquer turno. Durante o turno em que foi usado, todas as criaturas do bando ganham +1 de Vontade e ignoram a condição Ferido."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "carrinho-de-mao",
+    "name": "Carrinho de Mão",
+    "type": "Veículo",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 6,
+    "purchaseCost": "5 coroas",
+    "exclusive": null,
+    "flavorText": "Provavelmente o melhor amigo do aventureiro, carrinhos de mão permitem transporte conveniente de todos os tipos de objetos volumosos como baús de tesouro e barris de pólvora.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Transporte",
+        "value": "Um carrinho de mão é colocado no tabuleiro como qualquer outro modelo. Um Herói ou Soldado que não seja um animal pode empurrar um carrinho de mão enquanto estiver em contato de base com ele. Empurrar um carrinho de mão não afeta o movimento normal de uma figura. Um fragmento de pedra-bruxa pode ser carregando no carrinho de mão com uma ação de uma figura o carregando. Ele continua podendo ser empurrado sem afetar o movimento final da figura que o empurra."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "manto-do-lobo",
+    "name": "Manto do Lobo",
+    "type": "Manto",
+    "damageModifier": null,
+    "availability": [
+      "Mercenários(Middenheim)"
+    ],
+    "rarity": 0,
+    "purchaseCost": "10 coroas",
+    "exclusive": null,
+    "flavorText": "Em Middenheim ainda é considerado a façanha de um verdadeiro homem matar um grande lobo com as próprias mãos. Guerreiros que conseguem tal feito comandarão o respeito de seus pares, e seus mantos serão abençoados pelo Alto Sacerdote do Culto de Ulric, o deus do inverno, guerra e lobos.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": "Teste de Força para adquirir",
+    "specialRules": [
+      {
+        "label": "Proteção do Lobo",
+        "value": "Para adquirir um Manto do Lobo, um Herói deve pagar 10 coroas para viajar para Middenheim e fazer um teste de Força CD 14. Se bem-sucedido, o Herói encontra e mata o lobo e pode usar sua pele como marca de sua habilidade e proeza. Um modelo usando um Manto do Lobo ganhará +2 de armadura contra ataques a distância."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "pendulo-de-pedra-bruxa",
+    "name": "Pêndulo de Pedra-Bruxa",
+    "type": "Fetiche",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 9,
+    "purchaseCost": "35 coroas",
+    "exclusive": null,
+    "flavorText": "Pêndulos feitos de pedra-bruxa podem supostamente ser usados para encontrar ainda mais da pedra mágica.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Busca Mística",
+        "value": "Se um héroi equipado com esse item não foi reduzido a 0 de vida na partida anterior, ele pode fazer um teste de vontade CD 14. Se bem-sucedido, quaisquer dados rolados na atividade de exploração podem ser rolados duas vezes e o melhor resultado escolhido."
+      }
+    ]
+  }
+]

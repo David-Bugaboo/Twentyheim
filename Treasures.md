@@ -1,5 +1,3 @@
-
-
 Amulet of Atunement  
 This large, golden amulet features a central cabochon that changes colour  
 depending upon the wearer and their connection to the mystical arts. This item  
@@ -50,7 +48,7 @@ Chameleon, Philtre of Fairy Dust, Potion of Healing, and Potion of Preservation.
 A figure wearing this cloak may spend an action to drink any of these potions  
 or to give it to a member of its warband that is standing within 1”. Each potion  
 is one-use and should be crossed off the cloak once consumed. Each potion  
-consumed decreases the sale price of the cloak by 100gc.  
+consumed decreases the sale price of the cloak by 100 coroas.  
 Crystal Sphere  
 These perfect glass orbs sometimes contain a streak of colour running through  
 the centre. Although they look like fancy decorations, they are actually focusing  
@@ -59,7 +57,7 @@ a spellcaster that knows at least one Soothsayer spell. A newly found or
 purchased crystal sphere contains 6 points of power that can only be applied  
 when casting or resisting Soothsayer spells. Once the power points have been  
 expended, the sphere is of no further use other than as a decoration. If a crystal  
-sphere is sold, its selling price is equal to 20gc times the number of points of  
+sphere is sold, its selling price is equal to 20 coroas times the number of points of  
 power remaining.  
 Cold Iron Armour  
 This jet-black, magic heavy armour has been made specifically to combat  
@@ -77,7 +75,7 @@ dust, the effect will end at the end of the same activation in which it used the
 dust. Once used, the dust is expended and should be crossed off the Wizard  
 Sheet. When found or purchased, two pouches of dust are obtained. Each  
 pouch counts as a separate item. If sold individually, each pouch has a sale  
-price of 75gc.  
+price of 75 coroas.  
 T he Duellist’s Net  
 This item looks like a small, normal net. When a figure carrying this net is in  
 combat, it may activate the net as a free action at any time (including  
@@ -124,7 +122,7 @@ Game spells. Once the imprinted spell is cast, the scroll is destroyed and shoul
 be crossed off the Wizard Sheet.  
 When found or purchased, two golden scroll sheets are found. Each sheet  
 counts as a separate item. If sold individually, each sheet has a sell price of  
-75gc.  
+75 coroas.  
 88  
 Holy Candle  
 This rune-marked candle rests on a small golden plate, with a wooden handle  
@@ -167,7 +165,7 @@ into combat. This skeleton is an uncontrolled creature and will activate in the
 Creature Phase as normal. Once used, the sack is expended and is crossed off  
 the Wizard Sheet. When found or purchased, a player obtains two of these  
 sacks. Each counts a separate item and can be carried by different figures.  
-When sold, each single sack has a sell price of 100gc.  
+When sold, each single sack has a sell price of 100 coroas.  
 Staff of Wilful Ignorance  
 This highly polished wooden staff is inscribed with simple letters in the  
 common alphabet. At first glance, it appears more like a teaching aid than a  
@@ -252,7 +250,7 @@ spell while in combat. If the caster rolls a natural 1 on their casting roll whe
 using the obliteration orb, then the caster immediately suffers a \+5 elemental  
 magic attack and the orb is destroyed. The spellcaster using the orb never suffers  
 an attack from it.  
-Any time between games, a wizard can pay 300gc to have this orb affixed to  
+Any time between games, a wizard can pay 300 coroas to have this orb affixed to  
 a staff (magic or otherwise). In this case, it no longer takes up an item slot.  
 However, if the orb is ever destroyed, the staff to which it is affixed is also  
 destroyed.  
@@ -430,7 +428,7 @@ if the sword causes damage to a demon during a game, the wielder receives \+1 to
 Casting Roll if he attempts to cast Summon Demon Out of Game. This effect only  
 applies to the Out of Game sequence that occurs directly after the game in which the  
 sword damaged a demon. The blade also includes the True Name of the demon lord,  
-Tiszirain. The sword can be sold for 300gc. It cannot be purchased.  
+Tiszirain. The sword can be sold for 300 coroas. It cannot be purchased.  
 CROSSBOW OF FORCE  
 Any figure that is hit by the Crossbow of Force is pushed back 1”, even if that hit  
 causes no damage.  
@@ -564,7 +562,7 @@ from this device in the same way as using Health to empower a spell. Once
 these points of power are used up, they may not be replenished and the  
 construct battery should be crossed off the wizard sheet.  
 The cost and sale price listed for this item are for a fully charged battery. If  
-selling a partially used battery, the sale price is 30gc x the number of power  
+selling a partially used battery, the sale price is 30 coroas x the number of power  
 points remaining.  
 Construct Key  
 This magic key can only be carried by a spellcaster. The spellcaster gains \+4 on  
@@ -575,7 +573,7 @@ metal. A figure within 1” of a friendly construct may spend an action and appl
 the patch, provided neither figure is in combat. The construct immediately  
 regains up to 6 points of lost Health. If found or purchased, this item comes  
 with two patches. Each patch takes up an item slot. If sold, the wizard receives  
-50gc per patch.  
+50 coroas per patch.  
 74  
 Endless Tea Flask  
 This highly sought-after magic item is filled with warm, fragrant, and delicious  
@@ -613,7 +611,7 @@ distance that they fell.
 Jumping beans cannot be used by constructs, undead, animals, or demons.  
 A figure which finds or purchases jumping beans receives five doses and can  
 carry up to five doses in one item slot. If the beans are sold, the player receives  
-25gc for each bean.  
+25 coroas for each bean.  
 Necklace of Protection  
 Once per game, a figure wearing this necklace may spend an action to use it.  
 The necklace creates a Circle of Protection, following all the same rules as for  
@@ -786,26 +784,26 @@ to make any Will Rolls due to freezing weather, it passes them automatically.
 Wildwoods Magic Items  
 Wildwoods Magic Item Table  
 Die Roll Treasure Purchase Price Sale Price  
-1 Bag of Snacks 100gc 80gc  
-2 Animal Mind Leash 300gc 100gc  
-3 Magical Rope Ladder 400gc 125gc  
-4 Construct Cook 300gc 150gc  
-5 Quiver of the Wind Goddess 300gc 125gc  
-6 Heartshield Amulet 400gc 200gc  
-7 Elemental Bear Trap 300gc 150gc  
-8 Golden Wings 300gc 150gc  
-9 Utility Boots 250gc 100gc  
-10 Potion Bandolier 300gc 150gc  
-11 Golden Mead 200gc 100gc  
-12 Teleportation Collar 400gc 200gc  
-13 Stinkweed Extract (4) 400gc 100gc  
-14 Beartooth Talisman 600gc 200gc  
-15 Glitter Dust 300gc 100gc  
-16 Animal Whistle 400gc 150gc  
-17 Demonic Talisman 600gc 200gc  
-18 Locket of Broken Promises 500gc 250gc  
-19 Book of Charts 400gc 200gc  
-20 Talisman of Undead 600gc 200gc  
+1 Bag of Snacks 100 coroas 80 coroas  
+2 Animal Mind Leash 300 coroas 100 coroas  
+3 Magical Rope Ladder 400 coroas 125 coroas  
+4 Construct Cook 300 coroas 150 coroas  
+5 Quiver of the Wind Goddess 300 coroas 125 coroas  
+6 Heartshield Amulet 400 coroas 200 coroas  
+7 Elemental Bear Trap 300 coroas 150 coroas  
+8 Golden Wings 300 coroas 150 coroas  
+9 Utility Boots 250 coroas 100 coroas  
+10 Potion Bandolier 300 coroas 150 coroas  
+11 Golden Mead 200 coroas 100 coroas  
+12 Teleportation Collar 400 coroas 200 coroas  
+13 Stinkweed Extract (4) 400 coroas 100 coroas  
+14 Beartooth Talisman 600 coroas 200 coroas  
+15 Glitter Dust 300 coroas 100 coroas  
+16 Animal Whistle 400 coroas 150 coroas  
+17 Demonic Talisman 600 coroas 200 coroas  
+18 Locket of Broken Promises 500 coroas 250 coroas  
+19 Book of Charts 400 coroas 200 coroas  
+20 Talisman of Undead 600 coroas 200 coroas  
 65  
 ANIMAL MIND LEASH  
 If a figure carrying this item wins a round of combat versus an uncontrolled  
@@ -979,7 +977,7 @@ REAVER’S SWORD
 This is a unique magic hand weapon that does \+2 damage.  
 Furthermore, it gives the user \+1 Move if they are wearing mail  
 armour. This may not take their total Move stat above 7\. This sword  
-cannot be bought but can be sold for 250gc.  
+cannot be bought but can be sold for 250 coroas.  
 RING OF COMMAND  
 This large silver ring holds a sparkling violent amethyst and grants the  
 wearer a very limited form of telepathy. It may only be worn by a  
@@ -1077,7 +1075,7 @@ standing.
 BOOK OF CHARITY  
 Before any game, a wizard with at least one Thaumaturge spell may read  
 from the Book of Charity. The wizard gains \+5 experience points after the  
-game if he donates 20gc to a charitable cause. A wizard may not keep a  
+game if he donates 20 coroas to a charitable cause. A wizard may not keep a  
 Book of Murders and a Book of Charity in his vault at the same time.  
 BOOK OF MURDERS  
 Before any game, a wizard with at least one Necromancer spell may read  
@@ -1088,7 +1086,7 @@ BOOK OF THE PENTANGLE
 If a wizard has a Book of the Pentangle in his vault, whenever he uses a  
 scroll containing a Lost Magic spell, treat the Casting Roll of the spell as  
 13 instead of the normal 12\. Additionally, every time the wizard sells a  
-Lost Magic scroll he receives an extra 10gc.  
+Lost Magic scroll he receives an extra 10 coroas.  
 BRACERS OF TRUE FLIGHT  
 These enchanted bracers can only be worn by a javelineer, and grant \+1  
 Fight, \+1 Shoot, and \+1 Move.  
@@ -1107,7 +1105,7 @@ GEM HAMMER
 This is a small, enchanted jeweller’s hammer. It is useless as a weapon. If it  
 is carried by a thief during a game, and that thief reaches the end of the  
 game without being reduced to 0 Health, the warband gains an additional  
-20gc.  
+20 coroas.  
 GLOVES OF THE PALADIN  
 While wearing these gloves, any hand weapon wielded by the figure  
 counts as magic for the purpose of damaging creatures that are immune to  
@@ -1189,7 +1187,7 @@ ignored and no permanent injury is suffered.
 amulet of tHe GHoul KinG  
 This is a rare artefact that may only be obtained by playing the Lair of the Ghoul  
 King scenario, or by trading for it from a player who got it by those means. It may  
-not be purchased, but it may be sold for 500gc. The Amulet of the Ghoul King  
+not be purchased, but it may be sold for 500 coroas. The Amulet of the Ghoul King  
 gives the wearer a \+1 to all Will rolls. Furthermore, it grants a \+2 to the casting  
 roll when casting Control Undead on a ghoul. Finally, if the wearer successfully  
 casts a Raise Zombie spell Out of Game, then a ghoul may be added to his  
@@ -1200,7 +1198,7 @@ Only a wizard may use this magical text. Following the instructions contained
 within this volume, a wizard may use the Raise Zombie spell to create an animated  
 skeleton instead. The wizard simply casts cast Raise Zombie in the normal way, but  
 instead of a zombie, a skeleton is added to the warband. If this spell is successfully  
-cast Out of Game, the wizard has the option of paying 30gc to upgrade the  
+cast Out of Game, the wizard has the option of paying 30 coroas to upgrade the  
 skeleton to an armoured skeleton. The warband may still only contain one zombie,  
 skeleton, or armoured skeleton at any one time. The wizard does not need to be  
 carrying the book to use this ability, it may be stored in his vault.  
@@ -1210,7 +1208,7 @@ This non-magical book is the most complete text ever written about the rangifer
 and covers their physiognomy, culture, and what little of their history is known.  
 It also includes a large section on their language, providing the basics for human–  
 rangifer communication. A wizard that possesses a Book of the Rangifer may  
-include one rangifer (see Bestiary, p.57) in his warband at a cost of 100gc. The  
+include one rangifer (see Bestiary, p.57) in his warband at a cost of 100 coroas. The  
 rangifer takes the place of a soldier and is treated in all respects as a soldier and  
 not as a creature. As rangifers hate the undead, they will not serve in a warband  
 that includes these creatures. A wizard with a rangifer in his warband may take  
@@ -1254,7 +1252,7 @@ Although listed as a magic item here, the Dark Cauldron really functions as an
 addition to a wizard’s base. A wizard must have an established base to use the  
 item. The Dark Cauldron provides a \+1 to all Create Zombie and Revenant  
 spells cast Out of Game. The Dark Cauldron cannot be purchased but may be  
-sold for 250gc.  
+sold for 250 coroas.  
 eyes of amoto  
 This is a set of two amulets, one to be worn by a spellcaster, and one to be worn  
 by any other member of the warband. Each amulet takes up an item slot for the  
@@ -1268,7 +1266,7 @@ it must indicate which models have which set.
 f iRe HeaRt Gemstone  
 This rare, magical gemstone can only be obtained by playing the The House of  
 Longreach scenario or by trading for it from a player who obtained it by those  
-means. It cannot be purchased but may be sold for 400gc. If the gemstone is  
+means. It cannot be purchased but may be sold for 400 coroas. If the gemstone is  
 carried by a spellcaster, he may transfer to the gemstone up to 3 points of damage  
 he suffers from an attack, and must declare that he is doing so as soon as the  
 damage is taken. The spellcaster may use the gemstone as many times as he  
@@ -1309,7 +1307,7 @@ into its surface. When it is found, roll randomly to see what spell is holds
 exceptions. It may be used once per game. After it is used, roll a die. On a 19 or  
 20, the Ivory Scroll cracks and is destroyed. On any other result, it survives the  
 casting and can be used again the next game. An Ivory Scroll may be sold for  
-200gc, but can never be purchased.  
+200 coroas, but can never be purchased.  
 maGic spectacles  
 These Magic Spectacles appear to be a normal set of eyeglasses. The lenses offer  
 no magnification, but they do allow the wearer to see things that are otherwise  
@@ -1374,255 +1372,254 @@ when used.
 
 lich lord treasure table  
 d20 roll Item Purchase Price  
-1 Wraithbottle 200gc  
-2 Magic Spectacles 250gc  
-3 Sword of Undead Slaying 300gc  
-4 Horn of Hellfire 400gc  
-5 Vampire Blade 300gc  
-6 Quiver of the Soul Seeker 300gc  
-7 Boots of Leaping 250gc  
-8 Eyes of Amoto 300gc  
-9 Ring of Life 400gc  
-10 Unbreakable Orb 300gc  
+1 Wraithbottle 200 coroas  
+2 Magic Spectacles 250 coroas  
+3 Sword of Undead Slaying 300 coroas  
+4 Horn of Hellfire 400 coroas  
+5 Vampire Blade 300 coroas  
+6 Quiver of the Soul Seeker 300 coroas  
+7 Boots of Leaping 250 coroas  
+8 Eyes of Amoto 300 coroas  
+9 Ring of Life 400 coroas  
+10 Unbreakable Orb 300 coroas  
 11 Ivory Scroll –  
-12 Scarf of Obscurance 350gc  
-13 Vial of Starlight (10) 600gc  
-14 Crystal Rose 400gc  
-15 Club of Battering 300gc  
-16 Book of Bones 500gc  
-17 Book of the Rangifer 300gc  
+12 Scarf of Obscurance 350 coroas  
+13 Vial of Starlight (10) 600 coroas  
+14 Crystal Rose 400 coroas  
+15 Club of Battering 300 coroas  
+16 Book of Bones 500 coroas  
+17 Book of the Rangifer 300 coroas  
 18 Grimoire of the Revenant –  
 19 Grimoire of the Homunculus –  
 20 Grimoire of Lichdom –
 
 Maze of Malcor Treasure Table  
 First Die Roll Second Die Roll Result Purchase Price  
-1–10 1 Scroll Case 150gc  
-2 Potion Bag 150gc  
-3 Wand of Casting (10) 400gc  
-4 Firehelm 400gc  
-5 Construct Crossbow 250gc  
-6 Wand of Lost Magic (3) 400gc  
-7 Mind Lock Ring 500gc  
-8 Timelash Ring 400gc  
-9 Miracle Stone 500gc  
-10 Lycanthrope Serum 400gc  
-11 Arrow Magnet 100gc  
-12 Belt of Blade-breaking 300gc  
-13 Gem Hammer 100gc  
-14 Eye of Malcor 300gc  
-15 Invisible Wire 200gc  
-16 Troll Shackles 500gc  
-17 Bearclaw Pendant 250gc  
-18 Ring of Fog Form 350gc  
-19 Boots of Standfirm 300gc  
-20 Sky Gondola 1000gc  
-11–20 1 Bloodstone Amulet 100gc  
-2 Sickle of the Crowmaster 300gc  
-3 Construct Varnish 250gc  
-4 Karmic Belt 250gc  
-5 Leash Arrow 100gc  
-6 Bracers of True Flight 300gc  
-7 Black Pipe 250gc  
-8 Sandalwood Brace 200gc  
-9 Gloves of the Paladin 200gc  
-10 Backpack of Hefty Haulage 300gc  
-11 Porter Control Rod 300gc  
-12 Ring Chain 250gc  
-13 Amulet of True Paths 300gc  
-14 Partially Gnawed Grimoire 300gc  
-15 Tookroot (5) 100gc  
-16 Bladed Staff of Fire 350gc  
-17 Book of Murders 350gc  
-18 Flicker Stone 400gc  
-19 Book of Charity 350gc  
-20 Book of the Pentangle 1000gc
+1–10 1 Scroll Case 150 coroas  
+2 Potion Bag 150 coroas  
+3 Wand of Casting (10) 400 coroas  
+4 Firehelm 400 coroas  
+5 Construct Crossbow 250 coroas  
+6 Wand of Lost Magic (3) 400 coroas  
+7 Mind Lock Ring 500 coroas  
+8 Timelash Ring 400 coroas  
+9 Miracle Stone 500 coroas  
+10 Lycanthrope Serum 400 coroas  
+11 Arrow Magnet 100 coroas  
+12 Belt of Blade-breaking 300 coroas  
+13 Gem Hammer 100 coroas  
+14 Eye of Malcor 300 coroas  
+15 Invisible Wire 200 coroas  
+16 Troll Shackles 500 coroas  
+17 Bearclaw Pendant 250 coroas  
+18 Ring of Fog Form 350 coroas  
+19 Boots of Standfirm 300 coroas  
+20 Sky Gondola 1000 coroas  
+11–20 1 Bloodstone Amulet 100 coroas  
+2 Sickle of the Crowmaster 300 coroas  
+3 Construct Varnish 250 coroas  
+4 Karmic Belt 250 coroas  
+5 Leash Arrow 100 coroas  
+6 Bracers of True Flight 300 coroas  
+7 Black Pipe 250 coroas  
+8 Sandalwood Brace 200 coroas  
+9 Gloves of the Paladin 200 coroas  
+10 Backpack of Hefty Haulage 300 coroas  
+11 Porter Control Rod 300 coroas  
+12 Ring Chain 250 coroas  
+13 Amulet of True Paths 300 coroas  
+14 Partially Gnawed Grimoire 300 coroas  
+15 Tookroot (5) 100 coroas  
+16 Bladed Staff of Fire 350 coroas  
+17 Book of Murders 350 coroas  
+18 Flicker Stone 400 coroas  
+19 Book of Charity 350 coroas  
+20 Book of the Pentangle 1000 coroas
 
 Blood Legacy Treasure Table  
 Die Roll Treasure Purchase Price Sale Price  
-1 Misticene Quiver 350gc 175gc  
-2 Dancing Dagger 500gc 200gc  
-3 Ring of Foresight 500gc 250gc  
-4 Planebreaker Hammer 500gc 200gc  
-5 Magic Dog Whistle 300gc 125gc  
-6 Balancing Staff 200gc 100gc  
-7 Shield of the Paladin 400gc 150gc  
-8 Ring of Recall 450gc 200gc  
-9 Ring Sabre 550gc 260gc  
-10 Spitfire Wand 400gc 150gc  
-11 Firefairy 200gc 75gc  
-12 Living Quill 400gc 150gc  
-13 Obliteration Orb 400gc 150gc  
-14 Demonic Vessel 500gc 220gc  
-15 Shielding Pendant 300gc 150gc  
-16 Staff of Radiance 400gc 175gc  
-17 Winged Bracelet 300gc 150gc  
-18 Two-headed Wand 300gc 150gc  
-19 Falconeye Mask 300gc 150gc  
-20 Devouring Skull Ring 400gc 200gc
+1 Misticene Quiver 350 coroas 175 coroas  
+2 Dancing Dagger 500 coroas 200 coroas  
+3 Ring of Foresight 500 coroas 250 coroas  
+4 Planebreaker Hammer 500 coroas 200 coroas  
+5 Magic Dog Whistle 300 coroas 125 coroas  
+6 Balancing Staff 200 coroas 100 coroas  
+7 Shield of the Paladin 400 coroas 150 coroas  
+8 Ring of Recall 450 coroas 200 coroas  
+9 Ring Sabre 550 coroas 260 coroas  
+10 Spitfire Wand 400 coroas 150 coroas  
+11 Firefairy 200 coroas 75 coroas  
+12 Living Quill 400 coroas 150 coroas  
+13 Obliteration Orb 400 coroas 150 coroas  
+14 Demonic Vessel 500 coroas 220 coroas  
+15 Shielding Pendant 300 coroas 150 coroas  
+16 Staff of Radiance 400 coroas 175 coroas  
+17 Winged Bracelet 300 coroas 150 coroas  
+18 Two-headed Wand 300 coroas 150 coroas  
+19 Falconeye Mask 300 coroas 150 coroas  
+20 Devouring Skull Ring 400 coroas 200 coroas
 
 Fireheart Treasure Table  
 Die Roll Magic Item Purchase Price Sale Price  
-1 Hammer Talisman 200gc 120gc  
-2 Heartsapper 250gc 150gc  
-3 Staff of Turmoil 500gc 200gc  
-4 Quiver of Free Will 300gc 175gc  
-5 Jumping Beans (5) 200gc 125gc  
-6 Construct Battery 360gc 180gc  
-7 Orb of Mystic Fire 300gc 140gc  
-8 Scattershot Comb 300gc 100gc  
-9 Endless Tea Flask 300gc 300gc  
-10 Invisibility Cloak 600gc 300gc  
-11 Sword of Power (1) 400gc 200gc  
-12 Construct Key 450gc 225gc  
-13 Wallbreaker 300gc 100gc  
-14 Bloodfeast Sword 500gc 200gc  
-15 Treasure Cloak 400gc 150gc  
-16 Thundershaker 450gc 180gc  
-17 Necklace of Protection 300gc 150gc  
-18 Construct Patch (2) 150gc 100gc  
-19 Apotropaic Charm 300gc 120gc  
-20 Book of the Construct 300gc 150gc
+1 Hammer Talisman 200 coroas 120 coroas  
+2 Heartsapper 250 coroas 150 coroas  
+3 Staff of Turmoil 500 coroas 200 coroas  
+4 Quiver of Free Will 300 coroas 175 coroas  
+5 Jumping Beans (5) 200 coroas 125 coroas  
+6 Construct Battery 360 coroas 180 coroas  
+7 Orb of Mystic Fire 300 coroas 140 coroas  
+8 Scattershot Comb 300 coroas 100 coroas  
+9 Endless Tea Flask 300 coroas 300 coroas  
+10 Invisibility Cloak 600 coroas 300 coroas  
+11 Sword of Power (1) 400 coroas 200 coroas  
+12 Construct Key 450 coroas 225 coroas  
+13 Wallbreaker 300 coroas 100 coroas  
+14 Bloodfeast Sword 500 coroas 200 coroas  
+15 Treasure Cloak 400 coroas 150 coroas  
+16 Thundershaker 450 coroas 180 coroas  
+17 Necklace of Protection 300 coroas 150 coroas  
+18 Construct Patch (2) 150 coroas 100 coroas  
+19 Apotropaic Charm 300 coroas 120 coroas  
+20 Book of the Construct 300 coroas 150 coroas
 
 Maze of Malcor Treasure Table  
 First Die Roll Second Die Roll Result Purchase Price  
-1–10 1 Scroll Case 150gc  
-2 Potion Bag 150gc  
-3 Wand of Casting (10) 400gc  
-4 Firehelm 400gc  
-5 Construct Crossbow 250gc  
-6 Wand of Lost Magic (3) 400gc  
-7 Mind Lock Ring 500gc  
-8 Timelash Ring 400gc  
-9 Miracle Stone 500gc  
-10 Lycanthrope Serum 400gc  
-11 Arrow Magnet 100gc  
-12 Belt of Blade-breaking 300gc  
-13 Gem Hammer 100gc  
-14 Eye of Malcor 300gc  
-15 Invisible Wire 200gc  
-16 Troll Shackles 500gc  
-17 Bearclaw Pendant 250gc  
-18 Ring of Fog Form 350gc  
-19 Boots of Standfirm 300gc  
-20 Sky Gondola 1000gc  
-11–20 1 Bloodstone Amulet 100gc  
-2 Sickle of the Crowmaster 300gc  
-3 Construct Varnish 250gc  
-4 Karmic Belt 250gc  
-5 Leash Arrow 100gc  
-6 Bracers of True Flight 300gc  
-7 Black Pipe 250gc  
-8 Sandalwood Brace 200gc  
-9 Gloves of the Paladin 200gc  
-10 Backpack of Hefty Haulage 300gc  
-11 Porter Control Rod 300gc  
-12 Ring Chain 250gc  
-13 Amulet of True Paths 300gc  
-14 Partially Gnawed Grimoire 300gc  
-15 Tookroot (5) 100gc  
-16 Bladed Staff of Fire 350gc  
-17 Book of Murders 350gc  
-18 Flicker Stone 400gc  
-19 Book of Charity 350gc  
-20 Book of the Pentangle 1000gc
+1–10 1 Scroll Case 150 coroas  
+2 Potion Bag 150 coroas  
+3 Wand of Casting (10) 400 coroas  
+4 Firehelm 400 coroas  
+5 Construct Crossbow 250 coroas  
+6 Wand of Lost Magic (3) 400 coroas  
+7 Mind Lock Ring 500 coroas  
+8 Timelash Ring 400 coroas  
+9 Miracle Stone 500 coroas  
+10 Lycanthrope Serum 400 coroas  
+11 Arrow Magnet 100 coroas  
+12 Belt of Blade-breaking 300 coroas  
+13 Gem Hammer 100 coroas  
+14 Eye of Malcor 300 coroas  
+15 Invisible Wire 200 coroas  
+16 Troll Shackles 500 coroas  
+17 Bearclaw Pendant 250 coroas  
+18 Ring of Fog Form 350 coroas  
+19 Boots of Standfirm 300 coroas  
+20 Sky Gondola 1000 coroas  
+11–20 1 Bloodstone Amulet 100 coroas  
+2 Sickle of the Crowmaster 300 coroas  
+3 Construct Varnish 250 coroas  
+4 Karmic Belt 250 coroas  
+5 Leash Arrow 100 coroas  
+6 Bracers of True Flight 300 coroas  
+7 Black Pipe 250 coroas  
+8 Sandalwood Brace 200 coroas  
+9 Gloves of the Paladin 200 coroas  
+10 Backpack of Hefty Haulage 300 coroas  
+11 Porter Control Rod 300 coroas  
+12 Ring Chain 250 coroas  
+13 Amulet of True Paths 300 coroas  
+14 Partially Gnawed Grimoire 300 coroas  
+15 Tookroot (5) 100 coroas  
+16 Bladed Staff of Fire 350 coroas  
+17 Book of Murders 350 coroas  
+18 Flicker Stone 400 coroas  
+19 Book of Charity 350 coroas  
+20 Book of the Pentangle 1000 coroas
 
 Mortal Enemies Treasure Table  
 Die Roll Treasure Purchase Price Sale Price  
-1 Cloak of Many Vials 1,600gc 700gc  
-2 Cold Iron Armour 400gc 200gc  
-3 Lifesurge Pendant 350gc 175gc  
-4 Murderer’s Blade 500gc 300gc  
-5 Skeleton Sack (2) 400gc 200gc  
-6 Holy Candle 400gc 150gc  
-7 Dust of Vanishment (2) 300gc 150gc  
-8 The Duellist’s Net 400gc 150gc  
-9 Golden Scroll Sheet (2) 300gc 150gc  
-10 Crystal Sphere (6) 600gc 120gc  
-11 Ring of Focus 500gc 200gc  
-12 Amulet of Atunement 600gc 200gc  
-13 Gem of Darklight 300gc 150gc  
-14 Arrow of Splitflight 250gc 100gc  
-15 Iridescent Pendant 600gc 250gc  
-16 Staff of Wilful Ignorance 800gc 250gc  
-17 Flail Tail 200gc 50gc  
-18 Barbarian’s Cloak 400gc 250gc  
-19 Bat-eye Brooch 350gc 150gc  
-20 Bag of Rat’s Teeth 500gc 200gc
+1 Cloak of Many Vials 1,600 coroas 700 coroas  
+2 Cold Iron Armour 400 coroas 200 coroas  
+3 Lifesurge Pendant 350 coroas 175 coroas  
+4 Murderer’s Blade 500 coroas 300 coroas  
+5 Skeleton Sack (2) 400 coroas 200 coroas  
+6 Holy Candle 400 coroas 150 coroas  
+7 Dust of Vanishment (2) 300 coroas 150 coroas  
+8 The Duellist’s Net 400 coroas 150 coroas  
+9 Golden Scroll Sheet (2) 300 coroas 150 coroas  
+10 Crystal Sphere (6) 600 coroas 120 coroas  
+11 Ring of Focus 500 coroas 200 coroas  
+12 Amulet of Atunement 600 coroas 200 coroas  
+13 Gem of Darklight 300 coroas 150 coroas  
+14 Arrow of Splitflight 250 coroas 100 coroas  
+15 Iridescent Pendant 600 coroas 250 coroas  
+16 Staff of Wilful Ignorance 800 coroas 250 coroas  
+17 Flail Tail 200 coroas 50 coroas  
+18 Barbarian’s Cloak 400 coroas 250 coroas  
+19 Bat-eye Brooch 350 coroas 150 coroas  
+20 Bag of Rat’s Teeth 500 coroas 200 coroas
 
 Red King Treasure Table  
 Die Roll 1 Die Roll 2 Result Purchase Price Sale Price  
-1-10 1 Lantern of Holy Light 350gc 150gc  
-2 Cloak of Tattered Shadows 300gc 100gc  
-3 Golden Incunabula 400gc 150gc  
-4 The Feather Blade 400gc 150gc  
-5 Talisman of Speed 200gc 100gc  
-6 Armring of Strength 200gc 50gc  
-7 Mask of Many Faces 250gc 100gc  
-8 Dazzling Cape 300gc 100gc  
-9 Blood Beetle 250gc 75gc  
-10 Quiver of the Hunter 200gc 75gc  
-11 Bronze Star of the Apprentice 200gc 50gc  
-12 Mind Lock Collar 200gc 50gc  
-13 Lightning Brooch 225gc 100gc  
-14 Mindguard Shield 350gc 150gc  
-15 Icon of the Sun 200gc 75gc  
-16 Enchanted Scroll Wax (6) 210gc 60gc  
-17 Slippery Boots 200gc 50gc  
-18 Potion Drinker Staff 250gc 120gc  
-19 Bottle Imp 300gc 175gc  
+1-10 1 Lantern of Holy Light 350 coroas 150 coroas  
+2 Cloak of Tattered Shadows 300 coroas 100 coroas  
+3 Golden Incunabula 400 coroas 150 coroas  
+4 The Feather Blade 400 coroas 150 coroas  
+5 Talisman of Speed 200 coroas 100 coroas  
+6 Armring of Strength 200 coroas 50 coroas  
+7 Mask of Many Faces 250 coroas 100 coroas  
+8 Dazzling Cape 300 coroas 100 coroas  
+9 Blood Beetle 250 coroas 75 coroas  
+10 Quiver of the Hunter 200 coroas 75 coroas  
+11 Bronze Star of the Apprentice 200 coroas 50 coroas  
+12 Mind Lock Collar 200 coroas 50 coroas  
+13 Lightning Brooch 225 coroas 100 coroas  
+14 Mindguard Shield 350 coroas 150 coroas  
+15 Icon of the Sun 200 coroas 75 coroas  
+16 Enchanted Scroll Wax (6) 210 coroas 60 coroas  
+17 Slippery Boots 200 coroas 50 coroas  
+18 Potion Drinker Staff 250 coroas 120 coroas  
+19 Bottle Imp 300 coroas 175 coroas  
 20+ Artefact X X  
-11-20 1 Enchanted Teetotum 400gc 100gc  
-2 Sticky Finger Gloves 300gc 50gc  
-3 Enchanted Vials (6) 210gc 60gc  
-4 Gutter Flail 300gc 100gc  
-5 Hypnotic Puppet 200gc 65gc  
-6 Lifelong Plant 500gc 200gc  
-7 Surefoot Boots 200gc 50gc  
-8 Golden Fangs (6) 120gc 90gc  
-9 Bracelet of Vigour 400gc 150gc  
-10 Amulet of Elemental Energy Absorption 400gc 150gc  
-11 Mantle of the Bear (or Leopard) 350gc 200gc  
-12 Construct Spikes 200gc 50gc  
-13 Burning Icon 250gc 125gc  
-14 Extended Scroll 200gc 150gc  
-15 Book of the Foulhorn 300gc 100gc  
-16 Ivory Hand 250gc 120gc  
-17 Ring of Elemental Fire 220gc 140gc  
-18 Ice-Crystal Pin 300gc 100gc  
-19 Book of Wisdom 500gc 150gc  
+11-20 1 Enchanted Teetotum 400 coroas 100 coroas  
+2 Sticky Finger Gloves 300 coroas 50 coroas  
+3 Enchanted Vials (6) 210 coroas 60 coroas  
+4 Gutter Flail 300 coroas 100 coroas  
+5 Hypnotic Puppet 200 coroas 65 coroas  
+6 Lifelong Plant 500 coroas 200 coroas  
+7 Surefoot Boots 200 coroas 50 coroas  
+8 Golden Fangs (6) 120 coroas 90 coroas  
+9 Bracelet of Vigour 400 coroas 150 coroas  
+10 Amulet of Elemental Energy Absorption 400 coroas 150 coroas  
+11 Mantle of the Bear (or Leopard) 350 coroas 200 coroas  
+12 Construct Spikes 200 coroas 50 coroas  
+13 Burning Icon 250 coroas 125 coroas  
+14 Extended Scroll 200 coroas 150 coroas  
+15 Book of the Foulhorn 300 coroas 100 coroas  
+16 Ivory Hand 250 coroas 120 coroas  
+17 Ring of Elemental Fire 220 coroas 140 coroas  
+18 Ice-Crystal Pin 300 coroas 100 coroas  
+19 Book of Wisdom 500 coroas 150 coroas  
 20+ Artefact X X
 
 Forgotten Pacts Treasure Table  
 d20 roll Item Purchase Price  
-1 Shroud of Foresight 500gc  
-2 Ring of Restoration 300gc  
-3 Robes of Faith 400gc  
-4 Spell Shield 400gc  
-5 Giant Slayer Blade 300gc  
-6 Smoke Bomb 100gc  
-7 Null Blade 250gc  
-8 Piercing Stiletto 300gc  
-9 Silver Star Pendant 350gc  
-10 Executioner's Blade 400gc  
-11 Golem Flesh 200gc  
-12 Ring of Focus 200gc  
-13 Ring of Transference 300gc  
-14 Crossbow of Force 200gc  
-15 Trapmaster Gloves 200gc  
-16 Soul Shield Pendant 300gc  
-17 Vampiric Staff 300gc  
+1 Shroud of Foresight 500 coroas  
+2 Ring of Restoration 300 coroas  
+3 Robes of Faith 400 coroas  
+4 Spell Shield 400 coroas  
+5 Giant Slayer Blade 300 coroas  
+6 Smoke Bomb 100 coroas  
+7 Null Blade 250 coroas  
+8 Piercing Stiletto 300 coroas  
+9 Silver Star Pendant 350 coroas  
+10 Executioner's Blade 400 coroas  
+11 Golem Flesh 200 coroas  
+12 Ring of Focus 200 coroas  
+13 Ring of Transference 300 coroas  
+14 Crossbow of Force 200 coroas  
+15 Trapmaster Gloves 200 coroas  
+16 Soul Shield Pendant 300 coroas  
+17 Vampiric Staff 300 coroas  
 18 True Name –  
-19 Amulet of the Stone Heart 600gc  
+19 Amulet of the Stone Heart 600 coroas  
 20 Magic Ammunition (roll on the Magic Ammunition Table) –  
 Whenever a player rolls for magic ammunition, that player may decide whether the  
 item found is an arrow or a crossbow bolt. Once the decision is made, it may not be  
 changed. In either case, the item is a one-use item that takes up an item slot.  
 Magic Ammunition Table  
 d20 roll Ammunition Purchase Price  
-1–4 Wraith Arrow 100gc  
-5–8 Arrow of Demon Slaying 100gc  
-9–12 Stunning Arrow 100gc  
-13–16 Arrow of Piercing 100gc  
-17–20 Soulseeker Arrow 100gc
-
+1–4 Wraith Arrow 100 coroas  
+5–8 Arrow of Demon Slaying 100 coroas  
+9–12 Stunning Arrow 100 coroas  
+13–16 Arrow of Piercing 100 coroas  
+17–20 Soulseeker Arrow 100 coroas

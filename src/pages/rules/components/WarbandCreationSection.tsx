@@ -32,7 +32,7 @@ const WarbandCreationSection: React.FC = () => {
         vitórias e cicatrizes, que as lendas nascem.
       </MobileText>
 
-      <MobileText variant="heading" className="mt-2">
+      <MobileText variant="h3" className="mt-2">
         1) O Líder — Fardo e Maldição
       </MobileText>
       <MobileText>
@@ -52,7 +52,7 @@ const WarbandCreationSection: React.FC = () => {
         indicados na ficha.
       </MobileText>
 
-      <MobileText variant="heading" className="mt-2">
+      <MobileText variant="h3" className="mt-2">
         2) O Campeão — Luxo ou Necessidade?
       </MobileText>
       <MobileText>
@@ -70,7 +70,7 @@ const WarbandCreationSection: React.FC = () => {
         indicados na ficha.
       </MobileText>
 
-      <MobileText variant="heading" className="mt-2">
+      <MobileText variant="h3" className="mt-2">
         3) Os Soldados — Carne para o Moedor
       </MobileText>
       <MobileText>
@@ -83,7 +83,7 @@ const WarbandCreationSection: React.FC = () => {
         soldado. Ele possui <strong>4 espaços</strong> de equipamento.
       </MobileText>
 
-      <MobileText variant="heading" className="mt-2">
+      <MobileText variant="h3" className="mt-2">
         4) Equipe seu Bando
       </MobileText>
       <MobileText>
@@ -99,6 +99,19 @@ const WarbandCreationSection: React.FC = () => {
         avança precisa de proteção e aço.
       </MobileText>
 
+      <div className="bg-[#2a1f1f] p-4 rounded-lg border border-[#382929] mb-4">
+        <MobileText variant="heading" className="mb-1">
+          Limite de Armadura
+        </MobileText>
+        <MobileText className="text-[#e7d9c0]">
+          Uma figura, não importa quantos bônus e equipamentos que tenha, nunca
+          pode ter mais de <strong>15 de Armadura</strong>, a não ser que um
+          efeito específico diga o contrário. Esta é uma limitação fundamental
+          do sistema — mesmo os guerreiros mais blindados têm pontos fracos que
+          podem ser explorados.
+        </MobileText>
+      </div>
+
       <div className="bg-[#2a1f1f] p-4 rounded-lg border border-[#382929]">
         <MobileText variant="heading" className="mb-1">
           Espaços de Equipamento
@@ -109,14 +122,14 @@ const WarbandCreationSection: React.FC = () => {
           disponíveis. Alguns itens ocupam mais de um espaço, enquanto outros —
           como adagas — não ocupam nenhum na primeira vez que são adicionados.
           Isso inclui itens mágicos e acessórios, como aljavas e similares.
+          <br />
+          Equipamento mágico segue uma pequena regra especial nesse sentido:
+          Você só pode se aproveitar de efeitos de equipamento mágico ou
+          reliquias de um tipo, mesmo que carregue vários. Dois anéis? Só
+          ganhará bonus de um. Armadura e escudo mágicos? Escolha bem do que
+          quer se beneficiar.
         </MobileText>
       </div>
-
-      <MobileText>
-        • <strong>Dica</strong>: priorize sinergias. Um líder resiliente mantém
-        a coesão; um campeão agressivo abre caminho; atiradores punem avanços
-        inimigos. Escolhas de equipamento contam histórias — e cobram preços.
-      </MobileText>
 
       <MobileText
         variant="quote"

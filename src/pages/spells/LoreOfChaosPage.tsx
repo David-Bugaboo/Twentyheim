@@ -18,44 +18,74 @@ export default function LoreOfChaosPage() {
     {
       name: "Invocar Diabrete",
       castingNumber: 8,
-      range: "Linha de Visão",
-      effect:
-        "O conjurador rasga o véu entre os mundos com palavras blasfemas, e uma pequena abertura para o Reino do Caos se manifesta. De dentro da fenda vem um diabrete, uma criatura menor mas ainda assim corrupta, seus olhos ardendo com malícia sobrenatural.\n\nO conjurador invoca um diabrete na mesa em qualquer lugar dentro de linha de visão do conjurador, mas não mais próximo que 8cm de qualquer outra figura. O diabrete segue as regras normais para criaturas descontroladas e ativará na próxima fase de Criatura. Se o conjurador conjurar esta magia uma segunda vez, o primeiro diabrete é puxado de volta para o Caos e imediatamente desaparece em uma nuvem de enxofre.",
+      keywords: ["Invocação"],
+      effect: `O conjurador rasga o véu entre os mundos com palavras blasfemas, e uma pequena abertura para o Reino do Caos se manifesta. 
+        De dentro da fenda vem um diabrete, uma criatura menor mas ainda assim corrupta, seus olhos ardendo com malícia sobrenatural.
+        \n\nO conjurador invoca um diabrete. Ele é uma criatura não controlada e agirá normalmente junto com as outras criaturas não controladas. 
+        Se o conjurador conjurar esta magia  uma segunda vez, o primeiro diabrete é puxado de volta para o Caos e imediatamente desaparece em uma nuvem de enxofre.`,
     },
     {
-      name: "Raio da Perdição",
+      name: "Sangue Escaldante",
       castingNumber: 10,
-      range: "Linha de Visão",
+      keywords: ["Missil Mágico(Mágico)(+7)", "Linha de Visão"],
       effect:
-        "O feiticeiro ergue as mãos e energia bruta do Caos irrompe de suas palmas - uma descarga de pura entropia que corrói matéria e alma. O ar sibilha e estala com poder imundo enquanto o raio negro atravessa o espaço, corroendo armaduras como ferrugem instantânea.\n\nFaça um ataque mágico +7 imediato contra um alvo dentro de linha de visão. Este ataque trata a armadura do alvo como se nenhuma armadura ou escudo estivesse sendo usado - o metal se desintegra, o couro apodrece. Apenas Armaduras e Escudos Mágicos resistem a esta corrupção, ignorando esta redução de armadura.",
+        "Ataque a criatura alvo com o míssil mágico. Se forçou a magia com pelo menos 3 pontos de vida o míssil mágico ganha +2 de modificador de dano.",
     },
     {
       name: "Tentação do Caos",
       castingNumber: 10,
-      range: "Linha de Visão - Psicologico",
+      keywords: ["Linha de Visão", "Psicológico"],
       effect:
-        "O feiticeiro sussurra promessas sombrias que atravessam a distância como névoa venenosa. Poder ilimitado... vingança contra seus inimigos... seus desejos mais profundos realizados. A vítima sente a corrupção infiltrando-se em sua mente, sussurros sedutores que prometem tudo e custam apenas sua alma.\n\nA figura alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, a corrupção toma conta e o alvo temporariamente se junta ao bando do conjurador, ativando normalmente. Após a figura ativar a cada turno, ela deve fazer outra Rolagem de Vontade com Classe de Dificuldade igual à Rolagem de Conjuração, lutando contra os sussurros. Se bem-sucedida, a magia é cancelada e a figura retorna à sua aliança normal, tremendo com o horror do que quase fez. Um conjurador só pode ter uma magia Tentação do Caos ativa por vez. Uma figura sob Tentação do Caos não pode propositalmente realizar qualquer ação que cause dano imediato a si mesma, mas pode ser movida para combate e pode atacar uma figura inimiga. Uma figura sob Tentação do Caos não pode sair da mesa. Um conjurador pode cancelar uma Tentação do Caos ativa no fim de qualquer turno. Esta magia não tem efeito em Heróis e Campeões - suas vontades são fortes demais.",
+        "A figura alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, a corrupção toma conta e o alvo temporariamente se junta ao bando do conjurador, ativando normalmente. Após a figura ativar a cada turno, ela deve fazer outra Rolagem de Vontade com Classe de Dificuldade igual à Rolagem de Conjuração, lutando contra os sussurros. Se bem-sucedida, a magia é cancelada e a figura retorna à sua aliança normal, tremendo com o horror do que quase fez. Um conjurador só pode ter uma magia Tentação do Caos ativa por vez. Uma figura sob Tentação do Caos não pode propositalmente realizar qualquer ação que cause dano imediato a si mesma, mas pode ser movida para combate e pode atacar uma figura inimiga. Uma figura sob Tentação do Caos não pode sair da mesa. Um conjurador pode cancelar uma Tentação do Caos ativa no fim de qualquer turno. Esta magia não tem efeito em Heróis e Campeões - suas vontades são fortes demais.",
     },
     {
       name: "Subjugar Daemônio",
       castingNumber: 10,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão"],
       effect:
         "O feiticeiro projeta sua vontade sobre a criatura do Caos, travando uma batalha mental no plano etéreo. É uma disputa perigosa - os daemônios não se submetem facilmente, e muitos feiticeiros tiveram suas mentes despedaçadas ao tentar dominar o que não deveria ser controlado.\n\nO daemônio alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, sua essência é temporariamente presa à vontade do conjurador e ele se torna um membro temporário do bando. Este controle precário dura pelo resto do jogo ou até a magia ser cancelada. O conjurador pode gastar uma ação para liberar a criatura, cancelando esta magia. Um conjurador só pode controlar um daemônio por vez - a mente mortal não suporta dominar mais de uma entidade do warp.",
     },
     {
       name: "Invocação Daemônica",
       castingNumber: 12,
-      range: "Toque",
+      keywords: ["Invocação"],
       effect:
-        "O feiticeiro traça símbolos profanos no ar e pronuncia nomes que não deveriam ser falados. A realidade se rasga, e algo do outro lado responde ao chamado. É um ritual perigoso - cada invocação arrisca trazer algo que o conjurador não pode controlar, e os anais estão cheios de feiticeiros arrogantes devorados por suas próprias convocações.\n\nImediatamente coloque um daemônio na mesa a até 3cm do conjurador. Ele não pode ser colocado diretamente em combate. Este daemônio é considerado sob os efeitos de uma magia Subjulgar Daemônio pelo mesmo conjurador, e assim esta magia não pode ser conjurada se o conjurador já estiver controlando um daemônio. O tipo de daemônio invocado depende da quantidade pela qual o conjurador teve sucesso em sua Rolagem de Conjuração: 0-5 diabrete, 6-12 daemônio menor, 13+ daemônio maior. Se um conjurador rolar um 1 ao tentar conjurar esta magia, o ritual falha catastroficamente - ele invoca um daemônio descontrolado e deve colocar este daemônio em combate com o conjurador. Role um dado para determinar o tipo: 1-10 diabrete, 11-17 daemônio menor, 18+ daemônio maior. Um conjurador não pode potencializar uma rolagem de 1 ao conjurar esta magia, mas não há outro limite para potencializar esta magia. Pode ser potencializada acima de 18.",
+        "O conjurador invoca um Daemônio.  Este daemônio é considerado sob os efeitos de uma magia Subjulgar Daemônio pelo mesmo conjurador, e assim esta magia não pode ser conjurada se o conjurador já estiver controlando um daemônio. O tipo de daemônio invocado depende da quantidade pela qual o conjurador teve sucesso em sua Rolagem de Conjuração: 0-5 diabrete, 6-12 daemônio menor, 13+ daemônio maior. Se um conjurador rolar um 1 natural ao tentar conjurar esta magia, o ritual falha catastroficamente - ele invoca um daemônio descontrolado e deve colocar este daemônio em combate com o conjurador. Role um dado para determinar o tipo: 1-10 diabrete, 11-17 daemônio menor, 18+ daemônio maior.a, mas não há outro limite para potencializar esta magia, inclusive acima de 18.",
     },
     {
-      name: "Receptáculo Daemônico",
+      name: "Dádiva do Caos",
       castingNumber: 12,
-      range: "Linha de Visão",
+      keywords: ["Linha de Visão"],
       effect:
-        "O feiticeiro força a essência de um daemônio para dentro do corpo de um mortal vivo. A vítima grita enquanto sua carne se contorce, músculos inchando com força antinatural, pele escurecendo com marcas de corrupção. Olhos antes humanos agora brilham com fogo do inferno. O daemônio habita a carne mortal como um parasita terrível, concedendo poder mas corrompendo a alma.\n\nEsta magia só pode ser conjurada em um membro permanente ou temporário do próprio bando do conjurador, exceto o próprio conjurador, ou daemônios. O alvo é possuído por um daemônio e ganha +2 Ímpeto, +1 Armadura e -2 Vontade e conta como um daemônio (ou seja, será afetado por Banir, Subjulgar Daemônio, Círculo de Proteção, etc.). Esta figura não pode ser parte de uma ativação em grupo. Se removida do jogo por qualquer razão (como ser atingida por uma magia Exorcismo), o daemônio é expulso e verifique a sobrevivência do personagem normalmente. Um conjurador só pode ter uma magia Receptáculo Daemônico ativa por vez.",
+        "A figura alvo que não um conjurador ou uma figura com a característica Daemônio  é possuída por uma entidade do reino do caos e ganha +2 Ímpeto, +1 Armadura e -2 Vontade até o fim do jogo e conta como um daemônio (ou seja, será afetado por Banir, Subjulgar Daemônio, Círculo de Proteção, etc.). Esta figura não pode ser parte de uma ativação em grupo. Se removida do jogo por uma magia com a palavra chave Exorcismo, o daemônio é expulso e a sobrevivência da figura é verificada normalmente após o jogo. Um conjurador só pode ter uma magia Dádiva do Caos. ativa por vez.",
+    },
+    {
+      name: "Mão Infernal da Entropia",
+      castingNumber: 12,
+      keywords: ["Conjurador Apenas"],
+      effect:
+        "Esta magia substitui a regra normal de que uma magia não pode ser conjurada quando uma figura está em combate – ela só pode ser conjurada quando o conjurador está em combate. O conjurador ganha +4 de Ímpeto e um modificador de dano +3 durante esse ataque.",
+    },
+    {
+      name: "Toque de Tzeentch",
+      castingNumber: 12,
+      keywords: ["Linha de Visão", "Ritual"],
+      effect:
+        "A figura inimiga alvo imediatamente rola um teste de vontade com CD igual a rolagem de conjuração desta magia. Se a figura falhar esse teste ela ganha uma mutação da tabela Dádivas de Tzeentch até o fim do jogo. Pode alvejar uma figura aliada, fazendo-a ganhar uma das caraterísticos a seguir: Anfíbio, Chifres, Levitar, Escavador, Escalador, Immune a Veneno, Vigoroso ou Imune a Danos Críticos. Se usado em um aliado, pode ser usado como Ritual.",
+    },
+    {
+      name: "Véu da Corrupção",
+      castingNumber: 12,
+      keywords: ["Linha de Visão", "Área de Efeito (Zona Pequena)"],
+      effect:
+        "O Conjurador invoca as chamas mutagênicas da corrupção, posicionando ua Área de Efeito no tabuleiro em um ponto alvo. Qualquer criatura sem a característica Daemonio que atravessar ou começar sua ativação dentro da Área de Efeito recebe um ataque mágico +4. Uma rolagem de 20 natural contra uma criatura faz com que ela receba uma mutação da tabela Dádivas de Tzeentch até o fim do jogo.",
+    },
+    {
+      name: "Palavra da Dor",
+      castingNumber: 14,
+      keywords: ["Área de Efeito (Explosão Grande)"],
+      effect:
+        "Centre a Área de Efeito no invocador. Todas as figuras na área de efeito recebem um ataque mágico +0. Figuras atingidas pelo ataque devem rolar um teste de vontade com CD igual a rolagem de conjuração desta magia. Se a figura falhar esse teste, ela recebe um marcador de atordoamento.",
     },
   ];
 
@@ -97,7 +127,7 @@ export default function LoreOfChaosPage() {
               name={spell.name}
               school="Tradição do Caos"
               castingNumber={spell.castingNumber}
-              range={spell.range}
+              keywords={spell.keywords}
               effect={spell.effect}
             />
           ))}

@@ -1,0 +1,260 @@
+[
+  {
+    "id": "machado",
+    "name": "Machado",
+    "description": "O machado é a arma tradicional dos lenhadores do Império, e também é usado como arma nas áreas rurais mais pobres. Os machados têm uma lâmina pesada e, se balançado por um homem forte, pode causar muito dano. A lâmina de um machado pode facilmente cortar através de armadura, embora exija considerável força do portador.",
+    "strength": "usuário",
+    "cost": "5 coroas",
+    "damage": 1,
+    "critDamage": 3,
+    "minRange": null,
+    "maxRange": null,
+    "attacks": 3,
+    "type": "Arma Corpo a Corpo",
+    "availability": "common",
+    "specialRules": [
+      {
+        "title": "Penetração de Armadura (X)",
+        "description": "Um ataque com essa arma trata a resistência do alvo como sendo (X) pontos menor."
+      }
+    ]
+  },
+  {
+    "id": "concussion-weapon",
+    "name": "Arma de Concussão",
+    "description": "Talvez o tipo mais simples de arma, esses instrumentos brutais e contundentes variam de maças de ferro cru a martelos elaboradamente forjados pelos Anões feitos do melhor aço. Um golpe de uma maça pode facilmente esmagar um crânio ou deixar um homem inconsciente.",
+    "strength": "usuário",
+    "cost": "5 coroas",
+    "damage": 1,
+    "critDamage": 3,
+    "minRange": null,
+    "maxRange": null,
+    "attacks": 3,
+    "type": "Arma Corpo a Corpo",
+    "availability": "common",
+    "specialRules": [
+      {
+        "title": "Concussiva",
+        "description": "Esssa arma causa um ferimento crítico em uma rolagem de 5+."
+      }
+    ]
+  },
+  {
+    "id": "club",
+    "name": "Porrete",
+    "description": "Talvez o tipo mais simples de arma, esses instrumentos brutais e contundentes variam de maças de ferro cru a martelos elaboradamente forjados pelos Anões feitos do melhor aço. Um golpe de uma maça pode facilmente esmagar um crânio ou deixar um homem inconsciente.",
+    "strength": "usuário -1",
+    "cost": "3 coroas",
+    "damage": 1,
+    "critDamage": 3,
+    "minRange": null,
+    "maxRange": null,
+    "attacks": 3,
+    "type": "Arma Corpo a Corpo",
+    "availability": "common",
+    "specialRules": []
+  },
+  {
+    "id": "dagger",
+    "name": "Adaga",
+    "description": "Adagas e facas são extremamente comuns, e os homens são autorizados a carregá-las em enclaves onde outras armas são proibidas. Muitos guerreiros em Mordheim morreram com uma adaga nas costas.",
+    "strength": "usuário",
+    "cost": "primeira grátis/2 coroas",
+    "damage": 1,
+    "critDamage": 2,
+    "minRange": null,
+    "maxRange": null,
+    "attacks": 4,
+    "type": "Arma Corpo a Corpo",
+    "availability": "common",
+    "specialRules": []
+  },
+  {
+    "id": "arma-de-duas-mãos",
+    "name": "Arma de Duas Mãos",
+    "description": "Armas de duas mãos são poderosas mas exigem ambas as mãos para serem usadas efetivamente.",
+    "strength": "usuário + 2",
+    "cost": "15 coroas",
+    "damage": 2,
+    "critDamage": 4,
+    "minRange": null,
+    "maxRange": null,
+    "attacks": 2,
+    "type": "Arma Corpo a Corpo",
+    "availability": "common",
+    "specialRules": [
+      {
+        "title": "Duas Mãos",
+        "description": "Um modelo armado com uma arma de duas mãos não pode usar escudo ou broquel. Se o modelo estiver equipado com um escudo, ele ainda receberá um bônus de +1 para sua Resistência contra ataques a distância ainda."
+      }
+    ]
+  },
+  {
+    "id": "garras-de-combate",
+    "name": "Garras de Combate",
+    "description": "As artes marciais praticadas pelo Clã Eshin empregam muitas armas incomuns. As mais famosas delas são as Garras de Combate Eshin: lâminas de metal afiadas presas às patas de um guerreiro Skaven. É preciso um verdadeiro especialista para usá-las efetivamente, mas um adepto do Clã Eshin é um oponente temível quando armado desta forma.",
+    "strength": "usuário",
+    "cost": "35 coroas",
+    "damage": 1,
+    "critDamage": 5,
+    "minRange": null,
+    "maxRange": null,
+    "attacks": 6,
+    "type": "Arma Corpo a Corpo",
+    "availability": "Rare 7 =(Skaven Onlu)",
+    "specialRules": [
+      {
+        "title": "Escalada",
+        "description": "Considere o Skaven equipado com Garras de Combate como tendo +4 de Movimento para fins de escalada."
+      },
+      {
+        "title": "Aparar",
+        "description": "Um Skaven armado com Garras de Combate pode usar a reação Ripostar. "
+      },
+      {
+        "title": "Desajeitado",
+        "description": "Um modelo armado com Garras de Combate não pode usar nenhuma outra arma durante toda a batalha."
+      }
+    ]
+  },
+  {
+    "id": "mangual",
+    "name": "Mangual",
+    "description": "As artes marciais praticadas pelo Clã Eshin empregam muitas armas incomuns. As mais famosas delas são as Garras de Combate Eshin: lâminas de metal afiadas presas às patas de um guerreiro Skaven. É preciso um verdadeiro especialista para usá-las efetivamente, mas um adepto do Clã Eshin é um oponente temível quando armado desta forma.",
+    "strength": "usuário + 2",
+    "cost": "15 coroas",
+    "damage": 3,
+    "critDamage": 5,
+    "minRange": null,
+    "maxRange": null,
+    "attacks": 1,
+    "type": "Arma Corpo a Corpo",
+    "availability": "common",
+    "specialRules": [
+      {
+        "title": "Duas Mãos",
+        "description": "Um modelo armado com uma arma de duas mãos não pode usar escudo ou broquel. Se o modelo estiver equipado com um escudo, ele ainda receberá um bônus de +1 para sua Resistência contra ataques a distância ainda."
+      }
+    ]
+  },
+  {
+    "id": "alabarda",
+    "name": "Alabarda",
+    "description": "A lâmina pesada da alabarda é montada em um cabo resistente de carvalho ou aço e tem uma ponta como uma lança e uma borda cortante como um machado. Como pode ser usada tanto para cortar quanto para estocar, é uma arma adaptável, mas é difícil de usar dentro de edifícios.",
+    "strength": "usuário + 1",
+    "cost": "10 coroas",
+    "damage": 1,
+    "critDamage": 4,
+    "minRange": null,
+    "maxRange": 8,
+    "attacks": 3,
+    "type": "Arma Corpo a Corpo",
+    "availability": "common",
+    "specialRules": [
+      {
+        "title": "Duas Mãos",
+        "description": "Um modelo armado com uma arma de duas mãos não pode usar escudo ou broquel. Se o modelo estiver equipado com um escudo, ele ainda receberá um bônus de +1 para sua Resistência contra ataques a distância ainda."
+      }
+    ]
+  },
+
+  {
+    "id": "martelo-de-guerra-sigmarita",
+    "name": "Martelo de Guerra Sigmarita",
+    "description": "Uma das armas tradicionais da Irmandade, o martelo de guerra ecoa Ghal-Maraz, o grande martelo do próprio Sigmar.",
+    "strength": 4,
+    "cost": "15 coroas",
+    "damage": 2,
+    "critDamage": 3,
+    "minRange": null,
+    "maxRange": null,
+    "attacks": 3,
+    "type": "Arma Corpo a Corpo",
+    "availability": "Common (Sisters of Sigmar Only)",
+    "specialRules": [
+      {
+        "title": "Arma Sagrada",
+        "description": "Cada martelo de guerra é abençoado pela Alta Matriarca antes de ser entregue às Irmãs. O martelo de guerra tem um bônus de +1 em todas as rolagens de ferimento contra qualquer modelo Possuído ou Morto-vivo."
+      }
+    ]
+  },
+  {
+    "id": "lança",
+    "name": "Lança",
+    "description": "Lanças variam de paus afiados usados por Goblins às impressionantes lanças de cavalaria típicas dos Elfos.",
+    "strength": "usuário",
+    "cost": "15 coroas",
+    "damage": 1,
+    "critDamage": 3,
+    "minRange": null,
+    "maxRange": 8,
+    "attacks": 4,
+    "type": "Arma Corpo a Corpo",
+    "availability": "Common",
+    "specialRules": []
+  },
+  {
+    "id": "Chicote de Aço",
+    "name": "Chicote de Aço",
+    "description": "Outra arma única da Irmandade é o chicote de aço, feito de correntes de aço farpadas.",
+    "strength": "usuário",
+    "cost": "10 coroas",
+    "damage": 1,
+    "critDamage": 5,
+    "minRange": null,
+    "maxRange": null,
+    "attacks": 3,
+    "type": "Arma Corpo a Corpo",
+    "availability": "Common (Sisters of Sigmar Only)",
+    "specialRules": [
+      {
+        "title": "Estalo de Aço",
+        "description": "Quando a irmã de sigmar completa uma carga ou sofre uma carga, ela ganha +1 Ataque durante a próxima ação de ataque."
+      },
+      {
+        "title": "Relampago Metálico",
+        "description": "Uma figura não pode usar a reação Ripostar contra ataques de um Chicote de Aço."
+      }
+    ]
+  },
+  {
+    "id": "Espada",
+    "name": "Espada",
+    "description": "A espada é frequentemente referida como a 'rainha das armas'. A espada mais comum disponível, a espada larga do Império, é uma obra-prima pelos padrões de qualquer ferreiro: quatro pés completos de aço brilhante, de dois gumes e afiada como navalha.",
+    "strength": "usuário",
+    "cost": "10 coroas",
+    "damage": 1,
+    "critDamage": 3,
+    "minRange": null,
+    "maxRange": null,
+    "attacks": 3,
+    "type": "Arma Corpo a Corpo",
+    "availability": "Common",
+    "specialRules": [
+      {
+        "title": "Ripostar",
+        "description": "Uma figura equipado com essa arma pode usar a reação Ripostar."
+      }
+    ]
+  },
+  {
+    "id": "lamentadoras",
+    "name": "Lamentadoras",
+    "description": "Os adeptos do Clã Eshin usam armas chamadas Lamentadoras, espadas assassinas construídas com uma pequena quantidade de Pedra-bruxa em sua estrutura. Uma Lamentadora constantemente verte um veneno corrosivo e mortal.",
+    "strength": "usuário",
+    "cost": "50 coroas",
+    "damage": 1,
+    "critDamage": 5,
+    "minRange": null,
+    "maxRange": null,
+    "attacks": 6,
+    "type": "Arma Corpo a Corpo",
+    "availability": "Rare 9 (Skaven only)",
+    "specialRules": [
+      {
+        "title": "Venenosa",
+        "description": "Essa figura causa um ferimento critico em uma rolagem de 5+."
+      }
+    ]
+  }
+]

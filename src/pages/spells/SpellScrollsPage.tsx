@@ -264,7 +264,9 @@ export default function SpellScrollsPage() {
 
           <PowerListTitle>2d20 Spell Table</PowerListTitle>
 
-          <ParchmentText sx={{ mb: 3, fontSize: "0.9rem", fontStyle: "italic" }}>
+          <ParchmentText
+            sx={{ mb: 3, fontSize: "0.9rem", fontStyle: "italic" }}
+          >
             Roll the first d20 for the row, then the second d20 for the column:
           </ParchmentText>
 
@@ -382,7 +384,7 @@ export default function SpellScrollsPage() {
             }}
           >
             <PowerListTitle sx={{ color: "#c4a870", mt: 0 }}>
-              📜 Using the Table
+              Using the Table
             </PowerListTitle>
 
             <ParchmentText>
@@ -419,7 +421,10 @@ export default function SpellScrollsPage() {
             Back to Magic
           </StyledNavigationButton>
 
-          <StyledNavigationButton variant="contained" onClick={() => navigate("/")}>
+          <StyledNavigationButton
+            variant="contained"
+            onClick={() => navigate("/")}
+          >
             Back to Home
           </StyledNavigationButton>
         </Box>
@@ -427,4 +432,3 @@ export default function SpellScrollsPage() {
     </PageContainer>
   );
 }
-
