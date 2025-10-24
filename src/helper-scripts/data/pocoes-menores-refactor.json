@@ -1,1 +1,411 @@
-[{"roll":null,"id":"lagrimas-de-shallaya","name":"Lágrimas de Shallaya","type":"Remédio","damageModifier":null,"purchaseCost":"50 coroas","sellCost":"25 coroas","exclusive":null,"flavorText":"As Lágrimas de Shallaya são frascos de água da nascente sagrada em Couronne. Shallaya é a deusa da cura e misericórdia e diz-se que esta água possui propriedades curativas e é prova contra qualquer veneno. Quando bebida, a poção restaura até 5 pontos perdidos de Vigor. Não pode elevar Vigor acima do máximo inicial.\n\nEm uma cidade onde cada ferida pode ser a última, onde infecções matam tanto quanto espadas, as Lágrimas de Shallaya são mais valiosas que ouro. Guerreiros experientes guardam um frasco para emergências - a diferença entre sangrar até a morte em um beco sujo e viver para lutar outro dia.","user":"Beber como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"25 coroas"}]},{"roll":null,"id":"elixir-de-raiz-de-mandragora","name":"Elixir de Raiz de Mandrágora","type":"Remédio","damageModifier":null,"purchaseCost":"75 coroas","sellCost":"30 coroas","exclusive":null,"flavorText":"A raiz de mandrágora em formato humano cresce nos pântanos apodrecidos de Sylvania. É uma planta nociva e mortal que é altamente viciante e mata lentamente seus usuários, mas também lhes permite resistir a quase qualquer dor. A figura que bebe esta poção se torna imune a veneno, mas perde -2 de Vontade até o fim do jogo.\n\nEm Mordheim, onde venenos e toxinas são comuns, o Elixir de Raiz de Mandrágo oferece proteção vital - mas com um preço que poucos estão dispostos a pagar.","user":"Beber como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"30 coroas"},{"label":"Efeito","value":"A figura que bebe esta poção se torna imune a veneno, mas perde -2 de Vontade até o fim do jogo."}]},{"roll":null,"id":"estimulante-anao","name":"Estimulante Anão","type":"Remédio","damageModifier":null,"purchaseCost":"75 coroas","sellCost":"30 coroas","exclusive":null,"flavorText":"Estimulantes anões usados por besteiros para dispararem mais rápido e com mais foco. Quando bebida, a figura que bebe recebe +1 de Precisão, +1 de Agilidade, -1 de Ímpeto e -1 de Vontade pelo resto do jogo.","user":"Beber como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"30 coroas"},{"label":"Efeito","value":"A figura que bebe esta poção recebe +1 de Precisão, +1 de Agilidade, -1 de Ímpeto e -1 de Vontade pelo resto do jogo."}]},{"roll":null,"id":"polvora-branca","name":"Pólvora Branca","type":"Pó","damageModifier":null,"purchaseCost":"200 coroas","sellCost":"75 coroas","exclusive":null,"flavorText":"Pó feito a partir de magnésio e pólvora cataiana, tendo uma alta volatilidade e poder de ignição. Contudo, sua explosão gera mais luz que fogo, causando um grande raio de luz que cega aqueles próximos.","user":"Usa quando uma figura declara carga.","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"30 coroas"},{"label":"Efeito","value":"Quando uma figura declara carga contra o usuário, este pode lançar o pó lampejante. Aquela figura deve fazer um teste de Vontade (CD 14) ou perder sua ação de carga, não podendo tentar outra carga até o fim da próxima ativação."}]},{"roll":null,"id":"solucao-de-embalsamar","name":"Solução de Embalsamar","type":"Solução","damageModifier":null,"purchaseCost":"500 coroas","sellCost":"200 coroas","exclusive":null,"flavorText":"Criada originalmente por sacerdotes de Morr, essa solução foi extremamente otimizada pelos alquimistas da tradição do metal, se tornando um preservante extremamente eficiente. Cadáveres embalsamados por essa solução já foram encontrados intactos depois de séculos.","user":"Fora de jogo, usado em uma criatura morta.","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"120 coroas"},{"label":"Efeito","value":"Uma figura morta pode ser preservada por até 5 jogos. Durante esse período, um Sopro de Shallaya ou a magia Milagre podem trazer a criatura de volta à vida, ao invés do período normal de imediatamente após a morte de uma criatura."}]},{"roll":null,"id":"cerveja-de-bugman","name":"Cerveja de Bugman","type":"Bebida Alcoólica","damageModifier":null,"purchaseCost":"100 coroas","sellCost":"40 coroas","exclusive":null,"flavorText":"A cerveja lendária dos anões, tão rara quanto valiosa. Dourada como ouro velho, espumante, com gosto de malte defumado e cevada das profundezas. Dizem que Joseph Bugman aperfeiçoou a receita após gerações de mestres cervejeiros, cada geração adicionando um segredo. Quando bebida, coragem líquida enche o coração - não a estupidez bêbada de cerveja comum, mas determinação férrea e vontade inabalável. A figura que bebe ganha +5 Vontade pelo resto do jogo.\n\nEm Mordheim, onde terror arcano e medo mundano quebram homens igualmente, a Cerveja de Bugman é mais que bebida - é armadura para a alma.","user":"Beber como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"40 coroas"},{"label":"Efeito","value":"A figura que bebe esta poção recebe +5 Vontade pelo resto do jogo."}]},{"roll":null,"id":"vinho-elfico","name":"Vinho Élfico","type":"Bebida Alcoólica","damageModifier":null,"purchaseCost":"75 coroas","sellCost":"30 coroas","exclusive":null,"flavorText":"Os vinhos élficos são conhecidos por serem os melhores do mundo, e alguns são até mesmo rumores de terem qualidades mágicas. Um Vinho Élfico fino pode expulsar dúvidas e medos, deixando uma sensação geral de bem-estar em um guerreiro. Feito de uvas que nunca viram sol humano, água de nascentes élficas, e segredos que mortais não entendem completamente. Quando bebido, o corpo torna-se leve - não flutuando, mas movendo-se com graça sobrenatural. A figura que bebe recebe +2 Agilidade pelo resto do jogo. Não pode elevar Agilidade acima de 9.\n\nEm Mordheim, velocidade é vida. Correr mais rápido que inimigos, alcançar tesouro primeiro, fugir antes de ser cercado. O Vinho Élfico dá essa vantagem - raro e caro, mas invaluável.","user":"Beber como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":"Figura que beber vinho élfico se torna Imune a Medo até o fim do jogo.","requirements":null,"specialRules":[{"label":"Ingredientes","value":"30 coroas"}]},{"roll":null,"id":"vinho-de-malekith","name":"Vinho de Malekith","type":"Bebida Alcoólica","damageModifier":null,"purchaseCost":"200 coroas","sellCost":"80 coroas","exclusive":null,"flavorText":" Nomeado após o Rei Feiticeiro dos Elfos Negros, este vinho extremamente ácido e pungente torna o usuário uma presença sombria no campo de batalha, o hedonismo transformado em uma ferramenta de guerra","user":"Beber como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"80 coroas"}]},{"roll":null,"id":"agua-benta","name":"Água Benta","type":"Arma de Arremesso","damageModifier":null,"purchaseCost":"350 coroas","sellCost":"120 coroas","exclusive":null,"flavorText":"Preparado com essências do próprio tecido da realidade, ingredientes que existem meio aqui e meio alhures. Quando bebida, o mundo pisca - por um instante você está em dois lugares ao mesmo tempo, depois apenas no novo. A figura que bebe é tratada como se tivesse conjurado o feitiço Teletransporte.\n\nPara escapar de cercos impossíveis, atravessar muros intransponíveis, ou alcançar tesouros inacessíveis - o Elixir do Andarilho do Véu dobra espaço. Perigoso, caro, mas absolutamente inestimável nas situações certas.","user":"Beber ou arremessar como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"80 coroas"},{"label":"Efeito","value":"Beber: A figura que bebe é tratada como se tivesse bebido Lágrimas de Shallaya. Arremessar: É um ataque sagrado +8 contra uma figura Morta-Viva ou Daemônio até 25cm e todas as figuras Morto-Vivo ou Daemônio a até 5cm dela. Trate a figura alvo como origem para calculo de terreno interposto e cobertura das outras figuras afetadas."}]},{"roll":null,"id":"coquetel-kislevita","name":"Coquetel Kislevita","type":"Arma de Arremesso","damageModifier":null,"purchaseCost":"100 coroas","sellCost":"40 coroas","exclusive":null,"flavorText":"Feito com o coração gelado de Kislev e um sorriso caloroso — ideal para quando 'convidar alguém pra esquentar a conversa' precisa ser entendido literalmente.","user":"Arremessar como uma ação de ataque à distância.","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"40 coroas"},{"label":"Efeito","value":"É um ataque elemental +5 contra uma figura até 25cm e todas as figuras a até 5cm dela. Trate a figura alvo como origem para cálculo de terreno interposto e cobertura das outras figuras afetadas."}]},{"roll":null,"id":"cerveja-temperada-de-araby","name":"Cerveja Temperada de Araby","type":"Bebida Alcoólica","damageModifier":null,"purchaseCost":"150 coroas","sellCost":"60 coroas","exclusive":null,"flavorText":"Dizem que os mercadores de Araby a tomam para 'aquecer o espírito'. Esquecem apenas de avisar que o espírito pega fogo também.","user":null,"armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"60 coroas"},{"label":"Use","value":"Beber como uma ação."},{"label":"Efeito","value":"Beber como uma ação. Até o fim do jogo, apenas uma vez, a figura que bebeu pode como ação cuspir fogo, causando um ataque à distância elemental +3 contra uma criatura a até 15cm."}]},{"roll":null,"id":"elixir-de-enxofre","name":"Elixir de Enxofre","type":"Remédio","damageModifier":null,"purchaseCost":"150 coroas","sellCost":"60 coroas","exclusive":null,"flavorText":"Preparado com cristais elementais e essências de salamandras, esta poção envolve o bebedor em proteção contra fogo e elementos. Quando bebida, a pele fica levemente fria ao toque - fogo lava sobre você sem queimar, gelo toca sem congelar. A figura que bebe esta poção ignora os próximos 5 pontos de dano elemental que receber.\n\nContra magos de fogo, dragões cuspindo chamas, ou armadilhas alquímicas, o Elixir de Enxofre é salvação líquida. Não torna você invulnerável - mas cinco pontos podem ser a diferença entre carbonizado e sobrevivente.","user":"Beber como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"60 coroas"}]},{"roll":null,"id":"po-de-osso-daemoniaco","name":"Pó de Osso Daemôniaco.","type":"Pó","damageModifier":null,"purchaseCost":"100 coroas","sellCost":"40 coroas","exclusive":null,"flavorText":"Cheira a morte e carne queimada, mas essa é a coisa menos perturbadora sobre esse pó negro. Embora não seja feito literalmente de daemônios, ninguém sabe exatamente a origem desse pó, e por que ele faz objetos que cai sobre brilharem com uma aura fantasmagórica e enregelante. Use com precaução.","user":"Polvilhar sobre arma como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"40 coroas"},{"label":"Efeito","value":"Arma sobre o qual o pó foi polvilhado conta como arma mágica até o fim do jogo."}]},{"roll":null,"id":"elixir-de-cogumelo-louco","name":"Elixir de Cogumelo Louco","type":"Remédio","damageModifier":null,"purchaseCost":"200 coroas","sellCost":"80 coroas","exclusive":null,"flavorText":"Os temidos cultos de Fanáticos Goblin das Montanhas da Borda do Mundo usam esses cogumelos alucinógenos para se levar a um estado frenético. Cheira a terra úmida e loucura. Quando bebido, fúria berserker inunda a mente - dor desaparece, medo evapora, apenas existe a necessidade primal de MATAR. A figura ganha +1 Ímpeto e recebe +1 modificador de dano adicional em qualquer ataque corpo a corpo bem-sucedido. Porém, a figura DEVE, se possível, usar todas suas ações todo turno para mover-se para combate e lutar com a figura inimiga mais próxima (incluindo criaturas não controladas) em linha de visão e não atualmente em combate.\n\nO Elixir de Cogumelo Louco transforma guerreiros em máquinas de matar furiosas - devastadoras em combate, mas completamente descontroladas. Use quando precisar destruir inimigos, mas esteja preparado para perder todo controle tático.","user":"Beber como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"80 coroas"},{"label":"Efeito","value":"A figura que bebe esta poção recebe +2 de Ímpeto pelo resto do jogo, mas perde -2 de Vontade."}]},{"roll":null,"id":"elixir-do-plumbo-sangue","name":"Elixir do Plumbo-Sangue","type":"Remédio","damageModifier":null,"purchaseCost":"250 coroas","sellCost":"100 coroas","exclusive":null,"flavorText":"Preparada com escamas de camaleão gigante e cristais de ilusão moídos, esta poção permite ao bebedor fundir-se com o ambiente. A pele muda de cor e textura para combinar com o fundo - não invisibilidade verdadeira, mas camuflagem perfeita. Nenhuma outra figura pode traçar linha de visão para esta figura se estiverem a mais de 30cm de distância. Assim, esta figura só pode ser alvo de ataque ou magia de outra figura que esteja a até 30cm.\n\nPara espreitar, emboscar, ou simplesmente sobreviver em ambiente hostil, a Poção de Pele Prismática é invaluável. Inimigos distantes simplesmente não o veem - você é parte da parede, do chão, das sombras.","user":"Beber como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"100 coroas"},{"label":"Efeito","value":"A figura que bebe esta poção recebe +2 de Armadura, mas perde 2 de agilidade até o fim do jogo."}]},{"roll":null,"id":"balsamo-herbal","name":"Bálsamo Herbal","type":"Remédio","damageModifier":null,"purchaseCost":"30 coroas","sellCost":"10 coroas","exclusive":null,"flavorText":"A figura que usa o Bálsamo Herbal recupera 3 de vida.\n\nEm Mordheim, onde cada ponto de vida pode significar a diferença entre sobreviver e morrer, o Bálsamo Herbal é um remédio simples mas eficaz - barato, fácil de encontrar, e capaz de salvar vidas quando mais necessário.","user":"Usar como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"5 coroas"},{"label":"Efeito","value":"A figura que usa o Bálsamo Herbal recupera 3 de vida."}]},{"roll":null,"id":"frasco-de-lotus-negra","name":"Frasco de Lótus Negra","type":"Veneno","damageModifier":null,"purchaseCost":"500 coroas","sellCost":"200 coroas","exclusive":null,"flavorText":"Este é um veneno extraído dos Heldrakes, serpentes marinhas gigantescas que assolam o Oceano Ocidental e a costa de Naggaroth. O menor ferimento infectado pelo Veneno Sombrio causa dor excruciante, incapacitando até os mais corajosos dos homens. Líquido negro e viscoso em frasco pequeno, extraído das glândulas venenosas dessas criaturas terríveis. Apenas uma gota é suficiente para causar agonia insuportável - aplicado em lâmina, o veneno espera pacientemente. Este veneno pegajoso pode ser usado para revestir qualquer arma exceto cajado, arco ou besta. Pode ser usado em uma flecha ou virote de besta. Na próxima vez que esta arma causar dano, a figura que receber o dano é envenenada (assumindo que não seja imune a veneno). A arma perde a habilidade de envenenar após o primeiro ataque que causar dano. Esta poção não é mágica e não é afetada por nada que cancele magia.\n\nAssassinos adoram o Veneno Sombrio - silencioso, letal, e legal o suficiente para não chamar atenção de caçadores de bruxas. Um corte pequeno, e a vítima morre lentamente enquanto o veneno trabalha.","user":"Aplicar em arma como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"200 coroas"},{"label":"Efeito","value":"A Arma em que o veneno for aplicado ganha a propriedade Venenoso até o fim do jogo."}]},{"roll":null,"id":"penumbra-carmesim","name":"Penumbra Carmesim","type":"Remédio","damageModifier":null,"purchaseCost":"250 coroas","sellCost":"120 coroas","exclusive":null,"flavorText":"Penumbra Carmesim é o nome dado pelos habitantes do Velho Mundo às folhas do carvalho de sangue da Estália. É uma droga extremamente viciante, mas concede aos seus usuários rapidez e força sobre-humanas. Quando consumida, a substância vermelha escura se espalha pelas veias, transformando o usuário em uma máquina de combate temporária. A figura sobre o efeito de Penumbra Carmesim ganha +2 de Agilidade e +1 de Ímpeto até o fim do jogo.\n\nEm Mordheim, onde cada vantagem pode significar a diferença entre vida e morte, a Penumbra Carmesim é uma aposta perigosa - poder imenso, mas com um preço que poucos estão dispostos a pagar.","user":"Aplicar em arma como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"200 coroas"},{"label":"Efeito","value":"A figura sobre o efeito de Penumbra Carmesim ganha +2 de Agilidade e +2 de Impeto e -3 de Vontade até o fim do jogo.\n              \n              "}]}]
+[
+  {
+    "roll": null,
+    "id": "lagrimas-de-shallaya",
+    "name": "Lágrimas de Shallaya",
+    "type": "Remédio",
+    "damageModifier": null,
+    "purchaseCost": "50 coroas",
+    "sellCost": "25 coroas",
+    "exclusive": null,
+    "flavorText": "As Lágrimas de Shallaya são frascos de água da nascente sagrada em Couronne. Shallaya é a deusa da cura e misericórdia e diz-se que esta água possui propriedades curativas e é prova contra qualquer veneno. Quando bebida, a poção restaura até 5 pontos perdidos de Vigor. Não pode elevar Vigor acima do máximo inicial.\n\nEm uma cidade onde cada ferida pode ser a última, onde infecções matam tanto quanto espadas, as Lágrimas de Shallaya são mais valiosas que ouro. Guerreiros experientes guardam um frasco para emergências - a diferença entre sangrar até a morte em um beco sujo e viver para lutar outro dia.",
+    "user": "Beber como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [{ "label": "Ingredientes", "value": "25 coroas" }]
+  },
+  {
+    "roll": null,
+    "id": "elixir-de-raiz-de-mandragora",
+    "name": "Elixir de Raiz de Mandrágora",
+    "type": "Remédio",
+    "damageModifier": null,
+    "purchaseCost": "75 coroas",
+    "sellCost": "30 coroas",
+    "exclusive": null,
+    "flavorText": "A raiz de mandrágora em formato humano cresce nos pântanos apodrecidos de Sylvania. É uma planta nociva e mortal que é altamente viciante e mata lentamente seus usuários, mas também lhes permite resistir a quase qualquer dor. A figura que bebe esta poção se torna imune a veneno, mas perde -2 de Vontade até o fim do jogo.\n\nEm Mordheim, onde venenos e toxinas são comuns, o Elixir de Raiz de Mandrágo oferece proteção vital - mas com um preço que poucos estão dispostos a pagar.",
+    "user": "Beber como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "30 coroas" },
+      {
+        "label": "Efeito",
+        "value": "A figura que bebe esta poção se torna imune a veneno, mas perde -2 de Vontade até o fim do jogo."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "estimulante-anao",
+    "name": "Estimulante Anão",
+    "type": "Remédio",
+    "damageModifier": null,
+    "purchaseCost": "75 coroas",
+    "sellCost": "30 coroas",
+    "exclusive": null,
+    "flavorText": "Estimulantes anões usados por besteiros para dispararem mais rápido e com mais foco. Quando bebida, a figura que bebe recebe +1 de Precisão, +1 de Agilidade, -1 de Ímpeto e -1 de Vontade pelo resto do jogo.",
+    "user": "Beber como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "30 coroas" },
+      {
+        "label": "Efeito",
+        "value": "A figura que bebe esta poção recebe +1 de Precisão, +1 de Agilidade, -1 de Ímpeto e -1 de Vontade pelo resto do jogo."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "polvora-branca",
+    "name": "Pólvora Branca",
+    "type": "Pó",
+    "damageModifier": null,
+    "purchaseCost": "200 coroas",
+    "sellCost": "75 coroas",
+    "exclusive": null,
+    "flavorText": "Pó feito a partir de magnésio e pólvora cataiana, tendo uma alta volatilidade e poder de ignição. Contudo, sua explosão gera mais luz que fogo, causando um grande raio de luz que cega aqueles próximos.",
+    "user": "Usa quando uma figura declara carga.",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "30 coroas" },
+      {
+        "label": "Efeito",
+        "value": "Quando uma figura declara carga contra o usuário, este pode lançar o pó lampejante. Aquela figura deve fazer um teste de Vontade (CD 14) ou perder sua ação de carga, não podendo tentar outra carga até o fim da próxima ativação."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "solucao-de-embalsamar",
+    "name": "Solução de Embalsamar",
+    "type": "Solução",
+    "damageModifier": null,
+    "purchaseCost": "500 coroas",
+    "sellCost": "200 coroas",
+    "exclusive": null,
+    "flavorText": "Criada originalmente por sacerdotes de Morr, essa solução foi extremamente otimizada pelos alquimistas da tradição do metal, se tornando um preservante extremamente eficiente. Cadáveres embalsamados por essa solução já foram encontrados intactos depois de séculos.",
+    "user": "Fora de jogo, usado em uma criatura morta.",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "120 coroas" },
+      {
+        "label": "Efeito",
+        "value": "Uma figura morta pode ser preservada por até 5 jogos. Durante esse período, um Sopro de Shallaya ou a magia Milagre podem trazer a criatura de volta à vida, ao invés do período normal de imediatamente após a morte de uma criatura."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "cerveja-de-bugman",
+    "name": "Cerveja de Bugman",
+    "type": "Bebida Alcoólica",
+    "damageModifier": null,
+    "purchaseCost": "100 coroas",
+    "sellCost": "40 coroas",
+    "exclusive": null,
+    "flavorText": "A cerveja lendária dos anões, tão rara quanto valiosa. Dourada como ouro velho, espumante, com gosto de malte defumado e cevada das profundezas. Dizem que Joseph Bugman aperfeiçoou a receita após gerações de mestres cervejeiros, cada geração adicionando um segredo. Quando bebida, coragem líquida enche o coração - não a estupidez bêbada de cerveja comum, mas determinação férrea e vontade inabalável. A figura que bebe ganha +5 Vontade pelo resto do jogo.\n\nEm Mordheim, onde terror arcano e medo mundano quebram homens igualmente, a Cerveja de Bugman é mais que bebida - é armadura para a alma.",
+    "user": "Beber como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "40 coroas" },
+      {
+        "label": "Efeito",
+        "value": "A figura que bebe esta poção recebe +5 Vontade pelo resto do jogo."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "vinho-elfico",
+    "name": "Vinho Élfico",
+    "type": "Bebida Alcoólica",
+    "damageModifier": null,
+    "purchaseCost": "75 coroas",
+    "sellCost": "30 coroas",
+    "exclusive": null,
+    "flavorText": "Os vinhos élficos são conhecidos por serem os melhores do mundo, e alguns são até mesmo rumores de terem qualidades mágicas. Um Vinho Élfico fino pode expulsar dúvidas e medos, deixando uma sensação geral de bem-estar em um guerreiro. Feito de uvas que nunca viram sol humano, água de nascentes élficas, e segredos que mortais não entendem completamente. Quando bebido, o corpo torna-se leve - não flutuando, mas movendo-se com graça sobrenatural. A figura que bebe recebe +2 Agilidade pelo resto do jogo. Não pode elevar Agilidade acima de 9.\n\nEm Mordheim, velocidade é vida. Correr mais rápido que inimigos, alcançar tesouro primeiro, fugir antes de ser cercado. O Vinho Élfico dá essa vantagem - raro e caro, mas invaluável.",
+    "user": "Beber como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": "Figura que beber vinho élfico se torna Imune a Medo até o fim do jogo.",
+    "requirements": null,
+    "specialRules": [{ "label": "Ingredientes", "value": "30 coroas" }]
+  },
+  {
+    "roll": null,
+    "id": "vinho-de-malekith",
+    "name": "Vinho de Malekith",
+    "type": "Bebida Alcoólica",
+    "damageModifier": null,
+    "purchaseCost": "200 coroas",
+    "sellCost": "80 coroas",
+    "exclusive": null,
+    "flavorText": " Nomeado após o Rei Feiticeiro dos Elfos Negros, este vinho extremamente ácido e pungente torna o usuário uma presença sombria no campo de batalha, o hedonismo transformado em uma ferramenta de guerra",
+    "user": "Beber como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [{ "label": "Ingredientes", "value": "80 coroas" }]
+  },
+  {
+    "roll": null,
+    "id": "agua-benta",
+    "name": "Água Benta",
+    "type": "Arma de Arremesso",
+    "damageModifier": null,
+    "purchaseCost": "350 coroas",
+    "sellCost": "120 coroas",
+    "exclusive": null,
+    "flavorText": "Preparado com essências do próprio tecido da realidade, ingredientes que existem meio aqui e meio alhures. Quando bebida, o mundo pisca - por um instante você está em dois lugares ao mesmo tempo, depois apenas no novo. A figura que bebe é tratada como se tivesse conjurado o feitiço Teletransporte.\n\nPara escapar de cercos impossíveis, atravessar muros intransponíveis, ou alcançar tesouros inacessíveis - o Elixir do Andarilho do Véu dobra espaço. Perigoso, caro, mas absolutamente inestimável nas situações certas.",
+    "user": "Beber ou arremessar como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "80 coroas" },
+      {
+        "label": "Efeito",
+        "value": "Beber: A figura que bebe é tratada como se tivesse bebido Lágrimas de Shallaya. Arremessar: É um ataque sagrado +8 contra uma figura Morto-Vivo ou Daemônio até 25cm e todas as figuras Morto-Vivo ou Daemônio a até 5cm dela. Trate a figura alvo como origem para calculo de terreno interposto e cobertura das outras figuras afetadas."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "coquetel-kislevita",
+    "name": "Coquetel Kislevita",
+    "type": "Arma de Arremesso",
+    "damageModifier": null,
+    "purchaseCost": "100 coroas",
+    "sellCost": "40 coroas",
+    "exclusive": null,
+    "flavorText": "Feito com o coração gelado de Kislev e um sorriso caloroso — ideal para quando 'convidar alguém pra esquentar a conversa' precisa ser entendido literalmente.",
+    "user": "Arremessar como uma ação de ataque à distância.",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "40 coroas" },
+      {
+        "label": "Efeito",
+        "value": "É um ataque elemental +5 contra uma figura até 25cm e todas as figuras a até 5cm dela. Trate a figura alvo como origem para cálculo de terreno interposto e cobertura das outras figuras afetadas."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "cerveja-temperada-de-araby",
+    "name": "Cerveja Temperada de Araby",
+    "type": "Bebida Alcoólica",
+    "damageModifier": null,
+    "purchaseCost": "150 coroas",
+    "sellCost": "60 coroas",
+    "exclusive": null,
+    "flavorText": "Dizem que os mercadores de Araby a tomam para 'aquecer o espírito'. Esquecem apenas de avisar que o espírito pega fogo também.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "60 coroas" },
+      { "label": "Use", "value": "Beber como uma ação." },
+      {
+        "label": "Efeito",
+        "value": "Beber como uma ação. Até o fim do jogo, apenas uma vez, a figura que bebeu pode como ação cuspir fogo, causando um ataque à distância elemental +3 contra uma criatura a até 15cm."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "elixir-de-enxofre",
+    "name": "Elixir de Enxofre",
+    "type": "Remédio",
+    "damageModifier": null,
+    "purchaseCost": "150 coroas",
+    "sellCost": "60 coroas",
+    "exclusive": null,
+    "flavorText": "Preparado com cristais elementais e essências de salamandras, esta poção envolve o bebedor em proteção contra fogo e elementos. Quando bebida, a pele fica levemente fria ao toque - fogo lava sobre você sem queimar, gelo toca sem congelar. A figura que bebe esta poção ignora os próximos 5 pontos de dano elemental que receber.\n\nContra magos de fogo, dragões cuspindo chamas, ou armadilhas alquímicas, o Elixir de Enxofre é salvação líquida. Não torna você invulnerável - mas cinco pontos podem ser a diferença entre carbonizado e sobrevivente.",
+    "user": "Beber como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [{ "label": "Ingredientes", "value": "60 coroas" }]
+  },
+  {
+    "roll": null,
+    "id": "po-de-osso-daemoniaco",
+    "name": "Pó de Osso Daemôniaco.",
+    "type": "Pó",
+    "damageModifier": null,
+    "purchaseCost": "100 coroas",
+    "sellCost": "40 coroas",
+    "exclusive": null,
+    "flavorText": "Cheira a morte e carne queimada, mas essa é a coisa menos perturbadora sobre esse pó negro. Embora não seja feito literalmente de daemônios, ninguém sabe exatamente a origem desse pó, e por que ele faz objetos que cai sobre brilharem com uma aura fantasmagórica e enregelante. Use com precaução.",
+    "user": "Polvilhar sobre arma como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "40 coroas" },
+      {
+        "label": "Efeito",
+        "value": "Arma sobre o qual o pó foi polvilhado conta como arma mágica até o fim do jogo."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "elixir-de-cogumelo-louco",
+    "name": "Elixir de Cogumelo Louco",
+    "type": "Remédio",
+    "damageModifier": null,
+    "purchaseCost": "200 coroas",
+    "sellCost": "80 coroas",
+    "exclusive": null,
+    "flavorText": "Os temidos cultos de Fanáticos Goblin das Montanhas da Borda do Mundo usam esses cogumelos alucinógenos para se levar a um estado frenético. Cheira a terra úmida e loucura. Quando bebido, fúria berserker inunda a mente - dor desaparece, medo evapora, apenas existe a necessidade primal de MATAR. A figura ganha +1 Ímpeto e recebe +1 modificador de dano adicional em qualquer ataque corpo a corpo bem-sucedido. Porém, a figura DEVE, se possível, usar todas suas ações todo turno para mover-se para combate e lutar com a figura inimiga mais próxima (incluindo criaturas não controladas) em linha de visão e não atualmente em combate.\n\nO Elixir de Cogumelo Louco transforma guerreiros em máquinas de matar furiosas - devastadoras em combate, mas completamente descontroladas. Use quando precisar destruir inimigos, mas esteja preparado para perder todo controle tático.",
+    "user": "Beber como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "80 coroas" },
+      {
+        "label": "Efeito",
+        "value": "A figura que bebe esta poção recebe +2 de Ímpeto pelo resto do jogo, mas perde -2 de Vontade."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "elixir-do-plumbo-sangue",
+    "name": "Elixir do Plumbo-Sangue",
+    "type": "Remédio",
+    "damageModifier": null,
+    "purchaseCost": "250 coroas",
+    "sellCost": "100 coroas",
+    "exclusive": null,
+    "flavorText": "Preparada com escamas de camaleão gigante e cristais de ilusão moídos, esta poção permite ao bebedor fundir-se com o ambiente. A pele muda de cor e textura para combinar com o fundo - não invisibilidade verdadeira, mas camuflagem perfeita. Nenhuma outra figura pode traçar linha de visão para esta figura se estiverem a mais de 30cm de distância. Assim, esta figura só pode ser alvo de ataque ou magia de outra figura que esteja a até 30cm.\n\nPara espreitar, emboscar, ou simplesmente sobreviver em ambiente hostil, a Poção de Pele Prismática é invaluável. Inimigos distantes simplesmente não o veem - você é parte da parede, do chão, das sombras.",
+    "user": "Beber como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "100 coroas" },
+      {
+        "label": "Efeito",
+        "value": "A figura que bebe esta poção recebe +2 de Armadura, mas perde 2 de agilidade até o fim do jogo."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "balsamo-herbal",
+    "name": "Bálsamo Herbal",
+    "type": "Remédio",
+    "damageModifier": null,
+    "purchaseCost": "30 coroas",
+    "sellCost": "10 coroas",
+    "exclusive": null,
+    "flavorText": "A figura que usa o Bálsamo Herbal recupera 3 de vida.\n\nEm Mordheim, onde cada ponto de vida pode significar a diferença entre sobreviver e morrer, o Bálsamo Herbal é um remédio simples mas eficaz - barato, fácil de encontrar, e capaz de salvar vidas quando mais necessário.",
+    "user": "Usar como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "5 coroas" },
+      {
+        "label": "Efeito",
+        "value": "A figura que usa o Bálsamo Herbal recupera 3 de vida."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "frasco-de-lotus-negra",
+    "name": "Frasco de Lótus Negra",
+    "type": "Veneno",
+    "damageModifier": null,
+    "purchaseCost": "500 coroas",
+    "sellCost": "200 coroas",
+    "exclusive": null,
+    "flavorText": "Este é um veneno extraído dos Heldrakes, serpentes marinhas gigantescas que assolam o Oceano Ocidental e a costa de Naggaroth. O menor ferimento infectado pelo Veneno Sombrio causa dor excruciante, incapacitando até os mais corajosos dos homens. Líquido negro e viscoso em frasco pequeno, extraído das glândulas venenosas dessas criaturas terríveis. Apenas uma gota é suficiente para causar agonia insuportável - aplicado em lâmina, o veneno espera pacientemente. Este veneno pegajoso pode ser usado para revestir qualquer arma exceto cajado, arco ou besta. Pode ser usado em uma flecha ou virote de besta. Na próxima vez que esta arma causar dano, a figura que receber o dano é envenenada (assumindo que não seja imune a veneno). A arma perde a habilidade de envenenar após o primeiro ataque que causar dano. Esta poção não é mágica e não é afetada por nada que cancele magia.\n\nAssassinos adoram o Veneno Sombrio - silencioso, letal, e legal o suficiente para não chamar atenção de caçadores de bruxas. Um corte pequeno, e a vítima morre lentamente enquanto o veneno trabalha.",
+    "user": "Aplicar em arma como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "200 coroas" },
+      {
+        "label": "Efeito",
+        "value": "A Arma em que o veneno for aplicado ganha a propriedade Venenoo até o fim do jogo."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "penumbra-carmesim",
+    "name": "Penumbra Carmesim",
+    "type": "Remédio",
+    "damageModifier": null,
+    "purchaseCost": "250 coroas",
+    "sellCost": "120 coroas",
+    "exclusive": null,
+    "flavorText": "Penumbra Carmesim é o nome dado pelos habitantes do Velho Mundo às folhas do carvalho de sangue da Estália. É uma droga extremamente viciante, mas concede aos seus usuários rapidez e força sobre-humanas. Quando consumida, a substância vermelha escura se espalha pelas veias, transformando o usuário em uma máquina de combate temporária. A figura sobre o efeito de Penumbra Carmesim ganha +2 de Agilidade e +1 de Ímpeto até o fim do jogo.\n\nEm Mordheim, onde cada vantagem pode significar a diferença entre vida e morte, a Penumbra Carmesim é uma aposta perigosa - poder imenso, mas com um preço que poucos estão dispostos a pagar.",
+    "user": "Aplicar em arma como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "200 coroas" },
+      {
+        "label": "Efeito",
+        "value": "A figura sobre o efeito de Penumbra Carmesim ganha +2 de Agilidade e +2 de Impeto e -3 de Vontade até o fim do jogo.\n              \n              "
+      }
+    ]
+  }
+]

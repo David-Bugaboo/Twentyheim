@@ -3,6 +3,8 @@
     "roll": "1-4",
     "id": "adaga",
     "name": "Adaga",
+    "availability": ["Todos"],
+    "rarity": 1,
     "type": "Arma Corpo a Corpo",
     "damageModifier": "-1",
     "purchaseCost": "primeira grátis/2 coroas",
@@ -26,9 +28,11 @@
     "roll": "5-7",
     "id": "machado",
     "name": "Machado",
+    "availability": ["Todos"],
+    "rarity": 1,
     "type": "Arma Corpo a Corpo",
     "damageModifier": "0",
-    "purchaseCost": "3 coroas",
+    "purchaseCost": "5 coroas",
     "sellCost": "1 coroa",
     "exclusive": null,
     "flavorText": "O machado é a arma tradicional dos lenhadores do Império, e também é usado como arma nas áreas rurais mais pobres. Machados têm uma lâmina pesada e, se balançado por um homem forte, podem causar muito dano.",
@@ -38,12 +42,23 @@
     "slots": "1",
     "effect": null,
     "requirements": null,
-    "specialRules": []
+    "specialRules": [
+      {
+        "label": "Penetração de Armadura(1)",
+        "value": "Uma arma com essa catacterística ignora (X) pontos de armadura do alvo."
+      },
+      {
+        "label": "Desbalanceada",
+        "value": "Uma arma com essa característica nunca pode ser usada com uma arma leve na mão secundária, apenas escudos."
+      }
+    ]
   },
   {
     "roll": "8-10",
     "id": "espada",
     "name": "Espada",
+    "availability": ["Todos"],
+    "rarity": 1,
     "type": "Arma Corpo a Corpo",
     "damageModifier": "0",
     "purchaseCost": "10 coroas",
@@ -68,6 +83,8 @@
     "id": "arma-de-duas-maos",
     "name": "Arma de Duas Mãos",
     "type": "Arma Corpo a Corpo",
+    "availability": ["Todos"],
+    "rarity": 1,
     "damageModifier": "+2",
     "purchaseCost": "15 coroas",
     "sellCost": "6 coroas",
@@ -88,38 +105,37 @@
     ]
   },
   {
-    "roll": "13-14",
-    "id": "cajado",
-    "name": "Cajado",
+    "roll": "15-16",
+    "id": "maça",
+    "name": "Maça",
     "type": "Arma Corpo a Corpo",
-    "damageModifier": "-1",
-    "purchaseCost": "2 coroa",
-    "sellCost": "1 coroas",
+    "availability": ["Todos"],
+    "rarity": 1,
+    "damageModifier": "0",
+    "purchaseCost": "3 coroas",
+    "sellCost": "2 coroas",
     "exclusive": null,
-    "flavorText": "A boa e velha vara de madeira nunca sai de moda, mesmo entre aqueles que não são malucos o suficiente para mexer com os ventos da magia. Resistente e comprida, é uma arma mais adequada para se proteger, já que sua construção madeireira raramente causa muita dor, principalmente em inimigos armadurados.",
+    "flavorText": "Talvez o tipo mais simples de arma, estes instrumentos brutais e esmagadores variam de porretes a  maças de ferro cru. Uma arma simples e eficiente. Você não vai fazer nada especial, mas o crânio do inimigo vai afundar.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
     "slots": "1",
     "effect": null,
     "requirements": null,
-    "specialRules": [
-      {
-        "label": "Defensiva",
-        "value": "Inimigos causam -1 de dano no portador de uma arma com essa característica."
-      }
-    ]
+    "specialRules": []
   },
   {
     "roll": "15-16",
-    "id": "arma-de-concussao",
-    "name": "Arma de Concussão",
+    "id": "martelo",
+    "name": "Martelo",
     "type": "Arma Corpo a Corpo",
+    "availability": ["Todos"],
+    "rarity": 1,
     "damageModifier": "0",
     "purchaseCost": "5 coroas",
     "sellCost": "2 coroas",
     "exclusive": null,
-    "flavorText": "Talvez o tipo mais simples de arma, estes instrumentos brutais e esmagadores variam de maças de ferro cru a martelos anões elaboradamente forjados feitos do melhor aço. Um golpe de uma maça pode facilmente esmagar um crânio ou deixar um homem inconsciente.",
+    "flavorText": "O martelo é uma ferramenta de trabalho que se tornou arma de guerra. Com sua cabeça pesada de ferro e cabo robusto, é capaz de esmagar ossos e despedaçar armaduras com a força bruta de seus golpes. Simples, confiável e devastadoramente eficaz contra oponentes blindados.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -139,14 +155,16 @@
   },
   {
     "roll": "17-18",
-    "id": "arma-de-haste",
-    "name": "Arma de Haste",
+    "id": "alabarda",
+    "name": "Alabarda",
     "type": "Arma Corpo a Corpo",
+    "availability": ["Todos"],
+    "rarity": 1,
     "damageModifier": "0",
     "purchaseCost": "10 coroas",
     "sellCost": "4 coroas",
     "exclusive": null,
-    "flavorText": "O pão com manteiga do soldado imperial, as armas de haste mantiveram mais de um soldado verde vivo para ver outro dia. Incluem lanças, alabardas, piques e afins. Apesar de serem construídas de forma simples, essas armas são extremamente simples de usar, e têm resultados brutais. A praticidade de poder usá-las junto a um escudo, ou usar ambas as mãos para um impacto extra também a torna a arma favorita de muitos veteranos.",
+    "flavorText": "A lâmina pesada da alabarda é montada sobre um cabo resistente de carvalho ou aço e tem uma ponta como uma lança e uma borda cortante como um machado. Como pode ser usada tanto para cortar quanto para perfurar, é uma arma adaptável, mas é difícil de usar dentro de edifícios.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -166,36 +184,11 @@
   },
   {
     "roll": null,
-    "id": "glaive-de-guerra-elfica",
-    "name": "Glaive de Guerra Élfica",
-    "type": "Arma Corpo a Corpo",
-    "damageModifier": "0",
-    "purchaseCost": "30 coroas",
-    "sellCost": "20 coroas",
-    "exclusive": "Guarda Marítima de Ulthuan e Elfos Silvanos de Athel Loren",
-    "flavorText": "A elegância mortal dos elfos elevada à forma de uma arma de guerra, esta glaive combina a graça refinada da arte élfica com a brutalidade prática necessária para sobreviver em Mordheim. O cabo é entalhado em madeira naval antiga, cada sulco contando histórias de batalhas passadas. A lâmina curva é feita de ithilmar, mais leve que o comum mas igualmente letal. O portador pode brandi-la com uma ou duas mãos, adaptando-se ao fluxo da batalha. Quando empunhada com ambas as mãos, o peso e o impulso da arma se traduzem em golpes devastadores. Sua lâmina longa mantém inimigos à distância, permitindo que o guerreiro controle o campo de batalha. Em Mordheim, onde cada vantagem conta, a glaive élfica oferece versatilidade, alcance e a promessa de que nem mesmo a morte mais sombria pode eclipsar completamente a luz das terras distantes.",
-    "user": null,
-    "armorBonus": null,
-    "movePenalty": null,
-    "slots": "1",
-    "effect": null,
-    "requirements": null,
-    "specialRules": [
-      {
-        "label": "Versátil",
-        "value": "Uma arma com essa característica pode ser usado com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano. Mesmo se usada com uma mão, não pode se beneficiar de uma arma leve na mão secundária, apenas de escudos."
-      },
-      {
-        "label": "Defensiva",
-        "value": "Inimigos causam -1 de dano no portador de uma arma com essa característica."
-      }
-    ]
-  },
-  {
-    "roll": null,
     "id": "machado-anao",
     "name": "Machado Anão",
     "type": "Arma Corpo a Corpo",
+    "availability": ["Caçadores de Tesouro Anões"],
+    "rarity": 14,
     "damageModifier": "0",
     "purchaseCost": "15 coroas",
     "sellCost": "10 coroas",
@@ -209,36 +202,12 @@
     "requirements": null,
     "specialRules": [
       {
-        "label": "Leve",
-        "value": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
-      }
-    ]
-  },
-  {
-    "roll": null,
-    "id": "arma-de-duas-maos-ana",
-    "name": "Arma de Duas Mãos Anã",
-    "type": "Arma Corpo a Corpo",
-    "damageModifier": "0",
-    "purchaseCost": "60 coroas",
-    "sellCost": "40 coroas",
-    "exclusive": "Caçadores de Tesouro Anões e Filhos de Hashut",
-    "flavorText": "Apenas um Runamestre Anão pode forjar uma arma pesada de gromril, um ferro meteórico raro. Uma lâmina feita deste metal manterá seu fio por mil anos, e cortará através do aço sem impedimento.",
-    "user": null,
-    "armorBonus": null,
-    "movePenalty": null,
-    "slots": "2",
-    "effect": null,
-    "requirements": null,
-    "specialRules": [
-      { "label": "Slots", "value": "2" },
-      {
-        "label": "Duas Mãos",
-        "value": "Uma arma com essa característica não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
+        "label": "Penetração de Armadura(1)",
+        "value": "Uma arma com essa catacterística ignora (X) pontos de armadura do alvo."
       },
       {
-        "label": "Penetração de Armadura (1)",
-        "value": "Essa arma trata a armadura de inimigos que atinge como o valor entre parênteses menor."
+        "label": "Leve",
+        "value": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
       }
     ]
   },
@@ -250,7 +219,8 @@
     "damageModifier": "-1",
     "purchaseCost": "35 coroas pelo par",
     "sellCost": "8 coroas pelo par",
-    "exclusive": "Skaven",
+    "availability": ["Skaven"],
+    "rarity": 12,
     "flavorText": "As artes marciais praticadas pelo Clã Eshin empregam muitas armas incomuns. As mais famosas dessas são as Garras de Combate Eshin: lâminas de metal afiadas presas às patas de um guerreiro Skaven. É preciso um verdadeiro especialista para usá-las efetivamente, mas um adepto do Clã Eshin é um oponente temível quando armado desta forma.",
     "user": null,
     "armorBonus": null,
@@ -280,6 +250,8 @@
     "type": "Arma Corpo a Corpo",
     "damageModifier": "-1",
     "purchaseCost": "50 coroas pelo par",
+    "availability": ["Skaven"],
+    "rarity": 18,
     "sellCost": "15 coroas pelo par",
     "exclusive": "Skaven",
     "flavorText": "Os adeptos do Clã Eshin usam armas chamadas Lâminas Lamentosas, espadas assassinas construídas com uma pequena quantidade de pedra-bruxa em sua estrutura. Uma Lâmina Lamentosa constantemente suga um veneno corrosivo mortal.",
@@ -299,8 +271,8 @@
         "value": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
       },
       {
-        "label": "Venenosa",
-        "value": "Uma arma com essa característica envenena o alvo em um ataque bem-sucedido, mesmo se não causar dano."
+        "label": "Tóxica",
+        "value": "Uma arma com essa característica causa dano Venenoso."
       }
     ]
   },
@@ -308,11 +280,13 @@
     "roll": null,
     "id": "martelo-de-guerra-sigmarita",
     "name": "Martelo de Guerra Sigmarita",
+    "availability": ["Irmãs de Sigmar"],
+    "rarity": 1,
     "type": "Arma Corpo a Corpo",
     "damageModifier": "Nenhum (0)",
     "purchaseCost": "15 coroas",
     "sellCost": "12 coroas",
-    "exclusive": "Irmãs de Sigmar",
+
     "flavorText": "Uma das armas tradicionais da Irmandade, o martelo de guerra ecoa Ghal-Maraz, o grande martelo do próprio Sigmar.",
     "user": null,
     "armorBonus": null,
@@ -331,7 +305,7 @@
       },
       {
         "label": "Abençoada (1)",
-        "value": "Essa arma ignora o numero entre parenteses de pontos de armadura do alvo, se esta tiver as caracteristicas Morto-vivo ou Daemonio."
+        "value": "Essa arma ignora o numero entre parenteses de pontos de armadura do alvo, se esta tiver as caracteristicas Morto-Vivo ou Daemonio."
       },
       {
         "label": "Desbalanceada",
@@ -341,37 +315,12 @@
   },
   {
     "roll": null,
-    "id": "adaga-sacrificial",
-    "name": "Adaga Sacrificial",
-    "type": "Arma Corpo a Corpo",
-    "damageModifier": "-1",
-    "purchaseCost": "15 coroas",
-    "sellCost": "2  coroas",
-    "exclusive": "Noivas de Khaine",
-    "flavorText": "Uma lâmina sagrada forjada nos altares de Khaine, banhada no sangue de mil sacrificios. Cada vida ceifada por sua lâmina esfoladora cruel é um banquete para o deus sombrio, e um novo ingrediente nas poções da rainha bruxa. .",
-    "user": null,
-    "armorBonus": null,
-    "movePenalty": null,
-    "slots": "1",
-    "effect": null,
-    "requirements": null,
-    "specialRules": [
-      {
-        "label": "Cruel",
-        "value": "Uma arma com essa característica conta como tendo causado um ataque crítico em uma rolagem natural de 19 ou 20. Essa característica só é aplicada se esta for a arma da mão principal."
-      },
-      {
-        "label": "Leve",
-        "value": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
-      }
-    ]
-  },
-  {
-    "roll": null,
     "id": "chicote-de-aco",
     "name": "Chicote de Aço",
+    "availability": ["Irmãs de Sigmar"],
+    "rarity": 1,
     "type": "Arma Corpo a Corpo",
-    "damageModifier": "-1",
+    "damageModifier": "0",
     "purchaseCost": "15 coroas",
     "sellCost": "2  coroas",
     "exclusive": "Irmãs de Sigmar, Noivas de Khaine",
@@ -384,8 +333,39 @@
     "requirements": null,
     "specialRules": [
       {
-        "label": "Chicote(1)",
-        "value": "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de X, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de Xcm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno."
+        "label": "Reativa(3)",
+        "value": "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de Xcm, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de Xcm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "lança",
+    "name": "Lança",
+    "availability": ["Todos"],
+    "rarity": 1,
+    "type": "Arma Corpo a Corpo",
+    "damageModifier": "-1",
+    "purchaseCost": "10 coroas",
+    "flavorText": "Lanças vão desde os espetos de pau dos goblins até as incriveis lanças de cavalaria dos Altos Elfos.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Reativa(3)",
+        "value": "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de Xcm, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de Xcm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno."
+      },
+      {
+        "label": "Desbalanceada",
+        "value": "Uma arma com essa característica nunca pode ser usada com uma arma leve na mão secundária, apenas escudos."
+      },
+      {
+        "label": "Versátil",
+        "value": "Uma arma com essa característica pode ser usado com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano."
       }
     ]
   },
@@ -393,6 +373,8 @@
     "roll": null,
     "id": "bola-e-corrente",
     "name": "Bola e Corrente",
+    "availability": ["Hordas Orcs"],
+    "rarity": 1,
     "type": "Arma Corpo a Corpo",
     "damageModifier": "+4",
     "purchaseCost": "15 coroas",
@@ -431,16 +413,17 @@
     "id": "chicote-de-domador",
     "name": "Chicote de Domador",
     "type": "Arma Corpo a Corpo",
+    "availability": ["Corsários Druchii"],
+    "rarity": 16,
     "damageModifier": "-1",
     "purchaseCost": "15 coroas",
-    "exclusive": "Elfos Sombrios (Apenas Mestre de Bestas)",
     "flavorText": "Os Domadores de Feras fazem bom uso de seus chicotes para instigar suas bestas gélidas.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
     "slots": "1",
     "effect": null,
-    "rarity": 16,
+
     "requirements": null,
     "specialRules": [
       {
@@ -457,6 +440,8 @@
     "roll": null,
     "id": "cajado-braseiro",
     "name": "Cajado Braseiro",
+    "availability": ["Caçadores de Bruxas"],
+    "rarity": 12,
     "type": "Arma Corpo a Corpo",
     "damageModifier": "-1",
     "purchaseCost": "35 coroas",
@@ -468,13 +453,8 @@
     "movePenalty": null,
     "slots": "1",
     "effect": null,
-    "rarity": 12,
     "requirements": null,
     "specialRules": [
-      {
-        "label": "Duas Mãos",
-        "value": "Uma arma com essa característica não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
-      },
       {
         "label": "Incendiário(4)",
         "value": "Se uma figura é atingida por um ataque dessa arma e receber mais que (X) de dano, ela recebe um Marcador de Chamas."
@@ -482,6 +462,56 @@
       {
         "label": "Versátil",
         "value": "Uma arma com essa característica pode ser usado com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano."
+      }
+    ]
+  },
+  {
+    "id": "mangual",
+    "name": "Mangual",
+    "type": "Arma Corpo a Corpo",
+    "damageModifier": "+2",
+    "availability": ["Todos"],
+    "rarity": 1,
+    "purchaseCost": "15 coroas",
+    "exclusive": null,
+    "flavorText": "O mangual é uma arma pesada empunhada com ambas as mãos. Normalmente consiste em pesos pesados, frequentemente pontiagudos, presos a um cabo ou alça por meio de correntes pesadas. Os manguais drenam rapidamente a resistência do usuário, mas são terrivelmente destrutivos nas mãos de um guerreiro habilidoso (ou desequilibrado).",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "3",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Peso Brutal",
+        "value": "Uma arma com essa característica causa +1 de dano na primeira luta da figura equipada em cada turno."
+      },
+      {
+        "label": "Duas Mãos",
+        "value": "Uma arma com essa característica não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
+      }
+    ]
+  },
+  {
+    "id": "estrela-da-manha",
+    "name": "Estrela da Manhã",
+    "type": "Arma Corpo a Corpo",
+    "damageModifier": "+1",
+    "availability": ["Todos"],
+    "rarity": 1,
+    "purchaseCost": "15 coroas",
+    "exclusive": null,
+    "flavorText": "A estrela da manhã consiste em um cabo de madeira ou aço com correntes pesadas que têm bolas de aço pontiagudas presas. É muito destrutiva e requer grande habilidade para ser empunhada efetivamente.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Peso Brutal",
+        "value": "Uma arma com essa característica causa +1 de dano na primeira luta da figura equipada em cada turno."
       },
       {
         "label": "Desbalanceada",
@@ -489,5 +519,4 @@
       }
     ]
   }
-
 ]

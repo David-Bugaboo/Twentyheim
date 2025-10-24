@@ -1,13 +1,12 @@
 import React from "react";
 import MobileSection from "../../../components/MobileSection";
 import MobileText from "../../../components/MobileText";
-import MobileHeroHeader from "../../../components/MobileHeroHeader";
 import HeaderH1 from "../../../components/HeaderH1";
 import HeaderH2 from "../../../components/HeaderH2";
 import UnitCard from "../../../components/UnitCard";
 import QuickNavigation from "../../../components/QuickNavigation";
 import homemFerasData from "./beastmen-raiders.data.json";
-import headerImage from "../../../assets/header-art/21ef8615dda8ffc145957aff5273c244_upscayl_4x_high-fidelity-4x.png";
+import PageTitle from "../../../components/PageTitle";
 
 const HomemFerasRaidersPage: React.FC = () => {
   // Separar unidades por categoria
@@ -59,9 +58,11 @@ const HomemFerasRaidersPage: React.FC = () => {
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <QuickNavigation sections={navigationSections} />
-      <MobileHeroHeader title="Saqueadores Homem Fera" imageUrl={headerImage} />
+
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <PageTitle>Saqueadores Homem-Fera</PageTitle>
+    
           <MobileSection id="introducao">
             <MobileText>
               Os Homens-Fera são criaturas brutais, selvagens e aberrantes que
@@ -160,14 +161,6 @@ const HomemFerasRaidersPage: React.FC = () => {
               <br />• <strong>Cães de Guerra do Caos:</strong> Seu bando pode
               incluir até cinco Cães de Guerra do Caos (0-5).
             </MobileText>
-
-            <MobileText
-              variant="quote"
-              className="text-center text-lg leading-relaxed mt-8"
-            >
-              "Ninguém pode prever seus movimentos, e muitos vivem em constante
-              medo de seus ataques."
-            </MobileText>
           </MobileSection>
 
           {/* Líder */}
@@ -182,6 +175,7 @@ const HomemFerasRaidersPage: React.FC = () => {
                 stats={leader.stats}
                 spellAffinity={leader.spellAffinity}
                 abilities={leader.abilities}
+                equipment={leader.equipment}
               />
             </MobileSection>
           )}
@@ -200,6 +194,7 @@ const HomemFerasRaidersPage: React.FC = () => {
                     stats={hero.stats}
                     spellAffinity={hero.spellAffinity}
                     abilities={hero.abilities}
+                    equipment={hero.equipment}
                   />
                 </div>
               ))}
@@ -220,6 +215,7 @@ const HomemFerasRaidersPage: React.FC = () => {
                     stats={soldier.stats}
                     spellAffinity={soldier.spellAffinity}
                     abilities={soldier.abilities}
+                    equipment={soldier.equipment}
                   />
                 </div>
               ))}

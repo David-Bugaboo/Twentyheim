@@ -2,20 +2,20 @@
   {
     "id": "nobre-druchii",
     "name": "Nobre Druchii",
-    "role": "Lider",
-    "quantity": "1 (obrigatório)",
+    "role": "Líder",
+    "quantity": "1",
     "stats": {
       "move": 20,
       "fight": "+3",
       "shoot": "0",
       "armour": 9,
-      "will": "+3",
+      "Vontade": "+3",
       "health": 14,
       "cost": "70 coroas",
       "skills": [
         "Combate",
         "Atirador",
-        "Academico",
+        "Acadêmica",
         "Agilidade",
         "Corsários Druchii"
       ]
@@ -28,6 +28,14 @@
       {
         "name": "Habilidades",
         "description": "O Nobre Druchii começa com 5 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+      },
+      {
+        "name": "Visão Excelente",
+        "description": "A figura tem +10cm de alcance com qualquer arma a distância."
+      },
+      {
+        "name": "Ódio Ancestral",
+        "description": "A figura tem a característica Ódio(Altos Elfos)."
       }
     ],
     "equipment": {
@@ -36,7 +44,7 @@
         { "name": "Machado", "cost": "5 coroas" },
         { "name": "Espada", "cost": "10 coroas" },
         { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Arma de Haste", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
         { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
       ],
       "ranged": [
@@ -66,7 +74,7 @@
       "fight": "2",
       "shoot": "2",
       "armour": 9,
-      "will": "+4",
+      "Vontade": "+4",
       "health": 14,
       "cost": "45 coroas",
       "skills": ["Combate", "Agilidade", "Corsários Druchii"]
@@ -79,6 +87,14 @@
       {
         "name": "Domador de Feras Gélidas",
         "description": "Um bando com um Domador de Feras pode contratar até duas Feras Gélidas. O Domador de Feras pode fazer uma ativação em grupo com até duas Feras Gélidas que estejam até 8cm de distância dele."
+      },
+      {
+        "name": "Visão Excelente",
+        "description": "A figura tem +10cm de alcance com qualquer arma a distância."
+      },
+      {
+        "name": "Ódio Ancestral",
+        "description": "A figura tem a característica Ódio(Altos Elfos)."
       }
     ],
     "equipment": {
@@ -87,7 +103,7 @@
         { "name": "Machado", "cost": "5 coroas" },
         { "name": "Espada", "cost": "10 coroas" },
         { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Arma de Haste", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
         { "name": "Chicote de Domador", "cost": "10 coroas" },
         { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
       ],
@@ -117,7 +133,7 @@
       "fight": "+2",
       "shoot": "0",
       "armour": 9,
-      "will": "4",
+      "Vontade": "4",
       "health": 10,
       "cost": "55 coroas"
     },
@@ -134,6 +150,14 @@
       {
         "name": "Conjurador",
         "description": "A Bruxa Druchii é um conjuradora da Tradição das Sombras. Ele começa o jogo com 3 magias, de quaisquer tradições presentes na tabela de tradições mágicas."
+      },
+      {
+        "name": "Visão Excelente",
+        "description": "A figura tem +10cm de alcance com qualquer arma a distância."
+      },
+      {
+        "name": "Ódio Ancestral",
+        "description": "A figura tem a característica Ódio(Altos Elfos)."
       }
     ],
     "equipment": {
@@ -142,7 +166,7 @@
         { "name": "Machado", "cost": "5 coroas" },
         { "name": "Espada", "cost": "10 coroas" },
         { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Arma de Haste", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
         { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
       ],
       "ranged": [
@@ -171,7 +195,7 @@
       "fight": "+4",
       "shoot": "0",
       "armour": 9,
-      "will": "+4",
+      "Vontade": "+4",
       "health": 12,
       "cost": "40 coroas",
       "skills": ["Combate", "Agilidade", "Corsários Druchii"]
@@ -184,6 +208,14 @@
       {
         "name": "Massacre Violento",
         "description": "Sempre que causa um dano crítico em uma luta, pode imediatamente lutar novamente. Resolva a segunda luta antes de quaisquer outros efeitos especiais."
+      },
+      {
+        "name": "Visão Excelente",
+        "description": "A figura tem +10cm de alcance com qualquer arma a distância."
+      },
+      {
+        "name": "Ódio Ancestral",
+        "description": "A figura tem a característica Ódio(Altos Elfos)."
       }
     ],
     "equipment": {
@@ -192,7 +224,7 @@
         { "name": "Machado", "cost": "5 coroas" },
         { "name": "Espada", "cost": "10 coroas" },
         { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Arma de Haste", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
         { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
       ],
       "ranged": [
@@ -220,18 +252,27 @@
       "fight": "+2",
       "shoot": "0",
       "armour": 9,
-      "will": "-1",
+      "Vontade": "-1",
       "health": 8,
       "cost": "35 coroas"
     },
-    "abilities": [],
+    "abilities": [
+      {
+        "name": "Visão Excelente",
+        "description": "A figura tem +10cm de alcance com qualquer arma a distância."
+      },
+      {
+        "name": "Ódio Ancestral",
+        "description": "A figura tem a característica Ódio(Altos Elfos)."
+      }
+    ],
     "equipment": {
       "hand-to-hand": [
         { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
         { "name": "Machado", "cost": "5 coroas" },
         { "name": "Espada", "cost": "10 coroas" },
         { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Arma de Haste", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
         { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
       ],
       "ranged": [
@@ -257,7 +298,7 @@
       "fight": "1",
       "shoot": "2",
       "armour": 9,
-      "will": "+1",
+      "Vontade": "+1",
       "health": 10,
       "cost": "30 coroas"
     },
@@ -265,6 +306,14 @@
       {
         "name": "Andarilho Sombrio",
         "description": "A sombra tem a característica Furtividade(16)"
+      },
+      {
+        "name": "Visão Excelente",
+        "description": "A figura tem +10cm de alcance com qualquer arma a distância."
+      },
+      {
+        "name": "Ódio Ancestral",
+        "description": "A figura tem a característica Ódio(Altos Elfos)."
       }
     ]
   },
@@ -277,7 +326,7 @@
       "fight": "+1",
       "shoot": "0",
       "armour": 11,
-      "will": "+2",
+      "Vontade": "+2",
       "health": 10,
       "cost": "30 coroas"
     },

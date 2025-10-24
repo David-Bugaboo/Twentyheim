@@ -1,19 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
-import SpellCard from "../../components/SpellCard";
-import {
-  PageContainer,
-  ContentSection,
-  NavigationSection,
-  StyledNavigationButton,
-  ContentContainer,
-  ParchmentText,
-  PowerListTitle,
-} from "../../components/PageComponents";
+import PageTitle from "../../components/PageTitle";
+import MobileText from "../../components/MobileText";
+import MobileSection from "../../components/MobileSection";
+import HeaderH2 from "../../components/HeaderH2";
+import QuickNavigation from "../../components/QuickNavigation";
+import LoreSpellCard from "../../components/LoreSpellCard";
 
 export default function LoreOfTheBigWaaaghPage() {
-  const navigate = useNavigate();
-
   const spells = [
     {
       name: "DURO COMO PREDA",
@@ -120,67 +112,89 @@ export default function LoreOfTheBigWaaaghPage() {
     },
   ];
 
+  const navigationSections = [
+    {
+      id: "intro",
+      title: "Tradição do Grande WAAAGH! - O Poder dos CABRAS!",
+      level: 0,
+    },
+    {
+      id: "caracteristicas",
+      title: "Características da Tradição do Grande WAAAGH!",
+      level: 0,
+    },
+    { id: "magias", title: "Magias da Tradição do Grande WAAAGH!", level: 0 },
+    ...spells.map((spell, index) => ({
+      id: `spell-${index}`,
+      title: spell.name,
+      level: 1,
+    })),
+  ];
+
   return (
-    <PageContainer>
-      <Header title="Tradição do Grande WAAAGH!" />
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
+          <MobileSection>
+            <div id="intro">
+              <PageTitle>
+                Tradição do Grande WAAAGH! - O Poder dos CABRAS!
+              </PageTitle>
+            </div>
 
-      <ContentSection>
-        <ContentContainer>
-          <ParchmentText
-            sx={{
-              textAlign: "center",
-              fontSize: "1.2rem",
-              fontStyle: "italic",
-              color: "#6b8e23",
-              mb: 3,
-            }}
-          >
-            💚 O PODER DE GORK E MORK!
-          </ParchmentText>
+            <MobileText
+              variant="quote"
+              className="text-center italic text-lg leading-relaxed mb-6 p-4 bg-green-900/20 border border-green-500/40 rounded-lg text-white"
+            >
+              "O PODER DE GORK E MORK!"
+            </MobileText>
 
-          <ParchmentText sx={{ mb: 4 }}>
-            A Tradição do Grande WAAAGH! é a magia brutona e primitiva dos
-            Pele-Verde, viu? É alimentada pela energia psíquica coletiva de Gork
-            (que é brutão mas esperto) e Mork (que é esperto mas brutão). Quando
-            os Ork e Goblin se junta tudo num bando só, a energia do WAAAGH! vai
-            crescendo, crescendo, até que os Xamã consegue pegar ela e
-            transformar ela numa puta duma magia! É porrada psíquica que esmaga
-            quengo, joga inimigo pros lado que nem boneca de pano, e deixa os
-            cabra ainda mais casca grossa! WAAAGH!
-          </ParchmentText>
+            <div id="caracteristicas">
+              <HeaderH2>Características da Tradição do Grande WAAAGH!</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              A Tradição do Grande WAAAGH! é a magia brutona e primitiva dos
+              Pele-Verde, viu? É alimentada pela energia psíquica coletiva de
+              Gork (que é brutão mas esperto) e Mork (que é esperto mas brutão).
+              Quando os Ork e Goblin se junta tudo num bando só, a energia do
+              WAAAGH! vai crescendo, crescendo, até que os Xamã consegue pegar
+              ela e transformar ela numa puta duma magia! É porrada psíquica que
+              esmaga quengo, joga inimigo pros lado que nem boneca de pano, e
+              deixa os cabra ainda mais casca grossa! WAAAGH!
+            </MobileText>
 
-          <PowerListTitle>
-            Feitiços da Tradição do Grande WAAAGH!
-          </PowerListTitle>
+            <div id="magias">
+              <HeaderH2>Feitiços da Tradição do Grande WAAAGH!</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              Os feitiços da Tradição do Grande WAAAGH! são conhecidos por sua
+              natureza brutona e destrutiva. Eles canalizam o poder psíquico
+              coletivo dos Pele-Verde para criar efeitos de força, destruição e
+              porrada pura!
+            </MobileText>
 
-          {spells.map((spell, index) => (
-            <SpellCard
-              key={index}
-              id={spell.name.toLowerCase().replace(/\s+/g, "-")}
-              name={spell.name}
-              school="Tradição do Grande WAAAGH!"
-              castingNumber={spell.castingNumber}
-              keywords={
-                Array.isArray(spell.keywords)
-                  ? spell.keywords
-                  : Array.isArray(spell.range)
-                  ? spell.range
-                  : [spell.range || ""]
-              }
-              effect={spell.effect}
-            />
-          ))}
-        </ContentContainer>
-      </ContentSection>
-
-      <NavigationSection>
-        <StyledNavigationButton
-          variant="contained"
-          onClick={() => navigate("/magic/greenskin-lores")}
-        >
-          Voltar para Tradições Peles-Verdes
-        </StyledNavigationButton>
-      </NavigationSection>
-    </PageContainer>
+            <div className="space-y-6">
+              {spells.map((spell, index) => (
+                <div key={index} id={`spell-${index}`}>
+                  <LoreSpellCard
+                    name={spell.name}
+                    castingNumber={spell.castingNumber}
+                    keywords={
+                      Array.isArray(spell.keywords)
+                        ? spell.keywords
+                        : Array.isArray(spell.range)
+                        ? spell.range
+                        : [spell.range || ""]
+                    }
+                    effect={spell.effect}
+                  />
+                </div>
+              ))}
+            </div>
+          </MobileSection>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -9,32 +9,32 @@
       "fight": "+2",
       "shoot": "+0",
       "armour": 10,
-      "will": "+5",
+      "Vontade": "+5",
       "health": 14,
-      "cost": "70 coroas",
-      "equipment": {
-        "hand-to-hand": [
-          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-          { "name": "Porrete", "cost": "3 coroas" },
-          { "name": "Arma de Concussão", "cost": "5 coroas" },
-          { "name": "Machado", "cost": "5 coroas" },
-          { "name": "Espada", "cost": "10 coroas" },
-          { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-          { "name": "Arma de Haste", "cost": "10 coroas" }
-        ],
-        "ranged": [
-          { "name": "Arco", "cost": "15 coroas" },
-          { "name": "Arco Curto", "cost": "10 coroas" }
-        ],
-        "armor": [
-          { "name": "Armadura Leve", "cost": "20 coroas" },
-          { "name": "Armadura Pesada", "cost": "50 coroas" },
-          { "name": "Escudo", "cost": "5 coroas" },
-          { "name": "Capacete", "cost": "10 coroas" }
-        ],
-        "acessories": [],
-        "modifiers": []
-      }
+      "cost": "70 coroas"
+    },
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco", "cost": "15 coroas" },
+        { "name": "Arco Curto", "cost": "10 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" }
+      ],
+      "acessories": [],
+      "modifiers": []
     },
     "spellAffinity": {
       "aligned0": ["Tradição do Caos"],
@@ -66,7 +66,7 @@
       "fight": "+4",
       "shoot": "-",
       "armour": 11,
-      "will": "+3",
+      "Vontade": "+3",
       "health": 18,
       "cost": "90 coroas (+ custo das mutações)",
       "skills": ["Combate", "Força", "Agilidade"]
@@ -100,33 +100,33 @@
       "fight": "+2",
       "shoot": "0",
       "armour": 10,
-      "will": "+2",
+      "Vontade": "+2",
       "health": 10,
       "cost": "25 coroas (+ custo das mutações)",
-      "skills": ["Combate", "Agilidade"],
-      "equipment": {
-        "hand-to-hand": [
-          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-          { "name": "Porrete", "cost": "3 coroas" },
-          { "name": "Arma de Concussão", "cost": "5 coroas" },
-          { "name": "Machado", "cost": "5 coroas" },
-          { "name": "Espada", "cost": "10 coroas" },
-          { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-          { "name": "Arma de Haste", "cost": "10 coroas" }
-        ],
-        "ranged": [
-          { "name": "Arco", "cost": "15 coroas" },
-          { "name": "Arco Curto", "cost": "10 coroas" }
-        ],
-        "armor": [
-          { "name": "Armadura Leve", "cost": "20 coroas" },
-          { "name": "Armadura Pesada", "cost": "50 coroas" },
-          { "name": "Escudo", "cost": "5 coroas" },
-          { "name": "Capacete", "cost": "10 coroas" }
-        ],
-        "acessories": [],
-        "modifiers": []
-      }
+      "skills": ["Combate", "Agilidade"]
+    },
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco", "cost": "15 coroas" },
+        { "name": "Arco Curto", "cost": "10 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" }
+      ],
+      "acessories": [],
+      "modifiers": []
     },
     "abilities": [
       {
@@ -148,32 +148,32 @@
       "fight": "+2",
       "shoot": "0",
       "armour": 10,
-      "will": "-1",
+      "Vontade": "-1",
       "health": 10,
-      "cost": "25 coroas",
-      "equipment": {
-        "hand-to-hand": [
-          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-          { "name": "Porrete", "cost": "3 coroas" },
-          { "name": "Arma de Concussão", "cost": "5 coroas" },
-          { "name": "Machado", "cost": "5 coroas" },
-          { "name": "Espada", "cost": "10 coroas" },
-          { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-          { "name": "Arma de Haste", "cost": "10 coroas" }
-        ],
-        "ranged": [
-          { "name": "Arco", "cost": "15 coroas" },
-          { "name": "Arco Curto", "cost": "10 coroas" }
-        ],
-        "armor": [
-          { "name": "Armadura Leve", "cost": "20 coroas" },
-          { "name": "Armadura Pesada", "cost": "50 coroas" },
-          { "name": "Escudo", "cost": "5 coroas" },
-          { "name": "Capacete", "cost": "10 coroas" }
-        ],
-        "acessories": [],
-        "modifiers": []
-      }
+      "cost": "25 coroas"
+    },
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco", "cost": "15 coroas" },
+        { "name": "Arco Curto", "cost": "10 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" }
+      ],
+      "acessories": [],
+      "modifiers": []
     },
     "abilities": []
   },
@@ -186,35 +186,35 @@
       "fight": "0",
       "shoot": "0",
       "armour": 10,
-      "will": "+5",
+      "Vontade": "+5",
       "health": 10,
-      "cost": "35 coroas",
-      "equipment": {
-        "hand-to-hand": [
-          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-          { "name": "Porrete", "cost": "3 coroas" },
-          { "name": "Arma de Concussão", "cost": "5 coroas" },
-          { "name": "Machado", "cost": "5 coroas" },
-          { "name": "Espada", "cost": "10 coroas" },
-          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
-        ],
-        "ranged": [],
-        "armor": [
-          { "name": "Armadura Leve", "cost": "20 coroas" },
-          { "name": "Armadura Pesada", "cost": "50 coroas" },
-          { "name": "Escudo", "cost": "5 coroas" },
-          { "name": "Capacete", "cost": "10 coroas" }
-        ],
-        "acessories": [],
-        "modifiers": []
-      }
+      "cost": "35 coroas"
     },
     "abilities": [
       {
         "name": "Mente Profanada",
         "description": "O Alma sombria teve sua mente completamente destruido pelo seu antigo processo de possessão. Ele tem a característica Mente de Ferro."
       }
-    ]
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" }
+      ],
+      "acessories": [],
+      "modifiers": []
+    }
   },
   {
     "id": "homem-fera",
@@ -225,30 +225,30 @@
       "fight": "+3",
       "shoot": "0",
       "armour": "11 (12)",
-      "will": "-1",
+      "Vontade": "-1",
       "health": 14,
-      "cost": "45 coroas",
-      "equipment": {
-        "hand-to-hand": [
-          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-          { "name": "Porrete", "cost": "3 coroas" },
-          { "name": "Arma de Concussão", "cost": "5 coroas" },
-          { "name": "Machado", "cost": "5 coroas" },
-          { "name": "Espada", "cost": "10 coroas" },
-          { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-          { "name": "Maça de Correntes", "cost": "15 coroas" }
-        ],
-        "ranged": [],
-        "armor": [
-          { "name": "Armadura Leve", "cost": "20 coroas" },
-          { "name": "Armadura Pesada", "cost": "50 coroas" },
-          { "name": "Escudo", "cost": "5 coroas" },
-          { "name": "Capacete", "cost": "10 coroas" }
-        ],
-        "acessories": [],
-        "modifiers": []
-      }
+      "cost": "45 coroas"
     },
-    "abilities": []
+    "abilities": [],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Maça de Correntes", "cost": "15 coroas" }
+      ],
+      "ranged": [],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" }
+      ],
+      "acessories": [],
+      "modifiers": []
+    }
   }
 ]

@@ -1,4 +1,5 @@
 import MobileLayout from "../../components/MobileLayout";
+import MobileNavigationButtons from "../../components/MobileNavigationButtons";
 
 import WarbandCreationSection from "./components/WarbandCreationSection";
 import CombatSystemSection from "./components/CombatSystemSection";
@@ -12,6 +13,10 @@ function RulesPage() {
   const [tableOfContents] = useState(
     toc.find((item: any) => item.path === "/rules")?.sections || []
   );
+
+  const navigationButtons = [
+    { label: "Regras Especiais", path: "/rules/special-rules" },
+  ];
 
   useEffect(() => {}, [tableOfContents]);
   return (
@@ -43,6 +48,11 @@ function RulesPage() {
         <span
           ref={tableOfContents.find((item: any) => item.id === "acoes")?.ref}
         />
+
+        {/* Navigation Buttons */}
+        <div className="mt-8">
+          <MobileNavigationButtons buttons={navigationButtons} />
+        </div>
       </div>
     </MobileLayout>
   );

@@ -1,0 +1,248 @@
+[
+  {
+    "id": "magisacerdote-Gecko",
+    "name": "Magisacerdote Gecko",
+    "role": "Líder",
+    "quantity": "1",
+    "stats": {
+      "move": 18,
+      "fight": "2",
+      "shoot": "0",
+      "armour": 11,
+      "Vontade": "+4",
+      "health": 14,
+      "cost": "60 coroas"
+    },
+    "spellAffinity": {
+      "aligned0": ["Tradição da Vida"],
+      "aligned2": [
+        "Tradição das Bestas",
+        "Tradição dos Céus",
+        "Tradição do Metal",
+        "Tradição da Morte"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "O Magisacerdote Gecko pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+      },
+      {
+        "name": "Conjurador",
+        "description": "O Magisacerdote Skink é um conjurador da Tradição da Vida. Ele começa com 4 magias, de qualquer uma de suas tradições."
+      },
+      {
+        "name": "Ancestralidade Reptiliana",
+        "description": "O Magisacerdote Skink tem a característica Anfíbio."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Maça", "cost": "3 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco Curto", "cost": "15 coroas" },
+        { "name": "Javelin", "cost": "5 coroas" },
+        { "name": "Zarabatana", "cost": "10 coroas" }
+      ],
+      "armor": [{ "name": "Elmo de Osso (Pode conjurar)", "cost": "5 coroas" }],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Aço Estelar", "cost": "base *4" }]
+    }
+  },
+  {
+    "id": "guerreiro-totemico-saurideo",
+    "name": "Guerreiro Totêmico Saurídeo",
+    "role": "Héroi",
+    "quantity": "0-1",
+    "stats": {
+      "move": 15,
+      "fight": "+4",
+      "shoot": "-",
+      "armour": 12,
+      "Vontade": "+4",
+      "health": 18,
+      "cost": "60 coroas",
+      "skills": ["Combate", "Força", "Reptilianos"]
+    },
+    "abilities": [
+      {
+        "name": "Fúria Totêmica",
+        "description": "O Guerreiro Totêmico Saurídeo pode rolar um teste de Vontade no começo da sua ativação, com CD 16. Se obtiver sucesso pode ativar uma fúria totêmica até o final do turno:\nFúria de Sotek:+2 de Ímpeto.\nFúria de Xuanti:+4 de Movimento\nFúria de Tzantli:+2 de Vontade "
+      },
+      {
+        "name": "Ancestralidade Reptiliana",
+        "description": "O Guerreiro Totêmico Saurus tem a característica Anfíbio."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [],
+      "armor": [
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Armadura Leve", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Aço Estelar", "cost": "base *4" }]
+    }
+  },
+  {
+    "id": "gecko-crista-alta",
+    "name": "Gecko Crista-Alta",
+    "role": "Héroi",
+    "quantity": "0-2",
+    "stats": {
+      "move": 18,
+      "fight": "+2",
+      "shoot": "+2",
+      "armour": 11,
+      "Vontade": "-1",
+      "health": 10,
+      "cost": "30 coroas",
+      "skills": ["Atirador", "Agilidade", "Reptilianos"]
+    },
+    "abilities": [
+      {
+        "name": "Guia Incansável",
+        "description": "Os Lagartos Crista-Alta estão acostumados a lutar e avançar por terrenos muito piores do que os escombros de Mordheim. Eles ignoram penalidades de movimento ao atravessar terreno acidentado."
+      },
+      {
+        "name": "Iniciativa Repentina",
+        "description": "No início do jogo, após ambos os lados se posicionarem, mas antes das primeiras Rolagens de Iniciativa, um jogador com um Lagarto Crista-Alta pode mover essa figura e até uma outra em contato de base com ela em até 8cm. O Guerreiro-de-Crista e a outra figura devem permanecer em contato base-a-base ao final desse movimento."
+      },
+      {
+        "name": "Ancestralidade Reptiliana",
+        "description": "O Lagarto Crista-Alta tem a característica Anfíbio."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco Curto", "cost": "15 coroas" },
+        { "name": "Javelin", "cost": "5 coroas" },
+        { "name": "Zarabatana", "cost": "10 coroas" }
+      ],
+      "armor": [{ "name": "Escudo", "cost": "5 coroas" }],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Aço Estelar", "cost": "base *4" }]
+    }
+  },
+  {
+    "id": "batedor-lagarto",
+    "name": "Batedor Lagarto",
+    "quantity": "ilimitado",
+    "stats": {
+      "move": 18,
+      "fight": "+1",
+      "shoot": "0",
+      "armour": 12,
+      "Vontade": "-1",
+      "health": 10,
+      "cost": "20 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Ancestralidade Reptiliana",
+        "description": "O Batedor Lagarto tem a característica Anfíbio."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Maça", "cost": "3 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco Curto", "cost": "15 coroas" },
+        { "name": "Javelin", "cost": "5 coroas" },
+        { "name": "Zarabatana", "cost": "10 coroas" }
+      ],
+      "armor": [{ "name": "Escudo", "cost": "5 coroas" }],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "saurideo-veterano",
+    "name": "Saurídeo Veterano",
+    "quantity": "1-5",
+    "stats": {
+      "move": 12,
+      "fight": "+3",
+      "shoot": "0",
+      "armour": 12,
+      "Vontade": "0",
+      "health": 14,
+      "cost": "40 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Ancestralidade Reptiliana",
+        "description": "O Veterano Saurídeo tem a característica Anfíbio."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [],
+      "armor": [
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Armadura Leve", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "kroxigor",
+    "name": "Kroxigor",
+    "quantity": "0-1",
+    "stats": {
+      "move": 10,
+      "fight": "+4",
+      "shoot": "0",
+      "armour": 15,
+      "Vontade": "-2",
+      "health": 18,
+      "cost": "200 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Besta Primeval",
+        "description": "O Kroxigor tem as características Grande, Forte, Aterrorizante e Anfíbio."
+      },
+      {
+        "name": "Mandíbula Esmagadora",
+        "description": "O Kroxigor tem Mandibulas poderosas que podem esmagar aço tão fácil quanto carne. Ele pode lutar desarmado sem penalidades. Adicionalmente, se estiver lutando com uma arma, a combinação de suas mandíbulas e armas concedem a ele a característica Penetração de Armadura(2)"
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [{ "name": "Alabarda", "cost": "10 coroas" }],
+      "ranged": [],
+      "armor": [],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  }
+]

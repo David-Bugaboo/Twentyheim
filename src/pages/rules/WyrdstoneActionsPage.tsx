@@ -3,16 +3,30 @@ import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
 import HeaderH2 from "../../components/HeaderH2";
 import WarningBox from "../../components/WarningBox";
-import CornerDecoration from "../../components/CornerDecoration";
+import QuickNavigation from "../../components/QuickNavigation";
 
 function WyrdstoneActionsPage() {
+  const navigationSections = [
+    {
+      id: "intro",
+      title: "Ação de Pegar — Fragmentos de Pedra-bruxa",
+      level: 0,
+    },
+    { id: "ato-pegar", title: "O Ato de Pegar", level: 0 },
+    { id: "peso-ganancia", title: "O Peso da Ganância", level: 0 },
+    { id: "grande-fuga", title: "A Grande Fuga", level: 0 },
+    { id: "resumo", title: "Resumo da Ação de Pegar Pedra-bruxa", level: 1 },
+  ];
+
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <CornerDecoration />
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
           <MobileSection>
-            <PageTitle>Ação de Pegar — Fragmentos de Pedra-bruxa</PageTitle>
+            <div id="intro">
+              <PageTitle>Ação de Pegar — Fragmentos de Pedra-bruxa</PageTitle>
+            </div>
 
             <MobileText>
               A razão pela qual todos estão aqui. A maldição verde que atrai
@@ -23,7 +37,9 @@ function WyrdstoneActionsPage() {
               de energia corrupta, e terrivelmente valiosos.
             </MobileText>
 
-            <HeaderH2>O Ato de Pegar</HeaderH2>
+            <div id="ato-pegar">
+              <HeaderH2>O Ato de Pegar</HeaderH2>
+            </div>
             <MobileText>
               Uma figura pode gastar uma ação para pegar um fragmento de
               Pedra-bruxa do chão. O momento em que a ganância supera o bom
@@ -49,7 +65,9 @@ function WyrdstoneActionsPage() {
               termina.
             </MobileText>
 
-            <HeaderH2>O Peso da Ganância</HeaderH2>
+            <div id="peso-ganancia">
+              <HeaderH2>O Peso da Ganância</HeaderH2>
+            </div>
             <MobileText>
               Enquanto estiver carregando o fragmento, a figura tem apenas{" "}
               <strong>metade do seu movimento normal</strong> (arredonde para
@@ -74,7 +92,9 @@ function WyrdstoneActionsPage() {
               sobrecarga se aplicável).
             </MobileText>
 
-            <HeaderH2>A Grande Fuga</HeaderH2>
+            <div id="grande-fuga">
+              <HeaderH2>A Grande Fuga</HeaderH2>
+            </div>
             <MobileText>
               Uma figura carregando um fragmento de Pedra-bruxa pode{" "}
               <strong>sair do mapa</strong>, capturando-a para seu bando. A
@@ -84,34 +104,40 @@ function WyrdstoneActionsPage() {
               bem, isso é problema para amanhã.
             </MobileText>
 
-            <WarningBox title="Resumo da Ação de Pegar Pedra-bruxa" type="info">
-              <MobileText>
-                • <strong>Ação:</strong> Gasta uma ação para pegar um fragmento
-              </MobileText>
-              <MobileText>
-                • <strong>Baús/Containers:</strong> Primeiro destravar (Ld CD
-                14), depois pegar
-              </MobileText>
-              <MobileText>
-                • <strong>Restrição:</strong> Inimigo não pode estar a menos de
-                3 cm
-              </MobileText>
-              <MobileText>
-                • <strong>Movimento:</strong> Reduzido para metade (arredondado
-                para baixo)
-              </MobileText>
-              <MobileText>
-                • <strong>Sobrecarga:</strong> -2 em Ímpeto, Precisão,
-                Conjuração e Vontade (exceto adaga/arma de mão)
-              </MobileText>
-              <MobileText>
-                • <strong>Exceção:</strong> Adaga na mão secundária impede pegar
-                fragmentos
-              </MobileText>
-              <MobileText>
-                • <strong>Fuga:</strong> Pode sair do mapa com o fragmento
-              </MobileText>
-            </WarningBox>
+            <div id="resumo">
+              <WarningBox
+                title="Resumo da Ação de Pegar Pedra-bruxa"
+                type="info"
+              >
+                <MobileText>
+                  • <strong>Ação:</strong> Gasta uma ação para pegar um
+                  fragmento
+                </MobileText>
+                <MobileText>
+                  • <strong>Baús/Containers:</strong> Primeiro destravar (Ld CD
+                  14), depois pegar
+                </MobileText>
+                <MobileText>
+                  • <strong>Restrição:</strong> Inimigo não pode estar a menos
+                  de 3 cm
+                </MobileText>
+                <MobileText>
+                  • <strong>Movimento:</strong> Reduzido para metade
+                  (arredondado para baixo)
+                </MobileText>
+                <MobileText>
+                  • <strong>Sobrecarga:</strong> -2 em Ímpeto, Precisão,
+                  Conjuração e Vontade (exceto adaga/arma de mão)
+                </MobileText>
+                <MobileText>
+                  • <strong>Exceção:</strong> Adaga na mão secundária impede
+                  pegar fragmentos
+                </MobileText>
+                <MobileText>
+                  • <strong>Fuga:</strong> Pode sair do mapa com o fragmento
+                </MobileText>
+              </WarningBox>
+            </div>
 
             <MobileText
               variant="quote"

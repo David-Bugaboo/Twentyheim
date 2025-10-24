@@ -1,441 +1,204 @@
-import { Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import skavenData from "./data/skave,data.json";
+import QuickNavigation from "../../../components/QuickNavigation";
+import MobileSection from "../../../components/MobileSection";
+import MobileText from "../../../components/MobileText";
+import HeaderH1 from "../../../components/HeaderH1";
+import UnitCard from "../../../components/UnitCard";
+import PageTitle from "../../../components/PageTitle";
 
-import Header from "../../components/Header";
-import UnitCard from "../../components/UnitCard";
-import PowerCard from "../../components/PowerCard";
-import EquipmentCard from "../../components/EquipmentCard";
-import slugify from "slugify";
-import WarbandIndex from "../../components/WarbandIndex";
-import {
-  PageContainer,
-  ContentSection,
-  NavigationSection,
-  StyledNavigationButton,
-  ContentContainer,
-  ParchmentText,
-  PowerListTitle,
-} from "../../components/PageComponents";
+interface Unit {
+  id?: string;
+  name: string;
+  role?: string;
+  quantity?: string;
+  stats: {
+    move: number;
+    fight: string;
+    shoot: string;
+    armour: number;
+    Vontade: string;
+    health: number;
+    cost: string;
+    skills?: string[];
+  };
+  spellAffinity?: {
+    aligned0?: string[];
+    aligned2?: string[];
+  };
+  abilities: Array<{
+    name: string;
+    description: string;
+  }>;
+  equipment?: {
+    "hand-to-hand"?: Array<{ name: string; cost: string }>;
+    ranged?: Array<{ name: string; cost: string }>;
+    armor?: Array<{ name: string; cost: string }>;
+    miscellaneous?: Array<{ name: string; cost: string }>;
+    modifiers?: Array<{ name: string; cost: string }>;
+  };
+}
 
-const skavenUnits = [
-  {
-    name: "Assassino",
-    role: "Herói",
-    stats: {
-      move: 20,
-      fight: "+3",
-      shoot: "+1",
-      armour: 9,
-      will: "+2",
-      health: 14,
-      cost: "-",
+const SkavenPage: React.FC = () => {
+  const leader = skavenData.find((unit) => unit.role === "Líder") as Unit;
+  const heroes = skavenData.filter(
+    (unit) => unit.role === "Herói" || unit.role === "Héroi"
+  ) as Unit[];
+  const soldiers = skavenData.filter((unit) => !unit.role) as Unit[];
+
+  const navigationSections = [
+    { id: "introducao", title: "Introdução", level: 0 },
+    { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
+    {
+      id: "lider",
+      title: "Líder",
+      level: 0,
+      children: leader
+        ? [
+            {
+              id: leader.name.toLowerCase().replace(/\s+/g, "-"),
+              title: leader.name,
+              level: 1,
+            },
+          ]
+        : [],
     },
-    abilities: [
-      {
-        name: "Poderes",
-        description:
-          "O Assassino começa com 5 poderes da lista de Artes Marciais do Clã Eshin. Um desses poderes tem classe de dificuldade 3. Os outros poderes têm classe de dificuldade 5.",
-      },
-      {
-        name: "Presas do Rato Chifrudo",
-        description:
-          "Qualquer figura danificada por um ataque de assassino é envenenada.",
-      },
-      {
-        name: "Apunhalar pelas Costas",
-        description: `Além disso, assassinos ganham um adicional +2 a seu Ímpeto se já estiverem recebendo um bônus de um ou mais figuras suporte, o entanto, assassinos nunca contam como uma figura suporte para outras figuras, mesmo membros da própria bando.`,
-      },
-
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Espada",
-          "Arma de Haste",
-          "Lamentadoras",
-          "Garras de Combat Skaven",
-          "Funda",
-          "Zarabatana",
-          "Pistola de Gatilho-Bruxo",
-        ],
-        armor: ["Armadura Leve"],
-        special: ["Pode comprar veneno sem fazer rolagens de Mercado Negro"],
-      },
-    ],
-  },
-  {
-    name: "Bruxo do Clã Eshin",
-    role: "Campeão",
-    stats: {
-      move: 20,
-      fight: "-1",
-      shoot: "+0",
-      armour: 9,
-      will: "+3",
-      health: 12,
-      cost: "100 coroas",
+    {
+      id: "herois",
+      title: "Heróis",
+      level: 0,
+      children: heroes.map((hero) => ({
+        id: hero.name.toLowerCase().replace(/\s+/g, "-"),
+        title: hero.name,
+        level: 1,
+      })),
     },
-    spellAffinity: {
-      aligned0: ["Tradição do Rato Chifrudo"],
-      aligned2: [
-        "Tradição do Fogo",
-        "Tradição das Sombras",
-        "Tradição do Metal",
-        "Tradição da Morte",
-      ],
+    {
+      id: "soldados",
+      title: "Soldados",
+      level: 0,
+      children: soldiers.map((soldier) => ({
+        id: soldier.name.toLowerCase().replace(/\s+/g, "-"),
+        title: soldier.name,
+        level: 1,
+      })),
     },
-    abilities: [
-      {
-        name: "Conjurador",
-        description:
-          "O Bruxo do clã enshin é um conjurador da Tradição do Rato Chifrudo. Ele começa o jogo com 4 magias, sendo 3 delas da Tradição do Rato Chifrudo e 1 de uma tradição associada.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Espada",
-          "Arma de Haste",
-          "Lamentadoras",
-          "Garras de Combat Skaven",
-          "Funda",
-          "Zarabatana",
-          "Pistola de Gatilho-Bruxo",
-        ],
-        armor: [],
-        special: ["Pode comprar veneno sem fazer rolagens de Mercado Negro"],
-      },
-    ],
-  },
-  {
-    name: "Pestes",
-    stats: {
-      move: 20,
-      fight: "-1",
-      shoot: "0",
-      armour: 9,
-      will: "-1",
-      health: 10,
-      cost: "Grátis",
-    },
-    abilities: [
-      {
-        name: "Equipamento",
-        weapons: ["Adaga", "Espada", "Arma de Haste", "Funda"],
-        armor: ["Armadura Leve", "Escudo"],
-        special: [],
-      },
-    ],
-  },
-  {
-    name: "Enxame de Ratos",
-    stats: {
-      move: 14,
-      fight: "0",
-      shoot: "0",
-      armour: 6,
-      will: "-2",
-      health: 8,
-      cost: "20 coroas",
-    },
-    abilities: [
-      {
-        name: "Equipamento",
-        weapons: [],
-        armor: [],
-        special: [
-          "Enxames são uma massa de presas amareladas e garras contaminadas",
-        ],
-      },
-      {
-        name: "Enxame",
-        description: "Enxame de Ratos tem as características Animal e Enxame.",
-      },
-    ],
-  },
-  {
-    name: "Skaven Sombrio",
-    stats: {
-      move: 20,
-      fight: "+4",
-      shoot: "+0",
-      armour: 9,
-      will: "0",
-      health: 12,
-      cost: "85 coroas",
-    },
-    abilities: [
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Espada",
-          "Arma de Haste",
-          "Lamentadoras",
-          "Garras de Combat Skaven",
-          "Funda",
-          "Zarabatana",
-          "Pistola de Gatilho-Bruxo",
-        ],
-        armor: ["Armadura Leve"],
-        special: ["Pode comprar veneno sem fazer rolagens de Mercado Negro"],
-      },
-    ],
-  },
-  {
-    name: "Night Runners",
-    role: "Especialista",
-    stats: {
-      move: 20,
-      fight: "1",
-      shoot: "1",
-      armour: 9,
-      will: "-1",
-      health: 12,
-      cost: "75 coroas",
-    },
-    abilities: [
-      {
-        name: "Equipamento",
-        weapons: ["Dagger", "Hand Crossbow"],
-        armor: [],
-        special: [],
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Espada",
-          "Arma de Haste",
-          "Lamentadoras",
-          "Garras de Combat Skaven",
-          "Funda",
-          "Zarabatana",
-          "Pistola de Gatilho-Bruxo",
-        ],
-        armor: ["Armadura Leve"],
-        special: ["Pode comprar veneno sem fazer rolagens de Mercado Negro"],
-      },
-    ],
-  },
-  {
-    name: "Ogro Rato",
-    stats: {
-      move: 16,
-      fight: "+4",
-      shoot: "0",
-      armour: 12,
-      will: "-2",
-      health: 14,
-      cost: "200 coroas",
-    },
-    abilities: [
-      {
-        name: "Monstruosidade do Clã Moulder",
-        description:
-          "Rat Ogres tem as características Grande, Forte, Animal e Aterrorizante.",
-      },
-      {
-        name: "Escudon de Carne",
-        description:
-          "Atiradores não podem fazer ataques a distância contra outras figuras do bando do Ogro Rato se o este for a figura mais próxima.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [],
-        armor: [],
-        special: ["Presas, Garras e Força Bruta!"],
-      },
-    ],
-  },
-];
-
-const skavenEquipment = [
-  {
-    name: "Skaven Fighting Claws",
-    description:
-      "Skaven Fighting Claws count as if the user is using two daggers (+1 to fight due to Two Weapon Fighting rules and -1 damage) and occupies both its hands. Figures equipped with Skaven Fighting Claws can climb with no movement penalties.",
-  },
-];
-
-const clanEshinMartialArts = [
-  {
-    name: "Estilo do Passo Efêmero",
-    when: "No começo de uma ação de movimento do Assassino.",
-    effect:
-      "durante essa ação de movimento, o Assassino pode mover-se através de terreno como se não estivesse lá, mas não pode terminar seu movimento dentro de uma peça de terreno.",
-  },
-  {
-    name: "Estilo da Ladrão Noturna",
-    when: "Quando o Assassino é nomeado como alvo de um ataque a distância de uma figura. Adicionalmente, o Assassino deve estar em cover, ou deve haver terreno intermediário entre o atirador e o Assassino.",
-    effect:
-      "O ataque a distância automaticamente falha sem fazer rolagens. Esta habilidade não pode ser usada enquanto o Assassino está em combate. Aplica-se a ataques a distância causados por Magias.",
-  },
-  {
-    name: "Estilo da Fome Negra",
-    when: "Quando o Assassino vence uma luta com uma rolagem natural de 18, 19 ou 20.",
-    effect: "Trate este ataque como um ataque crítico.",
-  },
-  {
-    name: "Estilo da Ratazana Mercurial",
-    when: "Durante a ação de movimento do Assassino.",
-    effect:
-      "Durante sua próxima ação de movimento, o Assassino recebe +8 a sua Agilidade e não sofre dano de queda.",
-  },
-  {
-    name: "Estilo da Lamina-Bruxa",
-    when: "No começo de uma ação de movimento do Assassino antes de qualquer ação ser tomada.",
-    effect: `Para o resto da turno, o Assassino conta como se estivesse armado com uma arma mágica que lhe dá +2 de Ímpeto. Se o Assassino já estiver usando uma arma mágica, este efeito substitui qualquer bônus de ímpeto da arma, embora os bônus de dano e outras habilidades especiais sejam mantidos.`,
-  },
-  {
-    name: "Estilo da Flecha Estridente",
-    when: "Quando o Assassino faz um ataque a distância.",
-    effect:
-      "Nenhum modificador para cobertura ou terreno interposto é aplicado ao ataque. O Assassino deve ter linha de visão para declarar o ataque a distância.",
-  },
-  {
-    name: "Estilo do Morcego Mortal",
-    when: "Em qualquer ponto da ativação do Assassino.",
-    effect: `O Assassino pode usar uma ação de movimento para fazer um movimento 'Pulo' em vez de um movimento normal, até o fim da sua ativação. Em um Pulo, o Assassino pode mover-se até a sua totalidade de movimento em uma linha reta, em qualquer direção (incluindo diretamente para cima), desde que essa linha seja livre de obstáculos. Se este movimento termina com o Assassino no ar, mova-o imediatamente de volta para a mesa e cause dano de queda apropriado. O Pulo não pode ser usado enquanto o Assassino está em combate. Esse movimento pode ser usado para declarar uma carga. Se a carga for completada, o Assassino recebe +2 de dano na próxima luta contra o alvo da carga.`,
-  },
-  {
-    name: "Estilo do Chifre Corrompido",
-    when: "Quando o Assassino faz um ataque a distância.",
-    effect:
-      "Se esse ataque a distância atingir o alvo, ele causa +3 de dano. Este efeito é cumulativo com outros modificadores de dano da arma.",
-  },
-  {
-    name: "Estilo do Enxame de Ferrões",
-    when: "Em qualquer ponto da ativação do Assassino.",
-    effect:
-      "O Assassino recebe uma ação adicional. Esta ação adicional não pode ser de movimento (portanto, o Assassino pode tomar um máximo de duas ações de movimento durante sua turno). Esta ação não pode levar o Assassino além de três ações.",
-  },
-  {
-    name: "Estilo do Punho Faminto",
-    when: "Em qualquer ponto da ativação do Assassino, como uma ação especial.",
-    effect: `Este poder só pode ser usado contra um soldado carregando um Fragmento de Pedra-Bruxa dentro de 5cm do Assassino. Essa figura deve fazer um teste de Ímpeto contra a rolagem de ativação desse poder. Se falhar, a figura imediatamente solta o framento de pedra-bruxa e o Assassino pode movê-la a até 10cm em qualquer direção e pegar esse fragmento.`,
-  },
-  {
-    name: "Estilo do Espectro Chifrudo",
-    when: "Em qualquer ponto da ativação do Assassino.",
-    effect: `Nenhuma figura pode traçar linha de visão para esta figura se estiver a mais de 30cm de distância e ganha +2 de Ímpeto quando rola contra ataques a distância, até ser atingido por um ataque a distância ou até o fim do turno, o que acontecer primeiro.`,
-  },
-  {
-    name: "Estilo da Efemeração",
-    when: "Em qualquer ponto da ativação do Assassino.",
-    effect: `Como uma ação, o Assassino é removido da mesa. Então, durante sua próxima ativação, como uma ação, ele pode ser posicionado em qualquer ponto que não esteja a menos de 20cm de uma figura inimiga e esteja fora da linha de visão de todas as figuras inimigas. Se uma figura inimiga estiver fora da linha de visão de todas as figuras aliadas, o Assassino pode ser posicionado em combate com ela.`,
-  },
-];
-
-function SkavenPage() {
-  const navigate = useNavigate();
-
-  const units = skavenUnits.map((unit) => ({
-    id: slugify(unit.name, { lower: true }),
-    label: unit.name,
-    type: "Unit",
-  }));
-
-  const equipment = skavenEquipment.map((item) => ({
-    id: slugify(item.name, { lower: true }),
-    label: item.name,
-    type: "Equipment",
-  }));
-
-  const martialArts = clanEshinMartialArts.map((power) => ({
-    id: slugify(power.name, { lower: true }),
-    label: power.name,
-    type: "Clan Eshin Martial Art",
-  }));
-
-  const sections = [...units, ...equipment, ...martialArts];
+  ];
 
   return (
-    <PageContainer>
-      <WarbandIndex sections={sections} />
-      <Header title="Skaven of Clan Eshin" />
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+        <QuickNavigation sections={navigationSections} />
 
-      <ContentSection>
-        <ContentContainer>
-          <div id="units">
-            {skavenUnits.map((unit, index) => (
-              <div key={index} id={slugify(unit.name, { lower: true })}>
-                <UnitCard
-                  name={unit.name}
-                  role={unit.role}
-                  stats={unit.stats}
-                  abilities={unit.abilities}
-                  {...(unit.spellAffinity && {
-                    spellAffinity: unit.spellAffinity,
-                  })}
-                />
-              </div>
-            ))}
-          </div>
+        <MobileSection id="introducao">
+          <PageTitle>Skaven do Clã Eshin</PageTitle>
+          <MobileText>
+            Os Skaven são uma raça de ratos humanóides que vivem em vastos
+            túneis subterrâneos sob as cidades do Império. Eles são mestres da
+            conspiração, da traição e da guerra suja. O Clã Eshin é o mais
+            secreto e letal de todos os clãs Skaven, especializado em
+            assassinato, espionagem e artes marciais sombrias.
+          </MobileText>
+          <MobileText>
+            Os assassinos do Clã Eshin são treinados desde a infância nas artes
+            da morte silenciosa. Eles dominam o uso de venenos, armas exóticas e
+            técnicas de combate que fazem até mesmo os mais experientes
+            guerreiros do Império tremerem. Sua habilidade em se mover nas
+            sombras é lendária, e muitos acreditam que eles podem se tornar
+            invisíveis à vontade.
+          </MobileText>
+          <MobileText>
+            Em Mordheim, os Skaven do Clã Eshin veem uma oportunidade única de
+            expandir sua influência e coletar fragmentos de pedra-bruxa para
+            seus experimentos sombrios. Eles operam nas sombras, eliminando
+            rivais e coletando informações valiosas sobre os outros bandos que
+            se aventuram nas ruínas da cidade amaldiçoada.
+          </MobileText>
+          <MobileText>
+            Os Skaven são conhecidos por sua natureza traiçoeira e egoísta. Cada
+            membro do bando está constantemente tentando subir na hierarquia,
+            muitas vezes às custas de seus próprios companheiros. Apenas a
+            ameaça de punição severa mantém a ordem relativa dentro do bando.
+          </MobileText>
+        </MobileSection>
 
-          <div id="equipment">
-            <PowerListTitle>Special Equipment</PowerListTitle>
-            {skavenEquipment.map((item, index) => (
-              <div key={index} id={slugify(item.name, { lower: true })}>
-                <EquipmentCard
-                  name={item.name}
-                  description={item.description}
-                />
-              </div>
-            ))}
-          </div>
+        <MobileSection id="estrutura-do-bando">
+          <HeaderH1 id="estrutura-do-bando">Estrutura do Bando</HeaderH1>
+          <MobileText>
+            Um bando Skaven deve incluir um mínimo de 3 modelos. Você tem 500
+            coroas de ouro que pode usar para recrutar e equipar seu bando. O
+            número máximo de guerreiros no bando é 20.
+          </MobileText>
+          <MobileText>
+            • <strong>Assassino:</strong> Cada bando Skaven deve ter um
+            Assassino – nem mais, nem menos!
+            <br />• <strong>Bruxo do Clã Eshin:</strong> Seu bando pode incluir
+            até 1 Bruxo do Clã Eshin.
+            <br />• <strong>Skaven Sombrio:</strong> Seu bando pode incluir até
+            2 Skaven Sombrios.
+            <br />• <strong>Espreitadores Noturnos:</strong> Seu bando pode
+            incluir até 2 Espreitadores Noturnos.
+            <br />• <strong>Pestilentos:</strong> Seu bando pode incluir
+            qualquer número de Pestilentos.
+            <br />• <strong>Rato Gigante:</strong> Seu bando pode incluir
+            qualquer número de Ratos Gigantes.
+            <br />• <strong>Ogro Rato:</strong> Seu bando pode incluir até 1
+            Ogro Rato.
+          </MobileText>
+        </MobileSection>
 
-          <div id="martialarts">
-            <PowerListTitle>Clan Eshin Martial Arts</PowerListTitle>
+        <MobileSection id="lider">
+          <HeaderH1 id="lider">Líder</HeaderH1>
+          {leader && (
+            <UnitCard
+              id={leader.name.toLowerCase().replace(/\s+/g, "-")}
+              name={leader.name}
+              role={leader.role}
+              quantity={leader.quantity}
+              stats={leader.stats}
+              spellAffinity={leader.spellAffinity}
+              abilities={leader.abilities}
+              equipment={leader.equipment}
+            />
+          )}
+        </MobileSection>
 
-            <ParchmentText>
-              The Clan Eshin styles are designed as a toolkit of deadly
-              disciplines for assassins, each representing a secret technique
-              that twists the flow of battle in their favor. Their design
-              identity is rooted in{" "}
-              <strong>mobility, deception, and surgical lethality</strong>
-              . Instead of granting broad or constant advantages, they deliver
-              sharp, situational bursts of power that allow the assassin to
-              dictate when and how engagements occur.
-              <br />
-              <br />
-              In short, the Clan Eshin Martial Arts are designed to make the
-              assassin feel like an unpredictable blade in the dark: elusive,
-              precise, and terrifying when unleashed at the right moment.
-            </ParchmentText>
+        <MobileSection id="herois">
+          <HeaderH1 id="herois">Heróis</HeaderH1>
+          {heroes.map((hero) => (
+            <UnitCard
+              key={hero.name}
+              id={hero.name.toLowerCase().replace(/\s+/g, "-")}
+              name={hero.name}
+              role={hero.role}
+              quantity={hero.quantity}
+              stats={hero.stats}
+              spellAffinity={hero.spellAffinity}
+              abilities={hero.abilities}
+              equipment={hero.equipment}
+            />
+          ))}
+        </MobileSection>
 
-            {clanEshinMartialArts.map((power, index) => (
-              <div key={index} id={slugify(power.name, { lower: true })}>
-                <PowerCard
-                  name={power.name}
-                  when={power.when}
-                  effect={power.effect}
-                />
-              </div>
-            ))}
-          </div>
-        </ContentContainer>
-      </ContentSection>
-
-      <NavigationSection>
-        <Box sx={{ maxWidth: "600px", width: "100%" }}>
-          <StyledNavigationButton
-            onClick={() => navigate("/warbands")}
-            variant="outlined"
-            fullWidth
-            sx={{
-              backgroundColor: "rgba(20, 18, 14, 0.6)",
-              "&:hover": {
-                backgroundColor: "rgba(28, 24, 18, 0.8)",
-              },
-            }}
-          >
-            Back to Warbands
-          </StyledNavigationButton>
-        </Box>
-      </NavigationSection>
-    </PageContainer>
+        <MobileSection id="soldados">
+          <HeaderH1 id="soldados">Soldados</HeaderH1>
+          {soldiers.map((soldier) => (
+            <UnitCard
+              key={soldier.name}
+              id={soldier.name.toLowerCase().replace(/\s+/g, "-")}
+              name={soldier.name}
+              quantity={soldier.quantity}
+              stats={soldier.stats}
+              abilities={soldier.abilities}
+              equipment={soldier.equipment}
+            />
+          ))}
+        </MobileSection>
+      </div>
+    </div>
+    </div>
   );
-}
+};
 
 export default SkavenPage;

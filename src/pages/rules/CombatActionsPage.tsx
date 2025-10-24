@@ -5,12 +5,10 @@ import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
 import HeaderH3 from "../../components/HeaderH3";
 import WarningBox from "../../components/WarningBox";
-import CornerDecoration from "../../components/CornerDecoration";
 
 function CombatActionsPage() {
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <CornerDecoration />
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <MobileSection>
@@ -161,15 +159,22 @@ function CombatActionsPage() {
               efeitos.
             </MobileText>
 
-            <WarningBox title="DANO CRÍTICO" type="info">
-              <MobileText>
-                Se uma figura ganhar uma luta ao rolar um{" "}
-                <strong>20 natural</strong> na rolagem de Ímpeto, ela causa{" "}
-                <strong>+5 de dano</strong>. Se ambas as figuras em um combate
-                rolarem um 20 natural, os críticos se anulam e elas causam dano
-                normal uma a outra.
+            <div className="mt-6 p-4 bg-green-900/20 border border-green-500/40 rounded-lg">
+              <HeaderH2 className="text-green-300 mb-2">
+                Tipos Especiais de Dano e Condições
+              </HeaderH2>
+              <MobileText className="text-green-100 mb-4">
+                Para conferir tipos especiais de dano, danos críticos e
+                condições negativas causadas por ataques, consulte a página
+                dedicada.
               </MobileText>
-            </WarningBox>
+              <a
+                href="/rules/negative-conditions"
+                className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors duration-200"
+              >
+                Ver Dano e Condições Negativas
+              </a>
+            </div>
 
             <HeaderH2>Após a Luta</HeaderH2>
             <MobileText>

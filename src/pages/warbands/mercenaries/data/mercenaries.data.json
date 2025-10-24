@@ -1,0 +1,333 @@
+[
+  {
+    "name": "Capitão Mercenário",
+    "role": "Líder",
+    "stats": {
+      "move": 15,
+      "fight": "+3",
+      "shoot": "+2",
+      "armour": 10,
+      "Vontade": "+4",
+      "health": 18,
+      "cost": "60 coroas",
+      "skills": [
+        "Combate",
+        "Atirador",
+        "Acadêmica",
+        "Força",
+        "Agilidade"
+      
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "O Capitão Mercenário pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+      },
+      {
+        "name": "Habilidades",
+        "description": "O Capitão Mercenário começa com 4 habilidades das listas de poderes acima na sua ficha. Todos os poderes tem Classe de Dificuldade 3."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "10 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Estrela da Manhã", "cost": "15 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta", "cost": "25 coroas" },
+        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
+        { "name": "Arco", "cost": "10 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "10 coroas" },
+        { "name": "Armadura Pesada", "cost": "25 coroas" },
+        { "name": "Elmo", "cost": "15 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "name": "Sargento",
+    "role": "Héroi",
+    "quantity": "0-2",
+    "stats": {
+      "move": 15,
+      "fight": "+2",
+      "shoot": "+2",
+      "armour": 10,
+      "Vontade": "+3",
+      "health": 18,
+      "cost": "35 coroas",
+      "skills": [
+        "Combate",
+        "Atirador",
+        "Força",
+        "Velocidade "
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "O Capitão Mercenário começa com 3 habilidades das listas de poderes acima na sua ficha. Todos os poderes tem Classe de Dificuldade 5."
+      },
+      {
+        "name": "Experiência em Comando",
+        "description": "O sargento pode ativar outra figura a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+      },
+      {
+        "name": "Habilidades Regionais",
+        "description": "Apenas Sargentos de Reikland, Marienburg e Ostermark podem pegar habilidades da lista de Atirador. Apenas Sargentos de Reikland, Middenheim e Ostermark podem pegar habilidades da lista de força. Apenas Sargentos de Marienburg e Reikland podem pegar habilidades da lista de Agilidade."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "10 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta", "cost": "25 coroas" },
+        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
+        { "name": "Arco", "cost": "10 coroas" }
+      ],
+      "armor": [
+        { "name": "Elmo", "cost": "5 coroas" },
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+
+  {
+    "name": "Sacerdote Lupino de Ulric",
+    "role": "Héroi",
+    "quantity": "0-1",
+    "stats": {
+      "move": 18,
+      "fight": "+3",
+      "shoot": "0",
+      "armour": 10,
+      "Vontade": "+4",
+      "health": 14,
+      "cost": "120 coroas"
+    },
+    "spellAffinity": {
+      "aligned0": ["Orações de Ulric"]
+    },
+    "abilities": [
+      {
+        "name": "Sacerdote",
+        "description": "O Sacerdote Lupino de Ulric é um sacerdote e tem uma seleção limitada de magias comparado a outros conjuradores. no entanto, pode conjurar enquanto usa armadura ou escudo e em combate, tomando uma penalidade de -4 cumulativa se o fizer. Ele começa com 2 magias das Orações de Ulric."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [{ "name": "Arma de Duas Mãos", "cost": "15 coroas" }],
+      "ranged": [],
+      "armor": [],
+      "miscellaneous": [{ "name": "Manto Lupino", "cost": "10 coroas" }],
+      "modifiers": []
+    }
+  },
+  {
+    "name": "Recruta",
+    "quantity": "0-2",
+    "stats": {
+      "move": 15,
+      "fight": "0",
+      "shoot": "0",
+      "armour": 10,
+      "Vontade": "-1",
+      "health": 14,
+      "cost": "15 coroas"
+    },
+    "skills": [
+      "Combate",
+      "Atirador (Reikland, Marienburg, Ostermark)",
+      "Força (Reikland, Middenheim, Ostermark)",
+      "Velocidade (Reikland, Marienburg)"
+    ],
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "O Recruta começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes tem Classe de Dificuldade 8."
+      },
+      {
+        "name": "Habilidades Regionais",
+        "description": "Apenas Recrutas de Reikland, Marienburg e Ostermark podem pegar habilidades da lista de Atirador. Apenas Recrutas de Reikland, Middenheim e Ostermark podem pegar habilidades da lista de força. Apenas Recrutas de Marienburg e Reikland podem pegar habilidades da lista de Agilidade."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "10 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta", "cost": "25 coroas" },
+        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
+
+        { "name": "Arco", "cost": "10 coroas" }
+      ],
+      "armor": [
+        { "name": "Elmo", "cost": "5 coroas" },
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "name": "Soldados",
+    "quantity": "1-5",
+    "stats": {
+      "move": 15,
+      "fight": "+3",
+      "shoot": "0",
+      "armour": 10,
+      "Vontade": "+1",
+      "health": 12,
+      "cost": "25 coroas"
+    },
+    "abilities": [],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "10 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta", "cost": "25 coroas" },
+        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
+
+        { "name": "Arco", "cost": "10 coroas" }
+      ],
+      "armor": [
+        { "name": "Elmo", "cost": "5 coroas" },
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+
+  {
+    "name": "Atiradores",
+    "quantity": "0-7",
+    "stats": {
+      "move": 15,
+      "fight": "+2",
+      "shoot": "0",
+      "armour": 10,
+      "Vontade": "+1",
+      "health": 10,
+      "cost": "25 coroas"
+    },
+    "abilities": [],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta", "cost": "25 coroas" },
+        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
+        { "name": "Arco", "cost": "10 coroas" },
+        { "name": "Arco Longo", "cost": "15 coroas" },
+        { "name": "Bacamarte", "cost": "30 coroas" },
+        { "name": "Arcabuz", "cost": "35 coroas" },
+        { "name": "Rifle de Caça de Hochland", "cost": "200 coroas" }
+      ],
+      "armor": [
+        { "name": "Elmo", "cost": "5 coroas" },
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Escudo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "name": "Espadachim",
+    "quantity": "0-5",
+    "stats": {
+      "move": 15,
+      "fight": "+4",
+      "shoot": "+0",
+      "armour": 10,
+      "Vontade": "+1",
+      "health": 12,
+      "cost": "35 coroas"
+    },
+
+    "abilities": [
+      {
+        "name": "Arte da Esgrima",
+        "description": "Os Espadachins treinaram para lutar contra mais de um oponente ao mesmo tempo, e assim seus oponentes nunca podem reivindicar mais que +2 para figuras de apoio, não importa quantas figuras amigas estão realmente em combate com o espadachim. Além disso, se o espadachim vencer um combate corpo a corpo contra um oponente que está usando armadura leve ou pesada, o ataque ganha a característica Penetração de Armadura(1)."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [{ "name": "Espada", "cost": "10 coroas" }],
+      "ranged": [],
+      "armor": [
+        { "name": "Elmo", "cost": "5 coroas" },
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "name": "Cão de Guerra",
+    "quantity": "0-5",
+    "stats": {
+      "move": 18,
+      "fight": "+1",
+      "shoot": "+0",
+      "armour": 10,
+      "Vontade": "0",
+      "health": 8,
+      "cost": "10 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Cão de Guerra Treinado",
+        "description": "O cão de guerra tem a característica Animal."
+      }
+    ]
+  }
+]

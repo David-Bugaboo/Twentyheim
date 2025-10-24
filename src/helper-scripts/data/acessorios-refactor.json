@@ -1,1 +1,56 @@
-[{"roll":null,"id":"aljava","name":"Aljava","type":"Armazenamento de Munição","damageModifier":null,"purchaseCost":"5 coroas","sellCost":"5 coroas","exclusive":null,"flavorText":" A aljava é tão essencial quanto o arco - sem ela, você tem um pedaço de madeira curvada inútil. Cada flecha é morte potencial; cada virote, uma vida terminada. Necessária para usar armas a distância, a menos que use munição mágica. Ocupa um espaço de item.\n\nSem aljava, um arco é apenas uma clava cara e desajeitada. Todo arqueiro precisa de uma, e arqueiros experientes mantêm suas flechas afiadas, secas, e prontas para voar verdadeiro. A diferença entre ter munição e estar desarmado é a diferença entre caçador e caçado.","user":null,"armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[]},{"roll":null,"id":"bolsa-de-dardos","name":"Bolsa de Dardos","type":"Armazenamento de Munição","damageModifier":null,"purchaseCost":"5 coroas","sellCost":"5 coroas","exclusive":null,"flavorText":"A bolsa de dardos é essencial para quem usa zarabatanas - sem ela, você tem apenas um tubo oco inútil. Cada dardo é morte potencial, especialmente quando envenenado. Necessária para usar zarabatanas, a bolsa contém dardos afiados e venenosos, prontos para serem soprados através do tubo. Ocupa um espaço de item e é indispensável para assassinos silenciosos e caçadores furtivos em Mordheim.","user":null,"armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[]},{"roll":null,"id":"chifre-de-polvora","name":"Chifre de Polvora","type":"Armazenamento de Munição","damageModifier":null,"purchaseCost":"10 coroas","sellCost":"10 coroas","exclusive":null,"flavorText":"Pólvora - o ingrediente que transforma ferro morto em trovão vivo. Acessório necessário para armas de fogo. Contém a pólvora necessária para recarregar e disparar mosquetes, pistolas e bacarmartes. Ocupa um espaço de item.\n\nSem pólvora, uma arma de fogo é apenas metal caro e inútil - um porrete pior que um pedaço de pau. Mantenha sua pólvora seca - molhada, ela não vale nada. Exposta a faíscas ou chamas, ela explode e mata você antes dos inimigos. Cada veterano com armas de fogo tem histórias de tolos que aprenderam essa lição tarde demais.","user":null,"armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[]}]
+[
+  {
+    "roll": null,
+    "id": "aljava",
+    "name": "Aljava",
+    "type": "Armazenamento de Munição",
+    "damageModifier": null,
+    "purchaseCost": "5 coroas",
+    "sellCost": "5 coroas",
+    "exclusive": null,
+    "flavorText": " A aljava é tão essencial quanto o arco - sem ela, você tem um pedaço de madeira curvada inútil. Cada flecha é morte potencial; cada virote, uma vida terminada. Necessária para usar armas a distância, a menos que use munição mágica. Ocupa um espaço de item.\n\nSem aljava, um arco é apenas uma clava cara e desajeitada. Todo arqueiro precisa de uma, e arqueiros experientes mantêm suas flechas afiadas, secas, e prontas para voar verdadeiro. A diferença entre ter munição e estar desarmado é a diferença entre caçador e caçado.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": []
+  },
+  {
+    "roll": null,
+    "id": "bolsa-de-dardos",
+    "name": "Bolsa de Dardos",
+    "type": "Armazenamento de Munição",
+    "damageModifier": null,
+    "purchaseCost": "5 coroas",
+    "sellCost": "5 coroas",
+    "exclusive": null,
+    "flavorText": "A bolsa de dardos é essencial para quem usa zarabatanas - sem ela, você tem apenas um tubo oco inútil. Cada dardo é morte potencial, especialmente quando envenenado. Necessária para usar zarabatanas, a bolsa contém dardos afiados e venenosos, prontos para serem soprados através do tubo. Ocupa um espaço de item e é indispensável para assassinos silenciosos e caçadores furtivos em Mordheim.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": []
+  },
+  {
+    "roll": null,
+    "id": "chifre-de-polvora",
+    "name": "Chifre de Polvora",
+    "type": "Armazenamento de Munição",
+    "damageModifier": null,
+    "purchaseCost": "10 coroas",
+    "sellCost": "10 coroas",
+    "exclusive": null,
+    "flavorText": "Pólvora - o ingrediente que transforma ferro morto em trovão vivo. Acessório necessário para armas de fogo. Contém a pólvora necessária para recarregar e disparar mosquetes, pistolas e bacarmartes. Ocupa um espaço de item.\n\nSem pólvora, uma arma de fogo é apenas metal caro e inútil - um Maça pior que um pedaço de pau. Mantenha sua pólvora seca - molhada, ela não vale nada. Exposta a faíscas ou chamas, ela explode e mata você antes dos inimigos. Cada veterano com armas de fogo tem histórias de tolos que aprenderam essa lição tarde demais.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": []
+  }
+]

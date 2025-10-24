@@ -17,43 +17,48 @@ const WarningBox: React.FC<WarningBoxProps> = ({
     switch (type) {
       case "warning":
         return {
-          accentStrip: "#F0C040",
-          background: "#5C4B22",
+          accentStrip: "#10B981", // green-500
+          background: "rgba(6, 78, 59, 0.2)", // green-900/20
+          border: "rgba(16, 185, 129, 0.4)", // green-500/40
           icon: "⚠",
-          titleText: "#FFFFFF",
-          bodyText: "#E0E0E0",
+          titleText: "#10B981", // green-500
+          bodyText: "#D1FAE5", // green-100
         };
       case "info":
         return {
-          accentStrip: "#87CEEB",
-          background: "#2E4A6B",
+          accentStrip: "#10B981", // green-500
+          background: "rgba(6, 78, 59, 0.2)", // green-900/20
+          border: "rgba(16, 185, 129, 0.4)", // green-500/40
           icon: "ℹ",
-          titleText: "#FFFFFF",
-          bodyText: "#E0E0E0",
+          titleText: "#10B981", // green-500
+          bodyText: "#D1FAE5", // green-100
         };
       case "error":
         return {
-          accentStrip: "#FF6B6B",
-          background: "#8B0000",
+          accentStrip: "#10B981", // green-500
+          background: "rgba(6, 78, 59, 0.2)", // green-900/20
+          border: "rgba(16, 185, 129, 0.4)", // green-500/40
           icon: "❌",
-          titleText: "#FFFFFF",
-          bodyText: "#E0E0E0",
+          titleText: "#10B981", // green-500
+          bodyText: "#D1FAE5", // green-100
         };
       case "success":
         return {
-          accentStrip: "#90EE90",
-          background: "#2E5A3E",
+          accentStrip: "#10B981", // green-500
+          background: "rgba(6, 78, 59, 0.2)", // green-900/20
+          border: "rgba(16, 185, 129, 0.4)", // green-500/40
           icon: "✅",
-          titleText: "#FFFFFF",
-          bodyText: "#E0E0E0",
+          titleText: "#10B981", // green-500
+          bodyText: "#D1FAE5", // green-100
         };
       default:
         return {
-          accentStrip: "#F0C040",
-          background: "#5C4B22",
+          accentStrip: "#10B981", // green-500
+          background: "rgba(6, 78, 59, 0.2)", // green-900/20
+          border: "rgba(16, 185, 129, 0.4)", // green-500/40
           icon: "⚠",
-          titleText: "#FFFFFF",
-          bodyText: "#E0E0E0",
+          titleText: "#10B981", // green-500
+          bodyText: "#D1FAE5", // green-100
         };
     }
   };
@@ -63,40 +68,28 @@ const WarningBox: React.FC<WarningBoxProps> = ({
   return (
     <div
       className={`
-        flex rounded-lg mb-4 overflow-hidden
+        flex rounded-lg mb-4 overflow-hidden border
+        bg-green-900/20 border-green-500/40
         ${className}
       `}
-      style={{ backgroundColor: colors.background }}
     >
       {/* Left Accent Strip */}
-      <div
-        className="w-2 flex-shrink-0"
-        style={{ backgroundColor: colors.accentStrip }}
-      />
+      <div className="w-2 flex-shrink-0 bg-green-500" />
 
       {/* Main Infobox Content */}
       <div className="flex-1 p-4">
         <div className="flex items-start">
           {/* Warning Icon */}
-          <div
-            className="flex-shrink-0 mr-3 mt-0.5 text-xl font-bold"
-            style={{ color: colors.titleText }}
-          >
+          <div className="flex-shrink-0 mr-3 mt-0.5 text-xl font-bold text-green-500">
             {colors.icon}
           </div>
 
           {/* Title and Content */}
           <div className="flex-1">
-            <h3
-              className="font-bold text-lg mb-2 uppercase tracking-wide"
-              style={{ color: colors.titleText }}
-            >
+            <h3 className="font-bold text-lg mb-2 uppercase tracking-wide text-green-500">
               {title}
             </h3>
-            <div
-              className="text-sm leading-relaxed"
-              style={{ color: colors.bodyText }}
-            >
+            <div className="text-sm leading-relaxed text-green-100">
               {children}
             </div>
           </div>

@@ -1,0 +1,230 @@
+[
+  {
+    "name": "Conde Vampiro",
+    "role": "Herói",
+    "stats": {
+      "move": 14,
+      "fight": "+3",
+      "shoot": "+2",
+      "armour": 10,
+      "Vontade": "+5",
+      "health": 20,
+      "cost": "110",
+      "skills": ["Combate", "Acadêmica", "Força", "Velocidade"]
+    },
+    "quantity": "1",
+
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "O Conde Vampiro pode ativar até 3 figuras a 8cm dele junto a si."
+      },
+      {
+        "name": "Habilidades",
+        "description": "Vampiros começam com 5 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+      },
+      {
+        "name": "Morto-Vivo Superior",
+        "description": "Condes Vampiros tem as seguintes características: Morto-Vivo, Immune a Édito de Nagash, e Aterrorizante. Apesar de serem mortos vivos, ganham experiencia, e tem 5 espaços para equipamento como normal."
+      },
+      {
+        "name": "Constituição de Morto-Vivo",
+        "description": "O Vampiro é Morto-Vivo e não pode ser curado por orações e remédios ou curar naturalmente entre jogos. Em vez disso, ele deve pagar 2 coroas para cada ponto de vida que ele recupera. Se um vampiro for reduzido a 0 pontos de vida durante um jogo e não tiver pelo menos 2 coroas na sua ficha de bando, ele será tratado como tendo rolado um resultado de Morto na tabela de Sobrevivência."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco", "cost": "10 coroas" },
+        { "name": "Arco Curto", "cost": "5 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "name": "Necromante",
+    "role": "Héroi",
+    "stats": {
+      "move": 12,
+      "fight": "+2",
+      "shoot": "+0",
+      "armour": 10,
+      "Vontade": "+4",
+      "health": 14,
+      "cost": "35 coroas"
+    },
+    "quantity": "0-1",
+    "spellAffinity": {
+      "aligned0": ["Tradição da Necromancia"],
+      "aligned2": [
+        "Tradição da Morte",
+        "Tradição das Sombras",
+        "Tradição do Metal",
+        "Tradição dos Céus"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Conjurador",
+        "description": "Necromantes são conjuradores da Tradição da Necromancia. Eles começam com 2 poderes dentre suas tradições disponíveis."
+      },
+      {
+        "name": "Ladrão de Tumulos",
+        "description": "O necromante ganha 10 pontos de experiência para cada criatura sem as características Animal, Morto-Vivo, Daemônio e Construto que foi reduzida a 0 pontos de vida durante este jogo, independentemente de por quem. Isso conta para o limite de 300XP da partida."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco", "cost": "10 coroas" },
+        { "name": "Arco Curto", "cost": "5 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "name": "Escória",
+    "role": "Héroi",
+    "stats": {
+      "move": 14,
+      "fight": "+0",
+      "shoot": "+0",
+      "armour": 10,
+      "Vontade": "0",
+      "health": 10,
+      "cost": "20 coroas",
+      "skills": ["Combate", "Força"]
+    },
+    "quantity": "0-3",
+
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "Escórias começam com 1 habilidade dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+      },
+      {
+        "name": "Escravo Vampirico",
+        "description": "Se essa figura participa de um jogo e não sofre os resultados Morto ou Seriamente Ferido em uma rolagem na tabela de sobrevivência, ela pode coletar o sangue dos mortos e feridos para seu mestre. Conte o numero de figuras reduzidas a 0 de vida durante esse jogo. Para cada uma dessas figuras, o vampiro recupera 1 de vida após o jogo, sem precisar pagar por isso. O Vampiro pode se beneficiar dessa habilidade de apenas uma figura, independente de quantas figuras existam com essa habilidade."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco", "cost": "10 coroas" },
+        { "name": "Arco Curto", "cost": "5 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "name": "Zumbi",
+    "stats": {
+      "move": 10,
+      "fight": "+1",
+      "shoot": "+0",
+      "armour": 12,
+      "Vontade": "+0",
+      "health": 8,
+      "cost": "15 coroas"
+    },
+    "quantity": "ilimitado",
+    "abilities": [
+      {
+        "name": "Morto-Vivo",
+        "description": "Zombies tem a característica Morto-Vivo."
+      },
+      {
+        "name": "Acéfalo",
+        "description": "Zumbis não podem ganhar experiência."
+      }
+    ]
+  },
+  {
+    "name": "Carniçal",
+    "stats": {
+      "move": 15,
+      "fight": "+2",
+      "shoot": "+0",
+      "armour": 10,
+      "Vontade": "0",
+      "health": 8,
+      "cost": "40 coroas"
+    },
+    "quantity": "ilimitado",
+    "abilities": [
+      {
+        "name": "Fome insáciável",
+        "description": "Ghouls tem a característica Voraz."
+      },
+      {
+        "name": "Terror dos Cemitérios",
+        "description": "Carniçais tem as características Morto-Vivo e Aterrorizante."
+      }
+    ]
+  },
+  {
+    "name": "Lobos Atrozes",
+    "stats": {
+      "move": 24,
+      "fight": "+3",
+      "shoot": "+0",
+      "armour": 11,
+      "Vontade": "-2",
+      "health": 10,
+      "cost": "50 coroas"
+    },
+    "quantity": "0-5",
+    "abilities": [
+      {
+        "name": "Besta Reanimada",
+        "description": "Lobos Atrozes tem as características Morto-Vivo e Aterrorizante."
+      },
+      {
+        "name": "Mandíbulas do Túmulo",
+        "description": "Lobos Atrozes tem a característica Agarrar."
+      }
+    ]
+  }
+]

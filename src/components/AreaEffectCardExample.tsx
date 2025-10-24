@@ -1,4 +1,4 @@
-import React from "react";
+
 import AreaEffectCard from "./AreaEffectCard";
 
 function AreaEffectCardExample() {

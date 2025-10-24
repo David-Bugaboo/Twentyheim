@@ -4,20 +4,36 @@ import MobileSection from "../../components/MobileSection";
 import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
 import HeaderH3 from "../../components/HeaderH3";
-import CornerDecoration from "../../components/CornerDecoration";
-import AreaEffectCards from "../../components/AreaEffectCards";
+import QuickNavigation from "../../components/QuickNavigation";
+import { useNavigate } from "react-router-dom";
 
 function MagicRulesPage() {
+  const navigate = useNavigate();
+
+  const navigationSections = [
+    { id: "intro", title: "Magia em Mordheim", level: 0 },
+    { id: "natureza-magia", title: "A Natureza da Magia", level: 0 },
+    { id: "ventos-magia", title: "Os Ventos da Magia", level: 0 },
+    { id: "magia-arcana", title: "Magia Arcana", level: 1 },
+    { id: "magia-divina", title: "Magia Divina", level: 1 },
+    { id: "magia-sombria", title: "Magia Sombria", level: 1 },
+    { id: "magia-waaagh", title: "Magia da WAAAAAAAGH!", level: 1 },
+    { id: "anatomia-magia", title: "Anatomia de uma Magia", level: 0 },
+    { id: "palavras-chave", title: "Lista de Palavras-chave", level: 0 },
+  ];
+
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <CornerDecoration />
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
           <MobileSection>
-            <PageTitle>Magia em Mordheim</PageTitle>
+            <div id="intro">
+              <PageTitle>Magia em Mordheim</PageTitle>
+            </div>
             <MobileText
               variant="quote"
-              className="text-center italic text-lg leading-relaxed mb-6 p-4 bg-[#2a1f1f] border border-[#382929] rounded-lg"
+              className="text-center italic text-lg leading-relaxed mb-6 p-4 bg-green-900/20 border border-green-500/40 rounded-lg text-white"
             >
               "A força da Magia diminuiu desde os tempos antigos. Embora sejamos
               afortunados que exércitos de Daemônios não vaguem mais pela terra,
@@ -25,7 +41,7 @@ function MagicRulesPage() {
               perdidas para nós. Apenas em artefatos como o Martelo de Sigmar
               restam traços do antigo poder."
               <br />
-              <span className="text-sm text-[#d4af37] mt-2 block">
+              <span className="text-sm text-white mt-2 block">
                 — Maximilian, Hierofante da Ordem da Luz
               </span>
             </MobileText>
@@ -36,7 +52,9 @@ function MagicRulesPage() {
               estranhas sobre magia. O povo comum pode lhe contar todo tipo de
               coisas sobre magia, se são verdadeiras ou não, é outra questão…
             </MobileText>
-            <HeaderH1>A Natureza da Magia</HeaderH1>
+            <div id="natureza-magia">
+              <HeaderH1>A Natureza da Magia</HeaderH1>
+            </div>
             <MobileText>
               Como os Magistrados veem, usar magia é dar forma à substância do
               Caos puro. Um Mago usa sua vontade e sua própria carne para formar
@@ -51,7 +69,9 @@ function MagicRulesPage() {
               comumente aceito que a magia é uma amante inconstante, com faces
               tanto cruéis quanto gentis.
             </MobileText>
-            <HeaderH1>Os Ventos da Magia</HeaderH1>
+            <div id="ventos-magia">
+              <HeaderH1>Os Ventos da Magia</HeaderH1>
+            </div>
             <MobileText>
               Assim como o emblema do Caos tem oito flechas, a magia também tem
               oito ventos. Eles sopram pelo mundo, carregando a energia do Caos
@@ -70,7 +90,9 @@ function MagicRulesPage() {
               e da WAAAAAAAGH!. Cada uma possui suas próprias características,
               riscos e métodos únicos de invocação.
             </MobileText>
-            <HeaderH2>Magia Arcana</HeaderH2>
+            <div id="magia-arcana">
+              <HeaderH2>Magia Arcana</HeaderH2>
+            </div>
             <MobileText>
               A forma mais tradicional e estudada de magia.{" "}
               <strong>Conjuradores arcanos</strong>, tipicamente conhecidos como
@@ -88,7 +110,17 @@ function MagicRulesPage() {
               fogo e paixão, Azyr para céu e profecia, Ulgu para sombras e
               ilusão, e Shyish para morte e necromancia.
             </MobileText>
-            <HeaderH2>Magia Divina</HeaderH2>
+            <div className="mt-4 mb-6 flex justify-center">
+              <button
+                onClick={() => navigate("/magic/arcane-lores")}
+                className="w-full md:w-1/2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-bold"
+              >
+                Explorar Magia Arcana
+              </button>
+            </div>
+            <div id="magia-divina">
+              <HeaderH2>Magia Divina</HeaderH2>
+            </div>
             <MobileText>
               Baseada na fé e na conexão com divindades.{" "}
               <strong>Conjuradores divinos</strong>, tipicamente conhecidos como
@@ -104,7 +136,17 @@ function MagicRulesPage() {
               e caça, Morr para morte e sonhos, Verena para conhecimento e
               sabedoria, e Shallya para cura e misericórdia.
             </MobileText>
-            <HeaderH2>Magia Sombria</HeaderH2>
+            <div className="mt-4 mb-6 flex justify-center">
+              <button
+                onClick={() => navigate("/magic/prayers")}
+                className="w-full md:w-1/2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-bold"
+              >
+                Explorar Magia Divina
+              </button>
+            </div>
+            <div id="magia-sombria">
+              <HeaderH2>Magia Sombria</HeaderH2>
+            </div>
             <MobileText>
               Um subconjunto perigoso da Magia Arcana, cujos praticantes estão
               dispostos a correr riscos pessoais ainda maiores por poder
@@ -119,7 +161,17 @@ function MagicRulesPage() {
               Necromantes, Bruxas Sombrias, e Cultistas do Caos são exemplos de
               praticantes da Magia Sombria.
             </MobileText>
-            <HeaderH2>Magia da WAAAAAAAGH!</HeaderH2>
+            <div className="mt-4 mb-6 flex justify-center">
+              <button
+                onClick={() => navigate("/magic/dark-lores")}
+                className="w-full md:w-1/2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-bold"
+              >
+                Explorar Magia Sombria
+              </button>
+            </div>
+            <div id="magia-waaagh">
+              <HeaderH2>Magia da WAAAAAAAGH!</HeaderH2>
+            </div>
             <MobileText>
               Única aos Orcs e Goblins, sendo uma forma de magia selvagem e
               instintiva. Os Xamãs Orcs não estudam magia como os Magos humanos
@@ -133,7 +185,17 @@ function MagicRulesPage() {
               de batalha. Quanto maior a horda, mais poderosa a magia se torna,
               mas também mais perigosa para o próprio Xamã.
             </MobileText>
-            <HeaderH1>Anatomia de uma Magia</HeaderH1>
+            <div className="mt-4 mb-6 flex justify-center">
+              <button
+                onClick={() => navigate("/magic/greenskin-lores")}
+                className="w-full md:w-1/2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-bold"
+              >
+                Explorar WAAAAAAAGH!
+              </button>
+            </div>
+            <div id="anatomia-magia">
+              <HeaderH1>Anatomia de uma Magia</HeaderH1>
+            </div>
             <MobileText>
               Cada magia nesse jogo é descrita seguindo um padrão consistente,
               revelando os segredos necessários para sua invocação — ou os
@@ -166,7 +228,9 @@ function MagicRulesPage() {
               circunstâncias a magia pode ser invocada. As palavras-chave
               determinam o comportamento mecânico da magia no jogo.
             </MobileText>
-            <HeaderH1>LISTA DEPALAVRAS-CHAVE</HeaderH1>
+            <div id="palavras-chave">
+              <HeaderH1>LISTA DEPALAVRAS-CHAVE</HeaderH1>
+            </div>
             <HeaderH3>MISSIL MAGICO (TIPO) (X)</HeaderH3>
             <MobileText>
               Um míssil mágico funciona exatamente como um ataque a distância,
@@ -178,12 +242,18 @@ function MagicRulesPage() {
             <MobileText>
               Posicione o tipo de área de efeito em algum ponto no alcance da
               magia. Todas as figuras sob a área de efeito são afetadas pela
-              magia. Na seção de <strong>Downloads</strong> você encontrará um
-              arquivo PDF com todos os tipos de template para serem impressos e
-              usados no jogo. Recomendo imprimi-los em papel comum e
-              plastificá-los.
+              magia. Para informações detalhadas sobre todos os tipos de Áreas
+              de Efeito, incluindo templates e regras específicas, consulte a
+              página dedicada.
             </MobileText>
-            <AreaEffectCards />
+            <div className="mt-4 mb-6 flex justify-center">
+              <button
+                onClick={() => navigate("/rules/area-of-effect")}
+                className="w-full md:w-1/2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-bold"
+              >
+                📐 Ver Áreas de Efeito Detalhadas
+              </button>
+            </div>
             <HeaderH3>LINHA DE VISÃO</HeaderH3>
             <MobileText>
               Pode afetar qualquer figura para qual o conjurador pode traçar de
@@ -216,24 +286,13 @@ function MagicRulesPage() {
             <HeaderH3>TOQUE</HeaderH3>A magia pode afetar o próprio conjurador
             ou qualquer figura que ele esteja em contato de base.{" "}
             <HeaderH3>ILUSÃO</HeaderH3>
-            Magias que manipulam a percepção das figuras inimigas. Palavra-chave 
+            Magias que manipulam a percepção das figuras inimigas. Palavra-chave
             relevante para interagir com efeito de outras magias e habilidades.
-            
-            
             <HeaderH3>RITUAL</HeaderH3>
             <MobileText>
               Essa magia pode ser usada durante a etapa de Conjurar Rituais da
-              sequência pós-jogo. A magia não causa dano ou efeitos negativos
+              Fase de Campanha-jogo. A magia não causa dano ou efeitos negativos
               por falhar na conjuração, mas não pode ser forçada.
-            </MobileText>
-            <MobileText
-              variant="quote"
-              className="text-center italic text-lg leading-relaxed mt-8"
-            >
-              "Em Mordheim, a magia não é apenas poder — é um pacto com o
-              próprio Caos. Cada feitiço lançado é um passo mais próximo da
-              ruína ou da glória. Escolha sabiamente, pois os Ventos da Magia
-              não perdoam tolos."
             </MobileText>
           </MobileSection>
         </div>

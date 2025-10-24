@@ -1,464 +1,231 @@
-import MobileLayout from "../../components/MobileLayout";
-import MobileText from "../../components/MobileText";
-import MobileHeroHeader from "../../components/MobileHeroHeader";
-import CollapsibleSection from "../../components/CollapsibleSection";
-import UnitCard from "../../components/UnitCard";
-import PowerCard from "../../components/PowerCard";
-import slugify from "slugify";
-import { useRef } from "react";
-import headerImage from "../../assets/header-art/21ef8615dda8ffc145957aff5273c244_upscayl_4x_high-fidelity-4x.png";
+import orcMobData from "./data/orc-mob.data.json";
+import QuickNavigation from "../../../components/QuickNavigation";
+import MobileSection from "../../../components/MobileSection";
+import HeaderH1 from "../../../components/HeaderH1";
+import MobileText from "../../../components/MobileText";
+import UnitCard from "../../../components/UnitCard";
+import CollapsibleSection from "../../../components/CollapsibleSection";
+import GenericTable from "../../../components/GenericTable";
+import PageTitle from "../../../components/PageTitle";
 
-const orcMobUnits = [
-  {
-    name: "Chefaum Orc",
-    role: "Herói",
-    stats: {
-      move: 12,
-      fight: "+4",
-      shoot: "0",
-      armour: 10,
-      will: "+2",
-      health: 18,
-      cost: "-",
-    },
-    abilities: [
-      {
-        name: "Poderes",
-        description:
-          "O Chefaum Ork começa com 5 poderes da lista de Porradas do Waaaagh!. Um poder tem classe de dificuldade 3. Os outros têm um classe de dificuldade de 5.",
-      },
-      {
-        name: "O Fodaum",
-        description: "O Chefaum Ork tem a característica Forte e Grande.",
-      },
+interface Unit {
+  id: string;
+  name: string;
+  role?: string;
+  quantity?: string;
+  stats: {
+    move: number | string;
+    fight: string;
+    shoot: string;
+    armour: number | string;
+    Vontade: string;
+    health: number;
+    cost: string;
+    skills?: string[];
+  };
+  spellAffinity?: {
+    aligned0?: string[];
+    aligned2?: string[];
+  };
+  abilities: Array<{
+    name: string;
+    description: string;
+  }>;
+  equipment?: {
+    "hand-to-hand"?: Array<{ name: string; cost: string }>;
+    ranged?: Array<{ name: string; cost: string }>;
+    armor?: Array<{ name: string; cost: string }>;
+    miscellaneous?: Array<{ name: string; cost: string }>;
+    modifiers?: Array<{ name: string; cost: string }>;
+  };
+}
 
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Machado",
-          "Arma de Concussão",
-          "Arma de Haste",
-          "Arma de Duas Mãos",
-          "Arco",
-          "Besta",
-        ],
-        armor: ["Armadura Leve", "Escudo"],
-        special: [],
-      },
-    ],
-  },
-  {
-    name: "Orc Véio",
-    role: "Campeão",
-    stats: {
-      move: 14,
-      fight: "+1",
-      shoot: "+0",
-      armour: 10,
-      will: "+4",
-      health: 12,
-      cost: "100 coroas",
-    },
-    spellAffinity: {
-      aligned0: ["Tradição da WAAAAAAAAAAAGH!"],
-      aligned2: [
-        "Tradição das Sombras, Tradição da Vida, Tradição das Bestas, Tradição do Metal",
-      ],
-    },
-    abilities: [
-      {
-        name: "Conjurador",
-        description:
-          "O Orc Véio é um conjurador da Tradição da WAAAAAAAAAAAGH!. Ele começa com 4 magias, das quais 3 devem ser da Tradição da WAAAAAAAAAAAGH! e a última de uma tradição associada.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: ["Cajado", "Adaga", "Machado"],
-        armor: [],
-        special: [],
-      },
-    ],
-  },
-  {
-    name: "Goblin",
-    stats: {
-      move: 8,
-      fight: "0",
-      shoot: "0",
-      armour: 8,
-      will: "-2",
-      health: 4,
-      cost: "Free",
-    },
-    abilities: [
-      {
-        name: "Indisciplinado",
-        description:
-          "Goblins que não ativarem junto ao Chefaum Ork ou Orc Véio agem como criaturas irregulares no fim do turno. No começo do próximo turno eles voltam ao controle do bando.",
-      },
-      {
-        name: "Molecada",
-        description: "Goblins não ganham experiência.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: ["Adaga", "Machado", "Espada", "Arma de Haste", "Arco Curto"],
-        armor: ["Escudo"],
-        special: [
-          "Pode comprar Elixir de cogumelo louco para essa figura sem rolagem de mercado negro",
-        ],
-      },
-    ],
-  },
-  {
-    name: "Minino Orc",
-    stats: {
-      move: 4,
-      fight: "+3",
-      shoot: "+0",
-      armour: "10",
-      will: "+1",
-      health: 16,
-      cost: "50 coroas",
-    },
-    abilities: [
-      {
-        name: "Indisciplinado",
-        description:
-          "Kabras Orks que não ativarem junto ao Chefaum Ork ou Orc Véio agem como criaturas irregulares no fim do turno. No começo do próximo turno eles voltam ao controle do bando.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Machado",
-          "Arma de Concussão",
-          "Arma de Haste",
-          "Arma de Duas Mãos",
-          "Arco",
-          "Besta",
-        ],
-        armor: ["Armadura Leve", "Escudo"],
-        special: [],
-      },
-    ],
-  },
-  {
-    name: "Cabra Orc",
-    stats: {
-      move: 12,
-      fight: "+4",
-      shoot: "+0",
-      armour: "10",
-      will: "+1",
-      health: 16,
-      cost: "100 coroas",
-    },
-    abilities: [
-      {
-        name: "Nascido pra Peia",
-        description: "Krabas Orks tem a característica Forte.",
-      },
-      {
-        name: "Indisciplinado",
-        description:
-          "Cabras Orcs que não ativarem junto ao Chefaum Ork agem como criaturas irregulares no fim do turno. No começo do próximo turno eles voltam ao controle do bando.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Machado",
-          "Arma de Concussão",
-          "Arma de Haste",
-          "Arma de Duas Mãos",
-          "Arco",
-          "Besta",
-        ],
-        armor: ["Armadura Leve", "Escudo"],
-        special: [],
-      },
-    ],
-  },
-  {
-    name: "Orc Batuqueiro",
-    stats: {
-      move: 12,
-      fight: "+3",
-      shoot: "+0",
-      armour: "10",
-      will: "+4",
-      health: 16,
-      cost: "100 coroas",
-    },
-    abilities: [
-      {
-        name: "Indisciplinado",
-        description:
-          "Orcs Batuqueiros que não ativarem junto ao Chefaum Ork agem como criaturas irregulares no fim do turno. No começo do próximo turno eles voltam ao controle do bando.",
-      },
-      {
-        name: "Batuque de Guerra",
-        description:
-          "Quando o Chefaum Orc ativar, caso exista um Orc Batuqueiro a até 8cm dele, até 2 figuras a até 5cm do orc batuqueiro podem ativar junto ao Chefaum.",
-      },
+const OrcMobPage: React.FC = () => {
+  const leader = orcMobData.find(
+    (unit) => unit.role === "Herói" && unit.name === "Chefaum Orc"
+  ) as Unit;
+  const heroes = orcMobData.filter(
+    (unit) => unit.role === "Héroi" && unit.name !== "Chefaum Orc"
+  ) as Unit[];
+  const soldiers = orcMobData.filter((unit) => !unit.role) as Unit[];
 
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Machado",
-          "Arma de Concussão",
-          "Arma de Haste",
-          "Arma de Duas Mãos",
-          "Arco",
-          "Besta",
-        ],
-        armor: ["Armadura Leve", "Escudo"],
-        special: [],
-      },
-    ],
-  },
-  {
-    name: "Pé-Duro das Cavernas",
-    stats: {
-      move: "1d20",
-      fight: "+2",
-      shoot: "-",
-      armour: 12,
-      will: "-2",
-      health: 8,
-      cost: "35 coroas",
-    },
-    abilities: [
-      {
-        name: "Frenéticos",
-        description: `Os Pé-Duros das Cavernas não possuem um valor fixo de Agilidade, deslocando-se com um salto desajeitado e imprevisível. Para representar isso, ao mover um Pé-Duro, role 1d20  para determinar a distância que ele se move (mínimo de 5cm). Esse valor também será usado para quaisquer teste de agilidade do Squig. Squigs nunca pode usar uma ação de disparada.`,
-      },
-      {
-        name: "Indisciplinado",
-        description:
-          "Pé-Duros das Cavernas que não ativarem junto ao Chefaum Ork ou Orc Véio agem como criaturas irregulares no fim do turno. No começo do próximo turno eles voltam ao controle do bando.",
-      },
-      {
-        name: "Habitante das Cavernas",
-        description: "Pé-Duros das Cavernas tem a característica Animal.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [],
-        armor: [],
-        special: [
-          "Nenhum! Pés-Duro atacam se chocando com seus inimigos durante seus pulos",
-        ],
-      },
-    ],
-  },
-  {
-    name: "Troll",
-    stats: {
-      move: 4,
-      fight: "+4",
-      shoot: "+0",
-      armour: 14,
-      will: "0",
-      health: 18,
-      cost: "180 coroas",
-    },
-    abilities: [
-      {
-        name: "Besta Fedorenta",
-        description:
-          "Trolls tem as características Grande, Forte e Aterrorizante e Voraz.",
-      },
-      {
-        name: "Regeneração Rápida",
-        description: `Trolls tem a característica Regeneração. Essa característica não ativa se o Troll sofreu dano elemental no seu turno anterior.`,
-      },
-      {
-        name: "Indisciplinado",
-        description:
-          "Trolls que não ativarem junto ao Chefaum Ork ou Orc Véio agem como criaturas irregulares no fim do turno. No começo do próximo turno eles voltam ao controle do bando.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [],
-        armor: [],
-        special: ["Nenhum! Trolls atacam com troncos ou escombros"],
-      },
-    ],
-  },
-];
-
-const krumpinsOfTheWaaaagh = [
-  {
-    name: "UMBORA CAMBADA!",
-    when: "No início da ativação do Chefaum, antes de qualquer ação ser tomada.",
-    effect:
-      "O Chefaum Orc e até 3 Cabras Orcs, Mininos Orcs ou Orcs Batuqueiros que ativarem junto ao Chefaum são imunes a Aterrorizante até o final do turno.",
-  },
-  {
-    name: "AQUI É COGUMELO, GALADO!",
-    when: "Em qualquer momento durante a ativação do Chefaum Orc ou fora do jogo.",
-    effect:
-      "O Chefaum Orc pode fazer um tentativa de ativar este poder antes de cada jogo, na fase de conjurar rituais. O Chefaum Orc cura uma ferida permanente. Se usado durante o jogo, o Chefaum Orc recupera 5 pontos de saúde.",
-  },
-  {
-    name: "RECEBA A PREDA!",
-    when: "Em qualquer momento durante a ativação do Chefaum Orc.",
-    effect: `O Chefaum Orc pode gastar uma ação para pegar um tronco, escombro, corpo morto etc, e arremessá-lo em um inimigo. O Chefaum Orc pode fazer um ataque a distância com um alcance máximo de 20cm. Este ataque a distância é feito com a estatística de Precisão do Chefaum Orc. Se o ataque acertar, causa +3 de dano.`,
-  },
-  {
-    name: "SABIDO E PARRUDO",
-    when: "Em qualquer momento durante a ativação do Chefaum Orc.",
-    effect: `Escolha um Minino Orc, Cabra Orc ou Orc Batuqueiro dentro de 15cm. Esta figura pode ativar imediatamente depois do Chefaum e contar como tendo ativado junto ao Chefaum Orc para essa ativação.`,
-  },
-  {
-    name: "RACHA QUENGO",
-    when: "Sempre que o Chefaum Orc vencer um combate rolando um 18, 19 ou 20 naturais.",
-    effect:
-      "Trate esse acerto como um acerto crítico. A figura atingida ganha um marcador de Atordoamento.",
-  },
-  {
-    name: "O TORA PLEURA",
-    when: "Sempre que o Chefaum Orc vencer um combate e causar pelo menos 5 pontos de dano.",
-    effect:
-      "Se a figura alvo estiver usando armadura leve, sofre -1 de Armadura para o resto do jogo. Se estiver usando armadura pesada, sofre -2 de Armadura para o resto do jogo.",
-  },
-  {
-    name: "SE AVEXE NÃO!",
-    when: "Em qualquer momento durante a ativação do Chefaum Orc.",
-    effect:
-      "O Chefaum Orc ganha a característica Agarrar para esse combate apenas.",
-  },
-  {
-    name: "VAIA BRUTAL",
-    when: "Em qualquer momento durante a ativação do Chefaum Orc.",
-    effect: `Qualquer figura dentro de 8cm do Chefaum Orc deve rolar Vontade contra uma CD igual a rolagem de ativação deste poder. Figuras que falharem recebem um marcador de Atordoamento.`,
-  },
-  {
-    name: "SAI DO MEI, CABRA!",
-    when: "No início de um movimento do Chefaum Orc.",
-    effect: `Escolha uma figura inimiga que o Chefaum Orc possa declarar e completar carga.  Ignore qualquer terreno,figuras e tentativas de interceptação durante seu próximo movimento, se for uma carga contra essa criatura. Se o Chefaum Orc andar através de uma figura, ele pode rolar um teste contestado de Ímpeto contra essa figura. Se a figura perder o teste, o Chefaum Orc pode movê-la 8cm em qualquer direção, exceto fora da mesa ou em contato de base com outra figura.`,
-  },
-  {
-    name: "ÓIA O MUQUE DO PAI",
-    when: "Sempre que o Chefaum Orc rolar um teste de Ímpeto (qualquer teste de Ímpeto com uma CD).",
-    effect:
-      "Adicione +5 ao rolagem de Ímpeto do Chefaum Orc. Alternativamente, o Chefaum Orc pode usar esta habilidade sempre que vencer um combate para causar +1 de dano.",
-  },
-  {
-    name: "RECEBA, GRAÇAS A GORK!",
-    when: "Em qualquer ocasião em que o Chefaum Orc vencer uma luta.",
-    effect:
-      "O Chefaum Orc causa 3 pontos de dano adicionais além do dano normal que ele causaria.",
-  },
-  {
-    name: "WAAAAAAAAAGH!",
-    when: "No começo de qualquer turno, antes de rolar iniciativa, uma vez por jogo.",
-    effect:
-      "Cada Cabra, Minino, Batuqueiro, Goblin e o próprio Chefaum Orc ganham +8 de Agilidade, +2 de Ímpeto, +2 de dano, +2 de Vigor máximo, são imunes a Aterrorizante e têm a característica Mente de Ferro até o final do turno. O bando do Chefaum Orc é o vencedor de iniciativa, independentemente de qualquer rolagem. Figuras afetadas pelo Waaaagh! só podem tomar ações de movimento para declarar carga e ações de luta e ativação de poderes, e recebem dois marcadores de Atordoamento se não completarem uma carga durante esse turno. Eles não podem pegar fragmentos de pedra-bruxa. Cada figura no bando recebe o dano da ativação desse poder. O Poder pode ser tentado quantas vezes forem necessárias até ter sucesso. No Final do turno da Waaagh, todas as figuras afetadas recebem um marcador de Atordoamento.",
-  },
-];
-
-function OrcMobPage() {
-  const tableOfContents = [
+  const navigationSections = [
+    { id: "introducao", title: "Introdução", level: 0 },
+    { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
+    { id: "animosidade", title: "Animosidade", level: 0 },
     {
-      id: "unidades",
-      label: "Unidades",
-      type: "Section",
-      ref: useRef(null),
+      id: "lider",
+      title: "Líder",
+      level: 0,
+      children: leader ? [{ id: leader.id, title: leader.name, level: 1 }] : [],
     },
     {
-      id: "porradas",
-      label: "Porradas do Waaaagh!",
-      type: "Section",
-      ref: useRef(null),
+      id: "herois",
+      title: "Heróis",
+      level: 0,
+      children: heroes.map((hero) => ({
+        id: hero.id,
+        title: hero.name,
+        level: 1,
+      })),
+    },
+    {
+      id: "soldados",
+      title: "Soldados",
+      level: 0,
+      children: soldiers.map((soldier) => ({
+        id: soldier.id,
+        title: soldier.name,
+        level: 1,
+      })),
     },
   ];
 
   return (
-    <>
-      <MobileHeroHeader imageUrl={headerImage} title="Horda Orc" />
+    <div className="min-h-screen bg-[#0a0a0a] text-white">
+      <div className="px-4 py-8 max-w-4xl mx-auto">
+        <QuickNavigation sections={navigationSections} />
+        
+        <MobileSection id="introducao">
+        <PageTitle>Bando Orc</PageTitle>
+          <MobileText>
+            Ô BICHO, NÓIS ORC GOSTA É DUMA XINXA, VIU? NÓIS NUM TEM NADA QUE DÊ
+            MAIS GOSTO QUE METER PORRADA E LEVAR UM MONTE DE COISA PRA CASA! A
+            VIDA DUM ORC É ISSO AÍ, UM ARRANCA-RABO ATRÁS DO OUTRO — SEJA COM
+            OUTRO ORC MAIS FELA-DA-PUTA, SEJA COM QUALQUER OUTRO CABRA QUE
+            APAREÇA NO CAMINHO!
+          </MobileText>
+          <MobileText>
+            MORDHEIM, Ó, É O PARAÍSO, CABA! CHEIO DE INIMIGO PRA QUEBRAR E DE
+            OURO PRA CATAR… É O LUGAR PERFEITO PRA UM ORC DA PESTE VIRAR
+            CHEFAUM, VIU? ENTRE OS POVO TUDO DESSE MUNDÃO, NUM TEM QUEM GOSTE
+            MAIS DUM SAQUE QUE NÓIS, OS ORC E OS GOBLINVÉI! POR ISSO MESMO, UM
+            BOCADO DE BANDO DE ORC VEIO SE JUNTAR EM MORDHEIM, ATRÁS DESSAS
+            PEDRA MALUCA AÍ, AS TAL DA PEDRA-BRUXA.
+          </MobileText>
+          <MobileText>
+            MAS, VOU TE DIZER, NÓIS PREFERE É ESPERAR OS OUTRO ABESTADO CATAR E
+            DEPOIS DAR UM BOTE NELES, VIU? DIVERSÃO DAS BOA! NO FIM DAS CONTA, O
+            QUE IMPORTA É O MESMO PRA TODO MUNDO: PEGAR O MÁXIMO DE DINHEIRO E
+            SAIR RINDO COM OS BOLSO CHEIO, CARAI!
+          </MobileText>
+        </MobileSection>
 
-      <MobileLayout
-        title="Horda Orc — WAAAAGH!"
-        backButtonPath="/warbands"
-        tableOfContents={tableOfContents}
-      >
-        <br />
+        <MobileSection id="estrutura-do-bando">
+          <HeaderH1 id="estrutura-do-bando">Estrutura do Bando</HeaderH1>
+          <MobileText>
+            Um bando orc deve incluir um mínimo de 3 modelos. Você tem 500
+            coroas de ouro que pode usar para recrutar e equipar seu bando. O
+            número máximo de guerreiros no bando é 20.
+          </MobileText>
+          <MobileText>
+            • <strong>Chefaum Orc:</strong> Cada bando orc deve ter um Chefaum –
+            nem mais, nem menos!
+            <br />• <strong>Orc Véio:</strong> Seu bando pode incluir até 1 Orc
+            Véio.
+            <br />• <strong>Orc Grandaum:</strong> Seu bando pode incluir até 2
+            Orc Grandaum.
+            <br />• <strong>Minino Orc:</strong> Seu bando pode incluir de 1 a 5
+            Minino Orc.
+            <br />• <strong>Goblin:</strong> Seu bando pode incluir qualquer
+            número de Goblins.
+            <br />• <strong>Pé-Duro das Gruta:</strong> Seu bando pode incluir
+            até 5 Pé-Duros das Gruta.
+            <br />• <strong>Troll:</strong> Seu bando pode incluir até 1 Troll.
+          </MobileText>
+        </MobileSection>
 
-        <MobileText className="mb-4">
-          A Horda Orc é uma massa caótica e brutal de guerreiros verdes unidos
-          pela promessa de violência e saque. Liderados por um Chefaum Orc
-          carismático e brutal, estes bandos são movidos por uma sede insaciável
-          de combate e destruição. Sua filosofia é simples: mais é melhor, e
-          força bruta resolve qualquer problema.
-        </MobileText>
+        <MobileSection id="animosidade">
+          <HeaderH1 id="animosidade">Animosidade</HeaderH1>
+          <MobileText>
+            Orcs e Goblins não gostam de nada mais que uma boa briga, a ponto de
+            não ligar muito pra quem caem na porrada! No início de cada turno,
+            role um dado para cada figura com a regra Animosidade. Um resultado
+            de 1-5 significa que o guerreiro se ofendeu com algo que um de seus
+            colegas de bando fez ou disse. Não role para modelos que estão em
+            combate corpo a corpo (eles já estão brigando!).
+          </MobileText>
+          <MobileText>
+            Para descobrir o quão ofendido o modelo está, role outro dado e
+            consulte a tabela a seguir para ver o que acontece:
+          </MobileText>
 
-        <MobileText className="mb-4">
-          Apesar de sua aparente desorganização, as Hordas Orcs são
-          surpreendentemente eficazes em combate. Suas Porradas do Waaaagh!
-          canalizam a fúria coletiva dos orcs em poderes devastadores,
-          transformando o caos aparente em uma força de destruição coordenada e
-          implacável.
-        </MobileText>
+          <CollapsibleSection title="Tabela de Animosidade">
+            <GenericTable
+              data={[
+                {
+                  Resultado: "1-5",
+                  Ação: "TÔ OUVINDO VIU, ARROMBADO!",
+                  Descrição:
+                    "O guerreiro decide que a figura aliada Orc ou Goblin mais próximo insultou sua linhagem ou higiene pessoal e deve pagar o preço! Se houver uma figura aliada Orc ou Goblin no alcance, o guerreiro ofendido irá imediatamente declarar carga e lutar uma rodada de combate corpo a corpo contra a fonte de sua ira. Se não houver alvos ao alcance e o guerreiro estiver armado com arma a distância, ele atira no amigo mais próximo. Caso contrário, ele se comporta como se tivesse rolado 6-15.",
+                },
+                {
+                  Resultado: "6-15",
+                  Ação: "É O QUE, GALINHA?",
+                  Descrição:
+                    "O guerreiro tem certeza de que ouviu um som ofensivo do Orc ou Goblin amigo mais próximo, ele perde sua ativação xingando seu ofensor.",
+                },
+                {
+                  Resultado: "16-20",
+                  Ação: "TU ACHA QUE É O BONZÃO,CARAI?!",
+                  Descrição:
+                    "A figura imagina que seus companheiros estão rindo dele, e decidiu mostrar quem é o bonzão. Este modelo ganha uma ação extra que deve ser um movimento o mais rápido possível em direção ao modelo inimigo mais próximo, declarando carga se possível. A figura ainda pode usar uma ação de disparada com uma de suas duas ações normais.",
+                },
+              ]}
+            />
+          </CollapsibleSection>
+        </MobileSection>
 
-        <MobileText className="mb-4">
-          Com sua resistência natural, números esmagadores e a lendária
-          WAAAAGH!, as Hordas Orcs são uma presença aterrorizante em Mordheim,
-          capazes de dominar o campo de batalha através de pura agressão e
-          determinação inabalável.
-        </MobileText>
+        <MobileSection id="lider">
+          <HeaderH1 id="lider">Líder</HeaderH1>
+          {leader && (
+            <UnitCard
+              id={leader.id}
+              name={leader.name}
+              role={leader.role}
+              quantity={leader.quantity}
+              stats={leader.stats}
+              spellAffinity={leader.spellAffinity}
+              abilities={leader.abilities}
+              equipment={leader.equipment}
+            />
+          )}
+        </MobileSection>
 
-        <span
-          id="unidades"
-          ref={tableOfContents.find((item) => item.id === "unidades")?.ref}
-        />
-        <CollapsibleSection title="Unidades" id="unidades">
-          <div className="space-y-4">
-            {orcMobUnits.map((unit, index) => (
-              <div key={index} id={slugify(unit.name, { lower: true })}>
-                <CollapsibleSection
-                  title={unit.role ? `${unit.name} (${unit.role})` : unit.name}
-                  defaultExpanded={true}
-                >
-                  <UnitCard
-                    name={unit.name}
-                    role={unit.role}
-                    stats={unit.stats}
-                    abilities={unit.abilities}
-                    {...(unit.spellAffinity && {
-                      spellAffinity: unit.spellAffinity,
-                    })}
-                  />
-                </CollapsibleSection>
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
+        <MobileSection id="herois">
+          <HeaderH1 id="herois">Heróis</HeaderH1>
+          {heroes.map((hero) => (
+            <UnitCard
+              key={hero.id}
+              id={hero.id}
+              name={hero.name}
+              role={hero.role}
+              quantity={hero.quantity}
+              stats={hero.stats}
+              spellAffinity={hero.spellAffinity}
+              abilities={hero.abilities}
+              equipment={hero.equipment}
+            />
+          ))}
+        </MobileSection>
 
-        <span
-          id="porradas"
-          ref={tableOfContents.find((item) => item.id === "porradas")?.ref}
-        />
-        <CollapsibleSection title="Porradas do Waaaagh!" id="porradas">
-          <div className="space-y-4">
-            {krumpinsOfTheWaaaagh.map((power, index) => (
-              <div key={index} id={slugify(power.name, { lower: true })}>
-                <PowerCard
-                  name={power.name}
-                  when={power.when}
-                  effect={power.effect}
-                />
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-      </MobileLayout>
-    </>
+        <MobileSection id="soldados">
+          <HeaderH1 id="soldados">Soldados</HeaderH1>
+          {soldiers.map((soldier) => (
+            <UnitCard
+              key={soldier.id}
+              id={soldier.id}
+              name={soldier.name}
+              quantity={soldier.quantity}
+              stats={soldier.stats}
+              abilities={soldier.abilities}
+              equipment={soldier.equipment}
+            />
+          ))}
+        </MobileSection>
+      </div>
+    </div>
   );
-}
+};
 
 export default OrcMobPage;

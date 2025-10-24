@@ -1,542 +1,388 @@
-import { Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import vampireCourtsData from "./data/vampire-courts.data.json";
+import QuickNavigation from "../../../components/QuickNavigation";
+import MobileSection from "../../../components/MobileSection";
+import MobileText from "../../../components/MobileText";
+import HeaderH1 from "../../../components/HeaderH1";
+import HeaderH2 from "../../../components/HeaderH2";
+import UnitCard from "../../../components/UnitCard";
+import PageTitle from "../../../components/PageTitle";
 
-import Header from "../../components/Header";
-import UnitCard from "../../components/UnitCard";
-import PowerCard from "../../components/PowerCard";
-import slugify from "slugify";
-import WarbandIndex from "../../components/WarbandIndex";
-import {
-  PageContainer,
-  ContentSection,
-  NavigationSection,
-  StyledNavigationButton,
-  ContentContainer,
-  ParchmentText,
-  PowerListTitle,
-} from "../../components/PageComponents";
+interface Unit {
+  id?: string;
+  name: string;
+  role?: string;
+  quantity?: string;
+  stats: {
+    move: number;
+    fight: string;
+    shoot: string;
+    armour: number;
+    Vontade: string;
+    health: number;
+    cost: string;
+    skills?: string[];
+  };
+  spellAffinity?: {
+    aligned0?: string[];
+    aligned2?: string[];
+  };
+  abilities: Array<{
+    name: string;
+    description: string;
+  }>;
+  equipment?: {
+    "hand-to-hand"?: Array<{ name: string; cost: string }>;
+    ranged?: Array<{ name: string; cost: string }>;
+    armor?: Array<{ name: string; cost: string }>;
+    miscellaneous?: Array<{ name: string; cost: string }>;
+    modifiers?: Array<{ name: string; cost: string }>;
+  };
+}
 
-const vampireCourtsUnits = [
-  {
-    name: "Conde Vampiro",
-    role: "Herói",
-    stats: {
-      move: 14,
-      fight: "+3",
-      shoot: "+2",
-      armour: 10,
-      will: "+5",
-      health: 20,
-      cost: "-",
-    },
-    abilities: [
-      {
-        name: "Poderes",
-        description:
-          "Os Vampiros começam com 5 poderes das Tradições da Linhagem. Um desses poderes é tem classe de dificuldade 3. Os outros têm classe de dificuldade 5.",
-      },
-      {
-        name: "Morto-Vivo Superior",
-        description:
-          "Condes Vampiros tem as seguintes características: Morto-Vivo, Immune a Édito de Nagash, Ataques Mágicos, Mentes-Férreas, Vulnerabilidade a Orações, Visão Verdadeira, Resistência a Dano Normal, e Aterrorizante. Apesar de serem mortos vivos, ganham experiencia, e tem 5 espaços para equipamento como normal.",
-      },
-      {
-        name: "Constituição de Morto-Vivo",
-        description:
-          "O Vampiro é morto-vivo e não pode ser curado por orações e remédios ou curar naturalmente entre jogos. Em vez disso, ele deve pagar 5 coroas para cada ponto de vida que ele recupera. Se um vampiro for reduzido a 0 pontos de vida durante um jogo e não tiver pelo menos 5 coroas na sua ficha de bando, ele será tratado como tendo rolado um resultado de Morto na tabela de Sobrevivência.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Machado",
-          "Arma de Concussão",
-          "Espada",
-          "Arma de Haste",
-          "Arma de Duas Mãos",
-          "Arco",
-          "Arco Curto",
-          "Besta",
-        ],
-        armor: ["Armadura Leve", "Escudo"],
-        special: [],
-      },
-    ],
-  },
-  {
-    name: "Necromante",
-    role: "Campeão",
-    stats: {
-      move: 12,
-      fight: "+1",
-      shoot: "+0",
-      armour: 10,
-      will: "+4",
-      health: 12,
-      cost: "100 coroas",
-    },
-    spellAffinity: {
-      aligned0: ["Tradição da Necromancia"],
-      aligned2: [
-        "Tradição da Morte",
-        "Tradição das Sombras",
-        "Tradição do Metal",
-        "Tradição dos Céus",
+interface Lineage {
+  id: string;
+  name: string;
+  lore: string;
+  specialRules: string[];
+  restrictions?: string[];
+}
+
+const VampireCourtsPage: React.FC = () => {
+  const [selectedLineage, setSelectedLineage] = useState<string | null>(null);
+
+  const leader = vampireCourtsData.find(
+    (unit) => unit.role === "Herói" && unit.name === "Conde Vampiro"
+  ) as Unit;
+  const heroes = vampireCourtsData.filter(
+    (unit) =>
+      unit.role === "Héroi" ||
+      (unit.role === "Herói" && unit.name !== "Conde Vampiro")
+  ) as Unit[];
+  const soldiers = vampireCourtsData.filter((unit) => !unit.role) as Unit[];
+
+  // Filtrar unidades baseado na linhagem selecionada
+  const getFilteredUnits = () => {
+    if (!selectedLineage) {
+      return { leader, heroes, soldiers };
+    }
+
+    let filteredHeroes = heroes;
+    let filteredSoldiers = soldiers;
+
+    // Regras especiais por linhagem
+    if (selectedLineage === "von-carstein") {
+      // Von Carstein: Mantém todas as unidades básicas
+    } else if (selectedLineage === "blood-dragon") {
+      // Blood Dragon: Foco em combate corpo a corpo
+    } else if (selectedLineage === "necromancer") {
+      // Necromancer: Foco em magia e criaturas mortas-vivas
+    } else if (selectedLineage === "stirland") {
+      // Stirland: Vampiros rurais e criaturas da floresta
+    }
+
+    return { leader, heroes: filteredHeroes, soldiers: filteredSoldiers };
+  };
+
+  const {
+    leader: filteredLeader,
+    heroes: filteredHeroes,
+    soldiers: filteredSoldiers,
+  } = getFilteredUnits();
+
+  // Linhagens vampíricas
+  const lineages: Lineage[] = [
+    {
+      id: "von-carstein",
+      name: "Von Carstein",
+      lore: "Os vampiros da linhagem Von Carstein são os vampiros fundadores. Esses monstros são os vampiros mais prevalentes dentro das fronteiras do Império. A maioria dos vampiros desta linhagem pode ser encontrada no escuro Condado de Sylvania, onde se diz que o próprio Conde-Votante é seu desumano e ancestral líder. Os vampiros da linha Von Carstein são notórios por sua arrogância e afetação, com gostos caros e maneiras impecáveis, mas são predadores absolutamente implacáveis. Os Von Carsteins ocasionalmente têm negócios com vampiros de outros clãs; os Necrarchs cujo conhecimento nas artes sombrias eles cobiçam e os Blood Dragons cujas habilidades marciais eles admiram. Eles são profundamente suspeitos da irmandade das Lahmians e mantêm os Strigoi com profundo desprezo, caçando-os se forem encontrados dentro das fronteiras de suas terras.",
+      specialRules: [
+        "Tirano Vampírico: Condes Von Carstein pode ativar 4 criaturas a até 14cm de si, ao invés das normais 3 a 8cm.",
+        "Nobres Servos: Escórias Von Carstein são mais leais e ganham +1 de Vontade devido ao treinamento aristocrático.",
+        "Linhagem Nobre: Ganha acesso a lista de habilidades Von Carstein.",
       ],
     },
-    abilities: [
-      {
-        name: "Conjurador",
-        description:
-          "Necromantes são conjuradores da Tradição da Necromancia. Eles começam o jogo com 4 magias, 3 das quais devem ser da'Tradição da Necromancia e a outra de qualquer uma das tradições associadas.",
-      },
-      {
-        name: "Graverobber",
-        description:
-          "O necromante ganha 10 pontos de experiência para cada criatura sem as características Animal, Morto-Vivo, Daemônio e Construto que foi reduzida a 0 pontos de vida durante este jogo, independentemente de por quem.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Machado",
-          "Arma de Concussão",
-          "Espada",
-          "Arma de Haste",
-          "Arma de Duas Mãos",
-          "Arco",
-          "Arco Curto",
-          "Besta",
-        ],
-        armor: [],
-        special: [],
-      },
-    ],
-  },
-  {
-    name: "Zumbi Superior",
-    stats: {
-      move: 10,
-      fight: "+1",
-      shoot: "+0",
-      armour: 12,
-      will: "+0",
-      health: 8,
-      cost: "free",
-    },
-    abilities: [
-      {
-        name: "Equipamento Disponível",
-        weapons: [],
-        armor: [],
-        special: ["Zombies grab and bite their poor victims"],
-      },
-      {
-        name: "Morto-Vivo",
-        description: "Zombies tem a característica Morto-Vivo.",
-      },
-      {
-        name: "Acéfalo",
-        description: "Zumbis não podem ganhar experiência.",
-      },
-    ],
-  },
-
-  {
-    name: "Lobos Atrozes",
-    stats: {
-      move: 18,
-      fight: "+2",
-      shoot: "+0",
-      armour: 10,
-      will: "+2",
-      health: 10,
-      cost: "50 coroas",
-    },
-    abilities: [
-      {
-        name: "Besta Reanimada",
-        description:
-          "Lobos Atrozes tem as características Morto-Vivo e Aterrorizante.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [],
-        armor: [],
-        special: ["Lobos Atrozes matam com suas garras e presas"],
-      },
-    ],
-  },
-  {
-    name: "Escória",
-    stats: {
-      move: 14,
-      fight: "+0",
-      shoot: "+0",
-      armour: 10,
-      will: "0",
-      health: 10,
-      cost: "75 coroas",
-    },
-    abilities: [
-      {
-        name: "Sunjulgado",
-        description:
-          "Se essa figura participa de um jogo e não sofre os resultados Morto ou Seriamente Ferido em uma rolagem na tabela de sobrevivência, ela pode coletar o sangue dos mortos e feridos para seu mestre. Conte o numero de figuras reduzidas a 0 de vida durante esse jogo. Para cada uma dessas figuras, o vampiro recupera 1 de vida após o jogo, sem precisar pagar por isso. O Vampiro pode se beneficiar dessa habilidade de apenas uma figura, independente de quantas figuras existam com essa habilidade.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: ["Adaga", "Machado", "Funda", "Arco Curto"],
-        armor: [],
-        special: [],
-      },
-    ],
-  },
-  {
-    name: "Carniçal",
-    stats: {
-      move: 14,
-      fight: "+3",
-      shoot: "+0",
-      armour: 10,
-      will: "+1",
-      health: 12,
-      cost: "75 coroas",
-    },
-    abilities: [
-      {
-        name: "Equipamento Disponível",
-        weapons: [],
-        armor: [],
-        special: ["Carniçais atacam com suas garras e dentes"],
-      },
-      {
-        name: "Fome insáciável",
-        description: "Ghouls tem a característica Voraz.",
-      },
-      {
-        name: "Terror dos Cemitérios",
-        description:
-          "Carniçais tem as características Morto-Vivo e Aterrorizante.",
-      },
-    ],
-  },
-];
-
-const bloodlineTraditions = [
-  {
-    name: "Tradição do Glamour",
-    when: "Quando uma criatura luta contra o vampiro.",
-    effect:
-      "A criatura deve fazer uma rolagem de Vontade contra um CD igual a rolagem de ativação deste poder. O ataque não acontece e a ação é perdida.",
-  },
-  {
-    name: "Tradição do Sanguessuga",
-    when: "Quando o Vampiro vence um combate e causa pelo menos 3 de dano.",
-    effect:
-      "O Vampiro recupera 3 de vida e a figura que sofreu o dano ganha um marcador de sangramento. Se a figura já tiver um marcador de sangramento, o vampiro recupera 2 de vida extra.",
-  },
-  {
-    name: "Tradição da Forma de Névoa",
-    when: "Em qualquer momento durante a ativação do vampiro.",
-    effect: `O vampiro se transforma parcialmente em névoa até o inicio da sua próxima ativação. Enquanto estiver na forma de névoa, ninguém pode traçar linha de visão para essa figura se estiver a mais de 30cm de distância. Além disso, ele ganha +2 de Ímpeto ao fazer uma rolagem de Luta contra qualquer ataque a distância, até ser atingido por um ataque a distância ou até o final do turno, o que acontecer primeiro.`,
-  },
-  {
-    name: "Tradição do Enxame Estridente",
-    when: "Em qualquer momento durante a ativação do vampiro.",
-    effect:
-      "O vampiro se transforma em um enxame de ratos vorazes. Durante sua próxima ação de movimento, o vampiro pode se mover através do terreno como se não estivesse lá, mas não pode terminar seu movimento dentro de uma peça de terreno. Além disso, a criatura nunca sofre nenhum penalidade de movimento para escalar ou mover sobre terreno irregular. O vampiro pode se mover através de figuras inimigas (mas não pode terminar seu movimento dentro delas), e quando faz isso, não pode ser interceptado, causando 2 de dano a qualquer criatura que ele atravesse.",
-  },
-  {
-    name: "Tradição do Predador Lunar",
-    when: "Em qualquer momento durante a ativação do vampiro.",
-    effect: `O vampiro se transforma em um Lobo Atroz enorme. O vampiro ganha as características Grande e Forte, e ganha 4 de agilidade, mas não beneficia de armadura e armas enquanto transformado, inclusive mágicas. O Vampiro não pode carregar tesouros, mas não conta como um animal. Qualquer Lobo Atroz de 15cm de distância do vampiro ganha +2 de Vontade enquanto ele estiver transformado.`,
-  },
-  {
-    name: "Tradição da Tirania",
-    when: "Em qualquer momento durante a ativação do vampiro.",
-    effect: `O vampiro pode ativar junto a sim figuras a até 16cm ao invés de 8cm.`,
-  },
-  {
-    name: "Tradição da Fúria Sanguínea",
-    when: "Quando o vampiro luta.",
-    effect:
-      "O vampiro ganha Dreno de Energia durante esse ataque apenas. Contudo, se perder a luta, recebe um marcador de Atordoamento.",
-  },
-  {
-    name: "Tradição da Hipnose",
-    when: "Em qualquer momento durante a ativação do vampiro, como uma ação.",
-    effect: `um soldado alvo a até 30cm deve rolar um teste de vontade com CD igual a rolagem de ativação deste poder. Se a criatura falhar, até o inicio da sua próxima ativação ela se torna um membro temporário deste bando. A figura não pode fazer ações auto-deprecativas como cair propositalmente ou sair da mesa, mas pode lutar e atirar normalmente. Quando essa figura causa dano, o vampiro recupera 2 de vida. A criatura deve rolar Vontade contra a rolagem de ativação desse poder sempre que sofrer dano.`,
-  },
-  {
-    name: "Tradição do Ancestral Caído",
-    when: "Em qualquer momento durante a ativação do vampiro.",
-    effect:
-      "The vampiro se transforma em um Morcego Atroz. Ele ganha Voador, Agarrar e Toque Vampírico, mas não se beneficias de armas e armaduras, inclusive mágicas enquanto estiver transformado. Figuras atacadas pelo vampiro nessa forma que recebam pelo menos 4 de dano ganham um marcador de sangramento.",
-  },
-  {
-    name: "Tradição da Espiral Sanguínea",
-    when: "Em qualquer momento durante a ativação do vampiro.",
-    effect: `Qualquer criatura com marcadores de sangramento a até 22cm do vampiro sofre um ataque mágico de +3. Para cada criatura atingida por um desses ataques, o vampiro recupera 2 de vida. Criaturas atingidas por esse ataque removem seus marcadores de sangramento.`,
-  },
-  {
-    name: "Tradição of Sedução",
-    when: "Em qualquer momento durante a ativação do vampiro.",
-    effect: `um soldado alvo a até 30cm deve rolar um teste de vontade com CD igual a rolagem de ativação deste poder. Se a criatura falhar, ela deixa de lado qualquer fragmento de pedra-bruxa que estiver carregando e se move sua movimentação completa em direção ao vampiro, sempre terminando a 3cm de distância. Ela pode ser forçada a lutar ou cair durante esse movimento, mas não pode entrar em combate. Uma criatura com um marcador de sangramento tem um -3 no teste de vontade contra esse poder. Esse é um efeito psicológico.`,
-  },
-  {
-    name: "Tradição do Coração Empalado",
-    when: "Quando o vampiro vence um combate com um rolagem de 18, 19 ou 20 sem modificadores.",
-    effect:
-      "Esse ataque é considerado um crítico. A figura que recebeu o ataque ganha um marcador de sangramento.",
-  },
-];
-
-function VampireCourtsPage() {
-  const navigate = useNavigate();
-
-  const units = vampireCourtsUnits.map((unit) => ({
-    id: slugify(unit.name, { lower: true }),
-    label: unit.name,
-    type: "Unit",
-  }));
-
-  const traditions = bloodlineTraditions.map((power) => ({
-    id: slugify(power.name, { lower: true }),
-    label: power.name,
-    type: "Tradition",
-  }));
-
-  const bloodlines = [
     {
-      id: "vampiric-bloodline",
-      label: "Vampiric Bloodlines",
-      type: "Bloodline",
+      id: "blood-dragon",
+      name: "Dragões Carmesim",
+      lore: "Os vampiros Dragão Carmesim são supostamente descendentes do guerreiro ancestal Abhorash, Senhor do Sangue. Acima de todos os vampiros, estes são de longe os mais honrados e talvez os mais conectados com seu passado humano. Eles são renomados como guerreiros excepcionais e lutam com bravura e cavalheirismo surpreendentes. Os vampiros Dragão Carmesim são raros no Império, com a maioria de seu número vindo de Bretonnia e do quase Mítico Forte Sanguíneo, que se especula estar localizada em algum lugar nas Montanhas Cinzentas. Os Dragões Carmesim têm muito pouco a ver com os vampiros de outros clãs, pois permanecem desinteressados em suas disputas políticas e jogos de poder.",
+      specialRules: [
+        "Descendentes de Abhorash: Condes Dragão Carmesim começam com +1 em Ímpeto.",
+        "Estandarte Carmesim: Condes Dragão Carmesim ganham +5 no primeiro teste de debandada falho no jogo.",
+        "Duelista Honrado: Condes Dragão Carmesim devem sempre escolher permanencer em combate ao vencerem uma luta. Adicionalmente, não podem falhar voluntariamente no teste de debandada.",
+        "Escudeiros Vampíricos: Escórias do bando de um Conde Dragão Carmesim começam com +1 de Ímpeto e +2 de vida máxima.",
+        "Linhagem Marcial: Ganha acesso a lista de habilidades Dragão Carmesim.",
+      ],
+    },
+    {
+      id: "necrarch",
+      name: "Necrarca",
+      lore: "Os temidos Necrarcas são maliciosos e deformados, e mais do que qualquer outro vampiro, eles se assemelham aos mortos com uma aparência emaciada e cadavérica. Os Necrarcas são incompreensíveis até mesmo para seus próprios irmãos mortos-vivos e a maioria parece completamente insana. Sua loucura é temperada por seu gênio inegável e domínio da magia necromântica. Enquanto os vampiros de outras linhagens buscam domínio sobre os reinos dos homens, os Necrarcas aspiram ver o fim de todas as coisas vivas, tal é seu ódio por tudo. Os Necrarcas são por natureza solitários e frequentemente vivem profundamente no subsolo ou em torres isoladas onde podem praticar suas magias nefastas sem interrupção. Ocasionalmente, no entanto, eles emergem de seus lugares sombrios no mundo para reunir novas vítimas, conhecimento e, é claro, Pedra-Bruxa para seus experimentos. Os vampiros Necrarch têm uma antipatia mal contida por seus parentes de outros clãs, mas lidarão com eles ocasionalmente quando for do seu benefício fazê-lo.",
+      specialRules: [
+        "Constituição Fraca: Não pode usar habilidades, perdendo acesso a todas as listas, e seu Ímpeto é reduzido em 2. Só pode ser equipado com adagas, espadas, machados e maças. ",
+        "Gênio Mágico: Se torna um conjurador, começando com 5 magias dentre as mesmas tradições que o Necromante do bando.",
+        "Ódio aos vivos: Não pode contratar nenhum mercenário, mesmo os que normalmente poderiam ser contratados por Cortes Vampíricas.",
+        "Linhagem Arcana: Ganha acesso a lista de habilidades Necrarch.",
+      ],
+    },
+    {
+      id: "lahmian",
+      name: "Lâmia",
+      lore: "De todos os vampiros, a irmandade Lâmia Delfina segue a cultura e prática dos dias antigos mais de perto. A linhagem Lâmia  difere dos outros clãs vampíricos por ser composta quase exclusivamente por fêmeas. Esta irmandade é renomada por escolher apenas as mais belas dos mortais para se juntar às suas fileiras. Elas são lideradas pela própria rainha original das trevas, Neferata, do Culto do Sangue, que habita em algum lugar nas regiões setentrionais das Montanhas da Borda do Mundo em um lugar chamado Pico de Prata. Histórias do palácio da Rainha da Noite são contadas há séculos e podem ser encontradas nas baladas de Bretonnia, nos escritos do Império e nos poemas de Tilea. As Lâmias Delfinas competem com os Von Carsteins em sua trama para arrancar o controle do mundo dos homens, embora sejam muito mais sutis em seus métodos, preferindo infiltrar-se nos escalões superiores da sociedade do que usar força das armas. Elas têm grande talento para arte e estadismo, e suas personalidades poderosas mantêm um charme irresistível para mortais. A irmandade Lâmia Delfina sempre tentará manipular vampiros de outras famílias para seus próprios fins.",
+      specialRules: [
+        "Sem Treino Marcial: Condessas Lâmias tem seu Ímpeto reduzido em 1. Só podem ser equipadas com adagas, espadas, machados e maças, perdendo acesso a todas as outras armas.",
+        "Charme Irresistível: Criaturas a 8cm da Condessa Lâmia tem seu atributo Vontade reduzida em 2.",
+        "Velocidade Sobrenatural: Condessas Lâmia tem 20 no atributo Movimento.",
+        "Linhagem Sedutora: Ganha acesso a lista de habilidades Lâmia.",
+      ],
+    },
+    {
+      id: "strigoi",
+      name: "Strigoi",
+      lore: "Os vampiros Strigoi são conhecidos como os Amaldiçoados e são geralmente desprezados entre sua própria espécie. Há muito tempo na história desta linhagem, o pai desses vampiros foi amaldiçoado pelos outros vampiros e desde então existe um ódio sem fim entre eles. Os vampiros Strigoi são pouco mais que bestas - monstruosidades enormes, desajeitadas e cheias de ódio. Frequentemente, essas criaturas solitárias fazem de cemitérios e necrotérios suas casas, onde matilhas de Carniçais devoradores de carne formam cortes grotescas ao redor deles. A maioria deles perdeu a mente em algum grau, mas ainda possuem os poderes inatos do vampiro e podem comandar os mortos-vivos. Os Strigoi constantemente são achados contemplando um tempo em que derrubarão o mundo dos homens e destruirão completamente seus parentes dos outros clãs.",
+      specialRules: [
+        "Bestas Selvagens: Ganha a característica Voraz e Ataques Mágicos, mas não pode usar nenhum equipamento.",
+        "Ódio absoluto: Um Conde Strigoi ganha a característica Ódio(Vivos).",
+        "Corte dos Carniçais: Pode contratar um Atormentador por 50 coroas, que usa as estatísticas de um Carniçal, mas é um héroi, com acesso as listas de Força e Agilidade. Ele começa com 2 poderes dentre essas listas, com Classe de Dificuldade 5. O bando pode ter até 3 atormentadores. ",
+        "Temido: Gasta 10 coroas a mais para contratar Necromantes. Não pode contratar mercenários, mesmo os que normalmente poderiam ser contratados por Cortes Vampíricas.",
+        "Linhagem Bestial: Ganha acesso a lista de habilidades Strigoi.",
+      ],
     },
   ];
 
-  const sections = [...bloodlines, ...units, ...traditions];
+  const navigationSections = [
+    { id: "introducao", title: "Introdução", level: 0 },
+    { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
+    { id: "linhagens", title: "Linhagens Vampíricas", level: 0 },
+    {
+      id: "lider",
+      title: "Líder",
+      level: 0,
+      children: filteredLeader
+        ? [
+            {
+              id: filteredLeader.name.toLowerCase().replace(/\s+/g, "-"),
+              title: filteredLeader.name,
+              level: 1,
+            },
+          ]
+        : [],
+    },
+    {
+      id: "herois",
+      title: "Heróis",
+      level: 0,
+      children: filteredHeroes.map((hero) => ({
+        id: hero.name.toLowerCase().replace(/\s+/g, "-"),
+        title: hero.name,
+        level: 1,
+      })),
+    },
+    {
+      id: "soldados",
+      title: "Soldados",
+      level: 0,
+      children: filteredSoldiers.map((soldier) => ({
+        id: soldier.name.toLowerCase().replace(/\s+/g, "-"),
+        title: soldier.name,
+        level: 1,
+      })),
+    },
+  ];
 
   return (
-    <PageContainer>
-      <WarbandIndex sections={sections} />
-      <Header title="Vampire Courts" />
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+        <QuickNavigation sections={navigationSections} />
+        
+        <MobileSection id="introducao">
+        <PageTitle>Cortes Vampíricas</PageTitle>
+          <MobileText>
+            Os Cortes Vampíricos são bandos de vampiros e suas criaturas servas
+            que se aventuram em Mordheim em busca de poder, conhecimento e
+            fragmentos de Pedra-Bruxa. Liderados por Condes Vampiros antigos e
+            poderosos, esses bandos são compostos por necromantes, vampiros
+            menores e criaturas mortas-vivas reanimadas.
+          </MobileText>
+          <MobileText>
+            Os vampiros são seres imortais que se alimentam do sangue dos vivos.
+            Em Mordheim, eles veem uma oportunidade única de expandir seu poder
+            e coletar fragmentos de Pedra-Bruxa para seus experimentos sombrios.
+            Sua natureza Morto-Vivo os torna imunes a muitos efeitos que
+            afetariam criaturas vivas, mas também os torna vulneráveis a orações
+            e símbolos sagrados.
+          </MobileText>
+          <MobileText>
+            Os necromantes que servem aos vampiros são especialistas em magia da
+            morte e necromancia. Eles podem reanimar os mortos e criar criaturas
+            servas para seus mestres vampiros. Sua magia é temida por todos que
+            se opõem aos Cortes Vampíricos.
+          </MobileText>
+          <MobileText>
+            As criaturas servas dos vampiros incluem zumbis reanimados,
+            carniçais vorazes e lobos atrozes. Essas criaturas não têm vontade
+            própria e servem apenas aos desejos de seus mestres vampiros,
+            fazendo delas soldados ideais para missões perigosas em Mordheim.
+          </MobileText>
+        </MobileSection>
 
-      <ContentSection>
-        <ContentContainer>
-          <div id="vampiric-bloodline">
-            <ParchmentText sx={{ marginTop: "2rem" }}>
-              <strong style={{ color: "#d4af37", fontSize: "1.6rem" }}>
-                Vampiric Bloodlines
-              </strong>
-              <br />
-              <br />
-              When creating a Vampire Courts warband, you must choose one of the
-              following vampiric bloodlines. This choice defines your Vampire's
-              unique characteristics and affects your entire warband.
-              <br />
-              <br />
-              <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Blood Dragon
-              </strong>
-              <br />
-              <br />
-              The Blood Dragons are a martial bloodline of vampires who pride
-              themselves on their prowess in battle. They are fearsome warriors
-              who disdain the use of ranged weapons, preferring to meet their
-              enemies face to face in honorable combat. Their martial discipline
-              inspires even their lowliest followers to fight with greater
-              ferocity.
-              <br />
-              <br />
-              <strong style={{ color: "#c4a870" }}>Special Rules:</strong>
-              <br />• <strong>Martial Prowess:</strong> The Vampire gains +2
-              Fight
-              <br />• <strong>Honorable Combat:</strong> The Vampire cannot use
-              missile weapons
-              <br />• <strong>Disciplined Dregs:</strong> Dregs gain +1 Fight
-              <br />• <strong>No Skeleton Archers:</strong> Cannot hire Skeleton
-              Archers
-              <br />
-              <br />
-              <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Lahmian
-              </strong>
-              <br />
-              <br />
-              The Lahmian bloodline descends from the ancient queen Neferata,
-              mistress of seduction and manipulation. These vampires rely on
-              supernatural beauty and mental dominance rather than brute force,
-              bending the will of mortals and making enemies hesitate before
-              striking. They move with unnatural grace and prefer subtlety to
-              heavy armour and weapons.
-              <br />
-              <br />
-              <strong style={{ color: "#c4a870" }}>Special Rules:</strong>
-              <br />• <strong>Supernatural Grace:</strong> The Vampire gains +2
-              Move and +2 Will, but loses -2 Fight and -2 Health
-              <br />• <strong>Mesmerizing Presence:</strong> The Lahmian appears
-              stunningly beautiful in the eyes of all living creatures who
-              behold it. Any figure that wishes to attack her must first make a
-              Will roll with a Target Number of 15. If the roll fails, the
-              figure may not attack, but may select another action instead. The
-              Will roll also applies to anyone wishing to cast a spell that
-              would cause an attack on or potential damage to the Lahmian.
-              Undead and constructs are immune to this effect.
-              <br />• <strong>Light and Deadly:</strong> The Vampire cannot wear
-              armour and can only use daggers as weapons
-              <br />• <strong>Cult of Seduction:</strong> Dregs are hired at 50
-              coroas (instead of 75 coroas), but Ghouls are hired at 200 coroas
-              (instead of 150 coroas) and Dire Wolves at 75 coroas (instead of
-              50 coroas)
-              <br />
-              <br />
-              <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Strigoi
-              </strong>
-              <br />
-              <br />
-              The Strigoi are degenerate vampires who have abandoned
-              civilization entirely, devolving into bestial predators. They are
-              monstrous creatures of incredible strength and ferocity, fighting
-              with savage fury and bare claws. Their feral nature extends to
-              their followers, with newly turned ghouls serving as their primary
-              foot soldiers.
-              <br />
-              <br />
-              <strong style={{ color: "#c4a870" }}>Special Rules:</strong>
-              <br />• <strong>Bestial Monster:</strong> The Vampire gains +2
-              Fight, +2 Move, +2 armour and +2 Health, and gains Savage
-              <br />• <strong>Feral Nature:</strong> The Vampire cannot use
-              equipment and gains Large
-              <br />• <strong>Newborn Ghouls:</strong> Strigoi vampires may hire
-              Newborn Ghouls instead of Zombies. Newborn Ghouls change the
-              Zombie stats to: Fight +2, armour 10, Will +2, Move 6 and Health
-              12
-              <br />• <strong>Ghoul Court:</strong> Ghouls are hired at 100
-              coroas (instead of 150 coroas)
-              <br />• <strong>Hated by the Living:</strong> Necromancers are
-              hired at 125 coroas (instead of 100 coroas), Dregs are hired at
-              100 coroas.
-              <br />
-              <br />
-              <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Necrarch
-              </strong>
-              <br />
-              <br />
-              The Necrarchs are scholarly vampires who have dedicated their
-              eternal unlives to the study of necromancy and dark magic. They
-              are powerful spellcasters who eschew physical combat in favor of
-              commanding the winds of magic, drawing upon multiple schools of
-              arcane knowledge to devastating effect. Their obsession with magic
-              leaves little time for recruiting common followers.
-              <br />
-              <br />
-              <strong style={{ color: "#c4a870" }}>Special Rules:</strong>
-              <br />• <strong>Mestre Conjurador:</strong> O Vampiro não gain
-              powers from the Bloodline Traditions list, instead being a Mestre
-              Conjurador O Vampiro pode conjurar magias das Necromancy,
-              Spiritualist, Fatecaster and Witch schools. It starts the game
-              with 8 spells from any of these lists. (Spell Affinity: Primary
-              School +0: Necromancer | Aligned +2: Spiritualist, Fatecaster,
-              Witch | Neutral +4: Chronomancer, Summoner, Illusionist, Sigilist
-              | Opposed +6: Elementalist, Soothsayer | Anathema: Astromancer,
-              Thaumaturge, Sonancer)
-              <br />• <strong>Hatred Against the Living:</strong> Necrarchs 100
-              coroas instead of 75 coroas to hire Dregs.
-              <br />• <strong>Weak Constitution:</strong> Necrarchs start with
-              -1 Fight, -1 Shoot and -2 Health, but gain +2 Will.
-              <br />
-              <br />
-              <strong style={{ color: "#d4af37", fontSize: "1.3rem" }}>
-                Von Carstein
-              </strong>
-              <br />
-              <br />
-              The Von Carstein bloodline represents vampiric nobility at its
-              finest, combining aristocratic bearing with formidable combat
-              ability. These vampires are natural leaders who command their
-              undead legions with iron will and tactical brilliance. Their
-              presence on the battlefield inspires their followers and extends
-              their sphere of influence far beyond that of lesser vampires.
-              <br />
-              <br />
-              <strong style={{ color: "#c4a870" }}>Special Rules:</strong>
-              <br />• <strong>Vampiric Aristocracy:</strong> The Vampire gains
-              +2 Will, +1 Fight and +1 Shoot
-              <br />• <strong>Extended Command:</strong> Von Carsteins can
-              activate figures within 6" of them during the Hero's Phase
-              (instead of the normal 3" from Master of Undeath)
-            </ParchmentText>
-          </div>
+        <MobileSection id="estrutura-do-bando">
+          <HeaderH1 id="estrutura-do-bando">Estrutura do Bando</HeaderH1>
+          <MobileText>
+            Um bando dos Cortes Vampíricos deve incluir um mínimo de 3 modelos.
+            Você tem 500 coroas de ouro que pode usar para recrutar e equipar
+            seu bando. O número máximo de guerreiros no bando é 15.
+          </MobileText>
+          <MobileText>
+            • <strong>Conde Vampiro:</strong> Cada bando deve ter um Conde
+            Vampiro – nem mais, nem menos!
+            <br />• <strong>Necromante:</strong> Seu bando pode incluir até 1
+            Necromante.
+            <br />• <strong>Escória:</strong> Seu bando pode incluir até 3
+            Escórias.
+            <br />• <strong>Zumbis:</strong> Seu bando pode incluir qualquer
+            número de Zumbis.
+            <br />• <strong>Carniçais:</strong> Seu bando pode incluir qualquer
+            número de Carniçais.
+            <br />• <strong>Lobos Atrozes:</strong> Seu bando pode incluir até 5
+            Lobos Atrozes.
+          </MobileText>
+        </MobileSection>
 
-          <div id="units">
-            {vampireCourtsUnits.map((unit, index) => (
-              <div key={index} id={slugify(unit.name, { lower: true })}>
-                <UnitCard
-                  name={unit.name}
-                  role={unit.role}
-                  stats={unit.stats}
-                  abilities={unit.abilities}
-                  {...(unit.spellAffinity && {
-                    spellAffinity: unit.spellAffinity,
-                  })}
-                />
+        <MobileSection id="linhagens">
+          <HeaderH1 id="linhagens">Linhagens Vampíricas</HeaderH1>
+          <MobileText>
+            Cada Corte Vampírico é liderado por uma linhagem específica de
+            vampiros, cada uma com suas próprias tradições, poderes e objetivos.
+            Escolha sua linhagem para determinar as regras especiais e
+            restrições do seu bando.
+          </MobileText>
+
+          {/* Botões de seleção de linhagem */}
+          <div className="mb-6">
+            <div className="flex flex-wrap gap-2 mb-4 justify-center">
+              {lineages.map((lineage) => (
+                <button
+                  key={lineage.id}
+                  onClick={() => setSelectedLineage(lineage.id)}
+                  className={`px-4 py-2 rounded-lg border transition-colors ${
+                    selectedLineage === lineage.id
+                      ? "bg-green-600 border-green-500 text-white"
+                      : "bg-gray-700 border-gray-600 text-gray-300 hover:bg-gray-600"
+                  }`}
+                >
+                  {lineage.name}
+                </button>
+              ))}
+            </div>
+            {selectedLineage && (
+              <div className="bg-green-900/20 border border-green-600 rounded-lg p-4 mb-4">
+                <MobileText className="text-green-200">
+                  <strong>Linhagem Selecionada:</strong>{" "}
+                  {lineages.find((l) => l.id === selectedLineage)?.name}
+                </MobileText>
               </div>
-            ))}
+            )}
           </div>
 
-          <div id="traditions">
-            <PowerListTitle>Bloodline Traditions</PowerListTitle>
+          {selectedLineage
+            ? (() => {
+                const lineage = lineages.find((l) => l.id === selectedLineage);
+                return lineage ? (
+                  <div className="mb-8">
+                    <HeaderH2>{lineage.name}</HeaderH2>
+                    <div className="bg-[#1a1a1a] p-6 rounded-lg border border-gray-700 mb-4">
+                      <MobileText className="mb-4">{lineage.lore}</MobileText>
+                      <div className="space-y-3">
+                        <HeaderH2>Regras Especiais</HeaderH2>
+                        {lineage.specialRules.map((rule, index) => (
+                          <div
+                            key={index}
+                            className="bg-gray-800 p-3 rounded border-l-4 border-green-500"
+                          >
+                            <MobileText className="text-sm">{rule}</MobileText>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : null;
+              })()
+            : (() => (
+                <div className="grid gap-6 md:grid-cols-2">
+                  {lineages.map((lineage) => (
+                    <div
+                      key={lineage.id}
+                      className="bg-[#1a1a1a] p-6 rounded-lg border border-gray-700 hover:border-green-500 transition-colors cursor-pointer"
+                      onClick={() => setSelectedLineage(lineage.id)}
+                    >
+                      <HeaderH2 className="text-green-400 mb-3">
+                        {lineage.name}
+                      </HeaderH2>
+                      <MobileText className="text-sm text-gray-300 mb-4">
+                        {lineage.lore.substring(0, 150)}...
+                      </MobileText>
+                      <div className="text-xs text-gray-400">
+                        {lineage.specialRules.length} regras especiais
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))()}
+        </MobileSection>
 
-            <ParchmentText>
-              Bloodline Traditions embody the monstrous legacy of vampiric power
-              — ancient curses, feral transformations, and unholy dominion over
-              both blood and will. Their design emphasizes the vampire as the
-              warband's terrifying centerpiece, bending the battlefield through
-              personal might and supernatural presence.
-              <br />
-              <br />
-              In short: Bloodline Traditions are designed to make the vampire
-              feel like a gothic monster-king — a predator, shapeshifter, and
-              tyrant in one body. Their identity is singular and theatrical,
-              ensuring every activation feels like a scene from a vampire
-              legend: blood spilled, wills broken, and darkness unleashed.
-            </ParchmentText>
+        <MobileSection id="lider">
+          <HeaderH1 id="lider">Líder</HeaderH1>
+          {filteredLeader && (
+            <UnitCard
+              id={filteredLeader.name.toLowerCase().replace(/\s+/g, "-")}
+              name={filteredLeader.name}
+              role={filteredLeader.role}
+              quantity={filteredLeader.quantity}
+              stats={filteredLeader.stats}
+              spellAffinity={filteredLeader.spellAffinity}
+              abilities={filteredLeader.abilities}
+              equipment={filteredLeader.equipment}
+            />
+          )}
+        </MobileSection>
 
-            {bloodlineTraditions.map((power, index) => (
-              <div key={index} id={slugify(power.name, { lower: true })}>
-                <PowerCard
-                  name={power.name}
-                  when={power.when}
-                  effect={power.effect}
-                />
-              </div>
-            ))}
-          </div>
-        </ContentContainer>
-      </ContentSection>
+        <MobileSection id="herois">
+          <HeaderH1 id="herois">Heróis</HeaderH1>
+          {filteredHeroes.map((hero) => (
+            <UnitCard
+              key={hero.name}
+              id={hero.name.toLowerCase().replace(/\s+/g, "-")}
+              name={hero.name}
+              role={hero.role}
+              quantity={hero.quantity}
+              stats={hero.stats}
+              spellAffinity={hero.spellAffinity}
+              abilities={hero.abilities}
+              equipment={hero.equipment}
+            />
+          ))}
+        </MobileSection>
 
-      <NavigationSection>
-        <Box sx={{ maxWidth: "600px", width: "100%" }}>
-          <StyledNavigationButton
-            onClick={() => navigate("/warbands")}
-            variant="outlined"
-            fullWidth
-            sx={{
-              backgroundColor: "rgba(20, 18, 14, 0.6)",
-              "&:hover": {
-                backgroundColor: "rgba(28, 24, 18, 0.8)",
-              },
-            }}
-          >
-            Back to Warbands
-          </StyledNavigationButton>
-        </Box>
-      </NavigationSection>
-    </PageContainer>
+        <MobileSection id="soldados">
+          <HeaderH1 id="soldados">Soldados</HeaderH1>
+          {filteredSoldiers.map((soldier) => (
+            <UnitCard
+              key={soldier.name}
+              id={soldier.name.toLowerCase().replace(/\s+/g, "-")}
+              name={soldier.name}
+              quantity={soldier.quantity}
+              stats={soldier.stats}
+              abilities={soldier.abilities}
+              equipment={soldier.equipment}
+            />
+          ))}
+        </MobileSection>
+      </div>
+    </div>
+    </div>
   );
-}
+};
 
 export default VampireCourtsPage;

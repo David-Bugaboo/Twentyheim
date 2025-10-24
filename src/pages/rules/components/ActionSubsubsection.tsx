@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import MobileText from "../../../components/MobileText";
+
 
 interface ActionSubsubsectionProps {
   title: string;

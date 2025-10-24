@@ -1,0 +1,37 @@
+[
+  {
+    "id": "marca-de-chotec",
+    "name": "Marca de Chotec",
+    "restrictions": "Apenas saurídeos",
+    "cost": "40 coroas",
+    "description": "O guerreiro tem mandíbulas brutais. Ele sempre conta como armado. Adicionalmente, se estiver lutando com uma arma, a combinação de suas mandíbulas e armas concedem a ele a característica Penetração de Armadura(1)"
+  },
+  {
+    "id": "marca-de-sotek",
+    "name": "Marca de Sotek",
+    "restrictions": "Apenas Skinks",
+    "cost": "40 coroas",
+    "description": "O guerreiro tem dentes pequenos, mas carregados de veneno. Ele sempre conta como armado com uma arma com a característica Tóxica e modificador de dano -1, mesmo desarmado. Adicionalmente, como uma ação (que pode substituir ação de movimento), pode envenenar uma arma ou projétil, dando ao próximo ataque com a arma a característica venenos."
+  },
+  {
+    "id": "marca-de-huanchi",
+    "name": "Marca de Huanchi",
+    "restrictions": "Apenas Skinks",
+    "cost": "40 coroas",
+    "description": "O guerreiro tem escamas refrativas, que refletem a luz. Ganha a característica Furtivo(16). Adicionamente ganha a possibilidade de usar uma ação de mirar como uma acão (que pode substituir a ação de movimento). O próximo ataque a distância ignora terreno interposto entre a figura e o alvo (mas não cobertura)."
+  },
+  {
+    "id": "marca-de-tepok",
+    "name": "Marca de Tepok",
+    "restrictions": "Apenas saurídeos",
+    "cost": "60 coroas",
+    "description": "O guerreiro teme escamas reforçadas e poderosas, e é maior que os outros da sua espécie, rivalizando um kroxigor. A figura não pode mais usar armadura, mas sua armadura base sobe para 14 e ele ganha a palavra chave Grande."
+  },
+  {
+    "id": "marca-dos-ancestrais",
+    "name": "Marca dos Ancestrais",
+    "cost": "40 coroas",
+    "description": "Esse é a maior dádiva dos ancestrais. Uma vez por jogo o guerreiro pode ganhar +5 em qualquer rolagem de dado."
+  }
+
+]

@@ -1,0 +1,305 @@
+[
+  {
+    "id": "chefaum-orc",
+    "name": "Chefaum Orc",
+    "role": "Herói",
+    "quantity": "1",
+    "stats": {
+      "move": 12,
+      "fight": "+4",
+      "shoot": "0",
+      "armour": 10,
+      "Vontade": "+2",
+      "health": 22,
+      "cost": "80 coroas",
+      "skills": ["Combate", "Atirador", "Força", "Agilidade", "Hordas Orc"]
+    },
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "O Chefaum Orc pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+      },
+      {
+        "name": "Habilidades",
+        "description": "O Chefaum Orc começa com 4 habilidades das listas acima na sua ficha. A classe de dificuldade de cada habilidade é 5."
+      },
+      {
+        "name": "O Fodaum",
+        "description": "O Chefaum Ork tem a característica Forte."
+      },
+      {
+        "name": "WAAAAAAAAAAAGH!",
+        "description": "O Chefaum Orc urra WAAAAAAAAAAAAAAAAAAAAAAAAGH, convocando todos os seus subordinados para um frenesi de batalha incontrolável. Essa habilidade deve ser usado no começo de um turno, antes das rolagens de iniciativa serem feitas. O bando automaticamente vence a rolagem de iniciativa (role normalmente contra bandos com efeitos semelhantes), suas figura ganham +4 de movimento, +2 de Ímpeto, +2 de Vontade e +2 de Armadura.  Figuras não podem sair da mesa durante a WAAAAAAAGH! A WAAAAAAGH! termina no fim do turno. Qualquer figura que não terminar o turno em combate ganha um marcador de Atordoamento no ínicio do próximo turno."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Estrela da Manhã", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco", "cost": "10 coroas" },
+        { "name": "Besta", "cost": "25 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "orc-veio",
+    "name": "Orc Véio",
+    "role": "Héroi",
+    "quantity": "0-1",
+    "stats": {
+      "move": 14,
+      "fight": "+1",
+      "shoot": "+0",
+      "armour": 10,
+      "Vontade": "+4",
+      "health": 12,
+      "cost": "40 coroas"
+    },
+    "spellAffinity": {
+      "aligned0": ["Tradição da WAAAAAAAAAAAGH!"]
+    },
+    "abilities": [
+      {
+        "name": "Conjurador",
+        "description": "O Orc Véio é um conjurador da Tradição da WAAAAAAAAAAAGH!. Ele começa com 2 magias dentre suas tradiçòes disponíveis."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Estrela da Manhã", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco", "cost": "10 coroas" },
+        { "name": "Besta", "cost": "25 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "orc-grandaum",
+    "name": "Orc Grandaum",
+    "role": "Héroi",
+    "quantity": "0-2",
+    "stats": {
+      "move": 12,
+      "fight": "+4",
+      "shoot": "+0",
+      "armour": "10",
+      "Vontade": "+1",
+      "health": 18,
+      "cost": "40 coroas",
+      "skills": ["Combate", "Atirador", "Força", "Hordas Orc"]
+    },
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "O Orc Grandaum começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes tem Classe de Dificuldade 8."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Estrela da Manhã", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco", "cost": "10 coroas" },
+        { "name": "Besta", "cost": "25 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "minino-orc",
+    "name": "Minino Orc",
+    "quantity": "1-5",
+    "stats": {
+      "move": 4,
+      "fight": "+3",
+      "shoot": "+0",
+      "armour": "10",
+      "Vontade": "+1",
+      "health": 16,
+      "cost": "25 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Animosidade",
+        "description": "O Minino Orc está sujeito as regras de Animosidade."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Estrela da Manhã", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco", "cost": "10 coroas" },
+        { "name": "Besta", "cost": "25 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "goblin",
+    "name": "Goblin",
+    "quantity": "ilimitado",
+    "stats": {
+      "move": 8,
+      "fight": "0",
+      "shoot": "-1",
+      "armour": 8,
+      "Vontade": "-2",
+      "health": 4,
+      "cost": "15 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Animosidade",
+        "description": "O Minino Orc está sujeito as regras de Animosidade."
+      },
+      {
+        "name": "Não Orcs",
+        "description": "Orcs não esperam muito de não-Orcs, e portanto não ligam nenhum pouco se Goblins ou Squigs das Cavernas são derrotados em batalha. Na verdade, eles esperam isso desses cabras ruim das costa oca! Portanto, ao testar se um Bando Orc precisa fazer um teste de Fuga, cada Guerreiro Goblin ou Squig das Cavernas posto fora de ação conta apenas como meio modelo. Portanto, um bando de 5 Orcs e 10 Goblins (15 modelos) só teria que fazer um teste se 4 modelos caíssem (4 Orcs ou 8 Goblins, ou alguma combinação)."
+      },
+      {
+        "name": "Molecada",
+        "description": "Goblins podem ganhar experiência mas se rolarem 'Esse moleque tem talento!' eles são imediatamente mortos por seus senhores Orcs por ficarem muito 'avexados' (remova o Gobbo da lista)."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Bola e Corrente", "cost": "15 coroas" }
+      ],
+      "ranged": [{ "name": "Arco Curto", "cost": "5 coroas" }],
+      "armor": [
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [
+        { "name": "Espetador de Pé-Duro", "cost": "15 coroas" },
+        { "name": "Cogumelos Chapéu-da-Morte", "cost": "grátis" }
+      ],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "peduro-das-gruta",
+    "name": "Pé-Duro das Gruta",
+    "quantity": "0-5",
+    "stats": {
+      "move": "1d20",
+      "fight": "+3",
+      "shoot": "-",
+      "armour": 12,
+      "Vontade": "0",
+      "health": 12,
+      "cost": "15 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Frenéticos",
+        "description": "Os Pé-Duros das Cavernas não possuem um valor fixo de Agilidade, deslocando-se com um salto desajeitado e imprevisível. Para representar isso, ao mover um Pé-Duro, role 1d20 para determinar a distância que ele se move (mínimo de 5cm). Esse valor também será usado para quaisquer teste de agilidade do Squig. Squigs nunca pode usar uma ação de disparada."
+      },
+      {
+        "name": "Habitante das Cavernas",
+        "description": "Pé-Duros das Cavernas tem a característica Animal."
+      },
+      {
+        "name": "Pastores Goblin",
+        "description": "Cada Squig das Cavernas deve sempre permanecer a 8cm de um Guerreiro Goblin, que mantém a criatura sob controle. Se um Squig das Cavernas se encontrar sem um Goblin a 8cm no início de sua fase de Movimento, ele ficará selvagem. A partir desse ponto, ele age como uma criatura não controlada e se mantem assim até o final do jogo."
+      }
+    ]
+  },
+  {
+    "id": "troll",
+    "name": "Troll",
+    "quantity": "0-1",
+    "stats": {
+      "move": 4,
+      "fight": "+4",
+      "shoot": "+0",
+      "armour": 14,
+      "Vontade": "0",
+      "health": 18,
+      "cost": "200 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Besta Fedorenta",
+        "description": "Trolls tem as características Grande, Forte e Aterrorizante e Selvagem."
+      },
+      {
+        "name": "Regeneração Rápida",
+        "description": "Trolls tem a característica Regeneração. Essa característica não ativa se o Troll sofreu dano flamejante no turno anterior."
+      },
+      {
+        "name": "Estúpido",
+        "description": "Essa figura tem a característica Estúpido. Adicionalmente ele é muito burro para aprender novas coisas e não ganha experiência."
+      },
+      {
+        "name": "Vomito Ácido",
+        "description": "Um troll pode fazer um ataque a distância vomitando no seu inimigo. Como uma ação de ataque a distância, o troll vomita em um alvo a até 15cm de distância, fazendo um ataque a distância +2 contra o alvo em questão, com modificador de dano +2 e Penetração de Armadura(1)."
+      },
+      {
+        "name": "Sempre Faminto",
+        "description": "Um Troll requer um custo de manutenção. Esta manutenção representa as quantidades absurdas de comida que devem ser alimentadas ao Troll para mantê-lo leal ao bando. O bando deve pagar 15 coroas após cada jogo para manter o Troll bem alimentado. Se o bando não tiver ouro suficiente para pagar a manutenção, o Chefe tem a opção de sacrificar dois Goblins ou Squigs das Cavernas ao Troll em vez de comprar comida (Trolls comem quase qualquer coisa). Se esta taxa não for paga (seja em ouro ou em membros do bando) o Troll fica com fome e sai vagando em busca de comida, ficando impossibilidato de jogar a próxima partida."
+      }
+    ]
+  }
+]

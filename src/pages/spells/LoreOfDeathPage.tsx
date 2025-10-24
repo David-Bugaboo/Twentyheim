@@ -1,154 +1,130 @@
-import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
-import SpellCard from "../../components/SpellCard";
-import {
-  PageContainer,
-  ContentSection,
-  NavigationSection,
-  StyledNavigationButton,
-  ContentContainer,
-  ParchmentText,
-  PowerListTitle,
-} from "../../components/PageComponents";
+
+import PageTitle from "../../components/PageTitle";
+import MobileText from "../../components/MobileText";
+import MobileSection from "../../components/MobileSection";
+import HeaderH2 from "../../components/HeaderH2";
+import GenericTable from "../../components/GenericTable";
+import TzeentchCurseTable from "../../components/TzeentchCurseTable";
+import QuickNavigation from "../../components/QuickNavigation";
+import LoreSpellCard from "../../components/LoreSpellCard";
+import loreOfDeathData from "./data/lore-of-death.json";
 
 export default function LoreOfDeathPage() {
-  const navigate = useNavigate();
 
-  const spells = [
+
+  const navigationSections = [
+    { id: "intro", title: "Tradição da Morte - Shyish", level: 0 },
     {
-      name: "Canalizar Vida",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "O alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, o alvo imediatamente perde 3 Vigor enquanto sua força vital é drenada, e o conjurador recupera 3 Vigor. O conjurador ganha 3 Vigor, mesmo se o alvo tinha menos Vigor restante. Isto não pode levar o conjurador acima de seu Vigor inicial. Esta magia não tem efeito em mortos-vivos ou constructos - não há vida a ser roubada de algo que já não vive. Um conjurador pode ter como alvo um membro de seu próprio bando - se o fizer, entretanto, a traição é completa e o alvo imediatamente (e permanentemente) deixa o bando e é tratado como uma criatura descontrolada pelo resto do jogo.",
+      id: "caracteristicas",
+      title: "Características da Tradição da Morte",
+      level: 0,
     },
-    {
-      name: "Ultimas Palavras",
-      castingNumber: 12,
-      keywords: ["Ritual"],
-      effect:
-        "Você pode fazer uma pergunta à alma partindo de um aliado ou inimigo morto. O conjurador adiciona +4 à sua próxima tentativa de conjurar uma magia com a palavra-chave Ritual desde que seja antes do próximo jogo.",
-    },
-    {
-      name: "Ceifadora Espectral",
-      castingNumber: 8,
-      keywords: ["Linha de Visão"],
-      effect:
-        "O conjurador faz uma arma de corpo a corpo se tornar uma foice ceifadora espectral até o fim do jogo. Esta arma agora é considerada mágica e causa +1 de dano. Contra mortos-vivos, a lâmina brilha ainda mais intensamente, reconhecendo aquilo que deveria ter permanecido morto, e causa +2 de dano - uma sentença definitiva para aqueles que zombam da morte.",
-    },
-    {
-      name: "Ventos do Fim",
-      castingNumber: 18,
-      keywords: ["Linha de Visão"],
-      effect:
-        "Esta magia tem como alvo uma figura a até 20cm. O alvo deve fazer uma Rolagem de Vontade com Classe de Dificuldade igual à Rolagem de Conjuração ou ser imediatamente reduzido a 0 Vigor - o fim chega para ele. Todas as figuras podem potencializar sua Rolagem de Vontade para resistir a esta magia, mesmo não-conjuradores - a luta contra a morte é universal. O conjurador imediatamente perde 1 Vigor ao tentar esta magia (mesmo se for conjurada com sucesso), além de qualquer perda incorrida por falha ou potencialização. Esta magia não tem efeito em mortos-vivos ou constructos - eles já conhecem o fim.",
-    },
-    {
-      name: "Ceifar Juventude",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "A figura alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, o peso dos anos roubados a paralisa - ela não recebe ações em sua próxima ativação, mal conseguindo se mover sob o fardo. Além disso, a figura sofre -3 Ímpeto (até um mínimo de +0) até o fim do jogo enquanto seus membros enfraquecem, e não pode ter Salto conjurado sobre ela até depois de fazer sua próxima ação de movimento - ossos frágeis não suportam tais saltos. Criaturas Grandes recebem +8 em sua Rolagem de Vontade para resistir a esta magia - sua massa maior as ancora no presente.",
-    },
-    {
-      name: "Maré da Decadência",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "Esta magia só pode ter como alvo estruturas inanimadas como edifícios e paredes. O conjurador acelera rapidamente a passagem do tempo em uma pequena área da estrutura, causando seu colapso. Isto pode criar um buraco do tamanho de uma porta através de qualquer parede, que deve ser indicado no tabuleiro de alguma forma. A magia também pode ser usada para colapsar uma seção de piso sob uma figura em pé em um nível acima do solo. Neste caso, a figura prestes a ser afetada deve passar em uma Rolagem de Agilidade (NA 22) ou cair para o próximo nível abaixo e sofrer dano apropriadamente enquanto o chão desmorona sob seus pés. Se esta magia for conjurada em uma parede criada pela magia Parede, a parede é completamente destruída, desintegrando-se em pó.",
-    },
-    {
-      name: "Visão Espiritual",
-      castingNumber: 12,
-      keywords: ["Conjurador Apenas"],
-      effect:
-        "O conjurador ganha a característica Visão Verdadeira até o fim do jogo.",
-    },
-    {
-      name: "Guiar a Passagem",
-      castingNumber: 14,
-      keywords: ["Alcance(20cm)", "Reação"],
-      effect:
-        "Essa é uma magia de reação cujo gatilho é alguma criatura inimiga alvo dentro do alcance ser reduzida a 5 ou menos de vida. A figura alvo deve rolar um teste de Vontade com CD igual  Se a criatura falhar, ela é imediatamente reduzida a 0 Vigor. Hérois, Campeões, Mortos-Vivos, Construtos e Daemônios são imunes a esta magia.",
-    },
-    {
-      name: "Aceitação do Fim",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "A figura aliada alvo é Imune a característica Aterrorizante até o fim do jogo.",
-    },
-    {
-      name: "Nas Portas da Morte",
-      castingNumber: 12,
-      keywords: ["Linha de Visão"],
-      effect:
-        "A figura aliada alvo ganha um Marcador de Sobrevida. Se aquela figura for reduzida a 0 de Vida enquanto tem um marcador de sobrevida, ela pode imediatamente tomar duas ações, que são tomadas antes de quaisquer açòes restantes da figura que está ativando. Então a criatura é removida do jogo. Aquela figura tem -3 na sua Rolagem na tabela de sobrevivênncia. ",
-    },
-    {
-      name: "Descanso Final",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "A figura morta-viva alvo deve fazer uma Rolagem de Vontade com CD igual à Rolagem de Conjuração. Se a criatura morta-viva falhar a rolagem e sua Vontade atual for +2 ou menos, ela é imediatamente reduzida a 0 Vigor e removida da mesa. Se sua Vontade atual for +3 ou maior, ela sofre dano igual a três vezes a quantidade pela qual falhou na Rolagem de Vontade.",
-    },
+    { id: "perigos-ventos", title: "Perigos dos Ventos", level: 0 },
+    { id: "magias", title: "Magias da Tradição da Morte", level: 0 },
+    ...loreOfDeathData.map((spell, index) => ({
+      id: `spell-${index}`,
+      title: spell.name,
+      level: 1,
+    })),
   ];
 
   return (
-    <PageContainer>
-      <Header title="Shyish - Tradição da Morte" />
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
+          <MobileSection>
+            <div id="intro">
+              <PageTitle>Tradição da Morte - Shyish</PageTitle>
+            </div>
 
-      <ContentSection>
-        <ContentContainer>
-          <ParchmentText
-            sx={{
-              textAlign: "center",
-              fontSize: "1.2rem",
-              fontStyle: "italic",
-              color: "#a78bfa",
-              mb: 3,
-            }}
-          >
-            O Vento Púrpura dos Fins e da Mortalidade
-          </ParchmentText>
+            <MobileText
+              variant="quote"
+              className="text-center italic text-lg leading-relaxed mb-6 p-4 bg-green-900/20 border border-green-500/40 rounded-lg text-white"
+            >
+              "O Vento Púrpura dos Fins e da Mortalidade"
+            </MobileText>
 
-          <ParchmentText sx={{ mb: 4 }}>
-            A Tradição da Morte é a magia da mortalidade, fins e a passagem do
-            tempo. Ela é baseada na manipulação de Shyish, o Vento Púrpura da
-            Magia. Magistrados desta tradição são conhecidos como Magos Ametista
-            e são justamente temidos. Embora frequentemente confundidos com
-            Necromantes, Magos Ametista são bem distintos. Eles abraçam o fim
-            natural de todas as coisas, enquanto Necromantes buscam conquistar a
-            morte com as mais sombrias magias. Conforme crescem em poder, Magos
-            Ametista tornam-se mais silenciosos, embora não sombrios. O sopro da
-            tumba os segue, e até o mais gordo torna-se magro; contudo eles
-            retêm um humor perverso e respeito pela vida.
-          </ParchmentText>
+            <MobileText className="mb-4">
+              A Tradição da Morte é a magia da mortalidade, fins e a passagem do
+              tempo. Ela é baseada na manipulação de Shyish, o Vento Púrpura da
+              Magia. Magistrados desta tradição são conhecidos como Magos
+              Ametista e são justamente temidos. Embora frequentemente
+              confundidos com Necromantes, Magos Ametista são bem distintos.
+              Eles abraçam o fim natural de todas as coisas, enquanto
+              Necromantes buscam conquistar a morte com as mais sombrias magias.
+              Conforme crescem em poder, Magos Ametista tornam-se mais
+              silenciosos, embora não sombrios. O sopro da tumba os segue, e até
+              o mais gordo torna-se magro; contudo eles retêm um humor perverso
+              e respeito pela vida.
+            </MobileText>
 
-          <PowerListTitle>Feitiços da Tradição da Morte</PowerListTitle>
+            <div id="caracteristicas">
+              <HeaderH2>Características da Tradição da Morte</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              Os Magos Ametista são conhecidos por sua conexão com a mortalidade
+              e sua capacidade de manipular o tempo e a passagem da vida. Eles
+              canalizam o poder de Shyish através de compreensão profunda dos
+              ciclos naturais e respeito pela inevitabilidade da morte. Suas
+              magias frequentemente envolvem manipulação temporal, drenagem de
+              vida, e controle sobre os aspectos finais da existência.
+            </MobileText>
 
-          {spells.map((spell, index) => (
-            <SpellCard
-              key={index}
-              id={spell.name.toLowerCase().replace(/\s+/g, "-")}
-              name={spell.name}
-              school="Tradição da Morte"
-              castingNumber={spell.castingNumber}
-              keywords={spell.keywords}
-              effect={spell.effect}
-            />
-          ))}
-        </ContentContainer>
-      </ContentSection>
+            <div
+              id="perigos-ventos"
+              className="bg-green-900/20 border border-green-500/40 rounded-lg p-4 mb-6"
+            >
+              <HeaderH2 className="text-green-300 mb-4">
+                Perigos dos Ventos
+              </HeaderH2>
 
-      <NavigationSection>
-        <StyledNavigationButton
-          variant="contained"
-          onClick={() => navigate("/magic/arcane-lores")}
-        >
-          Voltar para Tradições Arcanas
-        </StyledNavigationButton>
-      </NavigationSection>
-    </PageContainer>
+              <MobileText className="mb-4">
+                Representando os perigos de canalizar o Caos bruto, sempre que
+                um Conjurador falha ao conjurar uma magia de uma tradição
+                arcana, ele sofre dano de acordo com a tabela abaixo:
+              </MobileText>
+
+              <GenericTable
+                data={[
+                  { "Falhou por": "1-4", "Dano Sofrido": "Nenhum" },
+                  { "Falhou por": "5-9", "Dano Sofrido": "1" },
+                  { "Falhou por": "10-19", "Dano Sofrido": "2" },
+                  { "Falhou por": "20+", "Dano Sofrido": "5" },
+                ]}
+                scrollable={false}
+              />
+
+              <TzeentchCurseTable />
+            </div>
+
+            <div id="magias">
+              <HeaderH2>Magias da Tradição da Morte</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              As magias da Tradição da Morte são conhecidas por sua natureza
+              temporal e mortal. Elas manipulam o Vento Púrpura de Shyish para
+              criar efeitos relacionados ao tempo, mortalidade, e os aspectos
+              finais da existência.
+            </MobileText>
+
+            <div className="space-y-6">
+              {loreOfDeathData.map((spell, index) => (
+                <div key={index} id={`spell-${index}`}>
+                  <LoreSpellCard
+                    name={spell.name}
+                    castingNumber={spell.castingNumber}
+                    keywords={spell.keywords}
+                    effect={spell.effect}
+                  />
+                </div>
+              ))}
+            </div>
+
+            
+          </MobileSection>
+        </div>
+      </div>
+    </div>
   );
 }

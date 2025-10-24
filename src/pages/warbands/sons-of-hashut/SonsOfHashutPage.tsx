@@ -1,387 +1,196 @@
-import Header from "../../components/Header";
-import UnitCard from "../../components/UnitCard";
-import PowerCard from "../../components/PowerCard";
-import slugify from "slugify";
-import WarbandIndex from "../../components/WarbandIndex";
-import {
-  PageContainer,
-  ContentSection,
-  ContentContainer,
-  PowerListTitle,
-} from "../../components/PageComponents";
+import React from "react";
+import sonsOfHashutData from "./data/sons-of-hashut.data.json";
+import QuickNavigation from "../../../components/QuickNavigation";
+import MobileSection from "../../../components/MobileSection";
+import MobileText from "../../../components/MobileText";
+import HeaderH1 from "../../../components/HeaderH1";
+import UnitCard from "../../../components/UnitCard";
+import PageTitle from "../../../components/PageTitle";
 
-const sonsOfHashutUnits = [
-  {
-    name: "Sacerdote Artífice",
-    role: "Herói",
-    stats: {
-      move: 10,
-      fight: "+2",
-      shoot: "0",
-      armour: 11,
-      will: "+4",
-      health: 16,
-      cost: "-",
-    },
-    spellAffinity: {
-      aligned0: ["Orações de Hashut"],
-    },
-    abilities: [
-      {
-        name: "Sacerdote",
-        description:
-          "O Sacerdote-Artífice tem uma seleção limitada de magias, mais difíceis de conjurar que a média. No entanto, pode conjurar enquanto usa armadura ou escudo e em combate. Ele começa com 3 magias das Orações de Hashut.",
-      },
-      {
-        name: "Ferreiro-Daemonico",
-        description:
-          "O Sacerdote-Artifice pode trocar uma de suas rolagens na tabela de Venda de Pedra-Bruxa por uma rolagem na tabela de Modificações de Construto. Essa rolagem pode ser substituida tanto nas rolagens de Mercado Negro, quando nas rolagens de venda.",
-      },
-      {
-        name: "Crueldade Paciente",
-        description:
-          "Os anões do caos não podem sofrer penalidades na agilidade por uso de equipamentos.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: ["Adaga", "Machado", "Arma de Concussão", "Espada", "Pistola"],
-        armor: ["Armadura Leve", "Armadura Pesada", "Escudo"],
-        special: [
-          "Pode comprar uma arma com o Modificador Obsidiana (+2 dano, -1 Impeto, quebra em rolagem natural de 1.) pelo preço base + 200 coroas",
-        ],
-      },
-    ],
-  },
-  {
-    name: "Centouro de Hashut",
-    role: "Campeão",
-    stats: {
-      move: 14,
-      fight: "+4",
-      shoot: "+1",
-      armour: 11,
-      will: "+4",
-      health: 20,
-      cost: "-",
-    },
-    abilities: [
-      {
-        name: "Carga Violnta",
-        description:
-          "The equine build of the Bull Centaur makes his cargas como devastadoras como um bate-estaca. Ele tem a característica Chifres. No entanto, ele não pode escalar, e terreno acidentado custa 3 movimento para 1 centimetro de movimento em vez de 2.",
-      },
-      {
-        name: "Poderes",
-        description:
-          "O Centouro de Hashut pode escolher poderes da lista de Doutrinas de Hashut. Ele começa com 3 poderes. Um dos poderes tem classe de ativação 3. Os outros têm classe de ativação 5.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: ["Adaga", "Machado", "Arma de Concussão", "Espada", "Pistola"],
-        armor: ["Armadura Leve", "Armadura Pesada", "Escudo"],
-        special: [
-          "Pode comprar uma arma com o Modificador Obsidiana (+2 dano, -1 Impeto, quebra em rolagem natural de 1.) pelo preço base + 200 coroas",
-        ],
-      },
-    ],
-  },
-  {
-    name: "Hobgoblin",
-    stats: {
-      move: 18,
-      fight: "0",
-      shoot: "0",
-      armour: 9,
-      will: "-2",
-      health: 10,
-      cost: "free",
-    },
-    abilities: [
-      {
-        name: "Coward",
-        description:
-          "Hobgoblins são criaturas naturalmente covardes que são forçadas a lutar por seus mestres dábios do Caos. Como resultado, eles sofrem dano facilmente e, na primeira oportunidade, tentam escapar de seus captores. Ao rolar na tabela de Sobrevivência do Soldado, qualquer resultado menor que 15 resulta em um hobgoblim morto ou que escapou. Em um 16-20, eles fazem uma recuperação completa.",
-      },
-      {
-        name: "Equipamento",
-        weapons: ["Adaga", "Machado", "Espada", "Arco", "Arco Curto"],
-        armor: ["Armadura Leve", "Escudo"],
-        special: [],
-      },
-    ],
-  },
-  {
-    name: "Guarda de Forja",
-    stats: {
-      move: 10,
-      fight: "+3",
-      shoot: "0",
-      armour: 14,
-      will: "0",
-      health: 14,
-      cost: "60 coroas",
-    },
-    abilities: [
-      {
-        name: "Crueldade Paciente",
-        description:
-          "Os anões do caos não podem sofrer penalidades na agilidade por uso de equipamentos.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: ["Adaga", "Machado", "Arma de Concussão", "Espada", "Pistola"],
-        armor: ["Armadura Leve", "Armadura Pesada", "Escudo"],
-        special: [
-          "Pode comprar uma arma com o Modificador Obsidiana (+2 dano, -1 Impeto, quebra em rolagem natural de 1.) pelo preço base + 200 coroas",
-        ],
-      },
-    ],
-  },
+interface Unit {
+  id?: string;
+  name: string;
+  role?: string;
+  quantity?: string;
+  stats: {
+    move: number;
+    fight: string;
+    shoot: string;
+    armour: number;
+    Vontade: string;
+    health: number;
+    cost: string;
+    skills?: string[];
+  };
+  spellAffinity?: {
+    aligned0?: string[];
+    aligned2?: string[];
+  };
+  abilities: Array<{
+    name: string;
+    description: string;
+  }>;
+  equipment?: {
+    "hand-to-hand"?: Array<{ name: string; cost: string }>;
+    ranged?: Array<{ name: string; cost: string }>;
+    armor?: Array<{ name: string; cost: string }>;
+    miscellaneous?: Array<{ name: string; cost: string }>;
+    modifiers?: Array<{ name: string; cost: string }>;
+  };
+}
 
-  {
-    name: "Carcereiro",
-    stats: {
-      move: 10,
-      fight: "+3",
-      shoot: "0",
-      armour: 13,
-      will: "1",
-      health: 14,
-      cost: "75 coroas",
-    },
-    abilities: [
-      {
-        name: "Crueldade Paciente",
-        description:
-          "Os anões do caos não podem sofrer penalidades na agilidade por uso de equipamentos.",
-      },
-      {
-        name: "Escravistas",
-        description: "Carcereiros tem Aterrorizante.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: ["Adaga", "Machado", "Arma de Concussão", "Espada", "Pistola"],
-        armor: ["Armadura Leve", "Armadura Pesada", "Escudo"],
-        special: [
-          "Pode comprar uma arma com o Modificador Obsidiana (+2 dano, -1 Impeto, quebra em rolagem natural de 1.) pelo preço base + 200 coroas",
-        ],
-      },
-    ],
-  },
-  {
-    name: "Quebra-Hordas",
-    stats: {
-      move: 10,
-      fight: "2",
-      shoot: "2",
-      armour: 13,
-      will: "+1",
-      health: 12,
-      cost: "80 coroas",
-    },
-    abilities: [
-      {
-        name: "Crueldade Paciente",
-        description:
-          "Os anões do caos não podem sofrer penalidades na agilidade por uso de equipamentos.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Machado",
-          "Arma de Concussão",
-          "Bacamarte dos Anões do Caos",
-          "Pistola",
-        ],
-        armor: ["Armadura Leve", "Armadura Pesada"],
-        special: [],
-      },
-    ],
-  },
-  {
-    name: "Mestre da Fornalha",
-    stats: {
-      move: 10,
-      fight: "1",
-      shoot: "2",
-      armour: 12,
-      will: "+1",
-      health: 12,
-      cost: "90 coroas",
-    },
-    abilities: [
-      {
-        name: "Crueldade Paciente",
-        description:
-          "Os anões do caos não podem sofrer penalidades na agilidade por uso de equipamentos.",
-      },
-      {
-        name: "Hellsmith",
-        description:
-          "Um sacerdote-artifice que tem um Mestre da Fornalha no seu bando ganha +1 a uma tentativa de conjurar Forja Daemonica durante a fase de Conjurar Ritual da sequência pós jogo. Este bônus só pode ser ganho uma vez, independentemente de quantos Mestres da Fornalha o bando tem.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Machado",
-          "Arma de Concussão",
-          "Bacamarte dos Anões do Caos",
-          "Pistola",
-        ],
-        armor: ["Armadura Leve", "Armadura Pesada"],
-        special: [],
-      },
-    ],
-  },
-  {
-    name: "Sabujo Infernal",
-    stats: {
-      move: 14,
-      fight: "2",
-      shoot: "0",
-      armour: 13,
-      will: "+1",
-      health: 14,
-      cost: "60 coroas",
-    },
-    abilities: [
-      {
-        name: "Construtos Infernais",
-        description:
-          "A Sabujo Infernal tem as características Daemonio e Construto, e não pode pegar fragmentos de pedra-bruxa ou ganhar experiência.",
-      },
-      {
-        name: "Farol do Inferno",
-        description:
-          "O Sabujo Infernal concede um bonus de +2 para as rolagens de conjuração do Sacerdote-Artifice se estiver a menos de 16cm dele. Esse bonus só pode ser ganho uma vez, independentemente de quantos Sabujos Infernais estão no tabuleiro atualmente.",
-      },
-      {
-        name: "Equipmeno",
-        description: "None. Implementos Metálicos crueis e malícia.",
-      },
-    ],
-  },
-];
+const SonsOfHashutPage: React.FC = () => {
+  const leader = sonsOfHashutData.find((unit) => unit.role === "Líder") as Unit;
+  const heroes = sonsOfHashutData.filter(
+    (unit) => unit.role === "Herói" || unit.role === "Héroi"
+  ) as Unit[];
+  const soldiers = sonsOfHashutData.filter((unit) => !unit.role) as Unit[];
 
-const doctrinesOfHashut = [
-  {
-    name: "Doutrina do Rachapedra",
-    when: "Em qualquer ponto da ativação do Centouro de Hashut, como uma ação.",
-    effect:
-      "Todas as figuras a até 5cm do centouro sofrem um ataque +4. Qualquer figura atingida recebe um marcador de Atordoamento. A área de efeito do poder se torna terreno acidentado, mas não afeta a movimentação do Centouro.",
-  },
-  {
-    name: "Doutrina do Massacre Espiral",
-    when: "Quando o Centouro de Hashut completa uma carga contra mais de uma figura.",
-    effect:
-      "Se o centouro de hashut luta, ele luta com todas as figuras contra quem ele completou a carga. O Centouro pode ignorar o primeiro dano tomado por perder uma luta nesse turno.",
-  },
-  {
-    name: "Doutrina do Atropelamento",
-    when: "No início da ação de movimento do Centouro de Hashut.",
-    effect:
-      "O centouro de hashut deve mover toda todo o seu valor de agilidade em centimetros durante esse turno. Ele pode atravessar terreno e figuras, mas não pode terminar sua movimentação dentro delas, e deve mover em uma linha reta. Ele luta com todas as figuras que ele atravessa, incluindo figuras aliadas, ganhando a característica Forte durante essas lutas.",
-  },
-  {
-    name: "Doutrina do Cometa",
-    when: "Em qualquer ponto da ativação do Centouro de Hashut.",
-    effect:
-      "O Centouro de Hashut pode usar uma ação de movimento para fazer um movimento de 'Pulo' em vez de um movimento normal. Quando o Centouro de Hashut termina este movimento, todas as criaturas a até 7.5cm dele sofrem um ataque +5. Qualquer criatura atingida por este ataque recebe um marcador de Atordoamento.",
-  },
-  {
-    name: "Doutrina do Racha-Homem",
-    when: "Quando o Centouro de Hashut vence uma luta com um resultado natural de 18, 19 ou 20.",
-    effect:
-      "O ataque é tratado como um ataque crítico. A figura alvo recebe um marcador de Atordoamento.",
-  },
-  {
-    name: "Doctrine da Destruição",
-    when: "Quando o Centouro de Hashut vence uma luta e causa pelo menos 1 ponto de dano.",
-    effect:
-      "O ataque causa 3 pontos de dano a mais além do dano normal que ele causaria.",
-  },
-  {
-    name: "Doutrina do Dobra-Laminas",
-    when: "Quando uma figura inimiga causa um ataque crítico contra o Centouro de Hashut.",
-    effect:
-      "O ataque não é tratado como um ataque crítico, e causa dano normal.",
-  },
-  {
-    name: "Doutrina do Alma Vulcânica",
-    when: "Quando o Centouro de Hashut faz uma rolagem de estatística de luta (Qualquer rolagem de luta com um número alvo).",
-    effect:
-      "Adicione +5 à rolagem do Centouro de Hashut. Alternativamente, um Centouro de Hashut pode usar esta habilidade quando ele vence uma luta para causar +1 ponto de dano.",
-  },
-  {
-    name: "Doutrina do Quebra-Colina",
-    when: "Quando o Centouro de Hashut vence uma luta e causa pelo menos 1 ponto de dano.",
-    effect:
-      "Esta habilidade pode ser utilizada a qualquer momento que o Centouro de Hashut vence uma luta. O Centouro de Hashut causa +1 ponto de dano e, adicionalmente, pode escolher empurrar seu oponente até 10cm em vez do normal de 3cm. Este empurrão pode mover a figura através ou sobre terreno ou sobre outras figuras.",
-  },
-  {
-    name: "Doutrina da Chama Insaciável",
-    when: "Quando o Centouro de Hashut é reduzido a 0 pontos de vigor.",
-    effect: "O Centouro de Hashut é reduzido a 1 ponto de vigor em vez disso.",
-  },
-];
-
-function SonsOfHashutPage() {
-  const units = sonsOfHashutUnits.map((unit) => ({
-    id: slugify(unit.name, { lower: true }),
-    label: unit.name,
-    type: "Unit",
-  }));
-
-  const doctrines = doctrinesOfHashut.map((doctrine) => ({
-    id: slugify(doctrine.name, { lower: true }),
-    label: doctrine.name,
-    type: "Doctrine",
-  }));
-
-  const sections = [...units, ...doctrines];
+  const navigationSections = [
+    { id: "introducao", title: "Introdução", level: 0 },
+    { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
+    {
+      id: "lider",
+      title: "Líder",
+      level: 0,
+      children: leader
+        ? [
+            {
+              id: leader.name.toLowerCase().replace(/\s+/g, "-"),
+              title: leader.name,
+              level: 1,
+            },
+          ]
+        : [],
+    },
+    {
+      id: "herois",
+      title: "Heróis",
+      level: 0,
+      children: heroes.map((hero) => ({
+        id: hero.name.toLowerCase().replace(/\s+/g, "-"),
+        title: hero.name,
+        level: 1,
+      })),
+    },
+    {
+      id: "soldados",
+      title: "Soldados",
+      level: 0,
+      children: soldiers.map((soldier) => ({
+        id: soldier.name.toLowerCase().replace(/\s+/g, "-"),
+        title: soldier.name,
+        level: 1,
+      })),
+    },
+  ];
 
   return (
-    <PageContainer>
-      <WarbandIndex sections={sections} />
-      <Header title="Sons of Hashut" />
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+        <QuickNavigation sections={navigationSections} />
+        
+        <MobileSection id="introducao">
+        <PageTitle>Filhos de Hashut</PageTitle>
+          <MobileText>
+            Os Filhos de Hashut são anões do Caos que adoram o deus touro
+            Hashut, o Senhor do Fogo e da Forja. Eles são mestres da metalurgia
+            e da criação de armas e armaduras, mas sua devoção ao Caos os
+            corrompeu completamente. Eles veem a Pedra-Bruxa como uma ferramenta
+            divina para forjar armas ainda mais poderosas.
+          </MobileText>
+          <MobileText>
+            Os anões do Caos são conhecidos por sua crueldade paciente e sua
+            habilidade em trabalhar metais infernais. Eles constroem fornalhas
+            gigantescas nas montanhas do Mundo Morto, onde forjam armas e
+            armaduras para os exércitos do Caos. Sua devoção a Hashut os torna
+            imunes aos efeitos debilitantes de equipamentos pesados, permitindo
+            que carreguem armaduras e armas que outros não conseguiriam.
+          </MobileText>
+          <MobileText>
+            Em Mordheim, os Filhos de Hashut veem uma oportunidade única de
+            coletar fragmentos de Pedra-Bruxa para seus experimentos de forja
+            daemônica. Eles são implacáveis em sua busca por materiais raros e
+            não hesitam em escravizar ou eliminar qualquer um que se interponha
+            em seu caminho.
+          </MobileText>
+        </MobileSection>
 
-      <ContentSection>
-        <ContentContainer>
-          <div id="units">
-            {sonsOfHashutUnits.map((unit, index) => (
-              <div key={index} id={slugify(unit.name, { lower: true })}>
-                <UnitCard
-                  name={unit.name}
-                  role={unit.role}
-                  stats={unit.stats}
-                  abilities={unit.abilities}
-                  {...(unit.spellAffinity && {
-                    spellAffinity: unit.spellAffinity,
-                  })}
-                />
-              </div>
-            ))}
-          </div>
+        <MobileSection id="estrutura-do-bando">
+          <HeaderH1 id="estrutura-do-bando">Estrutura do Bando</HeaderH1>
+          <MobileText>
+            Um bando dos Filhos de Hashut deve incluir um mínimo de 3 modelos.
+            Você tem 500 coroas de ouro que pode usar para recrutar e equipar
+            seu bando. O número máximo de guerreiros no bando é 14.
+          </MobileText>
+          <MobileText>
+            • <strong>Feiticeiro Aprendiz:</strong> Cada bando dos Filhos de
+            Hashut deve ter um Feiticeiro Aprendiz – nem mais, nem menos!
+            <br />• <strong>Centouro de Hashut:</strong> Seu bando pode incluir
+            até 1 Centouro de Hashut.
+            <br />• <strong>Campeão Anão do Caos:</strong> Seu bando pode
+            incluir até 2 Campeões Anões do Caos.
+            <br />• <strong>Hobgoblins:</strong> Seu bando deve incluir pelo
+            menos 4 Hobgoblins.
+            <br />• <strong>Guarda de Forja:</strong> Seu bando pode incluir até
+            6 Guardas de Forja.
+            <br />• <strong>Quebra-Hordas:</strong> Seu bando pode incluir até 3
+            Quebra-Hordas.
+          </MobileText>
+        </MobileSection>
 
-          <div id="doctrines">
-            <PowerListTitle>Doctrines of Hashut</PowerListTitle>
-            {doctrinesOfHashut.map((doctrine, index) => (
-              <div key={index} id={slugify(doctrine.name, { lower: true })}>
-                <PowerCard
-                  name={doctrine.name}
-                  when={doctrine.when}
-                  effect={doctrine.effect}
-                />
-              </div>
-            ))}
-          </div>
-        </ContentContainer>
-      </ContentSection>
-    </PageContainer>
+        <MobileSection id="lider">
+          <HeaderH1 id="lider">Líder</HeaderH1>
+          {leader && (
+            <UnitCard
+              id={leader.id}
+              name={leader.name}
+              role={leader.role}
+              quantity={leader.quantity}
+              stats={leader.stats}
+              spellAffinity={leader.spellAffinity}
+              abilities={leader.abilities}
+              equipment={leader.equipment}
+            />
+          )}
+        </MobileSection>
+
+        <MobileSection id="herois">
+          <HeaderH1 id="herois">Heróis</HeaderH1>
+          {heroes.map((hero) => (
+            <UnitCard
+              key={hero.name}
+              id={hero.id}
+              name={hero.name}
+              role={hero.role}
+              quantity={hero.quantity}
+              stats={hero.stats}
+              spellAffinity={hero.spellAffinity}
+              abilities={hero.abilities}
+              equipment={hero.equipment}
+            />
+          ))}
+        </MobileSection>
+
+        <MobileSection id="soldados">
+          <HeaderH1 id="soldados">Soldados</HeaderH1>
+          {soldiers.map((soldier) => (
+            <UnitCard
+              key={soldier.name}
+              id={soldier.id}
+              name={soldier.name}
+              quantity={soldier.quantity}
+              stats={soldier.stats}
+              abilities={soldier.abilities}
+              equipment={soldier.equipment}
+            />
+          ))}
+        </MobileSection>
+      </div>
+    </div>
+    </div>
   );
-}
+};
 
 export default SonsOfHashutPage;

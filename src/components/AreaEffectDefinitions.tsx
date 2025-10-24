@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import KeywordChip from "./KeywordChip";
-import KeywordContainer from "./KeywordContainer";
+
 
 const DefinitionsContainer = styled(Box)(({ theme }) => ({
   padding: "2rem",
@@ -151,7 +150,7 @@ function AreaEffectDefinitions() {
       {definitions.map((definition, index) => (
         <DefinitionSection key={index}>
           <SectionHeader>
-            <KeywordContainer keywords={definition.keywords} />
+            
             <SectionTitle>{definition.title}</SectionTitle>
           </SectionHeader>
           

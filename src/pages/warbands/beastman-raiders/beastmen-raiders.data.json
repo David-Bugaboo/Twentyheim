@@ -9,30 +9,10 @@
       "fight": "+4",
       "shoot": "0",
       "armour": 10,
-      "will": "+5",
+      "Vontade": "+5",
       "health": 14,
       "cost": "65 coroas",
-      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"],
-      "equipment": {
-        "hand-to-hand": [
-          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-          { "name": "Porrete", "cost": "3 coroas" },
-          { "name": "Arma de Concussão", "cost": "5 coroas" },
-          { "name": "Machado", "cost": "5 coroas" },
-          { "name": "Espada", "cost": "10 coroas" },
-          { "name": "Arma de Haste", "cost": "10 coroas" },
-          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
-        ],
-        "ranged": [],
-        "armor": [
-          { "name": "Armadura Leve", "cost": "20 coroas" },
-          { "name": "Armadura Pesada", "cost": "50 coroas" },
-          { "name": "Escudo", "cost": "5 coroas" },
-          { "name": "Capacete", "cost": "10 coroas" }
-        ],
-        "acessories": [],
-        "modifiers": []
-      }
+      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
     },
     "abilities": [
       {
@@ -43,7 +23,27 @@
         "name": "Abominação Bestial",
         "description": "O Lider Tribal Homem-Fera tem as características Forte e Aterrorizante."
       }
-    ]
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" }
+      ],
+      "acessories": [],
+      "modifiers": []
+    }
   },
   {
     "id": "xama-homem-fera",
@@ -55,23 +55,9 @@
       "fight": "+1",
       "shoot": "0",
       "armour": 10,
-      "will": "+5",
+      "Vontade": "+5",
       "health": 12,
-      "cost": "45 coroas",
-      "equipment": {
-        "hand-to-hand": [
-          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-          { "name": "Porrete", "cost": "3 coroas" },
-          { "name": "Arma de Concussão", "cost": "5 coroas" },
-          { "name": "Machado de Batalha", "cost": "5 coroas" },
-          { "name": "Espada", "cost": "10 coroas" },
-          { "name": "Arma de Haste", "cost": "10 coroas" },
-          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
-        ],
-        "ranged": [],
-        "acessories": [],
-        "modifiers": []
-      }
+      "cost": "45 coroas"
     },
     "spellAffinity": {
       "aligned0": ["Tradição do Caos"],
@@ -85,9 +71,23 @@
     "abilities": [
       {
         "name": "Magia",
-        "description": "O Feiticeiro Homem-Fera é um feiticeiro da Tradição do Caos. Ele começa com 3 spells, de qualquer um de suas tradições disponíveis. Magias de tradições associadas são adicionadas com +4 na Classe de Dificuldade."
+        "description": "O Feiticeiro Homem-Fera é um feiticeiro da Tradição do Caos. Ele começa com 3 magias, de qualquer um de suas tradições disponíveis. Magias de tradições associadas são adicionadas com +4 na Classe de Dificuldade."
       }
-    ]
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado de Batalha", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [],
+      "acessories": [],
+      "modifiers": []
+    }
   },
   {
     "id": "bestigor",
@@ -99,30 +99,10 @@
       "fight": "+4",
       "shoot": "0",
       "armour": 10,
-      "will": "-1",
+      "Vontade": "-1",
       "health": 12,
       "cost": "45 coroas",
-      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"],
-      "equipment": {
-        "hand-to-hand": [
-          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-          { "name": "Porrete", "cost": "3 coroas" },
-          { "name": "Arma de Concussão", "cost": "5 coroas" },
-          { "name": "Machado de Batalha", "cost": "5 coroas" },
-          { "name": "Espada", "cost": "10 coroas" },
-          { "name": "Arma de Haste", "cost": "10 coroas" },
-          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
-        ],
-        "ranged": [],
-        "armor": [
-          { "name": "Armadura Leve", "cost": "20 coroas" },
-          { "name": "Armadura Pesada", "cost": "50 coroas" },
-          { "name": "Escudo", "cost": "5 coroas" },
-          { "name": "Capacete", "cost": "10 coroas" }
-        ],
-        "acessories": [],
-        "modifiers": []
-      }
+      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
     },
     "abilities": [
       {
@@ -133,7 +113,27 @@
         "name": "Aniquilador Córneo",
         "description": "O Bestigor tem a característica Chifres."
       }
-    ]
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado de Batalha", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" }
+      ],
+      "acessories": [],
+      "modifiers": []
+    }
   },
   {
     "id": "centigor",
@@ -145,36 +145,16 @@
       "fight": "+3",
       "shoot": "0",
       "armour": 10,
-      "will": "-1",
+      "Vontade": "-1",
       "health": 12,
       "cost": "80 coroas",
-      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"],
-      "equipment": {
-        "hand-to-hand": [
-          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-          { "name": "Porrete", "cost": "3 coroas" },
-          { "name": "Arma de Concussão", "cost": "5 coroas" },
-          { "name": "Machado de Batalha", "cost": "5 coroas" },
-          { "name": "Espada", "cost": "10 coroas" },
-          { "name": "Arma de Haste", "cost": "10 coroas" },
-          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
-        ],
-        "ranged": [],
-        "armor": [
-          { "name": "Armadura Leve", "cost": "20 coroas" },
-          { "name": "Armadura Pesada", "cost": "50 coroas" },
-          { "name": "Escudo", "cost": "5 coroas" },
-          { "name": "Capacete", "cost": "10 coroas" }
-        ],
-        "acessories": [],
-        "modifiers": []
-      }
+      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
     },
     "abilities": [
-        {
-            "name": "Habilidades",
-            "description": "O Centigor começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 8."
-          },
+      {
+        "name": "Habilidades",
+        "description": "O Centigor começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 8."
+      },
       {
         "name": "Carga Violenta",
         "description": "O Centigor tem a característica Chifres. Uma ação de movimento de declaração de carga do Centigor não pode ser interceptada."
@@ -183,7 +163,27 @@
         "name": "Movimentação Equina",
         "description": "O Centigor não pode escalar construções, e deve gastar 3 de movimento para cada 1 de movimento em terreno acidentado. Centigors não perdem metade do movimento por carregar Fragmentos de Pedra-Bruxa"
       }
-    ]
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado de Batalha", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" }
+      ],
+      "acessories": [],
+      "modifiers": []
+    }
   },
   {
     "id": "ungor",
@@ -194,29 +194,29 @@
       "fight": "+2",
       "shoot": "0",
       "armour": 10,
-      "will": "-1",
+      "Vontade": "-1",
       "health": 8,
-      "cost": "25 coroas",
-      "equipment": {
-        "hand-to-hand": [
-          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-          { "name": "Maça", "cost": "3 coroas" },
-          { "name": "Martelo", "cost": "3 coroas" },
-          { "name": "Machado de Batalha", "cost": "5 coroas" },
-          { "name": "Lança", "cost": "10 coroas" }
-        ],
-        "ranged": [],
-        "armor": [{ "name": "Escudo", "cost": "5 coroas" }],
-        "acessories": [],
-        "modifiers": []
-      }
+      "cost": "25 coroas"
     },
     "abilities": [
       {
         "name": "Descartável",
         "description": "Ungors são tratados como párias e nunca serão aceitos no círculo de guerreiros de sua Manada. Eles só podem subir 1 ponto em cada atributo e nunca podem aprender Maestrias de Combate."
       }
-    ]
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "3 coroas" },
+        { "name": "Machado de Batalha", "cost": "5 coroas" },
+        { "name": "Lança", "cost": "10 coroas" }
+      ],
+      "ranged": [],
+      "armor": [{ "name": "Escudo", "cost": "5 coroas" }],
+      "acessories": [],
+      "modifiers": []
+    }
   },
   {
     "id": "gor",
@@ -227,31 +227,31 @@
       "fight": "+3",
       "shoot": "0",
       "armour": 10,
-      "will": "-1",
+      "Vontade": "-1",
       "health": 10,
-      "cost": "35 coroas",
-      "equipment": {
-        "hand-to-hand": [
-          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-          { "name": "Porrete", "cost": "3 coroas" },
-          { "name": "Arma de Concussão", "cost": "5 coroas" },
-          { "name": "Machado de Batalha", "cost": "5 coroas" },
-          { "name": "Espada", "cost": "10 coroas" },
-          { "name": "Arma de Haste", "cost": "10 coroas" },
-          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
-        ],
-        "ranged": [],
-        "armor": [
-          { "name": "Armadura Leve", "cost": "20 coroas" },
-          { "name": "Armadura Pesada", "cost": "50 coroas" },
-          { "name": "Escudo", "cost": "5 coroas" },
-          { "name": "Capacete", "cost": "10 coroas" }
-        ],
-        "acessories": [],
-        "modifiers": []
-      }
+      "cost": "35 coroas"
     },
-    "abilities": []
+    "abilities": [],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado de Batalha", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" }
+      ],
+      "acessories": [],
+      "modifiers": []
+    }
   },
   {
     "id": "cao-guerra-caos",
@@ -262,7 +262,7 @@
       "fight": "+1",
       "shoot": "0",
       "armour": 10,
-      "will": "-2",
+      "Vontade": "-2",
       "health": 8,
       "cost": "15 coroas"
     },
@@ -282,29 +282,9 @@
       "fight": "+4",
       "shoot": "0",
       "armour": 12,
-      "will": "+5",
+      "Vontade": "+5",
       "health": 18,
-      "cost": "200 coroas",
-      "equipment": {
-        "hand-to-hand": [
-          { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-          { "name": "Porrete", "cost": "3 coroas" },
-          { "name": "Arma de Concussão", "cost": "5 coroas" },
-          { "name": "Machado de Batalha", "cost": "5 coroas" },
-          { "name": "Espada", "cost": "10 coroas" },
-          { "name": "Arma de Haste", "cost": "10 coroas" },
-          { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
-        ],
-        "ranged": [],
-        "armor": [
-          { "name": "Armadura Leve", "cost": "20 coroas" },
-          { "name": "Armadura Pesada", "cost": "50 coroas" },
-          { "name": "Escudo", "cost": "5 coroas" },
-          { "name": "Capacete", "cost": "10 coroas" }
-        ],
-        "acessories": [],
-        "modifiers": []
-      }
+      "cost": "200 coroas"
     },
     "abilities": [
       {
@@ -315,6 +295,26 @@
         "name": "Sentidos Bestiais",
         "description": "O Minotauro pode declarar cargas contra criaturas para quem não tem linha de visão, contanto que esteja dentro de 15cm dele."
       }
-    ]
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado de Batalha", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Capacete", "cost": "10 coroas" }
+      ],
+      "acessories": [],
+      "modifiers": []
+    }
   }
 ]

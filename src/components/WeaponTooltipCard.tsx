@@ -79,7 +79,7 @@ const weaponDatabase: WeaponData[] = [
       "Um bastão de madeira favorecido por conjuradores e viajantes. Causa -1 de dano, mas o dano de combate corpo a corpo inimigo é reduzido em 1.",
   },
   {
-    name: "Arma de Concussão",
+    name: "Martelo",
     type: "Melee",
     damage: "0",
     hands: 1,
@@ -90,7 +90,7 @@ const weaponDatabase: WeaponData[] = [
       "Instrumentos brutais e esmagadores variam de maças de ferro cru a martelos anões elaboradamente forjados.",
   },
   {
-    name: "Arma de Haste",
+    name: "Alabarda",
     type: "Melee",
     damage: "0",
     hands: 1,

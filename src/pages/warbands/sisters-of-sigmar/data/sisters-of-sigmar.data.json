@@ -1,0 +1,263 @@
+[
+  {
+    "id": "matriarca-sigmarita",
+    "name": "Matriarca Sigmarita",
+    "role": "Líder",
+    "quantity": "1",
+    "stats": {
+      "move": 15,
+      "fight": "+3",
+      "shoot": "+0",
+      "armour": 10,
+      "Vontade": "+4",
+      "health": 16,
+      "cost": "70 coroas"
+    },
+    "spellAffinity": {
+      "aligned0": ["Orações de Sigmar"]
+    },
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "A Matriarca Sigmarita pode ativar até outra 3 figuras a até 8cm de distância junto a si."
+      },
+      {
+        "name": "Sacerdotisa",
+        "description": "A Matriarca Sigmarita é uma sacerdotisa e tem uma seleção limitada de magias, comparadas a outros conjuradores. No entanto, pode conjurar enquanto usa armadura e escudo ou em combate, recebendo uma penalidade cumulativa de -4 na rolagem de conjuração para cada. Ela começa com 3 magias das Orações de Sigmar."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "3 coroas" },
+        { "name": "Martelo de Guerra Sigmarita", "cost": "15 coroas" },
+        { "name": "Chicote", "cost": "15 coroas" },
+        { "name": "Chicote de Aço", "cost": "10 coroas" },
+        { "name": "Mangual", "cost": "15 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [{ "name": "Funda", "cost": "2 coroas" }],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [
+        { "name": "Tomo Sagrado", "cost": "120 coroas" },
+        { "name": "Água Benta", "cost": "10 coroas" },
+        { "name": "Relíquia Sagrada", "cost": "15 coroas" }
+      ]
+    }
+  },
+  {
+    "id": "irma-superior",
+    "name": "Irmã Superior",
+    "role": "Herói",
+    "quantity": "0-3",
+    "stats": {
+      "move": 12,
+      "fight": "+3",
+      "shoot": "0",
+      "armour": 10,
+      "Vontade": "+3",
+      "health": 14,
+      "cost": "35 coroas",
+      "skills": [
+        "Combate",
+        "Acadêmica",
+        "Força",
+        "Velocidade",
+        "Irmãs de Sigmar"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "A Irmã Superior começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes tem Classe de Dificuldade 8."
+      },
+      {
+        "name": "Segunda em comando",
+        "description": "A Irmã Superior pode ativar até duas outras figuras a até 8cm de distância junto a si."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Martelo de Guerra Sigmarita", "cost": "15 coroas" },
+        { "name": "Chicote de Aço", "cost": "10 coroas" },
+        { "name": "Mangual", "cost": "15 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [{ "name": "Funda", "cost": "2 coroas" }],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [
+        { "name": "Tomo Sagrado", "cost": "120 coroas" },
+        { "name": "Água Benta", "cost": "10 coroas" },
+        { "name": "Relíquia Sagrada", "cost": "15 coroas" }
+      ]
+    }
+  },
+  {
+    "id": "augure",
+    "name": "Áugure",
+    "role": "Herói",
+    "quantity": "0-1",
+    "stats": {
+      "move": 14,
+      "fight": "+1",
+      "shoot": "-",
+      "armour": 10,
+      "Vontade": "+4",
+      "health": 14,
+      "cost": "25 coroas",
+      "skills": ["Acadêmica", "Velocidade", "Irmãs de Sigmar"]
+    },
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "A Áugure começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes tem Classe de Dificuldade 8."
+      },
+      {
+        "name": "Visão Sagrada",
+        "description": "A Áugure tem a característica Visão Verdadeira. Ela pode usar sua Visão Sagrada para evitar problemas ao explorar. Se a Áugure fizer a atividade de Exploração, ela ganha +5 na sua rolagem."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Martelo de Guerra Sigmarita", "cost": "15 coroas" },
+        { "name": "Chicote de Aço", "cost": "10 coroas" },
+        { "name": "Mangual", "cost": "15 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [{ "name": "Funda", "cost": "2 coroas" }],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [
+        { "name": "Tomo Sagrado", "cost": "120 coroas" },
+        { "name": "Água Benta", "cost": "10 coroas" },
+        { "name": "Relíquia Sagrada", "cost": "15 coroas" }
+      ]
+    }
+  },
+  {
+    "id": "novica",
+    "name": "Noviças",
+    "quantity": "0-10",
+    "stats": {
+      "move": 14,
+      "fight": "0",
+      "shoot": "0",
+      "armour": 10,
+      "Vontade": "+3",
+      "health": 10,
+      "cost": "15 coroas"
+    },
+    "abilities": [],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Martelo de Guerra Sigmarita", "cost": "15 coroas" },
+        { "name": "Chicote de Aço", "cost": "10 coroas" },
+        { "name": "Mangual", "cost": "15 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [{ "name": "Funda", "cost": "2 coroas" }],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ]
+    }
+  },
+  {
+    "id": "irma-hospitalaria",
+    "name": "Irmã Hospitalária",
+    "quantity": "0-2",
+    "stats": {
+      "move": 14,
+      "fight": "+1",
+      "shoot": "0",
+      "armour": 10,
+      "Vontade": "+3",
+      "health": 12,
+      "cost": "50 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Misericórdia",
+        "description": "Uma irmã hospitalária começa cada jogo com um frasco de Lágrimas de Shallaya. Ela pode como uma ação, administrar esse item a uma figura aliada a até 3cm, fazendo a figura imediatamente se beneficiar dos efeitos do item. Essa habilidade pode ser utilizada com qualquer remédio, não apenas a lágrima de Shallaya grátis."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Martelo de Guerra Sigmarita", "cost": "15 coroas" },
+        { "name": "Chicote de Aço", "cost": "10 coroas" },
+        { "name": "Mangual", "cost": "15 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [{ "name": "Funda", "cost": "2 coroas" }],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ]
+    }
+  },
+  {
+    "id": "irma-sigmarita",
+    "name": "Irmã Sigmarita",
+    "quantity": "1-5",
+    "stats": {
+      "move": 12,
+      "fight": "+3",
+      "shoot": "0",
+      "armour": 10,
+      "Vontade": "+3",
+      "health": 12,
+      "cost": "25 coroas"
+    },
+    "abilities": [],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Martelo de Guerra Sigmarita", "cost": "15 coroas" },
+        { "name": "Chicote de Aço", "cost": "10 coroas" },
+        { "name": "Mangual", "cost": "15 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [{ "name": "Funda", "cost": "2 coroas" }],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ]
+    }
+  }
+]

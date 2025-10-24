@@ -17,8 +17,8 @@ function WeaponTestExample() {
         }}
       >
         <GameText>
-          Adaga, Machado, Arma de Concussão, Espada, Machado Anão, Pistola,
-          Besta, Arcabuz, Armadura Leve, Armadura Pesada, Escudo.
+          Adaga, Machado, Martelo, Espada, Machado Anão, Pistola, Besta,
+          Arcabuz, Armadura Leve, Armadura Pesada, Escudo.
         </GameText>
       </div>
 
@@ -65,4 +65,3 @@ function WeaponTestExample() {
 }
 
 export default WeaponTestExample;
-

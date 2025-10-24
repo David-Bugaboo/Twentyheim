@@ -35,24 +35,35 @@ export default function GenericTable({
       component={Paper}
       sx={{
         backgroundColor: "#1a1a1a",
-        border: "1px solid #333",
+        border: "1px solid #10B981",
         borderRadius: "8px",
         mb: 3,
-        overflowX: scrollable ? "auto" : "visible",
+        // Responsivo: scrollable em mobile, não scrollable em desktop
+        overflowX: {
+          xs: "auto", // mobile: sempre scrollable
+          md: scrollable ? "auto" : "visible", // desktop: respeita o prop
+        },
         ...sx,
       }}
     >
       <Table
         sx={{
-          minWidth: scrollable ? 650 : "auto",
-          width: scrollable ? "auto" : "100%",
+          // Responsivo: largura mínima em mobile, largura automática em desktop
+          minWidth: {
+            xs: 650, // mobile: sempre scrollable
+            md: scrollable ? 650 : "auto", // desktop: respeita o prop
+          },
+          width: {
+            xs: "auto", // mobile: sempre scrollable
+            md: scrollable ? "auto" : "100%", // desktop: respeita o prop
+          },
         }}
       >
         <TableHead>
           <TableRow
             sx={{
-              backgroundColor: "transparent",
-              borderBottom: "1px solid #555",
+              backgroundColor: "rgba(16, 185, 129, 0.2)", // Green background with transparency
+              borderBottom: "1px solid #10B981",
             }}
           >
             {allKeys.map((key) => (
@@ -60,10 +71,10 @@ export default function GenericTable({
                 key={key}
                 align="center"
                 sx={{
-                  color: "#ffffff",
+                  color: "#ffffff", // White header text
                   fontWeight: 600,
                   fontSize: "0.95rem",
-                  borderRight: "1px solid #333",
+                  borderRight: "1px solid #10B981", // Green border
                   width: key === "roll" ? "100px" : "auto",
                   py: 2,
                 }}
@@ -87,11 +98,11 @@ export default function GenericTable({
                 key={index}
                 sx={{
                   backgroundColor: "transparent",
-                  borderBottom: "1px solid #333",
+                  borderBottom: "1px solid #10B981",
                   "&:hover": {
                     backgroundColor: isClickable
-                      ? "rgba(255, 255, 255, 0.1) !important"
-                      : "rgba(255, 255, 255, 0.05) !important",
+                      ? "rgba(16, 185, 129, 0.1) !important"
+                      : "rgba(16, 185, 129, 0.05) !important",
                   },
                   cursor: isClickable ? "pointer" : "default",
                   transition: "all 0.2s",
@@ -113,7 +124,7 @@ export default function GenericTable({
                       color: key === "roll" ? "#d4af37" : "#e0e0e0",
                       fontWeight: key === "roll" ? 700 : 500,
                       fontSize: "0.9rem",
-                      borderRight: "1px solid #333",
+                      borderRight: "1px solid #10B981",
                       textDecoration: isClickable ? "underline" : "none",
                       py: 2,
                     }}

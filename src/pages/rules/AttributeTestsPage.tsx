@@ -3,15 +3,29 @@ import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
 import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
-import HeaderH3 from "../../components/HeaderH3";
+import QuickNavigation from "../../components/QuickNavigation";
 
 function AttributeTestsPage() {
+  const navigationSections = [
+    { id: "intro", title: "Testes de Característica", level: 0 },
+    { id: "como-fazer", title: "Como Fazer um Teste", level: 0 },
+    { id: "formula-basica", title: "Fórmula Básica", level: 1 },
+    { id: "modificadores", title: "Modificadores", level: 0 },
+    { id: "testes-contestados", title: "Testes contestados", level: 0 },
+    { id: "criticos", title: "Críticos", level: 0 },
+    { id: "falhas-criticas", title: "Falhas Críticas", level: 1 },
+    { id: "sucessos-criticos", title: "Sucessos Críticos", level: 1 },
+  ];
+
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
           <MobileSection>
-            <PageTitle>Testes de Característica</PageTitle>
+            <div id="intro">
+              <PageTitle>Testes de Característica</PageTitle>
+            </div>
 
             <MobileText>
               Os testes de característica são o coração do sistema de resolução
@@ -20,7 +34,9 @@ function AttributeTestsPage() {
               valor relevante da característica da figura.
             </MobileText>
 
-            <HeaderH1>Como Fazer um Teste</HeaderH1>
+            <div id="como-fazer">
+              <HeaderH1>Como Fazer um Teste</HeaderH1>
+            </div>
 
             <MobileText>Para fazer um teste de característica:</MobileText>
 
@@ -36,14 +52,18 @@ function AttributeTestsPage() {
               teste é bem-sucedido!
             </MobileText>
 
-            <HeaderH2>Fórmula Básica</HeaderH2>
+            <div id="formula-basica">
+              <HeaderH2>Fórmula Básica</HeaderH2>
+            </div>
             <MobileText>
               <strong>d20 + Característica ≥ 10</strong>
               <br />
               <em>Exemplo: Rolagem de 7 + Ímpeto 3 = 10 (sucesso!)</em>
             </MobileText>
 
-            <HeaderH1>Modificadores</HeaderH1>
+            <div id="modificadores">
+              <HeaderH1>Modificadores</HeaderH1>
+            </div>
             <MobileText>
               Um modificador é qualquer valor que pode ser adicionado a um
               teste, seja positivo ou negativo. por exemplo, uma espada do raro
@@ -53,7 +73,9 @@ function AttributeTestsPage() {
               atributo.
             </MobileText>
 
-            <HeaderH1>Testes Contestados</HeaderH1>
+            <div id="teste-contestado">
+              <HeaderH1>Testes Contestados</HeaderH1>
+            </div>
 
             <MobileText>
               Algumas situações envolvem testes opostos, onde duas figuras
@@ -65,12 +87,16 @@ function AttributeTestsPage() {
               vence a luta e enterra seu punhal na carne vulnerável do inimigo.
             </MobileText>
 
-            <HeaderH1>1 e 20 (Sucesso e Falha Crítica)</HeaderH1>
+            <div id="criticos">
+              <HeaderH1>1 e 20 (Sucesso e Falha Crítica)</HeaderH1>
+            </div>
             <MobileText>
               Rolar um 1 ou 20 natural é sempre um momento marcante quando se
               joga algum jogo em um motor de d20. Com 20Heim não é diferente.
             </MobileText>
-            <HeaderH2>Falha Crítica</HeaderH2>
+            <div id="falhas-criticas">
+              <HeaderH2>Falha Crítica</HeaderH2>
+            </div>
             <MobileText>
               Ao rolar um resultado natural de 1 (sem modificadores de atributo
               ou outras fontes) qualquer rolagem é uma FALHA CRITICA. Mesmo se
@@ -84,7 +110,9 @@ function AttributeTestsPage() {
               contestado, caso ambas as figures rolem um 1 natural, o menor
               resultado ainda prevalece.
             </MobileText>
-            <HeaderH2>Sucesso Crítico</HeaderH2>
+            <div id="sucessos-criticos">
+              <HeaderH2>Sucesso Crítico</HeaderH2>
+            </div>
             <MobileText>
               Ao rolar um resultado natural de 20 (sem modificadores de atributo
               ou outras fontes) qualquer rolagem é um SUCESSO CRITICO. Mesmo se

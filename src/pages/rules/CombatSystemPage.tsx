@@ -5,16 +5,57 @@ import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
 import HeaderH3 from "../../components/HeaderH3";
 import WarningBox from "../../components/WarningBox";
-import CornerDecoration from "../../components/CornerDecoration";
+import QuickNavigation from "../../components/QuickNavigation";
 
 function CombatSystemPage() {
+  const navigationSections = [
+    { id: "intro", title: "Sistema de Combate", level: 0 },
+    {
+      id: "ordem-turno",
+      title: "Ordem do Turno — Quem Vive, Quem Morre",
+      level: 0,
+    },
+    { id: "teste-debandada", title: "O Teste de Debandada", level: 0 },
+    { id: "ativacao", title: "Ativação — O Ritual da Morte", level: 0 },
+    { id: "ativando-lider", title: "Ativando com o Líder", level: 1 },
+    { id: "ativando-soldados", title: "Ativando com o Soldados", level: 1 },
+    {
+      id: "criaturas-nao-controladas",
+      title: "Ativação de Criaturas Não Controladas",
+      level: 0,
+    },
+    {
+      id: "algoritmo-criaturas",
+      title: "Algoritmo de Ações das Criaturas Neutras",
+      level: 1,
+    },
+    { id: "passo-1", title: "Passo 1: A Criatura Está em Combate?", level: 1 },
+    {
+      id: "passo-2",
+      title: "Passo 2: Há um Membro do Bando à Vista?",
+      level: 1,
+    },
+    { id: "passo-3", title: "Passo 3: Movimento Aleatório", level: 1 },
+    { id: "fim-turno", title: "Fim do Turno — E Recomeça", level: 0 },
+    {
+      id: "vigilancia",
+      title: "Vigilância: a força da elite contra as hordas",
+      level: 0,
+    },
+    { id: "acoes", title: "As Ações", level: 0 },
+    { id: "regra-duas-acoes", title: "A Regra das Duas Ações", level: 1 },
+    { id: "tipos-acao", title: "Tipos de Ação", level: 1 },
+  ];
+
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <CornerDecoration />
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
           <MobileSection>
-            <PageTitle>Sistema de Combate</PageTitle>
+            <div id="intro">
+              <PageTitle>Sistema de Combate</PageTitle>
+            </div>
 
             <MobileText>
               Nas ruínas de Mordheim, a morte não espera ordens. Ela vem quando
@@ -24,7 +65,9 @@ function CombatSystemPage() {
               hesita... bem, os mortos não contam histórias.
             </MobileText>
 
-            <HeaderH1>Ordem do Turno — Quem Vive, Quem Morre</HeaderH1>
+            <div id="ordem-turno">
+              <HeaderH1>Ordem do Turno — Quem Vive, Quem Morre</HeaderH1>
+            </div>
             <MobileText>
               No início de cada jogo, antes que a primeira gota de sangue seja
               derramada, cada jogador lança um <strong>d20</strong> e anota o
@@ -38,7 +81,31 @@ function CombatSystemPage() {
               primeiro, quem talvez sobreviva primeiro.
             </MobileText>
 
-            <HeaderH1>Ativação — O Ritual da Morte</HeaderH1>
+            <div id="teste-debandada">
+              <HeaderH1>O Teste de Debandada</HeaderH1>
+            </div>
+            <MobileText>
+              No começo de cada turno, todos os bandos que tenham perdido mais
+              de um quarto das suas figuras devem rolar um{" "}
+              <strong>teste de debandada</strong>. É um teste de Vontade CD 12
+              que deve ser feito pelo <strong>Líder</strong>. Se o Líder estiver
+              morto, um <strong>herói à escolha do jogador</strong> pode fazer.
+              Se não tiverem líderes ou heróis vivos, o bando debanda
+              automaticamente.
+            </MobileText>
+            <MobileText>
+              Um bando que debanda remove todas as suas figuras da mesa e está
+              fora do jogo. As figuras que saíram por debandada não precisam
+              rolar sobrevivência. Um bando pode escolher falhar nesse teste
+              voluntariamente para preservar seus soldados vivos para um próximo
+              jogo. Fragmentos de Pedra-Bruxa já capturados ainda são ganhos, e
+              experiência e testes de sobrevivência para figuras reduzidas a 0
+              de vida são feitos normalmente.
+            </MobileText>
+
+            <div id="ativacao">
+              <HeaderH1>Ativação — O Ritual da Morte</HeaderH1>
+            </div>
             <MobileText>
               Os jogadores <strong>ativam uma miniatura</strong>. Então, o
               proximo jogador na ordem de iniciativa ativa uma miniatura, e
@@ -47,14 +114,18 @@ function CombatSystemPage() {
               campeão tem regras especiais, descritas abaixo:
             </MobileText>
 
-            <HeaderH2>Ativando com o Líder</HeaderH2>
+            <div id="ativando-lider">
+              <HeaderH2>Ativando com o Líder</HeaderH2>
+            </div>
             <MobileText>
               Quando você ativa seu líder, ele não precisa agir sozinho — você
               pode ativar até <strong>3 soldados</strong> que estejam a até{" "}
               <strong>8 cm</strong> dele.
             </MobileText>
 
-            <HeaderH2>Ativando com o Soldados</HeaderH2>
+            <div id="ativando-soldados">
+              <HeaderH2>Ativando com o Soldados</HeaderH2>
+            </div>
             <MobileText>
               Soldados ativam normalmente, sem regras especiais, fazendos suas
               ações e terminando suas ativações.
@@ -76,7 +147,9 @@ function CombatSystemPage() {
               estratégicas.{" "}
             </WarningBox>
 
-            <HeaderH1>Ativação de Criaturas Não Controladas</HeaderH1>
+            <div id="criaturas-nao-controladas">
+              <HeaderH1>Ativação de Criaturas Não Controladas</HeaderH1>
+            </div>
             <MobileText>
               Quando todas as figuras dos jogadores tiverem ativado, as
               criaturas não controladas começam a agir. Eleja um jogador para
@@ -94,13 +167,17 @@ function CombatSystemPage() {
               iniciativa das criaturas, controle‑as seguindo o algoritmo abaixo:
             </MobileText>
 
-            <HeaderH2>Algoritmo de Ações das Criaturas Neutras</HeaderH2>
+            <div id="algoritmo-criaturas">
+              <HeaderH2>Algoritmo de Ações das Criaturas Neutras</HeaderH2>
+            </div>
             <MobileText>
               Para cada criatura neutra, siga este algoritmo passo a passo para
               determinar suas ações:
             </MobileText>
 
-            <HeaderH3>Passo 1: A Criatura Está em Combate?</HeaderH3>
+            <div id="passo-1">
+              <HeaderH3>Passo 1: A Criatura Está em Combate?</HeaderH3>
+            </div>
             <MobileText>
               <strong>SIM:</strong> A criatura usará sua ação para lutar. Se
               vencer o combate, escolherá permanecer em combate. Se a criatura
@@ -111,7 +188,9 @@ function CombatSystemPage() {
               <strong>NÃO:</strong> Prossiga para o Passo 2.
             </MobileText>
 
-            <HeaderH3>Passo 2: Há um Membro do Bando à Vista?</HeaderH3>
+            <div id="passo-2">
+              <HeaderH3>Passo 2: Há um Membro do Bando à Vista?</HeaderH3>
+            </div>
             <MobileText>
               <strong>SIM:</strong> Se a criatura estiver armada com uma arma à
               distância e houver um membro do bando dentro do alcance, ela
@@ -126,7 +205,9 @@ function CombatSystemPage() {
               <strong>NÃO:</strong> Prossiga para o Passo 3.
             </MobileText>
 
-            <HeaderH3>Passo 3: Movimento Aleatório</HeaderH3>
+            <div id="passo-3">
+              <HeaderH3>Passo 3: Movimento Aleatório</HeaderH3>
+            </div>
             <MobileText>
               A criatura tomará uma ação para se mover. Determine uma direção
               aleatória e mova a criatura sua distância total de{" "}
@@ -149,7 +230,9 @@ function CombatSystemPage() {
               número.
             </WarningBox>
 
-            <HeaderH1>Fim do Turno — E Recomeça</HeaderH1>
+            <div id="fim-turno">
+              <HeaderH1>Fim do Turno — E Recomeça</HeaderH1>
+            </div>
             <MobileText>
               Após todos os jogadores ativarem suas figuras, as
               <strong> criaturas neutras</strong> (se houver) agem segundo suas
@@ -172,7 +255,9 @@ function CombatSystemPage() {
               </MobileText>
             </WarningBox>
 
-            <HeaderH1>Vigilância: a força da elite contra as hordas</HeaderH1>
+            <div id="vigilancia">
+              <HeaderH1>Vigilância: a força da elite contra as hordas</HeaderH1>
+            </div>
             <MobileText>
               Em Mordheim, alguns bandos tem muitos mais soldados que os outros.
               Em um sistema em que as ativações são alternadas, isso poderia
@@ -184,14 +269,30 @@ function CombatSystemPage() {
             <MobileText>
               Sempre que um jogador tiver ativado todas as suas figuras, para
               cada figura de outro jogador que ativar, ele ganha um{" "}
-              <strong>Marcador de Vigilância</strong>. Um Marcador de Vigilância
-              pode ser usado no final da ativação de uma figura inimiga, para
-              que a figura que usou faça uma única ação, que pode ser qualquer
-              uma. Uma figura só pode receber um marcador de vigilância por
-              turno.
+              <strong>Marcador de Vigilância</strong>. Um marcador de vígilia
+              pode ser usado de duas formas:
+              <ul>
+                <li>
+                  Consumir o marcador para fazer um ataque a distância em uma
+                  figura que se mova dentro de 15cm do usuário do marcador.
+                </li>
+                <li>
+                  Consumir o marcador para se mover até 8cm em direção a uma
+                  figura inimiga que se mova dentro de 8cm do usuário do
+                  marcador (pode forçar combate imediatemente depois).
+                </li>
+              </ul>
+            </MobileText>
+            <MobileText>
+              Narcadores de Vigília não são ganho em jogos com mais de 2
+              jogadores. Nesse tipo de jogo as interações entre os diferentes
+              jogadores e as possíveis alianças forjadas já podem compensar
+              adequadamente pela diferença de figuras.
             </MobileText>
 
-            <HeaderH1>As Ações</HeaderH1>
+            <div id="acoes">
+              <HeaderH1>As Ações</HeaderH1>
+            </div>
             <MobileText>
               Em Mordheim, cada momento conta. Cada decisão pode ser sua última.
               Quando uma figura é ativada, ela tem um breve lampejo de tempo
@@ -200,7 +301,9 @@ function CombatSystemPage() {
               feitos... ou enterrados.
             </MobileText>
 
-            <HeaderH2>A Regra das Duas Ações</HeaderH2>
+            <div id="regra-duas-acoes">
+              <HeaderH2>A Regra das Duas Ações</HeaderH2>
+            </div>
 
             <MobileText className="mb-3">
               Cada figura, exceto em situações especiais ditadas pelo destino ou
@@ -226,7 +329,9 @@ function CombatSystemPage() {
               obrigatório, antes ou depois de qualquer outra ação normal.
             </WarningBox>
 
-            <HeaderH2>Tipos de Ação</HeaderH2>
+            <div id="tipos-acao">
+              <HeaderH2>Tipos de Ação</HeaderH2>
+            </div>
             <MobileText variant="quote" className="mb-4">
               "Cada ação é uma aposta com a morte. Escolha sabiamente."
             </MobileText>
@@ -238,15 +343,15 @@ function CombatSystemPage() {
               aprender sobre cada tipo de ação em detalhes:
             </MobileText>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div className="space-y-4 mt-6">
               <a
                 href="/rules/movement-actions"
-                className="bg-[#1a1a1a] hover:bg-[#2a2a2a] border border-[#333] hover:border-[#555] rounded-lg p-4 transition-colors duration-200 group"
+                className="block w-full md:w-1/2 mx-auto bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 rounded-lg p-4 transition-colors duration-200 group text-center"
               >
-                <HeaderH3 className="text-white group-hover:text-[#8b7355] mb-2">
-                  Ações de Movimento
+                <HeaderH3 className="text-green-300 group-hover:text-green-200 mb-2 text-center">
+                  Movimento
                 </HeaderH3>
-                <MobileText className="text-sm">
+                <MobileText className="text-white text-sm text-center">
                   Caminhar, correr, escalar e outras formas de se deslocar pelo
                   campo de batalha.
                 </MobileText>
@@ -254,73 +359,76 @@ function CombatSystemPage() {
 
               <a
                 href="/rules/combat-actions"
-                className="bg-[#1a1a1a] hover:bg-[#2a2a2a] border border-[#333] hover:border-[#555] rounded-lg p-4 transition-colors duration-200 group"
+                className="block w-full md:w-1/2 mx-auto bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 rounded-lg p-4 transition-colors duration-200 group text-center"
               >
-                <HeaderH3 className="text-white group-hover:text-[#8b7355] mb-2">
-                  Ações de Combate
+                <HeaderH3 className="text-green-300 group-hover:text-green-200 mb-2 text-center">
+                  Combate
                 </HeaderH3>
-                <MobileText className="text-sm">
-                  Atacar, carregar, empurrar e outras ações de combate corpo a
-                  corpo.
+                <MobileText className="text-white text-sm text-center">
+                  Atacar, empurrar e outras ações de combate corpo a corpo.
                 </MobileText>
               </a>
 
               <a
                 href="/rules/ranged-actions"
-                className="bg-[#1a1a1a] hover:bg-[#2a2a2a] border border-[#333] hover:border-[#555] rounded-lg p-4 transition-colors duration-200 group"
+                className="block w-full md:w-1/2 mx-auto bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 rounded-lg p-4 transition-colors duration-200 group text-center"
               >
-                <HeaderH3 className="text-white group-hover:text-[#8b7355] mb-2">
-                  Ações à Distância
+                <HeaderH3 className="text-green-300 group-hover:text-green-200 mb-2 text-center">
+                  Ataque a Distância
                 </HeaderH3>
-                <MobileText className="text-sm">
+                <MobileText className="text-white text-sm text-center">
                   Atirar, mirar e outras ações com armas de longo alcance.
                 </MobileText>
               </a>
 
               <a
-                href="/rules/power-actions"
-                className="bg-[#1a1a1a] hover:bg-[#2a2a2a] border border-[#333] hover:border-[#555] rounded-lg p-4 transition-colors duration-200 group"
+                href="/rules/spellcasting-actions"
+                className="block w-full md:w-1/2 mx-auto bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 rounded-lg p-4 transition-colors duration-200 group text-center"
               >
-                <HeaderH3 className="text-white group-hover:text-[#8b7355] mb-2">
-                  Ações de Poder
+                <HeaderH3 className="text-green-300 group-hover:text-green-200 mb-2 text-center">
+                  Conjurar
                 </HeaderH3>
-                <MobileText className="text-sm">
-                  Conjurar magias, usar poderes especiais e habilidades únicas.
+                <MobileText className="text-white text-sm text-center">
+                  Conjurar magias e canalizar os ventos da magia.
+                </MobileText>
+              </a>
+
+              <a
+                href="/rules/power-actions"
+                className="block w-full md:w-1/2 mx-auto bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 rounded-lg p-4 transition-colors duration-200 group text-center"
+              >
+                <HeaderH3 className="text-green-300 group-hover:text-green-200 mb-2 text-center">
+                  Habilidades
+                </HeaderH3>
+                <MobileText className="text-white text-sm text-center">
+                  Usar habilidades especiais e poderes únicos.
+                </MobileText>
+              </a>
+
+              <a
+                href="/rules/wyrdstone-actions"
+                className="block w-full md:w-1/2 mx-auto bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 rounded-lg p-4 transition-colors duration-200 group text-center"
+              >
+                <HeaderH3 className="text-green-300 group-hover:text-green-200 mb-2 text-center">
+                  Pegar
+                </HeaderH3>
+                <MobileText className="text-white text-sm text-center">
+                  Pegar fragmentos de Pedra-bruxa e tesouros.
                 </MobileText>
               </a>
 
               <a
                 href="/rules/other-actions"
-                className="bg-[#1a1a1a] hover:bg-[#2a2a2a] border border-[#333] hover:border-[#555] rounded-lg p-4 transition-colors duration-200 group"
+                className="block w-full md:w-1/2 mx-auto bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 rounded-lg p-4 transition-colors duration-200 group text-center"
               >
-                <HeaderH3 className="text-white group-hover:text-[#8b7355] mb-2">
-                  Outras Ações
+                <HeaderH3 className="text-green-300 group-hover:text-green-200 mb-2 text-center">
+                  Outras
                 </HeaderH3>
-                <MobileText className="text-sm">
+                <MobileText className="text-white text-sm text-center">
                   Interagir com objetos, usar itens e outras ações especiais.
                 </MobileText>
               </a>
-
-              <a
-                href="/rules/post-game"
-                className="bg-[#1a1a1a] hover:bg-[#2a2a2a] border border-[#333] hover:border-[#555] rounded-lg p-4 transition-colors duration-200 group"
-              >
-                <HeaderH3 className="text-white group-hover:text-[#8b7355] mb-2">
-                  Pós-Jogo
-                </HeaderH3>
-                <MobileText className="text-sm">
-                  Resolução de ferimentos, experiência e desenvolvimento do
-                  bando.
-                </MobileText>
-              </a>
             </div>
-
-            <WarningBox title="Dica Estratégica" type="info">
-              A iniciativa é crucial em Mordheim. Habilidades que aumentam a
-              iniciativa, ou permitam uma ativação imediata são muito valiosas.
-              Use isso para cercar oponentes, tomar posições vantajosas ou
-              eliminar ameaças antes que elas possam agir.
-            </WarningBox>
           </MobileSection>
         </div>
       </div>

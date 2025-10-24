@@ -1,10 +1,7 @@
 import CollapsibleSection from "../../../components/CollapsibleSection";
 import MobileText from "../../../components/MobileText";
 
-
 const SpendingTreasureSection = () => {
- 
-
   return (
     <CollapsibleSection id="gastar-tesouro" title="6. Gastar Coroas">
       <MobileText className="mb-4">
@@ -160,16 +157,16 @@ const SpendingTreasureSection = () => {
       </MobileText>
 
       <MobileText className="mb-2">
-        O jogador pode comprar uma <strong>expansão de base</strong> por
-        sequência pós jogo. Apenas uma — construção leva tempo, mesmo em
-        Mordheim. Gaste as coroas, adicione a estrutura, ganhe os benefícios.
+        O jogador pode comprar uma <strong>expansão de base</strong> por Fase de
+        Campanha jogo. Apenas uma — construção leva tempo, mesmo em Mordheim.
+        Gaste as coroas, adicione a estrutura, ganhe os benefícios.
       </MobileText>
 
       <MobileText>
         <strong>Restrição de Mudança:</strong> Você{" "}
         <strong>não pode comprar uma expansão</strong> se tiver acabado de se
-        mudar para a base na sequência pós jogo. Mal desempacotou as malas e já
-        quer reformar? Paciência. Primeiro se estabeleça. Depois construa.
+        mudar para a base na Fase de Campanha. Mal desempacotou as malas e
+        já quer reformar? Paciência. Primeiro se estabeleça. Depois construa.
         Consulte as regras de Base e Melhorias para custos e benefícios
         específicos.
       </MobileText>

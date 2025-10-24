@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Cura de Hysh",
+    "castingNumber": 8,
+    "keywords": ["Alcance(15)"],
+    "effect": "Esta magia restaura até 5 pontos de Vida perdida para a criatura alvo. Esta magia não pode levar uma figura acima de seu Vigor inicial. Esta magia não tem efeito em mortos-vivos ou constructos - a luz não traz de volta o que já foi julgado."
+  },
+  {
+    "name": "Exorcismo",
+    "castingNumber": 8,
+    "keywords": ["Linha de Visão", "Exorcismo"],
+    "effect": "Uma criatura alvo com a característica Daemônio deve passar em um teste de Vontade imediata com CD igual à Rolagem de Conjuração. Se o daemônio falhar na rolagem e sua Vontade atual for +4 ou menos, a sentença é absoluta - ele é imediatamente reduzido a 0 Vigor e BANIDO do tabuleiro. Se sua Vontade atual for +5 ou maior, a luz ainda queima - ele sofre dano igual a três vezes a quantidade pela qual falhou na Rolagem de Vontade."
+  },
+  {
+    "name": "Olhos da Verdade",
+    "castingNumber": 10,
+    "keywords": ["Area de Efeito (Explosão Pequena)"],
+    "effect": "Centre a Área de Efeito no conjurador. Todas as figuras dentro da área de efeito ganham a característica Visão Verdadeira até o fim do jogo."
+  },
+  {
+    "name": "Olhar Radiante",
+    "castingNumber": 8,
+    "keywords": ["Linha de Visão"],
+    "effect": "O alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, a sentença é pronunciada até o fim do jogo: ele não pode atacar, atirar ou conjurar magias de Linha de Visão. Seu atributo de Ímpeto é reduzido a +0 e sua Agilidade a 2 - paralisia quase total. No fim de cada turno, a figura pode tentar outra Rolagem de Vontade com o mesmo Classe de Dificuldade, lutando para se libertar do julgamento. Se bem-sucedida, a magia é cancelada."
+  },
+  {
+    "name": "Manto Cintilante",
+    "castingNumber": 12,
+    "keywords": ["Linha de Visão"],
+    "effect": "Ataques a distância contra a criatura alvo sofrem -2 Precisão até o fim do jogo - olhos queimam ao tentar focar na silhueta envolta em luz incandescente."
+  },
+  {
+    "name": "Inspiração",
+    "castingNumber": 12,
+    "keywords": ["Linha de Visão"],
+    "effect": "O mago canaliza a luz da sabedoria pura diretamente na mente do alvo. É uma iluminação instantânea - CLAREZA absoluta que queima toda confusão, toda dúvida, toda manipulação. A mente se torna como cristal, transparente e inflexível. Tentativas de controle mental se despedaçam contra essa fortaleza de certeza. A vontade é FORJADA em luz incandescente, inquebrável e implacável. O alvo desta magia torna-se imune a magias com Psicologico no seu tipo de alvo - a mente iluminada não pode ser enganada. Quaisquer magias de Controle Mental atuais sobre a figura são QUEIMADAS e canceladas. A figura ganha +2 Vontade pelo resto do jogo - fortalecida pela luz da verdade."
+  },
+  {
+    "name": "Pilar da Luz Reveladora",
+    "castingNumber": 14,
+    "keywords": ["Alcance(50)", "Area de Efeito (Pilar Médio)"],
+    "effect": "Qualquer criatura dentro da área de efeito não se benefícia das palavras chave invisível e Furtividade(X) e Figuras Ilusórias são automaticamente removidas do jogo. Criaturas dentro da área de efeito não podem conjurar ou ativar magias ou poderes com a palavra chave Ilusão. Figuras tem +2 de precisão para fazer ataques a distância contra figuras dentro da área de efeito. No final de cada turno, role um dado. Em um 1-4 a área de efeito some e a magia é cancelada."
+  },
+  {
+    "name": "Expansão Luzidia",
+    "castingNumber": 1,
+    "keywords": ["Area de Efeito (Explosão Média)"],
+    "effect": "Centre a área de efeito no conjurador. Todas as figuras na área de efeito devem fazer um teste de Vontade com CD igual à Rolagem de Conjuração. Criaturas que falharem perdem 2 de Ímpeto e 2 de Precisão até o fim do jogo. No final de cada uma de suas ativações, elas podem repetir o teste de Vontade. Ao terem sucesso, o efeito da magia é cancelado."
+  },
+  {
+    "name": "Circulo da Iluminação",
+    "castingNumber": 8,
+    "keywords": ["Area de Efeito (Explosão Média)"],
+    "effect": "Centre a área de efeito no conjurador. Todas as figuras aliadas dentro da área de efeito são consideradas como se carregassem uma tocha até o fim do jogo."
+  },
+  {
+    "name": "Brilho Deslumbrante",
+    "castingNumber": 10,
+    "keywords": ["Área de Efeito (Zona Pequena)"],
+    "effect": "Centre e mova a área de efeito com o conjurador. Todas as figuras na área de efeito recebem -2 no Ímpeto."
+  },
+  {
+    "name": "Ritual do Exorcismo de Hysh",
+    "castingNumber": 10,
+    "keywords": ["Linha de Visão"],
+    "effect": "Todos os daemônios dentro da linha de visão do conjurador devem passar em uma Rolagem de Vontade imediata com Número Alvo igual à Rolagem de Conjuração. Se um daemônio falhar a rolagem e sua Vontade atual for +4 ou menos, ele é imediatamente reduzido a 0 Vigor e removido da mesa. Se sua Vontade atual for +5 ou maior, ele sofre dano igual a três vezes a quantidade pela qual falhou na Rolagem de Vontade."
+  }
+]

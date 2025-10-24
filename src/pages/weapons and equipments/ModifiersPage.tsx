@@ -4,10 +4,10 @@ import HeaderH1 from "../../components/HeaderH1";
 import EquipmentCard from "../../components/EquipmentCard";
 import meleeModifiersData from "./data/modificadores-de-arma-refactor.json";
 import rangedModifiersData from "./data/modificadores-de-arma-a-distancia-refactor.json";
-import armorModifiersData from "./data/modificadores-de-armadura.json";
+
 import firearmModifiersData from "./data/modificadores-de-armas-de-fogo-refactor.json";
-import headerImage from "../../assets/header-art/874ab363-3678-45ab-84a8-7ffd64527398.png";
-import MobileHeroHeader from "../../components/MobileHeroHeader";
+
+import PageTitle from "../../components/PageTitle";
 
 interface Modifier {
   roll?: string | null;
@@ -36,24 +36,17 @@ interface Modifier {
 export default function ModifiersPage() {
   const meleeModifiers = meleeModifiersData as Modifier[];
   const rangedModifiers = rangedModifiersData as Modifier[];
-  const armorModifiers = armorModifiersData as Modifier[];
+
   const firearmModifiers = firearmModifiersData as Modifier[];
 
-  const allModifiers = [
-    ...meleeModifiers,
-    ...rangedModifiers,
-    ...armorModifiers,
-    ...firearmModifiers,
-  ];
+
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <MobileHeroHeader
-        title="Modificadores de Equipamento"
-        imageUrl={headerImage}
-      />
+      
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <PageTitle>Modificadores de Equipamento</PageTitle>
           <MobileSection>
             <MobileText>
               Em Mordheim, onde cada vantagem pode significar a diferença entre
@@ -126,30 +119,7 @@ export default function ModifiersPage() {
               />
             ))}
 
-            <HeaderH1>Modificadores de Armaduras</HeaderH1>
-            <MobileText className="mb-4">
-              Aprimoramentos para armaduras, escudos e proteções.
-            </MobileText>
-
-            {armorModifiers.map((modifier, index) => (
-              <EquipmentCard
-                key={modifier.id || index}
-                name={modifier.name}
-                type={modifier.type}
-                damageModifier={modifier.damageModifier}
-                cost={modifier.purchaseCost}
-                spaces={modifier.slots}
-                description={modifier.flavorText ? [modifier.flavorText] : []}
-                exclusive={modifier.exclusive}
-                requirements={modifier.requirements}
-                specialRules={modifier.specialRules}
-                rarity={modifier.rarity}
-                availability={modifier.availability}
-                armorBonus={modifier.armorBonus}
-                movePenalty={modifier.movePenalty}
-                effect={modifier.effect}
-              />
-            ))}
+            
 
             <HeaderH1>Modificadores de Armas de Fogo</HeaderH1>
             <MobileText className="mb-4">

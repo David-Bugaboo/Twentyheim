@@ -1,11 +1,10 @@
 [
   {
-    "id": "asrai",
-    "name": "Asrai",
+    "id": "elfico",
+    "name": "Élfico",
     "type": "Modificador de Arma a Distancia",
     "availability": [
-      "Elfos Silvanos de Athel Loren",
-      "Guarda Marítima de Ulthuan"
+     "Todos"
     ],
     "rarity": 20,
     "damageModifier": null,

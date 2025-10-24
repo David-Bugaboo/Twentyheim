@@ -22,7 +22,6 @@ const MobileText: React.FC<MobileTextProps> = ({
   children,
   className = "",
   variant = "body",
-  style = {},
 }) => {
   const baseClasses = "text-white";
 

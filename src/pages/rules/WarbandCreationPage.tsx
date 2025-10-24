@@ -5,14 +5,28 @@ import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
 import WarningBox from "../../components/WarningBox";
 import HeaderH3 from "../../components/HeaderH3";
+import QuickNavigation from "../../components/QuickNavigation";
 
 function WarbandCreationPage() {
+  const navigationSections = [
+    { id: "intro", title: "Montando Bando", level: 0 },
+    { id: "montando-bando", title: "Montando o Bando", level: 0 },
+    { id: "passo-1", title: "1) Escolha sua facção", level: 1 },
+    { id: "passo-2", title: "3) Contratando Figuras", level: 1 },
+    { id: "passo-4", title: "4) Equipando o Bando", level: 1 },
+    { id: "onde-comprar", title: "Onde Comprar Equipamentos", level: 1 },
+    { id: "dicas-equipamento", title: "Dicas de Equipamento", level: 1 },
+  ];
+
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
           <MobileSection>
-            <PageTitle>Montando Bando</PageTitle>
+            <div id="intro">
+              <PageTitle>Montando Bando</PageTitle>
+            </div>
 
             <MobileText>
               Então você deseja liderar almas condenadas pelas ruínas de
@@ -39,7 +53,9 @@ function WarbandCreationPage() {
               entre vitórias e cicatrizes, que as lendas nascem.
             </WarningBox>
 
-            <HeaderH1>Montando o Bando</HeaderH1>
+            <div id="montando-bando">
+              <HeaderH1>Montando o Bando</HeaderH1>
+            </div>
             <MobileText>
               Cada jogador que jogará uma partida isolada, ou uma campanha, tem
               <strong>500 coroas de ouro</strong> para contratar e equipar seus
@@ -50,69 +66,48 @@ function WarbandCreationPage() {
               passos abaixo para ir criando sua tropa de desgarrados.
             </MobileText>
 
-            <HeaderH2>1) Escolha sua facção</HeaderH2>
+            <div id="passo-1">
+              <HeaderH2>1) Escolha sua facção</HeaderH2>
+            </div>
             <MobileText>
-              Escolha uma dentre as 14 facções disponíveis no jogo. Ela ditará
+              Escolha uma dentre as facções disponíveis no jogo. Ela ditará
               quais figuras voce pode contratar para o seu bando, e quais
               equipamentos estarão disponíveis para ele, além de determinar o
               motivo narrativo para que o bando esteja em Mordheim.
             </MobileText>
 
-            <HeaderH2>2) O Héroi</HeaderH2>
+            <div id="passo-2">
+              <HeaderH2>3) Contratando Figuras</HeaderH2>
+            </div>
             <MobileText>
-              Todo bando precisa de um líder, o primeiro a enfrentar o perigo e,
-              muitas vezes, o último a cair, liderando seus soldados junto a si.
-              Cada facção tem uma figura que é determinada como o Héroi do
-              bando, especificado em sua ficha. e ela é a primeira figura que
-              deve ser adicionada ao bando. Os hérois não tem custo para serem
-              contratados, e sempre são adicionados automaticamente no bando.
+              Compre hérois e soldados seguindo as regras estabelecidas na seção
+              Estrutura do Bando de cada facção. Escolha quaisquer magias,
+              habilidades mutações, marcas sagradas e outros benefícios
+              disponíveis para cada figura. Pague o custo em coroas de cada
+              modelo.
             </MobileText>
 
-            <HeaderH2>3) O Campeão </HeaderH2>
+            <div id="passo-4">
+              <HeaderH2>4) Equipando o Bando</HeaderH2>
+            </div>
             <MobileText>
-              Tecnicamente opcional; praticamente essencial. Um campeão é seu
-              braço direito e pode ativar soldados junto consigo assim como
-              hérois, transformando desordem em força coordenada.
+              Após contratar todas= as figuras do seu bando, é hora de
+              equipá-los adequadamente. Cada figura precisa de armas, armaduras
+              e acessórios para sobreviver às ruínas de Mordheim. Use o ouro
+              restante para comprar equipamentos para cada membro do seu bando,
+              podendo comprar quaisquer itens disponíveis para cada personagem
+              de acordo com sua tabela de equipamento. Figuras tem 5 espaços de
+              equipamento para carregar, ou 6 no caos de figuras Grandes.
             </MobileText>
 
-            <HeaderH3>Custo</HeaderH3>
-            <MobileText>
-              pague o custo em coroas indicado na ficha do campeão.
-            </MobileText>
-
-            <HeaderH2>Poderes, Magias e Outros</HeaderH2>
-            <MobileText>
-              Campeões e heróis costumam ser ativadores de poderes ou
-              conjuradores. Cada ficha de figura diz quantos poderes ou magias
-              de de quais listas ela pode escolher. Faça essas escolhas para
-              ambas as figuras e proceda para contratar soldados.
-            </MobileText>
-
-            <HeaderH2>3) Os Soldados — Carne para o Moedor</HeaderH2>
-            <MobileText>
-              Recrute até <strong>8 soldados</strong> com o ouro restante.
-              Alguns são veteranos, outros mal seguram uma lâmina sem se ferir.
-              Cada soldado indica em sua ficha a quantidade máxima que pode
-              existir no bando.
-            </MobileText>
-
-            <HeaderH2>Custos</HeaderH2>
-            <MobileText>Pague o custo indicado na ficha do soldado.</MobileText>
-
-            <HeaderH2>4) Equipando o Bando</HeaderH2>
-            <MobileText>
-              Após contratar todas as figuras do seu bando, é hora de equipá-las
-              adequadamente. Cada figura precisa de armas, armaduras e
-              acessórios para sobreviver às ruínas de Mordheim. Use o ouro
-              restante para comprar equipamentos para cada membro do seu bando.
-            </MobileText>
-
-            <HeaderH3>Onde Comprar Equipamentos</HeaderH3>
+            <div id="onde-comprar">
+              <HeaderH3>Onde Comprar Equipamentos</HeaderH3>
+            </div>
             <MobileText>
               • <strong>Regras de Equipamento:</strong> Consulte a seção{" "}
               <a
                 href="/rules/equipment-rules"
-                className="text-blue-400 underline"
+                className="text-green-300 hover:text-green-200 underline hover:no-underline transition-colors duration-200"
               >
                 Regras de Equipamento
               </a>{" "}
@@ -120,21 +115,18 @@ function WarbandCreationPage() {
               e limitações.
               <br />• <strong>Lista de Itens:</strong> Veja a lista completa com
               custos e estatísticas em{" "}
-              <a href="/items/common-items" className="text-blue-400 underline">
+              <a
+                href="/items/common-items"
+                className="text-green-300 hover:text-green-200 underline hover:no-underline transition-colors duration-200"
+              >
                 Itens Comuns
               </a>
               .
             </MobileText>
 
-            <HeaderH3>Restrições de Compra</HeaderH3>
-            <MobileText>
-              <strong>Apenas itens comuns podem ser comprados</strong> durante a
-              criação inicial do bando. Itens raros, mágicos e relíquias só
-              estarão disponíveis durante campanhas, através de descobertas ou
-              comércio especializado nas ruínas de Mordheim.
-            </MobileText>
-
-            <HeaderH3>Dicas de Equipamento</HeaderH3>
+            <div id="dicas-equipamento">
+              <HeaderH3>Dicas de Equipamento</HeaderH3>
+            </div>
             <MobileText>
               • <strong>Armas corpo a corpo:</strong> Dê a cada figura uma arma
               adequada ao seu papel no bando
@@ -144,42 +136,6 @@ function WarbandCreationPage() {
               valiosos com armaduras adequadas
               <br />• <strong>Acessórios:</strong> Tochas, aljavas e outros
               equipamentos podem ser cruciais para a sobrevivência
-            </MobileText>
-
-            <WarningBox title="Dicas para Novos Capitães" type="info">
-                • <strong>Diversifique:</strong> Tenha figuras para combate
-                corpo a corpo e à distância
-                <br />• <strong>Mantenha reservas:</strong> Guarde algumas
-                coroas para equipar seu bando.
-                <br />• <strong>Soldados especializados:</strong> Figuras que
-                consigam ocupar funções estratégicas bem definidas como ataque a
-                distância, suporte mágico, batedores e etcetera.
-                <br />• <strong>Comece simples:</strong> Não complique demais na
-                primeira vez.
-                <br />• <strong>Teste o básico:</strong> Aprenda as mecânicas
-                antes de estratégias avançadas.
-                <br />• <strong>Mantenha registros:</strong> Anote todo o
-                possível se preferir não usar nosso construtor de bando. O
-                importante é que voce se sinta confortável com o jogo e as
-                regras.
-                <br />• <strong>Comece simples:</strong> Não complique demais na
-                primeira vez.
-                <br />• <strong>Teste o básico:</strong> Aprenda as mecânicas
-                antes de estratégias avançadas.
-                <br />• <strong>Mantenha registros:</strong> Anote todo o
-                possível se preferir não usar nosso construtor de bando. O
-                importante é que voce se sinta confortável com o jogo e as
-                regras.
-              
-            </WarningBox>
-            <MobileText
-              variant="quote"
-              className="text-center text-lg leading-relaxed mt-8"
-            >
-              Com as tropas contratadas, o bando entra nos mercados sujos e
-              indignos de Mordheim buscando equipamentos para comprar. Vá para a
-              seção de <a href="rules/equipment-rules">Equipamentos</a> para ver
-              as regras de equipamento.
             </MobileText>
           </MobileSection>
         </div>

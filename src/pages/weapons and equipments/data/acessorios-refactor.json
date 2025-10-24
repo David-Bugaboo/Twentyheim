@@ -47,7 +47,7 @@
     "damageModifier": null,
     "purchaseCost": "10 coroas",
     "exclusive": null,
-    "flavorText": "Pólvora - o ingrediente que transforma ferro morto em trovão vivo. Acessório necessário para armas de fogo. Contém a pólvora necessária para recarregar e disparar mosquetes, pistolas e bacarmartes. Ocupa um espaço de item.\n\nSem pólvora, uma arma de fogo é apenas metal caro e inútil - um porrete pior que um pedaço de pau. Mantenha sua pólvora seca - molhada, ela não vale nada. Exposta a faíscas ou chamas, ela explode e mata você antes dos inimigos. Cada veterano com armas de fogo tem histórias de tolos que aprenderam essa lição tarde demais.",
+    "flavorText": "Pólvora - o ingrediente que transforma ferro morto em trovão vivo. Acessório necessário para armas de fogo. Contém a pólvora necessária para recarregar e disparar mosquetes, pistolas e bacarmartes. Ocupa um espaço de item.\n\nSem pólvora, uma arma de fogo é apenas metal caro e inútil - um Maça pior que um pedaço de pau. Mantenha sua pólvora seca - molhada, ela não vale nada. Exposta a faíscas ou chamas, ela explode e mata você antes dos inimigos. Cada veterano com armas de fogo tem histórias de tolos que aprenderam essa lição tarde demais.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -220,7 +220,7 @@
     "specialRules": [
       {
         "label": "Flecha Envenenanda",
-        "value": "Um ataque feito usando uma flecha envenenada tem a característica Venenoso."
+        "value": "Um ataque feito usando uma flecha envenenada tem a palavra-chave Tóxica."
       }
     ]
   },
@@ -258,8 +258,6 @@
       "NMercenários",
       "Caçadores de Bruxas",
       "Caçadores de Tesouro Anões",
-      "Elfos Silvanos de Athel Loren",
-      "Guarda Marítima de Ulthuan",
       "Irmãs de Sigmar"
     ],
     "rarity": 14,
@@ -301,7 +299,7 @@
     "specialRules": [
       {
         "label": "Banir o mal",
-        "value": "Uma figura pode fazer um ataque a distância sagrado contra um inimigo morto-vivo, ou daemônio a até 12cm de distância. O ataque tem modificador de dano +2. O ataque a distância segue as regras normais de uma ação de ataque a distância."
+        "value": "Uma figura pode fazer um ataque a distância sagrado contra um inimigo Morto-Vivo, ou daemônio a até 12cm de distância. O ataque tem modificador de dano +2. O ataque a distância segue as regras normais de uma ação de ataque a distância."
       }
     ]
   },
@@ -373,7 +371,7 @@
     "specialRules": [
       {
         "label": "Cerveja de Batalha",
-        "value": "Um bando que bebe um barril da Cerveja de Bugman durante a fase de atividades da sequência pós jogo será Imune a Aterrorizante durante o próximo jogo. Elfos não podem beber a Cerveja de Bugman, pois são muito delicados para lidar com seus efeitos. Há cerveja suficiente para suprir o bando por uma batalha."
+        "value": "Um bando que bebe um barril da Cerveja de Bugman durante a fase de atividades da Fase de Campanha será Imune a Aterrorizante durante o próximo jogo. Elfos não podem beber a Cerveja de Bugman, pois são muito delicados para lidar com seus efeitos. Há cerveja suficiente para suprir o bando por uma batalha."
       }
     ]
   },
@@ -600,8 +598,6 @@
     "type": "Bebida Alcóolica",
     "damageModifier": null,
     "availability": [
-      "Elfos Silvanos de Athel Loren",
-      "Guarda Marítima de Ulthuan",
       "Elfos Sombrios"
     ],
     "rarity": 10,
@@ -617,7 +613,7 @@
     "specialRules": [
       {
         "label": "Vinho de Batalha",
-        "value": "Um bando que bebe Vinho Élfico durante a fase de atividades da sequência pós jogo será Imune a Aterrorizante por toda o próximo jogo que jogar."
+        "value": "Um bando que bebe Vinho Élfico durante a fase de atividades da Fase de Campanha será Imune a Aterrorizante por toda o próximo jogo que jogar."
       }
     ]
   },
@@ -1179,14 +1175,14 @@
   {
     "roll": null,
     "id": "manto-do-dragao-marinho",
-    "name": "Manto do Dragão Marinho",
+    "name": "Manto de Dragão Marinho",
     "type": "Manto",
     "damageModifier": null,
-    "availability": ["Elfos Sombrios", "Guarda Marítima de Ulthuan"],
+    "availability": ["Elfos Sombrios"],
     "rarity": 16,
     "purchaseCost": "60 coroas",
     "exclusive": null,
-    "flavorText": "Corsários Elfos Sombrios e Guardas Marinhos de Ulthuan usam mantos especiais feitos de Monstros Marinhos que habitam as profundezas dos oceanos. Estes mantos são resistentes e oferecem aos Elfos uma quantidade muito boa de proteção.",
+    "flavorText": "Corsários Elfos Sombrios usam mantos especiais feitos de Monstros Marinhos que habitam as profundezas dos oceanos. Estes mantos são resistentes e oferecem aos Elfos uma quantidade muito boa de proteção.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -1226,15 +1222,15 @@
   },
   {
     "roll": null,
-    "id": "aguilhão-de-pe-duro",
-    "name": "Aguilhão de Pé Duro",
+    "id": "espetador-de-pe-duro",
+    "name": "Espetador de Pé Duro",
     "type": "Ferramenta",
     "damageModifier": null,
     "availability": ["Hordas Orc"],
     "rarity": 1,
     "purchaseCost": "15 coroas",
     "exclusive": null,
-    "flavorText": "Este item é uma haste longa com um trio de espinhos na ponta. É usado por pastores de Pé-Duro para manter seu gado na linha. Pés-Duros da cavernas reconhecerão um aguilhão e automaticamente obedecerão ao portador, lembrando a dor de serem furados pelo aguilhão.",
+    "flavorText": "Este item é uma haste longa com um trio de espinhos na ponta. É usado por pastores de Pé-Duro para manter seu gado na linha. Pés-Duros da cavernas reconhecerão um espetador e automaticamente obedecerão ao gobbo em posse dele, lembrando a dor de serem furados pelo espetador.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -1244,7 +1240,7 @@
     "specialRules": [
       {
         "label": "Controle de Squig",
-        "value": "Um Goblin com um aguilhão de squig pode manter todos os Cave Squigs dentro de 12\" de ficarem selvagens, ao invés dos normais 6\". Além disso, um aguilhão de squig é tratado exatamente como uma lança em combate corpo a corpo."
+        "value": "Um Goblin com um espetador de pé duro pode manter todos os Pés Duros das Grutas dentro de 15cm controlados, ao invés dos 8cm normais. Além disso, um espetador de pé-duro é tratado exatamente como uma lança em combate corpo a corpo."
       }
     ]
   },
@@ -1446,9 +1442,7 @@
     "name": "Manto do Lobo",
     "type": "Manto",
     "damageModifier": null,
-    "availability": [
-      "Mercenários(Middenheim)"
-    ],
+    "availability": ["Mercenários(Middenheim)"],
     "rarity": 0,
     "purchaseCost": "10 coroas",
     "exclusive": null,

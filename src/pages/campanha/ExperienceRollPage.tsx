@@ -4,15 +4,176 @@ import MobileSection from "../../components/MobileSection";
 import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
 import HeaderH3 from "../../components/HeaderH3";
-import HeaderH4 from "../../components/HeaderH4";
+
 import WarningBox from "../../components/WarningBox";
 import GenericTable from "../../components/GenericTable";
-import CornerDecoration from "../../components/CornerDecoration";
+
 
 function ExperienceRollPage() {
+  const raceLimits = [
+    {
+      Raça: "Humanos",
+      Mov: "16",
+      Imp: "6",
+      Prec: "6",
+      Vont: "9",
+      Vida: "24",
+    },
+    {
+      Raça: "Elfo",
+      Mov: "20",
+      Imp: "7",
+      Prec: "7",
+      Vont: "10",
+      Vida: "22",
+    },
+    {
+      Raça: "Anão",
+      Mov: "10",
+      Imp: "7",
+      Prec: "6",
+      Vont: "10",
+      Vida: "24",
+    },
+    {
+      Raça: "Ogro",
+      Mov: "16",
+      Imp: "6",
+      Prec: "5",
+      Vont: "9",
+      Vida: "30",
+    },
+    {
+      Raça: "Nanico",
+      Mov: "18",
+      Imp: "5",
+      Prec: "7",
+      Vont: "10",
+      Vida: "24",
+    },
+    {
+      Raça: "Possuído",
+      Mov: "24",
+      Imp: "8",
+      Prec: "0",
+      Vont: "10",
+      Vida: "26",
+    },
+    {
+      Raça: "Vampiro",
+      Mov: "24",
+      Imp: "8",
+      Prec: "6",
+      Vont: "10",
+      Vida: "26",
+    },
+    {
+      Raça: "Skaven",
+      Mov: "24",
+      Imp: "6",
+      Prec: "6",
+      Vont: "7",
+      Vida: "20",
+    },
+    {
+      Raça: "Carniçal",
+      Mov: "16",
+      Imp: "5",
+      Prec: "2",
+      Vont: "7",
+      Vida: "24",
+    },
+    {
+      Raça: "Saurídeo",
+      Mov: "16",
+      Imp: "6",
+      Prec: "0",
+      Vont: "10",
+      Vida: "24",
+    },
+    {
+      Raça: "Gecko",
+      Mov: "24",
+      Imp: "5",
+      Prec: "6",
+      Vont: "8",
+      Vida: "24",
+    },
+    {
+      Raça: "Goblin",
+      Mov: "16",
+      Imp: "5",
+      Prec: "6",
+      Vont: "7",
+      Vida: "18",
+    },
+    {
+      Raça: "Orc",
+      Mov: "16",
+      Imp: "6",
+      Prec: "6",
+      Vont: "9",
+      Vida: "24",
+    },
+    {
+      Raça: "Black Orc",
+      Mov: "16",
+      Imp: "7",
+      Prec: "6",
+      Vont: "9",
+      Vida: "24",
+    },
+    {
+      Raça: "Orc",
+      Mov: "16",
+      Imp: "7",
+      Prec: "3",
+      Vont: "9",
+      Vida: "24",
+    },
+    {
+      Raça: "Centouro de Hashut",
+      Mov: "30",
+      Imp: "7",
+      Prec: "6",
+      Vont: "9",
+      Vida: "26",
+    },
+    {
+      Raça: "Ungor",
+      Mov: "20",
+      Imp: "6",
+      Prec: "6",
+      Vont: "7",
+      Vida: "20",
+    },
+    {
+      Raça: "Centigor",
+      Mov: "30",
+      Imp: "7",
+      Prec: "6",
+      Vont: "9",
+      Vida: "26",
+    },
+    {
+      Raça: "Gors",
+      Mov: "30",
+      Imp: "7",
+      Prec: "6",
+      Vont: "9",
+      Vida: "26",
+    },
+    {
+      Raça: "Minotaur",
+      Mov: "16",
+      Imp: "7",
+      Prec: "6",
+      Vont: "9",
+      Vida: "26",
+    },
+  ];
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <CornerDecoration />
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <MobileSection>
@@ -24,9 +185,9 @@ function ExperienceRollPage() {
               para melhorar suas habilidades e capacidades.
             </MobileText>
 
-            <HeaderH1>Experiência de Heróis</HeaderH1>
+            <HeaderH1>Experiência de Líderes</HeaderH1>
             <MobileText>
-              Heróis ganham experiência em um ritmo elevado, e tem um potencial
+              Líderes ganham experiência em um ritmo elevado, e tem um potencial
               imenso, podendo subir até o nível 40.
             </MobileText>
             <MobileText>
@@ -50,9 +211,9 @@ function ExperienceRollPage() {
               +10XP pontos
             </MobileText>
 
-            <HeaderH1>Experiência de Campeões</HeaderH1>
+            <HeaderH1>Experiência de Hérois</HeaderH1>
             <MobileText>
-              Campeões ganham experiência de forma similar aos heróis, mas de
+              Hérois ganham experiência de forma similar aos líderes, mas de
               forma um pouco mais lenta. Eles só podem subir até o nivel 20.
             </MobileText>
             <MobileText>
@@ -62,8 +223,7 @@ function ExperienceRollPage() {
               POR MAGIA ATÉ UM LIMITE DE 50XP
               <br />•{" "}
               <strong>
-                Cada fragmento de pedra-bruxa capturada pelo campeão ou seu
-                bando:
+                Cada fragmento de pedra-bruxa capturada pelo héroi ou seu bando:
               </strong>{" "}
               +20XP pontos para cada fragmento capturado
               <br />•{" "}
@@ -149,7 +309,7 @@ function ExperienceRollPage() {
                 { "Rolagem de Dado": "15-16", Resultado: "+1 Vontade" },
                 {
                   "Rolagem de Dado": "17-20",
-                  Resultado: "O rapaz tem talento!",
+                  Resultado: "O Moleque tem Talento!",
                 },
               ]}
               scrollable={false}
@@ -160,8 +320,12 @@ function ExperienceRollPage() {
               Aumente seu atributo indicado no valor indicado. Note que cada
               raça tem limites de aumento de atributo que devem ser respeitados.
               Caso uma figura role em um atributo que já tenha chegado ao limite
-              racial, rerole o resultado.
+              racial, rerole o resultado. Soldados só podem aumentar cada
+              atributo uma unica vez.
             </MobileText>
+
+            <HeaderH3>Limites Raciais de Atributos</HeaderH3>
+            <GenericTable data={raceLimits} scrollable={true} />
 
             <HeaderH2>Aprender nova Magia</HeaderH2>
             <MobileText>
@@ -175,99 +339,31 @@ function ExperienceRollPage() {
             <MobileText>
               Diminua o CD de uma das magias aprendidas pelo conjurador em 1. O
               conjurador não pode melhorar o CD de uma magia que aprendeu nessa
-              mesma sequência pós-jogo.
+              mesma Fase de Campanha-jogo.
             </MobileText>
 
-            <HeaderH2>Aprender novo Poder</HeaderH2>
+            <HeaderH2>Aprender nova Habilidade</HeaderH2>
             <MobileText>
-              Aprenda um novo poder da lista de poderes da figura. O poder é
-              aprendido com CD 7.
+              Aprenda uma nova habilidade dentre as listas de habilidades da
+              figura. O poder é aprendido com CD 7.
             </MobileText>
 
             <HeaderH2>Melhorar CD de Poder</HeaderH2>
             <MobileText>
-              Diminua o CD de um dos poderes aprendidos pela figura. O
-              conjurador não pode melhorar o CD de um poder que aprendeu nessa
-              mesma sequência pós-jogo.
+              Diminua o CD de uma das habilidades aprendidos pela figura. O
+              conjurador não pode melhorar o CD de uma habilidade que aprendeu
+              nessa mesma Fase de Campanha-jogo.
             </MobileText>
 
             <HeaderH2>O Rapaz tem Talento!</HeaderH2>
             <MobileText>
-              O soldado aprende uma Maestria de Combate! Embora não tenham
-              rolagem de ativação, custos ou gasto de vida, eles só podem ser
-              usados uma vez por jogo.
+              O soldado se torna um héroi! Ele continua usando sua mesma ficha e
+              continua sendo o que era antes (um Barba Curta continua sendo um
+              Barba Curta), mas agora pode fazer todas as atividades que um
+              héroi pode e ganhar experiência como héroi. Escolha duas listas de
+              habilidades entre as que hérois do bando tem acesso e ganhe 1
+              poder dentre elas, com Classe de Dificuldade 7.
             </MobileText>
-
-            <HeaderH2>Tabela de Maestrias de Combate</HeaderH2>
-            <GenericTable
-              data={[
-                {
-                  Maestria: "Maestria da Fúria",
-                  Efeito: "+3 Ímpeto para um ataque",
-                  "Quando Declarar":
-                    "Antes das rolagens serem feitas serem feitas em uma luta",
-                },
-                {
-                  Maestria: "Maestria de Ripostar",
-                  Efeito: "+1 Ímpeto para um ataque",
-                  "Quando Declarar":
-                    "Depois das rolagens serem feitas em uma luta.",
-                },
-                {
-                  Maestria: "Maestria do Carrasco",
-                  Efeito:
-                    "+2 Dano para qualquer ataque corpo a corpo que causou pelo menos 1 ponto de dano",
-                  "Quando Declarar":
-                    "Depois do dano de um ataque corpo a corpo ser calculado",
-                },
-                {
-                  Maestria: "Maestria do Sentinela",
-                  Efeito: "+3 Precisão para um ataque",
-                  "Quando Declarar":
-                    "Antes das rolagens de ataque a distância serem feitas",
-                },
-                {
-                  Maestria: "Maestria do Caçador",
-                  Efeito: "+1 Precisão para um ataque",
-                  "Quando Declarar":
-                    "Depois das rolagens de ataque a distância serem feitas",
-                },
-                {
-                  Maestria: "Maestria do Lanceiro",
-                  Efeito: "+3 Armadura para um ataque",
-                  "Quando Declarar":
-                    "Antes das rolagens de ataque corpo a corpo serem feitas",
-                },
-                {
-                  Maestria: "Maestria da Esquiva",
-                  Efeito: "+1 Armadura para um ataque",
-                  "Quando Declarar":
-                    "Depois das rolagens de ataque corpo a corpo serem feitas",
-                },
-                {
-                  Maestria: "Maestria da Coragem",
-                  Efeito: "+4 Vontade para uma rolagem de Vontade",
-                  "Quando Declarar": "Antes da rolagem de Vontade ser feita",
-                },
-                {
-                  Maestria: "Maestria da Frieza",
-                  Efeito: "+2 Vontade para uma rolagem de Vontade",
-                  "Quando Declarar": "Depois da rolagem de Vontade ser feita",
-                },
-                {
-                  Maestria: "Maestria do Batedor",
-                  Efeito: "+4 Movimento pelo resto do turno",
-                  "Quando Declarar": "Na ativação do soldado.",
-                },
-                {
-                  Maestria: "Maestria do Tenente",
-                  Efeito:
-                    "Pode ativar até 3 soldados a 8cm junto a si, como um Héroi ou Campeão. Pode declarar ativações em grupo.",
-                  "Quando Declarar": "Na ativação do soldado.",
-                },
-              ]}
-              scrollable={false}
-            />
           </MobileSection>
         </div>
       </div>

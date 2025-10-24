@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import MobileText from "./MobileText";
 
 interface EquipmentCardProps {
   name: string | null;
@@ -41,31 +42,10 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
   effect,
   specialRules = [],
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768); // md breakpoint
-    };
-
-    checkIsMobile();
-    window.addEventListener("resize", checkIsMobile);
-
-    return () => window.removeEventListener("resize", checkIsMobile);
-  }, []);
-
-  useEffect(() => {
-    setIsExpanded(!isMobile); // Colapsado no mobile, aberto no desktop
-  }, [isMobile]);
-
   return (
     <div className="bg-[#1a1a1a] text-white mb-4 border border-gray-700 rounded-lg overflow-hidden">
-      {/* Collapsible Header */}
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full p-6 text-left hover:bg-[#2a2a2a] transition-colors duration-200 flex justify-between items-center"
-      >
+      {/* Header */}
+      <div className="w-full p-6">
         <h3
           className="text-2xl font-bold"
           style={{
@@ -75,117 +55,116 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
         >
           {name}
         </h3>
-        <span className="text-gray-400 text-2xl">{isExpanded ? "−" : "+"}</span>
-      </button>
+      </div>
 
-      {/* Collapsible Content */}
-      {isExpanded && (
-        <div className="px-6 pt-6 pb-6 border-t border-gray-600">
-          {description && description.length > 0 && (
-            <div className="mb-4">
-              {description?.map((paragraph, index) => (
-                <p
-                  key={index}
-                  className="italic text-gray-300 mb-2 leading-relaxed"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          )}
-
-          {/* General Information */}
+      {/* Content */}
+      <div className="px-6 pt-6 pb-6 border-t border-gray-600">
+        {description && description.length > 0 && (
           <div className="mb-4">
+            {description?.map((paragraph, index) => (
+              <MobileText
+                key={index}
+                className="italic text-gray-300 mb-2 leading-relaxed"
+              >
+                {paragraph}
+              </MobileText>
+            ))}
+          </div>
+        )}
+
+        {/* General Information */}
+        <div className="mb-4">
+          <div className="mb-2">
+            <span className="font-bold">Custo: </span>
+            <span style={{ color: "#8fbc8f" }}>{cost}</span>
+          </div>
+          {rarity && (
             <div className="mb-2">
-              <span className="font-bold">Custo: </span>
-              <span style={{ color: "#8fbc8f" }}>{cost}</span>
-            </div>
-            {rarity && rarity > 1 && (
-              <div className="mb-2">
-                <span className="font-bold">Raridade: </span>
-                <span style={{ color: "#ffa500" }}>{rarity}</span>
-              </div>
-            )}
-            <div className="mb-2">
-              <span className="font-bold">Disponibilidade: </span>
-              <span>
-                {availability ? availability.join(", ") : exclusive || "Comum"}
+              <span className="font-bold">Raridade: </span>
+              <span style={{ color: "#ffa500" }}>
+                {rarity === 1 ? "Comum" : rarity}
               </span>
             </div>
+          )}
+          <div className="mb-2">
+            <span className="font-bold">Disponibilidade: </span>
+            <span>
+              {availability ? availability.join(", ") : exclusive || "Comum"}
+            </span>
+          </div>
+          <div className="mb-2">
+            <span className="font-bold">Espaços de Equipamento: </span>
+            <span>{spaces}</span>
+          </div>
+        </div>
+
+        {/* Description */}
+
+        {/* Statistics */}
+        <div className="mb-4">
+          {maxRange && (
             <div className="mb-2">
-              <span className="font-bold">Espaços de Equipamento: </span>
-              <span>{spaces}</span>
+              <span className="font-bold">Alcance: </span>
+              <span>{maxRange || "Corpo a Corpo"}</span>
             </div>
-          </div>
-
-          {/* Description */}
-
-          {/* Statistics */}
-          <div className="mb-4">
-            {maxRange && (
-              <div className="mb-2">
-                <span className="font-bold">Alcance: </span>
-                <span>{maxRange || "Corpo a Corpo"}</span>
-              </div>
-            )}
-            {damageModifier && (
-              <div className="mb-2">
-                <span className="font-bold">Modificador de Dano: </span>
-                <span>{damageModifier}</span>
-              </div>
-            )}
-            {armorBonus && (
-              <div className="mb-2">
-                <span className="font-bold">Bônus de Armadura: </span>
-                <span style={{ color: "#8fbc8f" }}>{armorBonus}</span>
-              </div>
-            )}
-            {movePenalty && (
-              <div className="mb-2">
-                <span className="font-bold">Penalidade de Movimento: </span>
-                <span style={{ color: "#ff6b6b" }}>{movePenalty}</span>
-              </div>
-            )}
-            {strength && (
-              <div className="mb-2">
-                <span className="font-bold">Requisito de Força: </span>
-                <span>{strength}</span>
-              </div>
-            )}
-            {requirements && (
-              <div className="mb-2">
-                <span className="font-bold">Requisitos: </span>
-                <span style={{ color: "#ffa500" }}>{requirements}</span>
-              </div>
-            )}
-            {effect && (
-              <div className="mb-2">
-                <span className="font-bold">Efeito: </span>
-                <span style={{ color: "#ffa500" }}>{effect}</span>
-              </div>
-            )}
-            {type && (
-              <div className="mb-2">
-                <span className="font-bold">Tipo: </span>
-                <span style={{ color: "#8fbc8f" }}>{type}</span>
-              </div>
-            )}
-          </div>
-
-          {/* Special Rules */}
-          {specialRules && specialRules.length > 0 && (
-            <div>
-              <h4 className="font-bold text-lg mb-1">REGRAS ESPECIAIS</h4>
-              {specialRules?.map((rule, index) => (
-                <div key={index} className="mb-2">
-                  <span className="font-bold">{rule.label}: </span>
-                  <span className="text-gray-300">{rule.value}</span>
-                </div>
-              ))}
+          )}
+          {damageModifier && (
+            <div className="mb-2">
+              <span className="font-bold">Modificador de Dano: </span>
+              <span>{damageModifier}</span>
+            </div>
+          )}
+          {armorBonus && (
+            <div className="mb-2">
+              <span className="font-bold">Bônus de Armadura: </span>
+              <span style={{ color: "#8fbc8f" }}>{armorBonus}</span>
+            </div>
+          )}
+          {movePenalty && (
+            <div className="mb-2">
+              <span className="font-bold">Penalidade de Movimento: </span>
+              <span style={{ color: "#ff6b6b" }}>{movePenalty}</span>
+            </div>
+          )}
+          {strength && (
+            <div className="mb-2">
+              <span className="font-bold">Requisito de Força: </span>
+              <span>{strength}</span>
+            </div>
+          )}
+          {requirements && (
+            <div className="mb-2">
+              <span className="font-bold">Requisitos: </span>
+              <span style={{ color: "#ffa500" }}>{requirements}</span>
+            </div>
+          )}
+          {effect && (
+            <div className="mb-2">
+              <span className="font-bold">Efeito: </span>
+              <span style={{ color: "#ffa500" }}>{effect}</span>
+            </div>
+          )}
+          {type && (
+            <div className="mb-2">
+              <span className="font-bold">Tipo: </span>
+              <span style={{ color: "#8fbc8f" }}>{type}</span>
             </div>
           )}
         </div>
-      )}
+
+        {/* Special Rules */}
+        {specialRules && specialRules.length > 0 && (
+          <div>
+            <h4 className="font-bold text-lg mb-1">REGRAS ESPECIAIS</h4>
+            {specialRules?.map((rule, index) => (
+              <div key={index} className="mb-2">
+                <span className="font-bold">{rule.label}: </span>
+                <span className="text-gray-300">{rule.value}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

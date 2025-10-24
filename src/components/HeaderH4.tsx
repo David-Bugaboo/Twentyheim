@@ -8,7 +8,7 @@ interface HeaderH4Props {
 const HeaderH4: React.FC<HeaderH4Props> = ({ children, className = "" }) => {
   return (
     <h4
-      className={`text-white text-base font-medium text-left mb-1 ${className}`}
+      className={`text-green-300 text-base font-medium text-left mb-1 ${className}`}
       style={{
         fontFamily: "Cinzel, serif",
         textTransform: "none",

@@ -1,15 +1,11 @@
 import CollapsibleSection from "../../../components/CollapsibleSection";
 import MobileText from "../../../components/MobileText";
 
-
 const MagicAndPowersSection = () => {
-
-
   return (
     <CollapsibleSection
       id="magias-e-poderes-fora-de-jogo"
       title="2. Magias e Poderes Fora de Jogo"
-    
     >
       <MobileText className="mb-4">
         Nem toda magia é conjurada no calor da batalha. Algumas magias e poderes
@@ -22,7 +18,7 @@ const MagicAndPowersSection = () => {
       <MobileText className="mb-3">
         <strong>Quando Podem Ser Usadas:</strong> Estas magias e poderes podem
         ser tentadas apenas <strong>após um jogo</strong>, durante esta fase da
-        Sequência Pós Jogo. O momento de calma (relativa) para trabalhos mais
+        Fase de Campanha. O momento de calma (relativa) para trabalhos mais
         delicados ou extensos.
       </MobileText>
 

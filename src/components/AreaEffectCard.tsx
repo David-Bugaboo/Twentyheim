@@ -1,4 +1,4 @@
-import React from "react";
+
 
 interface AreaEffectCardProps {
   title: string;
@@ -11,72 +11,16 @@ interface AreaEffectCardProps {
   variant: "explosion" | "zone" | "cone" | "wall" | "pillar" | "trap";
 }
 
-const getVariantStyles = (variant: string) => {
-  switch (variant) {
-    case "explosion":
-      return {
-        container:
-          "bg-gradient-to-br from-orange-900/80 to-red-900/80 border border-orange-500/40",
-        title: "text-orange-300",
-        description: "text-orange-100",
-        sizeLabel: "text-orange-300",
-        sizeValue: "text-orange-100",
-      };
-    case "zone":
-      return {
-        container:
-          "bg-gradient-to-br from-purple-900/80 to-indigo-900/80 border border-purple-500/40",
-        title: "text-purple-300",
-        description: "text-purple-100",
-        sizeLabel: "text-purple-300",
-        sizeValue: "text-purple-100",
-      };
-    case "cone":
-      return {
-        container:
-          "bg-gradient-to-br from-amber-900/80 to-orange-900/80 border border-amber-500/40",
-        title: "text-amber-300",
-        description: "text-amber-100",
-        sizeLabel: "text-amber-300",
-        sizeValue: "text-amber-100",
-      };
-    case "wall":
-      return {
-        container:
-          "bg-gradient-to-br from-gray-800/80 to-gray-900/80 border border-gray-500/40",
-        title: "text-gray-300",
-        description: "text-gray-100",
-        sizeLabel: "text-gray-300",
-        sizeValue: "text-gray-100",
-      };
-    case "pillar":
-      return {
-        container:
-          "bg-gradient-to-br from-yellow-900/80 to-orange-900/80 border border-yellow-500/40",
-        title: "text-yellow-300",
-        description: "text-yellow-100",
-        sizeLabel: "text-yellow-300",
-        sizeValue: "text-yellow-100",
-      };
-    case "trap":
-      return {
-        container:
-          "bg-gradient-to-br from-indigo-900/80 to-purple-900/80 border border-indigo-500/40",
-        title: "text-indigo-300",
-        description: "text-indigo-100",
-        sizeLabel: "text-indigo-300",
-        sizeValue: "text-indigo-100",
-      };
-    default:
-      return {
-        container:
-          "bg-gradient-to-br from-gray-800/80 to-gray-900/80 border border-gray-500/40",
-        title: "text-gray-300",
-        description: "text-gray-100",
-        sizeLabel: "text-gray-300",
-        sizeValue: "text-gray-100",
-      };
-  }
+const getVariantStyles = () => {
+  // Todos os cards usam a mesma identidade visual preta e verde
+  return {
+    container:
+      "bg-gradient-to-br from-black/90 to-gray-900/90 border border-green-500/40",
+    title: "text-green-300",
+    description: "text-green-100",
+    sizeLabel: "text-green-300",
+    sizeValue: "text-green-100",
+  };
 };
 
 function AreaEffectCard({
@@ -84,9 +28,9 @@ function AreaEffectCard({
   description,
   sizes,
   dimensions,
-  variant,
+
 }: AreaEffectCardProps) {
-  const styles = getVariantStyles(variant);
+  const styles = getVariantStyles();
 
   return (
     <div className={`${styles.container} rounded-lg p-4 mb-4`}>

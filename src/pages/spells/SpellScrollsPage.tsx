@@ -256,7 +256,7 @@ export default function SpellScrollsPage() {
           <ParchmentText sx={{ mb: 4 }}>
             <strong>Spell Scroll:</strong> A single-use magical item containing
             one spell. Any spellcaster can attempt to cast from a scroll
-            (requires a Will test).
+            (requires a Vontade test).
             <br />
             <strong>Grimoire:</strong> A spellbook that allows a wizard to learn
             a new spell permanently. Requires time and study to master.

@@ -76,7 +76,7 @@ export const daemonicAttributes = [
   {
     name: "Parasita Espiritual",
     description:
-      "Sempre que a figura danifica uma criatura em combate corpo a corpo que não seja morto-vivo ou Construto, ela imediatamente recupera 2 pontos de Vigor perdido. Isto não pode levar a figura acima de seu Vigor inicial.",
+      "Sempre que a figura danifica uma criatura em combate corpo a corpo que não seja Morto-Vivo ou Construto, ela imediatamente recupera 2 pontos de Vigor perdido. Isto não pode levar a figura acima de seu Vigor inicial.",
   },
   {
     name: "Asas da Mutação",

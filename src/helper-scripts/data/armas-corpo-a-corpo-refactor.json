@@ -113,7 +113,7 @@
   {
     "roll": "15-16",
     "id": "arma-de-concussao",
-    "name": "Arma de Concussão",
+    "name": "Martelo",
     "type": "Arma Corpo a Corpo",
     "damageModifier": "0",
     "purchaseCost": "5 coroas",
@@ -140,7 +140,7 @@
   {
     "roll": "17-18",
     "id": "arma-de-haste",
-    "name": "Arma de Haste",
+    "name": "Alabarda",
     "type": "Arma Corpo a Corpo",
     "damageModifier": "0",
     "purchaseCost": "10 coroas",
@@ -331,7 +331,7 @@
       },
       {
         "label": "Abençoada (1)",
-        "value": "Essa arma ignora o numero entre parenteses de pontos de armadura do alvo, se esta tiver as caracteristicas Morto-vivo ou Daemonio."
+        "value": "Essa arma ignora o numero entre parenteses de pontos de armadura do alvo, se esta tiver as caracteristicas Morto-Vivo ou Daemonio."
       },
       {
         "label": "Desbalanceada",
@@ -384,7 +384,7 @@
     "requirements": null,
     "specialRules": [
       {
-        "label": "Chicote(1)",
+        "label": "Alcance(1)",
         "value": "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de X, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de Xcm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno."
       }
     ]

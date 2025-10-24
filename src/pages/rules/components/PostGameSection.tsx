@@ -60,10 +60,10 @@ function PostGameSection() {
         extinção inevitável.
       </ParchmentText>
 
-      {/* Sequência Pós Jogo */}
+      {/* Fase de Campanha */}
       <Box sx={{ mt: 5, mb: 6 }}>
         <PowerListTitle sx={{ fontSize: "1.8rem", mb: 3 }}>
-          Sequência Pós Jogo
+          Fase de Campanha
         </PowerListTitle>
 
         <ParchmentText sx={{ mb: 4 }}>
@@ -71,9 +71,9 @@ function PostGameSection() {
           arrastam-se de volta aos acampamentos improvisados, sangrando,
           exaustos, mas vivos. Agora vem a parte que muitos esquecem: a
           contabilidade da carnificina. Quem sobreviveu? Quem morreu? O que foi
-          ganho? O que foi perdido? Esta é a <strong>Sequência Pós Jogo</strong>{" "}
-          — onde batalhas se tornam história, e história se torna lenda... ou
-          esquecimento.
+          ganho? O que foi perdido? Esta é a{" "}
+          <strong>Fase de Campanha</strong> — onde batalhas se tornam
+          história, e história se torna lenda... ou esquecimento.
         </ParchmentText>
 
         <Box
@@ -364,8 +364,9 @@ function PostGameSection() {
 
           <ParchmentText sx={{ mb: 4 }}>
             Algumas magias e poderes têm efeitos que se estendem além da
-            batalha. Estes efeitos são aplicados durante a sequência pós-jogo,
-            podendo afetar a recuperação, o crescimento, ou o destino do bando.
+            batalha. Estes efeitos são aplicados durante a Fase de
+            Campanha-jogo, podendo afetar a recuperação, o crescimento, ou o
+            destino do bando.
           </ParchmentText>
 
           <Box

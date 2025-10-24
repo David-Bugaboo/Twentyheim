@@ -3,8 +3,7 @@ import MobileText from "../../components/MobileText";
 import HeaderH1 from "../../components/HeaderH1";
 import EquipmentCard from "../../components/EquipmentCard";
 import accessoriesData from "./data/acessorios-refactor.json";
-import headerImage from "../../assets/header-art/874ab363-3678-45ab-84a8-7ffd64527398.png";
-import MobileHeroHeader from "../../components/MobileHeroHeader";
+import PageTitle from "../../components/PageTitle";
 
 interface Accessory {
   roll: string | null;
@@ -35,9 +34,9 @@ export default function AccessoriesPage() {
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <MobileHeroHeader title="Acessórios" imageUrl={headerImage} />
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <PageTitle>Acessórios</PageTitle>
           <MobileSection>
             <MobileText>
               Em Mordheim, onde cada vantagem pode significar a diferença entre a

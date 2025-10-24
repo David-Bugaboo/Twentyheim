@@ -1,0 +1,296 @@
+[
+  {
+    "name": "Assassino",
+    "role": "Líder",
+    "stats": {
+      "move": 20,
+      "fight": "+2",
+      "shoot": "+2",
+      "armour": 9,
+      "Vontade": "+3",
+      "health": 14,
+      "cost": "60 coroas",
+      "skills": [
+        "Combate",
+        "Atirador",
+        "Acadêmica",
+        "Agilidade",
+        "Skaven do Clã Enshin"
+      ]
+    },
+    "quantity": "1",
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "O Assassino pode ativar até 3 criaturas a 8cm dele junto a si."
+      },
+      {
+        "name": "Habilidades",
+        "description": "O Assassino começam com 4 habilidades de uma das listas acima na sua ficha. A Classe de dificuldade dessas Habilidades é 5."
+      },
+      {
+        "name": "Presas do Rato Chifrudo",
+        "description": "O assassino tem a característica Peçonhento."
+      },
+      {
+        "name": "Apunhalar pelas Costas",
+        "description": "Além disso, assassinos ganham um adicional +2 a seu Ímpeto se já estiverem recebendo um bônus de um ou mais figuras suporte, o entanto, assassinos nunca contam como uma figura suporte para outras figuras, mesmo membros da própria bando."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Mangual", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Lamentadoras", "cost": "50 coroas pelo par" },
+        { "name": "Garras de Combat Skaven", "cost": "35 coroas pelo par" }
+      ],
+      "ranged": [
+        { "name": "Funda", "cost": "2 coroas" },
+        { "name": "Faca de Arremesso", "cost": "5 coroas" },
+        { "name": "Zarabatana", "cost": "25 coroas" },
+        {
+          "name": "Pistola de Gatilho-Bruxo",
+          "cost": "35 coroas (70 para cinto)"
+        }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Escudo Pequeno", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ]
+    }
+  },
+  {
+    "name": "Bruxo do Clã Eshin",
+    "role": "Herói",
+    "stats": {
+      "move": 20,
+      "fight": "-1",
+      "shoot": "+0",
+      "armour": 9,
+      "Vontade": "+3",
+      "health": 12,
+      "cost": "45 coroas"
+    },
+    "quantity": "0-1",
+    "spellAffinity": {
+      "aligned0": ["Tradição do Rato Chifrudo"],
+      "aligned2": [
+        "Tradição do Fogo",
+        "Tradição das Sombras",
+        "Tradição do Metal",
+        "Tradição da Morte"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Conjurador",
+        "description": "O Bruxo do clã enshin é um conjurador da Tradição do Rato Chifrudo. Ele começa o jogo com 2 magias dentre suas tradições disponíveis."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Mangual", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Lamentadoras", "cost": "50 coroas pelo par" },
+        { "name": "Garras de Combat Skaven", "cost": "35 coroas pelo par" }
+      ],
+      "ranged": [
+        { "name": "Funda", "cost": "2 coroas" },
+        { "name": "Facas de Arremesso", "cost": "15 coroas" },
+        { "name": "Zarabatana", "cost": "25 coroas" },
+        {
+          "name": "Pistola de Gatilho-Bruxo",
+          "cost": "35 coroas (70 para cinto)"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Skaven Sombrio",
+    "role": "Héroi",
+    "stats": {
+      "move": 20,
+      "fight": "+2",
+      "shoot": "+0",
+      "armour": 9,
+      "Vontade": "1",
+      "health": 14,
+      "cost": "40 coroas",
+      "skills": ["Combate", "Atirador", "Agilidade", "Skaven do Clã Enshin"]
+    },
+    "quantity": "0-2",
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "Skaven Sombrio começam com 2 habilidades de uma das listas acima na sua ficha. A Classe de dificuldade dessas Habilidades é 5."
+      },
+      {
+        "name": "Equipamento Disponível",
+        "description": "Pode comprar veneno sem fazer rolagens de Mercado Negro"
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Mangual", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Lamentadoras", "cost": "50 coroas pelo par" },
+        { "name": "Garras de Combat Skaven", "cost": "35 coroas pelo par" }
+      ],
+      "ranged": [
+        { "name": "Funda", "cost": "2 coroas" },
+        { "name": "Faca de Arremesso", "cost": "5 coroas" },
+        { "name": "Zarabatana", "cost": "25 coroas" },
+        {
+          "name": "Pistola de Gatilho-Bruxo",
+          "cost": "35 coroas (70 para cinto)"
+        }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Escudo Pequeno", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ]
+    }
+  },
+  {
+    "name": "Espreitadores Noturnos",
+    "role": "Héroi",
+    "stats": {
+      "move": 20,
+      "fight": "0",
+      "shoot": "+2",
+      "armour": 9,
+      "Vontade": "0",
+      "health": 10,
+      "cost": "20 coroas",
+      "skills": ["Combate", "Atirador", "Skaven do Clã Enshin"]
+    },
+    "quantity": "0-2",
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "Night Runners começam com 2 habilidades de uma das listas acima na sua ficha. A Classe de dificuldade dessas Habilidades é 5."
+      },
+      {
+        "name": "Equipamento Disponível",
+        "description": "Pode comprar veneno sem fazer rolagens de Mercado Negro"
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Mangual", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Lamentadoras", "cost": "50 coroas pelo par" },
+        { "name": "Garras de Combat Skaven", "cost": "35 coroas pelo par" }
+      ],
+      "ranged": [
+        { "name": "Funda", "cost": "2 coroas" },
+        { "name": "Faca de Arremesso", "cost": "5 coroas" },
+        { "name": "Zarabatana", "cost": "25 coroas" },
+        {
+          "name": "Pistola de Gatilho-Bruxo",
+          "cost": "35 coroas (70 para cinto)"
+        }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Escudo Pequeno", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ]
+    }
+  },
+  {
+    "name": "Pestilentos",
+    "stats": {
+      "move": 20,
+      "fight": "0",
+      "shoot": "0",
+      "armour": 9,
+      "Vontade": "-2",
+      "health": 8,
+      "cost": "20 coroas"
+    },
+    "quantity": "ilimitado",
+    "abilities": [
+      {
+        "name": "Equipamento Disponível",
+        "description": "Pestilentos têm acesso a equipamentos básicos de combate."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Lança", "cost": "10 coroas" }
+      ],
+      "ranged": [{ "name": "Funda", "cost": "2 coroas" }],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ]
+    }
+  },
+  {
+    "name": "Rato Gigante",
+    "stats": {
+      "move": 18,
+      "fight": "0",
+      "shoot": "0",
+      "armour": 6,
+      "Vontade": "-2",
+      "health": 6,
+      "cost": "15 coroas"
+    },
+    "quantity": "ilimitado",
+    "abilities": [
+      {
+        "name": "Rato Gigante",
+        "description": "Rato Gigante tem as características Animal."
+      }
+    ]
+  },
+
+  {
+    "name": "Ogro Rato",
+    "stats": {
+      "move": 16,
+      "fight": "+4",
+      "shoot": "0",
+      "armour": 12,
+      "Vontade": "-2",
+      "health": 14,
+      "cost": "210 coroas"
+    },
+    "quantity": "0-1",
+    "abilities": [
+      {
+        "name": "Monstruosidade do Clã Moulder",
+        "description": "Ratos Ogróides tem as características Grande, Forte, Animal e Aterrorizante."
+      },
+      {
+        "name": "Mente Limitada",
+        "description": "Ratos Ogróides tem a a característica Estúpido. Adicionalmentè eles não ganham experiência."
+      },
+
+      {
+        "name": "Escudo de Carne",
+        "description": "Atiradores não podem fazer ataques a distância contra outras figuras do bando do Rato Ogróide se o este for a figura mais próxima."
+      }
+    ]
+  }
+]

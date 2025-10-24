@@ -11,7 +11,7 @@ const BeastmenEquipmentExample: React.FC = () => {
       fight: "+4",
       shoot: "0",
       armour: 10,
-      will: "+5",
+      Vontade: "+5",
       health: 14,
       cost: "-",
       lore: "Os chefes Beastmen conquistaram sua posição através de pura brutalidade. Ele levou os Homem-Fera a Mordheim, visando coletar o máximo de Pedra-Bruxa possível para fortalecer suas Rochas-Pastoras.",
@@ -29,7 +29,13 @@ const BeastmenEquipmentExample: React.FC = () => {
       },
       {
         name: "Equipamento Disponível",
-        weapons: ["Adaga", "Arma de Concussão", "Espada", "Arma de Haste", "Arma de Duas Mãos"],
+        weapons: [
+          "Adaga",
+          "Martelo",
+          "Espada",
+          "Alabarda",
+          "Arma de Duas Mãos",
+        ],
         armor: ["Armadura Leve", "Armadura Pesada", "Escudo"],
         special: [],
       },
@@ -44,7 +50,7 @@ const BeastmenEquipmentExample: React.FC = () => {
       fight: "+1",
       shoot: "0",
       armour: 10,
-      will: "+5",
+      Vontade: "+5",
       health: 12,
       cost: "100 coroas",
       lore: "Os Xamãs Beastmen são profetas dos Deuses Sombrios e os mais respeitados de todos os Homem-Fera.",
@@ -57,9 +63,19 @@ const BeastmenEquipmentExample: React.FC = () => {
       },
       {
         name: "Equipamento Disponível",
-        weapons: ["Adaga", "Machado", "Arma de Concussão", "Espada", "Arma de Haste", "Arma de Duas Mãos", "Cajado"],
+        weapons: [
+          "Adaga",
+          "Machado",
+          "Martelo",
+          "Espada",
+          "Alabarda",
+          "Arma de Duas Mãos",
+          "Cajado",
+        ],
         armor: [],
-        special: ["Pode comprar Água Benta sem fazer rolagens de Mercado Negro"],
+        special: [
+          "Pode comprar Água Benta sem fazer rolagens de Mercado Negro",
+        ],
       },
     ],
   };
@@ -68,7 +84,9 @@ const BeastmenEquipmentExample: React.FC = () => {
     <div style={{ padding: "20px", maxWidth: "1000px", margin: "0 auto" }}>
       <h2>Exemplo: Nova Estrutura de Equipamentos - Beastmen Raiders</h2>
       <p style={{ marginBottom: "30px", color: "#666" }}>
-        Agora o "Equipamento Disponível" é organizado em categorias: <strong>Armas</strong>, <strong>Armaduras</strong> e <strong>Especial</strong>.
+        Agora o "Equipamento Disponível" é organizado em categorias:{" "}
+        <strong>Armas</strong>, <strong>Armaduras</strong> e{" "}
+        <strong>Especial</strong>.
       </p>
 
       <div style={{ marginBottom: "40px" }}>
@@ -95,20 +113,41 @@ const BeastmenEquipmentExample: React.FC = () => {
         />
       </div>
 
-      <div style={{ 
-        backgroundColor: "#e8f4f8", 
-        padding: "20px", 
-        borderRadius: "8px",
-        marginTop: "30px"
-      }}>
-        <h3 style={{ color: "#2c5aa0", marginTop: 0 }}>✨ Vantagens da Nova Estrutura</h3>
+      <div
+        style={{
+          backgroundColor: "#e8f4f8",
+          padding: "20px",
+          borderRadius: "8px",
+          marginTop: "30px",
+        }}
+      >
+        <h3 style={{ color: "#2c5aa0", marginTop: 0 }}>
+          ✨ Vantagens da Nova Estrutura
+        </h3>
         <ul style={{ margin: 0, paddingLeft: "20px" }}>
-          <li><strong>Organização Clara:</strong> Equipamentos separados por categoria (Armas, Armaduras, Especial)</li>
-          <li><strong>Fácil Leitura:</strong> Cada categoria tem seu próprio título e formatação</li>
-          <li><strong>Flexibilidade:</strong> Pode ter apenas algumas categorias (ex: só armas, só especial)</li>
-          <li><strong>Itens Especiais:</strong> Categoria "Especial" para modificadores, remédios e itens únicos</li>
-          <li><strong>Consistência Visual:</strong> Mantém o tema dourado do jogo</li>
-          <li><strong>Estrutura de Dados:</strong> Arrays organizados que facilitam futuras funcionalidades</li>
+          <li>
+            <strong>Organização Clara:</strong> Equipamentos separados por
+            categoria (Armas, Armaduras, Especial)
+          </li>
+          <li>
+            <strong>Fácil Leitura:</strong> Cada categoria tem seu próprio
+            título e formatação
+          </li>
+          <li>
+            <strong>Flexibilidade:</strong> Pode ter apenas algumas categorias
+            (ex: só armas, só especial)
+          </li>
+          <li>
+            <strong>Itens Especiais:</strong> Categoria "Especial" para
+            modificadores, remédios e itens únicos
+          </li>
+          <li>
+            <strong>Consistência Visual:</strong> Mantém o tema dourado do jogo
+          </li>
+          <li>
+            <strong>Estrutura de Dados:</strong> Arrays organizados que
+            facilitam futuras funcionalidades
+          </li>
         </ul>
       </div>
     </div>

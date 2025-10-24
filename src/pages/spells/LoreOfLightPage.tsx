@@ -1,152 +1,133 @@
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
-import SpellCard from "../../components/SpellCard";
-import {
-  PageContainer,
-  ContentSection,
-  NavigationSection,
-  StyledNavigationButton,
-  ContentContainer,
-  ParchmentText,
-  PowerListTitle,
-} from "../../components/PageComponents";
+import PageTitle from "../../components/PageTitle";
+import MobileText from "../../components/MobileText";
+import MobileSection from "../../components/MobileSection";
+import HeaderH2 from "../../components/HeaderH2";
+import GenericTable from "../../components/GenericTable";
+import TzeentchCurseTable from "../../components/TzeentchCurseTable";
+import QuickNavigation from "../../components/QuickNavigation";
+import LoreSpellCard from "../../components/LoreSpellCard";
+import loreOfLightData from "./data/lore-of-light.json";
 
 export default function LoreOfLightPage() {
   const navigate = useNavigate();
 
-  const spells = [
+  const navigationSections = [
+    { id: "intro", title: "Tradição da Luz - Hysh", level: 0 },
     {
-      name: "Cura de Hysh",
-      castingNumber: 8,
-      keywords: ["Alcance(15)"],
-      effect:
-        "Esta magia restaura até 5 pontos de Vida perdida para a criatura alvo. Esta magia não pode levar uma figura acima de seu Vigor inicial. Esta magia não tem efeito em mortos-vivos ou constructos - a luz não traz de volta o que já foi julgado.",
+      id: "caracteristicas",
+      title: "Características da Tradição da Luz",
+      level: 0,
     },
-    {
-      name: "Exorcismo",
-      castingNumber: 8,
-      keywords: ["Linha de Visão", "Exorcismo"],
-      effect:
-        "Uma criatura alvo com a característica Daemônio deve passar em um teste de Vontade imediata com CD igual à Rolagem de Conjuração. Se o daemônio falhar na rolagem e sua Vontade atual for +4 ou menos, a sentença é absoluta - ele é imediatamente reduzido a 0 Vigor e BANIDO do tabuleiro. Se sua Vontade atual for +5 ou maior, a luz ainda queima - ele sofre dano igual a três vezes a quantidade pela qual falhou na Rolagem de Vontade.",
-    },
-    {
-      name: "Olhos da Verdade",
-      castingNumber: 10,
-      keywords: ["Area de Efeito (Zona Grande)"],
-      effect:
-        "Centre a Área de Efeito no conjurador. Todas as figuras dentro da área de efeito ganham a característica Visão Verdadeira até o fim do jogo.",
-    },
-    {
-      name: "Olhar Radiante",
-      castingNumber: 8,
-      keywords: ["Linha de Visão"],
-      effect:
-        "O alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, a sentença é pronunciada até o fim do jogo: ele não pode atacar, atirar ou conjurar magias de Linha de Visão. Seu atributo de Ímpeto é reduzido a +0 e sua Agilidade a 2 - paralisia quase total. No fim de cada turno, a figura pode tentar outra Rolagem de Vontade com o mesmo Classe de Dificuldade, lutando para se libertar do julgamento. Se bem-sucedida, a magia é cancelada.",
-    },
-    {
-      name: "Manto Cintilante",
-      castingNumber: 12,
-      keywords: ["Linha de Visão"],
-      effect:
-        "Ataques a distância contra a criatura alvo sofrem -2 Precisão até o fim do jogo - olhos queimam ao tentar focar na silhueta envolta em luz incandescente.",
-    },
-    {
-      name: "Inspiração",
-      castingNumber: 12,
-      keywords: ["Linha de Visão"],
-      effect:
-        "O mago canaliza a luz da sabedoria pura diretamente na mente do alvo. É uma iluminação instantânea - CLAREZA absoluta que queima toda confusão, toda dúvida, toda manipulação. A mente se torna como cristal, transparente e inflexível. Tentativas de controle mental se despedaçam contra essa fortaleza de certeza. A vontade é FORJADA em luz incandescente, inquebrável e implacável.\n\nO alvo desta magia torna-se imune a magias com Psicologico no seu tipo de alvo - a mente iluminada não pode ser enganada. Quaisquer magias de Controle Mental atuais sobre a figura são QUEIMADAS e canceladas. A figura ganha +2 Vontade pelo resto do jogo - fortalecida pela luz da verdade.",
-    },
-    {
-      name: "Pilar da Luz Reveladora",
-      castingNumber: 14,
-      keywords: ["Alcance(50)", "Area de Efeito (Pilar Médio)"],
-      effect:
-        "Qualquer criatura dentro da área de efeito não se benefícia das palavras chave invisível e Furtividade(X) e Figuras Ilusórias são automaticamente removidas do jogo. Criaturas dentro da área de efeito não podem conjurar ou ativar magias ou poderes com a palavra chave Ilusão. Figuras tem +2 de precisão para fazer ataques a distância contra figuras dentro da área de efeito. No final de cada turno, role um dado. Em um 1-4 a área de efeito some e a magia é cancelada.",
-    },
-    {
-      name: "Expansão Luzidia",
-      castingNumber: 1,
-      keywords: ["Area de Efeito (Zona Média)"],
-      effect: `Centre a área de efeito no conjurador. Todas as figuras na área de efeito devem fazer um teste de Vontade com CD igual à Rolagem de Conjuração. Criaturas que falharem perdem 2 de Ímpeto e 2 de Precisão até o fim do jogo. No final de cada uma de suas ativações, elas podem repetir o teste de Vontade. Ao terem sucesso, o efeito da magia é cancelado.`,
-    },
-    {
-      name: "Circulo da Iluminação",
-      castingNumber: 8,
-      keywords: ["Area de Efeito (Explosão Média)"],
-      effect: `Centre a área de efeito no conjurador. Todas as figuras aliadas dentro da área de efeito são consideradas como se carregassem uma tocha até o fim do jogo.`,
-    },
-    {
-      name: "Brilho Deslumbrante",
-      castingNumber: 10,
-      keywords: ["Área de Efeito (Zona Pequena)"],
-      effect: `Centre e mova a área de efeito com o conjurador. Todas as figuras na área de efeito recebem -2 no Ímpeto.`,
-    },
-    {
-      name: "Ritual do Exorcismo de Hysh",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "Todos os daemônios dentro da linha de visão do conjurador devem passar em uma Rolagem de Vontade imediata com Número Alvo igual à Rolagem de Conjuração. Se um daemônio falhar a rolagem e sua Vontade atual for +4 ou menos, ele é imediatamente reduzido a 0 Vigor e removido da mesa. Se sua Vontade atual for +5 ou maior, ele sofre dano igual a três vezes a quantidade pela qual falhou na Rolagem de Vontade.",
-    },
+    { id: "perigos-ventos", title: "Perigos dos Ventos", level: 0 },
+    { id: "magias", title: "Magias da Tradição da Luz", level: 0 },
+    ...loreOfLightData.map((spell, index) => ({
+      id: `spell-${index}`,
+      title: spell.name,
+      level: 1,
+    })),
   ];
 
   return (
-    <PageContainer>
-      <Header title="Hysh - Tradição da Luz" />
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
+          <MobileSection>
+            <div id="intro">
+              <PageTitle>Tradição da Luz - Hysh</PageTitle>
+            </div>
 
-      <ContentSection>
-        <ContentContainer>
-          <ParchmentText
-            sx={{
-              textAlign: "center",
-              fontSize: "1.2rem",
-              fontStyle: "italic",
-              color: "#fff8dc",
-              mb: 3,
-            }}
-          >
-            O Vento Branco da Pureza e Iluminação
-          </ParchmentText>
+            <MobileText
+              variant="quote"
+              className="text-center italic text-lg leading-relaxed mb-6 p-4 bg-green-900/20 border border-green-500/40 rounded-lg text-white"
+            >
+              "O Vento Branco da Pureza e da Iluminação"
+            </MobileText>
 
-          <ParchmentText sx={{ mb: 4 }}>
-            A Tradição da Luz é a magia da iluminação física e mental. Baseada
-            na manipulação de Hysh, o Vento Branco da Magia, esta tradição trata
-            de verdade, sabedoria, poder radiante e energia que dá vida.
-            Magistrados desta tradição são conhecidos como Hierofantes ou Magos
-            da Luz e são sábios filósofos, curadores potentes e destemidos
-            banidores de Daemônios. Conforme estes Magos crescem em poder,
-            tendem ao intelectualismo seco e sagacidade, ao invés de humor. A
-            cor escorre de sua pele e cabelo, tornando-se mais claros e
-            semi-transparentes em alguns casos, enquanto os olhos tendem a uma
-            brancura leitosa ou uma luminescência dourada. A maioria passa seu
-            tempo livre lendo ou em contemplação solene.
-          </ParchmentText>
+            <MobileText className="mb-4">
+              A Tradição da Luz, também conhecida como Hierofantia, é a escola
+              de magia que canaliza o poder puro de Hysh, o Vento Branco da
+              Magia. Os praticantes desta tradição são conhecidos como
+              Hierofantes ou Magos da Luz, e possuem uma conexão profunda com a
+              pureza, a verdade, e as forças da iluminação. Eles são capazes de
+              curar ferimentos, banir daemônios, e revelar a verdade oculta
+              através da luz divina.
+            </MobileText>
 
-          <PowerListTitle>Feitiços da Tradição da Luz</PowerListTitle>
+            <div id="caracteristicas">
+              <HeaderH2>Características da Tradição da Luz</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              Os Hierofantes são conhecidos por sua conexão com a pureza e sua
+              capacidade de manipular as forças da luz e da verdade. Eles
+              canalizam o poder de Hysh através de devoção à pureza e
+              compreensão da verdade divina. Suas magias frequentemente envolvem
+              cura, exorcismo, revelação da verdade, e proteção contra as forças
+              das trevas.
+            </MobileText>
 
-          {spells.map((spell, index) => (
-            <SpellCard
-              key={index}
-              id={spell.name.toLowerCase().replace(/\s+/g, "-")}
-              name={spell.name}
-              school="Tradição da Luz"
-              castingNumber={spell.castingNumber}
-              keywords={spell.keywords}
-              effect={spell.effect}
-            />
-          ))}
-        </ContentContainer>
-      </ContentSection>
+            <div
+              id="perigos-ventos"
+              className="bg-green-900/20 border border-green-500/40 rounded-lg p-4 mb-6"
+            >
+              <HeaderH2 className="text-green-300 mb-4">
+                Perigos dos Ventos
+              </HeaderH2>
 
-      <NavigationSection>
-        <StyledNavigationButton
-          variant="contained"
-          onClick={() => navigate("/magic/arcane-lores")}
-        >
-          Voltar para Tradições Arcanas
-        </StyledNavigationButton>
-      </NavigationSection>
-    </PageContainer>
+              <MobileText className="mb-4">
+                Representando os perigos de canalizar o Caos bruto, sempre que
+                um Conjurador falha ao conjurar uma magia de uma tradição
+                arcana, ele sofre dano de acordo com a tabela abaixo:
+              </MobileText>
+
+              <GenericTable
+                data={[
+                  { "Falhou por": "1-4", "Dano Sofrido": "Nenhum" },
+                  { "Falhou por": "5-9", "Dano Sofrido": "1" },
+                  { "Falhou por": "10-19", "Dano Sofrido": "2" },
+                  { "Falhou por": "20+", "Dano Sofrido": "5" },
+                ]}
+                scrollable={false}
+              />
+
+              <TzeentchCurseTable />
+            </div>
+
+            <div id="magias">
+              <HeaderH2>Magias da Tradição da Luz</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              As magias da Tradição da Luz são conhecidas por sua natureza
+              purificadora e reveladora. Elas manipulam o Vento Branco de Hysh
+              para criar efeitos relacionados à cura, exorcismo, revelação da
+              verdade, e proteção contra as trevas.
+            </MobileText>
+
+            <div className="space-y-6">
+              {loreOfLightData.map((spell, index) => (
+                <div key={index} id={`spell-${index}`}>
+                  <LoreSpellCard
+                    name={spell.name}
+                    castingNumber={spell.castingNumber}
+                    keywords={spell.keywords}
+                    effect={spell.effect}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 flex justify-center">
+              <button
+                onClick={() => navigate("/magic/arcane-lores")}
+                className="w-full md:w-1/2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-bold"
+              >
+                Voltar às Tradições Arcanas
+              </button>
+            </div>
+          </MobileSection>
+        </div>
+      </div>
+    </div>
   );
 }

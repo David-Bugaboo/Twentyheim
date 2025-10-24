@@ -142,7 +142,7 @@ export const commonItemsData = [
       {
         roll: "15-16",
         id: "concussion-weapon",
-        name: "Arma de Concussão",
+        name: "Martelo",
         properties: [
           { label: "Tipo", value: "Arma Corpo a Corpo" },
           { label: "Modificador de Dano", value: "0" },
@@ -171,7 +171,7 @@ export const commonItemsData = [
       {
         roll: "17-18",
         id: "polearm",
-        name: "Arma de Haste",
+        name: "Alabarda",
         properties: [
           { label: "Tipo", value: "Arma Corpo a Corpo" },
           { label: "Modificador de Dano", value: "0" },
@@ -348,7 +348,7 @@ export const commonItemsData = [
           {
             label: "Abençoada (1)",
             value:
-              "Essa arma ignora o numero entre parenteses de pontos de armadura do alvo, se esta tiver as caracteristicas Morto-vivo ou Daemonio.",
+              "Essa arma ignora o numero entre parenteses de pontos de armadura do alvo, se esta tiver as caracteristicas Morto-Vivo ou Daemonio.",
           },
           {
             label: "Desbalanceada",
@@ -400,7 +400,7 @@ export const commonItemsData = [
           { label: "Modificador de Dano", value: "-1" },
           { label: "Valor de compra", value: "15 coroas" },
           {
-            label: "Chicote(1)",
+            label: "Alcance(1)",
             value:
               "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de X, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de Xcm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno.",
           },
@@ -436,7 +436,7 @@ export const commonItemsData = [
           {
             label: "Giros Brutais",
             value:
-              "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de Agilidade para girar sua funda com mais força. Aumente o alcance do próximo ataque a distancia em 6cm.",
+              "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de movimento para girar sua funda com mais força. Aumente o alcance do próximo ataque a distancia em 6cm.",
           },
           {
             label: "Arma de Tecido",
@@ -620,7 +620,7 @@ export const commonItemsData = [
           {
             label: "Engenharia Complexa",
             value:
-              "Uma arma com essa característica trava em casos específicos. Quando o portador rola um 1 natural em um ataque, a arma trava, e só pode ser usada novamente gastando uma ação, que pode substituir a ação de Agilidade.",
+              "Uma arma com essa característica trava em casos específicos. Quando o portador rola um 1 natural em um ataque, a arma trava, e só pode ser usada novamente gastando uma ação, que pode substituir a ação de movimento.",
           },
           { label: "Requer", value: "Aljava" },
           { label: "Valor de compra", value: "80 coroas" },
@@ -638,9 +638,9 @@ export const commonItemsData = [
           { label: "Alcance Máximo", value: "40cm" },
           { label: "Modificador de Dano", value: "-4" },
           {
-            label: "Venenosa",
+            label: "Tóxica",
             value:
-              "Uma arma com essa característica envenena o alvo em um ataque bem-sucedido, mesmo se não causar dano.",
+              "uma arma com essa característica causa dano Venenoso.",
           },
           { label: "Requer", value: "Bolsa de Dardos" },
           { label: "Valor de compra", value: "25 coroas" },
@@ -715,7 +715,7 @@ export const commonItemsData = [
           {
             label: "Falha de Ignição (1)",
             value: `Quando o portador de uma arma com essa característica rola um numero natural dentre os numeros entre parenteses na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n
-              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de Agilidade, para consertar.
+              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
               16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
@@ -761,7 +761,7 @@ export const commonItemsData = [
           {
             label: "Falha de Ignição (1)",
             value: `Quando o portador de uma arma com essa característica rola um numero natural dentre os numeros entre parenteses na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n
-              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de Agilidade, para consertar.
+              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
               16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
@@ -817,7 +817,7 @@ export const commonItemsData = [
           {
             label: "Falha de Ignição (1)",
             value: `Quando o portador de uma arma com essa característica rola um numero natural dentre os numeros entre parenteses na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n
-              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de Agilidade, para consertar.
+              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
               16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
@@ -862,12 +862,12 @@ export const commonItemsData = [
           {
             label: "Tripé",
             value:
-              "Uma figura só pode atirar com essa arma se esta estiver montada em um tripé. Montar o tripé gasta uma ação que pode substituir a ação de Agilidade. Desmontar não custa ações, mas deverá montar se quiser atirar de novo.",
+              "Uma figura só pode atirar com essa arma se esta estiver montada em um tripé. Montar o tripé gasta uma ação que pode substituir a ação de movimento. Desmontar não custa ações, mas deverá montar se quiser atirar de novo.",
           },
           {
             label: "Falha de Ignição (1)",
             value: `Quando o portador de uma arma com essa característica rola um numero natural dentre os numeros entre parenteses na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n
-              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de Agilidade, para consertar.
+              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
               16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
@@ -919,7 +919,7 @@ export const commonItemsData = [
           {
             label: "Construção Robusta",
             value:
-              "Essa arma pode ser usada em combate corpo a corpo, contando como uma arma de concussão.",
+              "Essa arma pode ser usada em combate corpo a corpo, contando como uma Martelo.",
           },
           {
             label: "Tiro de Dispersão",
@@ -929,7 +929,7 @@ export const commonItemsData = [
           {
             label: "Falha de Ignição (1-2)",
             value: `Quando o portador de uma arma com essa característica rola um numero natural dentre os numeros entre parenteses na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n
-              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de Agilidade, para consertar.
+              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
               16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
@@ -980,7 +980,7 @@ export const commonItemsData = [
           {
             label: "Construção Robusta",
             value:
-              "Essa arma pode ser usada em combate corpo a corpo, contando como uma arma de concussão.",
+              "Essa arma pode ser usada em combate corpo a corpo, contando como uma Martelo.",
           },
           {
             label: "Tiro de Dispersão",
@@ -990,7 +990,7 @@ export const commonItemsData = [
           {
             label: "Falha de Ignição (1)",
             value: `Quando o portador de uma arma com essa característica rola um numero natural dentre os numeros entre parenteses na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n
-              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de Agilidade, para consertar.
+              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
               16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
@@ -1034,7 +1034,7 @@ export const commonItemsData = [
           {
             label: "Falha de Ignição (1-3)",
             value: `Quando o portador de uma arma com essa característica rola um numero natural dentre os numeros entre parenteses na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n
-              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de Agilidade, para consertar.
+              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
               16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
@@ -1144,7 +1144,7 @@ export const commonItemsData = [
           { label: "valor de compra", value: "5 coroas" },
         ],
         description:
-          "Pólvora - o ingrediente que transforma ferro morto em trovão vivo. Acessório necessário para armas de fogo. Contém a pólvora necessária para recarregar e disparar mosquetes, pistolas e bacarmartes. Ocupa um espaço de item.\n\nSem pólvora, uma arma de fogo é apenas metal caro e inútil - um porrete pior que um pedaço de pau. Mantenha sua pólvora seca - molhada, ela não vale nada. Exposta a faíscas ou chamas, ela explode e mata você antes dos inimigos. Cada veterano com armas de fogo tem histórias de tolos que aprenderam essa lição tarde demais.",
+          "Pólvora - o ingrediente que transforma ferro morto em trovão vivo. Acessório necessário para armas de fogo. Contém a pólvora necessária para recarregar e disparar mosquetes, pistolas e bacarmartes. Ocupa um espaço de item.\n\nSem pólvora, uma arma de fogo é apenas metal caro e inútil - um Maça pior que um pedaço de pau. Mantenha sua pólvora seca - molhada, ela não vale nada. Exposta a faíscas ou chamas, ela explode e mata você antes dos inimigos. Cada veterano com armas de fogo tem histórias de tolos que aprenderam essa lição tarde demais.",
       },
     ],
   },
@@ -1182,7 +1182,7 @@ export const commonItemsData = [
           },
         ],
         description:
-          "A raiz de mandrágora em formato humano cresce nos pântanos apodrecidos de Sylvania. É uma planta nociva e mortal que é altamente viciante e mata lentamente seus usuários, mas também lhes permite resistir a quase qualquer dor. A figura que bebe esta poção se torna imune a veneno, mas perde -2 de Vontade até o fim do jogo.\n\nEm Mordheim, onde venenos e toxinas são comuns, o Elixir de Raiz de Mandrágo oferece proteção vital - mas com um preço que poucos estão dispostos a pagar.",
+          "A raiz de mandrágora em formato humano cresce nos pântanos apodrecidos de Sylvania. É uma planta nociva e mortal que é altamente viciante e mata lentamente seus usuários, mas também lhes permite resistir a quase qualquer dor. A figura que bebe esta poção se torna imune a Marcadores de Veneno, mas perde -2 de Vontade até o fim do jogo.\n\nEm Mordheim, onde venenos e toxinas são comuns, o Elixir de Raiz de Mandrágo oferece proteção vital - mas com um preço que poucos estão dispostos a pagar.",
       },
       {
         id: "dwarf-stimulant",
@@ -1300,7 +1300,7 @@ export const commonItemsData = [
           {
             label: "Efeito",
             value:
-              "Beber: A figura que bebe é tratada como se tivesse bebido Lágrimas de Shallaya. Arremessar: É um ataque sagrado +8 contra uma figura Morta-Viva ou Daemônio até 25cm e todas as figuras Morto-Vivo ou Daemônio a até 5cm dela. Trate a figura alvo como origem para calculo de terreno interposto e cobertura das outras figuras afetadas.",
+              "Beber: A figura que bebe é tratada como se tivesse bebido Lágrimas de Shallaya. Arremessar: É um ataque sagrado +8 contra uma figura Morto-Vivo ou Daemônio até 25cm e todas as figuras Morto-Vivo ou Daemônio a até 5cm dela. Trate a figura alvo como origem para calculo de terreno interposto e cobertura das outras figuras afetadas.",
           },
         ],
         description:
@@ -1447,7 +1447,7 @@ export const commonItemsData = [
           {
             label: "Efeito",
             value:
-              "A Arma em que o veneno for aplicado ganha a propriedade Venenoso até o fim do jogo.",
+              "A Arma em que o veneno for aplicado ganha a propriedade Tóxica até o fim do jogo.",
           },
         ],
         description:

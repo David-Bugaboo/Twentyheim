@@ -3,17 +3,32 @@ import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
 import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
-import WarningBox from "../../components/WarningBox";
-import CornerDecoration from "../../components/CornerDecoration";
+
+import QuickNavigation from "../../components/QuickNavigation";
+
 
 function GameEndPage() {
+  const navigationSections = [
+    { id: "intro", title: "Encerramento do Jogo", level: 0 },
+    { id: "condicoes-vitoria", title: "Condições de Vitória", level: 0 },
+    {
+      id: "captura-automatica",
+      title: "Captura Automática de Fragmentos",
+      level: 1,
+    },
+    { id: "resolucao-pos-jogo", title: "Resolução Pós-Jogo", level: 1 },
+    { id: "resumo", title: "Resumo do Encerramento", level: 1 },
+  ];
+
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <CornerDecoration />
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
           <MobileSection>
-            <PageTitle>Encerramento do Jogo</PageTitle>
+            <div id="intro">
+              <PageTitle>Encerramento do Jogo</PageTitle>
+            </div>
 
             <MobileText>
               Toda partida em Mordheim tem seu fim. Seja pela exaustão dos
@@ -22,16 +37,12 @@ function GameEndPage() {
               quando parar... e o que fazer quando a poeira baixar.
             </MobileText>
 
-            <HeaderH1>Condições de Vitória</HeaderH1>
+            <div id="condicoes-vitoria">
+              <HeaderH1>Condições de Vitória</HeaderH1>
+            </div>
             <MobileText>
               A partida acaba quando uma das seguintes condições é cumprida:
             </MobileText>
-
-            <MobileText>
-              • <strong>6 turnos de jogo se passaram</strong> — O tempo se
-              esgota, e mesmo os mais determinados devem recuar para as sombras.
-            </MobileText>
-
             <MobileText>
               •{" "}
               <strong>Todos os fragmentos de Pedra-bruxa saíram do mapa</strong>{" "}
@@ -40,9 +51,9 @@ function GameEndPage() {
             </MobileText>
 
             <MobileText>
-              • <strong>Só um bando tem membros vivos</strong> — A vitória pela
-              eliminação total. Os sobreviventes podem saquear as ruínas à
-              vontade.
+              • <strong>Só um bando tem membros no tabuleiro</strong> — A
+              vitória pela eliminação total. Os sobreviventes podem saquear as
+              ruínas à vontade.
             </MobileText>
 
             <MobileText>
@@ -51,7 +62,9 @@ function GameEndPage() {
               únicos.
             </MobileText>
 
-            <HeaderH2>Captura Automática de Fragmentos</HeaderH2>
+            <div id="captura-automatica">
+              <HeaderH2>Captura Automática de Fragmentos</HeaderH2>
+            </div>
             <MobileText>
               Quando o jogo termina, qualquer figura segurando um fragmento de
               Pedra-bruxa automaticamente o captura para seu bando. Não importa
@@ -59,14 +72,9 @@ function GameEndPage() {
               é seu.
             </MobileText>
 
-            <MobileText>
-              <strong>Fragmentos Perdidos:</strong> Fragmentos esquecidos na
-              mesa, sem ninguém para carregá-los, são perdidos para sempre. A
-              Pedra-bruxa retorna às profundezas das ruínas, aguardando a
-              próxima leva de tolos desesperados.
-            </MobileText>
-
-            <HeaderH2>Resolução Pós-Jogo</HeaderH2>
+            <div id="resolucao-pos-jogo">
+              <HeaderH2>Resolução Pós-Jogo</HeaderH2>
+            </div>
             <MobileText>
               Após o encerramento, os bandos devem resolver as consequências de
               suas ações. Ferimentos devem ser tratados, experiência deve ser
@@ -80,42 +88,11 @@ function GameEndPage() {
               sobre tratamento de ferimentos, desenvolvimento de figuras, e
               gerenciamento de recursos entre as partidas.
             </MobileText>
-
-            <WarningBox title="Resumo do Encerramento" type="info">
-              <MobileText>
-                • <strong>6 turnos:</strong> Tempo esgotado
-              </MobileText>
-              <MobileText>
-                • <strong>Todos os fragmentos saíram:</strong> Tesouros
-                capturados
-              </MobileText>
-              <MobileText>
-                • <strong>Um bando restante:</strong> Vitória por eliminação
-              </MobileText>
-              <MobileText>
-                • <strong>Condições de cenário:</strong> Objetivos específicos
-              </MobileText>
-              <MobileText>
-                • <strong>Captura automática:</strong> Figuras com fragmentos os
-                capturam
-              </MobileText>
-              <MobileText>
-                • <strong>Fragmentos perdidos:</strong> Sem carregador =
-                perdidos para sempre
-              </MobileText>
-            </WarningBox>
-
-            <MobileText
-              variant="quote"
-              className="text-center italic text-lg leading-relaxed mt-8"
-            >
-              "Em Mordheim, toda partida tem seu fim. Mas os verdadeiros
-              vencedores são aqueles que sobrevivem para lutar outro dia."
-            </MobileText>
           </MobileSection>
         </div>
       </div>
     </div>
+
   );
 }
 

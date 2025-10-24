@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import PageTitle from "../../components/PageTitle";
+
 import MobileSection from "../../components/MobileSection";
 import MobileText from "../../components/MobileText";
 import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
-import MobileHeroHeader from "../../components/MobileHeroHeader";
-import headerImage from "../../assets/header-art/21ef8615dda8ffc145957aff5273c244_upscayl_4x_high-fidelity-4x.png";
+import QuickNavigation from "../../components/QuickNavigation";
+import PageTitle from "../../components/PageTitle";
 
 export default function WeaponsAndEquipmentsPage() {
   const navigate = useNavigate();
@@ -55,29 +55,36 @@ export default function WeaponsAndEquipmentsPage() {
     },
   ];
 
+  const navigationSections = [
+    { id: "intro", title: "Armas e Equipamentos", level: 0 },
+    { id: "regras-equipamento", title: "Regras de Equipamento", level: 0 },
+    { id: "categorias", title: "Categorias de Equipamentos", level: 0 },
+    ...equipmentCategories.map((category, index) => ({
+      id: `category-${index}`,
+      title: category.name,
+      level: 1,
+    })),
+  ];
+
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <MobileHeroHeader title="Armas e Equipamentos" imageUrl={headerImage} />
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <PageTitle>Armas e Equipamentos</PageTitle>
+          <QuickNavigation sections={navigationSections} />
           <MobileSection>
-            <MobileText
-              variant="quote"
-              className="text-center text-lg leading-relaxed mb-6"
-            >
-              "Vida e morte em Mordheim são decididas pela quantidade e
-              qualidade das armas que um guerreiro carrega. Esta seção descreve
-              as diferentes armas e outros equipamentos como armaduras e
-              escudos."
-            </MobileText>
+            <div id="intro"></div>
 
-            <HeaderH1>Regras de Equipamento</HeaderH1>
+            <div id="regras-equipamento">
+              <HeaderH1>Regras de Equipamento</HeaderH1>
+            </div>
 
             <MobileText>
               Como explicado na seção de "Criando um Bando", cada figura tem uma
-              quantidade determinada de espaços de itens, com Heróis tendo 5 e
-              Subordinados tendo 4. Cada item gasta uma quantidade de espaços de
-              item, exceto a primeira de cada arma leve.
+              quantidade determinada de espaços de itens, podendo carregar até 5
+              espaços de equipamento, 6 no caso de figuras grandes. Cada item
+              gasta uma quantidade de espaços de item, exceto a primeira de cada
+              arma leve.
             </MobileText>
 
             <MobileText>
@@ -97,7 +104,9 @@ export default function WeaponsAndEquipmentsPage() {
               equipamentos disponíveis e nunca pode mudar essa lista.
             </MobileText>
 
-            <HeaderH1>Categorias de Equipamentos</HeaderH1>
+            <div id="categorias">
+              <HeaderH1>Categorias de Equipamentos</HeaderH1>
+            </div>
             <MobileText>
               Escolha uma categoria abaixo para explorar os equipamentos
               disponíveis em Mordheim.
@@ -107,15 +116,16 @@ export default function WeaponsAndEquipmentsPage() {
               {equipmentCategories.map((category, index) => (
                 <div
                   key={index}
-                  className="border border-gray-700 rounded-lg p-4 bg-[#1a1a1a]"
+                  id={`category-${index}`}
+                  className="border border-gray-700 rounded-lg p-4 bg-[#1a1a1a] text-center"
                 >
-                  <HeaderH2>{category.name}</HeaderH2>
-                  <MobileText className="mb-4 italic text-gray-300">
+                  <HeaderH2 className="text-center">{category.name}</HeaderH2>
+                  <MobileText className="mb-4 italic text-gray-300 text-center">
                     {category.description}
                   </MobileText>
                   <button
                     onClick={() => navigate(category.path)}
-                    className="px-6 py-2 bg-[#8B4513] text-white rounded-lg hover:bg-[#A0522D] transition-colors duration-200"
+                    className="w-full px-6 py-3 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white rounded-lg transition-colors duration-200 font-bold text-center"
                   >
                     Explorar {category.name}
                   </button>

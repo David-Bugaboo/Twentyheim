@@ -7,7 +7,7 @@ interface DaemonStats {
   fight: string;
   shoot: string;
   armour: number | string;
-  will: string;
+  Vontade: string;
   health: number;
   cost: string;
 }
@@ -30,35 +30,40 @@ const chaosColors = {
     primary: "#8B0000", // Dark red
     secondary: "#DC143C", // Crimson
     accent: "#ff6b6b",
-    gradient: "linear-gradient(180deg, rgba(139, 0, 0, 0.3) 0%, rgba(75, 0, 0, 0.3) 100%)",
+    gradient:
+      "linear-gradient(180deg, rgba(139, 0, 0, 0.3) 0%, rgba(75, 0, 0, 0.3) 100%)",
     border: "rgba(220, 20, 60, 0.5)",
   },
   nurgle: {
     primary: "#2F4F2F", // Dark green
     secondary: "#6B8E23", // Olive
     accent: "#90EE90",
-    gradient: "linear-gradient(180deg, rgba(47, 79, 47, 0.3) 0%, rgba(34, 60, 34, 0.3) 100%)",
+    gradient:
+      "linear-gradient(180deg, rgba(47, 79, 47, 0.3) 0%, rgba(34, 60, 34, 0.3) 100%)",
     border: "rgba(107, 142, 35, 0.5)",
   },
   tzeentch: {
     primary: "#191970", // Midnight blue
     secondary: "#4169E1", // Royal blue
     accent: "#87CEEB",
-    gradient: "linear-gradient(180deg, rgba(25, 25, 112, 0.3) 0%, rgba(15, 15, 70, 0.3) 100%)",
+    gradient:
+      "linear-gradient(180deg, rgba(25, 25, 112, 0.3) 0%, rgba(15, 15, 70, 0.3) 100%)",
     border: "rgba(65, 105, 225, 0.5)",
   },
   slaanesh: {
     primary: "#4B0082", // Indigo
     secondary: "#9370DB", // Medium purple
     accent: "#DA70D6",
-    gradient: "linear-gradient(180deg, rgba(75, 0, 130, 0.3) 0%, rgba(50, 0, 90, 0.3) 100%)",
+    gradient:
+      "linear-gradient(180deg, rgba(75, 0, 130, 0.3) 0%, rgba(50, 0, 90, 0.3) 100%)",
     border: "rgba(147, 112, 219, 0.5)",
   },
   default: {
     primary: "#d4af37",
     secondary: "#c4a870",
     accent: "#DAA520",
-    gradient: "linear-gradient(180deg, rgba(28, 24, 18, 0.95) 0%, rgba(20, 18, 14, 0.95) 100%)",
+    gradient:
+      "linear-gradient(180deg, rgba(28, 24, 18, 0.95) 0%, rgba(20, 18, 14, 0.95) 100%)",
     border: "rgba(139, 115, 85, 0.4)",
   },
 };
@@ -66,9 +71,10 @@ const chaosColors = {
 const Card = styled(Box, {
   shouldForwardProp: (prop) => prop !== "chaosGod",
 })<{ chaosGod?: string }>(({ chaosGod }) => {
-  const colors = chaosGod && chaosColors[chaosGod as keyof typeof chaosColors]
-    ? chaosColors[chaosGod as keyof typeof chaosColors]
-    : chaosColors.default;
+  const colors =
+    chaosGod && chaosColors[chaosGod as keyof typeof chaosColors]
+      ? chaosColors[chaosGod as keyof typeof chaosColors]
+      : chaosColors.default;
 
   return {
     marginTop: "2rem",
@@ -89,9 +95,10 @@ const Card = styled(Box, {
 const CardTitle = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "chaosGod",
 })<{ chaosGod?: string }>(({ chaosGod }) => {
-  const colors = chaosGod && chaosColors[chaosGod as keyof typeof chaosColors]
-    ? chaosColors[chaosGod as keyof typeof chaosColors]
-    : chaosColors.default;
+  const colors =
+    chaosGod && chaosColors[chaosGod as keyof typeof chaosColors]
+      ? chaosColors[chaosGod as keyof typeof chaosColors]
+      : chaosColors.default;
 
   return {
     fontFamily: '"Cinzel", serif',
@@ -125,9 +132,10 @@ const StatItem = styled(Box)({
 const StatLabel = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "chaosGod",
 })<{ chaosGod?: string }>(({ chaosGod }) => {
-  const colors = chaosGod && chaosColors[chaosGod as keyof typeof chaosColors]
-    ? chaosColors[chaosGod as keyof typeof chaosColors]
-    : chaosColors.default;
+  const colors =
+    chaosGod && chaosColors[chaosGod as keyof typeof chaosColors]
+      ? chaosColors[chaosGod as keyof typeof chaosColors]
+      : chaosColors.default;
 
   return {
     fontFamily: '"Cinzel", serif',
@@ -162,9 +170,10 @@ const AbilityItem = styled(Box)({
 const AbilityTitle = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "chaosGod",
 })<{ chaosGod?: string }>(({ chaosGod }) => {
-  const colors = chaosGod && chaosColors[chaosGod as keyof typeof chaosColors]
-    ? chaosColors[chaosGod as keyof typeof chaosColors]
-    : chaosColors.default;
+  const colors =
+    chaosGod && chaosColors[chaosGod as keyof typeof chaosColors]
+      ? chaosColors[chaosGod as keyof typeof chaosColors]
+      : chaosColors.default;
 
   return {
     fontFamily: '"Cinzel", serif',
@@ -204,8 +213,8 @@ function DaemonCard({ name, stats, abilities, chaosGod }: DaemonCardProps) {
           <StatValue>{stats.armour}</StatValue>
         </StatItem>
         <StatItem>
-          <StatLabel chaosGod={chaosGod}>Will</StatLabel>
-          <StatValue>{stats.will}</StatValue>
+          <StatLabel chaosGod={chaosGod}>Vontade</StatLabel>
+          <StatValue>{stats.Vontade}</StatValue>
         </StatItem>
         <StatItem>
           <StatLabel chaosGod={chaosGod}>Health</StatLabel>
@@ -230,4 +239,3 @@ function DaemonCard({ name, stats, abilities, chaosGod }: DaemonCardProps) {
 }
 
 export default DaemonCard;
-

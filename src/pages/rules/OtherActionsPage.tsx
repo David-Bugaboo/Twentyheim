@@ -2,18 +2,31 @@ import PageTitle from "../../components/PageTitle";
 import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
 import HeaderH1 from "../../components/HeaderH1";
-import HeaderH2 from "../../components/HeaderH2";
 import WarningBox from "../../components/WarningBox";
-import CornerDecoration from "../../components/CornerDecoration";
+import QuickNavigation from "../../components/QuickNavigation";
 
 function OtherActionsPage() {
+  const navigationSections = [
+    { id: "intro", title: "Outras Ações", level: 0 },
+    { id: "usar-item", title: "Ação de Usar Item", level: 0 },
+    { id: "acoes-especiais", title: "Ações Especiais", level: 0 },
+    {
+      id: "exemplo-mirar",
+      title: "Exemplo: Ação de Mirar do Lagarto Atirador",
+      level: 1,
+    },
+    { id: "resumo", title: "Resumo das Outras Ações", level: 1 },
+  ];
+
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <CornerDecoration />
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
           <MobileSection>
-            <PageTitle>Outras Ações</PageTitle>
+            <div id="intro">
+              <PageTitle>Outras Ações</PageTitle>
+            </div>
 
             <MobileText>
               Nem toda ação se encaixa perfeitamente nas categorias
@@ -24,13 +37,15 @@ function OtherActionsPage() {
               específicos.
             </MobileText>
 
-            <HeaderH1>Ação de Usar Item</HeaderH1>
+            <div id="usar-item">
+              <HeaderH1>Ação de Usar Item</HeaderH1>
+            </div>
             <MobileText>
               Remédios preparados em alambiques esquecidos podem salvar vidas...
               ou destruí-las espetacularmente.
             </MobileText>
             <MobileText>
-              Alguns <strong>itens mágicos e poções</strong> especificam que
+              Alguns <strong>acessórios e poções</strong> especificam que
               precisam de ações para serem bebidos, ativados ou utilizados. Esta
               é a ação usada para tal fim. Simples, direto, e frequentemente a
               diferença entre vida e morte.
@@ -42,7 +57,9 @@ function OtherActionsPage() {
               ter preço.
             </MobileText>
 
-            <HeaderH1>Ações Especiais</HeaderH1>
+            <div id="acoes-especiais">
+              <HeaderH1>Ações Especiais</HeaderH1>
+            </div>
             <MobileText>
               Nem toda ação se encaixa perfeitamente nas categorias acima.
               Algumas figuras possuem truques únicos, técnicas especializadas,
@@ -65,64 +82,69 @@ function OtherActionsPage() {
               completa — em Mordheim, os detalhes matam.
             </MobileText>
 
-            <WarningBox
-              title="Exemplo: Ação de Mirar do Lagarto Atirador"
-              type="info"
-            >
-              <MobileText
-                variant="quote"
-                className="text-center italic text-sm leading-relaxed mb-3"
+            <div id="exemplo-mirar">
+              <WarningBox
+                title="Exemplo: Ação de Mirar do Lagarto Atirador"
+                type="info"
               >
-                Tik-Taq, o Lagarto Atirador, espreitava nas sombras, sua
-                zarabatana firmemente segura. O cultista estava a 40 cm —
-                alcance perfeito, mas o alvo se movia entre os escombros.
-                Tik-Taq não era apressado. Lagartos nunca são.
-              </MobileText>
+                <MobileText
+                  variant="quote"
+                  className="text-center italic text-sm leading-relaxed mb-3"
+                >
+                  Tik-Taq, o Lagarto Atirador, espreitava nas sombras, sua
+                  zarabatana firmemente segura. O cultista estava a 40 cm —
+                  alcance perfeito, mas o alvo se movia entre os escombros.
+                  Tik-Taq não era apressado. Lagartos nunca são.
+                </MobileText>
 
-              <MobileText
-                variant="quote"
-                className="text-center italic text-sm leading-relaxed mb-3"
-              >
-                Ele usou sua primeira ação para <strong>Mirar</strong> — uma
-                ação especial concedida por sua habilidade de zarabataneiro.
-                Respiração controlada. Foco absoluto. Cálculo da distância,
-                vento, e o movimento do alvo. Quando sua segunda ação veio, ele
-                disparou <strong>Ignorando terrenos entre ele e o alvo</strong>.
-              </MobileText>
+                <MobileText
+                  variant="quote"
+                  className="text-center italic text-sm leading-relaxed mb-3"
+                >
+                  Ele usou sua primeira ação para <strong>Mirar</strong> — uma
+                  ação especial concedida por sua habilidade de zarabataneiro.
+                  Respiração controlada. Foco absoluto. Cálculo da distância,
+                  vento, e o movimento do alvo. Quando sua segunda ação veio,
+                  ele disparou{" "}
+                  <strong>Ignorando terrenos entre ele e o alvo</strong>.
+                </MobileText>
 
-              <MobileText
-                variant="quote"
-                className="text-center italic text-sm leading-relaxed"
-              >
-                O dardo envenenado voou. Silencioso. Certeiro. O cultista caiu
-                antes mesmo de saber que estava morto. Tik-Taq assentiu para si
-                mesmo. Paciência, como sempre, vence pressa. Os sangue-quente
-                nunca entendem isso.
-              </MobileText>
-            </WarningBox>
+                <MobileText
+                  variant="quote"
+                  className="text-center italic text-sm leading-relaxed"
+                >
+                  O dardo envenenado voou. Silencioso. Certeiro. O cultista caiu
+                  antes mesmo de saber que estava morto. Tik-Taq assentiu para
+                  si mesmo. Paciência, como sempre, vence pressa. Os
+                  sangue-quente nunca entendem isso.
+                </MobileText>
+              </WarningBox>
+            </div>
 
-            <WarningBox title="Resumo das Outras Ações" type="info">
-              <MobileText>
-                • <strong>Usar Item:</strong> Ativar poções, itens mágicos e
-                equipamentos especiais
-              </MobileText>
-              <MobileText>
-                • <strong>Ações Especiais:</strong> Habilidades únicas de
-                figuras específicas
-              </MobileText>
-              <MobileText>
-                • <strong>Regras Específicas:</strong> Cada ação especial tem
-                suas próprias regras
-              </MobileText>
-              <MobileText>
-                • <strong>Substituição:</strong> Podem substituir ações normais
-                ou ser únicas
-              </MobileText>
-              <MobileText>
-                • <strong>Leia a Descrição:</strong> Sempre consulte a descrição
-                completa da ação
-              </MobileText>
-            </WarningBox>
+            <div id="resumo">
+              <WarningBox title="Resumo das Outras Ações" type="info">
+                <MobileText>
+                  • <strong>Usar Item:</strong> Ativar poções, itens mágicos e
+                  equipamentos especiais
+                </MobileText>
+                <MobileText>
+                  • <strong>Ações Especiais:</strong> Habilidades únicas de
+                  figuras específicas
+                </MobileText>
+                <MobileText>
+                  • <strong>Regras Específicas:</strong> Cada ação especial tem
+                  suas próprias regras
+                </MobileText>
+                <MobileText>
+                  • <strong>Substituição:</strong> Podem substituir ações
+                  normais ou ser únicas
+                </MobileText>
+                <MobileText>
+                  • <strong>Leia a Descrição:</strong> Sempre consulte a
+                  descrição completa da ação
+                </MobileText>
+              </WarningBox>
+            </div>
 
             <MobileText
               variant="quote"

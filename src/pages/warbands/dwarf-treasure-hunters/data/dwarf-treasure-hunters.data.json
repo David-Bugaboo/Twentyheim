@@ -1,0 +1,342 @@
+[
+  {
+    "id": "nobre-de-kharadron",
+    "name": "Nobre de Kharadron",
+    "role": "Líder",
+    "quantity": "1",
+    "stats": {
+      "move": 10,
+      "fight": "+3",
+      "shoot": "+2",
+      "armour": 11,
+      "Vontade": "+4",
+      "health": 20,
+      "cost": "85 coroas",
+      "skills": ["Combate", "Atirador", "Força", "Caçadores de Tesouro Anões"]
+    },
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+      },
+      {
+        "name": "Habilidades",
+        "description": "O Nobre de Kharadron começa com 5 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+      },
+      {
+        "name": "Rancor Antigo",
+        "description": "Essa figura tem Ódio(Orcs & Goblins)"
+      },
+      {
+        "name": "Cabeça Dura",
+        "description": "Anões são imunes à palavra-chave Concussiva(X)."
+      },
+      {
+        "name": "Líder de Mineração",
+        "description": "Sempre que o Nobre de Kharadron participar de uma atividade de exploração o bando ganha um fragmento de pedra-bruxa adicional."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Machado Anão", "cost": "15 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" },
+        { "name": "Armadura de Gromril", "cost": "75 coroas" }
+      ],
+      "ranged": [{ "name": "Pistola", "cost": "15 coroas (30 para cinto)" }],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Armadura de Gromril", "cost": "75 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Gromril", "cost": "3x o custo" }]
+    }
+  },
+  {
+    "id": "engenheiro-de-kharadron",
+    "name": "Engenheiro de Kharadron",
+    "role": "Herói",
+    "quantity": "0-1",
+    "stats": {
+      "move": 10,
+      "fight": "+2",
+      "shoot": "+2",
+      "armour": 11,
+      "Vontade": "+5",
+      "health": 20,
+      "cost": "50 coroas",
+      "skills": [
+        "Combate",
+        "Atirador",
+        "Acadêmica",
+        "Caçadores de Tesouro Anões",
+        "Engenharia de Kharadron"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "O Engenheiro de Kharadron começa com 5 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+      },
+      {
+        "name": "Engenharia Militar",
+        "description": "O Engenheiro de Kharadron faz com que todas as armas de fogo, e bestas do bando ganhem 8cm de alcance adicional se ele estiver presente no jogo."
+      },
+      {
+        "name": "Cabeça Dura",
+        "description": "Anões são imunes à palavra-chave Concussiva(X)."
+      },
+      {
+        "name": "Rancor Antigo",
+        "description": "Essa figura tem Ódio(Orcs & Goblins)"
+      },
+      {
+        "name": "Devagar e Sempre",
+        "description": "O Engenheiro de Kharadron nunca perde movimento devido ao uso de equipamentos."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
+        { "name": "Besta", "cost": "25 coroas" },
+        { "name": "Arcabuz", "cost": "35 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Repetição", "cost": "base * 3" }]
+    }
+  },
+  {
+    "id": "mata-trolls-anao",
+    "name": "Mata-Trolls Anão",
+    "role": "Herói",
+    "quantity": "0-2",
+    "stats": {
+      "move": 10,
+      "fight": "+3",
+      "shoot": "+0",
+      "armour": 11,
+      "Vontade": "+4",
+      "health": 20,
+      "cost": "50 coroas",
+      "skills": [
+        "Combate",
+        "Força",
+        "Caçadores de Tesouro Anões",
+        "Mata-Trolls Anão"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "O Mata-Trolls Anão começa com 3 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 8."
+      },
+      {
+        "name": "Jornada pela Morte",
+        "description": "O Mata-Trolls é Imune a Aterrorizante e tem a característica Mente-Férrea."
+      },
+      {
+        "name": "Rancor Antigo",
+        "description": "Essa figura tem Ódio(Orcs & Goblins)"
+      },
+      {
+        "name": "Cabeça Dura",
+        "description": "Anões são imunes à palavra-chave Concussiva(X)."
+      },
+      {
+        "name": "Devagar e Sempre",
+        "description": "O Engenheiro de Kharadron nunca perde agilidade devido ao uso de equipamentos."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Machado Anão", "cost": "15 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "armor": [],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Gromril", "cost": "3x o custo" }]
+    }
+  },
+  {
+    "id": "irmaos-de-clao",
+    "name": "Irmãos de Clã",
+    "quantity": "ilimitado",
+    "stats": {
+      "move": 10,
+      "fight": "+3",
+      "shoot": "+0",
+      "armour": 11,
+      "Vontade": "+1",
+      "health": 14,
+      "cost": "40 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Rancor Antigo",
+        "description": "Essa figura tem Ódio(Orcs & Goblins)"
+      },
+      {
+        "name": "Devagar e Sempre",
+        "description": "O Engenheiro de Kharadron nunca perde agilidade devido ao uso de equipamentos."
+      },
+      {
+        "name": "Cabeça Dura",
+        "description": "Anões são imunes à palavra-chave Concussiva(X)."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Machado Anão", "cost": "15 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [{ "name": "Pistola", "cost": "15 coroas (30 para cinto)" }],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Armadura de Gromril", "cost": "75 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Gromril", "cost": "3x o custo" }]
+    }
+  },
+
+  {
+    "id": "trovejador-anao",
+    "name": "Trovejador Anão",
+    "quantity": "0-5",
+    "stats": {
+      "move": 10,
+      "fight": "+2",
+      "shoot": "+2",
+      "armour": 11,
+      "Vontade": "+1",
+      "health": 14,
+      "cost": "40 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Rancor Antigo",
+        "description": "Essa figura tem Ódio(Orcs & Goblins)"
+      },
+      {
+        "name": "Cabeça Dura",
+        "description": "Anões são imunes à palavra-chave Concussiva(X)."
+      },
+      {
+        "name": "Devagar e Sempre",
+        "description": "O Engenheiro de Kharadron nunca perde agilidade devido ao uso de equipamentos."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
+        { "name": "Besta", "cost": "25 coroas" },
+        { "name": "Arcabuz", "cost": "35 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Repetição", "cost": "base *3" }]
+    }
+  },
+  {
+    "id": "barba-curta",
+    "name": "Barba Curta",
+    "quantity": "ilimitado",
+    "stats": {
+      "move": 10,
+      "fight": "+2",
+      "shoot": "+0",
+      "armour": 11,
+      "Vontade": "0",
+      "health": 12,
+      "cost": "25 coroas"
+    },
+    "abilities": [
+      {
+        "name": "Rancor Antigo",
+        "description": "Essa figura tem Ódio(Orcs & Goblins)"
+      },
+      {
+        "name": "Devagar e Sempre",
+        "description": "Um Barba Curta nunca perde agilidade devido ao uso de equipamentos."
+      },
+      {
+        "name": "Cabeça Dura",
+        "description": "Anões são imunes à palavra-chave Concussiva(X)."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Machado Anão", "cost": "15 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" },
+        { "name": "Alabarda", "cost": "10 coroas" }
+      ],
+      "ranged": [{ "name": "Pistola", "cost": "15 coroas (30 para cinto)" }],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Armadura de Gromril", "cost": "75 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Gromril", "cost": "3x o custo" }]
+    }
+  }
+]

@@ -1,0 +1,304 @@
+[
+  {
+    "id": "feiticeiro-aprendiz",
+    "name": "Feiticeiro Aprendiz",
+    "role": "Líder",
+    "stats": {
+      "move": 10,
+      "fight": "+2",
+      "shoot": "0",
+      "armour": 11,
+      "Vontade": "+4",
+      "health": 16,
+      "cost": "85 coroas"
+    },
+    "quantity": "1",
+    "spellAffinity": {
+      "aligned0": ["Tradição de Hashut"],
+      "aligned2": [
+        "Tradição das Sombras",
+        "Tradição do Metal",
+        "Tradição do Fogo",
+        "Tradição do Caos"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "O Feiticeiro Aprendiz pode ativar até 3 criaturas a 8cm dele junto a si."
+      },
+      {
+        "name": "Conjurador",
+        "description": "O Feiticeiro Aprendiz é um conjurador da Tradição de Hashut. Ele começa com 5 magias entre suas tradições disponíveis."
+      },
+      {
+        "name": "Cabeça Dura",
+        "description": "Anões são imunes à palavra-chave Concussiva(X)."
+      },
+      {
+        "name": "Crueldade Paciente",
+        "description": "Os anões do caos não podem sofrer penalidades no movimento por uso de equipamentos."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Arma de Obsidiana", "cost": "30 coroas" }
+      ],
+      "ranged": [
+        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Obsidiana", "cost": "base * 4" }]
+    }
+  },
+  {
+    "id": "centouro-de-hashut",
+    "name": "Centouro de Hashut",
+    "role": "Héroi",
+    "stats": {
+      "move": 24,
+      "fight": "+4",
+      "shoot": "+1",
+      "armour": 11,
+      "Vontade": "+4",
+      "health": 18,
+      "cost": "75 coroas",
+      "skills": ["Combate", "Força", "Filhos de Hashut"]
+    },
+    "quantity": "0-1",
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "O Centouro de Hashut começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+      },
+      {
+        "name": "Carga Violenta",
+        "description": "O Centouro de Hashut tem as características Chifres e Grande não pode escalar, e gasta 3 de movimento para cada 1cm de movimento em terreno acidentado."
+      },
+      {
+        "name": "Cabeça Dura",
+        "description": "Anões são imunes à palavra-chave Concussiva(X)."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Arma de Obsidiana", "cost": "30 coroas" }
+      ],
+      "ranged": [
+        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Obsidiana", "cost": "base * 4" }]
+    }
+  },
+  {
+    "id": "campeao-ano-do-caos",
+    "name": "Campeão Anão do Caos",
+    "role": "Herói",
+    "stats": {
+      "move": 10,
+      "fight": "+4",
+      "shoot": "0",
+      "armour": 11,
+      "Vontade": "+3",
+      "health": 20,
+      "cost": "50 coroas",
+      "skills": ["Combate", "Atirador", "Força", "Filhos de Hashut"]
+    },
+    "quantity": "0-2",
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "O Campeão Anão do Caos começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+      },
+      {
+        "name": "Crueldade Paciente",
+        "description": "Os anões do caos não podem sofrer penalidades no movimento por uso de equipamentos."
+      },
+      {
+        "name": "Cabeça Dura",
+        "description": "Anões são imunes à palavra-chave Concussiva(X)."
+      },
+      {
+        "name": "Força do Deus Touro",
+        "description": "Carcereiros tem a característica Forte."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Obsidiana", "cost": "base * 4" }]
+    }
+  },
+  {
+    "id": "hobgoblin",
+    "name": "Hobgoblin",
+    "stats": {
+      "move": 18,
+      "fight": "0",
+      "shoot": "0",
+      "armour": 9,
+      "Vontade": "-2",
+      "health": 10,
+      "cost": "15 coroas"
+    },
+    "quantity": "4+",
+    "abilities": [
+      {
+        "name": "Coward",
+        "description": "Hobgoblins são criaturas naturalmente covardes que são forçadas a lutar por seus mestres dábios do Caos. Como resultado, eles sofrem dano facilmente e, na primeira oportunidade, tentam escapar de seus captores. Ao rolar na tabela de Sobrevivência do Soldado, qualquer resultado menor que 15 resulta em um hobgoblim morto ou que escapou. Em um 16-20, eles fazem uma recuperação completa."
+      },
+      {
+        "name": "Ignorados",
+        "description": "Hobgoblins contam como metade do número de figuras se o bando tiver que fazer um teste de debandada. Por exemplo, em um bando de 12 figuras, se 2 figuras Hobgoblin e 1 figura Anão do Caos estiverem fora de ação, o total seria duas figuras fora de ação (1/2 + 1/2 +1 =2). Além disso, Hobgoblins não podem ser heróis, apenas refaça a rolagens de avanço de `O Moleque tem talento`."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Adagas Envenenadas Hobgoblin", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco Curto", "cost": "5 coroas" },
+        { "name": "Arco", "cost": "10 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "guarda-de-forja",
+    "name": "Guarda de Forja",
+    "stats": {
+      "move": 10,
+      "fight": "+4",
+      "shoot": "0",
+      "armour": 14,
+      "Vontade": "0",
+      "health": 14,
+      "cost": "40 coroas"
+    },
+    "quantity": "0-6",
+    "abilities": [
+      {
+        "name": "Crueldade Paciente",
+        "description": "Os anões do caos não podem sofrer penalidades na agilidade por uso de equipamentos."
+      },
+      {
+        "name": "Cabeça Dura",
+        "description": "Anões são imunes à palavra-chave Concussiva(X)."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Arma de Obsidiana", "cost": "30 coroas" }
+      ],
+      "ranged": [
+        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Obsidiana", "cost": "base * 4" }]
+    }
+  },
+  {
+    "id": "quebra-hordas",
+    "name": "Quebra-Hordas",
+    "stats": {
+      "move": 10,
+      "fight": "2",
+      "shoot": "2",
+      "armour": 13,
+      "Vontade": "+1",
+      "health": 12,
+      "cost": "40 coroas"
+    },
+    "quantity": "0-3",
+    "abilities": [
+      {
+        "name": "Crueldade Paciente",
+        "description": "Os anões do caos não podem sofrer penalidades na agilidade por uso de equipamentos."
+      },
+      {
+        "name": "Cabeça Dura",
+        "description": "Anões são imunes à palavra-chave Concussiva(X)."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Martelo", "cost": "3 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Bacamarte dos Anões do Caos", "cost": "40 coroas" },
+        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": [{ "name": "De Obsidiana", "cost": "base * 4" }]
+    }
+  }
+]

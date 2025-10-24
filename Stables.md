@@ -26,7 +26,7 @@ A mounted Soldier may pick up and carry treasure as normal , but must spend an e
 
 The rider and his mount count as a single target, and are considered to be a Large target (Frostgrave, p.40). Use a base of 40mm+ to represent the pair.
 
-A spellcaster may cast Lure of Chaos or Master Voice. If successful, roll using the Rider’s will roll. If the Will roll fails, roll on the Whoa, Boy\! table with a \+7 modifier.
+A spellcaster may cast Lure of Chaos or Master Voice. If successful, roll using the Rider’s Vontade roll. If the Vontade roll fails, roll on the Whoa, Boy\! table with a \+7 modifier.
 
 | Whoa, Boy\! Table |                                                                                                                                                                                                      |
 | :---------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -54,7 +54,7 @@ A spellcaster may cast Lure of Chaos or Master Voice. If successful, roll using 
 | :-: | :-: | :-: | :-: | :-: | :-: |
 | \+2 | \+1 | \-2 | \+0 |  0  | \+0 |
 
-**Daemonic Steed \-** The possessed Steed does not count as an animal, but rather as a daemon, is will roll on the Whoa, Boy\! table if is targeted by a Scour the Wicked or Exorcism spell.
+**Daemonic Steed \-** The possessed Steed does not count as an animal, but rather as a daemon, is Vontade roll on the Whoa, Boy\! table if is targeted by a Scour the Wicked or Exorcism spell.
 
 ### Kharadron Mountain Goat
 

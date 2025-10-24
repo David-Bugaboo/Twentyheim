@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Box, Typography, IconButton, List, ListItem, ListItemButton, ListItemText, Divider, Collapse } from "@mui/material";
+import {
+  Modal,
+  Box,
+  Typography,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Divider,
+  Collapse,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -21,7 +32,78 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
   const [activeSection, setActiveSection] = useState<string>("");
   const [isIndexOpen, setIsIndexOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(
+    new Set()
+  );
+
+  // Process sections: use existing children if defined, otherwise auto-group
+  const groupedSections = React.useMemo(() => {
+    // Check if any section already has children defined
+    const hasPredefinedChildren = sections.some(
+      (section) => section.children && section.children.length > 0
+    );
+
+    if (hasPredefinedChildren) {
+      // Use existing structure with children
+      return sections.map((section) => ({
+        id: section.id,
+        title: section.title,
+        level: section.level,
+        children: section.children || undefined,
+      }));
+    }
+
+    // Auto-group sections: group level 1 items under the previous level 0 item
+    const result: Array<{
+      id: string;
+      title: string;
+      level: number;
+      children?: Array<{
+        id: string;
+        title: string;
+        level: number;
+      }>;
+    }> = [];
+
+    let currentParent: (typeof result)[0] | null = null;
+
+    for (const section of sections) {
+      if (section.level === 0) {
+        // Level 0 items become parent items
+        const newParent = {
+          id: section.id,
+          title: section.title,
+          level: section.level,
+          children: [] as Array<{ id: string; title: string; level: number }>,
+        };
+        result.push(newParent);
+        currentParent = newParent;
+      } else if (section.level === 1 && currentParent) {
+        // Level 1 items become children of the current parent
+        currentParent.children!.push({
+          id: section.id,
+          title: section.title,
+          level: section.level,
+        });
+      } else {
+        // Other levels or no parent - add as regular item
+        result.push({
+          id: section.id,
+          title: section.title,
+          level: section.level,
+        });
+      }
+    }
+
+    // Clean up empty children arrays
+    result.forEach((section) => {
+      if (section.children && section.children.length === 0) {
+        delete section.children;
+      }
+    });
+
+    return result;
+  }, [sections]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,10 +137,10 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
       const elementTop = element.offsetTop;
       const headerHeight = 100; // Altura aproximada do header
       const offset = elementTop - headerHeight;
-      
+
       window.scrollTo({
         top: offset,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
     setIsIndexOpen(false);
@@ -69,7 +151,7 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
   };
 
   const toggleSection = (sectionId: string) => {
-    setExpandedSections(prev => {
+    setExpandedSections((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(sectionId)) {
         newSet.delete(sectionId);
@@ -85,10 +167,10 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
       {/* Floating Book Button */}
       <button
         onClick={() => setIsIndexOpen(!isIndexOpen)}
-        className="fixed bottom-6 right-6 z-50 bg-[#8fbc8f] text-black p-4 rounded-full shadow-lg hover:bg-[#7aab7a] transition-colors"
+        className="fixed bottom-6 right-6 z-50 bg-green-800 text-white p-4 md:p-8 rounded-full shadow-lg hover:bg-green-700 transition-colors"
       >
         <svg
-          className="w-6 h-6"
+          className="w-6 h-6 md:w-12 md:h-12"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -150,11 +232,30 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
           </Box>
 
           {/* Navigation Items */}
-          <List sx={{ flex: 1, padding: 0, overflow: "auto" }}>
-            {sections.map((section, index) => {
-              const hasChildren = section.children && section.children.length > 0;
+          <List sx={{ 
+            flex: 1, 
+            padding: 0, 
+            overflow: "auto",
+            maxHeight: "calc(100vh - 80px)",
+            "&::-webkit-scrollbar": {
+              width: "8px",
+            },
+            "&::-webkit-scrollbar-track": {
+              backgroundColor: "#2a2a2a",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "#8fbc8f",
+              borderRadius: "4px",
+              "&:hover": {
+                backgroundColor: "#7fb87f",
+              },
+            },
+          }}>
+            {groupedSections.map((section, index) => {
+              const hasChildren =
+                section.children && section.children.length > 0;
               const isExpanded = expandedSections.has(section.id);
-              
+
               return (
                 <React.Fragment key={section.id}>
                   <ListItem disablePadding>
@@ -167,8 +268,12 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
                         }
                       }}
                       sx={{
-                        color: activeSection === section.id ? "#8fbc8f" : "white",
-                        backgroundColor: activeSection === section.id ? "rgba(143, 188, 143, 0.1)" : "transparent",
+                        color:
+                          activeSection === section.id ? "#8fbc8f" : "white",
+                        backgroundColor:
+                          activeSection === section.id
+                            ? "rgba(143, 188, 143, 0.1)"
+                            : "transparent",
                         "&:hover": {
                           backgroundColor: "rgba(143, 188, 143, 0.1)",
                         },
@@ -181,22 +286,20 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
                         sx={{
                           "& .MuiListItemText-primary": {
                             fontFamily: '"Crimson Text", serif',
-                            fontWeight: activeSection === section.id ? "bold" : "normal",
+                            fontWeight:
+                              activeSection === section.id ? "bold" : "normal",
                             fontSize: section.level === 0 ? "16px" : "14px",
                           },
                         }}
                       />
                       {hasChildren && (
-                        <IconButton
-                          size="small"
-                          sx={{ color: "white", ml: 1 }}
-                        >
+                        <IconButton size="small" sx={{ color: "white", ml: 1 }}>
                           {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                         </IconButton>
                       )}
                     </ListItemButton>
                   </ListItem>
-                  
+
                   {hasChildren && (
                     <Collapse in={isExpanded} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
@@ -205,8 +308,14 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
                             <ListItemButton
                               onClick={() => scrollToSection(child.id)}
                               sx={{
-                                color: activeSection === child.id ? "#8fbc8f" : "white",
-                                backgroundColor: activeSection === child.id ? "rgba(143, 188, 143, 0.1)" : "transparent",
+                                color:
+                                  activeSection === child.id
+                                    ? "#8fbc8f"
+                                    : "white",
+                                backgroundColor:
+                                  activeSection === child.id
+                                    ? "rgba(143, 188, 143, 0.1)"
+                                    : "transparent",
                                 "&:hover": {
                                   backgroundColor: "rgba(143, 188, 143, 0.1)",
                                 },
@@ -219,7 +328,10 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
                                 sx={{
                                   "& .MuiListItemText-primary": {
                                     fontFamily: '"Crimson Text", serif',
-                                    fontWeight: activeSection === child.id ? "bold" : "normal",
+                                    fontWeight:
+                                      activeSection === child.id
+                                        ? "bold"
+                                        : "normal",
                                     fontSize: "14px",
                                   },
                                 }}
@@ -230,7 +342,7 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
                       </List>
                     </Collapse>
                   )}
-                  
+
                   {index < sections.length - 1 && (
                     <Divider sx={{ backgroundColor: "#333" }} />
                   )}
@@ -245,10 +357,10 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 left-6 z-50 bg-gray-700 text-white p-3 rounded-full shadow-lg hover:bg-gray-600 transition-colors"
+          className="fixed bottom-6 left-6 z-50 bg-green-800 text-white p-3 md:p-8 rounded-full shadow-lg hover:bg-green-700 transition-colors"
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 md:w-12 md:h-12"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

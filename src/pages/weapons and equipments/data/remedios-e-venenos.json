@@ -7,7 +7,7 @@
     "purchaseCost": "15 coroas",
     "rarity": 18,
     "availability": [
-      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas, Guarda Marítica de Ulthuan, Elfos Silvanos de Athel Loren"
+      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas"
     ],
     "exclusive": null,
     "flavorText": "Nas florestas mais profundas das Terras do Sul cresce uma planta extremamente venenosa. É conhecida como Lótus Negro e é muito procurada por alquimistas, assassinos, magos da Costa Ocidental e esposas entediadas.",
@@ -20,7 +20,7 @@
     "specialRules": [
       {
         "label": "Envenenar Arma",
-        "value": "Uma figura pode envenenar sua arma com esse veneno como ação. Até o fim do jogo, aquela arma tem a característica Venenoso."
+        "value": "Uma figura pode envenenar sua arma com esse veneno como ação. Até o fim do jogo, aquela arma tem a característica Tóxica."
       }
     ]
   },
@@ -32,7 +32,7 @@
     "purchaseCost": "40 coroas",
     "rarity": 14,
     "availability": [
-      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas, Guarda Marítica de Ulthuan, Elfos Silvanos de Athel Loren"
+      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas"
     ],
     "exclusive": null,
     "flavorText": "Sombra Carmesim é o nome dado pelos habitantes do Velho Mundo às folhas do carvalho sangrento da Estália. É uma droga extremamente viciante, mas concede a seus usuários velocidade e força desumanas.",
@@ -57,7 +57,7 @@
     "purchaseCost": "30 coroas",
     "rarity": 12,
     "availability": [
-      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas, Guarda Marítica de Ulthuan, Elfos Silvanos de Athel Loren"
+      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas"
     ],
     "exclusive": null,
     "flavorText": "Este é um veneno extraído de Heldrakes, serpentes marinhas gigantes que assolam o Oceano Ocidental e a costa de Naggaroth. O menor ferimento infectado por Veneno Sombrio causa dor excruciante, incapacitando os mais bravos dos homens.",
@@ -150,7 +150,7 @@
     "purchaseCost": "30",
     "rarity": 17,
     "availability": [
-      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas, Guarda Marítica de Ulthuan, Elfos Silvanos de Athel Loren"
+      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas."
     ],
     "exclusive": null,
     "flavorText": "Uma substância soporífera tão letal quanto a besta que a excretou. A penetração da carne da vítima pela lâmina de um guerreiro manchada com fezes frescas de uma Manticora induz um estado de sono sem sonhos seguido de morte quase certa.",

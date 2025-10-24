@@ -6,7 +6,6 @@ import HeaderH2 from "../../components/HeaderH2";
 import WarningBox from "../../components/WarningBox";
 import GenericTable from "../../components/GenericTable";
 import HeaderH3 from "../../components/HeaderH3";
-import CornerDecoration from "../../components/CornerDecoration";
 
 function RangedActionsPage() {
   const modifiersData = [
@@ -42,7 +41,6 @@ function RangedActionsPage() {
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <CornerDecoration />
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <MobileSection>
@@ -55,6 +53,19 @@ function RangedActionsPage() {
               uma figura dentro do <strong>alcance daquela arma</strong> que ela
               consiga enxergar.
             </MobileText>
+
+            <div id="restricao-combate">
+              <WarningBox title="Restrição: Figuras em Combate" type="warning">
+                <MobileText>
+                  <strong>
+                    Uma figura em combate não pode usar uma ação de combate a
+                    distância
+                  </strong>{" "}
+                  . Ela está ocupada demais lutando por sua vida para mirar,
+                  preparar uma flecha e atirar.
+                </MobileText>
+              </WarningBox>
+            </div>
 
             <HeaderH1>A Ação de Tiro</HeaderH1>
 
@@ -75,6 +86,16 @@ function RangedActionsPage() {
               relevantes — incluindo os da tabela de defesa contra tiro abaixo.
             </MobileText>
 
+            <WarningBox title="Ataques a Distância em Combate" type="info">
+              <MobileText>
+                Caso uma figura deseje usar uma ação de ataque a distância em
+                direção a uma figura que está em combate, deve{" "}
+                <strong>randomizar</strong> quais das figuras naquele combate
+                será o alvo, e não pode cancelar a ação de ataque a distância
+                uma vez que o alvo tenha sido rolado.
+              </MobileText>
+            </WarningBox>
+
             <HeaderH3>Tabela de Modificadores de Defesa Contra Tiro</HeaderH3>
             <GenericTable data={modifiersData} scrollable={false} />
             <MobileText className="mt-4 text-sm text-[#999]">
@@ -91,6 +112,23 @@ function RangedActionsPage() {
               desvia, a bala se perde nas sombras.
             </MobileText>
 
+            <div className="mt-6 p-4 bg-green-900/20 border border-green-500/40 rounded-lg">
+              <HeaderH2 className="text-green-300 mb-2">
+                Tipos Especiais de Dano e Condições
+              </HeaderH2>
+              <MobileText className="text-green-100 mb-4">
+                Para conferir tipos especiais de dano, danos críticos e
+                condições negativas causadas por ataques, consulte a página
+                dedicada.
+              </MobileText>
+              <a
+                href="/rules/negative-conditions"
+                className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors duration-200"
+              >
+                Ver Dano e Condições Negativas
+              </a>
+            </div>
+
             <WarningBox
               title="Resumo das Ações de Ataque à Distância"
               type="info"
@@ -100,7 +138,7 @@ function RangedActionsPage() {
                 arma e linha de visão
               </MobileText>
               <MobileText>
-                • <strong>Rolagem de Tiro:</strong> Precisão (d20) +
+                • <strong>Rolagem de Precisão:</strong> Precisão (d20) +
                 modificadores
               </MobileText>
               <MobileText>
@@ -108,12 +146,12 @@ function RangedActionsPage() {
                 modificadores de cobertura
               </MobileText>
               <MobileText>
-                • <strong>Sucesso:</strong> Rolagem de Tiro {">"} Rolagem de
+                • <strong>Sucesso:</strong> Rolagem de Precisão {">"} Rolagem de
                 Defesa = causa dano
               </MobileText>
               <MobileText>
-                • <strong>Falha:</strong> Rolagem de Tiro ≤ Rolagem de Defesa =
-                nenhum dano
+                • <strong>Falha:</strong> Rolagem de Precisão ≤ Rolagem de
+                Defesa = nenhum dano
               </MobileText>
               <MobileText>
                 • <strong>Cálculo de Dano:</strong> Rolagem de Tiro +

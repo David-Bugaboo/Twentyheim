@@ -1,154 +1,132 @@
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
-import SpellCard from "../../components/SpellCard";
-import {
-  PageContainer,
-  ContentSection,
-  NavigationSection,
-  StyledNavigationButton,
-  ContentContainer,
-  ParchmentText,
-  PowerListTitle,
-} from "../../components/PageComponents";
+import PageTitle from "../../components/PageTitle";
+import MobileText from "../../components/MobileText";
+import MobileSection from "../../components/MobileSection";
+import HeaderH2 from "../../components/HeaderH2";
+import GenericTable from "../../components/GenericTable";
+import TzeentchCurseTable from "../../components/TzeentchCurseTable";
+import QuickNavigation from "../../components/QuickNavigation";
+import LoreSpellCard from "../../components/LoreSpellCard";
+import loreOfLifeData from "./data/lore-of-life.json";
 
 export default function LoreOfLifePage() {
   const navigate = useNavigate();
 
-  const spells = [
+  const navigationSections = [
+    { id: "intro", title: "Tradição da Vida - Ghyran", level: 0 },
     {
-      name: "Sangue da Terra",
-      castingNumber: 8,
-      keywords: ["Linha de Visão"],
-      effect:
-        "Escolha um alvo a até 30cm. Esta magia concede ao alvo +2 Vigor pelo resto do jogo - enraizado na força da terra. Isto pode levar uma figura acima de seu Vigor inicial. Uma figura só pode ter uma magia Sangue da Terra conjurada sobre ela por jogo.",
+      id: "caracteristicas",
+      title: "Características da Tradição da Vida",
+      level: 0,
     },
-    {
-      name: "Portal dos Dolmens",
-      castingNumber: 10,
-      keywords: ["Conjurador Apenas"],
-      effect:
-        "O conjurador imediatamente se move para qualquer lugar dentro de linha de visão, viajando através da rede natural, mas não pode realizar outras ações neste turno após conjurar esta magia. Esta magia não pode ser usada para entrar em combate ou para sair da mesa.",
-    },
-    {
-      name: "Gêiser",
-      castingNumber: 14,
-      keywords: ["Alcance(30)", "Area de Efeito(Pilar Médio)"],
-      effect:
-        "Essa área de efeito não pode ser colocado em contato com uma figura. Sempre que uma figura se mover em contato com essa área de efeito, ou ativar enquanto em contato com ela, sofre um ataque mágico +3 e é movida 2 vezes o dano que tomou diretamente para cima em centímetros. A Área de Efeito bloqueia linha de visão como se fosse uma peça de terreno. No fim de cada turno, role um dado. Em 1-2 o gêiser cessa naturalmente e deve ser removido da mesa.",
-    },
-    {
-      name: "Parede de Espinhos",
-      castingNumber: 8,
-      keywords: ["Linha de Visão", "Area de Efeito (Muro)"],
-      effect:
-        "A área de efeito não bloqueia linha de visão, mas pode conta como terreno interveniente. Qualquer figura que deseje escalar sobre a Área de Efeito deve primeiro fazer uma Rolagem de Vontade com CD de 14. Se falhar, a hesitação domina e sua ação atual termina imediatamente.",
-    },
-    {
-      name: "Ímpeto da Vida",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "O druida canaliza a força vital renovadora da natureza através do alvo, acelerando os processos naturais de cura e revitalizando o corpo exausto. A magia responde ao estado da criatura - para os feridos, traz regeneração; para os saudáveis, traz vigor explosivo. É como a primavera chegando após o inverno: aqueles à beira da morte florescem novamente, enquanto aqueles já fortes sentem uma energia súbita que os impele à ação.\n\nSe o alvo tiver menos da metade de seu Vigor máximo, a energia vital preenche suas feridas - ele ganha Vigor suficiente para ter metade do seu Vigor máximo +1. Se o alvo já tiver mais da metade de seu Vigor máximo, a vitalidade se manifesta como energia pura - ele ganha uma ação extra na sua próxima ativação.",
-    },
-    {
-      name: "Nascente",
-      castingNumber: 10,
-      keywords: ["Linha de Visão", "Área de Efeito (Zona Pequena)"],
-      effect:
-        "Posicione uma Área de Efeito em um ponto alvo. Essa área de efeito conta como água profunda com +2 no CD para nadar. Uma figura aliada a menos de 3cm da Área de Efeito pode gastar uma ação para recuperar 3 de vida, mas a Área de Efeito é imediatameente tirada da mesa, seu efeito mágico dissipado com cura. o conjurador pode dissipar a poça como uma ação livre na sua ativação. ",
-    },
-    {
-      name: "Dádiva da Terra",
-      castingNumber: 14,
-      keywords: ["Ritual"],
-      effect:
-        "Se esse ritual for conjurado com sucesso, depois do próximo jogo, o bando ganha +2 nas rolagens de sobrevivência de qualquer figura reduzida a 0 de vida. O bando também começa o próximo jogo com +1 de Vontade. ",
-    },
-    {
-      name: "Verão Escaldante",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "O alvo é reduzido a um máximo de uma ação por ativação até o fim do jogo (que pode ser qualquer ação, não precisa ser movimento). Ele pode fazer uma Rolagem de Vontade contra a Rolagem de Conjuração no fim de cada uma de suas ativações. Se bem-sucedida, a magia é cancelada.",
-    },
-    {
-      name: "Proclamação dos Rios",
-      castingNumber: 8,
-      keywords: ["Linha de Visão"],
-      effect:
-        "O alvo desta magia deve estar na água ou dentro de 10cm de um corpo de água que tenha pelo menos 5cm de diâmetro. Esta figura sofre um ataque imediato +5.",
-    },
-    {
-      name: "Florescer da Primavera",
-      castingNumber: 8,
-      keywords: ["Linha de Visão"],
-      effect:
-        "O alvo desta magia fica enredado em ervas daninhas e videiras que se agarram até o fim do jogo. Cada vez que o alvo é ativado, ele deve fazer uma Rolagem de Luta com Número Alvo de 15 (criaturas com a característica 'Grande' recebem +4 nesta rolagem). Se o alvo falhar, ele pode realizar apenas uma ação durante sua próxima ativação, que não pode ser movimento. Uma vez que um alvo fez sua Rolagem de Luta, ele escapou das videiras e não está mais enredado.",
-    },
-    {
-      name: "Curar Praga",
-      castingNumber: 12,
-      keywords: ["Alcance(60)"],
-      effect:
-        "A figura aliada alvo imediatamente perde quaisquer marcadores negativos que carrega. (sangramento, reverberação, marcado pela lua...)",
-    },
+    { id: "perigos-ventos", title: "Perigos dos Ventos", level: 0 },
+    { id: "magias", title: "Magias da Tradição da Vida", level: 0 },
+    ...loreOfLifeData.map((spell, index) => ({
+      id: `spell-${index}`,
+      title: spell.name,
+      level: 1,
+    })),
   ];
 
   return (
-    <PageContainer>
-      <Header title="Ghyran - Tradição da Vida" />
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
+          <MobileSection>
+            <div id="intro">
+              <PageTitle>Tradição da Vida - Ghyran</PageTitle>
+            </div>
 
-      <ContentSection>
-        <ContentContainer>
-          <ParchmentText
-            sx={{
-              textAlign: "center",
-              fontSize: "1.2rem",
-              fontStyle: "italic",
-              color: "#90ee90",
-              mb: 3,
-            }}
-          >
-            O Vento Verde do Crescimento e Vitalidade
-          </ParchmentText>
+            <MobileText
+              variant="quote"
+              className="text-center italic text-lg leading-relaxed mb-6 p-4 bg-green-900/20 border border-green-500/40 rounded-lg text-white"
+            >
+              "O Vento Verde da Natureza e da Vida"
+            </MobileText>
 
-          <ParchmentText sx={{ mb: 4 }}>
-            A Tradição da Vida é a magia da natureza, da terra crescente e das
-            estações. Ela é baseada na manipulação de Ghyran, o Vento Verde da
-            Magia. Magistrados desta tradição são conhecidos como Magos de Jade
-            e sentem-se mais em casa no campo. Eles visitam cidades quando
-            devem, mas preferem estar cercados pela majestade e poder da selva.
-            Magos de Jade poderosos andam descalços, para estarem em contato
-            constante com a terra. Conforme progridem em sua Ordem, assumem
-            aspectos das estações, ficando cansados no Inverno, sóbrios no
-            Outono, excitados na Primavera e vibrantes no Verão. Seus cabelos e
-            unhas crescem muito rápido, e raramente sofrem de doenças.
-          </ParchmentText>
+            <MobileText className="mb-4">
+              A Tradição da Vida, também conhecida como Druidismo, é a escola de
+              magia que canaliza o poder natural de Ghyran, o Vento Verde da
+              Magia. Os praticantes desta tradição são conhecidos como Druidas
+              ou Guardiões da Natureza, e possuem uma conexão profunda com o
+              mundo natural, as plantas, e as forças da vida. Eles são capazes
+              de curar ferimentos, manipular a vegetação, e canalizar a energia
+              vital da terra.
+            </MobileText>
 
-          <PowerListTitle>Feitiços da Tradição da Vida</PowerListTitle>
+            <div id="caracteristicas">
+              <HeaderH2>Características da Tradição da Vida</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              Os Druidas são conhecidos por sua conexão com a natureza e sua
+              capacidade de manipular as forças da vida. Eles canalizam o poder
+              de Ghyran através de harmonia com o mundo natural e compreensão
+              dos ciclos da vida. Suas magias frequentemente envolvem cura,
+              crescimento de plantas, e manipulação dos elementos naturais.
+            </MobileText>
 
-          {spells.map((spell, index) => (
-            <SpellCard
-              key={index}
-              id={spell.name.toLowerCase().replace(/\s+/g, "-")}
-              name={spell.name}
-              school="Tradição da Vida"
-              castingNumber={spell.castingNumber}
-              keywords={spell.keywords}
-              effect={spell.effect}
-            />
-          ))}
-        </ContentContainer>
-      </ContentSection>
+            <div
+              id="perigos-ventos"
+              className="bg-green-900/20 border border-green-500/40 rounded-lg p-4 mb-6"
+            >
+              <HeaderH2 className="text-green-300 mb-4">
+                Perigos dos Ventos
+              </HeaderH2>
 
-      <NavigationSection>
-        <StyledNavigationButton
-          variant="contained"
-          onClick={() => navigate("/magic/arcane-lores")}
-        >
-          Voltar para Tradições Arcanas
-        </StyledNavigationButton>
-      </NavigationSection>
-    </PageContainer>
+              <MobileText className="mb-4">
+                Representando os perigos de canalizar o Caos bruto, sempre que
+                um Conjurador falha ao conjurar uma magia de uma tradição
+                arcana, ele sofre dano de acordo com a tabela abaixo:
+              </MobileText>
+
+              <GenericTable
+                data={[
+                  { "Falhou por": "1-4", "Dano Sofrido": "Nenhum" },
+                  { "Falhou por": "5-9", "Dano Sofrido": "1" },
+                  { "Falhou por": "10-19", "Dano Sofrido": "2" },
+                  { "Falhou por": "20+", "Dano Sofrido": "5" },
+                ]}
+                scrollable={false}
+              />
+
+              <TzeentchCurseTable />
+            </div>
+
+            <div id="magias">
+              <HeaderH2>Magias da Tradição da Vida</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              As magias da Tradição da Vida são conhecidas por sua natureza
+              curativa e natural. Elas manipulam o Vento Verde de Ghyran para
+              criar efeitos relacionados à cura, crescimento, e as forças da
+              natureza.
+            </MobileText>
+
+            <div className="space-y-6">
+              {loreOfLifeData.map((spell, index) => (
+                <div key={index} id={`spell-${index}`}>
+                  <LoreSpellCard
+                    name={spell.name}
+                    castingNumber={spell.castingNumber}
+                    keywords={spell.keywords}
+                    effect={spell.effect}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 flex justify-center">
+              <button
+                onClick={() => navigate("/magic/arcane-lores")}
+                className="w-full md:w-1/2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-bold"
+              >
+                Voltar às Tradições Arcanas
+              </button>
+            </div>
+          </MobileSection>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -23,7 +23,7 @@
       },
       {
         "label": "Giros Brutais",
-        "value": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de Agilidade para girar sua funda com mais força. Aumente o alcance do próximo ataque a distancia em 6cm."
+        "value": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de movimento para girar sua funda com mais força. Aumente o alcance do próximo ataque a distancia em 6cm."
       },
       {
         "label": "Arma de Tecido",
@@ -219,7 +219,7 @@
       },
       {
         "label": "Engenharia Complexa",
-        "value": "Uma arma com essa característica trava em casos específicos. Quando o portador rola um 1 natural em um ataque, a arma trava, e só pode ser usada novamente gastando uma ação, que pode substituir a ação de Agilidade."
+        "value": "Uma arma com essa característica trava em casos específicos. Quando o portador rola um 1 natural em um ataque, a arma trava, e só pode ser usada novamente gastando uma ação, que pode substituir a ação de movimento."
       }
     ]
   },
@@ -242,7 +242,7 @@
     "requirements": "Bolsa de Dardos",
     "specialRules": [
       {
-        "label": "Venenosa",
+        "label": "V",
         "value": "Uma arma com essa característica envenena o alvo em um ataque bem-sucedido, mesmo se não causar dano."
       }
     ]

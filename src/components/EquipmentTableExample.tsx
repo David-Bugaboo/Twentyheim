@@ -6,15 +6,15 @@ const EquipmentTableExample: React.FC = () => {
   const examples = [
     {
       title: "Irmãs de Sigmar - Matriarca",
-      text: "A Matriarca Sigmarita é uma sacerdotisa e tem uma seleção limitada de magias, mais difíceis de conjurar que a média. No entanto, pode conjurar enquanto usa armadura ou escudo e em combate. Ela começa com 3 magias das Orações de Sigmar. Equipamento Disponível: Adaga, Arma de Concussão, Martelo de Guerra Sigmarita, Chicote de Aço, Arma de Duas Mãos, Funda, Armadura Leve, Armadura Pesada, Escudo. Pode comprar Água Benta sem fazer rolagens de Mercado Negro.",
+      text: "A Matriarca Sigmarita é uma sacerdotisa e tem uma seleção limitada de magias, mais difíceis de conjurar que a média. No entanto, pode conjurar enquanto usa armadura ou escudo e em combate. Ela começa com 3 magias das Orações de Sigmar. Equipamento Disponível: Adaga, Martelo, Martelo de Guerra Sigmarita, Chicote de Aço, Arma de Duas Mãos, Funda, Armadura Leve, Armadura Pesada, Escudo. Pode comprar Água Benta sem fazer rolagens de Mercado Negro.",
     },
     {
       title: "Anões Caçadores de Tesouro - Engenheiro",
-      text: "O Engenheiro de Kharadron nunca perde agilidade devido ao uso de equipamentos. Equipamento Disponível: Adaga, Machado, Arma de Concussão, Espada, Machado Anão, Pistola, Besta, Arcabuz, Armadura Leve, Armadura Pesada, Escudo. Qualquer arma ou armadura pode ser transformada em arma De Gromril por 300 coroas.",
+      text: "O Engenheiro de Kharadron nunca perde agilidade devido ao uso de equipamentos. Equipamento Disponível: Adaga, Machado, Martelo, Espada, Machado Anão, Pistola, Besta, Arcabuz, Armadura Leve, Armadura Pesada, Escudo. Qualquer arma ou armadura pode ser transformada em arma De Gromril por 300 coroas.",
     },
     {
       title: "Filhos de Hashut - Anão do Caos",
-      text: "Os anões do caos não podem sofrer penalidades na agilidade por uso de equipamentos. Equipamento Disponível: Adaga, Machado, Arma de Concussão, Espada, Pistola, Armadura Leve, Armadura Pesada, Escudo. Pode comprar uma arma com o Modificador Obsidiana (+2 dano, -1 Impeto, quebra em rolagem natural de 1.) pelo preço base + 200 coroas.",
+      text: "Os anões do caos não podem sofrer penalidades na agilidade por uso de equipamentos. Equipamento Disponível: Adaga, Machado, Martelo, Espada, Pistola, Armadura Leve, Armadura Pesada, Escudo. Pode comprar uma arma com o Modificador Obsidiana (+2 dano, -1 Impeto, quebra em rolagem natural de 1.) pelo preço base + 200 coroas.",
     },
   ];
 

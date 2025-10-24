@@ -1,416 +1,212 @@
-import MobileLayout from "../../components/MobileLayout";
-import MobileText from "../../components/MobileText";
-import MobileHeroHeader from "../../components/MobileHeroHeader";
-import CollapsibleSection from "../../components/CollapsibleSection";
-import UnitCard from "../../components/UnitCard";
-import PowerCard from "../../components/PowerCard";
-import slugify from "slugify";
-import { useRef } from "react";
-import headerImage from "../../assets/header-art/21ef8615dda8ffc145957aff5273c244_upscayl_4x_high-fidelity-4x.png";
+import sistersOfSigmarData from "./data/sisters-of-sigmar.data.json";
+import QuickNavigation from "../../../components/QuickNavigation";
+import MobileSection from "../../../components/MobileSection";
+import HeaderH1 from "../../../components/HeaderH1";
+import MobileText from "../../../components/MobileText";
+import UnitCard from "../../../components/UnitCard";
+import PageTitle from "../../../components/PageTitle";
 
-const sistersUnits = [
-  {
-    name: "Matriarca Sigmarita",
-    role: "Heroína",
-    stats: {
-      move: 14,
-      fight: "+3",
-      shoot: "+0",
-      armour: 10,
-      will: "+4",
-      health: 16,
-      cost: "-",
-    },
-    spellAffinity: {
-      aligned0: ["Orações de Sigmar"],
-    },
-    abilities: [
-      {
-        name: "Sacerdotiza",
-        description:
-          "A Matriarca Sigmarita é uma sacerdotisa e tem uma seleção limitada de magias, mais difíceis de conjurar que a média. No entanto, pode conjurar enquanto usa armadura ou escudo e em combate. Ela começa com 3 magias das Orações de Sigmar.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Arma de Concussão",
-          "Martelo de Guerra Sigmarita",
-          "Chicote de Aço",
-          "Arma de Duas Mãos",
-          "Funda",
-        ],
-        armor: ["Armadura Leve", "Armadura Pesada", "Escudo"],
-        special: [
-          "Pode comprar Água Benta sem fazer rolagens de Mercado Negro",
-        ],
-      },
-    ],
-  },
-  {
-    name: "Áugure",
-    role: "Campeã",
-    stats: {
-      move: 14,
-      fight: "+1",
-      shoot: "-",
-      armour: 10,
-      will: "+4",
-      health: 14,
-      cost: "100 coroas",
-    },
-    abilities: [
-      {
-        name: "Poderes",
-        description:
-          "A Áugure começa com 3 poderes da lista de Palavras de Sigmar. Um desses poderes tem classe de dificuldade 3. Os outros poderes têm classe de dificuldade 5.",
-      },
-      {
-        name: "Visão Sagrada",
-        description:
-          "A Áugure tem a característica Visão Verdadeira. Ela pode usar sua Visão Sagrada para evitar problemas ao explorar. Ela pode rolar sua rolagem de exploração duas vezes e escolher o resultado.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Arma de Concussão",
-          "Martelo de Guerra Sigmarita",
-          "Chicote de Aço",
-          "Arma de Duas Mãos",
-          "Funda",
-        ],
-        armor: [],
-        special: [
-          "Pode comprar Água Benta sem fazer rolagens de Mercado Negro",
-        ],
-      },
-    ],
-  },
-  {
-    name: "Noviças",
-    stats: {
-      move: 14,
-      fight: "0",
-      shoot: "0",
-      armour: 10,
-      will: "+3",
-      health: 10,
-      cost: "free",
-    },
-    abilities: [
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Arma de Concussão",
-          "Martelo de Guerra Sigmarita",
-          "Chicote de Aço",
-          "Arma de Duas Mãos",
-          "Funda",
-        ],
-        armor: ["Armadura Leve", "Armadura Pesada", "Escudo"],
-        special: [
-          "Pode comprar Água Benta sem fazer rolagens de Mercado Negro",
-        ],
-      },
-    ],
-  },
-  {
-    name: "Irmã Hospitalária",
-    stats: {
-      move: 14,
-      fight: "+1",
-      shoot: "0",
-      armour: 10,
-      will: "+3",
-      health: 12,
-      cost: "75gp",
-    },
-    abilities: [
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Arma de Concussão",
-          "Martelo de Guerra Sigmarita",
-          "Chicote de Aço",
-          "Arma de Duas Mãos",
-          "Funda",
-        ],
-        armor: ["Armadura Leve", "Armadura Pesada", "Escudo"],
-        special: [
-          "Pode comprar Água Benta sem fazer rolagens de Mercado Negro",
-        ],
-      },
-    ],
-  },
-  {
-    name: "Irmã Proclamadora",
-    stats: {
-      move: 14,
-      fight: "0",
-      shoot: "0",
-      armour: 10,
-      will: "+5",
-      health: 12,
-      cost: "100gp",
-    },
-    abilities: [
-      {
-        name: "Proclamação do Deus-Rei	",
-        description:
-          "Qualquer figura aliada dentro de 14cm e linha de visão desta figura ganha +1 de Vontade. A figura tem apenas 3 espaços de equipamento e sempre tem uma mão ocupada pela Liturgia de Sigmar, que é impérvia a efeitos de destruição de equipamento.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Arma de Concussão",
-          "Martelo de Guerra Sigmarita",
-          "Chicote de Aço",
-          "Arma de Duas Mãos",
-          "Funda",
-        ],
-        armor: ["Armadura Leve", "Armadura Pesada", "Escudo"],
-        special: [
-          "Pode comprar Água Benta sem fazer rolagens de Mercado Negro",
-        ],
-      },
-    ],
-  },
-  {
-    name: "Irmã Sigmarita",
-    stats: {
-      move: 12,
-      fight: "+3",
-      shoot: "0",
-      armour: 10,
-      will: "+3",
-      health: 12,
-      cost: "75 coroas",
-    },
-    abilities: [
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Arma de Concussão",
-          "Martelo de Guerra Sigmarita",
-          "Chicote de Aço",
-          "Arma de Duas Mãos",
-          "Funda",
-        ],
-        armor: ["Armadura Leve", "Armadura Pesada", "Escudo"],
-        special: [
-          "Pode comprar Água Benta sem fazer rolagens de Mercado Negro",
-        ],
-      },
-    ],
-  },
-  {
-    name: "Sister Superior",
-    stats: {
-      move: 12,
-      fight: "+3",
-      shoot: "0",
-      armour: 10,
-      will: "+3",
-      health: 14,
-      cost: "100 coroas",
-    },
-    abilities: [
-      {
-        name: "Destruidora dos Impuros",
-        description:
-          "A Irmã Superior tem +1 de Ataque e +1 de Dano contra figuras com os traços Daemonio e Morto-Vivo, e seus ataques contam como sagrados (contam como mágicos, mas ignoram a resistência mágica) contra tais alvos.",
-      },
-      {
-        name: "Equipamento Disponível",
-        weapons: [
-          "Adaga",
-          "Arma de Concussão",
-          "Martelo de Guerra Sigmarita",
-          "Chicote de Aço",
-          "Arma de Duas Mãos",
-          "Funda",
-        ],
-        armor: ["Armadura Leve", "Armadura Pesada", "Escudo"],
-        special: [
-          "Pode comprar Água Benta sem fazer rolagens de Mercado Negro",
-        ],
-      },
-    ],
-  },
-];
+interface Unit {
+  id: string;
+  name: string;
+  role?: string;
+  quantity?: string;
+  stats: {
+    move: number;
+    fight: string;
+    shoot: string;
+    armour: number;
+    Vontade: string;
+    health: number;
+    cost: string;
+    quantity?: string;
+    skills?: string[];
+  };
+  spellAffinity?: {
+    aligned0?: string[];
+    aligned2?: string[];
+  };
+  abilities: Array<{
+    name: string;
+    description: string;
+  }>;
+  equipment?: {
+    "hand-to-hand"?: Array<{ name: string; cost: string }>;
+    ranged?: Array<{ name: string; cost: string }>;
+    armor?: Array<{ name: string; cost: string }>;
+    miscellaneous?: Array<{ name: string; cost: string }>;
+    modifiers?: Array<{ name: string; cost: string }>;
+  };
+}
 
-const wordsOfSigmar = [
-  {
-    name: "Palavra da Repreensãp",
-    when: `Sempre que uma magia é lançada contra a Áugure ou qualquer Irmã dentro de 8cm da Áugure.`,
-    effect:
-      "A magia automaticamente falha, sem fazer rolagem de conjuração, e a ação do conjurador é perdida.",
-  },
-  {
-    name: "Palavra da Sabedoria",
-    when: "Em qualquer ponto durante a ativação da Áugure.",
-    effect: `Coloca um marcador de Sabedoria próximo a uma Irmã dentro de 12cm da Áugure.`,
-  },
-  {
-    name: "Palavra da Proteção Justa",
-    when: `Sempre que a Áugure ou qualquer Irmã dentro de 8cm da Áugure recebe pelo menos 5 de dano.`,
-    effect:
-      "Reduz esse dano em 5. Se o dano for reduzido para 0, qualquer efeito especial desse ataque também é negado.",
-  },
-  {
-    name: "Palavra da Consolação",
-    when: `Sempre que a Áugure ou qualquer Irmã dentro de 8cm da Áugure faz uma rolagem de Vontade.`,
-    effect: "Adiciona imediatamente +5 à rolagem de Vontade.",
-  },
-  {
-    name: "Palavra do Vigor Vingativo",
-    when: "Antes do início do jogo.",
-    effect:
-      "A Áugure recupera  3 pontos de Vigor, e qualquer marcador negativo (Sangramento, Reverberação e etc) é removido.",
-  },
-  {
-    name: "Palavra do Bastião",
-    when: "Em qualquer ponto durante a ativação da Áugure ou qualquer Irmã dentro de 8cm da Áugure é movida por uma força externa.",
-    effect:
-      "A Áugure or a Irmã alvo pode escolher não mover, ou mover qualquer distância até a quantidade normal especificada pela força externa.",
-  },
-  {
-    name: "Palavra do Guerreiro Ungido",
-    when: `Em qualquer ponto durante a ativação da Áugure.`,
-    effect: `Para o resto do turno, a Áugure ou uma Irmã dentro de 12cm da Áugure conta como se estivesse armado com uma arma mágica que dá +2 de Ímpeto, e causa dano sagrado (conta como mágicos, mas ignora a resistência mágica) contra figuras com as características Daemônio e Morto-Vivo	. Se a Áugure já estiver usando uma arma mágica ou superior, este efeito substitui qualquer bônus de Ímpeto daquela arma, embora os bônus de dano e outras habilidades especiais sejam mantidos.`,
-  },
-  {
-    name: "Palavra do Ira Sagrada",
-    when: `Quando a Áugure ou qualquer Irmã dentro de 8cm da Áugure vence um combate e causa dano.`,
-    effect:
-      "Esse ataque ganha Penetração de Armadura(4). Se a arma usada foi um Martelo de Guerra Sigmarita, ele sempre causará o efeito da característica Concussão, independente de quanto dano foi causado.",
-  },
-  {
-    name: "Palavra do Destino Selado",
-    when: `Sempre que a Áugure ou qualquer Irmã dentro de 8cm da Áugure falha em uma rolagem de dados com um resultado natural de 1.`,
-    effect:
-      "Rola novamente a rolagem falhada, mas lança dois dados em vez de um e escolhe o resultado mais alto. Se um 1 for rolado novamente, a figura que rerolou recebe 10 de dano. Nenhum poder ou efeito pode reduzir esse dano.",
-  },
-  {
-    name: "Palavra da Prosperidade",
-    when: "Fora do jogo, quando a bando rola para seus tesouros.",
-    effect:
-      "O poder deve ser ativado durante a fase de Conjurar Rituais da sequencia pós jogo. O Bando pode rolar dois dados e escolher qual deles manter quando rolar na tabela de Venda de Pedra-Bruxa. Se rolar 1 em ambos os dados, a rolagem é perdida e nada é ganho pela venda do fragmento.",
-  },
-  {
-    name: "Palavra da Visão Celestial",
-    when: "Em qualquer ponto durante a ativação da Áugure.",
-    effect: `Uma Irmã dentro de 30cm da Áugure ganha a característica Visão Verdadeira até o primeiro momento em que ela luta ou faz um ataque a distância ou até o final do turno, o que acontecer primeiro.`,
-  },
-  {
-    name: "Palavra do Sangue Tempestuoso",
-    when: "No início da ativação da Áugure, antes de qualquer ação ser tomada.",
-    effect:
-      "Qualquer Irmã que ativarem junto a Áugure ganha Resistência Elemental(5) até o primeiro ataque elementar que ela recebe ou até o final do turno, o que acontecer primeiro.",
-  },
-];
+const SistersOfSigmarPage: React.FC = () => {
+  const leader = sistersOfSigmarData.find(
+    (unit) => unit.role === "Líder"
+  ) as Unit;
+  const heroes = sistersOfSigmarData.filter(
+    (unit) => unit.role === "Herói"
+  ) as Unit[];
+  const soldiers = sistersOfSigmarData.filter((unit) => !unit.role) as Unit[];
 
-function SistersOfSigmarPage() {
-  const tableOfContents = [
+  const navigationSections = [
+    { id: "introducao", title: "Introdução", level: 0 },
+    { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
     {
-      id: "unidades",
-      label: "Unidades",
-      type: "Section",
-      ref: useRef(null),
+      id: "lider",
+      title: "Líder",
+      level: 0,
+      children: leader ? [{ id: leader.id, title: leader.name, level: 1 }] : [],
     },
     {
-      id: "palavras",
-      label: "Palavras de Sigmar",
-      type: "Section",
-      ref: useRef(null),
+      id: "herois",
+      title: "Heróis",
+      level: 0,
+      children: heroes.map((hero) => ({
+        id: hero.id,
+        title: hero.name,
+        level: 1,
+      })),
+    },
+    {
+      id: "soldados",
+      title: "Soldados",
+      level: 0,
+      children: soldiers.map((soldier) => ({
+        id: soldier.id,
+        title: soldier.name,
+        level: 1,
+      })),
     },
   ];
 
   return (
-    <>
-      <MobileHeroHeader imageUrl={headerImage} title="Irmãs de Sigmar" />
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+        <QuickNavigation sections={navigationSections} />
+       
+        <MobileSection id="introducao">
+        <PageTitle>Irmãs de Sigmar</PageTitle>
+         
+          <MobileText>
+            Por séculos, a nobreza do Império enviou suas filhas problemáticas
+            ou indisciplinadas para o Santo Convento da Ordem das Irmãs
+            Misericordiosas de Sigmar, em Mordheim, para serem iniciadas na
+            única ordem de sacerdotisas dedicada ao deus padroeiro do Império.
+          </MobileText>
+          <MobileText>
+            As Irmãs de Sigmar, como são mais conhecidas, tradicionalmente
+            viajaram por todo o Império cuidando dos doentes e pobres, atendendo
+            às necessidades dos órfãos, curando os enfermos e tratando dos
+            corpos feridos. Além das artes de cura, que praticam com profundo
+            conhecimento de ervas e orações, seu conselho é frequentemente
+            procurado por aqueles prestes a tomar decisões importantes, pois as
+            Irmãs de Sigmar são famosas por sua habilidade em prever o volúvel
+            curso do destino.
+          </MobileText>
+          <MobileText>
+            Embora outrora muito amadas pelo povo, as Irmãs têm visto sua
+            popularidade diminuir nos últimos anos. Caçadores de bruxas
+            fanáticos as denunciaram como feiticeiras e hereges, e até mesmo nos
+            campos elas têm sido atacadas e expulsas pelos próprios camponeses
+            que procuram ajudar. Muitos sacerdotes de Sigmar desejam dissolver a
+            ordem completamente, alegando que mulheres não têm o direito de
+            ensinar a palavra sagrada de Sigmar.
+          </MobileText>
+          <MobileText>
+            De todos os habitantes de Mordheim, apenas as Irmãs de Sigmar
+            estavam preparadas para a destruição. A vidente Cassandora havia
+            previsto o desastre, e durante suas vigílias noturnas as Donzelas de
+            Sigmar ouviram a voz do próprio deus sussurrando em suas mentes
+            sonhadoras. Assim, sabiam que estariam a salvo em sua fortaleza
+            elevada acima da cidade, distante dos vapores poluídos, desde que
+            estivessem prontas para suportar o fogo da Fúria de Sigmar.
+          </MobileText>
+          <MobileText>
+            As Irmãs acreditam ter uma missão sagrada — um dever imposto pelo
+            próprio Sigmar, ao qual devem se dedicar de corpo e alma. Seu dever
+            divino é reunir os fragmentos de pedra bruxolenta (wyrdstone) e
+            escondê-los profundamente sob a Rocha de Sigmar, nos cofres do
+            convento, onde, protegidos por camadas de granito sólido e pelas
+            preces eternas da irmandade, não possam causar mal ao povo de
+            Sigmar.
+          </MobileText>
+        </MobileSection>
 
-      <MobileLayout
-        title="Irmãs de Sigmar — Guerreiras da Fé"
-        backButtonPath="/warbands"
-        tableOfContents={tableOfContents}
-      >
-        <br />
+        <MobileSection id="estrutura-do-bando">
+          <HeaderH1 id="estrutura-do-bando">Estrutura do Bando</HeaderH1>
+          <MobileText>
+            Um bando das Irmãs de Sigmar deve incluir um mínimo de 3 modelos.
+            Você tem 500 coroas de ouro que pode usar para recrutar e equipar
+            seu bando. O número máximo de guerreiros no bando é 15.
+          </MobileText>
+          <MobileText>
+            • <strong>Matriarca Sigmarita:</strong> Cada bando deve ter uma
+            Matriarca – nem mais, nem menos!
+            <br />• <strong>Irmã Superior:</strong> Seu bando pode incluir até 3
+            Irmãs Superiores.
+            <br />• <strong>Áugure:</strong> Seu bando pode incluir até 1
+            Áugure.
+            <br />• <strong>Irmã Sigmarita:</strong> Seu bando pode incluir de 1
+            a 5 Irmãs Sigmaritas.
+            <br />• <strong>Irmã Hospitalária:</strong> Seu bando pode incluir
+            até 2 Irmãs Hospitalárias.
+            <br />• <strong>Noviças:</strong> Seu bando pode incluir até 10
+            Noviças.
+          </MobileText>
+        </MobileSection>
 
-        <MobileText className="mb-4">
-          As Irmãs de Sigmar são uma ordem religiosa dedicada ao Deus-Rei
-          Sigmar, composta por mulheres guerreiras que dedicaram suas vidas à
-          proteção da fé e à purificação das forças do Caos. Estas devotas
-          combatentes combinam fervor religioso com habilidade marcial, criando
-          uma força formidável de purificação e proteção.
-        </MobileText>
+        <MobileSection id="lider">
+          <HeaderH1 id="lider">Líder</HeaderH1>
+          {leader && (
+            <UnitCard
+              id={leader.id}
+              name={leader.name}
+              role={leader.role}
+              quantity={leader.quantity}
+              stats={leader.stats}
+              spellAffinity={leader.spellAffinity}
+              abilities={leader.abilities}
+              equipment={leader.equipment}
+            />
+          )}
+        </MobileSection>
 
-        <MobileText className="mb-4">
-          Lideradas por Matriarcas Sigmaritas e Áugures, estes bandos são
-          construídos em torno da fé como escudo e do destino como arma. Suas
-          Palavras de Sigmar canalizam a autoridade divina em bênçãos diretas,
-          proteções e punições, transformando a voz divina na ponte entre o
-          mortal e o sagrado.
-        </MobileText>
+        <MobileSection id="herois">
+          <HeaderH1 id="herois">Heróis</HeaderH1>
+          {heroes.map((hero) => (
+            <UnitCard
+              key={hero.id}
+              id={hero.id}
+              name={hero.name}
+              role={hero.role}
+              quantity={hero.quantity}
+              stats={hero.stats}
+              spellAffinity={hero.spellAffinity}
+              abilities={hero.abilities}
+              equipment={hero.equipment}
+            />
+          ))}
+        </MobileSection>
 
-        <MobileText className="mb-4">
-          Com sua ênfase em proteção, rerrolagens e empoderamento situacional,
-          as Irmãs de Sigmar resistem mais tempo, atacam mais forte e resistem
-          às forças da corrupção através da força de sua fé inabalável.
-        </MobileText>
-
-        <span
-          id="unidades"
-          ref={tableOfContents.find((item) => item.id === "unidades")?.ref}
-        />
-        <CollapsibleSection title="Unidades" id="unidades">
-          <div className="space-y-4">
-            {sistersUnits.map((unit, index) => (
-              <div key={index} id={slugify(unit.name, { lower: true })}>
-                <CollapsibleSection
-                  title={unit.role ? `${unit.name} (${unit.role})` : unit.name}
-                  defaultExpanded={true}
-                >
-                  <UnitCard
-                    name={unit.name}
-                    role={unit.role}
-                    stats={unit.stats}
-                    abilities={unit.abilities}
-                    {...(unit.spellAffinity && {
-                      spellAffinity: unit.spellAffinity,
-                    })}
-                  />
-                </CollapsibleSection>
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-
-        <span
-          id="palavras"
-          ref={tableOfContents.find((item) => item.id === "palavras")?.ref}
-        />
-        <CollapsibleSection title="Palavras de Sigmar" id="palavras">
-          <div className="space-y-4">
-            {wordsOfSigmar.map((power, index) => (
-              <div key={index} id={slugify(power.name, { lower: true })}>
-                <PowerCard
-                  name={power.name}
-                  when={power.when}
-                  effect={power.effect}
-                />
-              </div>
-            ))}
-          </div>
-        </CollapsibleSection>
-      </MobileLayout>
-    </>
+        <MobileSection id="soldados">
+          <HeaderH1 id="soldados">Soldados</HeaderH1>
+          {soldiers.map((soldier) => (
+            <UnitCard
+              key={soldier.id}
+              id={soldier.id}
+              name={soldier.name}
+              quantity={soldier.quantity}
+              stats={soldier.stats}
+              abilities={soldier.abilities}
+              equipment={soldier.equipment}
+            />
+          ))}
+        </MobileSection>
+      </div>
+    </div>
+    </div>
   );
-}
+};
 
 export default SistersOfSigmarPage;

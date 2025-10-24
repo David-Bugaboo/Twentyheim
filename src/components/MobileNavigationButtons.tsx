@@ -27,11 +27,11 @@ const MobileNavigationButtons: React.FC<MobileNavigationButtonsProps> = ({
           disabled={button.disabled}
           className={`
             w-full px-4 py-3 rounded-md transition-all duration-150 shadow-sm
-            focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-[#d4af37]/30
+            focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-green-500/30
             ${
               button.disabled
-                ? "bg-[#4a2b2b] text-[#e6d5d5] opacity-50 cursor-not-allowed"
-                : "bg-[#7a1c1c] text-white hover:bg-[#922020] active:scale-[0.99]"
+                ? "bg-gray-600/20 border border-gray-500/40 text-gray-400 opacity-50 cursor-not-allowed"
+                : "bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white active:scale-[0.99]"
             }
           `}
           style={{ fontFamily: "Cinzel, serif" }}

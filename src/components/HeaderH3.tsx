@@ -8,7 +8,7 @@ interface HeaderH3Props {
 const HeaderH3: React.FC<HeaderH3Props> = ({ children, className = "" }) => {
   return (
     <h3
-      className={`text-white text-lg font-semibold text-left mb-2 ${className}`}
+      className={`text-green-300 text-lg font-semibold text-left mb-2 ${className}`}
       style={{
         fontFamily: "Cinzel, serif",
         textTransform: "none",

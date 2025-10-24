@@ -93,12 +93,12 @@ export function generateModifiedMeleeWeaponTable(type: string) {
       { Resultado: 6, "Rolagem 2": "Machado", "Rolagem 3": "de Ithilmar" },
       {
         Resultado: 7,
-        "Rolagem 2": "Arma de Concussão",
+        "Rolagem 2": "Martelo",
         "Rolagem 3": "de Ithilmar",
       },
       {
         Resultado: 8,
-        "Rolagem 2": "Arma de Concussão",
+        "Rolagem 2": "Martelo",
         "Rolagem 3": "de Ithilmar",
       },
       { Resultado: 9, "Rolagem 2": "Espada", "Rolagem 3": "Ungida" },
@@ -130,12 +130,12 @@ export function generateModifiedMeleeWeaponTable(type: string) {
       },
       {
         Resultado: 16,
-        "Rolagem 2": "Arma de Haste",
+        "Rolagem 2": "Alabarda",
         "Rolagem 3": "Sedenta por Visceras",
       },
       {
         Resultado: 17,
-        "Rolagem 2": "Arma de Haste",
+        "Rolagem 2": "Alabarda",
         "Rolagem 3": "Quimioserra",
       },
       {

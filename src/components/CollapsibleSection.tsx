@@ -16,8 +16,7 @@ const CollapsibleSection = forwardRef<HTMLElement, CollapsibleSectionProps>(
       title,
       children,
       className = "",
-      defaultExpanded = true,
-      titleVariant = "h2",
+    
     },
     ref
   ) => {

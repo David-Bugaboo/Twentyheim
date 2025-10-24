@@ -1,0 +1,279 @@
+[
+  {
+    "term": "Marcador de Sangramento",
+    "type": "markers and conditions",
+    "description": "Uma figura com um Marcador de Sangramento sofre 2 de dano sempre que se move ou sofre dano. Poções de cura ou magias/poderes de cura podem remover Marcadores de Sangramento."
+  },
+  {
+    "term": "Marcador de Atordoamento",
+    "type": "markers and conditions",
+    "description": "Uma figura com um Marcador de Atordoamento deve gastar uma ação para remover o Marcador de Atordoamento. Ela então age normalmente com quaisquer ação restantes. Uma figura nunca pode ter mais que dois marcadores de atordoamento por vez."
+  },
+  {
+    "term": "Marcador de Chamas",
+    "type": "markers and conditions",
+    "description": "Uma figura com um Marcador de Chamas sofre 3 de dano elemental no início de cada uma de suas ativações até gastar uma ação para apagar o fogo."
+  },
+  {
+    "term": "Marcador de Congelamento",
+    "type": "markers and conditions",
+    "description": "Uma figura com um marcador de congelamento só pode tomar uma ação em seu turno. Tomar dano flamejante automaticamente remove o marcador. Uma figura aliada pode gastar uma ação para quebrar o gelo e remover o marcador."
+  },
+  {
+    "term": "Peçonhento",
+    "type": "traits",
+    "description": "Essa figura causa dano do tipo Venenoso."
+  },
+  {
+    "term": "Marcador de Ferida",
+    "description": "Uma figura recebe esse marcador sempre que sua vida atual é menos que metade da sua vida máxima. O marcador é imediatamente removido se sua vida for restaurada acima de metade da vida. Figuras com marcadores de Ferido só podem tomar uma ação no turno(não acumula com o efeito de marcadores similares)."
+  },
+  {
+    "term": "Ódio(X)",
+    "description": "Uma figura com essa característica tem +1 de Ímpeto e +1 de Dano contra figuras (X)."
+  },
+  {
+    "term": "Marcador de Veneno",
+    "description": "Uma figura com um marcador de Veneno só pode tomar uma ação em seu turno (não acumula com o efeito de marcadores similares)."
+  },
+  {
+    "term": "Mente-Férrea",
+    "description": "Esta figura é imune a qualquer efeito com a palavra-chave Psicológico."
+  },
+  {
+    "term": "Grande",
+    "description": "Esta figura enorme é mais fácil de mirar com ataques a distância. Ela sofre do modificador Alvo Grande (-2) ao se defender contra ataques a distância, mas tem, 6 espaços de itens."
+  },
+  {
+    "term": "Furtividade(X)",
+    "description": "Figuras não podem traçar linha de visão para uma figura com essa característica se estiverem a mais de (X) dela ou ela estiver em cobertura."
+  },
+  {
+    "term": "Forte",
+    "description": "Esta figura causa +2 de dano em ataques corpo-a-corpo."
+  },
+  {
+    "term": "Aterrorizante",
+    "description": "Inimigos devem passar em um teste de Vontade CD 12 para declarar carga contra com esta figura. Falha não custa a ação mas impede a tentativa até a próxima ativação."
+  },
+  {
+    "term": "Morto-Vivo",
+    "description": "Esta figura é imune a veneno e nunca conta como ferida. Criaturas mortas-vivas podem pegar e carregar marcadores de tesouro mas não têm espaços de itens."
+  },
+  {
+    "term": "Animal",
+    "description": "Uma figura natural com inteligência menor que humana. Mesmo se se tornarem membros de um bando, animais não podem pegar marcadores de tesouro e não têm espaços de itens. Animais não ganham experiência."
+  },
+  {
+    "term": "Anfíbio",
+    "description": "Esta figura é perfeitamente feliz em terra ou na água. Ela automaticamente passa em todas as Rolagens de Natação, trata água como normal ao invés de terreno acidentado, e não sofre penalidades de Luta por estar na água."
+  },
+  {
+    "term": "Voador",
+    "description": "Esta figura ignora todas as penalidades de terreno e movimento ao se mover. Além disso, nunca sofre dano de queda. Criaturas voadoras automaticamente passam em todas as Rolagens de Natação."
+  },
+  {
+    "term": "Levitar",
+    "description": "Ignore quaisquer penalidades de movimento por terreno acidentado e escalar."
+  },
+  {
+    "term": "Procurado(X)",
+    "description": "Há uma recompensa de (X) coroas aguardando o bando que matar esta figura"
+  },
+  {
+    "term": "Visão Verdadeira",
+    "description": "Ignore qualquer efeito com a palavra chave Ilusão direcionado a essa figura. Membros ilusórios de um bando são removidos da mesa se entrarem na linha de visão dessa figura. Criaturas não se beneficiam das características Invisibilidade e Furtividade(X) contra essa figura."
+  },
+  {
+    "term": "Venenoso",
+    "description": "Ataques desta figura são venenosos e envenenam a figura alvo."
+  },
+  {
+    "term": "Regeneração",
+    "description": "A figura recupera 2 de vida no início de sua ativação."
+  },
+  {
+    "term": "Agarrar",
+    "description": "Figuras em combate com esta figura só podem empurrar a si mesmas ou seu oponente se causarem dano. Simplesmente vencer o combate não é suficiente."
+  },
+  {
+    "term": "Dreno de Energia",
+    "description": "Esta figura causa dano dobrado em combate. mortos-vivos e construtos são imunes a este dano extra e só sofrem a quantidade padrão."
+  },
+  {
+    "term": "Toque Vampírico",
+    "description": "Esta figura ganha 2 de vida sempre que causa pelo menos 1 de dano. Esse efeito não é desencadeado em mortos-vivos e construtos."
+  },
+  {
+    "term": "Caçador de Matilha",
+    "description": "Sempre que um caçador de matilha é ativado, todos os outros caçadores de matilha em contato com ele devem ser ativados e movidos como um. Role aleatoriamente para ver qual figura é o 'líder da matilha' e determine as ações da matilha usando essa figura."
+  },
+  {
+    "term": "Resistência Elemental (X)",
+    "description": "Sempre que esta figura sofre dano flamejante, elétrico ou gélido, aumente sua armadura em (X) para determinar o dano daquele ataque."
+  },
+  {
+    "term": "Toque Ardente",
+    "description": "Ataques desta figura causam 2 de dano extra flamejante."
+  },
+  {
+    "term": "Chifres",
+    "description": "A figura recebe +2 de Ímpeto no turno em que completar uma carga."
+  },
+  {
+    "term": "Construto",
+    "description": "Esta figura é imune a veneno e nunca conta como ferida. Construtos podem pegar e carregar marcadores de tesouro mas não têm espaços de itens. Não ganham experiência."
+  },
+  {
+    "term": "Daemônio",
+    "description": "Todos os ataques feitos por esta figura contam como ataques mágicos. Esta figura é imune a veneno. Daemônios podem pegar e carregar marcadores de tesouro mas não têm espaços de itens."
+  },
+  {
+    "term": "Vulnerabilidade Elemental",
+    "description": "Esta figura é vulnerável a dano elemental. Ao sofrer dano flamejante, elétrico ou gélido, reduza sua armadura em (X) para determinar o dano."
+  },
+  {
+    "term": "Voraz",
+    "description": "Os ataques desta figura contam como usando uma Arma de Duas Mãos, causando dano aumentado com golpes brutais."
+  },
+  {
+    "term": "Cobertura Pesada",
+    "description": "Ataques a distância contra figuras em Cobertura Pesada sofrem -4 em suas rolagens de Tiro."
+  },
+  {
+    "term": "Cobertura Leve",
+    "description": "Ataques a distância contra figuras em Cobertura Leve sofrem -2 em suas rolagens de Tiro."
+  },
+  {
+    "term": "Imunidade Parcial a Dano Normal",
+    "description": "Sempre que esta figura sofre dano de um ataque não-mágico o dano é reduzido pela metade, arredondando para baixo."
+  },
+  {
+    "term": "Vulnerabilidade Sagrada",
+    "description": "Esta figura sofre -1 em todas as Rolagens de Vontade ao rolar para resistir a magias de Tradições Divinas."
+  },
+  {
+    "term": "Duas Cabeças",
+    "description": "Uma figura lutando contra uma figura de duas cabeças sempre conta como tendo uma figura de apoio a menos do que realmente tem (mínimo de 0)."
+  },
+  {
+    "term": "Duas Mãos",
+    "description": "Uma arma com essa característica ocupa dois espaços de items, e não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
+  },
+  {
+    "term": "Penetração de Armadura (X)",
+    "description": "Essa arma trata a armadura de inimigos que atinge como (X) pontos menor."
+  },
+  {
+    "term": "Leve",
+    "description": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
+  },
+  {
+    "term": "Versátil",
+    "description": "Uma arma com essa característica pode ser usado com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano. Mesmo se usada com uma mão, não pode se beneficiar de uma arma leve na mão secundária, apenas de escudos."
+  },
+  {
+    "term": "Par",
+    "description": "Armas com essa característica devem sempre ser usadas em pares, ocupando ambas as mãos, mas provendo o bônus de +1 Ímpeto de lutar com duas armas se for leve. A figura equipada nunca pode desequipar apenas uma arma de par, e se perder a arma perde ambas."
+  },
+  {
+    "term": "Venenosa",
+    "description": "Uma arma com essa característica envenena o alvo em um ataque bem-sucedido, mesmo se não causar dano."
+  },
+  {
+    "term": "Concussiva(X)",
+    "description": "Uma arma com essa característica dá ao alvo de qualquer ataque bem-sucedido que cause mais que (X) de dano um marcador de Atordoamento."
+  },
+  {
+    "term": "Abençoada (X)",
+    "description": "Essa arma ignora (X) pontos de armadura do alvo, se esta tiver as caracteristicas Morto-Vivo ou Daemônio."
+  },
+  {
+    "term": "Desbalanceada",
+    "description": "Uma arma com essa característica nunca pode ser usada com uma arma leve na mão secundária, apenas escudos."
+  },
+  {
+    "term": "Defensiva",
+    "description": "Inimigos causam -1 de dano no portador de uma arma com essa característica."
+  },
+  {
+    "term": "Reativa(X)",
+    "description": "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de (X)cm, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de (X)cm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno."
+  },
+  {
+    "term": "Giros Brutais",
+    "description": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de movimento para girar sua funda com mais força. Aumente o alcance do próximo ataque a distancia em 6cm."
+  },
+  {
+    "term": "Arma de Tecido",
+    "description": "Embora não possa ser usada para ganhar +1 de impeto em lutas, uma figura carregando uma arma na mão principal e uma funda na mão secundária ainda pode pode pegar Fragmentos de Pedra-Bruxa, mas não pode usar a funda para atirar enquanto estiver carregando o fragmento."
+  },
+  {
+    "term": "Hibrida",
+    "description": "Pode ser usada como arma corpo a corpo ou a distância, recebendo -1 de dano se for usada como arma a distância."
+  },
+  {
+    "term": "Corda de Alta Tensão",
+    "description": "Devido a alta tensão necessária para disparar uma flecha, um usuário de arco longo precisa de todo folego. Figuras inimigas ganhamn +1 de bonus adicional para sua rolagem de impeto contra tiros feitos pelo portador desse arco caso ele tenha movido antes de atirar."
+  },
+  {
+    "term": "Recarga",
+    "description": "Essa arma requer o uso de uma ação para recarregá-la e poder atirar novamente. Contudo, essa ação pode substituir a ação de Movimento."
+  },
+  {
+    "term": "Pistola",
+    "description": "Uma arma com essa característica é leve e prática, podendo ser usada com apenas uma mão. Ela conta como uma adaga em combate corpo a corpo, inclusive para Lutar com Duas Armas."
+  },
+  {
+    "term": "Capacidade (X)",
+    "description": "Uma arma com essa característica pode disparar (X) vezes antes de precisar recarregar. Cada flecha ou bala deve ser recarregada individualmente com uma ação de recarga."
+  },
+  {
+    "term": "Engenharia Complexa",
+    "description": "Uma arma com essa característica trava em casos específicos. Quando o portador rola um 1 natural em um ataque, a arma trava, e só pode ser usada novamente gastando uma ação, que pode substituir a ação de movimento."
+  },
+  {
+    "term": "Coice Violento",
+    "description": "A explosão da pólvora faz a arma ter um recuo violento ao atirar. Ataques à distância com armas com essa característica são feitos a -1."
+  },
+  {
+    "term": "Falha de Ignição (X)",
+    "description": "Quando o portador de uma arma com essa característica faz uma rolagem natural abaixo de (X) na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado: 1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar. 6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas. 11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre. 16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre."
+  },
+  {
+    "term": "Trovejante(X)",
+    "description": "Ao rolar naturalmente qualquer número abaixo de (X) na rolagem de dado, um encontro aleatório é imediatamente rolado na borda do mapa mais próxima da figura que atirou."
+  },
+  {
+    "term": "Construção Robusta",
+    "description": "Essa arma pode ser usada em combate corpo a corpo como uma arma de duas mãos, mas sem o bonus de +2 de dano que é comum a elas."
+  },
+  {
+    "term": "Tripé",
+    "description": "Uma figura só pode atirar com essa arma se esta estiver montada em um tripé. Montar o tripé gasta uma ação que pode substituir a ação de movimento. Desmontar não custa ações, mas deverá montar se quiser atirar de novo."
+  },
+  {
+    "term": "Tiro de Dispersão",
+    "description": "A figura que atirou posiciona uma Área de Efeito(Cone) Todas as figuras nessa área de efeito recebem um ataque +0. Role separadamente para cada figura. Quaisquer números iguais nas rolagens desencandeiam Falha na Ignição e Trovejante."
+  },
+  {
+    "term": "Flamejante",
+    "description": "Um dano crítico desse tipo de dano dá ao alvo um marcador de Chamas."
+  },
+  {
+    "term": "Gélido",
+    "description": "Um dano crítico desse tipo de dano dá ao alvo um marcador de Congelamento."
+  },
+  {
+    "term": "Elétrico",
+    "description": "Um dano crítico desse tipo de dano ignora qualquer bônus por usar armaduras do alvo."
+  },
+  {
+    "term": "Venenoso",
+    "description": "Qualquer dano desse tipo tomado dá ao alvo um marcador de Veneno."
+  },
+  {
+    "term": "Tóxica",
+    "description": "Uma arma com essa característica causa dano Venenoso."
+  }
+]

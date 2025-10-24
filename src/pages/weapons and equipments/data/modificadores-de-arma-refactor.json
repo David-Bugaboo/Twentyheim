@@ -36,8 +36,8 @@
     "specialRules": []
   },
   {
-    "id": "de-elfo-negro",
-    "name": "De Elfo Negro",
+    "id": "de-aço-negro",
+    "name": "De Aço Negro",
     "type": "Modificador de Arma Corpo a Corpo",
     "availability": ["Elfo Negro apenas"],
     "rarity": 16,

@@ -15,7 +15,9 @@ import WeaponTooltipCard from "./WeaponTooltipCard";
 import {
   commonItemsData,
   type EquipmentItem,
+  type EquipmentCategory,
 } from "../pages/weapons and equipments/data/commonItemsData";
+import gameTermsData from "../pages/rules/data/game-terms.json";
 
 interface GameTerm {
   term: string;
@@ -26,8 +28,8 @@ interface GameTerm {
 const createEquipmentMap = () => {
   const equipmentMap = new Map<string, EquipmentItem>();
 
-  commonItemsData.forEach((category) => {
-    category.items.forEach((item) => {
+  commonItemsData.forEach((category: EquipmentCategory) => {
+    category.items.forEach((item: EquipmentItem) => {
       equipmentMap.set(item.name, item);
     });
   });
@@ -37,337 +39,20 @@ const createEquipmentMap = () => {
 
 const equipmentMap = createEquipmentMap();
 
-const gameTerms: GameTerm[] = [
-  {
-    term: "Marcador de Sangramento",
-    description:
-      "Uma criatura com um Marcador de Sangramento sofre 2 de dano sempre que se move ou sofre dano. Poções de cura ou magias/poderes de cura podem remover Marcadores de Sangramento.",
-  },
-  {
-    term: "Marcador de Atordoamento",
-    description:
-      "Uma figura com um Marcador de Atordoamento deve gastar uma ação para remover o Marcador de Atordoamento. Ela então age normalmente com quaisquer ação restantes. Uma criatura nunca pode ter mais que dois marcadores de atordoamento por vez.",
-  },
-  {
-    term: "Marcador de Chamas",
-    description:
-      "Uma criatura com um Marcador de Chamas  sofre 3 de dano elemental no início de cada uma de suas ativações até gastar uma ação para apagar o fogo.",
-  },
-  {
-    term: "Marcador de Reverberação",
-    description:
-      "Uma criatura com um marcador de eco sofre 1 de dano extra sempre que sofre dano para cada marcador de eco que possui.",
-  },
-  {
-    term: "Marcador de Sabedoria",
-    description:
-      "Pode ser descartado para rerrolar uma Rolagem de Combate, Rolagem de Tiro ou teste de Atributo. A figura deve aceitar o resultado da rerrolagem. Nenhuma figura pode ter mais de um marcador de sabedoria por vez.",
-  },
-  {
-    term: "Marcador de Ódio",
-    description:
-      "Pode ser gasto para rerrolar qualquer rolagem de Luta ou Ataque a Distância que a figura faça. Nenhuma figura pode ter mais de um marcador de ódio por vez.",
-  },
-  {
-    term: "Mente de Ferro",
-    description: "Esta criatura é Imune a Qualquer Efeito Psicológico.",
-  },
-  {
-    term: "Grande",
-    description:
-      "Esta criatura enorme é mais fácil de mirar com ataques a distância. Ela sofre do modificador Alvo Grande (-2) ao se defender contra ataques a distância.",
-  },
-  {
-    term: "Forte",
-    description: "Esta criatura causa +2 de dano.",
-  },
-  {
-    term: "Aterrorizante",
-    description:
-      "Inimigos devem passar em um teste de Vontade CD 12 para declarar carga contra com esta criatura. Falha não custa a ação mas impede a tentativa até a próxima ativação.",
-  },
-  {
-    term: "Morto-Vivo",
-    description:
-      "Esta criatura é imune a veneno e nunca conta como ferida. Criaturas mortas-vivas podem pegar e carregar marcadores de tesouro mas não têm espaços de itens.",
-  },
-  {
-    term: "Animal",
-    description:
-      "Uma criatura natural com inteligência menor que humana. Mesmo se se tornarem membros de um bando, animais não podem pegar marcadores de tesouro e não têm espaços de itens. Animais não ganham experiência.",
-  },
-  {
-    term: "Anfíbio",
-    description:
-      "Esta criatura é perfeitamente feliz em terra ou na água. Ela automaticamente passa em todas as Rolagens de Natação, trata água como normal ao invés de terreno acidentado, e não sofre penalidades de Luta por estar na água.",
-  },
-  {
-    term: "Voador",
-    description:
-      "Esta criatura ignora todas as penalidades de terreno e movimento ao se mover. Além disso, nunca sofre dano de queda. Criaturas voadoras automaticamente passam em todas as Rolagens de Natação.",
-  },
-  {
-    term: "Levitar",
-    description:
-      "Ignore quaisquer penalidades de movimento por terreno acidentado e escalar.",
-  },
-  {
-    term: "Recompensa",
-    description:
-      "Há uma recompensa de (X) aguardando o bando que matar esta criatura",
-  },
-  {
-    term: "Visão Verdadeira",
-    description:
-      "Ignore qualquer efeito psicológico e invisibilidade ao determinar as ações desta criatura. Além disso, se esta figura estiver em combate com um membro de um bando gerado pela magia Ilusão, essa figura é imediatamente removida da mesa.",
-  },
-  {
-    term: "Veneno",
-    description:
-      "Ataques desta criatura são venenosos e envenenam a figura alvo.",
-  },
-  {
-    term: "Regeneração",
-    description: "A figura recupera 2 de vida no início de sua ativação .",
-  },
-  {
-    term: "Agarrar",
-    description:
-      "Figuras em combate com esta criatura só podem empurrar a si mesmas ou seu oponente se causarem dano. Simplesmente vencer o combate não é suficiente.",
-  },
-  {
-    term: "Dreno de Energia",
-    description:
-      "Esta criatura causa dano dobrado em combate. mortos-vivos e construtos são imunes a este dano extra e só sofrem a quantidade padrão.",
-  },
-  {
-    term: "Toque Vampírico",
-    description:
-      "Esta figura ganha 2 de vida sempre que causa pelo menos 1 de dano. Esse efeito não é desencadeado em mortos-vivos e construtos.",
-  },
-  {
-    term: "Caçador de Matilha",
-    description:
-      "Sempre que um caçador de matilha é ativado, todos os outros caçadores de matilha em contato com ele devem ser ativados e movidos como um. Role aleatoriamente para ver qual criatura é o 'líder da matilha' e determine as ações da matilha usando essa figura.",
-  },
-
-  {
-    term: "Resistência Elemental (X)",
-    description:
-      "Sempre que esta criatura sofre dano elementar, aumente sua armadura em (X) para determinar o dano daquele ataque.",
-  },
-  {
-    term: "Toque Ardente",
-    description: "Ataques desta figura causam 2 de dano extra elemental.",
-  },
-  {
-    term: "Chifres",
-    description:
-      "Se esta criatura se move para combate e gasta uma ação para lutar como parte da mesma ativação, ela recebe +2 de Luta apenas para aquele ataque.",
-  },
-  {
-    term: "Construto",
-    description:
-      "Esta criatura é imune a veneno e nunca conta como ferida. Construtos podem pegar e carregar marcadores de tesouro mas não têm espaços de itens. Embora construtos nunca possam carregar itens, alguns itens podem ser permanentemente enxertados neles – se disponível, esta opção será notada na descrição do item.",
-  },
-  {
-    term: "Daemônio",
-    description:
-      "Todos os ataques feitos por esta criatura contam como ataques mágicos. Esta criatura é imune a veneno. Daemônios podem pegar e carregar marcadores de tesouro mas não têm espaços de itens.",
-  },
-  {
-    term: "Vulnerabilidade Elemental",
-    description:
-      "Esta criatura é vulnerável a dano elementar. Ao sofrer dano elementar, reduza sua armadura em (X) para determinar o dano.",
-  },
-  {
-    term: "Selvagem",
-    description:
-      "Os ataques desta criatura contam como usando uma Arma de Duas Mãos, causando dano aumentado com golpes brutais.",
-  },
-  {
-    term: "Cobertura Pesada",
-    description:
-      "Ataques a distância contra figuras em Cobertura Pesada sofrem -4 em suas rolagens de Tiro.",
-  },
-  {
-    term: "Cobertura Leve",
-    description:
-      "Ataques a distância contra figuras em Cobertura Leve sofrem -2 em suas rolagens de Tiro.",
-  },
-  {
-    term: "Imunidade Parcial a Dano Normal",
-    description:
-      "Sempre que esta figura sofre dano de um ataque não-mágico o dano é reduzido pela metade, arredondando para baixo.",
-  },
-  {
-    term: "Vulnerabilidade Sagrada",
-    description:
-      "Esta criatura sofre -1 em todas as Rolagens de Vontade ao rolar para resistir a magias de Tradições Divinas.",
-  },
-  {
-    term: "Duas Cabeças",
-    description:
-      "Uma figura lutando contra uma criatura de duas cabeças sempre conta como tendo uma figura de apoio a menos do que realmente tem (mínimo de 0).",
-  },
-  {
-    term: "Vulnerabilidade Elemental",
-    description:
-      "Esta criatura é vulnerável a dano elementar. Ao sofrer dano elementar, reduza sua armadura em (X) para determinar o dano.",
-  },
-  {
-    term: "Duas Mãos",
-    description:
-      "Uma arma com essa característica ocupa dois espaços de items, e não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem.",
-  },
-  {
-    term: "Penetração de Armadura (X)",
-    description:
-      "Essa arma trata a armadura de inimigos que atinge como (X) pontos menor.",
-  },
-  {
-    term: "Leve",
-    description:
-      "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas.",
-  },
-  {
-    term: "Versátil",
-    description:
-      "Uma arma com essa característica pode ser usado com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano. Mesmo se usada com uma mão, não pode se beneficiar de uma arma leve na mão secundária, apenas de escudos.",
-  },
-  {
-    term: "Par",
-    description:
-      "Armas com essa característica devem sempre ser usadas em pares, ocupando ambas as mãos, mas provendo o bônus de +1 Ímpeto de lutar com duas armas se for leve. A figura equipada nunca pode desequipar apenas uma arma de par, e se perder a arma perde ambas.",
-  },
-  {
-    term: "Venenosa",
-    description:
-      "Uma arma com essa característica envenena o alvo em um ataque bem-sucedido, mesmo se não causar dano.",
-  },
-  {
-    term: "Concussiva(X)",
-    description:
-      "Uma arma com essa característica dá ao alvo de qualquer ataque bem-sucedido que cause mais que (X) de dano um marcador de Atordoamento.",
-  },
-  {
-    term: "Abençoada (X)",
-    description:
-      "Essa arma ignora (X) pontos de armadura do alvo, se esta tiver as caracteristicas Morto-vivo ou Daemônio.",
-  },
-  {
-    term: "Desbalanceada",
-    description:
-      "Uma arma com essa característica nunca pode ser usada com uma arma leve na mão secundária, apenas escudos.",
-  },
-  {
-    term: "Defensiva",
-    description:
-      "Inimigos causam -1 de dano no portador de uma arma com essa característica.",
-  },
-  {
-    term: "Cruel",
-    description:
-      "Uma arma com essa característica conta como tendo causado um ataque crítico em uma rolagem natural de 19 ou 20. Essa característica só é aplicada se esta for a arma da mão principal.",
-  },
-  {
-    term: "Chicote(X)",
-    description:
-      "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de (X)cm, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de (X)cm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno.",
-  },
-  {
-    term: "Giros Brutais",
-    description:
-      "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de Agilidade para girar sua funda com mais força. Aumente o alcance do próximo ataque a distancia em 6cm.",
-  },
-  {
-    term: "Arma de Tecido",
-    description:
-      "Embora não possa ser usada para ganhar +1 de impeto em lutas, uma figura carregando uma arma na mão principal e uma funda na mão secundária ainda pode pode pegar Fragmentos de Pedra-Bruxa, mas não pode usar a funda para atirar enquanto estiver carregando o fragmento..",
-  },
-  {
-    term: "Hibrida",
-    description:
-      "Pode ser usada como arma corpo a corpo ou a distância, recebendo -1 de dano se for usada como arma a distância.",
-  },
-  {
-    term: "Corda de Alta Tensão",
-    description:
-      "Devido a alta tensão necessária para disparar uma flecha, um usuário de arco longo precisa de todo folego. Figuras inimigas ganhamn +1 de bonus adicional para sua rolagem de impeto contra tiros feitos pelo portador desse arco caso ele tenha movido antes de atirar.",
-  },
-  {
-    term: "Recarga",
-    description:
-      "Essa arma requer o uso de uma ação para recarregá-la e poder atirar novamente. Contudo, essa ação pode substituir a ação de Agilidade.",
-  },
-  {
-    term: "Pistola",
-    description:
-      "Uma arma com essa característica é leve e prática, podendo ser usada com apenas uma mão. Ela conta como uma adaga em combate corpo a corpo, inclusive para Lutar com Duas Armas.",
-  },
-  {
-    term: "Capacidade (X)",
-    description:
-      "Uma arma com essa característica pode disparar (X) vezes  antes de precisar recarregar. Cada flecha ou bala deve ser recarregada individualmente com uma ação de recarga.",
-  },
-  {
-    term: "Engenharia Complexa",
-    description:
-      "Uma arma com essa característica trava em casos específicos. Quando o portador rola um 1 natural em um ataque, a arma trava, e só pode ser usada novamente gastando uma ação, que pode substituir a ação de Agilidade.",
-  },
-  {
-    term: "Coice Violento",
-    description:
-      "A explosão da pólvora faz a arma ter um recuo violento ao atirar. Ataques à distância com armas com essa característica são feitos a -1.",
-  },
-  {
-    term: "Falha de Ignição (X-Y)",
-    description: `Quando o portador de uma arma com essa característica faz uma rolagem natural entre e incluindo os numeros (X) e (Y) na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n
-      1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de Agilidade, para consertar.
-      6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
-      11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
-      16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
-      `,
-  },
-  {
-    term: "Trovejante(X-Y)",
-    description:
-      "Ao rolar naturalmente qualquer número dentre incluindo, (X) e (Y) na rolagem de dado, um encontro aleatório é imediatamente rolado na borda do mapa mais próxima da figura que atirou.",
-  },
-  {
-    term: "Pistola do Duelista",
-    description:
-      "Uma arma com essa característica é leve e precisa, podendo ser usada com apenas uma mão. Ela conta como uma espada em combate corpo a corpo, inclusive para Lutar com Duas Armas.",
-  },
-  {
-    term: "Construção Robusta",
-    description:
-      "Essa arma pode ser usada em combate corpo a corpo como uma arma de duas mãos, mas sem o bonus de +2 de dano que é comum a elas.",
-  },
-  {
-    term: "Tripé",
-    description:
-      "Uma figura só pode atirar com essa arma se esta estiver montada em um tripé. Montar o tripé gasta uma ação que pode substituir a ação de Agilidade. Desmontar não custa ações, mas deverá montar se quiser atirar de novo.",
-  },
-  {
-    term: "Tiro de Dispersão",
-    description:
-      "Quando o portador dessa arma atira contra um alvo, ele pode atirar em todos os alvos a até 3cm do alvo inicial. Role uma rolagem diferente para cada alvo, e considere o ponto de origem para terreno interposto e cobertura o alvo inicial. Rolagens além da primeira não causam Falha na Ignição.",
-  },
-];
+const gameTerms: GameTerm[] = gameTermsData;
 
 const StyledTooltipTerm = styled("span")({
   textDecoration: "underline dotted",
-  textDecorationColor: "#d4af37",
+  textDecorationColor: "#90EE90",
   textDecorationThickness: "1px",
   textUnderlineOffset: "2px",
   cursor: "pointer",
   userSelect: "none",
   "&:hover": {
-    color: "#d4af37",
+    color: "#90EE90",
   },
   "&:active": {
-    color: "#c4a870",
+    color: "#98FB98",
   },
 });
 
@@ -473,14 +158,16 @@ function EquipmentTooltip({ equipmentName, children }: EquipmentTooltipProps) {
               </div>
               {equipment.properties && equipment.properties.length > 0 && (
                 <div style={{ marginBottom: "8px" }}>
-                  {equipment.properties.map((prop, index) => (
-                    <div
-                      key={index}
-                      style={{ marginBottom: "4px", fontSize: "0.9rem" }}
-                    >
-                      <strong>{prop.label}:</strong> {prop.value}
-                    </div>
-                  ))}
+                  {equipment.properties.map(
+                    (prop: { label: string; value: string }, index: number) => (
+                      <div
+                        key={index}
+                        style={{ marginBottom: "4px", fontSize: "0.9rem" }}
+                      >
+                        <strong>{prop.label}:</strong> {prop.value}
+                      </div>
+                    )
+                  )}
                 </div>
               )}
               <div style={{ fontSize: "0.9rem", lineHeight: "1.3" }}>
@@ -497,15 +184,16 @@ function EquipmentTooltip({ equipmentName, children }: EquipmentTooltipProps) {
           disableTouchListener
           sx={{
             "& .MuiTooltip-tooltip": {
-              backgroundColor: "rgba(28, 24, 18, 0.95)",
-              border: "1px solid rgba(212, 175, 55, 0.5)",
-              fontSize: "1rem",
-              maxWidth: "500px",
-              padding: "1rem 1.25rem",
+              backgroundColor: "rgba(34, 139, 34, 0.95)",
+              border: "1px solid rgba(144, 238, 144, 0.8)",
+              fontSize: "1.2rem",
+              maxWidth: "600px",
+              padding: "1.5rem 2rem",
               fontFamily: '"Crimson Text", serif',
+              color: "white",
             },
             "& .MuiTooltip-arrow": {
-              color: "rgba(28, 24, 18, 0.95)",
+              color: "rgba(34, 139, 34, 0.95)",
             },
           }}
         >
@@ -555,12 +243,14 @@ function TooltipTerm({ term, description, termKey }: TooltipTermProps) {
           disableTouchListener
           sx={{
             "& .MuiTooltip-tooltip": {
-              backgroundColor: "rgba(28, 24, 18, 0.95)",
-              border: "1px solid rgba(212, 175, 55, 0.5)",
-              fontSize: "1.05rem",
-              maxWidth: "400px",
-              padding: "1rem 1.25rem",
+              backgroundColor: "rgba(34, 139, 34, 0.95)",
+              border: "1px solid rgba(144, 238, 144, 0.8)",
+              fontSize: "1.2rem",
+              maxWidth: "600px",
+              padding: "1.5rem 2rem",
               fontFamily: '"Crimson Text", serif',
+              color: "white",
+              zIndex: 9999,
             },
             "& .MuiTooltip-arrow": {
               color: "rgba(28, 24, 18, 0.95)",
@@ -660,8 +350,8 @@ function GameText({
       "Espada",
       "Arma de Duas Mãos",
       "Cajado",
-      "Arma de Concussão",
-      "Arma de Haste",
+      "Martelo",
+      "Alabarda",
       "Funda",
       "Arma Arremessável",
       "Arco",
@@ -689,13 +379,30 @@ function GameText({
       } | null = null;
 
       for (const { term, description } of sortedTerms) {
-        const escapedTerm = escapeRegex(term);
+        // For terms with parentheses, try multiple matching strategies
+        const hasParentheses = term.includes("(");
+        let match: RegExpMatchArray | null = null;
 
-        // Create regex that matches the term (case insensitive)
-        // Allow optional 's' at the end for plurals
-        // Match word boundaries and allow for punctuation after
-        const regex = new RegExp(`\\b${escapedTerm}s?\\b`, "i");
-        const match = remainingText.match(regex);
+        if (hasParentheses) {
+          // Extract base term without parentheses
+          const baseTerm = term.replace(/\([^)]*\)/g, "").trim();
+          const escapedTerm = escapeRegex(baseTerm);
+
+          // Try exact match first (for terms like "Ódio(X)")
+          const exactRegex = new RegExp(escapeRegex(term), "i");
+          match = remainingText.match(exactRegex);
+
+          // If no exact match, try base term match
+          if (!match) {
+            const baseRegex = new RegExp(`${escapedTerm}s?`, "i");
+            match = remainingText.match(baseRegex);
+          }
+        } else {
+          // For terms without parentheses, use word boundaries
+          const escapedTerm = escapeRegex(term);
+          const regex = new RegExp(`\\b${escapedTerm}s?\\b`, "i");
+          match = remainingText.match(regex);
+        }
 
         if (match && match.index !== undefined) {
           // Check if this match would be the earliest one
@@ -1034,15 +741,16 @@ function WeaponTooltip({ weaponName, children }: WeaponTooltipProps) {
           disableTouchListener
           sx={{
             "& .MuiTooltip-tooltip": {
-              backgroundColor: "rgba(28, 24, 18, 0.95)",
-              border: "1px solid rgba(212, 175, 55, 0.5)",
-              fontSize: "1rem",
-              maxWidth: "500px",
-              padding: "1rem 1.25rem",
+              backgroundColor: "rgba(34, 139, 34, 0.95)",
+              border: "1px solid rgba(144, 238, 144, 0.8)",
+              fontSize: "1.2rem",
+              maxWidth: "600px",
+              padding: "1.5rem 2rem",
               fontFamily: '"Crimson Text", serif',
+              color: "white",
             },
             "& .MuiTooltip-arrow": {
-              color: "rgba(28, 24, 18, 0.95)",
+              color: "rgba(34, 139, 34, 0.95)",
             },
           }}
         >

@@ -1,154 +1,138 @@
-import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
-import SpellCard from "../../components/SpellCard";
-import {
-  PageContainer,
-  ContentSection,
-  NavigationSection,
-  StyledNavigationButton,
-  ContentContainer,
-  ParchmentText,
-  PowerListTitle,
-} from "../../components/PageComponents";
+
+import PageTitle from "../../components/PageTitle";
+import MobileText from "../../components/MobileText";
+import MobileSection from "../../components/MobileSection";
+import HeaderH2 from "../../components/HeaderH2";
+import GenericTable from "../../components/GenericTable";
+import TzeentchCurseTable from "../../components/TzeentchCurseTable";
+import TzeentchGiftsTable from "../../components/TzeentchGiftsTable";
+import QuickNavigation from "../../components/QuickNavigation";
+import loreOfNecromancyData from "./data/lore-of-necromancy.json";
+import LoreSpellCard from "../../components/LoreSpellCard";
 
 export default function LoreOfNecromancyPage() {
-  const navigate = useNavigate();
 
-  const spells = [
+
+  const navigationSections = [
     {
-      name: "Erguer Mortos-Vivos",
-      castingNumber: 8,
-      keywords: ["Ritual", " Toque"],
-      effect:
-        "O conjurador adiciona um crânio animado (+0 na classe de dificuldade), zumbi (+2 na classe de dificuldade), carniçal (+4 na classe de dificuldade) ou espectro (+6 na classe de dificuldade) ao seu bando como membro temporário. Se a magia for conjurada antes do jogo, o morto-vivo pode ser posicinado normalmente. Se for conjurada durante um jogo, o morto-vivo emerge do solo em contato de base com o conjurador. Um bando só pode ter um morto-vivo erguido por essa magia por vez. Se o morto-vivo for destruído ou sair da mesa, Erguer Mortos-Vivos pode ser conjurada novamente para profanar outro cadáver.",
+      id: "intro",
+      title: "Tradição da Necromancia - As Artes da Morte",
+      level: 0,
     },
     {
-      name: "Evocação de Vanhel",
-      castingNumber: 8,
-      keywords: ["Linha de Visão"],
-      effect:
-        " Esta figura ativará no fim da fase atual em vez de em sua fase normal - forçada a agir pela vontade do necromante. Conjuradores não podem conjurar esta magia em si mesmos mesmo se de alguma forma ganhem o traço Morto-Vivo, nem em uma figura que já ativou no turno atual.",
+      id: "caracteristicas",
+      title: "Características da Tradição da Necromancia",
+      level: 0,
     },
-    {
-      name: "Edito de Nagash",
-      castingNumber: 12,
-      keywords: ["Linha de Visão"],
-      effect:
-        "O necromante pronuncia as palavras proibidas do Grande Necromante, Nagash o Imortal. Estas são palavras de COMANDO ABSOLUTO sobre os mortos - uma linguagem que todos os mortos-vivos compreendem instintivamente, gravada em sua essência no momento de sua criação profana. Não há resistência, não há vontade própria - apenas a OBEDIÊNCIA inscrita em cada osso, cada fragmento de carne morta. A criatura morta-viva sente a autoridade ancestral e sua aliança se quebra como vidro.\n\nA criatura morta-viva alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se a rolagem falhar, a criatura morta-viva é arrancada de seu antigo mestre e torna-se um membro temporário do bando do conjurador. Este controle dura pelo resto do jogo ou até a magia ser cancelada. O conjurador pode gastar uma ação para liberar a criatura. Um conjurador só pode controlar uma criatura morta-viva por vez através desta magia.",
-    },
-    {
-      name: "Construir Filactéria",
-      castingNumber: 14,
-      keywords: ["Ritual"],
-      effect:
-        "O necromante deve gastar 50gc em materiais rituais. Este dinheiro é gasto independentemente do sucesso da conjuração.  O necromante que conjure essa magia com sucesso usa rituais profanos e ancestrais para criar um receptáculo de ossos dessecrados, pronto para receber um fragmento de sua alma que ele arranca prontamente. Este receptáculo, chamado de filactéria, é geralmente armazenado em uma cripta ou laboratório do necromante.\n\nEnquanto o necromante possui a filácteria, ele inicia cada jogo com sua vida reduzida em 2 (escreva como estatística dividida). Ele não pode curar além desta estatística efetiva enquanto a filactéria existir, embora possa destruí-lo entre jogos se desejar. Se o necromante for morto durante o teste de sobrevivência pós-jogo, o fragmento da sua alma na filactéria reconstrói seu corpo, como era antes da morte. O necromante não ganha experiência do jogo em que morreu, perde imediatamente 2 níveis e os avanços advindosa deles e sofre uma redução permanente de 2 pontos em sua estatística de Vida real, mas está vivo e livre para participar do próximo jogo (e pode tentar criar outra filactéria).\n\nUma filactéria sempre reconstrói o necromante como no início do primeiro turno do jogo em que ele morreu. Se o necromante entrar em um jogo com uma lesão permanente, será reconstruindo com a mesma lesão. Um necromante com uma filacteria que sofre uma lesão permanente na sequência pós jogo pode escolher cometer suicídio para ativar seu filacteria, permitindo que seu corpo seja reconstruído em um estado anterior à lesão. Se fizer isso, sua Vontade é reduzida em 1 e ele perde mais um nível além das penalidades acima (totalizando -3 níveis, -2 Saúde, -1 Vontade e nenhuma experiência daquele jogo). Um necromante pode possuir quantas filacterias desejar, mas cada uma imporá -2 na saúde máxima.",
-    },
-    {
-      name: "Garra do Túmulo",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "A figura não pode realizar quaisquer ações de movimento até escapar. Qualquer forma de movimento mágico, exceto a magia Salto, permite que uma figura escape da mão; caso contrário, a única forma de escapar é lutar contra a mão, que tem Ímpeto +0, Vigor 1. Se a mão sofrer um ponto de dano, ela se desintegra. Outras figuras em contato de base podem atacar a mão ou dar um bônus de apoio. Se a mão vencer a luta, ela PUXA, causando dano normalmente. Esta magia só pode ser conjurada contra um alvo que esteja em pé no chão. Criaturas Grandes não são afetadas - muito pesadas para uma única mão. Alcance máximo: 45cm.",
-    },
-    {
-      name: "Compartilhar Alma",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "Esta magia só pode ser conjurada em uma criatura morta-viva com atributo de Vontade de +2 ou menos que não esteja sob controle de outro Conjurador. Sempre que o alvo desta magia causar dano a uma criatura que não seja morto-vivo, Construto ou daemônio, o conjurador recupera 2 pontos de Vigor - vida roubada através de seu servo. Isto não pode levar o conjurador acima de seu Vigor inicial. Um conjurador pode ter no máximo 2 conjurações ativas por vez. O conjurador pode cancelar uma conjuração como ação gratuita. O conjurador não pode conjurar esta magia em si mesmo, mesmo se ganhar o traço Morto-Vivo.",
-    },
-    {
-      name: "Vortex da Desencarnação",
-      castingNumber: 8,
-      keywords: ["Alcance(30)", "Área de Efeito(Zona Média)"],
-      effect:
-        "O conjurador posicionada a Área de Efeito em um ponto alvo. Todas as figuras mortas-vivas nessa área devem rolar um teste de Vontade conta CD igual a rolagem de conjuração dessa magia. Se a figura tem 0 de Will e falhar nesse teste ela é automaticamente reduzida a 0 de Vigor e removida do jogo. Se falha mas tem Vontade maior que 0, toma 3x quanto falhou no teste de dano.",
-    },
-    {
-      name: "Face do Defunto",
-      castingNumber: 8,
-      keywords: ["Conjurador Apenas"],
-      effect:
-        "O Conjurador ganha a característica Aterrorizante até o fim do jogo.",
-    },
-    {
-      name: "Rigor Mortis",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "O alvo recebe +2 Armadura pelo resto do jogo. Isto não pode levar uma figura acima da Armadura 14 (ou seja, figuras com Armadura 13 vão para Armadura 14). Múltiplas conjurações de Rigor Mortis no mesmo alvo não têm efeito.",
-    },
-    {
-      name: "Forma Espectral",
-      castingNumber: 10,
-      keywords: ["Conjurador Apenas"],
-      effect:
-        "O conjurador arranca sua alma do corpo e se torna um espectro até o fim do jogo (ou até o início de sua próxima ativação). Ele pode se mover através do terreno como se não estivesse lá e ignora todas as penalidades de movimento do terreno, incluindo escalada. A figura não pode coletar tesouro e deixa cair qualquer tesouro que estivesse carregando. Apenas outra figura etérea pode forçar combate com a figura. A figura ainda luta normalmente, mas só pode causar dano se estiver usando uma arma mágica. A figura é imune a armas não-mágicas. Se um conjurador conjurar esta magia com sucesso novamente no turno seguinte, ele ganha os benefícios acima normalmente, mas automaticamente sofre 5 de dano.",
-    },
-    {
-      name: "Ritual do Despertar",
-      castingNumber: 14,
-      keywords: ["Ritual"],
-      effect: `Escolha qualquer soldado que não seja morto-vivo, construto, animal ou daêmonio que tenha que tenha rolado um resultado de Morto na tabela de sobrevivência após o último jogo contra o bando do conjurador. O soldado revive como um regressado do bando do conjurador. O Regressado tem todas as estatísticas e habilidades do soldado original, exceto sua Vontade que se torna 0. Ele também perde
-        seus níveis e avanços de nível e equipamentos mágicos, mas mantem quaisquer items mundanos que tinha ao morrer. O Regressado é um Morto-Vivo, e está sujeito a todas as magias e efeitos que afetam mortos-vivos. Se um Regressado for reduzido a 0 de vida, ele rola sobrevivência normalmente, mas se tiver um resultado de morto, 
-        o necromante pode conjurar o Ritual do Despertar novamente para ressuscitar o Regressado, que se levantado dessa forma não perde seus níveis e avanços. Não existe um limite no número de regressados que um bando pode ter
-        `,
-    },
+    { id: "preco-poder", title: "O Preço do Poder Sombrio", level: 0 },
+    { id: "magias", title: "Magias da Tradição da Necromancia", level: 0 },
+    ...loreOfNecromancyData.map((spell, index) => ({
+      id: `spell-${index}`,
+      title: spell.name,
+      level: 1,
+    })),
   ];
 
   return (
-    <PageContainer>
-      <Header title="Tradição da Necromancia" />
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
+          <MobileSection>
+            <div id="intro">
+              <PageTitle>Tradição da Necromancia - As Artes da Morte</PageTitle>
+            </div>
 
-      <ContentSection>
-        <ContentContainer>
-          <ParchmentText
-            sx={{
-              textAlign: "center",
-              fontSize: "1.2rem",
-              fontStyle: "italic",
-              color: "#9ca3af",
-              mb: 3,
-            }}
-          >
-            A Arte Negra da Não-Morte
-          </ParchmentText>
+            <MobileText
+              variant="quote"
+              className="text-center italic text-lg leading-relaxed mb-6 p-4 bg-green-900/20 border border-green-500/40 rounded-lg text-white"
+            >
+              "O Poder Proibido de Nagash o Imortal"
+            </MobileText>
 
-          <ParchmentText sx={{ mb: 4 }}>
-            Necromancia é a arte profana de erguer e comandar os mortos. Aqueles
-            que praticam esta tradição sombria podem animar cadáveres, controlar
-            guerreiros esqueletos e até roubar a força vital dos vivos para se
-            sustentarem. Os Necromantes do Velho Mundo são caçados onde quer que
-            sejam encontrados, pois sua própria existência é uma afronta à ordem
-            natural. No entanto, o poder que empunham os torna adversários
-            formidáveis, comandando legiões de mortos-vivos que não conhecem
-            medo e não sentem dor.
-          </ParchmentText>
+            <MobileText className="mb-4">
+              A Tradição da Necromancia é a magia mais profana e proibida,
+              baseada na manipulação das forças da morte e na corrupção da vida.
+              Os praticantes desta tradição são conhecidos como Necromantes ou
+              Sacerdotes da Morte, e possuem uma conexão profunda com os mortos
+              e as forças da corrupção. Eles são capazes de erguer mortos-vivos,
+              controlar almas, e canalizar o poder destrutivo da morte.
+            </MobileText>
 
-          <PowerListTitle>Feitiços da Tradição da Necromancia</PowerListTitle>
+            <div id="caracteristicas">
+              <HeaderH2>Características da Tradição da Necromancia</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              Os Necromantes são conhecidos por sua conexão com a morte e sua
+              capacidade de manipular os mortos. Eles canalizam o poder proibido
+              através de rituais profanos e uma compreensão profunda das forças
+              da corrupção. Suas magias frequentemente envolvem controle de
+              mortos-vivos, manipulação de almas, e efeitos baseados na morte e
+              corrupção.
+            </MobileText>
 
-          {spells.map((spell, index) => (
-            <SpellCard
-              key={index}
-              id={spell.name.toLowerCase().replace(/\s+/g, "-")}
-              name={spell.name}
-              school="Tradição da Necromancia"
-              castingNumber={spell.castingNumber}
-              keywords={spell.keywords}
-              effect={spell.effect}
-            />
-          ))}
-        </ContentContainer>
-      </ContentSection>
+            <div
+              id="preco-poder"
+              className="bg-green-900/20 border border-green-500/40 rounded-lg p-4 mb-6"
+            >
+              <HeaderH2 className="text-green-300 mb-4">
+                O Preço do Poder Sombrio
+              </HeaderH2>
 
-      <NavigationSection>
-        <StyledNavigationButton
-          variant="contained"
-          onClick={() => navigate("/magic/dark-lores")}
-        >
-          Voltar para Tradições Sombrias
-        </StyledNavigationButton>
-      </NavigationSection>
-    </PageContainer>
+              <MobileText className="mb-4">
+                Devido à sua natureza profana e instável, estas magias são mais
+                difíceis de conjurar, mesmo que sejam um pouco mais poderosas
+                que o normal.{" "}
+                <strong>
+                  Sempre que uma criatura tenta conjurar uma magia de tradição
+                  sombria, com sucesso ou não, ela sofre 1 de dano.
+                </strong>{" "}
+                Se ela falhar ao conjurar uma magia destas tradições, ela sofre
+                mais dano além daquele 1 de dano de acordo com a tabela abaixo:
+              </MobileText>
+
+              <GenericTable
+                data={[
+                  { "Falhou por": "1-4", "Dano Sofrido": "2" },
+                  { "Falhou por": "5-9", "Dano Sofrido": "3" },
+                  { "Falhou por": "10-19", "Dano Sofrido": "4" },
+                  { "Falhou por": "20+", "Dano Sofrido": "7" },
+                ]}
+                scrollable={false}
+              />
+
+              <TzeentchCurseTable />
+
+              <TzeentchGiftsTable />
+            </div>
+
+            <div id="magias">
+              <HeaderH2>Magias da Tradição da Necromancia</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              As magias da Tradição da Necromancia são conhecidas por sua
+              natureza profana e destrutiva. Elas manipulam as forças da morte
+              para criar efeitos relacionados ao controle de mortos-vivos,
+              manipulação de almas, e poderes baseados na corrupção e morte.
+            </MobileText>
+
+            <div className="space-y-6">
+              {loreOfNecromancyData.map((spell, index) => (
+                <div key={index} id={`spell-${index}`}>
+                  <LoreSpellCard
+                    name={spell.name}
+                    castingNumber={spell.castingNumber}
+                    keywords={spell.keywords}
+                    effect={spell.effect}
+                  />
+                </div>
+              ))}
+            </div>
+
+            
+          </MobileSection>
+        </div>
+      </div>
+    </div>
   );
 }

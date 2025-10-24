@@ -32,13 +32,13 @@
   {
     "id": "espinhos",
     "name": "Espinhos",
-    "description": "Qualquer figura não Morta-Viva ou Construto que começe sua ativação a até 8cm do mutante deve rolar um teste de Vontade CD 12. Se falhar imediatamente recebe 2 de dano.",
+    "description": "Qualquer figura não Morto-Vivo ou Construto que começe sua ativação a até 8cm do mutante deve rolar um teste de Vontade CD 12. Se falhar imediatamente recebe 2 de dano.",
     "cost": "35 coroas"
   },
   {
     "id": "cauda-de-escorpiao",
     "name": "Cauda de Escorpião",
-    "description": "O Mutante é considerado como estando sempre equipado com uma arma com modificador de dano +2 e a característica Venenosa. Um alvo imune a veneno reduz esse modificador de dano a -1.",
+    "description": "O Mutante é considerado como estando sempre equipado com uma arma com modificador de dano +2 e a característica Venenos. Um alvo imune a veneno reduz esse modificador de dano a -1.",
     "cost": "40 coroas"
   },
   {

@@ -1,0 +1,243 @@
+[
+  {
+    "id": "inquisidor",
+    "name": "Inquisidor",
+    "role": "Líder",
+    "stats": {
+      "move": 15,
+      "fight": "+3",
+      "shoot": "+2",
+      "armour": 10,
+      "Vontade": "+5",
+      "health": 16,
+      "cost": "60 coroas",
+      "skills": ["Combate", "Atirador", "Força", "Acadêmica", "Agilidade"]
+    },
+    "quantity": "1",
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "O Inquisidor pode ativar até 3 figuras a 8cm dele junto a si."
+      },
+      {
+        "name": "Habilidades",
+        "description": "O Inquisidor começam com 5 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+      },
+      {
+        "name": "Édito da Inquisição",
+        "description": "O inquisidor pode escolher um conjurador o inicio do jogo, antes das miniaturas serem posicionadas. Aquela figura ganha a característica Procurado(X) onde X é seu valor em coroas"
+      },
+      {
+        "name": "Queimem a Bruxa!",
+        "description": "O Inquisitor tem Ódio(Conjuradores)."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta", "cost": "25 coroas" },
+        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" },
+        { "name": "Besta de Mão", "cost": "35 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "sacerdote-marcial-de-sigmar",
+    "name": "Sacerdote Marcial de Sigmar",
+    "role": "Héroi",
+    "stats": {
+      "move": 15,
+      "fight": "+3",
+      "shoot": "+0",
+      "armour": 10,
+      "Vontade": "+4",
+      "health": 14,
+      "cost": "40 coroas"
+    },
+    "quantity": "0-1",
+    "spellAffinity": {
+      "aligned0": ["Orações de Sigmar"]
+    },
+    "abilities": [
+      {
+        "name": "Sacerdote",
+        "description": "O Sacerdote Guerreiro de Sigmar é um sacerdote e tem uma seleção muito limitada de magias comparado a outros conjuradores. No entanto, pode conjurar enquanto usa armaduras ou escudos e em combate, tendo -4 na sua rolagem de conjuração se o fizer. O sacerdote começa com 2 magias das Orações de Sigmar."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta", "cost": "25 coroas" },
+        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" },
+        { "name": "Besta de Mão", "cost": "35 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "caçador-de-bruxas",
+    "name": "Caçador de Bruxas",
+    "role": "Héroi",
+    "stats": {
+      "move": 15,
+      "fight": "+2",
+      "shoot": "+1",
+      "armour": 10,
+      "Vontade": "+2",
+      "health": 12,
+      "cost": "25 coroas",
+      "skills": ["Combate", "Atirador", "Acadêmica", "Agilidade"]
+    },
+    "quantity": "0-2",
+    "abilities": [
+      {
+        "name": "Habilidades",
+        "description": "O Caçador de Bruxas começam com 2 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+      },
+      {
+        "name": "Queimem a Bruxa!",
+        "description": "Caçadores de Bruxas têm a característica Ódio(Conjuradores)."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [
+        { "name": "Besta", "cost": "25 coroas" },
+        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" },
+        { "name": "Besta de Mão", "cost": "35 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Armadura Pesada", "cost": "50 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "fanatico",
+    "name": "Fanático",
+    "stats": {
+      "move": 14,
+      "fight": "0",
+      "shoot": "+0",
+      "armour": 10,
+      "Vontade": "+3",
+      "health": 10,
+      "cost": "20 coroas"
+    },
+    "quantity": "ilimitado",
+    "abilities": [],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Maça", "cost": "3 coroas" },
+        { "name": "Martelo", "cost": "5 coroas" },
+        { "name": "Machado", "cost": "5 coroas" },
+        { "name": "Espada", "cost": "10 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
+        { "name": "Lança", "cost": "10 coroas" }
+      ],
+      "ranged": [
+        { "name": "Arco", "cost": "10 coroas" },
+        { "name": "Arco Curto", "cost": "5 coroas" }
+      ],
+      "armor": [
+        { "name": "Armadura Leve", "cost": "20 coroas" },
+        { "name": "Escudo", "cost": "5 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "flagelante",
+    "name": "Flagelante",
+    "stats": {
+      "move": 14,
+      "fight": "+4",
+      "shoot": "+0",
+      "armour": 10,
+      "Vontade": "+4",
+      "health": 10,
+      "cost": "40 coroas"
+    },
+    "quantity": "0-5",
+    "abilities": [
+      {
+        "name": "Determinação Fanática",
+        "description": "Esse modelo tem a característica Mente-Férrea."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        { "name": "Mangual", "cost": "15 coroas" },
+        { "name": "Estrela da Manhã", "cost": "15 coroas" },
+        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+      ],
+      "ranged": [],
+      "armor": [],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "cao-de-guerra",
+    "name": "Cão de Guerra",
+    "stats": {
+      "move": 18,
+      "fight": "+1",
+      "shoot": "+0",
+      "armour": 10,
+      "Vontade": "0",
+      "health": 8,
+      "cost": "15 coroas"
+    },
+    "quantity": "0-5",
+    "abilities": [
+      {
+        "name": "Cão de Guerra Treinado",
+        "description": "O cão de guerra tem a característica Animal."
+      }
+    ]
+  }
+]

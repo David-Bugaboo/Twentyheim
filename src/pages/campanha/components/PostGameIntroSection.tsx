@@ -3,14 +3,14 @@ import MobileText from "../../../components/MobileText";
 
 const PostGameIntroSection = () => {
   return (
-    <CollapsibleSection id="sequencia-pos-jogo" title="Sequência Pós Jogo">
+    <CollapsibleSection id="sequencia-pos-jogo" title="Fase de Campanha">
       <MobileText className="mb-4">
         A batalha acabou. Os mortos jazem onde caíram. Os sobreviventes
         arrastam-se de volta aos acampamentos improvisados, sangrando, exaustos,
         mas vivos. Agora vem a parte que muitos esquecem: a contabilidade da
         carnificina. Quem sobreviveu? Quem morreu? O que foi ganho? O que foi
-        perdido? Esta é a <strong>Sequência Pós Jogo</strong> — onde batalhas se
-        tornam história, e história se torna lenda... ou esquecimento.
+        perdido? Esta é a <strong>Fase de Campanha</strong> — onde batalhas
+        se tornam história, e história se torna lenda... ou esquecimento.
       </MobileText>
 
       <div className="bg-[#2a1f1f] p-4 rounded-lg border border-[#382929] mb-6">

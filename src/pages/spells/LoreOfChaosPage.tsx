@@ -1,147 +1,129 @@
-import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
-import SpellCard from "../../components/SpellCard";
-import {
-  PageContainer,
-  ContentSection,
-  NavigationSection,
-  StyledNavigationButton,
-  ContentContainer,
-  ParchmentText,
-  PowerListTitle,
-} from "../../components/PageComponents";
+import PageTitle from "../../components/PageTitle";
+import MobileText from "../../components/MobileText";
+import MobileSection from "../../components/MobileSection";
+import HeaderH2 from "../../components/HeaderH2";
+import GenericTable from "../../components/GenericTable";
+import TzeentchCurseTable from "../../components/TzeentchCurseTable";
+import TzeentchGiftsTable from "../../components/TzeentchGiftsTable";
+import QuickNavigation from "../../components/QuickNavigation";
+import loreOfChaosData from "./data/lore-of-chaos.json";
+import LoreSpellCard from "../../components/LoreSpellCard";
 
 export default function LoreOfChaosPage() {
-  const navigate = useNavigate();
-
-  const spells = [
+  const navigationSections = [
+    { id: "intro", title: "Tradição do Caos - As Artes Proibidas", level: 0 },
     {
-      name: "Invocar Diabrete",
-      castingNumber: 8,
-      keywords: ["Invocação"],
-      effect: `O conjurador rasga o véu entre os mundos com palavras blasfemas, e uma pequena abertura para o Reino do Caos se manifesta. 
-        De dentro da fenda vem um diabrete, uma criatura menor mas ainda assim corrupta, seus olhos ardendo com malícia sobrenatural.
-        \n\nO conjurador invoca um diabrete. Ele é uma criatura não controlada e agirá normalmente junto com as outras criaturas não controladas. 
-        Se o conjurador conjurar esta magia  uma segunda vez, o primeiro diabrete é puxado de volta para o Caos e imediatamente desaparece em uma nuvem de enxofre.`,
+      id: "caracteristicas",
+      title: "Características da Tradição do Caos",
+      level: 0,
     },
-    {
-      name: "Sangue Escaldante",
-      castingNumber: 10,
-      keywords: ["Missil Mágico(Mágico)(+7)", "Linha de Visão"],
-      effect:
-        "Ataque a criatura alvo com o míssil mágico. Se forçou a magia com pelo menos 3 pontos de vida o míssil mágico ganha +2 de modificador de dano.",
-    },
-    {
-      name: "Tentação do Caos",
-      castingNumber: 10,
-      keywords: ["Linha de Visão", "Psicológico"],
-      effect:
-        "A figura alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, a corrupção toma conta e o alvo temporariamente se junta ao bando do conjurador, ativando normalmente. Após a figura ativar a cada turno, ela deve fazer outra Rolagem de Vontade com Classe de Dificuldade igual à Rolagem de Conjuração, lutando contra os sussurros. Se bem-sucedida, a magia é cancelada e a figura retorna à sua aliança normal, tremendo com o horror do que quase fez. Um conjurador só pode ter uma magia Tentação do Caos ativa por vez. Uma figura sob Tentação do Caos não pode propositalmente realizar qualquer ação que cause dano imediato a si mesma, mas pode ser movida para combate e pode atacar uma figura inimiga. Uma figura sob Tentação do Caos não pode sair da mesa. Um conjurador pode cancelar uma Tentação do Caos ativa no fim de qualquer turno. Esta magia não tem efeito em Heróis e Campeões - suas vontades são fortes demais.",
-    },
-    {
-      name: "Subjugar Daemônio",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "O feiticeiro projeta sua vontade sobre a criatura do Caos, travando uma batalha mental no plano etéreo. É uma disputa perigosa - os daemônios não se submetem facilmente, e muitos feiticeiros tiveram suas mentes despedaçadas ao tentar dominar o que não deveria ser controlado.\n\nO daemônio alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, sua essência é temporariamente presa à vontade do conjurador e ele se torna um membro temporário do bando. Este controle precário dura pelo resto do jogo ou até a magia ser cancelada. O conjurador pode gastar uma ação para liberar a criatura, cancelando esta magia. Um conjurador só pode controlar um daemônio por vez - a mente mortal não suporta dominar mais de uma entidade do warp.",
-    },
-    {
-      name: "Invocação Daemônica",
-      castingNumber: 12,
-      keywords: ["Invocação"],
-      effect:
-        "O conjurador invoca um Daemônio.  Este daemônio é considerado sob os efeitos de uma magia Subjulgar Daemônio pelo mesmo conjurador, e assim esta magia não pode ser conjurada se o conjurador já estiver controlando um daemônio. O tipo de daemônio invocado depende da quantidade pela qual o conjurador teve sucesso em sua Rolagem de Conjuração: 0-5 diabrete, 6-12 daemônio menor, 13+ daemônio maior. Se um conjurador rolar um 1 natural ao tentar conjurar esta magia, o ritual falha catastroficamente - ele invoca um daemônio descontrolado e deve colocar este daemônio em combate com o conjurador. Role um dado para determinar o tipo: 1-10 diabrete, 11-17 daemônio menor, 18+ daemônio maior.a, mas não há outro limite para potencializar esta magia, inclusive acima de 18.",
-    },
-    {
-      name: "Dádiva do Caos",
-      castingNumber: 12,
-      keywords: ["Linha de Visão"],
-      effect:
-        "A figura alvo que não um conjurador ou uma figura com a característica Daemônio  é possuída por uma entidade do reino do caos e ganha +2 Ímpeto, +1 Armadura e -2 Vontade até o fim do jogo e conta como um daemônio (ou seja, será afetado por Banir, Subjulgar Daemônio, Círculo de Proteção, etc.). Esta figura não pode ser parte de uma ativação em grupo. Se removida do jogo por uma magia com a palavra chave Exorcismo, o daemônio é expulso e a sobrevivência da figura é verificada normalmente após o jogo. Um conjurador só pode ter uma magia Dádiva do Caos. ativa por vez.",
-    },
-    {
-      name: "Mão Infernal da Entropia",
-      castingNumber: 12,
-      keywords: ["Conjurador Apenas"],
-      effect:
-        "Esta magia substitui a regra normal de que uma magia não pode ser conjurada quando uma figura está em combate – ela só pode ser conjurada quando o conjurador está em combate. O conjurador ganha +4 de Ímpeto e um modificador de dano +3 durante esse ataque.",
-    },
-    {
-      name: "Toque de Tzeentch",
-      castingNumber: 12,
-      keywords: ["Linha de Visão", "Ritual"],
-      effect:
-        "A figura inimiga alvo imediatamente rola um teste de vontade com CD igual a rolagem de conjuração desta magia. Se a figura falhar esse teste ela ganha uma mutação da tabela Dádivas de Tzeentch até o fim do jogo. Pode alvejar uma figura aliada, fazendo-a ganhar uma das caraterísticos a seguir: Anfíbio, Chifres, Levitar, Escavador, Escalador, Immune a Veneno, Vigoroso ou Imune a Danos Críticos. Se usado em um aliado, pode ser usado como Ritual.",
-    },
-    {
-      name: "Véu da Corrupção",
-      castingNumber: 12,
-      keywords: ["Linha de Visão", "Área de Efeito (Zona Pequena)"],
-      effect:
-        "O Conjurador invoca as chamas mutagênicas da corrupção, posicionando ua Área de Efeito no tabuleiro em um ponto alvo. Qualquer criatura sem a característica Daemonio que atravessar ou começar sua ativação dentro da Área de Efeito recebe um ataque mágico +4. Uma rolagem de 20 natural contra uma criatura faz com que ela receba uma mutação da tabela Dádivas de Tzeentch até o fim do jogo.",
-    },
-    {
-      name: "Palavra da Dor",
-      castingNumber: 14,
-      keywords: ["Área de Efeito (Explosão Grande)"],
-      effect:
-        "Centre a Área de Efeito no invocador. Todas as figuras na área de efeito recebem um ataque mágico +0. Figuras atingidas pelo ataque devem rolar um teste de vontade com CD igual a rolagem de conjuração desta magia. Se a figura falhar esse teste, ela recebe um marcador de atordoamento.",
-    },
+    { id: "preco-poder", title: "O Preço do Poder Sombrio", level: 0 },
+    { id: "magias", title: "Magias da Tradição do Caos", level: 0 },
+    ...loreOfChaosData.map((spell, index) => ({
+      id: `spell-${index}`,
+      title: spell.name,
+      level: 1,
+    })),
   ];
 
   return (
-    <PageContainer>
-      <Header title="Tradição do Caos" />
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
+          <MobileSection>
+            <div id="intro">
+              <PageTitle>Tradição do Caos - As Artes Proibidas</PageTitle>
+            </div>
 
-      <ContentSection>
-        <ContentContainer>
-          <ParchmentText
-            sx={{
-              textAlign: "center",
-              fontSize: "1.2rem",
-              fontStyle: "italic",
-              color: "#a78bfa",
-              mb: 3,
-            }}
-          >
-            A Arte Sombria da Invocação Daemônica
-          </ParchmentText>
+            <MobileText
+              variant="quote"
+              className="text-center italic text-lg leading-relaxed mb-6 p-4 bg-green-900/20 border border-green-500/40 rounded-lg text-white"
+            >
+              "O Poder Corrompido do Reino do Caos"
+            </MobileText>
 
-          <ParchmentText sx={{ mb: 4 }}>
-            A Tradição do Caos é a magia da mudança, destruição, tentação e
-            decadência. Ela é baseada na manipulação de Dhar, também conhecida
-            como magia sombria. Os praticantes da magia do Caos são conhecidos
-            por muitos nomes — feiticeiro, bruxo e cultista para citar apenas
-            alguns. Como todos os seguidores do Caos, estes magos são inimigos
-            da civilização e tudo que ela representa. Eles buscam a derrubada do
-            Império e todas as nações do Velho Mundo e sua visão do futuro é de
-            escuridão, sangue e mudança sem fim.
-          </ParchmentText>
+            <MobileText className="mb-4">
+              A Tradição do Caos é a magia mais perigosa e corrupta, baseada na
+              manipulação direta das forças do Reino do Caos. Os praticantes
+              desta tradição são conhecidos como Feiticeiros do Caos ou
+              Cultistas, e possuem uma conexão profunda com os daemônios e as
+              forças da corrupção. Eles são capazes de invocar daemônios,
+              corromper mentes, e canalizar o poder destrutivo do Caos.
+            </MobileText>
 
-          <PowerListTitle>Feitiços da Tradição do Caos</PowerListTitle>
+            <div id="caracteristicas">
+              <HeaderH2>Características da Tradição do Caos</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              Os Feiticeiros do Caos são conhecidos por sua conexão com os
+              daemônios e sua capacidade de manipular as forças da corrupção.
+              Eles canalizam o poder do Reino do Caos através de rituais
+              blasfemos e uma compreensão profunda das forças daentrópicas. Suas
+              magias frequentemente envolvem invocação de daemônios, corrupção
+              mental, e manipulação das forças do Caos.
+            </MobileText>
 
-          {spells.map((spell, index) => (
-            <SpellCard
-              key={index}
-              id={spell.name.toLowerCase().replace(/\s+/g, "-")}
-              name={spell.name}
-              school="Tradição do Caos"
-              castingNumber={spell.castingNumber}
-              keywords={spell.keywords}
-              effect={spell.effect}
-            />
-          ))}
-        </ContentContainer>
-      </ContentSection>
+            <div
+              id="preco-poder"
+              className="bg-green-900/20 border border-green-500/40 rounded-lg p-4 mb-6"
+            >
+              <HeaderH2 className="text-green-300 mb-4">
+                O Preço do Poder Sombrio
+              </HeaderH2>
 
-      <NavigationSection>
-        <StyledNavigationButton
-          variant="contained"
-          onClick={() => navigate("/magic/dark-lores")}
-        >
-          Voltar para Tradições Sombrias
-        </StyledNavigationButton>
-      </NavigationSection>
-    </PageContainer>
+              <MobileText className="mb-4">
+                Devido à sua natureza profana e instável, estas magias são mais
+                difíceis de conjurar, mesmo que sejam um pouco mais poderosas
+                que o normal.{" "}
+                <strong>
+                  Sempre que uma criatura tenta conjurar uma magia de tradição
+                  sombria, com sucesso ou não, ela sofre 1 de dano.
+                </strong>{" "}
+                Se ela falhar ao conjurar uma magia destas tradições, ela sofre
+                mais dano além daquele 1 de dano de acordo com a tabela abaixo:
+              </MobileText>
+
+              <GenericTable
+                data={[
+                  { "Falhou por": "1-4", "Dano Sofrido": "2" },
+                  { "Falhou por": "5-9", "Dano Sofrido": "3" },
+                  { "Falhou por": "10-19", "Dano Sofrido": "4" },
+                  { "Falhou por": "20+", "Dano Sofrido": "7" },
+                ]}
+                scrollable={false}
+              />
+
+              <TzeentchCurseTable />
+
+              <TzeentchGiftsTable />
+            </div>
+
+            <div id="magias">
+              <HeaderH2>Magias da Tradição do Caos</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              As magias da Tradição do Caos são conhecidas por sua natureza
+              corrupta e destrutiva. Elas manipulam as forças do Reino do Caos
+              para criar efeitos relacionados à invocação de daemônios,
+              corrupção mental, e manipulação das forças entrópicas.
+            </MobileText>
+
+            <div className="space-y-6">
+              {loreOfChaosData.map((spell, index) => (
+                <div key={index} id={`spell-${index}`}>
+                  <LoreSpellCard
+                    name={spell.name}
+                    castingNumber={spell.castingNumber}
+                    keywords={spell.keywords}
+                    effect={spell.effect}
+                  />
+                </div>
+              ))}
+            </div>
+          </MobileSection>
+        </div>
+      </div>
+    </div>
   );
 }

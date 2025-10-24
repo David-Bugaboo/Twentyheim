@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
-import MobileHeroHeader from "../../../components/MobileHeroHeader";
 import MobileSection from "../../../components/MobileSection";
 import HeaderH1 from "../../../components/HeaderH1";
+import HeaderH2 from "../../../components/HeaderH2";
 import MobileText from "../../../components/MobileText";
 import UnitCard from "../../../components/UnitCard";
 import QuickNavigation from "../../../components/QuickNavigation";
 import cultData from "./data/cult-of-the-possessed-page.json";
 import mutationsData from "./data/mutations.data.json";
-import headerImage from "../../../assets/header-art/874ab363-3678-45ab-84a8-7ffd64527398.png";
+import PageTitle from "../../../components/PageTitle";
 
 interface Unit {
   id: string;
@@ -19,11 +18,10 @@ interface Unit {
     fight: string;
     shoot: string;
     armour: number | string;
-    will: string;
+    Vontade: string;
     health: number;
     cost: string;
     skills?: string[];
-    equipment?: any;
   };
   spellAffinity?: {
     aligned0?: string[];
@@ -36,6 +34,7 @@ interface Unit {
     armor?: string[];
     special?: string[];
   }>;
+  equipment: any;
 }
 
 interface Mutation {
@@ -98,8 +97,8 @@ export default function CultOfThePossessedPage() {
       id: "mutacoes",
       title: "Mutações",
       level: 0,
-      children: mutations.map((mutation) => ({
-        id: mutation.id,
+      children: mutations.map((mutation, index) => ({
+        id: `mutation-${index}`,
         title: mutation.name,
         level: 1,
       })),
@@ -108,10 +107,10 @@ export default function CultOfThePossessedPage() {
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <MobileHeroHeader title="Culto dos Possuídos" imageUrl={headerImage} />
-
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <PageTitle>Culto dos Possuídos</PageTitle>
+        
           <MobileSection id="introducao">
             <MobileText
               variant="quote"
@@ -185,52 +184,6 @@ export default function CultOfThePossessedPage() {
             </MobileText>
           </MobileSection>
 
-          <MobileSection id="lider">
-            <HeaderH1 id="lider">Líder</HeaderH1>
-            {leader && (
-              <UnitCard
-                id={leader.id}
-                name={leader.name}
-                role={leader.role}
-                quantity={leader.quantity}
-                stats={leader.stats}
-                spellAffinity={leader.spellAffinity}
-                abilities={leader.abilities}
-              />
-            )}
-          </MobileSection>
-
-          <MobileSection id="herois">
-            <HeaderH1 id="herois">Heróis</HeaderH1>
-            {heroes.map((hero) => (
-              <div key={hero.id} id={hero.id}>
-                <UnitCard
-                  id={hero.id}
-                  name={hero.name}
-                  role={hero.role}
-                  quantity={hero.quantity}
-                  stats={hero.stats}
-                  abilities={hero.abilities}
-                />
-              </div>
-            ))}
-          </MobileSection>
-
-          <MobileSection id="soldados">
-            <HeaderH1 id="soldados">Soldados</HeaderH1>
-            {soldiers.map((soldier) => (
-              <div key={soldier.id} id={soldier.id}>
-                <UnitCard
-                  id={soldier.id}
-                  name={soldier.name}
-                  quantity={soldier.quantity}
-                  stats={soldier.stats}
-                  abilities={soldier.abilities}
-                />
-              </div>
-            ))}
-          </MobileSection>
-
           <MobileSection id="mutacoes">
             <HeaderH1 id="mutacoes">Mutações</HeaderH1>
             <MobileText>
@@ -251,51 +204,81 @@ export default function CultOfThePossessedPage() {
               mesmo modelo custam o dobro.
             </MobileText>
 
-            {mutations.map((mutation) => {
-              const [isExpanded, setIsExpanded] = useState(false);
-
-              useEffect(() => {
-                const checkScreenSize = () => {
-                  setIsExpanded(window.innerWidth >= 768);
-                };
-
-                checkScreenSize();
-                window.addEventListener("resize", checkScreenSize);
-
-                return () =>
-                  window.removeEventListener("resize", checkScreenSize);
-              }, []);
-
-              return (
+            <div className="space-y-6">
+              {mutations.map((mutation, index) => (
                 <div
                   key={mutation.id}
-                  id={mutation.id}
-                  className="bg-[#1a1a1a] text-white mb-4 border border-gray-700 rounded-lg overflow-hidden"
+                  id={`mutation-${index}`}
+                  className="bg-green-900/20 border border-green-500/40 rounded-lg p-4"
                 >
-                  <button
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    className="w-full bg-[#2a2a2a] px-6 py-4 border-b border-gray-700 hover:bg-[#333333] transition-colors text-left"
-                  >
-                    <div>
-                      <h3 className="text-xl font-bold text-[#8fbc8f]">
-                        {mutation.name}
-                      </h3>
-                      <p className="text-gray-300 mt-1">
-                        Custo: {mutation.cost}
-                      </p>
+                  <HeaderH2 className="text-green-300 mb-2">
+                    {mutation.name}
+                  </HeaderH2>
+                  <div className="mb-3">
+                    <div className="text-green-400 font-bold text-sm mb-1">
+                      Custo: {mutation.cost}
                     </div>
-                  </button>
-
-                  {isExpanded && (
-                    <div className="p-6 pt-6">
-                      <p className="text-gray-300 leading-relaxed">
-                        {mutation.description}
-                      </p>
+                  </div>
+                  <div>
+                    <div className="text-green-400 font-bold text-sm mb-1">
+                      Descrição:
                     </div>
-                  )}
+                    <div className="text-white text-sm">
+                      {mutation.description}
+                    </div>
+                  </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
+          </MobileSection>
+
+          <MobileSection id="lider">
+            <HeaderH1 id="lider">Líder</HeaderH1>
+            {leader && (
+              <UnitCard
+                id={leader.id}
+                name={leader.name}
+                role={leader.role}
+                quantity={leader.quantity}
+                stats={leader.stats}
+                spellAffinity={leader.spellAffinity}
+                abilities={leader.abilities}
+                equipment={leader.equipment}
+              />
+            )}
+          </MobileSection>
+
+          <MobileSection id="herois">
+            <HeaderH1 id="herois">Heróis</HeaderH1>
+            {heroes.map((hero) => (
+              <div key={hero.id} id={hero.id}>
+                <UnitCard
+                  id={hero.id}
+                  name={hero.name}
+                  role={hero.role}
+                  quantity={hero.quantity}
+                  stats={hero.stats}
+                  abilities={hero.abilities}
+                  equipment={hero.equipment}
+                />
+              </div>
+            ))}
+          </MobileSection>
+
+          <MobileSection id="soldados">
+            <HeaderH1 id="soldados">Soldados</HeaderH1>
+            {soldiers.map((soldier) => (
+              <div key={soldier.id} id={soldier.id}>
+                <UnitCard
+                  id={soldier.id}
+                  name={soldier.name}
+                  quantity={soldier.quantity}
+                  stats={soldier.stats}
+                  abilities={soldier.abilities}
+                  equipment={soldier.equipment}
+                />
+              </div>
+            ))}
           </MobileSection>
 
           <MobileText

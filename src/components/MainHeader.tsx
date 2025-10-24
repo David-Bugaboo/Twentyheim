@@ -8,7 +8,7 @@ interface MainHeaderProps {
 const MainHeader: React.FC<MainHeaderProps> = ({ children, className = "" }) => {
   return (
     <h1
-      className={`text-white text-5xl font-bold text-center mb-8 ${className}`}
+      className={`text-green-300 text-5xl font-bold text-center mb-8 ${className}`}
       style={{
         fontFamily: "Cinzel, serif",
         textTransform: "none",

@@ -24,7 +24,7 @@
       },
       {
         "label": "Giros Brutais",
-        "value": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de Agilidade para girar sua funda com mais força. Aumente o alcance do próximo ataque a distancia em 6cm."
+        "value": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de movimento para girar sua funda com mais força. Aumente o alcance do próximo ataque a distancia em 6cm."
       },
       {
         "label": "Arma de Tecido",
@@ -40,6 +40,7 @@
     "purchaseCost": "5 coroas",
     "rarity": 1,
     "availability": ["Todos"],
+    "maxRange": "15cm",
     "exclusive": null,
     "flavorText": "Javelins são lanças curtas de arremesso especialmente ponderadas para percorrer uma distância considerável. Embora tenham um alcance muito reduzido quando comparadas a uma flecha, podem causar danos bastante consideráveis quando arremessadas por uma pessoa de grande força.",
     "user": null,
@@ -49,10 +50,9 @@
     "effect": null,
     "requirements": null,
     "specialRules": [
-      { "label": "Alcance de Arremesso", "value": "25cm" },
       {
         "label": "Especial",
-        "value": "Pode ser usada como arma de mão em combate corpo a corpo."
+        "value": "Pode ser usada como arma de mão em combate corpo a corpo. Tem Javelins o suficiente para durar qualquer número de partidas."
       }
     ]
   },
@@ -168,7 +168,7 @@
     "type": "Arma a Distância",
     "damageModifier": "+1",
     "purchaseCost": "35 coroas",
-    "rarity": 16,
+    "rarity": 14,
     "availability": ["Todos"],
     "maxRange": "25cm",
     "exclusive": null,
@@ -196,7 +196,7 @@
     "type": "Arma a Distância",
     "damageModifier": "+1",
     "purchaseCost": "80 coroas",
-    "rarity": 15,
+    "rarity": 18,
     "availability": ["Todos"],
     "maxRange": "60cm",
     "exclusive": null,
@@ -222,7 +222,7 @@
       },
       {
         "label": "Engenharia Complexa",
-        "value": "Uma arma com essa característica trava em casos específicos. Quando o portador rola um 1 natural em um ataque, a arma trava, e só pode ser usada novamente gastando uma ação, que pode substituir a ação de Agilidade."
+        "value": "Uma arma com essa característica trava em casos específicos. Quando o portador rola um 1 natural em um ataque, a arma trava, e só pode ser usada novamente gastando uma ação, que pode substituir a ação de movimento."
       }
     ]
   },
@@ -246,8 +246,8 @@
     "requirements": "Bolsa de Dardos",
     "specialRules": [
       {
-        "label": "Venenosa",
-        "value": "Uma arma com essa característica envenena o alvo em um ataque bem-sucedido, mesmo se não causar dano."
+        "label": "Tóxica",
+        "value": "Uma arma com essa característica causa dano Venenoso."
       }
     ]
   },
@@ -277,6 +277,31 @@
       {
         "label": "Uso Único",
         "value": "As bolas só podem ser usadas uma vez por batalha. Elas são automaticamente recuperadas após cada batalha."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "facas-de-arremesso",
+    "name": "Faca de Arremesso",
+    "type": "Arma a Distância",
+    "damageModifier": "-1",
+    "purchaseCost": "5 coroas",
+    "rarity": 8,
+    "availability": ["Todos"],
+    "maxRange": "20cm",
+    "exclusive": null,
+    "flavorText": "As facas de arremesso são usadas principalmente pelos assassinos da sinistra Casa das Sombras, ou por bandidos de rua que se especializam em emboscar os desavisados. Uma faca perfeitamente equilibrada arremessada pelas costas pôs fim à vida de muitos nobres e mercadores em Mordheim. As facas de arremesso não são adequadas para combate corpo a corpo, pois seu equilíbrio as torna difíceis de manejar em combate próximo.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Especial",
+        "value": "Pode ser usada como arma de mão em combate corpo a corpo, com um modificador de dano de -2. Tem facas o suficiente para durar qualquer numero de partidas."
       }
     ]
   }

@@ -8,7 +8,7 @@ interface HeaderH2Props {
 const HeaderH2: React.FC<HeaderH2Props> = ({ children, className = "" }) => {
   return (
     <h2
-      className={`text-white text-xl font-bold text-left mb-2 ${className}`}
+      className={`text-green-300 text-xl font-bold text-left mb-2 ${className}`}
       style={{
         fontFamily: "Cinzel, serif",
         textTransform: "none",

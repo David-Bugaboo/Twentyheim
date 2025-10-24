@@ -15,7 +15,7 @@ const HeaderH1: React.FC<HeaderH1Props> = ({
     <div className={`mb-6 ${className}`}>
       <h1
         id={id}
-        className="text-white text-2xl font-bold text-left mb-3"
+        className="text-green-300 text-2xl font-bold text-left mb-3"
         style={{
           fontFamily: "Cinzel, serif",
           textTransform: "none",
@@ -28,13 +28,12 @@ const HeaderH1: React.FC<HeaderH1Props> = ({
           className="text-3xl inline-block mr-1"
           style={{ fontFamily: "Cinzel, serif" }}
         >
-          {typeof children === "string" ? children.charAt(0) : ""}
+          {children}
         </span>
-        {typeof children === "string" ? children.slice(1) : children}
       </h1>
 
       {/* Linha decorativa completa */}
-      <div className="w-full h-px bg-gray-400 mt-3"></div>
+      <div className="w-full h-px bg-green-500/40 mt-3"></div>
     </div>
   );
 };

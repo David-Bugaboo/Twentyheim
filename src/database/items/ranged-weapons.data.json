@@ -41,7 +41,7 @@
   },
   {
     "id": "club",
-    "name": "Porrete",
+    "name": "Maça",
     "description": "Talvez o tipo mais simples de arma, esses instrumentos brutais e contundentes variam de maças de ferro cru a martelos elaboradamente forjados pelos Anões feitos do melhor aço. Um golpe de uma maça pode facilmente esmagar um crânio ou deixar um homem inconsciente.",
     "strength": "usuário -1",
     "cost": "3 coroas",
@@ -174,7 +174,7 @@
     "specialRules": [
       {
         "title": "Arma Sagrada",
-        "description": "Cada martelo de guerra é abençoado pela Alta Matriarca antes de ser entregue às Irmãs. O martelo de guerra tem um bônus de +1 em todas as rolagens de ferimento contra qualquer modelo Possuído ou Morto-vivo."
+        "description": "Cada martelo de guerra é abençoado pela Alta Matriarca antes de ser entregue às Irmãs. O martelo de guerra tem um bônus de +1 em todas as rolagens de ferimento contra qualquer modelo Possuído ou Morto-Vivo."
       }
     ]
   },

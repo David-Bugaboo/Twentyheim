@@ -1,160 +1,156 @@
-import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
-import SpellCard from "../../components/SpellCard";
-import {
-  PageContainer,
-  ContentSection,
-  NavigationSection,
-  StyledNavigationButton,
-  ContentContainer,
-  ParchmentText,
-  PowerListTitle,
-} from "../../components/PageComponents";
+import PageTitle from "../../components/PageTitle";
+import MobileText from "../../components/MobileText";
+import MobileSection from "../../components/MobileSection";
+import HeaderH2 from "../../components/HeaderH2";
+import GenericTable from "../../components/GenericTable";
+import WarningBox from "../../components/WarningBox";
+import QuickNavigation from "../../components/QuickNavigation";
+import LoreSpellCard from "../../components/LoreSpellCard";
+import prayersOfUlricData from "./data/prayers-of-ulric.json";
 
 export default function PrayersOfUlricPage() {
-  const navigate = useNavigate();
+  const navigationSections = [
+    { id: "intro", title: "Orações de Ulric - O Deus Lobo", level: 0 },
+    {
+      id: "caracteristicas",
+      title: "Características das Orações de Ulric",
+      level: 0,
+    },
+    { id: "dano-sagrado", title: "Dano Sagrado ou Profano", level: 0 },
+    { id: "ira-deuses", title: "Ira dos Deuses", level: 0 },
+    { id: "oracoes", title: "Orações de Ulric", level: 0 },
+    ...prayersOfUlricData.map((prayer, index) => ({
+      id: `prayer-${index}`,
+      title: prayer.name,
+      level: 1,
+    })),
+  ];
 
-  const spells = [
+  const wrathOfGodsData = [
     {
-      name: "Congelamento Invernal",
-      castingNumber: 10,
-      keywords: ["Area de Efeito(Zona Média)"],
-      effect:
-        "Centralize  a Área de Efeito no Conjurador e mova a área junto a ele. Todas as figuras inimigas na área de efeito recebem -2 Ímpeto, seus movimentos tornando-se lentos e pesados como se estivessem presos em neve profunda.",
+      roll: "1-3",
+      result:
+        "Visão Sobrenatural: O Deus do conjurador escolhe este momento para conceder-lhe uma visão simbólica mas confusa. O conjurador ganha uma ficha de Atordoamento.",
     },
     {
-      name: "Fúria da Batalha",
-      castingNumber: 12,
-      keywords: ["Linha de Visão"],
-      effect:
-        "A figura alvo ganha +1 Ímpeto e +1 Movimento pelo resto do jogo. múltiplas conjurações de Fúria da Batalha no mesmo alvo não têm efeito.",
+      roll: "4-7",
+      result:
+        "Prove Sua Devoção: Algumas orações a mais são necessárias para terminar de conjurar a magia. A ativação do conjurador termina imediatamente, e a magia será ativada durante o início da próxima ativação do conjurador, sem outras ações necessárias.",
     },
     {
-      name: "Uivo do Lobo",
-      castingNumber: 8,
-      keywords: ["Linha de Visão"],
-      effect:
-        "A figura aliada alvo será ativada imediatamente após o sacerdote.",
+      roll: "8-10",
+      result:
+        "Sua Impertinencia me Irrita!: O conjurador não pode conjurar a magia que tentou conjurar pelo resto do jogo.",
     },
     {
-      name: "Coração do Lobo",
-      castingNumber: 12,
-      keywords: ["Linha de Visão"],
-      effect:
-        "O alvo desta oração torna-se imune a Aterrorizante pelo resto do jogo. A vontade da figura é fortalecida pelo espírito do predador, recebendo +2 Vontade pelo resto do jogo.",
+      roll: "11-14",
+      result:
+        "Sua Causa é Indigna: O conjurador tem -2 em rolagens de conjuração pelo resto do jogo.",
     },
     {
-      name: "Fúria Invernal",
-      castingNumber: 14,
-      keywords: ["Área de Efeito(Explosão Média)"],
-      effect:
-        "Centraliza a Área de Efeito no conjurador. Todas as figuras inimigas na área de efeito sofrem um ataque gélido +0. Figuras atingidas ganham um marcador de congelamento.",
+      roll: "15-16",
+      result:
+        "Penitencia Cruel: O conjurador tem -2 Vontade pelo resto do jogo.",
     },
     {
-      name: "Impacto Gélido",
-      castingNumber: 14,
-      keywords: ["Apenas o Conjurador"],
-      effect:
-        "Essa magia só pode ser conjurada em combate. O conjurador recebe uma ação de Luta gratuita que deve ser usada imediatamente. O conjurador recebe +4 Ímpeto durante esta ação, seus golpes caindo como martelos de avalanche. Criaturas atingidas por este ataque ganham um Marcador de Atordoamento.",
+      roll: "17-18",
+      result:
+        "Seu Pecado é Imperdoável!: O conjurador sofre 3 pontos de dano sagrado e ganha uma ficha de Atordoamento.",
     },
     {
-      name: "Invocar Avalanche",
-      castingNumber: 12,
-      keywords: ["Linha de Visão", "Área de Efeito(Explosão Grande)"],
-      effect:
-        "Todas as criaturas na área de efeito devem fazer um teste de Vontade com CD igual a conjuração dessa magia. Se falharem, são empurrados para o centro da área de efeito em linha reta. Figuras que colidirem em terrenos com mais de 3cm de altura interrompem o movimento e ganham um marcador de Atordoamento. ",
-    },
-    {
-      name: "Convocar Geleira",
-      castingNumber: 10,
-      keywords: ["Linha de Visão", "Área de Efeito(Muro)"],
-      effect:
-        "A ärea de efeito deve ser posicionada totalmente dentro da linha de visão do conjurador. A área de efeito bloqueia linha de visão e pode ser usada como cobertura. Quando uma criatura tenta escalar essa Área de Efeito, ela deve rolar um teste de Vontade contra a Rolagem de Conjuração dessa magia. Se falhar, sua ativação termina imediatamente e quaisquer outra ação é perdido.",
-    },
-    {
-      name: "Nevasca",
-      castingNumber: 12,
-      keywords: ["Área de Efeito(CAMPO INTEIRO)"],
-      effect:
-        "Todos os ataques com arco e besta são feitos com -1 Precisão pelo resto do jogo. Esta magia pode ser conjurada múltiplas vezes (e por múltiplos conjuradores), com cada conjuração adicional aumentando a penalidade em mais -1, até um máximo de -5.",
-    },
-    {
-      name: "Dádiva de Ulric",
-      castingNumber: 12,
-      keywords: ["Ritual"],
-      effect:
-        "O Conjurador invoca um Grande Lobo Branco como membro permanente do bando, que usa as estatísticas de um lobo, com +2 de Ímpeto, +2 de Armadura e +3 de Vontade, e conta como um soldado do bando. Um conjurador só pode ter um Grande Lobo Branco por vez.",
-    },
-    {
-      name: "Enregelar",
-      castingNumber: 10,
-      keywords: ["Linha de Visão"],
-      effect:
-        "A figura alvo é ganha um marcador de congelamento. Ela pode fazer um teste de Vontade com CD igual a conjuração dessa magia. Se passar, ela remove o Marcador de Congelamento.",
-    },
-    {
-      name: "Selvageria Lupina",
-      castingNumber: 10,
-      keywords: ["Conjurador Apenas"],
-      effect:
-        "O conjurador pode ativar mais duas vezes durante esse turno, mas essas ativações não podem consecutivas. O conjurador não pode ativar soldados junto a si ou fazer parte de uma ativação em grupo nessas fases. O conjurador pode realizar uma ação em cada uma dessas duas fases e pode tomar qualquer ação - não está limitado ao movimento. Se o conjurador se moveu em alguma ativação anterior durante o turno, qualquer ação de movimento adicional é com metade da velocidade. Se um conjurador conjurar esta magia em turnos consecutivos, ele sofre imediatamente 8 pontos de dano.",
+      roll: "19-20",
+      result:
+        "Interferência Daemônica: A oração do conjurador é respondida mas não por seu Deus. Role na tabela Maldição de Tzeentch.",
     },
   ];
 
   return (
-    <PageContainer>
-      <Header title="Orações de Ulric" />
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+          <QuickNavigation sections={navigationSections} />
+          <MobileSection>
+            <div id="intro">
+              <PageTitle>Orações de Ulric - O Deus do Inverno</PageTitle>
+            </div>
 
-      <ContentSection>
-        <ContentContainer>
-          <ParchmentText
-            sx={{
-              textAlign: "center",
-              fontSize: "1.2rem",
-              fontStyle: "italic",
-              color: "#87ceeb",
-              mb: 3,
-            }}
-          >
-            🐺 A Bênção Selvagem do Lobo Branco
-          </ParchmentText>
+            <MobileText
+              variant="quote"
+              className="text-center italic text-lg leading-relaxed mb-6 p-4 bg-green-900/20 border border-green-500/40 rounded-lg text-white"
+            >
+              "Pela Força e pela Fé!"
+            </MobileText>
 
-          <ParchmentText sx={{ mb: 4 }}>
-            Ulric, o Deus do Inverno, dos Lobos e da Guerra, é a divindade
-            patrona ancestral das tribos do norte. Seus sacerdotes são
-            guerreiros ferozes que encarnam a força selvagem do lobo e o frio
-            impiedoso do inverno. Através de suas orações, podem convocar
-            nevascas devastadoras, transformar-se em grandes lobos, e imbuir
-            seus aliados com a fúria da batalha. As Orações de Ulric são um
-            testemunho da força primordial e das duras realidades da
-            sobrevivência no norte congelado. Apenas os fortes sobrevivem nas
-            terras do Lobo Branco, onde a fraqueza significa morte certa.
-          </ParchmentText>
+            <MobileText className="mb-4">
+              As Orações de Ulric são as magias divinas do Deus do Inverno,
+              canalizadas através de seus sacerdotes devotos. Ulric é o deus da
+              guerra, do inverno e dos lobos. Suas orações focam em força,
+              resistência, e controle dos elementos do inverno, especialmente
+              gelo e neve.
+            </MobileText>
 
-          <PowerListTitle>Orações de Ulric</PowerListTitle>
+            <div id="caracteristicas">
+              <HeaderH2>Características das Orações de Ulric</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              Os Sacerdotes de Ulric são conhecidos por sua conexão com a
+              natureza selvagem e sua capacidade de canalizar o poder divino do
+              Deus do Inverno. Eles canalizam o poder de Ulric através de
+              orações e uma fé inabalável na força da natureza. Suas orações
+              frequentemente envolvem controle do clima, força física, e
+              invocação de lobos.
+            </MobileText>
 
-          {spells.map((spell, index) => (
-            <SpellCard
-              key={index}
-              id={spell.name.toLowerCase().replace(/\s+/g, "-")}
-              name={spell.name}
-              school="Orações de Ulric"
-              castingNumber={spell.castingNumber}
-              keywords={spell.keywords}
-              effect={spell.effect}
-            />
-          ))}
-        </ContentContainer>
-      </ContentSection>
+            <div id="dano-sagrado">
+              <WarningBox type="info" title="Dano Sagrado ou Profano">
+                Orações que causam dano geralmente causam dano{" "}
+                <strong>sagrado</strong>. Dano sagrado ignora imunidade e
+                resistência a dano normal, mágico e elemental.
+              </WarningBox>
+            </div>
 
-      <NavigationSection>
-        <StyledNavigationButton
-          variant="contained"
-          onClick={() => navigate("/magic/divine-lores")}
-        >
-          Voltar para Tradições Divinas
-        </StyledNavigationButton>
-      </NavigationSection>
-    </PageContainer>
+            <div
+              id="ira-deuses"
+              className="bg-green-900/20 border border-green-500/40 rounded-lg p-4 mb-6"
+            >
+              <HeaderH2 className="text-green-300 mb-4">
+                Ira dos Deuses
+              </HeaderH2>
+
+              <MobileText className="mb-4">
+                Quando um Sacerdote rola um <strong>1</strong> em uma Rolagem de
+                Conjuração, os deuses estão descontentes. Role na tabela Ira dos
+                Deuses abaixo para determinar a consequência de seu desagrado:
+              </MobileText>
+
+              <GenericTable data={wrathOfGodsData} scrollable={false} />
+            </div>
+
+            <div id="oracoes">
+              <HeaderH2>Orações de Ulric</HeaderH2>
+            </div>
+            <MobileText className="mb-4">
+              As orações de Ulric são conhecidas por sua natureza selvagem e
+              invernal. Elas canalizam o poder divino do Deus do Inverno para
+              criar efeitos de força, resistência, e controle dos elementos do
+              inverno.
+            </MobileText>
+
+            <div className="space-y-6">
+              {prayersOfUlricData.map((prayer, index) => (
+                <div key={index} id={`prayer-${index}`}>
+                  <LoreSpellCard
+                    name={prayer.name}
+                    castingNumber={prayer.castingNumber}
+                    keywords={prayer.keywords}
+                    effect={prayer.effect}
+                  />
+                </div>
+              ))}
+            </div>
+          </MobileSection>
+        </div>
+      </div>
+    </div>
   );
 }

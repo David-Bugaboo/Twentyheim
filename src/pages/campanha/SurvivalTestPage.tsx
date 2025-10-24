@@ -4,207 +4,250 @@ import MobileSection from "../../components/MobileSection";
 import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
 import HeaderH3 from "../../components/HeaderH3";
-import GenericTable from "../../components/GenericTable";
-import CornerDecoration from "../../components/CornerDecoration";
+
+import WarningBox from "../../components/WarningBox";
 
 function SurvivalTestPage() {
   // Dados para tabelas
-  const soldierSurvivalData = [
-    { "Die Roll": "1-4", Result: "Morto" },
-    { "Die Roll": "5-8", Result: "Gravemente Ferido" },
-    { "Die Roll": "9+", Result: "Recuperação Completa" },
-  ];
-
-  const leaderSurvivalData = [
-    { "Die Roll": "1-2", Result: "Morto" },
-    { "Die Roll": "3-4", Result: "Ferimento Permanente" },
-    { "Die Roll": "5-6", Result: "Gravemente Ferido" },
-    { "Die Roll": "7-8", Result: "Por Um Triz" },
-    { "Die Roll": "9+", Result: "Recuperação Completa" },
-  ];
-
-  const permanentInjuriesData = [
-    { "Die Roll": "1-2", Injury: "Dedos Arrancados" },
-    { "Die Roll": "3-6", Injury: "Perna Esmagada" },
-    { "Die Roll": "7-10", Injury: "Braço Esmagado" },
-    { "Die Roll": "11-12", Injury: "Dedos Arrancados" },
-    { "Die Roll": "13-14", Injury: "Danos Internos" },
-    { "Die Roll": "15-16", Injury: "Trauma" },
-    {
-      "Die Roll": "17-18",
-      Injury: "Chaga Aberta",
-    },
-    { "Die Roll": "19", Injury: "Mandíbula Esmagada" },
-    { "Die Roll": "20", Injury: "Caolho" },
-  ];
+  
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <CornerDecoration />
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <MobileSection>
             <PageTitle>Ferimentos e Morte</PageTitle>
-
             <MobileText>
-              Para cada modelo que foi reduzido a 0 de Vigor durante o jogo,
+              Para cada modelo que foi reduzido a 0 de Vida durante o jogo,
               existe a possibilidade de que aquele modelo sofra ferimentos
               permanentes ou morra. Em Mordheim, cair não significa
               necessariamente morte — às vezes significa algo pior.
             </MobileText>
-
             <HeaderH1>Sobrevivência de Soldados</HeaderH1>
             <MobileText>
-              Soldados que foram reduzidos a 0 de vida rolam na tabela de
-              sobrevivência do soldado:
+              Para cada soldado que foi reduzido a 0 de vida, role um dado. Em
+              um resultado de 1-6, o soldado morre e todos os seus equipamentos
+              são perdidos. Em qualquer outra rolagem ele está bem e pode ser
+              usado no próximo jogo.
             </MobileText>
-            <GenericTable data={soldierSurvivalData} scrollable={false} />
+            <HeaderH1>Sobrevivência de Heróis</HeaderH1>
+            Hérois reduzidos a 0 de vida durante o jogo devem rolar um dado e
+            comparar com os resultados em{" "}
+            <strong>Tabela de Sobrevivência</strong>.
+            <WarningBox title="Liderança e Sucessão" type="warning">
+              <p className="mb-3">
+                <strong>Se o líder do bando for morto:</strong> O Herói com o
+                próximo maior valor de Liderança assume o comando. Ele então
+                ganha a regra especial Líder (embora deva continuar usando sua
+                lista de Habilidades original) e pode usar a lista de
+                Equipamentos disponível para o líder. Se houver mais de um Herói
+                elegível para assumir o comando, a figura com o maior nível se
+                torna o líder. Em caso de empate, randomize. Note que você não
+                pode contratar um novo líder para seu bando.
+              </p>
+              <p className="mb-3">
+                <strong>No caso de Cortes Vampíricas:</strong> A morte do
+                Vampiro significa que o Necromante do bando deve assumir o
+                controle. Se o bando não incluir um, os feitiços que mantêm os
+                mortos inquietos juntos se desfazem, e o bando colapsa em uma
+                pilha de ossos. Você pode comprar um Vampiro após o próximo
+                jogo, momento em que o Necromante renunciará (querendo ou não) e
+                perderá a habilidade Líder.
+              </p>
+              <p>
+                <strong>Se o líder do bando for um conjurador:</strong> Seu
+                sucessor terá direito a aprender a usar magia em seu lugar. O
+                novo líder perde o acesso as suas habilidades e listas de
+                habilidades e imediatamente aprende 3 magias das mesmas
+                tradições disponíveis para o líder do bando. Após isso, ele é
+                considerado um conjurador conforme apropriado para seu bando e
+                usa a tabela de Avanço normalmente.
+              </p>
+            </WarningBox>
+            <HeaderH1>Tabela de Sobrevivência</HeaderH1>
+            <HeaderH2>Resultados(D20)</HeaderH2>
+            <HeaderH3>1 - Morto</HeaderH3>
             <MobileText>
-              <strong>MORTO:</strong> O soldado foi morto e deve ser removido da
-              ficha do bando. Qualquer item que este soldado carregava é
-              perdido.
+              A figura está morta, e seu corpo foi abandonado nos becos sombrios
+              de Mordheim, para nunca mais ser encontrado. Todas as armas e
+              equipamentos que ele carregava estão perdidos. Remova-o da ficha
+              do bando.
             </MobileText>
+            <HeaderH3>2 - Múltiplos Ferimentos</HeaderH3>
             <MobileText>
-              <strong>GRAVEMENTE FERIDO:</strong> O soldado está ferido. Ele
-              podem permanecer no bando, mas não pode participar do próximo jogo
-              enquanto estão se recuperando de seus ferimentos. Após esse jogo
-              jogo, eles retorna para o próximo jogo com saúde completa. Ele
-              pode ser temporariamente substituido por qualquer soldado com
-              custo grátis do bando, que abandona o bando e deixa o equipamento
-              dele no cofre do acampamento.
+              Role mais 3 vezes nessa tabela. Re-role qualquer resultado de
+              Morto, Capturado e Múltiplos Ferimentos.
             </MobileText>
+            <HeaderH3>3 - Ferimento na Perna</HeaderH3>
             <MobileText>
-              <strong>RECUPERAÇÃO COMPLETA:</strong> O soldado se recupera
-              rapidamente de seu sofrimento e retornará para o próximo jogo com
-              saúde completa.
+              A perna da figura está quebrada. Ele sofre uma penalidade de -2 em
+              seu atributo de Movimento a partir de agora.
             </MobileText>
-
-            <HeaderH1>Sobrevivência de Heróis e Campeões</HeaderH1>
+            <HeaderH3>4 - Ferimento no Braço</HeaderH3>
             <MobileText>
-              Heróis e campeões rolam na tabela de sobrevivência de líder:
+              Role o dado novamente:
+              <br />
+              <br />
+              1-5 = Ferimento grave no braço. O braço deve ser amputado. A
+              figura só poderá usar uma única arma sem a característica Duas
+              Mãos a partir de agora.
+              <br />
+              <br />
+              6-20 = Ferimento leve. A figura não joga o próximo jogo.
             </MobileText>
-            <GenericTable data={leaderSurvivalData} scrollable={false} />
+            <HeaderH3>5 - Insanidade</HeaderH3>
             <MobileText>
-              <strong>MORTO:</strong> A figura não sobrevive aos seus
-              ferimentos. Veja a seção sobre recrutar novos membros do bando em
-              'Gastando Tesouro' para o que fazer quando seu mago ou aprendiz
-              morre.
+              Role o dado novamente:
+              <br />
+              <br />
+              1-5 = Insanidade completa. A figura age como uma criatura
+              descontrolada em todo combate que participa.
+              <br />
+              <br />
+              6-20 = Insanidade Temporária. No próximo jogo, a figura ganha um
+              marcador de Atordoamento sempre que não terminar uma ativação em
+              combate.
             </MobileText>
+            <HeaderH3>6 - Perna Esmagada</HeaderH3>
             <MobileText>
-              <strong>FERIMENTO PERMANENTE:</strong> A figura sofre um ferimento
-              que nunca cicatriza completamente. Role na tabela de ferimentos
-              permanentes abaixo para determinar a natureza exata do ferimento.
-              Caso contrário, a figura retorna para o próximo jogo com saúde
-              completa.
+              Role o dado novamente:
+              <br />
+              <br />
+              1-5 = A figura não pode mais tomar ações de disparada ou escalar.
+              <br />
+              <br />
+              6-20 = A figura não pode participar do próximo jogo.
             </MobileText>
+            <HeaderH3>7 - Ferimento no Tórax</HeaderH3>
             <MobileText>
-              <strong>SEQUESTRADO:</strong> A figura foi sequestrada enquanto
-              estava desacordado e está preso nos poços de escravos de Mordheim.
-              Dado tempo suficiente, ele será capaz de escapar por conta
-              própria, mas perderá o próximo jogo. O bando pode ao invés disso
-              pagar 150 coroas para comprar a liberdade da figura, e então ele
-              jogará o próximo jogo normalmente sem maiores consequências. O
-              Bando pode entrar em débito para pagar esse custo, mas não pode
-              gastar nenhuma quantidade de coroas até que esta dívida seja paga
-              completamente.
+              A figura sofreu um ferimento grave no peito. Sua vida máxima é
+              reduzida permanentemente em -2.
             </MobileText>
+            <HeaderH3>8 - Cego de Um Olho</HeaderH3>
             <MobileText>
-              <strong>ROUBADO:</strong> A figura escapa sem ferimento maior, mas
-              perde todos os itens que estava carregando.
+              A figura sobrevive, mas perde a visão em um olho; determine
+              aleatoriamente qual. Um personagem que perde um olho tem sua
+              Precisão reduzida em -2.
+              <br />
+              <br />
+              Se a figura for posteriormente cegado no olho bom restante, ele
+              deve se aposentar do bando.
             </MobileText>
+            <HeaderH3>9 - Ferimento Infectado</HeaderH3>
             <MobileText>
-              <strong>RECUPERAÇÃO COMPLETA:</strong> Os ferimentos da figura
-              provaram ser relativamente menores, e ela retorna com força total
-              no próximo jogo.
+              A figura sobrevive, mas sua ferida o impedirá de lutar se você
+              rolar 1-5 em um dado no início de qualquer batalha. Role no início
+              de cada batalha a partir de agora.
             </MobileText>
-
-            <HeaderH1>Registrando Ferimentos Permanentes</HeaderH1>
+            <HeaderH3>10 - Condição Nervosa</HeaderH3>
             <MobileText>
-              Quando um modelo sofre um ferimento permanente, role um d20 e
-              consulte a tabela abaixo:
+              O sistema nervoso da figura foi danificado. Sua Vontade é reduzida
+              em -1.
             </MobileText>
-            <GenericTable data={permanentInjuriesData} scrollable={false} />
-
-            <HeaderH1>Descrições dos Ferimentos Permanentes</HeaderH1>
+            <HeaderH3>11 - Ferimento na Mão</HeaderH3>
             <MobileText>
-              <strong>DEDOS ARRANCADOS:</strong> As lâminas foram precisas — ou
-              cruéis. Onde antes havia carne viva e movimento, restam tocos
-              inchados e o eco de uma dor fantasma. A figura nunca mais manejará
-              uma arma de arremesso com a mesma precisão; os deuses zombam
-              daqueles que tentam puxar um gatilho sem dedos. -1 permanente em
-              BS. Pode ser recebido duas vezes (-2 BS). Re-rolar resultados
-              adicionais.
+              A mão da figura está gravemente ferida. Seu Ímpeto é reduzido
+              permanentemente em -1.
             </MobileText>
+            <HeaderH3>12 - Ferimento Profundo</HeaderH3>
             <MobileText>
-              <strong>ALEIJADO:</strong> Os ossos da perna foram esmagados por
-              martelos de guerra ou pelas garras de criaturas monstruosas. A
-              figura manca permanentemente, arrastando a perna ferida pelas
-              ruínas. Ela sofre uma penalidade permanente de -4 em Movimento.
-              Este ferimento pode ser recebido duas vezes, com efeito cumulativo
-              de -8 em Movimento. Qualquer resultado adicional de Perna Esmagada
-              deve ser re-rolado.
+              A figura sofreu um ferimento sério e deve perder os próximos 2
+              jogos enquanto se recupera. Ele não pode fazer nada enquanto se
+              recupera, incluindo atividades.
             </MobileText>
+            <HeaderH3>13 - Roubado</HeaderH3>
             <MobileText>
-              <strong>JOÃO SEM BRAÇO:</strong> O golpe quebrou ossos e
-              esperança. O membro balança inerte, frio, sem resposta — um peso
-              morto preso a um corpo que se recusa a morrer. Mesmo levantar uma
-              lâmina agora é um ato de penitência. -1 permanente em WS. Pode ser
-              recebido duas vezes (-2 WS). Re-rolar resultados adicionais.
+              A figura consegue escapar, mas todas as suas armas, armaduras e
+              equipamentos estão perdidos.
             </MobileText>
+            <HeaderH3>14 - Recuperação Completa</HeaderH3>
             <MobileText>
-              <strong>INTESTINOS SOLTOS:</strong> A lâmina entrou fundo demais —
-              e saiu levando parte de quem você era. O ventre nunca se fechou
-              por completo; às vezes, na pressa da batalha, a figura precisa
-              empurrar as vísceras de volta com a própria mão. O cheiro de
-              sangue velho e bile a acompanha como um cão fiel, e cada movimento
-              parece ameaçar abrir novamente o que nunca cicatrizou. -1
-              permanente em Vida. Pode ser recebido duas vezes (-2 Vida).
-              Re-rolar resultados adicionais.
+              A figura foi nocauteado ou sofreu um ferimento leve do qual se
+              recupera completamente.
             </MobileText>
+            <HeaderH3>15 - Inimizade Amarga</HeaderH3>
             <MobileText>
-              <strong>TRAUMA:</strong> Há coisas em Mordheim que não podem ser
-              esquecidas. O olhar da figura perdeu o foco humano, como se visse
-              algo além do mundo dos vivos. Às vezes fala sozinha. Às vezes com
-              alguém que não está lá. -1 permanente em Vontade. Pode ser
-              recebido duas vezes (-2 Vontade). Re-rolar resultados adicionais.
+              A figura se recupera fisicamente, mas está psicologicamente
+              marcado por sua experiência. A partir de agora, a figura ganha a
+              característica Ódio contra o seguinte (role um D20):
+              <br />
+              <br />
+              <strong>1-10:</strong> O indivíduo que reduziu a figura a 0 de
+              vida. Se foi um Soldado, ele odeia o líder do bando daquele
+              soldado.
+              <br />
+              <br />
+              <strong>11-15:</strong> O líder do bando que o reduziu a 0 de
+              vida.
+              <br />
+              <br />
+              <strong>16-19:</strong> Todas as figuras do bando que o reduziu a
+              0 de vida.
+              <br />
+              <br />
+              <strong>20:</strong> Todos os bandos daquela mesmo tipo.
             </MobileText>
+            <HeaderH3>16 - Capturado</HeaderH3>
             <MobileText>
-              <strong>FERIMENTO INFECTADO:</strong> A carne apodrece ao redor da
-              ferida, inchada e pútrida. Vermes se aninham sob a pele, e o fedor
-              anuncia a presença da morte antes que ela chegue. Os curandeiros
-              chamam de "febre da ruína", e poucos sobrevivem tempo o bastante
-              para dar um segundo nome a ela. Sem cuidados constantes — ou algum
-              pacto sombrio — o corpo se consome lentamente. Deve gastar 30
-              coroas antes de cada jogo em remédios, sangrias ou encantamentos
-              menores, ou começar cada jogo com -3 de Vida. Se for recebida
-              novamente, o custo sobe para 40 coroas e a penalidade para -4 de
-              Vida. Re-rolar resultados adicionais.
+              A figura recupera a consciência e se encontra preso pelo bando que
+              jogou contra. (o bando da figura que o reduziu a 0 de vida se for
+              um jogo multijogador)
+              <br />
+              <br />
+              Ele pode ser resgatado por um preço definido pelo captor ou
+              trocado por um membro de bando inimigo que está sendo mantido
+              prisioneiro.
+              <br />
+              <br />
+              Prisioneiros podem ser vendidos para traficantes de escravos por
+              seu custo em coroas de ouro.
+              <br />
+              <br />
+              Mortos-vivos podem matar seu prisioneiro e ganhar um novo Zumbi.
+              <br />
+              <br />
+              O culto dos possuídos podem sacrificar o prisioneiro. O líder do
+              bando ganhará +100 de Experiência se o fizer.
+              <br />
+              <br />
+              Prisioneiros que são trocados ou resgatados mantêm todas as suas
+              armas, armaduras e equipamentos; se prisioneiros são vendidos,
+              mortos ou transformados em Zumbis, suas armas, etc., são mantidas
+              por seus captores.
             </MobileText>
+            <HeaderH3>17 - Caleijado</HeaderH3>
             <MobileText>
-              <strong>CARA RACHADA:</strong> O golpe partiu o rosto como argila
-              seca. Dentes viraram fragmentos, ossos se fundiram em ângulos
-              impossíveis, e o simples ato de falar é uma tortura de estalos e
-              sangue. A voz da figura tornou-se um murmúrio arrastado e grotesco
-              — poucos a entendem, e menos ainda a obedecem. Sempre que esta
-              figura ativa, ela pode ativar no máximo dois soldados junto de si
-              (em vez dos três normais). Se este ferimento for recebido uma
-              segunda vez, o número de soldados que podem ser ativados junto ao
-              ferido é reduzido para um. Qualquer resultado adicional de
-              Mandíbula Esmigalhada deve ser re-rolado.
+              A figura sobrevive e se torna insensível aos horrores de Mordheim.
+              <br />
+              <br />A partir de agora, ele é Imune a Aterrorizante.
             </MobileText>
+            <HeaderH3>18 - Cicatrizes Horríveis</HeaderH3>
             <MobileText>
-              <strong>CAOLHO:</strong> Um dos olhos foi arrancado, esmagado ou
-              queimado. O mundo agora é metade sombra, metade ameaça. Os tiros
-              vêm de todos os lados, e o inimigo parece sempre mais rápido.
-              Efeito: Sofre -1 em rolagens de combate sempre que é alvo de
-              ataques à distância. Se receber este ferimento duas vezes, a
-              figura fica cega e deve ser retirada permanentemente (conta como
-              morta).
+              A figura ganha a característica Aterrorizante.
             </MobileText>
+            <HeaderH3>19 - Vendido as Arenas Clandestinas</HeaderH3>
             <MobileText>
-              <strong>Nota:</strong> Ferimentos permanentes são cumulativos. Uma
-              figura pode ter múltiplos ferimentos, cada um com seus próprios
-              efeitos. Em Mordheim, sobreviver não é sempre uma benção.
+              A figura acorda nas notórias Arenas Clandestinas do Refúgio dos
+              Miseráveis e deve lutar contra um Gladiador.
+              <br />
+              <br />
+              A figura rola um teste de Ímpeto ou Precisão CD 15.
+              <br />
+              <br />
+              Se a figura perder, role um dado. Em 1-10 ele morreu, em 11-20 ele
+              foi ferido. Se ele não estiver morto, é expulso das arenas
+              clandestinos sem seu equipamento e pode se juntar novamente ao seu
+              bando.
+              <br />
+              <br />
+              Se a figura obtiver sucesso no teste, ele ganha 50 coroas de ouro,
+              +50 de Experiência e está livre para se juntar novamente ao seu
+              bando com todas as suas armas e equipamentos.
+            </MobileText>
+            <HeaderH3>20 - Supreendentemente Sobrevive</HeaderH3>
+            <MobileText>
+              A figura sobrevive e se junta novamente ao seu bando. Ela ganha
+              +50 de Experiência.
             </MobileText>
           </MobileSection>
         </div>
