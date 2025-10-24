@@ -49,10 +49,10 @@ function MovementActionsPage() {
                 <MobileText>
                   <strong>Uma figura em combate não pode se mover</strong>{" "}
                   através de ações de movimento normais. Figuras em combate só
-                  podem se mover caso vençam o combate e optem por ou empurrar o
+                  podem se mover caso vençam o combate e optem por empurrar o
                   inimigo 3cm para trás ou se afastar 3cm, ambas as opções
-                  encerrando o combate e permitindo movimento. ouemuma a através
-                  de habilidades especiais.
+                  encerrando o combate e permitindo movimento, ou através de
+                  habilidades especiais.
                 </MobileText>
               </WarningBox>
             </div>
@@ -62,12 +62,12 @@ function MovementActionsPage() {
             </div>
             <MobileText>
               A miniatura pode se mover uma distância de até seu{" "}
-              <strong>atributo de Movimento em centímetros</strong>. Durante este
-              movimento, ela pode se virar quanto quiser, fazer qualquer tipo de
-              curva, e atravessa automaticamente qualquer obstáculo com menos de
-              2 cm de altura. Contudo, esse movimento deve ser estritamente{" "}
-              <strong>horizontal</strong>. Esse movimento não pode ser usado
-              para entrar em contato de base com uma figura inimiga.
+              <strong>atributo de Movimento em centímetros</strong>. Durante
+              este movimento, ela pode se virar quanto quiser, fazer qualquer
+              tipo de curva, e atravessa automaticamente qualquer obstáculo com
+              menos de 2 cm de altura. Contudo, esse movimento deve ser
+              estritamente <strong>horizontal</strong>. Esse movimento não pode
+              ser usado para entrar em contato de base com uma figura inimiga.
             </MobileText>
 
             <div id="escalar">
@@ -84,8 +84,6 @@ function MovementActionsPage() {
               inimiga.
             </MobileText>
 
-            
-
             <div id="pular">
               <HeaderH1>Pular</HeaderH1>
             </div>
@@ -94,10 +92,10 @@ function MovementActionsPage() {
               horizontal, vertical ou ambos de até <strong>10 cm</strong>, não
               sendo afetado por queda ou altura durante esse movimento, mas deve
               ter se movido normalmente a distância que deseja pular antes de
-              declarar um pulo. Se uma criatura termina seu pulo no ar, ela cai
-              ao final do movimento, seguindo regras de queda. A distância
-              percorrida no pulo não conta contra o movimento de uma criatura.
-              Se não percorrer nenhuma distância, a figura ainda pode pular 3cm.
+              declarar um pulo. Se uma figura termina seu pulo no ar, ela cai ao
+              final do movimento, seguindo regras de queda. A distância
+              percorrida no pulo não conta contra o movimento de uma figura. Se
+              não percorrer nenhuma distância, a figura ainda pode pular 3cm.
               Esse movimento não pode ser usado para entrar em contato de base
               com uma figura inimiga.
             </MobileText>
@@ -124,14 +122,12 @@ function MovementActionsPage() {
               <strong>metade da distância caída</strong>.
             </MobileText>
 
-            
-
             <div id="terreno-acidentado">
               <HeaderH1>Terreno Acidentado</HeaderH1>
             </div>
             <MobileText>
-              Criatura gasta <strong>2 cm de movimento para cada 1 cm</strong>{" "}
-              que se move em terreno acidentado. Criaturas montadas além disso
+              Figuras gastam <strong>2 cm de movimento para cada 1 cm</strong>{" "}
+              que se movem em terreno acidentado. Figuras montadas além disso
               rolam na tabela de "Opa garoto!".
             </MobileText>
 
@@ -154,7 +150,7 @@ function MovementActionsPage() {
               <HeaderH2>Água Rasa</HeaderH2>
             </div>
             <MobileText>
-              Terreno de Água rasa apenas conta como terreno acidentado, e não
+              Terreno de água rasa apenas conta como terreno acidentado, e não
               oferece nenhuma outra penalidade além disso.
             </MobileText>
 
@@ -163,8 +159,8 @@ function MovementActionsPage() {
             </div>
             <MobileText>
               Água profunda é muito complexa de navegar e figuras que queiram
-              cruzá-la devem nadar. Figura deve rolar um teste de Ímpeto (CD 5).
-              Adicione modificadores de natação de acordo com a tabela
+              cruzá-la devem nadar. A figura deve rolar um teste de Ímpeto (CD
+              5). Adicione modificadores de natação de acordo com a tabela
               específica. Se tiver sucesso, pode ativar normalmente, embora
               tratando a água como terreno acidentado. Se falhar, perde a
               ativação e toma dano igual ao quanto falhou o teste.
@@ -223,8 +219,6 @@ function MovementActionsPage() {
               </div>
             </div>
 
-            
-
             <div id="fuga-desesperada">
               <HeaderH1>Fuga Desesperada</HeaderH1>
             </div>
@@ -237,8 +231,6 @@ function MovementActionsPage() {
               contato de base com uma figura inimiga.
             </MobileText>
 
-            
-
             <div id="acao-disparada">
               <HeaderH1>Ação de Disparada</HeaderH1>
             </div>
@@ -246,12 +238,10 @@ function MovementActionsPage() {
               Uma figura pode gastar sua segunda ação do turno para se mover
               novamente, seguindo as mesmas regras de movimento descritas acima,
               mas tendo apenas{" "}
-              <strong>metade do seu valor de agilidade para o movimento</strong>
+              <strong>metade do seu valor de Movimento para o movimento</strong>
               . Esse movimento não pode ser usado para entrar em contato de base
               com uma figura inimiga.
             </MobileText>
-
-            
 
             <div id="combinando-movimentos">
               <HeaderH1>Combinando Movimentos</HeaderH1>
@@ -264,8 +254,6 @@ function MovementActionsPage() {
               rasa — tudo em um único movimento.
             </MobileText>
 
-            
-
             <div id="interceptacao">
               <HeaderH1>Interceptação</HeaderH1>
             </div>
@@ -276,8 +264,6 @@ function MovementActionsPage() {
               interceptação move a figura que estava se movendo até que esta
               encoste em sua base. As duas figuras agora estão em combate.
             </MobileText>
-
-            
 
             <div id="resumo">
               <WarningBox title="Resumo das Ações de Movimento" type="info">
@@ -307,7 +293,8 @@ function MovementActionsPage() {
                   • <strong>Fuga Desesperada:</strong> 8 cm, ignora penalidades
                 </MobileText>
                 <MobileText>
-                  • <strong>Disparada:</strong> Metade da Movimento como segunda ação
+                  • <strong>Disparada:</strong> Metade do Movimento como segunda
+                  ação
                 </MobileText>
                 <MobileText>
                   • <strong>Combinar Movimentos:</strong> Diferentes tipos podem
@@ -319,8 +306,6 @@ function MovementActionsPage() {
                 </MobileText>
               </WarningBox>
             </div>
-
-            
           </MobileSection>
         </div>
       </div>

@@ -9,7 +9,6 @@ import WarningBox from "../../components/WarningBox";
 
 function SurvivalTestPage() {
   // Dados para tabelas
-  
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
@@ -31,9 +30,11 @@ function SurvivalTestPage() {
               usado no próximo jogo.
             </MobileText>
             <HeaderH1>Sobrevivência de Heróis</HeaderH1>
-            Hérois reduzidos a 0 de vida durante o jogo devem rolar um dado e
-            comparar com os resultados em{" "}
-            <strong>Tabela de Sobrevivência</strong>.
+            <MobileText>
+              Heróis reduzidos a 0 de vida durante o jogo devem rolar um dado e
+              comparar com os resultados na{" "}
+              <strong>Tabela de Sobrevivência</strong>.
+            </MobileText>
             <WarningBox title="Liderança e Sucessão" type="warning">
               <p className="mb-3">
                 <strong>Se o líder do bando for morto:</strong> O Herói com o
@@ -100,7 +101,7 @@ function SurvivalTestPage() {
               Role o dado novamente:
               <br />
               <br />
-              1-5 = Insanidade completa. A figura age como uma criatura
+              1-5 = Insanidade completa. A figura age como uma figura
               descontrolada em todo combate que participa.
               <br />
               <br />

@@ -27,7 +27,7 @@
     "availability": ["Todos"],
     "rarity": 1,
     "exclusive": null,
-    "flavorText": "A armadura leve abrange uma grande variedade de materiais, desde túnicas de couro endurecido até camisas de cota de malha forjadas de aço. Ela não oferece proteção completa contra flechas ou espadas, mas é melhor do que não ter nada. A armadura leve não inibe o Agilidade.",
+    "flavorText": "A armadura leve abrange uma grande variedade de materiais, desde túnicas de couro endurecido até camisas de cota de malha forjadas de aço. Ela não oferece proteção completa contra flechas ou espadas, mas é melhor do que não ter nada. A armadura leve não inibe a Agilidade.",
     "user": null,
     "armorBonus": "+1",
     "movePenalty": null,
@@ -72,8 +72,35 @@
     "requirements": null,
     "specialRules": [
       {
-        "label": "proteger a cabeça",
-        "value": "Uma vez por jogo, um  dano crítico que a figura receberia é transformado em um dano normal."
+        "label": "Proteger a Cabeça",
+        "value": "Uma vez por jogo, um dano crítico que a figura receberia é transformado em um dano normal."
+      }
+    ]
+  },
+  {
+    "id": "elmo-de-osso",
+    "name": "Elmo de Osso",
+    "type": "Armadura",
+    "availability": ["Gecko Magisacerdote", "Xamã Homem-Fera"],
+    "rarity": 1,
+    "damageModifier": null,
+    "purchaseCost": "5 coroas",
+    "exclusive": null,
+    "flavorText": "Um elmo de osso é um elmo feito de osso de animal ou humano. Ele é pesado e resistente e pode ser usado por um conjurador sem negar sua capacidade de conjurar magias, devido à sua conexão inata com o ser que era dono desse crânio.",
+    "user": null,
+    "armorBonus": "0",
+    "movePenalty": null,
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Proteger a Cabeça",
+        "value": "Uma vez por jogo, um dano crítico que a figura receberia é transformado em um dano normal."
+      },
+      {
+        "label": "Armadura Xamanística",
+        "value": "Pode ser usado por um conjurador sem negar sua habilidade de conjuração."
       }
     ]
   },
@@ -125,7 +152,7 @@
     "damageModifier": null,
     "purchaseCost": "185 coroas",
     "exclusive": null,
-    "flavorText": "A Couraça do Campeão do Caos é um conjunto de metal estranhamente trabalhado e sobrenatural. É a marca do favor de um Deus Sombrio. Embora a maioria dos conjuntos de Couraça do Campeão do Caos sejam recebidos como Dons de um Patrono Infernal, eles podem ser adquiridos, embora apenas de Anões do Caos em uma troca exclusiva por muitos sacrificios ou talvez alguma feito impossível para promover seus interesses.",
+    "flavorText": "A Couraça do Campeão do Caos é um conjunto de metal estranhamente trabalhado e sobrenatural. É a marca do favor de um Deus Sombrio. Embora a maioria dos conjuntos de Couraça do Campeão do Caos sejam recebidos como Dons de um Patrono Infernal, eles podem ser adquiridos, embora apenas de Anões do Caos em uma troca exclusiva por muitos sacrifícios ou talvez algum feito impossível para promover seus interesses.",
     "user": null,
     "rarity": 23,
     "availability": [
@@ -141,15 +168,15 @@
     "specialRules": [
       {
         "label": "Sacrificios para o Octagrama",
-        "value": "Um héroi que busca esse item ganha +1 em sua rolagem de buscar item para cada figura que reduziu a 0 de vida pessoalmente na partida anterior."
+        "value": "Um herói que busca esse item ganha +1 em sua rolagem de buscar item para cada figura que reduziu a 0 de vida pessoalmente na partida anterior."
       },
       {
         "label": "Campeão do Caos",
-        "value": "Essa armadura é 5 coroas mais baratas para cada nível do héroi que encontrou essa armadura."
+        "value": "Essa armadura é 5 coroas mais barata para cada nível do herói que encontrou essa armadura."
       },
       {
         "label": "Presente do Caos",
-        "value": "A figura que encontra essa armadura é um abençoado pelo caos, e deve imediatamente vesti-la. A armadura é fundida ao seu corpo e nunca pode ser removida. A conexão inerente da armadura do caos faz com que conjuradores possam conjurar enquanto usam essa armadura, mas não escudos."
+        "value": "A figura que encontra essa armadura é abençoada pelo caos e deve imediatamente vesti-la. A armadura é fundida ao seu corpo e nunca pode ser removida. A conexão inerente da armadura do caos faz com que conjuradores possam conjurar enquanto usam essa armadura, mas não escudos."
       }
     ]
   },

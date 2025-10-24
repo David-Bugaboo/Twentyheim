@@ -20,13 +20,13 @@ function CombatSystemPage() {
     { id: "ativando-lider", title: "Ativando com o Líder", level: 1 },
     { id: "ativando-soldados", title: "Ativando com o Soldados", level: 1 },
     {
-      id: "criaturas-nao-controladas",
-      title: "Ativação de Criaturas Não Controladas",
+      id: "figuras-nao-controladas",
+      title: "Ativação de Figuras Não Controladas",
       level: 0,
     },
     {
-      id: "algoritmo-criaturas",
-      title: "Algoritmo de Ações das Criaturas Neutras",
+      id: "algoritmo-figuras",
+      title: "Algoritmo de Ações das Figuras Neutras",
       level: 1,
     },
     { id: "passo-1", title: "Passo 1: A Criatura Está em Combate?", level: 1 },
@@ -78,8 +78,21 @@ function CombatSystemPage() {
               pelo segundo maior, depois o terceiro, e assim por diante. Esta
               ordem é absoluta — o destino já lançou os dados. Ela se mantém
               durante todo o turno, definindo quem move primeiro, quem ataca
-              primeiro, quem talvez sobreviva primeiro.
+              primeiro, quem talvez sobreviva primeiro. Cada um dos jogadores
+              que rolar abaixo de 5 na rolagem de iniciativa desencadeia um
+              acontecimento. Para mais informações sobre como definir o
+              acontecimento e uma descrição completa deles, vá até a página de
+              acontecimentos.
             </MobileText>
+
+            <div className="mt-4 mb-6 flex justify-center">
+              <a
+                href="/rules/happenings"
+                className="w-full md:w-1/2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-bold text-center block"
+              >
+                Ver Acontecimentos
+              </a>
+            </div>
 
             <div id="teste-debandada">
               <HeaderH1>O Teste de Debandada</HeaderH1>
@@ -108,9 +121,9 @@ function CombatSystemPage() {
             </div>
             <MobileText>
               Os jogadores <strong>ativam uma miniatura</strong>. Então, o
-              proximo jogador na ordem de iniciativa ativa uma miniatura, e
+              próximo jogador na ordem de iniciativa ativa uma miniatura, e
               assim sucessivamente até que todos os seus jogadores tenham
-              ativado todas as suas figuras. Note que a ativação do héroi e
+              ativado todas as suas figuras. Note que a ativação do herói e
               campeão tem regras especiais, descritas abaixo:
             </MobileText>
 
@@ -127,7 +140,7 @@ function CombatSystemPage() {
               <HeaderH2>Ativando com o Soldados</HeaderH2>
             </div>
             <MobileText>
-              Soldados ativam normalmente, sem regras especiais, fazendos suas
+              Soldados ativam normalmente, sem regras especiais, fazendo suas
               ações e terminando suas ativações.
             </MobileText>
 
@@ -147,31 +160,30 @@ function CombatSystemPage() {
               estratégicas.{" "}
             </WarningBox>
 
-            <div id="criaturas-nao-controladas">
-              <HeaderH1>Ativação de Criaturas Não Controladas</HeaderH1>
+            <div id="figuras-nao-controladas">
+              <HeaderH1>Ativação de Figuras Não Controladas</HeaderH1>
             </div>
             <MobileText>
-              Quando todas as figuras dos jogadores tiverem ativado, as
-              criaturas não controladas começam a agir. Eleja um jogador para
-              rolar por elas (ou alternem a cada turno, como preferirem). Se
-              houver um <strong>gamemaster</strong>
+              Quando todas as figuras dos jogadores tiverem ativado, as figuras
+              não controladas começam a agir. Eleja um jogador para rolar por
+              elas (ou alternem a cada turno, como preferirem). Se houver um{" "}
+              <strong>gamemaster</strong>
               na campanha, idealmente ele assume essa função.
             </MobileText>
 
             <MobileText>
-              Para cada criatura neutra, <strong>role 1d20</strong>: esse é o
-              valor de
-              <strong> iniciativa</strong> da criatura. Se duas criaturas
+              Para cada figura neutra, <strong>role 1d20</strong>: esse é o
+              valor de <strong>iniciativa</strong> da figura. Se duas figuras
               empatarem na iniciativa, elas agem como em uma{" "}
               <strong>ativação em grupo</strong>. Em seguida, na ordem de
-              iniciativa das criaturas, controle‑as seguindo o algoritmo abaixo:
+              iniciativa das figuras, controle-as seguindo o algoritmo abaixo:
             </MobileText>
 
-            <div id="algoritmo-criaturas">
-              <HeaderH2>Algoritmo de Ações das Criaturas Neutras</HeaderH2>
+            <div id="algoritmo-figuras">
+              <HeaderH2>Algoritmo de Ações das Figuras Neutras</HeaderH2>
             </div>
             <MobileText>
-              Para cada criatura neutra, siga este algoritmo passo a passo para
+              Para cada figura neutra, siga este algoritmo passo a passo para
               determinar suas ações:
             </MobileText>
 
@@ -179,8 +191,8 @@ function CombatSystemPage() {
               <HeaderH3>Passo 1: A Criatura Está em Combate?</HeaderH3>
             </div>
             <MobileText>
-              <strong>SIM:</strong> A criatura usará sua ação para lutar. Se
-              vencer o combate, escolherá permanecer em combate. Se a criatura
+              <strong>SIM:</strong> A figura usará sua ação para lutar. Se
+              vencer o combate, escolherá permanecer em combate. Se a figura
               estiver em combate com mais de um oponente, atacará aquele com o{" "}
               <strong>menor Vigor atual</strong>.
             </MobileText>
@@ -192,13 +204,13 @@ function CombatSystemPage() {
               <HeaderH3>Passo 2: Há um Membro do Bando à Vista?</HeaderH3>
             </div>
             <MobileText>
-              <strong>SIM:</strong> Se a criatura estiver armada com uma arma à
+              <strong>SIM:</strong> Se a figura estiver armada com uma arma à
               distância e houver um membro do bando dentro do alcance, ela
               atirará no alvo elegível mais próximo. Ela não tomará uma segunda
-              ação. Se a criatura não tiver arma à distância, ela se moverá o
+              ação. Se a figura não tiver arma à distância, ela se moverá o
               máximo possível em direção ao membro do bando visível mais
-              próximo, escalando obstáculos conforme necessário. A criatura
-              entrará em combate se possível. Se a criatura entrou em combate e
+              próximo, escalando obstáculos conforme necessário. A figura
+              entrará em combate se possível. Se a figura entrou em combate e
               ainda tem uma ação restante, vá para o Passo 1.
             </MobileText>
             <MobileText>
@@ -209,15 +221,15 @@ function CombatSystemPage() {
               <HeaderH3>Passo 3: Movimento Aleatório</HeaderH3>
             </div>
             <MobileText>
-              A criatura tomará uma ação para se mover. Determine uma direção
-              aleatória e mova a criatura sua distância total de{" "}
-              <strong>Movimento</strong> nessa direção. Se a criatura se mover
+              A figura tomará uma ação para se mover. Determine uma direção
+              aleatória e mova a figura sua distância total de{" "}
+              <strong>Movimento</strong> nessa direção. Se a figura se mover
               contra uma parede ou outro obstáculo (incluindo a borda da mesa –
-              criaturas nunca deixarão a mesa devido ao movimento aleatório),
-              pare seu movimento nesse ponto. Uma vez que este movimento esteja
-              completo, se a criatura ainda tem uma ação restante, verifique o
+              figuras nunca deixarão a mesa devido ao movimento aleatório), pare
+              seu movimento nesse ponto. Uma vez que este movimento esteja
+              completo, se a figura ainda tem uma ação restante, verifique o
               Passo 2 mais uma vez – se nenhum alvo se apresentou, a ativação da
-              criatura termina e nenhuma segunda ação é tomada, caso contrário,
+              figura termina e nenhuma segunda ação é tomada, caso contrário,
               prossiga com o Passo 2 normalmente.
             </MobileText>
 
@@ -234,8 +246,8 @@ function CombatSystemPage() {
               <HeaderH1>Fim do Turno — E Recomeça</HeaderH1>
             </div>
             <MobileText>
-              Após todos os jogadores ativarem suas figuras, as
-              <strong> criaturas neutras</strong> (se houver) agem segundo suas
+              Após todos os jogadores ativarem suas figuras, as{" "}
+              <strong>figuras neutras</strong> (se houver) agem segundo suas
               próprias regras. Então o turno termina — os mortos são contados,
               os feridos gemem — e o ciclo recomeça. No{" "}
               <strong>próximo turno</strong>, a iniciativa é{" "}
@@ -259,17 +271,17 @@ function CombatSystemPage() {
               <HeaderH1>Vigilância: a força da elite contra as hordas</HeaderH1>
             </div>
             <MobileText>
-              Em Mordheim, alguns bandos tem muitos mais soldados que os outros.
+              Em Mordheim, alguns bandos têm muitos mais soldados que os outros.
               Em um sistema em que as ativações são alternadas, isso poderia
               significar que apenas encher seu bando com soldados baratos
               poderia vencer qualquer jogo pela força dos números. Contudo,
-              soldados experientes e de bem treinados não cairão para esse tipo
-              de tática tão fácil.
+              soldados experientes e bem treinados não cairão para esse tipo de
+              tática tão facilmente.
             </MobileText>
             <MobileText>
               Sempre que um jogador tiver ativado todas as suas figuras, para
               cada figura de outro jogador que ativar, ele ganha um{" "}
-              <strong>Marcador de Vigilância</strong>. Um marcador de vígilia
+              <strong>Marcador de Vigilância</strong>. Um marcador de vigilância
               pode ser usado de duas formas:
               <ul>
                 <li>
@@ -279,12 +291,12 @@ function CombatSystemPage() {
                 <li>
                   Consumir o marcador para se mover até 8cm em direção a uma
                   figura inimiga que se mova dentro de 8cm do usuário do
-                  marcador (pode forçar combate imediatemente depois).
+                  marcador (pode forçar combate imediatamente depois).
                 </li>
               </ul>
             </MobileText>
             <MobileText>
-              Narcadores de Vigília não são ganho em jogos com mais de 2
+              Marcadores de Vigilância não são ganhos em jogos com mais de 2
               jogadores. Nesse tipo de jogo as interações entre os diferentes
               jogadores e as possíveis alianças forjadas já podem compensar
               adequadamente pela diferença de figuras.

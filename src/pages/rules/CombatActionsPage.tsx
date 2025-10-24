@@ -56,7 +56,7 @@ function CombatActionsPage() {
               <strong>Importante:</strong> Como dito acima, uma figura só pode
               declarar carga na <strong>primeira ação de movimento</strong> do
               turno. Isso significa que só há uma oportunidade de carga por
-              ativação. use com sabedoria.
+              ativação. Use com sabedoria.
             </WarningBox>
 
             <HeaderH2>Completando a Carga</HeaderH2>
@@ -70,12 +70,12 @@ function CombatActionsPage() {
             </MobileText>
 
             <MobileText>
-              Note que apesar da carga poder falhar, uma criatura não pode
-              falhar uma carga de propósito, parando de se mover ou declarando
-              carga contra uma criatura cujo seu movimento não seja suficiente
-              para alcançar, seja naturalmente ou devido a terreno acidentado e
+              Note que apesar da carga poder falhar, uma figura não pode falhar
+              uma carga de propósito, parando de se mover ou declarando carga
+              contra uma figura cujo seu movimento não seja suficiente para
+              alcançar, seja naturalmente ou devido a terreno acidentado e
               outras regras de terreno. Cargar contra um inimigo é uma ação de
-              impeto! Uma corrida maluca rumo à violência deve ser completada!
+              ímpeto! Uma corrida maluca rumo à violência deve ser completada!
             </MobileText>
 
             <HeaderH2>Cargas Múltiplas</HeaderH2>
@@ -125,8 +125,8 @@ function CombatActionsPage() {
 
             <MobileText>
               A figura que vencer esse teste contestado{" "}
-              <strong>GANHA A LUTA</strong> e <strong>acerta um ataque</strong>{" "}
-              , causando dano a outra figura. Simples. Brutal. Definitivo.
+              <strong>GANHA A LUTA</strong> e <strong>acerta um ataque</strong>,
+              causando dano a outra figura. Simples. Brutal. Definitivo.
             </MobileText>
 
             <MobileText>
@@ -150,7 +150,7 @@ function CombatActionsPage() {
             <HeaderH2>Causando Dano</HeaderH2>
             <MobileText>
               Para causar dano, pegue a <strong>rolagem de Ímpeto</strong> da
-              figura que ganhou a luta e some a quaisquer modificador de dano
+              figura que ganhou a luta e some a quaisquer modificadores de dano
               ganhos de armas, magias, poderes, habilidades e itens mágicos.
               Então <strong>subtraia esse valor da Armadura</strong> da figura
               que perdeu a luta. Ela recebe esse valor de dano, e subtrai dos
@@ -183,10 +183,10 @@ function CombatActionsPage() {
               <strong>empurrar a figura perdedora 3 cm para trás</strong>,
               movendo-a essa distância, ou <strong>sair de combate</strong>,
               movendo-se até 3cm em qualquer direção, contanto que quebre o
-              contato de base com a outra figura. Tenha em mente que quaisquer
-              um desses movimentos pode ser interceptado normalmente, mas não
-              podem ser usados para fazer uma figura mover para fora da mesa.
-              Uma figura não pode declarar cargas com esse movimento.
+              contato de base com a outra figura. Tenha em mente que qualquer um
+              desses movimentos pode ser interceptado normalmente, mas não podem
+              ser usados para fazer uma figura mover para fora da mesa. Uma
+              figura não pode declarar cargas com esse movimento.
             </MobileText>
 
             <HeaderH2>Cair em Cima! — A Vantagem dos Números</HeaderH2>
@@ -195,7 +195,7 @@ function CombatActionsPage() {
               uma figura está em combate com{" "}
               <strong>mais de uma figura inimiga</strong>, ou tem{" "}
               <strong>figuras aliadas no mesmo combate</strong>, bônus são
-              aplicados. Porque laminas nunca são demais.
+              aplicados. Porque lâminas nunca são demais.
             </MobileText>
 
             <HeaderH3 className="mb-3 text-white">
@@ -203,7 +203,7 @@ function CombatActionsPage() {
             </HeaderH3>
             <MobileText>
               Cada figura aliada que também esteja em combate com a figura alvo
-              E não esteja em combate com outra figura concede{" "}
+              e não esteja em combate com outra figura concede{" "}
               <strong>+2</strong>. Este bônus é cumulativo, então três figuras
               de suporte elegíveis concedem +6 de modificador.
             </MobileText>

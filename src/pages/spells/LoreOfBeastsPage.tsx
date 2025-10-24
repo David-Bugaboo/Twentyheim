@@ -1,4 +1,3 @@
-
 import PageTitle from "../../components/PageTitle";
 import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
@@ -10,8 +9,6 @@ import LoreSpellCard from "../../components/LoreSpellCard";
 import loreOfBeastsData from "./data/lore-of-beasts.json";
 
 export default function LoreOfBeastsPage() {
-
-
   const navigationSections = [
     { id: "intro", title: "Tradição das Bestas - Ghur", level: 0 },
     {
@@ -50,7 +47,7 @@ export default function LoreOfBeastsPage() {
               escola de magia que canaliza o poder bruto de Ghur, o Vento Marrom
               da Magia. Os praticantes desta tradição são conhecidos como
               Guardiões das Bestas ou Xamãs Selvagens, e possuem uma conexão
-              profunda com o mundo natural e suas criaturas. Eles são capazes de
+              profunda com o mundo natural e suas figuras. Eles são capazes de
               se comunicar com animais, transformar-se em bestas poderosas, e
               invocar a fúria primitiva que habita em todos os seres vivos.
             </MobileText>

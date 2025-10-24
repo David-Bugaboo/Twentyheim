@@ -2,7 +2,6 @@ import MobileText from "../../../components/MobileText";
 import ActionSubsection from "./ActionSubsection";
 import ActionSubsubsection from "./ActionSubsubsection";
 
-
 const CombatActionSection = () => {
   return (
     <ActionSubsection title="Ação de Luta" color="#c0392b">
@@ -18,7 +17,7 @@ const CombatActionSection = () => {
         <MobileText className="mb-3">
           Uma figura só pode usar essa ação se estiver em combate com outra
           figura. A figura que está usando sua ação de luta rola um teste
-          contestado de <strong>Ímpeto (d20)</strong>, contra uma das criaturas
+          contestado de <strong>Ímpeto (d20)</strong>, contra uma das figuras
           que esteja em combate. Ambas as figuras adicionam quaisquer
           modificadores de armas, marcadores, habilidades, magias e poderes.
         </MobileText>

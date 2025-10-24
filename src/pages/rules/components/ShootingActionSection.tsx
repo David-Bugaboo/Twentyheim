@@ -2,7 +2,6 @@ import MobileText from "../../../components/MobileText";
 import ActionSubsection from "./ActionSubsection";
 import ActionSubsubsection from "./ActionSubsubsection";
 
-
 const ShootingActionSection = () => {
   return (
     <ActionSubsection title="Ação de Tiro" color="#f39c12">
@@ -68,8 +67,8 @@ const ShootingActionSection = () => {
           <MobileText>
             <strong style={{ color: "#d4af37" }}>Alvo Grande (-2):</strong> O
             alvo é particularmente alto ou incomumente grande. Normalmente se
-            aplica apenas a criaturas com a característica Grande. Algumas
-            coisas são difíceis de errar.
+            aplica apenas a figuras com a característica Grande. Algumas coisas
+            são difíceis de errar.
           </MobileText>
         </div>
         <div className="bg-[#2a1f1f] p-4 rounded-lg border border-[#382929] mb-6">

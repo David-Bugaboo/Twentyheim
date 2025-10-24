@@ -19,7 +19,7 @@ export default function LoreOfTheBigWaaaghPage() {
       castingNumber: 18,
       keywords: ["Linha de Visão", "Missil Mágico(Mágico)(+7)"],
       effect:
-        "Atire o Míssil Mágico contra a figura alvo. Se a criatura alvo for atingida, ganha um Marcador de Atordoamento.",
+        "Atire o Míssil Mágico contra a figura alvo. Se a figura alvo for atingida, ganha um Marcador de Atordoamento.",
     },
     {
       name: "BORA MANCHU",
@@ -33,7 +33,7 @@ export default function LoreOfTheBigWaaaghPage() {
       castingNumber: 20,
       range: ["Alcance(60cm)", "Área de Efeito(Explosão Grande)"],
       effect:
-        "O conjurador posiciona a Área de Efeito em um ponto alvo em que a Área de Efeito fique totalmente em linha de visão do conjurador. No inicio da próxima ativação do conjurador, criaturas na Área de Efeito tomam um Ataque Normal +7. Criaturas acertadas pelo ataca são lançadas 8cm em uma direção aleatória, recebendo um marcador de atordoamento se encostarem na borda do tabuleiro ou uma peça de terreno mais alta que 2cm. ",
+        "O conjurador posiciona a Área de Efeito em um ponto alvo em que a Área de Efeito fique totalmente em linha de visão do conjurador. No inicio da próxima ativação do conjurador, figuras na Área de Efeito tomam um Ataque Normal +7. Figuras acertadas pelo ataca são lançadas 8cm em uma direção aleatória, recebendo um marcador de atordoamento se encostarem na borda do tabuleiro ou uma peça de terreno mais alta que 2cm. ",
     },
     {
       name: "MARRADA",
@@ -46,7 +46,7 @@ export default function LoreOfTheBigWaaaghPage() {
       castingNumber: 24,
       range: "Linha de Visão",
       effect:
-        "Alvo a até 20cm deve fazer um teste de Vontade com CD igual à Rolagem de Conjuração ou é IMEDIATAMENTE reduzido a 0 Vigor. Qualquer figura pode forçar esse teste de Vontade, sacrificando pontos de vida para aumentá-lo. O Xamã perde 1 de vida em todas as tentativas de conjuração dessa magia, além do valor de dano tomado por falha. Se uma criatura for reduzida a 0 de Vigor por conta dessa magia, o Xamã pode escolher outro alvo a até 8cm do primeiro e tentar conjurar a magia novamente contra ele, mas a magia custará 2 de vida para conjurar. A cadeia acaba quando não tem mais figuras a 8cm de um alvo ou o conjurador falhar na rolagem de conjuração.",
+        "Alvo a até 20cm deve fazer um teste de Vontade com CD igual à Rolagem de Conjuração ou é IMEDIATAMENTE reduzido a 0 Vigor. Qualquer figura pode forçar esse teste de Vontade, sacrificando pontos de vida para aumentá-lo. O Xamã perde 1 de vida em todas as tentativas de conjuração dessa magia, além do valor de dano tomado por falha. Se uma figura for reduzida a 0 de Vigor por conta dessa magia, o Xamã pode escolher outro alvo a até 8cm do primeiro e tentar conjurar a magia novamente contra ele, mas a magia custará 2 de vida para conjurar. A cadeia acaba quando não tem mais figuras a 8cm de um alvo ou o conjurador falhar na rolagem de conjuração.",
     },
     {
       name: "QUEIMA QUENGARAL",
@@ -74,7 +74,7 @@ export default function LoreOfTheBigWaaaghPage() {
       castingNumber: 16,
       range: ["Linha de Visão"],
       effect:
-        "Escolha uma arma alma. Na próxima vez que a figura empunhando essa arma vencer uma rodada de combate e causar pelo menos 1 ponto de dano, essa arma inflige 5 pontos adicionais de dano mágico mágico - Se conjurada numa arma normal usada contra criatura Imune a Armas Normais, a arma causará só os 5 pontos de dano mágico.",
+        "Escolha uma arma alma. Na próxima vez que a figura empunhando essa arma vencer uma rodada de combate e causar pelo menos 1 ponto de dano, essa arma inflige 5 pontos adicionais de dano mágico mágico - Se conjurada numa arma normal usada contra figura Imune a Armas Normais, a arma causará só os 5 pontos de dano mágico.",
     },
     {
       name: "ÓIADA DE PADIM MORK",

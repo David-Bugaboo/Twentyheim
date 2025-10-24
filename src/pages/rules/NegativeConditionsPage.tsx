@@ -39,7 +39,7 @@ function NegativeConditionsPage() {
             <div id="intro">
               <PageTitle>Dano e Condições Negativas</PageTitle>
               <MobileText>
-                Em 20heim, as figuras podem ser afetadas por diversas condições
+                Em 20Heim, as figuras podem ser afetadas por diversas condições
                 negativas que impactam sua capacidade de combate, movimento e
                 sobrevivência. Essas condições podem ser causadas por ataques
                 especiais, magias, venenos, ferimentos ou outros efeitos do
@@ -51,24 +51,24 @@ function NegativeConditionsPage() {
                 marcadores que são colocados nas figuras, cada um com seus
                 próprios efeitos e métodos de remoção. Conhecer essas condições
                 é essencial para entender como o combate e a sobrevivência
-                funcionam em 20heim.
+                funcionam em 20Heim.
               </MobileText>
             </div>
 
             <div id="tipos-dano">
               <HeaderH1>Tipos de Dano</HeaderH1>
               <MobileText>
-                Em 20heim, existem diferentes tipos de dano que podem ser
+                Em 20Heim, existem diferentes tipos de dano que podem ser
                 causados por armas, magias e outros efeitos. Cada tipo tem suas
                 próprias propriedades e interage de forma única com diferentes
-                tipos de criaturas e resistências.
+                tipos de figuras e resistências.
               </MobileText>
 
               <div className="mb-6">
                 <HeaderH2 className="text-green-300 mb-2">Normal</HeaderH2>
                 <MobileText>
                   O tipo de dano mais comum, sem propriedades especiais. Algumas
-                  criaturas podem ter resistência ou imunidade a este tipo de
+                  figuras podem ter resistência ou imunidade a este tipo de
                   dano.
                 </MobileText>
               </div>
@@ -76,34 +76,33 @@ function NegativeConditionsPage() {
               <div className="mb-6">
                 <HeaderH2 className="text-green-300 mb-2">Mágico</HeaderH2>
                 <MobileText>
-                  Semelhante ao dano normal, mas com menos criaturas
-                  resistentes. Criaturas com resistência mágica podem reduzir ou
-                  ignorar este tipo de dano.
+                  Semelhante ao dano normal, mas com menos figuras resistentes.
+                  Figuras com resistência mágica podem reduzir ou ignorar este
+                  tipo de dano.
                 </MobileText>
               </div>
 
               <div className="mb-6">
                 <HeaderH2 className="text-green-300 mb-2">Sagrado</HeaderH2>
                 <MobileText>
-                  Semelhante ao dano mágico, mas pode danificar até criaturas
-                  que têm resistência mágica ou imunidade a dano mágico. Muito
-                  eficaz contra criaturas sobrenaturais e corrompidas.
+                  Semelhante ao dano mágico, mas pode danificar até figuras que
+                  têm resistência mágica ou imunidade a dano mágico. Muito
+                  eficaz contra figuras sobrenaturais e corrompidas.
                 </MobileText>
               </div>
 
               <div className="mb-6">
                 <HeaderH2 className="text-green-300 mb-2">Venenoso</HeaderH2>
                 <MobileText>
-                  Criaturas que recebem este tipo de dano recebem
-                  automaticamente um marcador de veneno, independentemente do
-                  dano causado.
+                  Figuras que recebem este tipo de dano recebem automaticamente
+                  um marcador de veneno, independentemente do dano causado.
                 </MobileText>
               </div>
 
               <div className="mb-6">
                 <HeaderH2 className="text-green-300 mb-2">Flamejante</HeaderH2>
                 <MobileText>
-                  Como o dano normal, mas com menos criaturas resistentes e
+                  Como o dano normal, mas com menos figuras resistentes e
                   algumas vulneráveis. Um ataque crítico com este tipo de dano
                   faz a figura alvo receber um marcador de chamas.
                 </MobileText>
@@ -112,16 +111,16 @@ function NegativeConditionsPage() {
               <div className="mb-6">
                 <HeaderH2 className="text-green-300 mb-2">Elétrico</HeaderH2>
                 <MobileText>
-                  Como o dano normal, mas com menos criaturas resistentes e
+                  Como o dano normal, mas com menos figuras resistentes e
                   algumas vulneráveis. Um ataque crítico com este tipo de dano
-                  ignora quaisquer bônus de armadura.
+                  ignora quaisquer bônus de Armadura.
                 </MobileText>
               </div>
 
               <div className="mb-6">
                 <HeaderH2 className="text-green-300 mb-2">Gélido</HeaderH2>
                 <MobileText>
-                  Como o dano normal, mas com menos criaturas resistentes e
+                  Como o dano normal, mas com menos figuras resistentes e
                   algumas vulneráveis. Um ataque crítico com este tipo de dano
                   faz a figura alvo receber um marcador de congelamento.
                 </MobileText>

@@ -1,1 +1,212 @@
-[{"roll":"1-2","id":"pedra-bruxa-destilada","name":"Pedra-Bruxa Destilada","type":"Poção","damageModifier":null,"purchaseCost":"500 coroas","sellCost":"200 coroas","exclusive":null,"flavorText":"Alquimistas sem escrúpulos aprenderam a destilar a essencia da pedra-bruxa encontrada em Mordheim. Um gole e qualquer habilidade mágica em uma criatura se torna extremamente poderosa. Contudo, a toxicidade extrema da pedra-bruxa rapidamente cobra seu preço.","user":"Beber como uma ação (antes de conjurar magia)","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"200 coroas"},{"label":"Efeito","value":"A figura que bebe esta poção recebe +4 à sua Rolagem de Conjuração mas sofre 2 de dano, além de quaisquer outros efeitos de conjurar a magia. Um conjurador pode usar apenas uma Pocao de Bencao Arcana por jogo. Esta poção não pode ser usada para conjurar magias Fora de Jogo."}]},{"roll":"3-5","id":"frasco-pestilens","name":"Frasco Pestilens","type":"Poção","damageModifier":null,"purchaseCost":"500 coroas","sellCost":"200 coroas","exclusive":null,"flavorText":"Criação dos Skaven, esta poção encolhe objetos temporariamente - perfeita para roubar tesouros grandes. Uma figura que está carregando tesouro pode usar a poção para encolhê-lo até um tamanho que caiba no bolso. Para os esquemas de roubo e saque dos skaven, o Frasco Skyre é essencial. Carregar duas relíquias enormes como se fossem moedas? Sim-sim!","user":"Beber como uma ação enquanto carrega tesouro","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"200 coroas"},{"label":"Efeito","value":"Esta figura não sofre mais penalidades a Agilidade, Ímpeto, ou natação por carregar este tesouro. Pode até carregar uma segunda ficha de tesouro. Se o efeito desta poção for cancelado enquanto a figura carrega dois tesouros, deve escolher um e imediatamente largá-lo. Se o tesouro encolhido for largado por qualquer razão, retorna ao seu tamanho normal."}]},{"roll":"6-8","id":"lagrimas-maiores-de-shallya","name":"Lágrimas Maiores de Shallya","type":"Poção","damageModifier":null,"purchaseCost":"2.000 coroas","sellCost":"300 coroas","exclusive":null,"flavorText":"A versão suprema da bênção de Shallya - rara além de palavras, preciosa além de medida. Onde as Lágrimas comuns curam feridas, as Lágrimas Maiores restauram completamente. Em Mordheim, onde lesões permanentes acabam com carreiras e venenos matam lentamente, as Lágrimas Maiores de Shallya são literalmente milagrosas. Caríssimas, mas capazes de desfazer até mesmo as piores maldições e ferimentos. Um frasco pode salvar uma vida inteira.","user":"Beber como uma ação (em jogo ou fora de jogo)","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"750 coroas"},{"label":"Efeito","value":"A figura que bebe esta poção é imediatamente restaurada ao seu Vigor inicial e é curada de qualquer veneno ou reduções temporárias de atributos. Esta poção também pode ser usada após um jogo para curar a figura de quaisquer lesões permanentes."}]},{"roll":"9-11","id":"sangue-do-feiticeiro","name":"Sangue do Feiticeiro","type":"Poção","damageModifier":null,"purchaseCost":"1.500 coroas","sellCost":"200 coroas","exclusive":null,"flavorText":"Embora não seja literalmente sangue, essa poção é criada a partir da destilação de componentes carregados de energia mágica ou fortemente sincronizados ao reino do caos. Um gole transforma o usuário em um verdadeiro farol para os ventos da magia, e infelizmente, algumas coisas piores.","user":"Beber como uma ação (antes de conjurar magia)","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"600 coroas"},{"label":"Efeito","value":"Uma figura que bebe essa poção e conjura uma magia durante a mesma ativação pode tentar conjurar a mesma magia novamente, mas contra um alvo diferente. Se ambos as rolagens forem iguais, a figura rola nas tabelas de Maldição de Tzeentch e Dádivas de Tzeentch, mesmo se conjurar uma ou ambas as spells com sucesso."}]},{"roll":"12-13","id":"frasco-de-ulgul","name":"Frasco de Ulgul","type":"Poção","damageModifier":null,"purchaseCost":"1.500 coroas","sellCost":"300 coroas","exclusive":null,"flavorText":"Frasco de vidro negro contendo uma porção de vento das sombras, Ulgul. O Frasco da Escuridão transforma qualquer combate em caos. Arqueiros ficam inúteis, magos não conseguem mirar, apenas combate corpo a corpo importa. Para warbands que prosperam em confusão e proximidade, esta poção é vantagem tática devastadora.","user":"Estilhaçar no chão como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"600 coroas"},{"label":"Efeito","value":"Se uma figura estilhaça este frasco no chão, trevas antinaturais imediatamente caem sobre o campo de batalha. Linha de visão para todos é reduzida a 30cm pelo resto do jogo."}]},{"roll":"14-15","id":"vacuo-de-morr","name":"Vácuo de Morr","type":"Poção Maior","damageModifier":null,"purchaseCost":"2.000 coroas","sellCost":"200 coroas","exclusive":null,"flavorText":"O frasco de vida contendo essa solução parece vazio, embora possa se ver uma leve tremulação dentro dele. Uma solução transparente criada a partir de flores abençoadas dos jardins de Morr, esse liquido evapora imediatamente ao entrar em contato com ar, criando uma explosão que só afeta criaturas Etéreas. Sempre carregada por caçadores de vampiros e caçadores de bruxas.","user":"Abrir como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"800 coroas"},{"label":"Efeito","value":"Qualquer criatura com a característica Etérea a 20cm do usuário dessa poção deve passar num teste de Vontade (CD20) ou ser sugada para dentro do frasco e aprisionada. Imediatamente remova a figura da mesa e conceda quaisquer pontos de experiência que teriam sido ganhos por matar tal criatura."}]},{"roll":"16-17","id":"pilulas-rochosas-de-kharadron","name":"Pilulas Rochosas de Kharadron","type":"Poção Maior","damageModifier":null,"purchaseCost":"—","sellCost":"400 coroas","exclusive":null,"flavorText":"Os anões de Kharadron também se destacam no campo da alquimia, recentemente canalizando a magias dos seus Sacerdotes-Runicos em poderosas pílulas capazes de tornar a pele de seu usuário em pedra. Contudo, poucos tem a força mental para manter esse poder, que na maioria dos guerreiros tende a se dissipar rapidamente.","user":"Beber como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"2.000 coroas"},{"label":"Efeito","value":"Uma figura que bebe esta poção é imune a dano de armas não-mágicas. Sempre que esta figura ativa, role um dado. Em 17+, os efeitos da poção terminam imediatamente."}]},{"roll":"18-19","id":"frasco-do-paria","name":"Frasco do Pária","type":"Poção Maior","damageModifier":null,"purchaseCost":"—","sellCost":"200 coroas","exclusive":null,"flavorText":"Parias são seres humano que nascem sem alma, sem uma presença no reino do caos, \n          completamente invisiveis aos seus habitantes e inertes aos ventos da magia.\n          Por conta de sua presença perturbardora, são perseguidos como hereges pelos\n          caçadores de bruxa de sigmar, que trituram seus restos mortais e transformam\n          em granadas para destruir a magia de seus inimigos.","user":"Abrir como uma ação","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"1.000 coroas"}]},{"roll":"20","id":"breath-of-shallaya","name":"Breath of Shallaya","type":"Poção Maior","damageModifier":null,"purchaseCost":"—","sellCost":"1.000 coroas","exclusive":null,"flavorText":"A mais rara e valiosa de todas as poções - o segredo da ressurreição verdadeira. Líquido dourado que pulsa com vida pura, brilhando com luz própria. O Sopro de Shallaya é lenda viva. Morte desfeita, vida restaurada, aliados perdidos retornados. Em Mordheim, onde morte é permanente e brutal, possuir uma dessas poções é ter poder sobre a própria morte. Mais valioso que todo ouro da Cidade Amaldiçoada.","user":"Fora de Jogo - usar após qualquer jogo","armorBonus":null,"movePenalty":null,"slots":"1","effect":null,"requirements":null,"specialRules":[{"label":"Ingredientes","value":"3.000 coroas"},{"label":"Efeito","value":"Nunca pode ser comprado e apenas um tolo desesperado o venderia. Pode ser usado imediatamente após qualquer jogo. Se usado, uma figura que morreu durante aquele jogo é trazida de volta à vida. A figura não sofre efeitos negativos da morte e pode participar do próximo jogo."}]}]
+[
+  {
+    "roll": "1-2",
+    "id": "pedra-bruxa-destilada",
+    "name": "Pedra-Bruxa Destilada",
+    "type": "Poção",
+    "damageModifier": null,
+    "purchaseCost": "500 coroas",
+    "sellCost": "200 coroas",
+    "exclusive": null,
+    "flavorText": "Alquimistas sem escrúpulos aprenderam a destilar a essencia da pedra-bruxa encontrada em Mordheim. Um gole e qualquer habilidade mágica em uma figura se torna extremamente poderosa. Contudo, a toxicidade extrema da pedra-bruxa rapidamente cobra seu preço.",
+    "user": "Beber como uma ação (antes de conjurar magia)",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "200 coroas" },
+      {
+        "label": "Efeito",
+        "value": "A figura que bebe esta poção recebe +4 à sua Rolagem de Conjuração mas sofre 2 de dano, além de quaisquer outros efeitos de conjurar a magia. Um conjurador pode usar apenas uma Pocao de Bencao Arcana por jogo. Esta poção não pode ser usada para conjurar magias Fora de Jogo."
+      }
+    ]
+  },
+  {
+    "roll": "3-5",
+    "id": "frasco-pestilens",
+    "name": "Frasco Pestilens",
+    "type": "Poção",
+    "damageModifier": null,
+    "purchaseCost": "500 coroas",
+    "sellCost": "200 coroas",
+    "exclusive": null,
+    "flavorText": "Criação dos Skaven, esta poção encolhe objetos temporariamente - perfeita para roubar tesouros grandes. Uma figura que está carregando tesouro pode usar a poção para encolhê-lo até um tamanho que caiba no bolso. Para os esquemas de roubo e saque dos skaven, o Frasco Skyre é essencial. Carregar duas relíquias enormes como se fossem moedas? Sim-sim!",
+    "user": "Beber como uma ação enquanto carrega tesouro",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "200 coroas" },
+      {
+        "label": "Efeito",
+        "value": "Esta figura não sofre mais penalidades a Agilidade, Ímpeto, ou natação por carregar este tesouro. Pode até carregar uma segunda ficha de tesouro. Se o efeito desta poção for cancelado enquanto a figura carrega dois tesouros, deve escolher um e imediatamente largá-lo. Se o tesouro encolhido for largado por qualquer razão, retorna ao seu tamanho normal."
+      }
+    ]
+  },
+  {
+    "roll": "6-8",
+    "id": "lagrimas-maiores-de-shallya",
+    "name": "Lágrimas Maiores de Shallya",
+    "type": "Poção",
+    "damageModifier": null,
+    "purchaseCost": "2.000 coroas",
+    "sellCost": "300 coroas",
+    "exclusive": null,
+    "flavorText": "A versão suprema da bênção de Shallya - rara além de palavras, preciosa além de medida. Onde as Lágrimas comuns curam feridas, as Lágrimas Maiores restauram completamente. Em Mordheim, onde lesões permanentes acabam com carreiras e venenos matam lentamente, as Lágrimas Maiores de Shallya são literalmente milagrosas. Caríssimas, mas capazes de desfazer até mesmo as piores maldições e ferimentos. Um frasco pode salvar uma vida inteira.",
+    "user": "Beber como uma ação (em jogo ou fora de jogo)",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "750 coroas" },
+      {
+        "label": "Efeito",
+        "value": "A figura que bebe esta poção é imediatamente restaurada ao seu Vigor inicial e é curada de qualquer veneno ou reduções temporárias de atributos. Esta poção também pode ser usada após um jogo para curar a figura de quaisquer lesões permanentes."
+      }
+    ]
+  },
+  {
+    "roll": "9-11",
+    "id": "sangue-do-feiticeiro",
+    "name": "Sangue do Feiticeiro",
+    "type": "Poção",
+    "damageModifier": null,
+    "purchaseCost": "1.500 coroas",
+    "sellCost": "200 coroas",
+    "exclusive": null,
+    "flavorText": "Embora não seja literalmente sangue, essa poção é criada a partir da destilação de componentes carregados de energia mágica ou fortemente sincronizados ao reino do caos. Um gole transforma o usuário em um verdadeiro farol para os ventos da magia, e infelizmente, algumas coisas piores.",
+    "user": "Beber como uma ação (antes de conjurar magia)",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "600 coroas" },
+      {
+        "label": "Efeito",
+        "value": "Uma figura que bebe essa poção e conjura uma magia durante a mesma ativação pode tentar conjurar a mesma magia novamente, mas contra um alvo diferente. Se ambos as rolagens forem iguais, a figura rola nas tabelas de Maldição de Tzeentch e Dádivas de Tzeentch, mesmo se conjurar uma ou ambas as spells com sucesso."
+      }
+    ]
+  },
+  {
+    "roll": "12-13",
+    "id": "frasco-de-ulgul",
+    "name": "Frasco de Ulgul",
+    "type": "Poção",
+    "damageModifier": null,
+    "purchaseCost": "1.500 coroas",
+    "sellCost": "300 coroas",
+    "exclusive": null,
+    "flavorText": "Frasco de vidro negro contendo uma porção de vento das sombras, Ulgul. O Frasco da Escuridão transforma qualquer combate em caos. Arqueiros ficam inúteis, magos não conseguem mirar, apenas combate corpo a corpo importa. Para warbands que prosperam em confusão e proximidade, esta poção é vantagem tática devastadora.",
+    "user": "Estilhaçar no chão como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "600 coroas" },
+      {
+        "label": "Efeito",
+        "value": "Se uma figura estilhaça este frasco no chão, trevas antinaturais imediatamente caem sobre o campo de batalha. Linha de visão para todos é reduzida a 30cm pelo resto do jogo."
+      }
+    ]
+  },
+  {
+    "roll": "14-15",
+    "id": "vacuo-de-morr",
+    "name": "Vácuo de Morr",
+    "type": "Poção Maior",
+    "damageModifier": null,
+    "purchaseCost": "2.000 coroas",
+    "sellCost": "200 coroas",
+    "exclusive": null,
+    "flavorText": "O frasco de vida contendo essa solução parece vazio, embora possa se ver uma leve tremulação dentro dele. Uma solução transparente criada a partir de flores abençoadas dos jardins de Morr, esse liquido evapora imediatamente ao entrar em contato com ar, criando uma explosão que só afeta figuras Etéreas. Sempre carregada por caçadores de vampiros e caçadores de bruxas.",
+    "user": "Abrir como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "800 coroas" },
+      {
+        "label": "Efeito",
+        "value": "Qualquer figura com a característica Etérea a 20cm do usuário dessa poção deve passar num teste de Vontade (CD20) ou ser sugada para dentro do frasco e aprisionada. Imediatamente remova a figura da mesa e conceda quaisquer pontos de experiência que teriam sido ganhos por matar tal figura."
+      }
+    ]
+  },
+  {
+    "roll": "16-17",
+    "id": "pilulas-rochosas-de-kharadron",
+    "name": "Pilulas Rochosas de Kharadron",
+    "type": "Poção Maior",
+    "damageModifier": null,
+    "purchaseCost": "—",
+    "sellCost": "400 coroas",
+    "exclusive": null,
+    "flavorText": "Os anões de Kharadron também se destacam no campo da alquimia, recentemente canalizando a magias dos seus Sacerdotes-Runicos em poderosas pílulas capazes de tornar a pele de seu usuário em pedra. Contudo, poucos tem a força mental para manter esse poder, que na maioria dos guerreiros tende a se dissipar rapidamente.",
+    "user": "Beber como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "2.000 coroas" },
+      {
+        "label": "Efeito",
+        "value": "Uma figura que bebe esta poção é imune a dano de armas não-mágicas. Sempre que esta figura ativa, role um dado. Em 17+, os efeitos da poção terminam imediatamente."
+      }
+    ]
+  },
+  {
+    "roll": "18-19",
+    "id": "frasco-do-paria",
+    "name": "Frasco do Pária",
+    "type": "Poção Maior",
+    "damageModifier": null,
+    "purchaseCost": "—",
+    "sellCost": "200 coroas",
+    "exclusive": null,
+    "flavorText": "Parias são seres humano que nascem sem alma, sem uma presença no reino do caos, \n          completamente invisiveis aos seus habitantes e inertes aos ventos da magia.\n          Por conta de sua presença perturbardora, são perseguidos como hereges pelos\n          caçadores de bruxa de sigmar, que trituram seus restos mortais e transformam\n          em granadas para destruir a magia de seus inimigos.",
+    "user": "Abrir como uma ação",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [{ "label": "Ingredientes", "value": "1.000 coroas" }]
+  },
+  {
+    "roll": "20",
+    "id": "breath-of-shallaya",
+    "name": "Breath of Shallaya",
+    "type": "Poção Maior",
+    "damageModifier": null,
+    "purchaseCost": "—",
+    "sellCost": "1.000 coroas",
+    "exclusive": null,
+    "flavorText": "A mais rara e valiosa de todas as poções - o segredo da ressurreição verdadeira. Líquido dourado que pulsa com vida pura, brilhando com luz própria. O Sopro de Shallaya é lenda viva. Morte desfeita, vida restaurada, aliados perdidos retornados. Em Mordheim, onde morte é permanente e brutal, possuir uma dessas poções é ter poder sobre a própria morte. Mais valioso que todo ouro da Cidade Amaldiçoada.",
+    "user": "Fora de Jogo - usar após qualquer jogo",
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      { "label": "Ingredientes", "value": "3.000 coroas" },
+      {
+        "label": "Efeito",
+        "value": "Nunca pode ser comprado e apenas um tolo desesperado o venderia. Pode ser usado imediatamente após qualquer jogo. Se usado, uma figura que morreu durante aquele jogo é trazida de volta à vida. A figura não sofre efeitos negativos da morte e pode participar do próximo jogo."
+      }
+    ]
+  }
+]

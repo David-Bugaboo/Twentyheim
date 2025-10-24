@@ -3,19 +3,19 @@
     "name": "Cura de Hysh",
     "castingNumber": 8,
     "keywords": ["Alcance(15)"],
-    "effect": "Esta magia restaura até 5 pontos de Vida perdida para a criatura alvo. Esta magia não pode levar uma figura acima de seu Vigor inicial. Esta magia não tem efeito em mortos-vivos ou constructos - a luz não traz de volta o que já foi julgado."
+    "effect": "Esta magia restaura até 5 pontos de Vida perdida para a figura alvo. Esta magia não pode levar uma figura acima de seu Vigor inicial. Esta magia não tem efeito em mortos-vivos ou constructos - a luz não traz de volta o que já foi julgado."
   },
   {
     "name": "Exorcismo",
     "castingNumber": 8,
     "keywords": ["Linha de Visão", "Exorcismo"],
-    "effect": "Uma criatura alvo com a característica Daemônio deve passar em um teste de Vontade imediata com CD igual à Rolagem de Conjuração. Se o daemônio falhar na rolagem e sua Vontade atual for +4 ou menos, a sentença é absoluta - ele é imediatamente reduzido a 0 Vigor e BANIDO do tabuleiro. Se sua Vontade atual for +5 ou maior, a luz ainda queima - ele sofre dano igual a três vezes a quantidade pela qual falhou na Rolagem de Vontade."
+    "effect": "Uma figura alvo com a característica Daemônio deve passar em um teste de Vontade imediata com CD igual à Rolagem de Conjuração. Se o daemônio falhar na rolagem e sua Vontade atual for +4 ou menos, a sentença é absoluta - ele é imediatamente reduzido a 0 Vigor e BANIDO do tabuleiro. Se sua Vontade atual for +5 ou maior, a luz ainda queima - ele sofre dano igual a três vezes a quantidade pela qual falhou na Rolagem de Vontade."
   },
   {
     "name": "Olhos da Verdade",
     "castingNumber": 10,
-    "keywords": ["Area de Efeito (Explosão Pequena)"],
-    "effect": "Centre a Área de Efeito no conjurador. Todas as figuras dentro da área de efeito ganham a característica Visão Verdadeira até o fim do jogo."
+    "keywords": ["Área de Efeito (Explosão Pequena)"],
+    "effect": "Centralize a Área de Efeito no conjurador. Todas as figuras dentro da área de efeito ganham a característica Visão Verdadeira até o fim do jogo."
   },
   {
     "name": "Olhar Radiante",
@@ -27,7 +27,7 @@
     "name": "Manto Cintilante",
     "castingNumber": 12,
     "keywords": ["Linha de Visão"],
-    "effect": "Ataques a distância contra a criatura alvo sofrem -2 Precisão até o fim do jogo - olhos queimam ao tentar focar na silhueta envolta em luz incandescente."
+    "effect": "Ataques à distância contra a figura alvo sofrem -2 Precisão até o fim do jogo - olhos queimam ao tentar focar na silhueta envolta em luz incandescente."
   },
   {
     "name": "Inspiração",
@@ -38,26 +38,26 @@
   {
     "name": "Pilar da Luz Reveladora",
     "castingNumber": 14,
-    "keywords": ["Alcance(50)", "Area de Efeito (Pilar Médio)"],
-    "effect": "Qualquer criatura dentro da área de efeito não se benefícia das palavras chave invisível e Furtividade(X) e Figuras Ilusórias são automaticamente removidas do jogo. Criaturas dentro da área de efeito não podem conjurar ou ativar magias ou poderes com a palavra chave Ilusão. Figuras tem +2 de precisão para fazer ataques a distância contra figuras dentro da área de efeito. No final de cada turno, role um dado. Em um 1-4 a área de efeito some e a magia é cancelada."
+    "keywords": ["Alcance(50)", "Área de Efeito (Pilar Médio)"],
+    "effect": "Qualquer figura dentro da área de efeito não se benefícia das palavras-chave invisível e Furtividade(X) e Figuras Ilusórias são automaticamente removidas do jogo. Figuras dentro da área de efeito não podem conjurar ou ativar magias ou poderes com a palavra-chave Ilusão. Figuras têm +2 de precisão para fazer ataques à distância contra figuras dentro da área de efeito. No final de cada turno, role um dado. Em um 1-4 a área de efeito some e a magia é cancelada."
   },
   {
     "name": "Expansão Luzidia",
     "castingNumber": 1,
-    "keywords": ["Area de Efeito (Explosão Média)"],
-    "effect": "Centre a área de efeito no conjurador. Todas as figuras na área de efeito devem fazer um teste de Vontade com CD igual à Rolagem de Conjuração. Criaturas que falharem perdem 2 de Ímpeto e 2 de Precisão até o fim do jogo. No final de cada uma de suas ativações, elas podem repetir o teste de Vontade. Ao terem sucesso, o efeito da magia é cancelado."
+    "keywords": ["Área de Efeito (Explosão Média)"],
+    "effect": "Centralize a área de efeito no conjurador. Todas as figuras na área de efeito devem fazer um teste de Vontade com CD igual à Rolagem de Conjuração. Figuras que falharem perdem 2 de Ímpeto e 2 de Precisão até o fim do jogo. No final de cada uma de suas ativações, elas podem repetir o teste de Vontade. Ao terem sucesso, o efeito da magia é cancelado."
   },
   {
     "name": "Circulo da Iluminação",
     "castingNumber": 8,
-    "keywords": ["Area de Efeito (Explosão Média)"],
-    "effect": "Centre a área de efeito no conjurador. Todas as figuras aliadas dentro da área de efeito são consideradas como se carregassem uma tocha até o fim do jogo."
+    "keywords": ["Área de Efeito (Explosão Média)"],
+    "effect": "Centralize a área de efeito no conjurador. Todas as figuras aliadas dentro da área de efeito são consideradas como se carregassem uma tocha até o fim do jogo."
   },
   {
     "name": "Brilho Deslumbrante",
     "castingNumber": 10,
     "keywords": ["Área de Efeito (Zona Pequena)"],
-    "effect": "Centre e mova a área de efeito com o conjurador. Todas as figuras na área de efeito recebem -2 no Ímpeto."
+    "effect": "Centralize e mova a área de efeito com o conjurador. Todas as figuras na área de efeito recebem -2 no Ímpeto."
   },
   {
     "name": "Ritual do Exorcismo de Hysh",

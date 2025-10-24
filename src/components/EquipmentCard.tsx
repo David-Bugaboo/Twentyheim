@@ -1,5 +1,6 @@
 import React from "react";
 import MobileText from "./MobileText";
+import GameText from "./GameText";
 
 interface EquipmentCardProps {
   name: string | null;
@@ -159,7 +160,9 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
             {specialRules?.map((rule, index) => (
               <div key={index} className="mb-2">
                 <span className="font-bold">{rule.label}: </span>
-                <span className="text-gray-300">{rule.value}</span>
+                <GameText component="span" className="text-gray-300">
+                  {rule.value}
+                </GameText>
               </div>
             ))}
           </div>

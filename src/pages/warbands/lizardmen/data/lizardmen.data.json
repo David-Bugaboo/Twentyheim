@@ -6,7 +6,7 @@
     "quantity": "1",
     "stats": {
       "move": 18,
-      "fight": "2",
+      "fight": "+2",
       "shoot": "0",
       "armour": 11,
       "Vontade": "+4",
@@ -25,15 +25,15 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Magisacerdote Gecko pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+        "description": "O Magisacerdote Gecko pode ativar até 3 outras figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
       },
       {
         "name": "Conjurador",
-        "description": "O Magisacerdote Skink é um conjurador da Tradição da Vida. Ele começa com 4 magias, de qualquer uma de suas tradições."
+        "description": "O Magisacerdote Gecko é um conjurador da Tradição da Vida. Ele começa com 4 magias, de qualquer uma de suas tradições."
       },
       {
         "name": "Ancestralidade Reptiliana",
-        "description": "O Magisacerdote Skink tem a característica Anfíbio."
+        "description": "O Magisacerdote Gecko tem a característica Anfíbio."
       }
     ],
     "equipment": {
@@ -48,18 +48,18 @@
         { "name": "Javelin", "cost": "5 coroas" },
         { "name": "Zarabatana", "cost": "10 coroas" }
       ],
-      "armor": [{ "name": "Elmo de Osso (Pode conjurar)", "cost": "5 coroas" }],
+      "armor": [{ "name": "Elmo de Osso", "cost": "5 coroas" }],
       "miscellaneous": [],
       "modifiers": [{ "name": "De Aço Estelar", "cost": "base *4" }]
     }
   },
   {
-    "id": "guerreiro-totemico-saurideo",
-    "name": "Guerreiro Totêmico Saurídeo",
-    "role": "Héroi",
+    "id": "guerreiro-totemico-saurio",
+    "name": "Guerreiro Totêmico Saurío",
+    "role": "Herói",
     "quantity": "0-1",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+4",
       "shoot": "-",
       "armour": 12,
@@ -71,11 +71,11 @@
     "abilities": [
       {
         "name": "Fúria Totêmica",
-        "description": "O Guerreiro Totêmico Saurídeo pode rolar um teste de Vontade no começo da sua ativação, com CD 16. Se obtiver sucesso pode ativar uma fúria totêmica até o final do turno:\nFúria de Sotek:+2 de Ímpeto.\nFúria de Xuanti:+4 de Movimento\nFúria de Tzantli:+2 de Vontade "
+        "description": "O Guerreiro Totêmico Sáurio pode rolar um teste de Vontade no começo da sua ativação, com CD 16. Se obtiver sucesso pode ativar uma fúria totêmica até o final do turno:\nFúria de Sotek:+2 de Ímpeto.\nFúria de Xuanti:+4 de Movimento\nFúria de Tzantli:+2 de Vontade "
       },
       {
         "name": "Ancestralidade Reptiliana",
-        "description": "O Guerreiro Totêmico Saurus tem a característica Anfíbio."
+        "description": "O Guerreiro Totêmico Saurío tem a característica Anfíbio."
       }
     ],
     "equipment": {
@@ -99,7 +99,7 @@
   {
     "id": "gecko-crista-alta",
     "name": "Gecko Crista-Alta",
-    "role": "Héroi",
+    "role": "Herói",
     "quantity": "0-2",
     "stats": {
       "move": 18,
@@ -122,7 +122,7 @@
       },
       {
         "name": "Ancestralidade Reptiliana",
-        "description": "O Lagarto Crista-Alta tem a característica Anfíbio."
+        "description": "O Gecko Crista-Alta tem a característica Anfíbio."
       }
     ],
     "equipment": {
@@ -179,8 +179,8 @@
     }
   },
   {
-    "id": "saurideo-veterano",
-    "name": "Saurídeo Veterano",
+    "id": "saurio-veterano",
+    "name": "Saurío Veterano",
     "quantity": "1-5",
     "stats": {
       "move": 12,
@@ -194,7 +194,7 @@
     "abilities": [
       {
         "name": "Ancestralidade Reptiliana",
-        "description": "O Veterano Saurídeo tem a característica Anfíbio."
+        "description": "O Saurío Veterano tem a característica Anfíbio."
       }
     ],
     "equipment": {
@@ -234,7 +234,7 @@
       },
       {
         "name": "Mandíbula Esmagadora",
-        "description": "O Kroxigor tem Mandibulas poderosas que podem esmagar aço tão fácil quanto carne. Ele pode lutar desarmado sem penalidades. Adicionalmente, se estiver lutando com uma arma, a combinação de suas mandíbulas e armas concedem a ele a característica Penetração de Armadura(2)"
+        "description": "O Kroxigor tem mandíbulas poderosas que podem esmagar aço tão facilmente quanto carne. Ele pode lutar desarmado sem penalidades. Adicionalmente, se estiver lutando com uma arma, a combinação de suas mandíbulas e armas concedem a ele a característica Penetração de Armadura(2)."
       }
     ],
     "equipment": {

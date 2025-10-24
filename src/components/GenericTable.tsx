@@ -18,7 +18,7 @@ interface GenericTableProps {
 export default function GenericTable({
   data,
   sx = {},
-  scrollable = true,
+  scrollable = false,
 }: GenericTableProps) {
   const navigate = useNavigate();
 
@@ -38,25 +38,18 @@ export default function GenericTable({
         border: "1px solid #10B981",
         borderRadius: "8px",
         mb: 3,
-        // Responsivo: scrollable em mobile, não scrollable em desktop
-        overflowX: {
-          xs: "auto", // mobile: sempre scrollable
-          md: scrollable ? "auto" : "visible", // desktop: respeita o prop
-        },
+        width: "100%", // Sempre ocupa todo o container
+        // Scroll baseado na prop scrollable
+        overflowX: scrollable ? "auto" : "visible",
         ...sx,
       }}
     >
       <Table
         sx={{
-          // Responsivo: largura mínima em mobile, largura automática em desktop
-          minWidth: {
-            xs: 650, // mobile: sempre scrollable
-            md: scrollable ? 650 : "auto", // desktop: respeita o prop
-          },
-          width: {
-            xs: "auto", // mobile: sempre scrollable
-            md: scrollable ? "auto" : "100%", // desktop: respeita o prop
-          },
+          width: "100%", // Sempre ocupa 100% do container
+          tableLayout: "auto", // Permite distribuição automática das colunas
+          // Largura mínima baseada na prop scrollable
+          minWidth: scrollable ? "650px" : "100%",
         }}
       >
         <TableHead>
@@ -75,8 +68,16 @@ export default function GenericTable({
                   fontWeight: 600,
                   fontSize: "0.95rem",
                   borderRight: "1px solid #10B981", // Green border
-                  width: key === "roll" ? "100px" : "auto",
+                  width: key === "roll" || key === "D20" ? "100px" : "auto",
                   py: 2,
+                  // Largura mínima baseada na prop scrollable
+                  minWidth: scrollable
+                    ? key === "roll" || key === "D20"
+                      ? "100px"
+                      : "150px"
+                    : key === "roll" || key === "D20"
+                    ? "100px"
+                    : "auto",
                 }}
               >
                 {key === "roll"
@@ -119,14 +120,23 @@ export default function GenericTable({
                 {allKeys.map((key) => (
                   <TableCell
                     key={key}
-                    align={key === "roll" ? "center" : "left"}
+                    align={key === "roll" || key === "D20" ? "center" : "left"}
                     sx={{
-                      color: key === "roll" ? "#d4af37" : "#e0e0e0",
-                      fontWeight: key === "roll" ? 700 : 500,
+                      color:
+                        key === "roll" || key === "D20" ? "#d4af37" : "#e0e0e0",
+                      fontWeight: key === "roll" || key === "D20" ? 700 : 500,
                       fontSize: "0.9rem",
                       borderRight: "1px solid #10B981",
                       textDecoration: isClickable ? "underline" : "none",
                       py: 2,
+                      // Largura mínima baseada na prop scrollable
+                      minWidth: scrollable
+                        ? key === "roll" || key === "D20"
+                          ? "100px"
+                          : "150px"
+                        : key === "roll" || key === "D20"
+                        ? "100px"
+                        : "auto",
                     }}
                   >
                     {row[key] || "—"}

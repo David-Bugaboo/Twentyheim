@@ -41,7 +41,7 @@ function GameSetupPage() {
               <HeaderH1>1) Delimitar o Tabuleiro</HeaderH1>
             </div>
             <MobileText>
-              Uma partida de Mordheim v20 é jogada em um tabuleiro quadrado de
+              Uma partida de 20Heim é jogada em um tabuleiro quadrado de
               90x90cm. Essas dimensões permitem jogar com tranquilidade na
               maioria dos tamanhos de mesa presentes nas casas brasileiras. Caso
               os jogadores desejem um jogo mais lento, podem optar por usar um
@@ -49,11 +49,11 @@ function GameSetupPage() {
               diminuirá a letalidade inerente de jogos com mais de dois
               jogadores, mas pode ser exatamente o que seu bando busca. Jogar em
               tabuleiros menores que 90x90cm é possível, mas oferecerá uma
-              vantagem considerável a bandos focados em combate corpo-a-corpo.
+              vantagem considerável a bandos focados em combate corpo a corpo.
               Embora não seja estritamente necessário, um{" "}
               <strong>playmat</strong> é uma excelente recomendação, visto que
-              as imagens impressas nela podem melhorar a imersão do jogo e a
-              superficie do playmat ajuda a nivelar imperfeições da mesa usada
+              as imagens impressas nele podem melhorar a imersão do jogo e a
+              superfície do playmat ajuda a nivelar imperfeições da mesa usada
               para o jogo e evitar danos nas bases. Após delimitar um espaço
               adequado para jogar, com ou sem playmat, o próximo passo é
               posicionar cenários.
@@ -65,13 +65,13 @@ function GameSetupPage() {
             <MobileText>
               Os jogadores devem posicionar cenários de forma colaborativa,
               priorizando criar um cenário bonito, narrativo e verticalizado.
-              Mordheim é repleta de becos tortutosos, ruínas, escombros e outros
-              horrores, então tente passar essa idéia com o posicionamento dos
+              Mordheim é repleta de becos tortuosos, ruínas, escombros e outros
+              horrores, então tente passar essa ideia com o posicionamento dos
               cenários. É interessante ter várias construções com plataformas,
               andares e níveis, permitindo que a partida extraia o máximo das
               mecânicas de movimentação do jogo. Além disso, é importante que ao
               traçar uma linha imaginária de qualquer ponto de uma borda da mesa
-              a borda oposta, esta linha seja completamente obstruída,
+              à borda oposta, esta linha seja completamente obstruída,
               garantindo cobertura e esconderijo para os bandos que explorarão
               as ruínas nesta escaramuça.
             </MobileText>
@@ -93,29 +93,29 @@ function GameSetupPage() {
             </div>
 
             <div id="posicionar-fragmentos">
-              <HeaderH1>3) Posicionar Fragmentos de Pedra-bruxa</HeaderH1>
+              <HeaderH1>3) Posicionar Fragmentos de Pedra-Bruxa</HeaderH1>
             </div>
             <MobileText>
               Agora você tem uma bela seção arruinada de Mordheim para derramar
               o sangue dos tolos que ousarem te enfrentar. Agora, você precisa
               de algum motivo para derramar suas vísceras no pavimento, certo?
-              Esse motivo são os fragmentos de pedra-bruxa. Valiosos, Venenosos
+              Esse motivo são os fragmentos de Pedra-Bruxa. Valiosos, venenosos
               e viciantes, esses fragmentos são o sangue das veias da economia
               de Mordheim, e os bandos batalhando aqui hoje buscam dominância
               sobre esse recurso. Os fragmentos podem ser representados por
-              qualquer coisa com aproximadamente 25mm de diametro. Uma ficha de
+              qualquer coisa com aproximadamente 25mm de diâmetro. Uma ficha de
               papel, pedras pintadas de verde em cima de uma base de 25mm ou até
               mesmo pequenas peças de impressão 3D que representem esses pedaços
               do cometa maldito que destruiu Mordheim. Esses marcadores sempre
-              são referidos daqui para frente como Fragmentos de Pedra-bruxa. O
+              são referidos daqui para frente como Fragmentos de Pedra-Bruxa. O
               primeiro fragmento deve ser posicionado no centro da mesa, ou no
-              mais próximo possivel do centro. Então, cada jogador posiciona um
+              mais próximo possível do centro. Então, cada jogador posiciona um
               fragmento dentro de 20cm do tesouro central, mas a mais de 15cm de
-              qualquer outro fragmento. Então, cada jogador posiciona ums
-              segundo fragmento a mais de 15cm de outros framentos e a mais de
-              23cm de qualquer borda do tabuleiro. Esse fragmento está Trancado!
-              Eles não precisam ser necessariamente posicionados na altura do
-              chão, e podem ser postos em telhados ou plataformas.
+              qualquer outro fragmento. Então, cada jogador posiciona um segundo
+              fragmento a mais de 15cm de outros fragmentos e a mais de 23cm de
+              qualquer borda do tabuleiro. Esse fragmento está trancado! Eles
+              não precisam ser necessariamente posicionados na altura do chão, e
+              podem ser postos em telhados ou plataformas.
             </MobileText>
 
             <div className="mt-4 mb-4">
@@ -142,11 +142,11 @@ function GameSetupPage() {
               figuras de cada bando no mapa. Cada jogador rola um d20, e o
               jogador com a maior rolagem escolhe qual borda da mesa será a sua.
               A segunda maior rolagem escolhe outra borda (em uma partida de 2
-              jogadores, deve necessiariamente pegar a borda oposta), e assim
-              sucessivamente. Os jogador que teve a maior rolagem posiciona
-              todas as suas figuras, seguido pelo jogador com a segunda maior
-              rolagem, e assim sucessivamente. As figuras devem ser todas
-              posicionadas a até 15cm da sua borda da mesa.
+              jogadores, deve necessariamente pegar a borda oposta), e assim
+              sucessivamente. O jogador que teve a maior rolagem posiciona todas
+              as suas figuras, seguido pelo jogador com a segunda maior rolagem,
+              e assim sucessivamente. As figuras devem ser todas posicionadas a
+              até 15cm da sua borda da mesa.
             </MobileText>
 
             <div id="jogar">
@@ -189,7 +189,7 @@ function GameSetupPage() {
                   ✓ Cenários posicionados com cobertura adequada
                 </div>
                 <div className="text-white">
-                  ✓ Fragmento central de Pedra-bruxa posicionado
+                  ✓ Fragmento central de Pedra-Bruxa posicionado
                 </div>
                 <div className="text-white">
                   ✓ Fragmentos adicionais posicionados pelos jogadores

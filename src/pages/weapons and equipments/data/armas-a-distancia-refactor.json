@@ -24,11 +24,11 @@
       },
       {
         "label": "Giros Brutais",
-        "value": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de movimento para girar sua funda com mais força. Aumente o alcance do próximo ataque a distancia em 6cm."
+        "value": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de movimento para girar sua funda com mais força. Aumente o alcance do próximo ataque à distância em 6cm."
       },
       {
         "label": "Arma de Tecido",
-        "value": "Embora não possa ser usada para ganhar +1 de impeto em lutas, uma figura carregando uma arma na mão principal e uma funda na mão secundária ainda pode pode pegar Fragmentos de Pedra-Bruxa, mas não pode usar a funda para atirar enquanto estiver carregando o fragmento.."
+        "value": "Embora não possa ser usada para ganhar +1 de impeto em lutas, uma figura carregando uma arma na mão principal e uma funda na mão secundária ainda pode pegar Fragmentos de Pedra-Bruxa, mas não pode usar a funda para atirar enquanto estiver carregando o fragmento."
       }
     ]
   },
@@ -52,7 +52,7 @@
     "specialRules": [
       {
         "label": "Especial",
-        "value": "Pode ser usada como arma de mão em combate corpo a corpo. Tem Javelins o suficiente para durar qualquer número de partidas."
+        "value": "Pode ser usada como arma de mão em combate corpo a corpo. Tem javelins o suficiente para durar qualquer número de partidas."
       }
     ]
   },
@@ -126,7 +126,7 @@
     "specialRules": [
       {
         "label": "Corda de Alta Tensão",
-        "value": "Devido a alta tensão necessária para disparar uma flecha, um usuário de arco longo precisa de todo folego. Figuras inimigas ganhamn +1 de bonus adicional para sua rolagem de impeto contra tiros feitos pelo portador desse arco caso ele tenha movido antes de atirar."
+        "value": "Devido à alta tensão necessária para disparar uma flecha, um usuário de arco longo precisa de todo fôlego. Figuras inimigas ganham +1 de bônus adicional para sua rolagem de impeto contra tiros feitos pelo portador desse arco caso ele tenha movido antes de atirar."
       },
       {
         "label": "Duas Mãos",
@@ -262,7 +262,7 @@
     "availability": ["Reptilianos"],
     "maxRange": "16cm",
     "exclusive": null,
-    "flavorText": "Bolas são um conjunto de três bolas de bronze em cordas amarradas juntas. São arremessadas de forma similar a uma funda e giradas ao redor da cabeça para ganhar velocidade. A bolas é uma arma de caça e não machuca o animal. Ela o imobiliza e permite ao caçador subjugá-lo ou abatê-lo com sua lança.",
+    "flavorText": "Bolas são um conjunto de três bolas de bronze em cordas amarradas juntas. São arremessadas de forma similar a uma funda e giradas ao redor da cabeça para ganhar velocidade. As bolas são uma arma de caça e não machucam o animal. Elas o imobilizam e permitem ao caçador subjugá-lo ou abatê-lo com sua lança.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -301,7 +301,7 @@
     "specialRules": [
       {
         "label": "Especial",
-        "value": "Pode ser usada como arma de mão em combate corpo a corpo, com um modificador de dano de -2. Tem facas o suficiente para durar qualquer numero de partidas."
+        "value": "Pode ser usada como arma de mão em combate corpo a corpo, com um modificador de dano de -2. Tem facas o suficiente para durar qualquer número de partidas."
       }
     ]
   }

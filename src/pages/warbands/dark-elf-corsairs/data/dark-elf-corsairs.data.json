@@ -23,15 +23,15 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. Isso pode ser uma ativação em grupo."
       },
       {
         "name": "Habilidades",
-        "description": "O Nobre Druchii começa com 5 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+        "description": "O Nobre Druchii começa com 5 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Visão Excelente",
-        "description": "A figura tem +10cm de alcance com qualquer arma a distância."
+        "description": "A figura tem +10cm de alcance com qualquer arma à distância."
       },
       {
         "name": "Ódio Ancestral",
@@ -53,7 +53,7 @@
       ],
       "armor": [
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" },
         { "name": "Armadura Leve", "cost": "20 coroas" }
       ],
       "miscellaneous": [
@@ -71,8 +71,8 @@
     "quantity": "0-1",
     "stats": {
       "move": 20,
-      "fight": "2",
-      "shoot": "2",
+      "fight": "+2",
+      "shoot": "+2",
       "armour": 9,
       "Vontade": "+4",
       "health": 14,
@@ -90,7 +90,7 @@
       },
       {
         "name": "Visão Excelente",
-        "description": "A figura tem +10cm de alcance com qualquer arma a distância."
+        "description": "A figura tem +10cm de alcance com qualquer arma à distância."
       },
       {
         "name": "Ódio Ancestral",
@@ -113,7 +113,7 @@
       ],
       "armor": [
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" },
         { "name": "Armadura Leve", "cost": "20 coroas" }
       ],
       "miscellaneous": [
@@ -133,7 +133,7 @@
       "fight": "+2",
       "shoot": "0",
       "armour": 9,
-      "Vontade": "4",
+      "Vontade": "+4",
       "health": 10,
       "cost": "55 coroas"
     },
@@ -149,11 +149,11 @@
     "abilities": [
       {
         "name": "Conjurador",
-        "description": "A Bruxa Druchii é um conjuradora da Tradição das Sombras. Ele começa o jogo com 3 magias, de quaisquer tradições presentes na tabela de tradições mágicas."
+        "description": "A Bruxa Druchii é uma conjuradora da Tradição das Sombras. Ela começa o jogo com 3 magias, de quaisquer tradições presentes na tabela de tradições mágicas."
       },
       {
         "name": "Visão Excelente",
-        "description": "A figura tem +10cm de alcance com qualquer arma a distância."
+        "description": "A figura tem +10cm de alcance com qualquer arma à distância."
       },
       {
         "name": "Ódio Ancestral",
@@ -175,7 +175,7 @@
       ],
       "armor": [
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" },
         { "name": "Armadura Leve", "cost": "20 coroas" }
       ],
       "miscellaneous": [
@@ -203,7 +203,7 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "O Lâmina do Massacre começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 8."
+        "description": "O Lâmina do Massacre começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Massacre Violento",
@@ -211,7 +211,7 @@
       },
       {
         "name": "Visão Excelente",
-        "description": "A figura tem +10cm de alcance com qualquer arma a distância."
+        "description": "A figura tem +10cm de alcance com qualquer arma à distância."
       },
       {
         "name": "Ódio Ancestral",
@@ -233,7 +233,7 @@
       ],
       "armor": [
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" },
         { "name": "Armadura Leve", "cost": "20 coroas" }
       ],
       "miscellaneous": [
@@ -259,7 +259,7 @@
     "abilities": [
       {
         "name": "Visão Excelente",
-        "description": "A figura tem +10cm de alcance com qualquer arma a distância."
+        "description": "A figura tem +10cm de alcance com qualquer arma à distância."
       },
       {
         "name": "Ódio Ancestral",
@@ -281,7 +281,7 @@
       ],
       "armor": [
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" },
+        { "name": "Elmo", "cost": "10 coroas" },
         { "name": "Armadura Leve", "cost": "20 coroas" }
       ],
       "miscellaneous": [
@@ -295,8 +295,8 @@
     "quantity": "0-5",
     "stats": {
       "move": 20,
-      "fight": "1",
-      "shoot": "2",
+      "fight": "+1",
+      "shoot": "+2",
       "armour": 9,
       "Vontade": "+1",
       "health": 10,
@@ -305,11 +305,11 @@
     "abilities": [
       {
         "name": "Andarilho Sombrio",
-        "description": "A sombra tem a característica Furtividade(16)"
+        "description": "A sombra tem a característica Furtividade(40)"
       },
       {
         "name": "Visão Excelente",
-        "description": "A figura tem +10cm de alcance com qualquer arma a distância."
+        "description": "A figura tem +10cm de alcance com qualquer arma à distância."
       },
       {
         "name": "Ódio Ancestral",
@@ -333,11 +333,11 @@
     "abilities": [
       {
         "name": "Predador Primitivo",
-        "description": "Bestas Gélidas tem a característica Animal."
+        "description": "Cold One Beasthounds têm a característica Animal."
       },
       {
-        "name": "Leadade Ferrenha",
-        "description": "Bestas Gélidas não podem ser ativadas pela Habilidade Líder do Nobre Druchii. Se não forem ativados em uma ativação em grupo junto com o Domador de Feras, eles agem como criaturas não controladas e permanecem assim até o fim do jogo."
+        "name": "Lealdade Ferrenha",
+        "description": "Cold One Beasthounds não podem ser ativados pela Habilidade Líder do Nobre Druchii. Se não forem ativados em uma ativação em grupo junto com o Domador de Feras, eles agem como figuras não controladas e permanecem assim até o fim do jogo."
       }
     ],
     "equipment": {

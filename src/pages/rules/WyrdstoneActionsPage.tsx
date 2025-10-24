@@ -25,13 +25,13 @@ function WyrdstoneActionsPage() {
           <QuickNavigation sections={navigationSections} />
           <MobileSection>
             <div id="intro">
-              <PageTitle>Ação de Pegar — Fragmentos de Pedra-bruxa</PageTitle>
+              <PageTitle>Ação de Pegar — Fragmentos de Pedra-Bruxa</PageTitle>
             </div>
 
             <MobileText>
               A razão pela qual todos estão aqui. A maldição verde que atrai
               tolos, desesperados e gananciosos para as ruínas. Os fragmentos de
-              Pedra-bruxa — pedaços do próprio cometa que aniquilou esta cidade
+              Pedra-Bruxa — pedaços do próprio cometa que aniquilou esta cidade
               condenada. Não são pequenas lascas, apesar do nome "fragmentos" —
               são <strong>grandes pedaços</strong> do cometa, pesados, pulsantes
               de energia corrupta, e terrivelmente valiosos.
@@ -42,14 +42,14 @@ function WyrdstoneActionsPage() {
             </div>
             <MobileText>
               Uma figura pode gastar uma ação para pegar um fragmento de
-              Pedra-bruxa do chão. O momento em que a ganância supera o bom
+              Pedra-Bruxa do chão. O momento em que a ganância supera o bom
               senso. Porém, há restrições — afinal, pegar tesouros amaldiçoados
               enquanto inimigos observam raramente termina bem.
             </MobileText>
 
             <MobileText>
               <strong>Fragmentos em Baús e Containers:</strong> Alguns
-              fragmentos de Pedra-bruxa estarão em baús e containers fechados.
+              fragmentos de Pedra-Bruxa estarão em baús e containers fechados.
               Para poder pegar o fragmento, a figura deve primeiro gastar uma
               ação para destravar o container, fazendo um teste de{" "}
               <strong>Liderança (Ld)</strong> contra <strong>CD 14</strong>. Só
@@ -87,7 +87,7 @@ function WyrdstoneActionsPage() {
             <MobileText>
               <strong>Exceções e Restrições:</strong> Figuras com uma{" "}
               <strong>arma leve na mão secundária não podem pegar</strong>{" "}
-              fragmentos de Pedra-bruxa. Contudo, figuras com uma{" "}
+              fragmentos de Pedra-Bruxa. Contudo, figuras com uma{" "}
               <strong>funda ou escudo</strong> podem (seguindo regras normais de
               sobrecarga se aplicável).
             </MobileText>
@@ -143,7 +143,7 @@ function WyrdstoneActionsPage() {
               variant="quote"
               className="text-center italic text-lg leading-relaxed mt-8"
             >
-              "A Pedra-bruxa promete riqueza além dos sonhos. Mas em Mordheim,
+              "A Pedra-Bruxa promete riqueza além dos sonhos. Mas em Mordheim,
               cada promessa tem seu preço. E o preço da ganância é pago em
               sangue."
             </MobileText>

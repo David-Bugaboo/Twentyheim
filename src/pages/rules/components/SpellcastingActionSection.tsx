@@ -103,7 +103,7 @@ const SpellcastingActionSection = () => {
 
             <MobileText className="italic text-[#a89968] mb-3">
               Luz sagrada explode do cajado, envolvendo o demônio em chamas
-              purificadoras. A criatura grita — um som que não deveria existir
+              purificadoras. A figura grita — um som que não deveria existir
               neste mundo. O feitiço funciona conforme descrito na tradição da
               Luz.
             </MobileText>

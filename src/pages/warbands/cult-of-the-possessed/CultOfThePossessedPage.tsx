@@ -110,20 +110,9 @@ export default function CultOfThePossessedPage() {
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <PageTitle>Culto dos Possuídos</PageTitle>
-        
-          <MobileSection id="introducao">
-            <MobileText
-              variant="quote"
-              className="text-center text-lg leading-relaxed mb-8"
-            >
-              "Nunca há escassez de homens dispostos a arriscar suas vidas por
-              uma chance de poder real: homens cujas ambições descendem além do
-              escopo de seu direito de nascimento, ou cujas habilidades mágicas
-              ou deformidades físicas os colocam em constante perigo de
-              perseguição."
-            </MobileText>
 
-            <MobileText>
+          <MobileSection id="introducao">
+               <MobileText>
               No rescaldo da destruição de Mordheim, todo tipo de mutante
               surgiu. Enquanto muitos que até então eram imaculados sentem o
               despertar de poderes estranhos, os primeiros sinais de dons
@@ -142,7 +131,7 @@ export default function CultOfThePossessedPage() {
 
             <MobileText>
               Como todos os estudantes das artes sombrias sabem, é pelo poder da
-              magia que criaturas como Daemônios e espíritos são capazes de
+              magia que figuras como Daemônios e espíritos são capazes de
               alcançar o mundo mortal. A Pedra-bruxa que prolifera em Mordheim
               concede vida sobrenatural a muitas coisas vis que por todos os
               direitos naturais nunca deveriam existir. Os Possuídos já foram

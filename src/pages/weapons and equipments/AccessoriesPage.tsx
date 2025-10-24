@@ -39,8 +39,8 @@ export default function AccessoriesPage() {
           <PageTitle>Acessórios</PageTitle>
           <MobileSection>
             <MobileText>
-              Em Mordheim, onde cada vantagem pode significar a diferença entre a
-              vida e a morte, os acessórios representam as ferramentas, itens
+              Em Mordheim, onde cada vantagem pode significar a diferença entre
+              a vida e a morte, os acessórios representam as ferramentas, itens
               mágicos e equipamentos especiais que podem dar a um guerreiro a
               vantagem crucial que ele precisa. Desde amuletos abençoados até
               ferramentas de artesão, cada acessório tem seu propósito único.
@@ -56,7 +56,7 @@ export default function AccessoriesPage() {
               carregar munição e outros suprimentos essenciais.
               <br />• <strong>Iluminação:</strong> Tochas, lanternas e outras
               fontes de luz para navegar nas sombras de Mordheim.
-              <br />• <strong>Servos:</strong> Criaturas ou assistentes que
+              <br />• <strong>Servos:</strong> Figuras ou assistentes que
               auxiliam seus mestres em batalha.
               <br />• <strong>Livros e Tomos:</strong> Conhecimento proibido ou
               sagrado que confere poderes especiais.
@@ -66,10 +66,11 @@ export default function AccessoriesPage() {
             <MobileText>
               • <strong>Restrições:</strong> Alguns acessórios só podem ser
               equipados por heróis ou figuras específicas.
-              <br />• <strong>Limitações:</strong> Apenas um tipo de acessório
-              pode ser carregado por vez (ex: apenas 1 amuleto, 1 anel, 1 manto).
-              <br />• <strong>Duração:</strong> Alguns acessórios são descartados
-              após o uso, outros são permanentes.
+              <br /> • <strong>Limitações:</strong> Apenas um tipo de acessório
+              pode ser carregado por vez (ex.: apenas 1 amuleto, 1 anel, 1
+              manto).
+              <br />• <strong>Duração:</strong> Alguns acessórios são
+              descartados após o uso, outros são permanentes.
               <br />• <strong>Efeitos Únicos:</strong> Cada acessório tem
               propriedades especiais que podem ser ativadas durante o jogo.
             </MobileText>
@@ -99,9 +100,9 @@ export default function AccessoriesPage() {
               variant="quote"
               className="text-center text-lg leading-relaxed mt-8"
             >
-              "Acessórios, ferramentas, consumíveis e itens especiais. Tudo que
-              um guerreiro precisa além de suas armas para sobreviver na cidade
-              amaldiçoada."
+              "Acessórios, ferramentas, consumíveis e itens especiais. Tudo o
+              que um guerreiro precisa além de suas armas para sobreviver na
+              cidade amaldiçoada."
             </MobileText>
           </MobileSection>
         </div>

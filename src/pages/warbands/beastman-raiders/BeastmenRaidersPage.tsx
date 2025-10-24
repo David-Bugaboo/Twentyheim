@@ -11,7 +11,7 @@ import PageTitle from "../../../components/PageTitle";
 const HomemFerasRaidersPage: React.FC = () => {
   // Separar unidades por categoria
   const leader = homemFerasData.find((unit) => unit.role === "Líder");
-  const heroes = homemFerasData.filter((unit) => unit.role === "Héroi");
+  const heroes = homemFerasData.filter((unit) => unit.role === "Herói");
   const soldiers = homemFerasData.filter((unit) => !unit.role);
 
   // Seções para navegação rápida
@@ -62,14 +62,14 @@ const HomemFerasRaidersPage: React.FC = () => {
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <PageTitle>Saqueadores Homem-Fera</PageTitle>
-    
+
           <MobileSection id="introducao">
             <MobileText>
-              Os Homens-Fera são criaturas brutais, selvagens e aberrantes que
+              Os Homens-Fera são figuras brutais, selvagens e aberrantes que
               vivem nas florestas profundas. Qualquer um que viaje através desta
               natureza selvagem corre o risco de ser atacado por estes
               saqueadores imprevisíveis. Muitos daqueles que habitam nos bosques
-              ao redor dos arredores de Mordheim afirmam que essas criaturas vis
+              ao redor dos arredores de Mordheim afirmam que essas figuras vis
               do Caos superam a humanidade em número, embora tais afirmações
               sejam impossíveis de provar, pois os Homens-Fera não constroem
               cidades e não criam qualquer forma estruturada de sociedade.
@@ -80,7 +80,7 @@ const HomemFerasRaidersPage: React.FC = () => {
               onde querem, pilhando e matando por qualquer coisa que precisem ou
               queiram. Eles voluntariamente se voltam uns contra os outros,
               atormentando os mais fracos entre eles por comida e diversão. Os
-              Homem-Fera naturalmente formam bandos errantes, embora seja
+              Homens-Fera naturalmente formam bandos errantes, embora seja
               desconhecido se o fazem conscientemente ou meramente por instinto.
             </MobileText>
 
@@ -138,9 +138,9 @@ const HomemFerasRaidersPage: React.FC = () => {
 
             <MobileText>
               Um bando de Homens-Fera deve incluir um mínimo de 3 modelos. Você
-              tem 500 Coroas de Ouro que pode usar para recrutar seu bando
-              inicial. O número máximo de guerreiros no bando é 15, embora
-              alguns edifícios no acampamento do bando possam aumentar isso.
+              tem 500 coroas que pode usar para recrutar seu bando inicial. O
+              número máximo de guerreiros no bando é 15, embora alguns edifícios
+              no acampamento do bando possam aumentar isso.
             </MobileText>
 
             <MobileText>

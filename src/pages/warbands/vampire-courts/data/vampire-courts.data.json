@@ -3,13 +3,13 @@
     "name": "Conde Vampiro",
     "role": "Herói",
     "stats": {
-      "move": 14,
-      "fight": "+3",
-      "shoot": "+2",
+      "move": 20,
+      "fight": "+4",
+      "shoot": "+3",
       "armour": 10,
       "Vontade": "+5",
-      "health": 20,
-      "cost": "110",
+      "health": 22,
+      "cost": "110 coroas",
       "skills": ["Combate", "Acadêmica", "Força", "Velocidade"]
     },
     "quantity": "1",
@@ -17,15 +17,15 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Conde Vampiro pode ativar até 3 figuras a 8cm dele junto a si."
+        "description": "O Conde Vampiro pode ativar até 3 figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
       },
       {
         "name": "Habilidades",
-        "description": "Vampiros começam com 5 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+        "description": "Vampiros começam com 5 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Morto-Vivo Superior",
-        "description": "Condes Vampiros tem as seguintes características: Morto-Vivo, Immune a Édito de Nagash, e Aterrorizante. Apesar de serem mortos vivos, ganham experiencia, e tem 5 espaços para equipamento como normal."
+        "description": "Condes Vampiros têm as seguintes características: Morto-Vivo, Imune a Édito de Nagash, e Aterrorizante. Apesar de serem mortos-vivos têm 5 espaços para equipamento como normal."
       },
       {
         "name": "Constituição de Morto-Vivo",
@@ -59,7 +59,7 @@
   },
   {
     "name": "Necromante",
-    "role": "Héroi",
+    "role": "Herói",
     "stats": {
       "move": 12,
       "fight": "+2",
@@ -82,11 +82,11 @@
     "abilities": [
       {
         "name": "Conjurador",
-        "description": "Necromantes são conjuradores da Tradição da Necromancia. Eles começam com 2 poderes dentre suas tradições disponíveis."
+        "description": "Necromantes são conjuradores da Tradição da Necromancia. Eles começam com 2 magias dentre suas tradições disponíveis."
       },
       {
         "name": "Ladrão de Tumulos",
-        "description": "O necromante ganha 10 pontos de experiência para cada criatura sem as características Animal, Morto-Vivo, Daemônio e Construto que foi reduzida a 0 pontos de vida durante este jogo, independentemente de por quem. Isso conta para o limite de 300XP da partida."
+        "description": "O Necromante ganha 10 pontos de experiência para cada figura sem as características Animal, Morto-Vivo, Daemônio e Construto que foi reduzida a 0 pontos de vida durante este jogo, independentemente de por quem. Isso conta para o limite de 300XP da partida."
       }
     ],
     "equipment": {
@@ -110,13 +110,13 @@
   },
   {
     "name": "Escória",
-    "role": "Héroi",
+    "role": "Herói",
     "stats": {
       "move": 14,
       "fight": "+0",
       "shoot": "+0",
       "armour": 10,
-      "Vontade": "0",
+      "Vontade": "+2",
       "health": 10,
       "cost": "20 coroas",
       "skills": ["Combate", "Força"]
@@ -126,11 +126,11 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "Escórias começam com 1 habilidade dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+        "description": "Escórias começam com 1 habilidade dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Escravo Vampirico",
-        "description": "Se essa figura participa de um jogo e não sofre os resultados Morto ou Seriamente Ferido em uma rolagem na tabela de sobrevivência, ela pode coletar o sangue dos mortos e feridos para seu mestre. Conte o numero de figuras reduzidas a 0 de vida durante esse jogo. Para cada uma dessas figuras, o vampiro recupera 1 de vida após o jogo, sem precisar pagar por isso. O Vampiro pode se beneficiar dessa habilidade de apenas uma figura, independente de quantas figuras existam com essa habilidade."
+        "description": "Se essa figura participa de um jogo e não sofre os resultados Morto ou Seriamente Ferido em uma rolagem na tabela de sobrevivência, ela pode coletar o sangue dos mortos e feridos para seu mestre. Conte o número de figuras reduzidas a 0 de vida durante esse jogo. Para cada uma dessas figuras, o vampiro recupera 1 de vida após o jogo, sem precisar pagar por isso. O Vampiro pode se beneficiar dessa habilidade de apenas uma figura, independentemente de quantas figuras existam com essa habilidade."
       }
     ],
     "equipment": {
@@ -161,19 +161,19 @@
   {
     "name": "Zumbi",
     "stats": {
-      "move": 10,
-      "fight": "+1",
-      "shoot": "+0",
-      "armour": 12,
-      "Vontade": "+0",
-      "health": 8,
+      "move": 14,
+      "fight": "0",
+      "shoot": "-",
+      "armour": 10,
+      "Vontade": "-1",
+      "health": 10,
       "cost": "15 coroas"
     },
     "quantity": "ilimitado",
     "abilities": [
       {
         "name": "Morto-Vivo",
-        "description": "Zombies tem a característica Morto-Vivo."
+        "description": "Zumbis têm a característica Morto-Vivo."
       },
       {
         "name": "Acéfalo",
@@ -184,23 +184,23 @@
   {
     "name": "Carniçal",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+2",
       "shoot": "+0",
-      "armour": 10,
-      "Vontade": "0",
-      "health": 8,
+      "armour": 12,
+      "Vontade": "-1",
+      "health": 12,
       "cost": "40 coroas"
     },
     "quantity": "ilimitado",
     "abilities": [
       {
         "name": "Fome insáciável",
-        "description": "Ghouls tem a característica Voraz."
+        "description": "Carniçais têm a característica Voraz."
       },
       {
         "name": "Terror dos Cemitérios",
-        "description": "Carniçais tem as características Morto-Vivo e Aterrorizante."
+        "description": "Carniçais têm as características Morto-Vivo e Aterrorizante."
       }
     ]
   },
@@ -210,20 +210,20 @@
       "move": 24,
       "fight": "+3",
       "shoot": "+0",
-      "armour": 11,
+      "armour": 10,
       "Vontade": "-2",
-      "health": 10,
+      "health": 12,
       "cost": "50 coroas"
     },
     "quantity": "0-5",
     "abilities": [
       {
         "name": "Besta Reanimada",
-        "description": "Lobos Atrozes tem as características Morto-Vivo e Aterrorizante."
+        "description": "Lobos Atrozes têm as características Animal, Morto-Vivo e Aterrorizante."
       },
       {
         "name": "Mandíbulas do Túmulo",
-        "description": "Lobos Atrozes tem a característica Agarrar."
+        "description": "Lobos Atrozes têm a característica Agarrar e Voraz."
       }
     ]
   }

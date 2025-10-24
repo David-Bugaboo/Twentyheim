@@ -63,7 +63,7 @@ function EquipmentRulesPage() {
     },
     {
       name: "Acessórios",
-      path: "/equipment/acessories",
+      path: "/equipment/accessories",
       description:
         "Acessórios, ferramentas, consumíveis e itens especiais. Tudo que um guerreiro precisa além de suas armas para sobreviver na cidade amaldiçoada.",
     },
@@ -103,15 +103,15 @@ function EquipmentRulesPage() {
               <HeaderH1>Espaços de Item</HeaderH1>
             </div>
             <MobileText>
-              Figuras tem 5 espaços de item, 6 se forem Grandes. Espaços de item
+              Figuras têm 5 espaços de item, 6 se forem Grandes. Espaços de item
               representam quantas coisas uma figura pode carregar e não apenas
-              armas e armaduras. Uma aljava por exemplo, gasta uma espaço de
-              item assim como o arco para quem fornece flechas. Importante
+              armas e armaduras. Uma aljava, por exemplo, gasta um espaço de
+              item assim como o arco para quem fornece flechas. É importante
               lembrar que equipamentos particularmente volumosos como armaduras
               pesadas e armas de duas mãos ocupam dois espaços de item, tornando
               importante pensar estratégicamente no que carregar. Por exemplo,
-              um guerreiro carregando uma armadura pesada e uma arma de duas só
-              teria espaço para mais um item, diminuindo suas escolhas
+              um guerreiro carregando uma armadura pesada e uma arma de duas
+              mãos só teria espaço para mais um item, diminuindo suas escolhas
               estratégicas.
             </MobileText>
 
@@ -132,9 +132,9 @@ function EquipmentRulesPage() {
             </div>
             <MobileText>
               São a forma mais segura de tirar um inimigo de circulação em
-              mordheim. Elas vem nas mais diversas variedades e tipos,
-              oferecendo bonus específicos e ocupando nichos estratégicos únicos
-              para um guerreiro que as usem os atributos mais importantes de uma
+              Mordheim. Elas vêm nas mais diversas variedades e tipos,
+              oferecendo bônus específicos e ocupando nichos estratégicos únicos
+              para um guerreiro que as use. Os atributos mais importantes de uma
               arma são:
             </MobileText>
             <div id="atributos-armas">
@@ -179,7 +179,7 @@ function EquipmentRulesPage() {
             </div>
             <MobileText>
               Qual a melhor forma de não levar uma punhalada em uma cidade onde
-              todos estão tentando deslizar uma lamina entre suas costelas? Uma
+              todos estão tentando deslizar uma lâmina entre suas costelas? Uma
               camada de gambenson e malha entre a ponta do punhal e sua pele,
               claro! Armaduras são a forma mais confiável de aumentar sua
               característica <strong>Armadura</strong>. Todas as armaduras
@@ -222,10 +222,10 @@ function EquipmentRulesPage() {
             </div>
             <MobileText>
               Armas e Armaduras são excelentes na hora de lutar, mas existem
-              várias outras coisas importantes a se pensar en Mordheim. Portas a
+              várias outras coisas importantes a se pensar em Mordheim. Portas a
               arrombar, escuridão a desbravar e algum lugar para carregar suas
               flechas. Essa é a função dos acessórios: Embora não pareçam
-              extremamente uteis a principio, eles podem ser a diferença entre
+              extremamente úteis a princípio, eles podem ser a diferença entre
               escapar de uma horda de zumbis subindo um cavalete portátil ou
               morrer com os ossos roídos em um beco. Escolha com sabedoria.
             </MobileText>

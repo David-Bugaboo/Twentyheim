@@ -45,7 +45,7 @@ const OrcMobPage: React.FC = () => {
     (unit) => unit.role === "Herói" && unit.name === "Chefaum Orc"
   ) as Unit;
   const heroes = orcMobData.filter(
-    (unit) => unit.role === "Héroi" && unit.name !== "Chefaum Orc"
+    (unit) => unit.role === "Herói" && unit.name !== "Chefaum Orc"
   ) as Unit[];
   const soldiers = orcMobData.filter((unit) => !unit.role) as Unit[];
 
@@ -85,9 +85,9 @@ const OrcMobPage: React.FC = () => {
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <div className="px-4 py-8 max-w-4xl mx-auto">
         <QuickNavigation sections={navigationSections} />
-        
+
         <MobileSection id="introducao">
-        <PageTitle>Bando Orc</PageTitle>
+          <PageTitle>Bando Orc</PageTitle>
           <MobileText>
             Ô BICHO, NÓIS ORC GOSTA É DUMA XINXA, VIU? NÓIS NUM TEM NADA QUE DÊ
             MAIS GOSTO QUE METER PORRADA E LEVAR UM MONTE DE COISA PRA CASA! A
@@ -115,8 +115,8 @@ const OrcMobPage: React.FC = () => {
           <HeaderH1 id="estrutura-do-bando">Estrutura do Bando</HeaderH1>
           <MobileText>
             Um bando orc deve incluir um mínimo de 3 modelos. Você tem 500
-            coroas de ouro que pode usar para recrutar e equipar seu bando. O
-            número máximo de guerreiros no bando é 20.
+            coroas que pode usar para recrutar e equipar seu bando. O número
+            máximo de guerreiros no bando é 20.
           </MobileText>
           <MobileText>
             • <strong>Chefaum Orc:</strong> Cada bando orc deve ter um Chefaum –
@@ -129,8 +129,8 @@ const OrcMobPage: React.FC = () => {
             Minino Orc.
             <br />• <strong>Goblin:</strong> Seu bando pode incluir qualquer
             número de Goblins.
-            <br />• <strong>Pé-Duro das Gruta:</strong> Seu bando pode incluir
-            até 5 Pé-Duros das Gruta.
+            <br /> • <strong>Pé-Duro das Cavernas:</strong> Seu bando pode
+            incluir até 5 Pé-Duros das Cavernas.
             <br />• <strong>Troll:</strong> Seu bando pode incluir até 1 Troll.
           </MobileText>
         </MobileSection>

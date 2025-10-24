@@ -37,7 +37,7 @@ function FiguresAndAttributesPage() {
   );
 
   const navigationSections = [
-    { id: "intro", title: "Figuras e seus características", level: 0 },
+    { id: "intro", title: "Figuras e suas características", level: 0 },
     { id: "atributos", title: "Os Atributos", level: 0 },
     { id: "movimento", title: "Movimento", level: 1 },
     { id: "impeto", title: "Ímpeto", level: 1 },
@@ -62,14 +62,14 @@ function FiguresAndAttributesPage() {
           <QuickNavigation sections={navigationSections} />
           <MobileSection>
             <div id="intro">
-              <PageTitle>Figuras e seus características</PageTitle>
+              <PageTitle>Figuras e suas características</PageTitle>
             </div>
 
             <MobileText>
               As miniaturas que representam os soldados do seu bando de
               desgarradados são sempre mencionadas pelas regras como "Figuras".
-              A definição do quão competentes elas são em diferentes tarefas são
-              definididas pelos suas <strong>Atributos</strong>.
+              A definição de quão competentes elas são em diferentes tarefas é
+              definida pelos seus <strong>Atributos</strong>.
             </MobileText>
 
             <div id="atributos">
@@ -83,8 +83,9 @@ function FiguresAndAttributesPage() {
               <strong>Movimento</strong> determina a distância que uma figura
               pode se mover em um turno. Quanto maior o Movimento, mais terreno
               a figura pode cobrir, permitindo posicionamento tático superior,
-              retiradas rápidas ou avanços agressivos. Figuras com alto M são
-              essenciais para manobras de flanco e capturar recursos.
+              retiradas rápidas ou avanços agressivos. Figuras com alto
+              Movimento são essenciais para manobras de flanco e capturar
+              recursos.
             </MobileText>
 
             <div id="impeto">
@@ -94,7 +95,7 @@ function FiguresAndAttributesPage() {
               <strong>Ímpeto</strong> representa a habilidade de combate corpo a
               corpo da figura. Este atributo é usado para ataques em combate,
               carga e outras ações que envolvem confronto direto, além de ações
-              que exigem força ou acuidade fisica. Figuras com alto Ímpeto são
+              que exigem força ou acuidade física. Figuras com alto Ímpeto são
               devastadoras em combate próximo e capazes de quebrar formações
               inimigas com cargas brutais.
             </MobileText>
@@ -103,9 +104,9 @@ function FiguresAndAttributesPage() {
               <HeaderH2>Precisão</HeaderH2>
             </div>
             <MobileText>
-              <strong>Habilidade Balística</strong> define a habilidade de
-              combate à distância da figura. Usado para ataques com armas com
-              arcos, bestas e pistolas, este atributo é crucial para figuras que
+              <strong>Precisão</strong> define a habilidade de combate à
+              distância da figura. Usado para ataques com armas com arcos,
+              bestas e pistolas, este atributo é crucial para figuras que
               preferem manter distância do inimigo. Arqueiros, besteiros e
               atiradores especializados dependem deste atributo para eliminar
               alvos de longe. Figuras com alta Precisão são capazes de
@@ -130,22 +131,20 @@ function FiguresAndAttributesPage() {
               <HeaderH2>Vontade</HeaderH2>
             </div>
             <MobileText>
-              <strong>Vontade</strong> determina a habilidade da figura de
-              projetar sua vontade sobre os outros ou usá-la para se proteger de
-              efeitos que afetem sua mente. Este atributo é especialmente
-              importante quando enfrentando magos, daemônios ou outras criaturas
-              que atacam a mente. Uma Vontade forte pode proteger contra
-              feitiços devastadores. Uma criatura com Vontade alta tem uma força
-              mental considerável, podendo até mesmo resistir a possessão
-              demoníaca.
+              <strong>Vontade</strong> determina a sua força mental e
+              inteligência. Este atributo é especialmente importante quando
+              enfrentando magos, daemônios ou outras figuras que atacam a mente.
+              Uma Vontade forte pode proteger contra feitiços devastadores. Uma
+              figura com Vontade alta tem uma força mental considerável, podendo
+              até mesmo resistir a possessão demoníaca.
             </MobileText>
 
             <div id="vigor">
               <HeaderH2>Vida</HeaderH2>
             </div>
             <MobileText>
-              <strong>Vida</strong> Representa quantos ferimentos uma figura
-              pode sofrer antes de cair em combate. Figuras com W alto são
+              <strong>Vida</strong> representa quantos ferimentos uma figura
+              pode sofrer antes de cair em combate. Figuras com Vida alta são
               capazes de suportar punição incalculável antes de cair, esgotando
               recursos dos bandos inimigos enquanto aliados mais frágeis
               realizam ações táticas pelo mapa. Uma figura que chegue a zero de
@@ -172,9 +171,9 @@ function FiguresAndAttributesPage() {
               a +4, representando guerreiros que sobreviveram a muitas batalhas.
             </MobileText>
 
-            <HeaderH2>Criaturas Sobrenaturais</HeaderH2>
+            <HeaderH2>Figuras Sobrenaturais</HeaderH2>
             <MobileText>
-              Daemônios, monstros e outras criaturas podem ter atributos que
+              Daemônios, monstros e outras figuras podem ter atributos que
               excedem os valores normais, refletindo sua natureza sobrenatural e
               poder devastador.
             </MobileText>
@@ -182,9 +181,9 @@ function FiguresAndAttributesPage() {
             <div id="caracteristicas">
               <HeaderH1>Características de Figura</HeaderH1>
               <MobileText>
-                As características são habilidades especiais que algumas
-                criaturas possuem, conferindo vantagens únicas em combate ou
-                situações específicas. Essas características podem variar desde
+                As características são habilidades especiais que algumas figuras
+                possuem, conferindo vantagens únicas em combate ou situações
+                específicas. Essas características podem variar desde
                 habilidades naturais até poderes sobrenaturais, e são
                 fundamentais para entender as capacidades de cada tipo de figura
                 em Mordheim.
@@ -205,7 +204,8 @@ function FiguresAndAttributesPage() {
                       term.term.includes("Levitar") ||
                       term.term.includes("Procurado") ||
                       term.term.includes("Visão Verdadeira") ||
-                      term.term.includes("Veneno") ||
+                      term.term.includes("Peçonhento") ||
+                      term.term.includes("Peçonhenta") ||
                       term.term.includes("Regeneração") ||
                       term.term.includes("Agarrar") ||
                       term.term.includes("Dreno de Energia") ||

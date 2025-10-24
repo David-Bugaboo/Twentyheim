@@ -99,7 +99,7 @@
     "sellCost": "200 coroas",
     "exclusive": null,
     "flavorText": "Criada originalmente por sacerdotes de Morr, essa solução foi extremamente otimizada pelos alquimistas da tradição do metal, se tornando um preservante extremamente eficiente. Cadáveres embalsamados por essa solução já foram encontrados intactos depois de séculos.",
-    "user": "Fora de jogo, usado em uma criatura morta.",
+    "user": "Fora de jogo, usado em uma figura morta.",
     "armorBonus": null,
     "movePenalty": null,
     "slots": "1",
@@ -109,7 +109,7 @@
       { "label": "Ingredientes", "value": "120 coroas" },
       {
         "label": "Efeito",
-        "value": "Uma figura morta pode ser preservada por até 5 jogos. Durante esse período, um Sopro de Shallaya ou a magia Milagre podem trazer a criatura de volta à vida, ao invés do período normal de imediatamente após a morte de uma criatura."
+        "value": "Uma figura morta pode ser preservada por até 5 jogos. Durante esse período, um Sopro de Shallaya ou a magia Milagre podem trazer a figura de volta à vida, ao invés do período normal de imediatamente após a morte de uma figura."
       }
     ]
   },
@@ -242,7 +242,7 @@
       { "label": "Use", "value": "Beber como uma ação." },
       {
         "label": "Efeito",
-        "value": "Beber como uma ação. Até o fim do jogo, apenas uma vez, a figura que bebeu pode como ação cuspir fogo, causando um ataque à distância elemental +3 contra uma criatura a até 15cm."
+        "value": "Beber como uma ação. Até o fim do jogo, apenas uma vez, a figura que bebeu pode como ação cuspir fogo, causando um ataque à distância elemental +3 contra uma figura a até 15cm."
       }
     ]
   },
@@ -297,7 +297,7 @@
     "purchaseCost": "200 coroas",
     "sellCost": "80 coroas",
     "exclusive": null,
-    "flavorText": "Os temidos cultos de Fanáticos Goblin das Montanhas da Borda do Mundo usam esses cogumelos alucinógenos para se levar a um estado frenético. Cheira a terra úmida e loucura. Quando bebido, fúria berserker inunda a mente - dor desaparece, medo evapora, apenas existe a necessidade primal de MATAR. A figura ganha +1 Ímpeto e recebe +1 modificador de dano adicional em qualquer ataque corpo a corpo bem-sucedido. Porém, a figura DEVE, se possível, usar todas suas ações todo turno para mover-se para combate e lutar com a figura inimiga mais próxima (incluindo criaturas não controladas) em linha de visão e não atualmente em combate.\n\nO Elixir de Cogumelo Louco transforma guerreiros em máquinas de matar furiosas - devastadoras em combate, mas completamente descontroladas. Use quando precisar destruir inimigos, mas esteja preparado para perder todo controle tático.",
+    "flavorText": "Os temidos cultos de Fanáticos Goblin das Montanhas da Borda do Mundo usam esses cogumelos alucinógenos para se levar a um estado frenético. Cheira a terra úmida e loucura. Quando bebido, fúria berserker inunda a mente - dor desaparece, medo evapora, apenas existe a necessidade primal de MATAR. A figura ganha +1 Ímpeto e recebe +1 modificador de dano adicional em qualquer ataque corpo a corpo bem-sucedido. Porém, a figura DEVE, se possível, usar todas suas ações todo turno para mover-se para combate e lutar com a figura inimiga mais próxima (incluindo figuras não controladas) em linha de visão e não atualmente em combate.\n\nO Elixir de Cogumelo Louco transforma guerreiros em máquinas de matar furiosas - devastadoras em combate, mas completamente descontroladas. Use quando precisar destruir inimigos, mas esteja preparado para perder todo controle tático.",
     "user": "Beber como uma ação",
     "armorBonus": null,
     "movePenalty": null,
@@ -369,7 +369,7 @@
     "purchaseCost": "500 coroas",
     "sellCost": "200 coroas",
     "exclusive": null,
-    "flavorText": "Este é um veneno extraído dos Heldrakes, serpentes marinhas gigantescas que assolam o Oceano Ocidental e a costa de Naggaroth. O menor ferimento infectado pelo Veneno Sombrio causa dor excruciante, incapacitando até os mais corajosos dos homens. Líquido negro e viscoso em frasco pequeno, extraído das glândulas venenosas dessas criaturas terríveis. Apenas uma gota é suficiente para causar agonia insuportável - aplicado em lâmina, o veneno espera pacientemente. Este veneno pegajoso pode ser usado para revestir qualquer arma exceto cajado, arco ou besta. Pode ser usado em uma flecha ou virote de besta. Na próxima vez que esta arma causar dano, a figura que receber o dano é envenenada (assumindo que não seja imune a veneno). A arma perde a habilidade de envenenar após o primeiro ataque que causar dano. Esta poção não é mágica e não é afetada por nada que cancele magia.\n\nAssassinos adoram o Veneno Sombrio - silencioso, letal, e legal o suficiente para não chamar atenção de caçadores de bruxas. Um corte pequeno, e a vítima morre lentamente enquanto o veneno trabalha.",
+    "flavorText": "Este é um veneno extraído dos Heldrakes, serpentes marinhas gigantescas que assolam o Oceano Ocidental e a costa de Naggaroth. O menor ferimento infectado pelo Veneno Sombrio causa dor excruciante, incapacitando até os mais corajosos dos homens. Líquido negro e viscoso em frasco pequeno, extraído das glândulas venenosas dessas figuras terríveis. Apenas uma gota é suficiente para causar agonia insuportável - aplicado em lâmina, o veneno espera pacientemente. Este veneno pegajoso pode ser usado para revestir qualquer arma exceto cajado, arco ou besta. Pode ser usado em uma flecha ou virote de besta. Na próxima vez que esta arma causar dano, a figura que receber o dano é envenenada (assumindo que não seja imune a veneno). A arma perde a habilidade de envenenar após o primeiro ataque que causar dano. Esta poção não é mágica e não é afetada por nada que cancele magia.\n\nAssassinos adoram o Veneno Sombrio - silencioso, letal, e legal o suficiente para não chamar atenção de caçadores de bruxas. Um corte pequeno, e a vítima morre lentamente enquanto o veneno trabalha.",
     "user": "Aplicar em arma como uma ação",
     "armorBonus": null,
     "movePenalty": null,

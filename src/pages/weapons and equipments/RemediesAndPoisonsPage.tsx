@@ -41,16 +41,16 @@ export default function RemediesAndPoisonsPage() {
           <MobileSection>
             <MobileText>
               Em Mordheim, onde cada ferimento pode ser fatal e cada vantagem é
-              preciosa, remédios e venenos representam o lado sombrio da alquimia
-              e da medicina. Desde poções curativas abençoadas pelas deusas até
-              venenos mortais extraídos de criaturas monstruosas, estes itens
-              podem salvar ou condenar vidas.
+              preciosa, remédios e venenos representam o lado sombrio da
+              alquimia e da medicina. Desde poções curativas abençoadas pelas
+              deusas até venenos mortais extraídos de figuras monstruosas, estes
+              itens podem salvar ou condenar vidas.
             </MobileText>
 
             <HeaderH1>Tipos de Remédios e Venenos</HeaderH1>
             <MobileText>
-              • <strong>Remédios:</strong> Poções e substâncias que curam feridas,
-              restauram vitalidade ou conferem benefícios temporários.
+              • <strong>Remédios:</strong> Poções e substâncias que curam
+              feridas, restauram vitalidade ou conferem benefícios temporários.
               <br />• <strong>Venenos:</strong> Substâncias tóxicas aplicadas em
               armas para causar danos adicionais ou efeitos debilitantes.
               <br />• <strong>Drogas:</strong> Substâncias que alteram as
@@ -97,9 +97,9 @@ export default function RemediesAndPoisonsPage() {
               variant="quote"
               className="text-center text-lg leading-relaxed mt-8"
             >
-              "Poções que curam feridas mortais, venenos que matam sem som, drogas
-              que transformam covardes em heróis. A alquimia da sobrevivência em
-              Mordheim."
+              "Poções que curam feridas mortais, venenos que matam sem som,
+              drogas que transformam covardes em heróis. A alquimia da
+              sobrevivência em Mordheim."
             </MobileText>
           </MobileSection>
         </div>

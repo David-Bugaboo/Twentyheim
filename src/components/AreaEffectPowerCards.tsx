@@ -1,4 +1,3 @@
-
 import AreaEffectCard from "./AreaEffectCard";
 
 function AreaEffectPowerCards() {
@@ -28,7 +27,7 @@ function AreaEffectPowerCards() {
     {
       title: "Cone",
       description:
-        "Cones são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Áreas de efeito de cone não tem alcance e devem sempre ser posicionadas com a ponta menor do cone adjacente a qualquer ponto da base de uma criatura.",
+        "Cones são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Áreas de efeito de cone não tem alcance e devem sempre ser posicionadas com a ponta menor do cone adjacente a qualquer ponto da base de uma figura.",
       variant: "cone" as const,
     },
     {

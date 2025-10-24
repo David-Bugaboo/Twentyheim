@@ -5,7 +5,7 @@
     "role": "Líder",
     "quantity": "1",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+2",
       "shoot": "+0",
       "armour": 10,
@@ -31,9 +31,9 @@
         { "name": "Armadura Leve", "cost": "20 coroas" },
         { "name": "Armadura Pesada", "cost": "50 coroas" },
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" }
+        { "name": "Elmo", "cost": "10 coroas" }
       ],
-      "acessories": [],
+      "accessories": [],
       "modifiers": []
     },
     "spellAffinity": {
@@ -48,7 +48,7 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
       },
       {
         "name": "Conjurador",
@@ -59,7 +59,7 @@
   {
     "id": "possuido",
     "name": "Possuído",
-    "role": "Héroi",
+    "role": "Herói",
     "quantity": "0-2",
     "stats": {
       "move": 18,
@@ -74,7 +74,7 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "O Possuído começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+        "description": "O Possuído começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Mutações",
@@ -82,7 +82,7 @@
       },
       {
         "name": "Presença Sombria",
-        "description": "O Possuído é uma figura aberrante com uma presença que causa horror. Ele tem as características Aterrorizante e Demônio."
+        "description": "O Possuído é uma figura aberrante com uma presença que causa horror. Ele tem as características Aterrorizante e Daemônio."
       },
       {
         "name": "Seleção de Habilidades",
@@ -93,10 +93,10 @@
   {
     "id": "mutante",
     "name": "Mutante",
-    "role": "Héroi",
+    "role": "Herói",
     "quantity": "0-2",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+2",
       "shoot": "0",
       "armour": 10,
@@ -123,15 +123,15 @@
         { "name": "Armadura Leve", "cost": "20 coroas" },
         { "name": "Armadura Pesada", "cost": "50 coroas" },
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" }
+        { "name": "Elmo", "cost": "10 coroas" }
       ],
-      "acessories": [],
+      "accessories": [],
       "modifiers": []
     },
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "O Mutante começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 8."
+        "description": "O Mutante começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Mutações",
@@ -144,7 +144,7 @@
     "name": "Insanos",
     "quantity": "ilimitado",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+2",
       "shoot": "0",
       "armour": 10,
@@ -170,9 +170,9 @@
         { "name": "Armadura Leve", "cost": "20 coroas" },
         { "name": "Armadura Pesada", "cost": "50 coroas" },
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" }
+        { "name": "Elmo", "cost": "10 coroas" }
       ],
-      "acessories": [],
+      "accessories": [],
       "modifiers": []
     },
     "abilities": []
@@ -182,7 +182,7 @@
     "name": "Alma Sombria",
     "quantity": "0-5",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "0",
       "shoot": "0",
       "armour": 10,
@@ -193,7 +193,7 @@
     "abilities": [
       {
         "name": "Mente Profanada",
-        "description": "O Alma sombria teve sua mente completamente destruido pelo seu antigo processo de possessão. Ele tem a característica Mente de Ferro."
+        "description": "A Alma Sombria teve sua mente completamente destruída pelo seu antigo processo de possessão. Ela tem a característica Mente de Ferro."
       }
     ],
     "equipment": {
@@ -210,9 +210,9 @@
         { "name": "Armadura Leve", "cost": "20 coroas" },
         { "name": "Armadura Pesada", "cost": "50 coroas" },
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" }
+        { "name": "Elmo", "cost": "10 coroas" }
       ],
-      "acessories": [],
+      "accessories": [],
       "modifiers": []
     }
   },
@@ -245,9 +245,9 @@
         { "name": "Armadura Leve", "cost": "20 coroas" },
         { "name": "Armadura Pesada", "cost": "50 coroas" },
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" }
+        { "name": "Elmo", "cost": "10 coroas" }
       ],
-      "acessories": [],
+      "accessories": [],
       "modifiers": []
     }
   }

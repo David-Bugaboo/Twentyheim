@@ -3,7 +3,6 @@ import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
 import HeaderH1 from "../../components/HeaderH1";
 
-
 function RewardsPage() {
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
@@ -13,7 +12,7 @@ function RewardsPage() {
             <PageTitle>Gastando Coroas</PageTitle>
 
             <MobileText>
-              Se você vendeu seus fragmentos de pedra-bruxa, ou um héroi
+              Se você vendeu seus fragmentos de pedra-bruxa, ou um herói
               conseguiu um bom saque explorando as ruínas, esse é o momento de
               gastar suas coroas.
             </MobileText>
@@ -26,30 +25,18 @@ function RewardsPage() {
 
             <HeaderH1>Rearmar-se</HeaderH1>
             <MobileText>
-              Quaisquer número de items de raridade comum podem ser comprados
-              pelos seus custos normais. Lembre-se que figuras só pode equipar
-              itens que estejam na sua tabela de equipamento.
+              Qualquer número de itens de raridade comum podem ser comprados
+              pelos seus custos normais. Lembre-se de que figuras só podem
+              equipar itens que estejam na sua tabela de equipamento.
             </MobileText>
 
             <HeaderH1>Comprar Itens Raros</HeaderH1>
             <MobileText>
-              Se o jogador tiver enviado seus hérois para procurar itens no
-              mercado negro, ele pode comprar os items rolados na atividade.
+              Se o jogador tiver enviado seus heróis para procurar itens no
+              mercado negro, ele pode comprar os itens rolados na atividade.
             </MobileText>
 
-            <HeaderH1>Contratar Mercenários</HeaderH1>
-            <MobileText>
-              Se o jogador tiver enviado seus hérois para procurar mercenários,
-              ele pode contratar os mercenários achados nessa atividade.
-            </MobileText>
-
-            <HeaderH1>Contratar Lendas</HeaderH1>
-            <MobileText>
-              Se o jogador tiver enviado seus hérois para procurar lendas, ele
-              pode contratar as lendas achadas nessa atividade.
-            </MobileText>
-
-            <HeaderH1>Contratar Soldados e Hérois</HeaderH1>
+            <HeaderH1>Contratar Soldados e Heróis</HeaderH1>
             <MobileText>
               Você pode contratar novos soldados, pagando a mesma quantidade que
               pagaria no começo da campanha. A diferença principal é que um novo

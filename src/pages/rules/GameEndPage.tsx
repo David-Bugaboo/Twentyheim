@@ -6,7 +6,6 @@ import HeaderH2 from "../../components/HeaderH2";
 
 import QuickNavigation from "../../components/QuickNavigation";
 
-
 function GameEndPage() {
   const navigationSections = [
     { id: "intro", title: "Encerramento do Jogo", level: 0 },
@@ -41,11 +40,11 @@ function GameEndPage() {
               <HeaderH1>Condições de Vitória</HeaderH1>
             </div>
             <MobileText>
-              A partida acaba quando uma das seguintes condições é cumprida:
+              A partida acaba quando uma das seguintes condições for cumprida:
             </MobileText>
             <MobileText>
               •{" "}
-              <strong>Todos os fragmentos de Pedra-bruxa saíram do mapa</strong>{" "}
+              <strong>Todos os fragmentos de Pedra-Bruxa saíram do mapa</strong>{" "}
               — Os tesouros foram capturados, e não há mais razão para lutar nas
               ruínas.
             </MobileText>
@@ -67,7 +66,7 @@ function GameEndPage() {
             </div>
             <MobileText>
               Quando o jogo termina, qualquer figura segurando um fragmento de
-              Pedra-bruxa automaticamente o captura para seu bando. Não importa
+              Pedra-Bruxa automaticamente o captura para seu bando. Não importa
               onde ela esteja no mapa — se está viva e carregando o tesouro, ele
               é seu.
             </MobileText>
@@ -92,7 +91,6 @@ function GameEndPage() {
         </div>
       </div>
     </div>
-
   );
 }
 

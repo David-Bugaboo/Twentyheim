@@ -125,7 +125,8 @@ export default function WeaponsAndEquipmentsPage() {
                   </MobileText>
                   <button
                     onClick={() => navigate(category.path)}
-                    className="w-full px-6 py-3 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white rounded-lg transition-colors duration-200 font-bold text-center"
+                    className="w-full px-4 py-3 rounded-md transition-all duration-150 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-green-500/30 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white active:scale-[0.99]"
+                    style={{ fontFamily: "Cinzel, serif" }}
                   >
                     Explorar {category.name}
                   </button>

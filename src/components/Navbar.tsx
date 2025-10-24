@@ -40,13 +40,44 @@ const Navbar: React.FC = () => {
         { label: "Criação de Bando", path: "/rules/warband-creation" },
         { label: "Regras de Equipamentos", path: "/rules/equipment-rules" },
         { label: "Preparação do Jogo", path: "/rules/game-setup" },
+        { label: "Sistema de Combate", path: "/rules/combat-system" },
         { label: "Fim do Jogo", path: "/rules/game-end" },
+        { label: "Acontecimentos", path: "/rules/happenings" },
+      ],
+    },
+    {
+      label: "Facções",
+      path: "/warbands",
+      children: [
+        { label: "Todos as Facções", path: "/warbands" },
+        { label: "Mercenários", path: "/warbands/mercenaries" },
+        { label: "Irmãs de Sigmar", path: "/warbands/sisters-of-sigmar" },
+        { label: "Skaven", path: "/warbands/skaven" },
+        {
+          label: "Saqueadores Homem-Besta",
+          path: "/warbands/beastman-raiders",
+        },
+        {
+          label: "Caçadores de Tesouro Anões",
+          path: "/warbands/dwarf-treasure-hunters",
+        },
+        { label: "Mata-Trolls Anão", path: "/warbands/dwarf-troll-slayers" },
+        {
+          label: "Culto dos Possuídos",
+          path: "/warbands/cult-of-the-possessed",
+        },
+        { label: "Cortes Vampíricas", path: "/warbands/vampire-courts" },
+        { label: "Caçadores de Bruxas", path: "/warbands/witch-hunters" },
+        { label: "Reptilianos", path: "/warbands/lizardmen" },
+        { label: "Horda Orc", path: "/warbands/orc-mob" },
+        { label: "Filhos de Hashut", path: "/warbands/sons-of-hashut" },
       ],
     },
     {
       label: "Combate",
       path: "/rules/combat-system",
       children: [
+        { label: "Sistema de Combate", path: "/rules/combat-system" },
         { label: "Ações de Movimento", path: "/rules/movement-actions" },
         { label: "Ações de Combate", path: "/rules/combat-actions" },
         { label: "Ações de Ataque a Distância", path: "/rules/ranged-actions" },
@@ -82,10 +113,12 @@ const Navbar: React.FC = () => {
         { label: "Áreas de Efeito", path: "/rules/area-of-effect" },
       ],
     },
+
     {
       label: "Habilidades",
       path: "/skills",
       children: [
+        { label: "Habilidades", path: "/skills" },
         { label: "Combate", path: "/skills/combat" },
         { label: "Atirador", path: "/skills/ranged" },
         { label: "Acadêmica", path: "/skills/academic" },
@@ -133,34 +166,6 @@ const Navbar: React.FC = () => {
           label: "Remédios e Venenos",
           path: "/equipment/remedies-and-poisons",
         },
-      ],
-    },
-    {
-      label: "Bandos",
-      path: "/warbands",
-      children: [
-        { label: "Todos os Bandos", path: "/warbands" },
-        { label: "Mercenários", path: "/warbands/mercenaries" },
-        { label: "Irmãs de Sigmar", path: "/warbands/sisters-of-sigmar" },
-        { label: "Skaven", path: "/warbands/skaven" },
-        {
-          label: "Saqueadores Homem-Besta",
-          path: "/warbands/beastman-raiders",
-        },
-        {
-          label: "Caçadores de Tesouro Anões",
-          path: "/warbands/dwarf-treasure-hunters",
-        },
-        { label: "Mata-Trolls Anão", path: "/warbands/dwarf-troll-slayers" },
-        {
-          label: "Culto dos Possuídos",
-          path: "/warbands/cult-of-the-possessed",
-        },
-        { label: "Cortes Vampíricas", path: "/warbands/vampire-courts" },
-        { label: "Caçadores de Bruxas", path: "/warbands/witch-hunters" },
-        { label: "Reptilianos", path: "/warbands/lizardmen" },
-        { label: "Horda Orc", path: "/warbands/orc-mob" },
-        { label: "Filhos de Hashut", path: "/warbands/sons-of-hashut" },
       ],
     },
     {

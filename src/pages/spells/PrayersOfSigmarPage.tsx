@@ -86,7 +86,7 @@ export default function PrayersOfSigmarPage() {
               canalizadas através de seus sacerdotes devotos. Sigmar é o
               protetor da humanidade, o deus da guerra justa e da retidão. Suas
               orações focam em proteção, cura, e destruição dos inimigos da
-              humanidade, especialmente daemônios e criaturas do Caos.
+              humanidade, especialmente daemônios e figuras do Caos.
             </MobileText>
 
             <div id="caracteristicas">

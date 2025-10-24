@@ -17,11 +17,11 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. Isso pode ser uma ativação em grupo."
       },
       {
         "name": "Habilidades",
-        "description": "O Nobre de Kharadron começa com 5 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+        "description": "O Nobre de Kharadron começa com 5 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Rancor Antigo",
@@ -33,7 +33,7 @@
       },
       {
         "name": "Líder de Mineração",
-        "description": "Sempre que o Nobre de Kharadron participar de uma atividade de exploração o bando ganha um fragmento de pedra-bruxa adicional."
+        "description": "Sempre que o Nobre de Kharadron participar de uma atividade de exploração, o bando ganha um fragmento de Pedra-Bruxa adicional."
       }
     ],
     "equipment": {
@@ -150,7 +150,7 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "O Mata-Trolls Anão começa com 3 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 8."
+        "description": "O Mata-Trolls Anão começa com 3 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Jornada pela Morte",
@@ -166,7 +166,7 @@
       },
       {
         "name": "Devagar e Sempre",
-        "description": "O Engenheiro de Kharadron nunca perde agilidade devido ao uso de equipamentos."
+        "description": "O Engenheiro de Kharadron nunca perde movimento devido ao uso de equipamentos."
       }
     ],
     "equipment": {
@@ -206,7 +206,7 @@
       },
       {
         "name": "Devagar e Sempre",
-        "description": "O Engenheiro de Kharadron nunca perde agilidade devido ao uso de equipamentos."
+        "description": "O Engenheiro de Kharadron nunca perde movimento devido ao uso de equipamentos."
       },
       {
         "name": "Cabeça Dura",
@@ -262,7 +262,7 @@
       },
       {
         "name": "Devagar e Sempre",
-        "description": "O Engenheiro de Kharadron nunca perde agilidade devido ao uso de equipamentos."
+        "description": "O Engenheiro de Kharadron nunca perde movimento devido ao uso de equipamentos."
       }
     ],
     "equipment": {
@@ -308,7 +308,7 @@
       },
       {
         "name": "Devagar e Sempre",
-        "description": "Um Barba Curta nunca perde agilidade devido ao uso de equipamentos."
+        "description": "Um Barba Curta nunca perde movimento devido ao uso de equipamentos."
       },
       {
         "name": "Cabeça Dura",

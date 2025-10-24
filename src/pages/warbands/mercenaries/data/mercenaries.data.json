@@ -3,30 +3,23 @@
     "name": "Capitão Mercenário",
     "role": "Líder",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+3",
       "shoot": "+2",
       "armour": 10,
       "Vontade": "+4",
       "health": 18,
       "cost": "60 coroas",
-      "skills": [
-        "Combate",
-        "Atirador",
-        "Acadêmica",
-        "Força",
-        "Agilidade"
-      
-      ]
+      "skills": ["Combate", "Atirador", "Acadêmica", "Força", "Agilidade"]
     },
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Capitão Mercenário pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+        "description": "O Capitão Mercenário pode ativar até 3 outras figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
       },
       {
         "name": "Habilidades",
-        "description": "O Capitão Mercenário começa com 4 habilidades das listas de poderes acima na sua ficha. Todos os poderes tem Classe de Dificuldade 3."
+        "description": "O Capitão Mercenário começa com 4 habilidades das listas de poderes acima na sua ficha. Todos os poderes têm classe de dificuldade 3."
       }
     ],
     "equipment": {
@@ -58,31 +51,26 @@
   },
   {
     "name": "Sargento",
-    "role": "Héroi",
+    "role": "Herói",
     "quantity": "0-2",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+2",
       "shoot": "+2",
       "armour": 10,
       "Vontade": "+3",
       "health": 18,
       "cost": "35 coroas",
-      "skills": [
-        "Combate",
-        "Atirador",
-        "Força",
-        "Velocidade "
-      ]
+      "skills": ["Combate", "Atirador", "Força", "Velocidade "]
     },
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "O Capitão Mercenário começa com 3 habilidades das listas de poderes acima na sua ficha. Todos os poderes tem Classe de Dificuldade 5."
+        "description": "O Sargento começa com 3 habilidades das listas de poderes acima na sua ficha. Todos os poderes têm Classe de Dificuldade 5."
       },
       {
         "name": "Experiência em Comando",
-        "description": "O sargento pode ativar outra figura a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+        "description": "O Sargento pode ativar outra figura a 8cm de distância dele. Essa pode ser uma ativação em grupo."
       },
       {
         "name": "Habilidades Regionais",
@@ -118,7 +106,7 @@
 
   {
     "name": "Sacerdote Lupino de Ulric",
-    "role": "Héroi",
+    "role": "Herói",
     "quantity": "0-1",
     "stats": {
       "move": 18,
@@ -135,7 +123,7 @@
     "abilities": [
       {
         "name": "Sacerdote",
-        "description": "O Sacerdote Lupino de Ulric é um sacerdote e tem uma seleção limitada de magias comparado a outros conjuradores. no entanto, pode conjurar enquanto usa armadura ou escudo e em combate, tomando uma penalidade de -4 cumulativa se o fizer. Ele começa com 2 magias das Orações de Ulric."
+        "description": "O Sacerdote Lupino de Ulric é um sacerdote e tem uma seleção limitada de magias comparado a outros conjuradores. No entanto, pode conjurar enquanto usa armadura ou escudo e em combate, tomando uma penalidade de -4 cumulativa se o fizer. Ele começa com 2 magias das Orações de Ulric."
       }
     ],
     "equipment": {
@@ -150,7 +138,7 @@
     "name": "Recruta",
     "quantity": "0-2",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "0",
       "shoot": "0",
       "armour": 10,
@@ -167,7 +155,7 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "O Recruta começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes tem Classe de Dificuldade 8."
+        "description": "O Recruta começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes têm Classe de Dificuldade 8."
       },
       {
         "name": "Habilidades Regionais",
@@ -205,7 +193,7 @@
     "name": "Soldados",
     "quantity": "1-5",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+3",
       "shoot": "0",
       "armour": 10,
@@ -246,7 +234,7 @@
     "name": "Atiradores",
     "quantity": "0-7",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+2",
       "shoot": "0",
       "armour": 10,
@@ -284,7 +272,7 @@
     "name": "Espadachim",
     "quantity": "0-5",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+4",
       "shoot": "+0",
       "armour": 10,

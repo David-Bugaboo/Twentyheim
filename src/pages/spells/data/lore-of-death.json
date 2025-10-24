@@ -3,7 +3,7 @@
     "name": "Canalizar Vida",
     "castingNumber": 10,
     "keywords": ["Linha de Visão"],
-    "effect": "O alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, o alvo imediatamente perde 3 Vigor enquanto sua força vital é drenada, e o conjurador recupera 3 Vigor. O conjurador ganha 3 Vigor, mesmo se o alvo tinha menos Vigor restante. Isto não pode levar o conjurador acima de seu Vigor inicial. Esta magia não tem efeito em mortos-vivos ou constructos - não há vida a ser roubada de algo que já não vive. Um conjurador pode ter como alvo um membro de seu próprio bando - se o fizer, entretanto, a traição é completa e o alvo imediatamente (e permanentemente) deixa o bando e é tratado como uma criatura descontrolada pelo resto do jogo."
+    "effect": "O alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, o alvo imediatamente perde 3 Vigor enquanto sua força vital é drenada, e o conjurador recupera 3 Vigor. O conjurador ganha 3 Vigor, mesmo se o alvo tinha menos Vigor restante. Isto não pode levar o conjurador acima de seu Vigor inicial. Esta magia não tem efeito em mortos-vivos ou constructos - não há vida a ser roubada de algo que já não vive. Um conjurador pode ter como alvo um membro de seu próprio bando - se o fizer, entretanto, a traição é completa e o alvo imediatamente (e permanentemente) deixa o bando e é tratado como uma figura descontrolada pelo resto do jogo."
   },
   {
     "name": "Ultimas Palavras",
@@ -27,7 +27,7 @@
     "name": "Ceifar Juventude",
     "castingNumber": 10,
     "keywords": ["Linha de Visão"],
-    "effect": "A figura alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, o peso dos anos roubados a paralisa - ela não recebe ações em sua próxima ativação, mal conseguindo se mover sob o fardo. Além disso, a figura sofre -3 Ímpeto (até um mínimo de +0) até o fim do jogo enquanto seus membros enfraquecem, e não pode ter Salto conjurado sobre ela até depois de fazer sua próxima ação de movimento - ossos frágeis não suportam tais saltos. Criaturas Grandes recebem +8 em sua Rolagem de Vontade para resistir a esta magia - sua massa maior as ancora no presente."
+    "effect": "A figura alvo deve fazer uma Rolagem de Vontade imediata com Classe de Dificuldade igual à Rolagem de Conjuração. Se falhar, o peso dos anos roubados a paralisa - ela não recebe ações em sua próxima ativação, mal conseguindo se mover sob o fardo. Além disso, a figura sofre -3 Ímpeto (até um mínimo de +0) até o fim do jogo enquanto seus membros enfraquecem, e não pode ter Salto conjurado sobre ela até depois de fazer sua próxima ação de movimento - ossos frágeis não suportam tais saltos. Figuras Grandes recebem +8 em sua Rolagem de Vontade para resistir a esta magia - sua massa maior as ancora no presente."
   },
   {
     "name": "Maré da Decadência",
@@ -45,24 +45,24 @@
     "name": "Guiar a Passagem",
     "castingNumber": 14,
     "keywords": ["Alcance(20cm)", "Reação"],
-    "effect": "Essa é uma magia de reação cujo gatilho é alguma criatura inimiga alvo dentro do alcance ser reduzida a 5 ou menos de vida. A figura alvo deve rolar um teste de Vontade com CD igual à Rolagem de Conjuração. Se a criatura falhar, ela é imediatamente reduzida a 0 Vigor. Heróis, Campeões, Mortos-Vivos, Construtos e Daemônios são imunes a esta magia."
+    "effect": "Essa é uma magia de reação cujo gatilho é alguma figura inimiga alvo dentro do alcance ser reduzida a 5 ou menos de vida. A figura alvo deve rolar um teste de Vontade com CD igual à Rolagem de Conjuração. Se a figura falhar, ela é imediatamente reduzida a 0 Vigor. Heróis, Campeões, Mortos-Vivos, Construtos e Daemônios são imunes a esta magia."
   },
   {
     "name": "Aceitação do Fim",
     "castingNumber": 10,
     "keywords": ["Linha de Visão"],
-    "effect": "A figura aliada alvo é Imune a característica Aterrorizante até o fim do jogo."
+    "effect": "A figura aliada alvo é Imune à característica Aterrorizante até o fim do jogo."
   },
   {
     "name": "Nas Portas da Morte",
     "castingNumber": 12,
     "keywords": ["Linha de Visão"],
-    "effect": "A figura aliada alvo ganha um Marcador de Sobrevida. Se aquela figura for reduzida a 0 de Vida enquanto tem um marcador de sobrevida, ela pode imediatamente tomar duas ações, que são tomadas antes de quaisquer ações restantes da figura que está ativando. Então a criatura é removida do jogo. Aquela figura tem -3 na sua Rolagem na tabela de sobrevivência."
+    "effect": "A figura aliada alvo ganha um Marcador de Sobrevida. Se aquela figura for reduzida a 0 de Vida enquanto tem um marcador de sobrevida, ela pode imediatamente tomar duas ações, que são tomadas antes de quaisquer ações restantes da figura que está ativando. Então a figura é removida do jogo. Aquela figura tem -3 na sua Rolagem na tabela de sobrevivência."
   },
   {
     "name": "Descanso Final",
     "castingNumber": 10,
     "keywords": ["Linha de Visão"],
-    "effect": "A figura Morto-Vivo alvo deve fazer uma Rolagem de Vontade com CD igual à Rolagem de Conjuração. Se a criatura Morto-Vivo falhar a rolagem e sua Vontade atual for +2 ou menos, ela é imediatamente reduzida a 0 Vigor e removida da mesa. Se sua Vontade atual for +3 ou maior, ela sofre dano igual a três vezes a quantidade pela qual falhou na Rolagem de Vontade."
+    "effect": "A figura Morto-Vivo alvo deve fazer uma Rolagem de Vontade com CD igual à Rolagem de Conjuração. Se a figura Morto-Vivo falhar a rolagem e sua Vontade atual for +2 ou menos, ela é imediatamente reduzida a 0 Vigor e removida da mesa. Se sua Vontade atual for +3 ou maior, ela sofre dano igual a três vezes a quantidade pela qual falhou na Rolagem de Vontade."
   }
 ]

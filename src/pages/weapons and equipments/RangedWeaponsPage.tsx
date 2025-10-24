@@ -92,7 +92,7 @@ export default function RangedWeaponsPage() {
                 {gameTermsData
                   .filter(
                     (term) =>
-                      term.term.includes("Leve") ||
+                      term.term === "Leve" ||
                       term.term.includes("Versátil") ||
                       term.term.includes("Par") ||
                       term.term.includes("Tóxica") ||

@@ -2,7 +2,7 @@
   {
     "name": "Congelamento Invernal",
     "castingNumber": 10,
-    "keywords": ["Area de Efeito(Zona Média)"],
+    "keywords": ["Área de Efeito (Zona Média)"],
     "effect": "Centralize a Área de Efeito no Conjurador e mova a área junto a ele. Todas as figuras inimigas na área de efeito recebem -2 Ímpeto, seus movimentos tornando-se lentos e pesados como se estivessem presos em neve profunda."
   },
   {
@@ -26,31 +26,31 @@
   {
     "name": "Fúria Invernal",
     "castingNumber": 14,
-    "keywords": ["Área de Efeito(Explosão Média)"],
+    "keywords": ["Área de Efeito (Explosão Média)"],
     "effect": "Centraliza a Área de Efeito no conjurador. Todas as figuras inimigas na área de efeito sofrem um ataque gélido +0. Figuras atingidas ganham um marcador de congelamento."
   },
   {
     "name": "Impacto Gélido",
     "castingNumber": 14,
-    "keywords": ["Apenas o Conjurador"],
-    "effect": "Essa magia só pode ser conjurada em combate. O conjurador recebe uma ação de Luta gratuita que deve ser usada imediatamente. O conjurador recebe +4 Ímpeto durante esta ação, seus golpes caindo como martelos de avalanche. Criaturas atingidas por este ataque ganham um Marcador de Atordoamento."
+    "keywords": ["Conjurador Apenas"],
+    "effect": "Essa magia só pode ser conjurada em combate. O conjurador recebe uma ação de Luta gratuita que deve ser usada imediatamente. O conjurador recebe +4 Ímpeto durante esta ação, seus golpes caindo como martelos de avalanche. Figuras atingidas por este ataque ganham um Marcador de Atordoamento."
   },
   {
     "name": "Invocar Avalanche",
     "castingNumber": 12,
-    "keywords": ["Linha de Visão", "Área de Efeito(Explosão Grande)"],
-    "effect": "Todas as criaturas na área de efeito devem fazer um teste de Vontade com CD igual a conjuração dessa magia. Se falharem, são empurrados para o centro da área de efeito em linha reta. Figuras que colidirem em terrenos com mais de 3cm de altura interrompem o movimento e ganham um marcador de Atordoamento."
+    "keywords": ["Linha de Visão", "Área de Efeito (Explosão Grande)"],
+    "effect": "Todas as figuras na área de efeito devem fazer um teste de Vontade com CD igual à conjuração dessa magia. Se falharem, são empurradas para o centro da área de efeito em linha reta. Figuras que colidirem em terrenos com mais de 3cm de altura interrompem o movimento e ganham um marcador de Atordoamento."
   },
   {
     "name": "Convocar Geleira",
     "castingNumber": 10,
-    "keywords": ["Linha de Visão", "Área de Efeito(Muro)"],
-    "effect": "A ärea de efeito deve ser posicionada totalmente dentro da linha de visão do conjurador. A área de efeito bloqueia linha de visão e pode ser usada como cobertura. Quando uma criatura tenta escalar essa Área de Efeito, ela deve rolar um teste de Vontade contra a Rolagem de Conjuração dessa magia. Se falhar, sua ativação termina imediatamente e quaisquer outra ação é perdido."
+    "keywords": ["Linha de Visão", "Área de Efeito (Muro)"],
+    "effect": "A área de efeito deve ser posicionada totalmente dentro da linha de visão do conjurador. A área de efeito bloqueia linha de visão e pode ser usada como cobertura. Quando uma figura tenta escalar essa Área de Efeito, ela deve rolar um teste de Vontade contra a Rolagem de Conjuração dessa magia. Se falhar, sua ativação termina imediatamente e quaisquer outras ações são perdidas."
   },
   {
     "name": "Nevasca",
     "castingNumber": 12,
-    "keywords": ["Área de Efeito(CAMPO INTEIRO)"],
+    "keywords": ["Área de Efeito (CAMPO INTEIRO)"],
     "effect": "Todos os ataques com arco e besta são feitos com -1 Precisão pelo resto do jogo. Esta magia pode ser conjurada múltiplas vezes (e por múltiplos conjuradores), com cada conjuração adicional aumentando a penalidade em mais -1, até um máximo de -5."
   },
   {
@@ -63,7 +63,7 @@
     "name": "Enregelar",
     "castingNumber": 10,
     "keywords": ["Linha de Visão"],
-    "effect": "A figura alvo é ganha um marcador de congelamento. Ela pode fazer um teste de Vontade com CD igual a conjuração dessa magia. Se passar, ela remove o Marcador de Congelamento."
+    "effect": "A figura alvo ganha um marcador de congelamento. Ela pode fazer um teste de Vontade com CD igual à conjuração dessa magia. Se passar, ela remove o Marcador de Congelamento."
   },
   {
     "name": "Selvageria Lupina",

@@ -22,19 +22,19 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Assassino pode ativar até 3 criaturas a 8cm dele junto a si."
+        "description": "O Assassino pode ativar até 3 figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
       },
       {
         "name": "Habilidades",
-        "description": "O Assassino começam com 4 habilidades de uma das listas acima na sua ficha. A Classe de dificuldade dessas Habilidades é 5."
+        "description": "O Assassino começa com 4 habilidades de uma das listas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Presas do Rato Chifrudo",
-        "description": "O assassino tem a característica Peçonhento."
+        "description": "O Assassino tem a característica Peçonhento."
       },
       {
         "name": "Apunhalar pelas Costas",
-        "description": "Além disso, assassinos ganham um adicional +2 a seu Ímpeto se já estiverem recebendo um bônus de um ou mais figuras suporte, o entanto, assassinos nunca contam como uma figura suporte para outras figuras, mesmo membros da própria bando."
+        "description": "Além disso, Assassinos ganham um adicional +2 a seu Ímpeto se já estiverem recebendo um bônus de um ou mais figuras suporte, o entanto, Assassinos nunca contam como uma figura suporte para outras figuras, mesmo membros da própria bando."
       }
     ],
     "equipment": {
@@ -88,7 +88,7 @@
     "abilities": [
       {
         "name": "Conjurador",
-        "description": "O Bruxo do clã enshin é um conjurador da Tradição do Rato Chifrudo. Ele começa o jogo com 2 magias dentre suas tradições disponíveis."
+        "description": "O Bruxo do Clã Eshin é um conjurador da Tradição do Rato Chifrudo. Ele começa o jogo com 2 magias dentre suas tradições disponíveis."
       }
     ],
     "equipment": {
@@ -114,7 +114,7 @@
   },
   {
     "name": "Skaven Sombrio",
-    "role": "Héroi",
+    "role": "Herói",
     "stats": {
       "move": 20,
       "fight": "+2",
@@ -129,7 +129,7 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "Skaven Sombrio começam com 2 habilidades de uma das listas acima na sua ficha. A Classe de dificuldade dessas Habilidades é 5."
+        "description": "O Skaven Sombrio começa com 2 habilidades de uma das listas acima na sua ficha. A Classe de dificuldade dessas Habilidades é 5."
       },
       {
         "name": "Equipamento Disponível",
@@ -164,7 +164,7 @@
   },
   {
     "name": "Espreitadores Noturnos",
-    "role": "Héroi",
+    "role": "Herói",
     "stats": {
       "move": 20,
       "fight": "0",
@@ -179,7 +179,7 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "Night Runners começam com 2 habilidades de uma das listas acima na sua ficha. A Classe de dificuldade dessas Habilidades é 5."
+        "description": "Os Espreitadores Noturnos começam com 2 habilidades de uma das listas acima na sua ficha. A Classe de dificuldade dessas Habilidades é 5."
       },
       {
         "name": "Equipamento Disponível",
@@ -280,16 +280,16 @@
     "abilities": [
       {
         "name": "Monstruosidade do Clã Moulder",
-        "description": "Ratos Ogróides tem as características Grande, Forte, Animal e Aterrorizante."
+        "description": "Ratos Ogróides têm as características Grande, Forte, Animal e Aterrorizante."
       },
       {
         "name": "Mente Limitada",
-        "description": "Ratos Ogróides tem a a característica Estúpido. Adicionalmentè eles não ganham experiência."
+        "description": "Ratos Ogróides têm a característica Estúpido. Adicionalmente eles não ganham experiência."
       },
 
       {
         "name": "Escudo de Carne",
-        "description": "Atiradores não podem fazer ataques a distância contra outras figuras do bando do Rato Ogróide se o este for a figura mais próxima."
+        "description": "Atiradores não podem fazer ataques à distância contra outras figuras do bando do Rato Ogróide se este for a figura mais próxima."
       }
     ]
   }

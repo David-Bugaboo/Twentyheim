@@ -92,6 +92,7 @@ import PrayersOfSigmarPage from "./pages/spells/PrayersOfSigmarPage";
 import PrayersOfUlricPage from "./pages/spells/PrayersOfUlricPage";
 import GreenskinLoresPage from "./pages/spells/lores/GreenskinLoresPage";
 import LoreOfTheBigWaaaghPage from "./pages/spells/LoreOfTheBigWaaaghPage";
+import HappeningsPage from "./pages/rules/Happenings";
 
 const darkTheme = createTheme({
   palette: {
@@ -174,6 +175,7 @@ function AppContent() {
         />
         <Route path="/rules/combat-actions" element={<CombatActionsPage />} />
         <Route path="/rules/ranged-actions" element={<RangedActionsPage />} />
+        <Route path="/rules/happenings" element={<HappeningsPage/>} />
         <Route
           path="/rules/spellcasting-actions"
           element={<SpellcastingActionsPage />}

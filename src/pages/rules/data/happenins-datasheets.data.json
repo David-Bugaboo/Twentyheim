@@ -1,0 +1,140 @@
+[
+  {
+    "id": "mercenario-ogro",
+    "name": "Mercenário Ogro",
+    "stats": {
+      "move": 12,
+      "fight": "+4",
+      "shoot": "+2",
+      "armour": 12,
+      "Vontade": "+2",
+      "health": 20,
+      "cost": "0"
+    },
+    "abilities": [
+      {
+        "name": "Monstro Treinado",
+        "description": "O Mercenário Ogro tem as características Grande, Forte e Aterrorizante."
+      },
+      {
+        "name": "Guarda Costas",
+        "description": "O Mercenário Ogro pode interceptar movimento dentro de 8cm de si, contanto que a figura interceptada tenha declarado carga contra um aliado."
+      },
+      {
+        "name": "Equipamento",
+        "description": "Mangual, Javelins"
+      }
+    ]
+  },
+  {
+    "id": "sanguissedento",
+    "name": "Sanguissedento",
+
+    "stats": {
+      "move": 16,
+      "fight": "+5",
+      "shoot": "-",
+      "armour": 12,
+      "Vontade": "+6",
+      "health": 25,
+      "cost": "0"
+    },
+    "abilities": [
+      {
+        "name": "Daemônio Maior",
+        "description": "O Sanguissedento tem as características Grande, Daemônio, Forte, Chifres e Feroz."
+      },
+      {
+        "name": "Tempestade de Caveiras",
+        "description": "Ataques a distância feitos contra o Sanguissedente sofrem uma penalidade de -2."
+      },
+      {
+        "name": "Chamado da Violência",
+        "description": "Criaturas que comecem sua ativação a até 10cm de distância do Sanguissedente devem rolar um teste de Vontade CD 15. Se falharem são obrigadas a declarar carga e fazer uma ação de luta contra ele."
+      },
+      {
+        "name": "Clivar",
+        "description": "Sempre que um sanguissedento faz uma ação de luta, ele luta com todas as criaturas em combate com ele ao mesmo tempo, rolando um ataque separadamente para cada criatura."
+      },
+      {
+        "name": "Equipamento",
+        "description": "Arma de Duas Mãos"
+      }
+    ]
+  },
+  {
+    "id": "salgueiro-devorador-de-homens",
+    "name": "Salgueiro Devorador de Homens",
+
+    "stats": {
+      "move": 0,
+      "fight": "+4",
+      "shoot": "-",
+      "armour": 15,
+      "Vontade": "+10",
+      "health": 1000,
+      "cost": "0"
+    },
+    "abilities": [
+      {
+        "name": "Árvore Devoradora de Homens",
+        "description": "O Salgueiro Devorador de Homens tem as características Grande, Daemônio, Vulnerabilidade Elemental(3) e Vulnerabilidade ao Sagrado."
+      },
+      {
+        "name": "Enraizado",
+        "description": "Esse modelo não pode se mover e figuras atacando-o corpo a corpo ou a distância recebem +1 em sua rolagem. Esse modelo tem a característica Agarrar e não pode ser movido por nenhum efeito externo."
+      },
+      {
+        "name": "Galhos Chicoteantes",
+        "description": "Essa figura pode interceptar movimento dentro de 8cm de si. Se uma figura for interceptada por essa figura, ela imediatamente sofre um ataque +2."
+      },
+      {
+        "name": "Psicologia Vegetal",
+        "description": "Esse modelo tem a característica Mente-Férrea."
+      }
+    ]
+  },
+  {
+    "id": "esqueleto",
+    "name": "Esqueleto",
+
+    "stats": {
+      "move": 0,
+      "fight": "0",
+      "shoot": "0",
+      "armour": 10,
+      "Vontade": "0",
+      "health": 2,
+      "cost": "0"
+    },
+    "abilities": [
+      {
+        "name": "Morto Vivo Esquelético",
+        "description": "O Esqueleto tem as característica Morto-Vivo e Aterrorizante."
+      }
+    ]
+  },
+  {
+    "id": "prole-do-caos",
+    "name": "Prole do Caos",
+    "stats": {
+      "move": "1d20cm",
+      "fight": "+4",
+      "shoot": "0",
+      "armour": 10,
+      "Vontade": "+4",
+      "health": 14,
+      "cost": "0"
+    },
+    "abilities": [
+      {
+        "name": "Cria do Inferno",
+        "description": "A cria do caos tem as características Daemônio, Voraz, Aterrorizante e Mente-Férrea."
+      },
+      {
+        "name": "Existência Instável",
+        "description": "Sempre que essa figura recebe um de dano, ela teleporta 1d20cm em uma direção aleatória. Adicionalmente, ela sempre se move 1d20 centimetros ao invés de ter uma dist%ância de movimento fixa. Sempre que uma prole do caos, rola o mesmo número duas vezes em diferentes rolagens de dado durante o turno, ela ganha uma ação extra, até um máximo de 4 açòes extras."
+      }
+    ]
+  }
+]

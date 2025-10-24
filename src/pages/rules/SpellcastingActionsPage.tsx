@@ -53,8 +53,8 @@ function SpellcastingActionsPage() {
               magias escolhe uma de suas magias conhecidas. Ela então rola um{" "}
               <strong>d20</strong> — a rolagem de conjuração. Este único número
               determina se ela canaliza poder arcano ou abraça o desastre,
-              Embora algumas habilidades e relíquias possam adicionar bonus e
-              penalidades a rolagem de conjuração.
+              Embora algumas habilidades e relíquias possam adicionar bônus e
+              penalidades à rolagem de conjuração.
             </MobileText>
             <MobileText>
               A figura deve rolar <strong>maior ou igual</strong> que a{" "}

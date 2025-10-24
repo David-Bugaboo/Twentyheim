@@ -1,6 +1,7 @@
 
 import HeaderH3 from "./HeaderH3";
 import GameText from "./GameText";
+import MagicKeywordsText from "./MagicKeywordText";
 
 interface LoreSpellCardProps {
   name: string;
@@ -25,7 +26,8 @@ function LoreSpellCard({ name, castingNumber, keywords, effect }: LoreSpellCardP
           Palavras-chave:
         </div>
         <div className="text-white text-sm">
-          {keywords.join(", ")}
+          <MagicKeywordsText>{keywords.join(", ")}</MagicKeywordsText>
+          
         </div>
       </div>
       <div>

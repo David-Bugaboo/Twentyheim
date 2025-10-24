@@ -9,7 +9,7 @@
     "name": "Segundo Portento de Amur",
     "castingNumber": 12,
     "keywords": ["Linha de Visão"],
-    "effect": "Se esta magia for conjurada com sucesso, a figura recebe um marcador de presságio. Até o fim do jogo, qualquer rolagem de dado feita por ela ela pode ter seu resultado trocado pela rolagem de conjuração da conjuração dessa magia que deu seu marcador. O Marcador é então consumido. Uma figura só pode ter um marcador de presságio."
+    "effect": "Se esta magia for conjurada com sucesso, a figura recebe um marcador de presságio. Até o fim do jogo, qualquer rolagem de dado feita por ela pode ter seu resultado trocado pela rolagem de conjuração dessa magia que deu seu marcador. O Marcador é então consumido. Uma figura só pode ter um marcador de presságio."
   },
   {
     "name": "Augúrio",
@@ -21,13 +21,13 @@
     "name": "Relampago",
     "castingNumber": 14,
     "keywords": ["Linha de Visão"],
-    "effect": "Trace uma linha reta de 1cm de espessura da base do conjurador até um ponto na linha de visão do mesmo. Qualquer figura cruzada por essa linha reta e fora de cobertura recebe um ataque mágico elétrico +4. Esse ataque tem penetração de armadura(2) contra criaturas de armadura pesada."
+    "effect": "Trace uma linha reta de 1cm de espessura da base do conjurador até um ponto na linha de visão do mesmo. Qualquer figura cruzada por essa linha reta e fora de cobertura recebe um ataque mágico elétrico +4. Esse ataque tem penetração de armadura (2) contra figuras de armadura pesada."
   },
   {
     "name": "Tempestade de Relâmpagos",
     "castingNumber": 14,
     "keywords": ["Alcance(50cm)", "Área de Efeito (Zona Média)"],
-    "effect": "No início da próxima ativação do conjurador, todas as figuras dentro da área de efeito sofrem um ataque elétrico a distância +7. Figuras não podem receber cobertura para esse ataque. Todas as figuras usando armadura tomam esse ataque como se tivesse Penetração de Armadura (2). A área de efeito então desaparece."
+    "effect": "No início da próxima ativação do conjurador, todas as figuras dentro da área de efeito sofrem um ataque elétrico à distância +7. Figuras não podem receber cobertura para esse ataque. Todas as figuras usando armadura tomam esse ataque como se tivesse Penetração de Armadura (2). A área de efeito então desaparece."
   },
   {
     "name": "Estudar as Estrelas",
@@ -50,14 +50,14 @@
   {
     "name": "Estouro da Ventania",
     "castingNumber": 8,
-    "keywords": ["Linha de Visão", "Míssil Mágico (Normal) (+4)"],
-    "effect": "Ataque a criatura alvo com o Míssil Mágico, que tem Penetração de Armadura(X). Além disso, além de qualquer dano causado por este ataque, mova a figura alvo para trás em linha reta longe do conjurador um número de centimetros igual a duas vezes o dano causado ou até a figura atingir uma peça de terreno com mais de 1cm de altura."
+    "keywords": ["Linha de Visão", "Míssil Mágico (Normal)(+4)"],
+    "effect": "Ataque a figura alvo com o Míssil Mágico, que tem Penetração de Armadura (X). Além disso, além de qualquer dano causado por este ataque, mova a figura alvo para trás em linha reta longe do conjurador um número de centímetros igual a duas vezes o dano causado ou até a figura atingir uma peça de terreno com mais de 1cm de altura."
   },
   {
     "name": "Poeira Estelar",
     "castingNumber": 10,
     "keywords": ["Linha de Visão"],
-    "effect": "Uma luz brilhante e cintilante envolve a figura alvo. Pelo resto do jogo, todos os ataques a distância contra esta figura de qualquer fonte são com +3. Múltiplas conjurações de Poeira Estelar no mesmo alvo não têm efeito."
+    "effect": "Uma luz brilhante e cintilante envolve a figura alvo. Pelo resto do jogo, todos os ataques à distância contra esta figura de qualquer fonte são com +3. Múltiplas conjurações de Poeira Estelar no mesmo alvo não têm efeito."
   },
   {
     "name": "Desalinhamento Astral",

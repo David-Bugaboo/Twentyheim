@@ -18,7 +18,10 @@ export default function ArcaneLoresPage() {
     { name: "Chamon - Tradição do Metal", path: "/magic/arcane-lores/metal" },
     { name: "Ghyran - Tradição da Vida", path: "/magic/arcane-lores/life" },
     { name: "Hysh - Tradição da Luz", path: "/magic/arcane-lores/light" },
-    { name: "Ulgu - Tradição das Sombras", path: "/magic/arcane-lores/shadows" },
+    {
+      name: "Ulgu - Tradição das Sombras",
+      path: "/magic/arcane-lores/shadows",
+    },
     { name: "Shyish - Tradição da Morte", path: "/magic/arcane-lores/death" },
     { name: "Ghur - Tradição das Bestas", path: "/magic/arcane-lores/beasts" },
   ];
@@ -59,7 +62,7 @@ export default function ArcaneLoresPage() {
               Assim como o emblema do Caos tem oito flechas, a magia também tem
               oito ventos. Eles sopram pelo mundo, carregando a energia do Caos
               com eles. Enquanto a magia bruta é unificada dentro do Reino do
-              Caos, quando ela vem para este mundo, refrata-se em oito "cores",
+              Caos, quando ela vem para este mundo, refrata em oito "cores",
               conhecidas coletivamente como os Ventos da Magia. Conjuradores
               ganham seu poder ao se conectar a esses Ventos da Magia. Alguns
               fazem isso juntando-se a uma Ordem dedicada ao estudo de uma cor

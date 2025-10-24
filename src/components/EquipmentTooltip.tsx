@@ -95,9 +95,6 @@ const EquipmentTooltip: React.FC<EquipmentTooltipProps> = ({
             exclusive={equipmentItem.exclusive}
             cost={equipmentItem.purchaseCost}
             spaces={equipmentItem.slots}
-            description={
-              equipmentItem.flavorText ? [equipmentItem.flavorText] : null
-            }
             strength={equipmentItem.strength}
             armorBonus={equipmentItem.armorBonus}
             movePenalty={equipmentItem.movePenalty}

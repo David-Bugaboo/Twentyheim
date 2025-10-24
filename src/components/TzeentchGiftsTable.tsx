@@ -46,12 +46,12 @@ const giftResults = [
   {
     roll: "9",
     result:
-      "Alergia. Esta figura é alérgica ao sangue de outras criaturas. Se ela danificar outra figura em combate corpo a corpo, ela é envenenada.",
+      "Alergia. Esta figura é alérgica ao sangue de outras figuras. Se ela danificar outra figura em combate corpo a corpo, ela é envenenada.",
   },
   {
     roll: "10",
     result:
-      "Alma Destrancada. Se esta figura rolar um '1' natural em qualquer rolagem durante o jogo, ela é possuída por um Daemônio e conta como uma criatura descontrolada. Isto dura pelo resto do turno no qual o '1' foi rolado e todo o próximo turno. Depois disso, a insanidade passa, e a possessão termina e a figura retorna à sua aliança normal.",
+      "Alma Destrancada. Se esta figura rolar um '1' natural em qualquer rolagem durante o jogo, ela é possuída por um Daemônio e conta como uma figura descontrolada. Isto dura pelo resto do turno no qual o '1' foi rolado e todo o próximo turno. Depois disso, a insanidade passa, e a possessão termina e a figura retorna à sua aliança normal.",
   },
   {
     roll: "11",

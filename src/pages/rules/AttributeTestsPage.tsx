@@ -29,8 +29,8 @@ function AttributeTestsPage() {
 
             <MobileText>
               Os testes de característica são o coração do sistema de resolução
-              de ações em Mordheim 025. Quando uma figura tenta realizar uma
-              ação que tem chance de falhar, você rola um d6 e compara com o
+              de ações em 20Heim. Quando uma figura tenta realizar uma
+              ação que tem chance de falhar, você rola um d20 e compara com o
               valor relevante da característica da figura.
             </MobileText>
 
@@ -66,7 +66,7 @@ function AttributeTestsPage() {
             </div>
             <MobileText>
               Um modificador é qualquer valor que pode ser adicionado a um
-              teste, seja positivo ou negativo. por exemplo, uma espada do raro
+              teste, seja positivo ou negativo. Por exemplo, uma espada do raro
               metal élfico Ithilmar tem um modificador de +1 em Ímpeto. Ao rolar
               tal teste, o jogador poderia adicionar +1 ao resultado da rolagem.
               Sempre adicione todos os modificadores relevantes a uma rolagem de
@@ -79,7 +79,7 @@ function AttributeTestsPage() {
 
             <MobileText>
               Algumas situações envolvem testes opostos, onde duas figuras
-              comparar sua habilidade em realizar determinad ação.
+              comparam sua habilidade em realizar determinada ação.
             </MobileText>
             <MobileText>
               <strong>Exemplo:</strong> Uma figura tenta lutar contra outra.
@@ -99,15 +99,15 @@ function AttributeTestsPage() {
             </div>
             <MobileText>
               Ao rolar um resultado natural de 1 (sem modificadores de atributo
-              ou outras fontes) qualquer rolagem é uma FALHA CRITICA. Mesmo se
-              os bonus na rolagem ainda fizessem com que o resultado fosse maior
+              ou outras fontes) qualquer rolagem é uma FALHA CRÍTICA. Mesmo se
+              os bônus na rolagem ainda fizessem com que o resultado fosse maior
               que a CD, ou maior que a rolagem de um oponente em caso de teste
               contestado, a ação falha automaticamente. Alguns tipos de ação,
               como conjuração de magia por exemplo, punem a figura severamente
-              por uma falha crítica. Via de regra contudo, falhar
-              automaticamente em mordheim já é punitivo suficiente, e talvez a
+              por uma falha crítica. Via de regra, contudo, falhar
+              automaticamente em Mordheim já é punitivo suficiente, e talvez a
               causa da morte do seu tolo mercenário. Note que em um teste
-              contestado, caso ambas as figures rolem um 1 natural, o menor
+              contestado, caso ambas as figuras rolem um 1 natural, o menor
               resultado ainda prevalece.
             </MobileText>
             <div id="sucessos-criticos">
@@ -115,11 +115,11 @@ function AttributeTestsPage() {
             </div>
             <MobileText>
               Ao rolar um resultado natural de 20 (sem modificadores de atributo
-              ou outras fontes) qualquer rolagem é um SUCESSO CRITICO. Mesmo se
-              os bonus na rolagem ainda fizessem com que o resultado fosse menor
+              ou outras fontes) qualquer rolagem é um SUCESSO CRÍTICO. Mesmo se
+              os bônus na rolagem ainda fizessem com que o resultado fosse menor
               que a CD, ou menor que a rolagem de um oponente em caso de teste
               contestado, a ação é bem-sucedida automaticamente. Note que em um
-              teste contestado, caso ambas as figures rolem um 20 natural, o
+              teste contestado, caso ambas as figuras rolem um 20 natural, o
               maior resultado ainda prevalece.
             </MobileText>
             <MobileText

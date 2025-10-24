@@ -54,19 +54,19 @@ function ExplorationPage() {
           <MobileSection>
             <PageTitle>Fase de Atividades</PageTitle>
             <MobileText>
-              Os Hérois do bando são líderes capazes de executar diversas
+              Os Heróis do bando são líderes capazes de executar diversas
               atividades e tarefas para o bando, desde entrar nas feiras
               sombrias de Mordheim para buscar itens, até se infiltrar nas
               tavernas sujas das cidades em volta para buscar mercenários para
-              seus ranques. As diversas atividades que os Hérois podem fazer
+              seus ranques. As diversas atividades que os Heróis podem fazer
               serão descritas abaixo.
             </MobileText>
             <HeaderH1>Quem pode fazer atividades</HeaderH1>
             <MobileText>
-              Apenas líderes e hérois podem realizar atividades. Não que o resto
+              Apenas líderes e heróis podem realizar atividades. Não que o resto
               do bando fique bebendo ou perdidos em um corpo de cerveja enquanto
               os seus líderes se matam de trabalhar: Eles estão sendo
-              coordenados pelos seus superiores. Cada héroi pode executar apenas
+              coordenados pelos seus superiores. Cada herói pode executar apenas
               uma atividade durante essa etapa da fase de campanha.
             </MobileText>
             <HeaderH1>Atividades Fora de Jogo</HeaderH1>
@@ -85,7 +85,7 @@ function ExplorationPage() {
             </MobileText>
             <HeaderH2>Exploração</HeaderH2>
             <MobileText>
-              Para cada Héroi enviado para as ruínas, o jogador rola um dado,
+              Para cada Herói enviado para as ruínas, o jogador rola um dado,
               para um máximo de 6. Os dados rolados são chamados de{" "}
               <strong>dados de exploração</strong>. O jogador então soma seus
               dados de exploração após aplicar quaisquer bonus dados por
@@ -115,14 +115,13 @@ function ExplorationPage() {
             </div>
             <HeaderH2>Procurar no Mercado Negro</HeaderH2>
             <MobileText>
-              Para cada um dos Hérois enviados para procurar no mercado negro,
+              Para cada um dos Heróis enviados para procurar no mercado negro,
               ele escolhe um item qualquer (Armas, Armaduras, Acessórios ou
-              Remédios e Poções) com Raridade não comum. Ele então rola um
-              dado, o <strong>dado de busca</strong>. Se o jogador rolar mais
-              que a raridade do item escolhido, ele encontra o item no mercado
-              negro e pode comprá-lo.
+              Remédios e Poções) com Raridade não comum. Ele então rola um dado,
+              o <strong>dado de busca</strong>. Se o jogador rolar mais que a
+              raridade do item escolhido, ele encontra o item no mercado negro e
+              pode comprá-lo.
             </MobileText>
-            
           </MobileSection>
         </div>
       </div>

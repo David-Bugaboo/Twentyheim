@@ -1,4 +1,3 @@
-
 import PageTitle from "../../components/PageTitle";
 import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
@@ -11,8 +10,6 @@ import loreOfNecromancyData from "./data/lore-of-necromancy.json";
 import LoreSpellCard from "../../components/LoreSpellCard";
 
 export default function LoreOfNecromancyPage() {
-
-
   const navigationSections = [
     {
       id: "intro",
@@ -84,7 +81,7 @@ export default function LoreOfNecromancyPage() {
                 difíceis de conjurar, mesmo que sejam um pouco mais poderosas
                 que o normal.{" "}
                 <strong>
-                  Sempre que uma criatura tenta conjurar uma magia de tradição
+                  Sempre que uma figura tenta conjurar uma magia de tradição
                   sombria, com sucesso ou não, ela sofre 1 de dano.
                 </strong>{" "}
                 Se ela falhar ao conjurar uma magia destas tradições, ela sofre
@@ -128,8 +125,6 @@ export default function LoreOfNecromancyPage() {
                 </div>
               ))}
             </div>
-
-            
           </MobileSection>
         </div>
       </div>

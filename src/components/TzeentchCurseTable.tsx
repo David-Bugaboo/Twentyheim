@@ -24,7 +24,7 @@ const curseResults = [
   {
     roll: "9-10",
     result:
-      "Possessão Daemônica: O conjurador é possuído por uma entidade Daemônica. O Conjurador age como uma criatura descontrolada pelo resto do jogo.",
+      "Possessão Daemônica: O conjurador é possuído por uma entidade Daemônica. O Conjurador age como uma figura descontrolada pelo resto do jogo.",
   },
   {
     roll: "11-12",
@@ -55,7 +55,9 @@ const curseResults = [
 export default function TzeentchCurseTable() {
   return (
     <div className="mt-6">
-      <HeaderH2 className="text-green-300 mb-4">A Maldição de Tzeentch</HeaderH2>
+      <HeaderH2 className="text-green-300 mb-4">
+        A Maldição de Tzeentch
+      </HeaderH2>
 
       <MobileText className="mb-4">
         Além disso, rolar um <strong>1</strong> em uma Rolagem de Conjuração de

@@ -17,11 +17,11 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dele. Essa pode ser uma ativação em grupo."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. Isso pode ser uma ativação em grupo."
       },
       {
         "name": "Abominação Bestial",
-        "description": "O Lider Tribal Homem-Fera tem as características Forte e Aterrorizante."
+        "description": "O Líder Tribal Homem-Fera tem as características Forte e Aterrorizante."
       }
     ],
     "equipment": {
@@ -39,16 +39,16 @@
         { "name": "Armadura Leve", "cost": "20 coroas" },
         { "name": "Armadura Pesada", "cost": "50 coroas" },
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" }
+        { "name": "Elmo", "cost": "10 coroas" }
       ],
-      "acessories": [],
+      "accessories": [],
       "modifiers": []
     }
   },
   {
     "id": "xama-homem-fera",
     "name": "Xamã Homem-Fera",
-    "role": "Héroi",
+    "role": "Herói",
     "quantity": "0-1",
     "stats": {
       "move": 16,
@@ -71,7 +71,7 @@
     "abilities": [
       {
         "name": "Magia",
-        "description": "O Feiticeiro Homem-Fera é um feiticeiro da Tradição do Caos. Ele começa com 3 magias, de qualquer um de suas tradições disponíveis. Magias de tradições associadas são adicionadas com +4 na Classe de Dificuldade."
+        "description": "O Xamã Homem-Fera é um feiticeiro da Tradição do Caos. Ele começa com 3 magias, de qualquer uma de suas tradições disponíveis. Magias de tradições associadas são adicionadas com +4 na Classe de Dificuldade."
       }
     ],
     "equipment": {
@@ -84,15 +84,16 @@
         { "name": "Alabarda", "cost": "10 coroas" },
         { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
       ],
+      "armor": [{ "name": "Elmo de Osso", "cost": "5 coroas" }],
       "ranged": [],
-      "acessories": [],
+      "accessories": [],
       "modifiers": []
     }
   },
   {
     "id": "bestigor",
     "name": "Bestigor",
-    "role": "Héroi",
+    "role": "Herói",
     "quantity": "0-2",
     "stats": {
       "move": 16,
@@ -107,7 +108,7 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "O Bestigor começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 8."
+        "description": "O Bestigor começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Aniquilador Córneo",
@@ -129,16 +130,16 @@
         { "name": "Armadura Leve", "cost": "20 coroas" },
         { "name": "Armadura Pesada", "cost": "50 coroas" },
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" }
+        { "name": "Elmo", "cost": "10 coroas" }
       ],
-      "acessories": [],
+      "accessories": [],
       "modifiers": []
     }
   },
   {
     "id": "centigor",
     "name": "Centigor",
-    "role": "Héroi",
+    "role": "Herói",
     "quantity": "0-1",
     "stats": {
       "move": 20,
@@ -153,7 +154,7 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "O Centigor começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 8."
+        "description": "O Centigor começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Carga Violenta",
@@ -161,7 +162,7 @@
       },
       {
         "name": "Movimentação Equina",
-        "description": "O Centigor não pode escalar construções, e deve gastar 3 de movimento para cada 1 de movimento em terreno acidentado. Centigors não perdem metade do movimento por carregar Fragmentos de Pedra-Bruxa"
+        "description": "O Centigor não pode escalar construções e deve gastar 3 de movimento para cada 1 de movimento em terreno acidentado. Centigors não perdem metade do movimento por carregar Fragmentos de Pedra-Bruxa."
       }
     ],
     "equipment": {
@@ -179,9 +180,9 @@
         { "name": "Armadura Leve", "cost": "20 coroas" },
         { "name": "Armadura Pesada", "cost": "50 coroas" },
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" }
+        { "name": "Elmo", "cost": "10 coroas" }
       ],
-      "acessories": [],
+      "accessories": [],
       "modifiers": []
     }
   },
@@ -214,7 +215,7 @@
       ],
       "ranged": [],
       "armor": [{ "name": "Escudo", "cost": "5 coroas" }],
-      "acessories": [],
+      "accessories": [],
       "modifiers": []
     }
   },
@@ -247,9 +248,9 @@
         { "name": "Armadura Leve", "cost": "20 coroas" },
         { "name": "Armadura Pesada", "cost": "50 coroas" },
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" }
+        { "name": "Elmo", "cost": "10 coroas" }
       ],
-      "acessories": [],
+      "accessories": [],
       "modifiers": []
     }
   },
@@ -278,7 +279,7 @@
     "name": "Minotauro",
     "quantity": "0-1",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+4",
       "shoot": "0",
       "armour": 12,
@@ -293,7 +294,7 @@
       },
       {
         "name": "Sentidos Bestiais",
-        "description": "O Minotauro pode declarar cargas contra criaturas para quem não tem linha de visão, contanto que esteja dentro de 15cm dele."
+        "description": "O Minotauro pode declarar cargas contra figuras para as quais não tem linha de visão, contanto que esteja dentro de 15cm dele."
       }
     ],
     "equipment": {
@@ -311,9 +312,9 @@
         { "name": "Armadura Leve", "cost": "20 coroas" },
         { "name": "Armadura Pesada", "cost": "50 coroas" },
         { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Capacete", "cost": "10 coroas" }
+        { "name": "Elmo", "cost": "10 coroas" }
       ],
-      "acessories": [],
+      "accessories": [],
       "modifiers": []
     }
   }

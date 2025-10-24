@@ -41,7 +41,7 @@ export default function DivineLoresPage() {
     {
       roll: "8-10",
       result:
-        "Sua Impertinencia me Irrita!: O conjurador não pode conjurar a magia que tentou conjurar pelo resto do jogo.",
+        "Sua Impertinência me Irrita!: O conjurador não pode conjurar a magia que tentou conjurar pelo resto do jogo.",
     },
     {
       roll: "11-14",
@@ -51,7 +51,7 @@ export default function DivineLoresPage() {
     {
       roll: "15-16",
       result:
-        "Penitencia Cruel: O conjurador tem -2 Vontade pelo resto do jogo.",
+        "Penitência Cruel: O conjurador tem -2 Vontade pelo resto do jogo.",
     },
     {
       roll: "17-18",
@@ -101,10 +101,11 @@ export default function DivineLoresPage() {
             </MobileText>
 
             <div id="dano-sagrado">
-              <WarningBox type="info" title="Dano Sagrado ou Profano">
+              <WarningBox type="info" title="Dano Sagrado">
                 Orações que causam dano geralmente causam dano{" "}
-                <strong>sagrado</strong>. Dano sagrado ignora imunidade e
-                resistência a dano normal, mágico e elemental.
+                <strong>sagrado</strong>. Dano sagrado ignora imunidade a todos
+                os danos e efeitos anti-magia contra Daemônios e Mortos-Vivos.
+                Contra outras figuras é dano mágico normal.
               </WarningBox>
             </div>
 

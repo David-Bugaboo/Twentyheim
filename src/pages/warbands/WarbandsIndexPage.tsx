@@ -18,7 +18,7 @@ const WarbandsIndexPage: React.FC = () => {
       name: "Saqueadores Homem-Fera",
       path: "/warbands/beastman-raiders",
       description:
-        "Tribos selvagens de criaturas bestiais que emergem das florestas sombrias para aterrorizar os assentamentos humanos.",
+        "Tribos selvagens de figuras bestiais que emergem das florestas sombrias para aterrorizar os assentamentos humanos.",
       faction: "Caos",
       playstyle: "Combate corpo a corpo agressivo",
     },
@@ -54,7 +54,7 @@ const WarbandsIndexPage: React.FC = () => {
       name: "Reptilianos",
       path: "/warbands/lizardmen",
       description:
-        "Criaturas reptilianas antigas que emergem das selvas para reivindicar relíquias perdidos.",
+        "Figuras reptilianas antigas que emergem das selvas para reivindicar relíquias perdidas.",
       faction: "Saúrios",
       playstyle: "Magia primitiva e força",
     },
@@ -165,7 +165,7 @@ const WarbandsIndexPage: React.FC = () => {
             <div id="bandos">
               <HeaderH2>Todas as Facções</HeaderH2>
               <MobileText>
-                Explore todos os Facções disponíveis em 20heim, cada um com sua
+                Explore todas as Facções disponíveis em 20Heim, cada uma com sua
                 própria história, unidades e equipamentos únicos.
               </MobileText>
 
@@ -188,6 +188,7 @@ const WarbandsIndexPage: React.FC = () => {
                       <button
                         onClick={() => navigate(warband.path)}
                         className="bg-green-800/30 border border-green-600/50 hover:bg-green-700/40 hover:border-green-500/70 text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm font-bold"
+                        style={{ fontFamily: "Cinzel, serif" }}
                       >
                         Explorar
                       </button>

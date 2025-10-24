@@ -238,7 +238,7 @@ const bridesUnits = [
       {
         name: "Leadade Ferrenha",
         description:
-          "Cbestas Gélidas que não ativam a até 15cm de uma Irmã Domadora agem como criaturas neutras, até o fim do jogo. As Bestas Gélidas não podem se beneficiar da habilidade de Líder da Rainha Bruxa; sua única lealdade é à Irmã Domadora.",
+          "Cbestas Gélidas que não ativam a até 15cm de uma Irmã Domadora agem como figuras neutras, até o fim do jogo. As Bestas Gélidas não podem se beneficiar da habilidade de Líder da Rainha Bruxa; sua única lealdade é à Irmã Domadora.",
       },
       {
         name: "Equipamento Disponível",
@@ -255,7 +255,7 @@ const whispersOfPain = [
     name: "Sussurro da Tortura",
     when: "Sempre que a Rainha do Massacre luta contra uma figura inimiga que sofreu pelo menos 1 dano.",
     effect:
-      "A criatura faz sua rolagem de luta com o atributo Vontade ao invés de Ímpeto.",
+      "A figura faz sua rolagem de luta com o atributo Vontade ao invés de Ímpeto.",
   },
   {
     name: "Sussurro do Açoite",
@@ -273,7 +273,7 @@ const whispersOfPain = [
     name: "Sussurro da Sangria",
     when: "Sempre que a Rainha do Massacre ganha uma luta e causa pelo menos 1 dano.",
     effect:
-      "A criatura ganha um marcador de Sangramento. Se a criatura já tiver um marcador de Sangramento, sofre 1 dano extra.",
+      "A figura ganha um marcador de Sangramento. Se a figura já tiver um marcador de Sangramento, sofre 1 dano extra.",
   },
   {
     name: "Sussurro da Submissão",
@@ -291,7 +291,7 @@ const whispersOfPain = [
     name: "Sussurro do Massacre",
     when: "Sempre que a Rainha do Massacre ganha uma luta e causa pelo menos 1 dano.",
     effect:
-      "A Rainha do Massacre pode se mover imediatamente 15cm, incluindo saindo daquele combate. Esse movimento pode ser usado pra declarar uma carga. Se ela faz isso e completa a carga, ou permanece em combate com o alvo deste poder, ela ganha uma ação extra. Esta ação só pode ser uma ação de luta. Este poder não pode levar uma criatura a mais de 3 ações.",
+      "A Rainha do Massacre pode se mover imediatamente 15cm, incluindo saindo daquele combate. Esse movimento pode ser usado pra declarar uma carga. Se ela faz isso e completa a carga, ou permanece em combate com o alvo deste poder, ela ganha uma ação extra. Esta ação só pode ser uma ação de luta. Este poder não pode levar uma figura a mais de 3 ações.",
   },
   {
     name: "Sussuro do Desespero",
@@ -309,7 +309,7 @@ const whispersOfPain = [
     name: "Sussurro da Euforia",
     when: "Em qualquer momento durante a ativação da Rainha do Massacre.",
     effect:
-      "A Rainha do Massacre pode se mover através de terreno e figuras como se elas não estivessem lá até o fim da sua ativação. No entanto, ela não pode terminar seu movimento dentro de um pedaço de terreno ou criatura. Se ela se move através de uma criatura, essa criatura sofre 2 dano. Uma criatura pode sofrer esse dano apenas uma vez por turno.",
+      "A Rainha do Massacre pode se mover através de terreno e figuras como se elas não estivessem lá até o fim da sua ativação. No entanto, ela não pode terminar seu movimento dentro de um pedaço de terreno ou figura. Se ela se move através de uma figura, essa figura sofre 2 dano. Uma figura pode sofrer esse dano apenas uma vez por turno.",
   },
   {
     name: "Sussurro da Sacrifício",

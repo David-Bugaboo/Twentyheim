@@ -45,7 +45,7 @@
     "specialRules": [
       {
         "label": "Penetração de Armadura(1)",
-        "value": "Uma arma com essa catacterística ignora (X) pontos de armadura do alvo."
+        "value": "Uma arma com essa característica ignora (X) pontos de armadura do alvo."
       },
       {
         "label": "Desbalanceada",
@@ -115,7 +115,7 @@
     "purchaseCost": "3 coroas",
     "sellCost": "2 coroas",
     "exclusive": null,
-    "flavorText": "Talvez o tipo mais simples de arma, estes instrumentos brutais e esmagadores variam de porretes a  maças de ferro cru. Uma arma simples e eficiente. Você não vai fazer nada especial, mas o crânio do inimigo vai afundar.",
+    "flavorText": "Talvez o tipo mais simples de arma, estes instrumentos brutais e esmagadores variam de porretes a maças de ferro cru. Uma arma simples e eficiente. Você não vai fazer nada especial, mas o crânio do inimigo vai afundar.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -174,7 +174,7 @@
     "specialRules": [
       {
         "label": "Versátil",
-        "value": "Uma arma com essa característica pode ser usado com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano."
+        "value": "Uma arma com essa característica pode ser usada com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano."
       },
       {
         "label": "Desbalanceada",
@@ -203,7 +203,7 @@
     "specialRules": [
       {
         "label": "Penetração de Armadura(1)",
-        "value": "Uma arma com essa catacterística ignora (X) pontos de armadura do alvo."
+        "value": "Uma arma com essa característica ignora (X) pontos de armadura do alvo."
       },
       {
         "label": "Leve",
@@ -301,11 +301,11 @@
       },
       {
         "label": "Versátil",
-        "value": "Uma arma com essa característica pode ser usado com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano."
+        "value": "Uma arma com essa característica pode ser usada com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano."
       },
       {
         "label": "Abençoada (1)",
-        "value": "Essa arma ignora o numero entre parenteses de pontos de armadura do alvo, se esta tiver as caracteristicas Morto-Vivo ou Daemonio."
+        "value": "Essa arma ignora o número entre parênteses de pontos de armadura do alvo, se esta tiver as características Morto-Vivo ou Daemônio."
       },
       {
         "label": "Desbalanceada",
@@ -322,7 +322,7 @@
     "type": "Arma Corpo a Corpo",
     "damageModifier": "0",
     "purchaseCost": "15 coroas",
-    "sellCost": "2  coroas",
+    "sellCost": "2 coroas",
     "exclusive": "Irmãs de Sigmar, Noivas de Khaine",
     "flavorText": "Outra arma única da Irmandade é o chicote de aço, feito de correntes de aço farpadas. O chicote de aço é uma arma flexível e as Sacerdotisas o usam com grande perícia. Tentativas de aparar seus golpes são fúteis.",
     "user": null,
@@ -347,7 +347,7 @@
     "type": "Arma Corpo a Corpo",
     "damageModifier": "-1",
     "purchaseCost": "10 coroas",
-    "flavorText": "Lanças vão desde os espetos de pau dos goblins até as incriveis lanças de cavalaria dos Altos Elfos.",
+    "flavorText": "Lanças vão desde os espetos de pau dos goblins até as incríveis lanças de cavalaria dos Altos Elfos.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -365,7 +365,7 @@
       },
       {
         "label": "Versátil",
-        "value": "Uma arma com essa característica pode ser usado com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano."
+        "value": "Uma arma com essa característica pode ser usada com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano."
       }
     ]
   },
@@ -388,19 +388,19 @@
     "specialRules": [
       {
         "label": "Penetração de Armadura (3)",
-        "value": "Essa arma ignora o (X) pontos da armadura do alvo."
+        "value": "Essa arma ignora (X) pontos da armadura do alvo."
       },
       {
         "label": "Aleatória",
-        "value": "A única forma de empunhar uma Bola e Corrente é balançá-la em grandes círculos, usando seu corpo como contrapeso. Infelizmente este não é um estilo de luta muito controlável, e assim que ele começa a balançar sua Bola e Corrente, um guerreiro começa a perder o controle. Começar a girar a bola é uma ação. o modelo é movido 1d20cm em uma direção nomeada pelo jogador controlador. Em todas as outras ativações, role um D20 para determinar o que o modelo faz: \n1-4 modelo tropeça e se enforca com a corrente. O modelo é reduzido a 0 de vida e retirado do tabuleiro. \n5-17:O modelo se move 1d20cm em uma direção nomeada pelo jogador controlador. \n20-O modelo se move 1d20 cm em uma direção aleatória."
+        "value": "A única forma de empunhar uma Bola e Corrente é balançá-la em grandes círculos, usando seu corpo como contrapeso. Infelizmente este não é um estilo de luta muito controlável, e assim que ele começa a balançar sua Bola e Corrente, um guerreiro começa a perder o controle. Começar a girar a bola é uma ação. O modelo é movido 1d20cm em uma direção nomeada pelo jogador controlador. Em todas as outras ativações, role um D20 para determinar o que o modelo faz: \n1-4: modelo tropeça e se enforca com a corrente. O modelo é reduzido a 0 de vida e retirado do tabuleiro. \n5-17: O modelo se move 1d20cm em uma direção nomeada pelo jogador controlador. \n20: O modelo se move 1d20cm em uma direção aleatória."
       },
       {
         "label": "Giro Imparável",
-        "value": "Uma vez que a bola e corrente está girando, ela não pode ser parada. Se durante seu movimento, a figura encostar em uma peça de terreno, ela recebe um marcador de Atordoamento e sua ativação termina imediatamente. Se encostar em uma figura, aliada ou inimiga, ele entra em combate e luta com aquela figura."
+        "value": "Uma vez que a bola e corrente está girando, ela não pode ser parada. Se durante seu movimento, a figura encostar em uma peça de terreno, ela recebe um marcador de Atordoamento e sua ativação termina imediatamente. Se encostar em uma figura, aliada ou inimiga, ela entra em combate e luta com aquela figura."
       },
       {
         "label": "Desajeitada",
-        "value": "Como a Bola e Corrente é tão pesada, um modelo equipado com uma não pode carregar outras armas ou equipamentos. Além disso, apenas um modelo sob a influência de Chapéu-da-Morte tem a força para empunhar uma bola e corrente. O grande peso da Bola e Corrente pode facilmente rasgar ligamentos ou deslocar os ossos de um pobre goblin para fora de suas articulações. No final da batalha, figuras que usaram bola e corrente devem rolar na tabela de Sobrevivência independente de terem ou não sido reduzidos a 0 de vida."
+        "value": "Como a Bola e Corrente é tão pesada, um modelo equipado com uma não pode carregar outras armas ou equipamentos. Além disso, apenas um modelo sob a influência de Chapéu-da-Morte tem a força para empunhar uma bola e corrente. O grande peso da Bola e Corrente pode facilmente rasgar ligamentos ou deslocar os ossos de um pobre goblin para fora de suas articulações. No final da batalha, figuras que usaram bola e corrente devem rolar na tabela de Sobrevivência independentemente de terem ou não sido reduzidos a 0 de vida."
       },
       {
         "label": "Duas Mãos",
@@ -428,7 +428,7 @@
     "specialRules": [
       {
         "label": "Flagelo de Bestas",
-        "value": "O Mestre de Bestas empunhando um Chicote de Besta tem a catacterística Aterrorizante contra animais."
+        "value": "O Mestre de Bestas empunhando um Chicote de Besta tem a característica Aterrorizante contra animais."
       },
       {
         "label": "Chicote(3)",
@@ -461,7 +461,7 @@
       },
       {
         "label": "Versátil",
-        "value": "Uma arma com essa característica pode ser usado com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano."
+        "value": "Uma arma com essa característica pode ser usada com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano."
       }
     ]
   },

@@ -46,7 +46,7 @@ function MagicRulesPage() {
               </span>
             </MobileText>
             <MobileText>
-              Embora a magia no velho mundo permeie tudo, conjuradores são
+              Embora a magia no Velho Mundo permeie tudo, conjuradores são
               incomuns. Os mistérios arcanos são conhecidos apenas por poucos, e
               há muitas crenças falsas, ideias equivocadas e superstições
               estranhas sobre magia. O povo comum pode lhe contar todo tipo de
@@ -63,7 +63,7 @@ function MagicRulesPage() {
               Através de treinamento, força de vontade e talento inato, um
               Magistrado pode invocar fogo, criar ilusões ou transmutar chumbo
               em ouro. Ao mesmo tempo, ele pode trazer desastre, ou atrair a
-              atenção de olhos invisíveis. Muitos sussurram que Demônios
+              atenção de olhos invisíveis. Muitos sussurram que daemônios
               cavalgam os Ventos da Magia, sempre atentos para avistar aqueles
               que se demoram em seu domínio. Seja qual for a verdade disso, é
               comumente aceito que a magia é uma amante inconstante, com faces
@@ -152,7 +152,7 @@ function MagicRulesPage() {
               dispostos a correr riscos pessoais ainda maiores por poder
               aumentado. Estes conjuradores mergulham nas profundezas mais
               escuras dos Ventos da Magia, fazendo pactos com daemônios,
-              sacrificando vidas inocentes, ou se corrompendo com Pedra-bruxa. A
+              sacrificando vidas inocentes, ou se corrompendo com Pedra-Bruxa. A
               Magia Sombria oferece poder imenso, mas a um preço terrível:
               corrupção da alma, mutação do corpo, e eventual transformação em
               algo que não é mais humano.
@@ -229,14 +229,14 @@ function MagicRulesPage() {
               determinam o comportamento mecânico da magia no jogo.
             </MobileText>
             <div id="palavras-chave">
-              <HeaderH1>LISTA DEPALAVRAS-CHAVE</HeaderH1>
+              <HeaderH1>LISTA DE PALAVRAS-CHAVE</HeaderH1>
             </div>
-            <HeaderH3>MISSIL MAGICO (TIPO) (X)</HeaderH3>
+            <HeaderH3>MÍSSIL MÁGICO (TIPO) (X)</HeaderH3>
             <MobileText>
               Um míssil mágico funciona exatamente como um ataque a distância,
-              mas usando a Rolagem de Conjuração + (X) ao invés de D20 +
-              precisão. O Míssil Mágico causa dano (TIPO). Apesar do nome alguns
-              mísseis mágicos causam dano normal.
+              mas usando a Rolagem de Conjuração + (X) ao invés de d20 +
+              Precisão. O Míssil Mágico causa dano (TIPO). Apesar do nome,
+              alguns mísseis mágicos causam dano normal.
             </MobileText>
             <HeaderH3>ÁREAS DE EFEITO (TIPO)</HeaderH3>
             <MobileText>
@@ -261,12 +261,12 @@ function MagicRulesPage() {
             </MobileText>
             <HeaderH3>ALCANCE (X)</HeaderH3>
             <MobileText>
-              A Magia afete uma criatura a até (X)cm do conjurador.
+              A Magia afeta uma figura a até (X)cm do conjurador.
             </MobileText>
             <HeaderH3>INVOCAÇÃO</HeaderH3>
             <MobileText>
-              Essa magia invoca uma criatura, que deve ser posicionada a até
-              14cm do jogador.
+              Essa magia invoca uma figura, que deve ser posicionada a até 14cm
+              do jogador.
             </MobileText>
             <HeaderH3>PSICOLÓGICA</HeaderH3>
             <MobileText>
@@ -282,12 +282,20 @@ function MagicRulesPage() {
               magia.
             </MobileText>
             <HeaderH3>CONJURADOR APENAS</HeaderH3>
-            Essa magia só pode ter o próprio conjurador como alvo.
-            <HeaderH3>TOQUE</HeaderH3>A magia pode afetar o próprio conjurador
-            ou qualquer figura que ele esteja em contato de base.{" "}
+            <MobileText>
+              Essa magia só pode ter o próprio conjurador como alvo.
+            </MobileText>
+            <HeaderH3>TOQUE</HeaderH3>
+            <MobileText>
+              A magia pode afetar o próprio conjurador ou qualquer figura que
+              ele esteja em contato de base.
+            </MobileText>
             <HeaderH3>ILUSÃO</HeaderH3>
-            Magias que manipulam a percepção das figuras inimigas. Palavra-chave
-            relevante para interagir com efeito de outras magias e habilidades.
+            <MobileText>
+              Magias que manipulam a percepção das figuras inimigas.
+              Palavra-chave relevante para interagir com efeitos de outras
+              magias e habilidades.
+            </MobileText>
             <HeaderH3>RITUAL</HeaderH3>
             <MobileText>
               Essa magia pode ser usada durante a etapa de Conjurar Rituais da

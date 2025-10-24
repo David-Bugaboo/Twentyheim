@@ -51,9 +51,9 @@ const MovementActionSection = () => {
           horizontal, vertical ou ambos de até <strong>10 cm</strong>, não sendo
           afetado por queda ou altura durante esse movimento, mas deve ter se
           movido normalmente a distância que deseja pular antes de declarar um
-          pulo. Se uma criatura termina seu pulo no ar, ela cai ao final do
+          pulo. Se uma figura termina seu pulo no ar, ela cai ao final do
           movimento, seguindo regras de queda. A distância percorrida no pulo
-          não conta contra o movimento de uma criatura. Se não percorrer nenhuma
+          não conta contra o movimento de uma figura. Se não percorrer nenhuma
           distância, a figura ainda pode pular 3cm. Esse movimento só pode ser
           usado para encostar na base de uma figura inimiga se houver uma{" "}
           <strong>Declaração de Carga</strong> contra ela.
@@ -87,7 +87,7 @@ const MovementActionSection = () => {
       <ActionSubsubsection title="Terreno Acidentado">
         <MobileText className="mb-3">
           Criatura gasta <strong>2 cm de movimento para cada 1 cm</strong> que
-          se move em terreno acidentado. Criaturas montadas além disso rolam na
+          se move em terreno acidentado. Figuras montadas além disso rolam na
           tabela de "Opa garoto!".
         </MobileText>
         <QuoteSection

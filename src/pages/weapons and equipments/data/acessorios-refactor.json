@@ -9,7 +9,7 @@
     "damageModifier": null,
     "purchaseCost": "5 coroas",
     "exclusive": null,
-    "flavorText": " A aljava é tão essencial quanto o arco - sem ela, você tem um pedaço de madeira curvada inútil. Cada flecha é morte potencial; cada virote, uma vida terminada. Necessária para usar armas a distância, a menos que use munição mágica. Ocupa um espaço de item.\n\nSem aljava, um arco é apenas uma clava cara e desajeitada. Todo arqueiro precisa de uma, e arqueiros experientes mantêm suas flechas afiadas, secas, e prontas para voar verdadeiro. A diferença entre ter munição e estar desarmado é a diferença entre caçador e caçado.",
+    "flavorText": "A aljava é tão essencial quanto o arco - sem ela, você tem um pedaço de madeira curvada inútil. Cada flecha é morte potencial; cada virote, uma vida terminada. Necessária para usar armas à distância, a menos que use munição mágica. Ocupa um espaço de item.\n\nSem aljava, um arco é apenas uma clava cara e desajeitada. Todo arqueiro precisa de uma, e arqueiros experientes mantêm suas flechas afiadas, secas, e prontas para voar verdadeiro. A diferença entre ter munição e estar desarmado é a diferença entre caçador e caçado.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -40,14 +40,14 @@
   {
     "roll": null,
     "id": "chifre-de-polvora",
-    "name": "Chifre de Polvora",
+    "name": "Chifre de Pólvora",
     "availability": ["Todos"],
     "rarity": 1,
     "type": "Armazenamento de Munição",
     "damageModifier": null,
     "purchaseCost": "10 coroas",
     "exclusive": null,
-    "flavorText": "Pólvora - o ingrediente que transforma ferro morto em trovão vivo. Acessório necessário para armas de fogo. Contém a pólvora necessária para recarregar e disparar mosquetes, pistolas e bacarmartes. Ocupa um espaço de item.\n\nSem pólvora, uma arma de fogo é apenas metal caro e inútil - um Maça pior que um pedaço de pau. Mantenha sua pólvora seca - molhada, ela não vale nada. Exposta a faíscas ou chamas, ela explode e mata você antes dos inimigos. Cada veterano com armas de fogo tem histórias de tolos que aprenderam essa lição tarde demais.",
+    "flavorText": "Pólvora - o ingrediente que transforma ferro morto em trovão vivo. Acessório necessário para armas de fogo. Contém a pólvora necessária para recarregar e disparar mosquetes, pistolas e bacamartes. Ocupa um espaço de item.\n\nSem pólvora, uma arma de fogo é apenas metal caro e inútil - uma maça pior que um pedaço de pau. Mantenha sua pólvora seca - molhada, ela não vale nada. Exposta a faíscas ou chamas, ela explode e mata você antes dos inimigos. Cada veterano com armas de fogo tem histórias de tolos que aprenderam essa lição tarde demais.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -100,7 +100,7 @@
     "specialRules": [
       {
         "label": "Barreira Móvel",
-        "value": "Uma figura carregando uma barricada conta como se carregasse um fragmento de pedra-bruxa. Uma figura pode gastar uma ação para posicionar uma barricada em contato de base com ela. A barricada tem 5cm de altura, 2.5cm de profundidade e 5cm de comprimento. Barricadas contam como terreno interposto e cobertura. Uma figura pode gastar uma ação para pegar uma barricada, contando como se ocupasse um fragmento de pedra-bruxa. Uma figura deve ter dois espaços de item livres para carregar uma barricada."
+        "value": "Uma figura carregando uma barricada conta como se carregasse um fragmento de Pedra-Bruxa. Uma figura pode gastar uma ação para posicionar uma Área de Efeito (Muro) em contato de base com ela. Uma figura pode gastar uma ação para pegar uma barricada, contando como se ocupasse um fragmento de Pedra-Bruxa, removendo a Área de Efeito. Uma figura deve ter dois espaços de item livres para carregar uma barricada."
       }
     ]
   },
@@ -124,7 +124,7 @@
     "specialRules": [
       {
         "label": "Iluminar",
-        "value": "Uma tocha deve ser carregada em uma das mãos de uma figura, ocupando a mão que seria usada por um escudo ou arma leve. Uma figura portando uma tocha pode traçar linha de visão para uma figura com a habilidade Furtividade(X) como se X fosse 2 numeros maior. Uma tocha só dura um jogo. Figuras portando tochas não podem se aproveitar do traço Furtividade(X) "
+        "value": "Uma tocha deve ser carregada em uma das mãos de uma figura, ocupando a mão que seria usada por um escudo ou arma leve. Uma figura portando uma tocha pode traçar linha de visão para uma figura com a habilidade Furtividade(X) como se X fosse 2 números maior. Uma tocha só dura um jogo. Figuras portando tochas não podem se aproveitar do traço Furtividade(X)."
       }
     ]
   },
@@ -148,7 +148,7 @@
     "specialRules": [
       {
         "label": "Iluminar",
-        "value": "Uma lanterna deve ser carregada em uma das mãos de uma figura, ocupando a mão que seria usada por um escudo ou arma leve. Uma figura portando uma lanterna pode traçar linha de visão para uma figura com o traço Furtividade(X) como se X fosse 3 numeros maior. Uma lanterna dura indefinidamente. Figuras portando tochas não podem se aproveitar do traço Furtividade(X) "
+        "value": "Uma lanterna deve ser carregada em uma das mãos de uma figura, ocupando a mão que seria usada por um escudo ou arma leve. Uma figura portando uma lanterna pode traçar linha de visão para uma figura com o traço Furtividade(X) como se X fosse 3 números maior. Uma lanterna dura indefinidamente. Figuras portando lanternas não podem se aproveitar do traço Furtividade(X)."
       }
     ]
   },
@@ -156,7 +156,7 @@
     "roll": null,
     "id": "mina-terrestre",
     "name": "Mina Terrestre",
-    "type": "Explosivo",
+    "type": "Armadilha",
     "damageModifier": null,
     "availability": ["Todos"],
     "rarity": 15,
@@ -172,7 +172,7 @@
     "specialRules": [
       {
         "label": "Explosivo de Proximidade",
-        "value": " Uma figura que carrega uma mina terrestre conta como carregando um fragmento de pedra-bruxa. Uma figura pode gastar uma ação para posicionar uma mina terrestre em contato de base com ela. Qualquer figura que chege a 3cm de uma mina terrestre recebe um ataque a distância +5."
+        "value": "Uma figura que carrega uma mina terrestre conta como carregando um fragmento de Pedra-Bruxa. Uma figura pode gastar uma ação para posicionar uma mina terrestre, que é uma Área de Efeito (Armadilha). Qualquer figura que entrar em contato com a Área de Efeito recebe um ataque à distância +5."
       }
     ]
   },
@@ -196,14 +196,14 @@
     "specialRules": [
       {
         "label": "Furtividade Lunar",
-        "value": "Uma figura equipada com esse amuleto é sempre tratada como estando no mínimo em cobertura leve contra ataques a distância."
+        "value": "Uma figura equipada com esse amuleto é sempre tratada como estando no mínimo em cobertura leve contra ataques à distância."
       }
     ]
   },
   {
     "roll": null,
     "id": "flecha-serpentina",
-    "name": "flecha-serpentina",
+    "name": "Flecha Serpentina",
     "type": "Munição",
     "damageModifier": null,
     "availability": ["Reptilianos", "Elfos Silvanos de Athel Loren"],
@@ -219,7 +219,7 @@
     "requirements": null,
     "specialRules": [
       {
-        "label": "Flecha Envenenanda",
+        "label": "Flecha Envenenada",
         "value": "Um ataque feito usando uma flecha envenenada tem a palavra-chave Tóxica."
       }
     ]
@@ -255,7 +255,7 @@
     "type": "Manto",
     "damageModifier": null,
     "availability": [
-      "NMercenários",
+      "Mercenários",
       "Caçadores de Bruxas",
       "Caçadores de Tesouro Anões",
       "Irmãs de Sigmar"
@@ -273,7 +273,7 @@
     "specialRules": [
       {
         "label": "Iniciativa da Besta Sagrada",
-        "value": "Esse item só pode ser equipado por hérois. Para cada héroi equipado com esse item no bando, ganhe +2 na rolagem de iniciativa, para um máximo de +4 de bonus oferecido pelo item."
+        "value": "Esse item só pode ser equipado por heróis. Para cada herói equipado com esse item no bando, ganhe +2 na rolagem de iniciativa, para um máximo de +4 de bônus oferecido pelo item."
       }
     ]
   },
@@ -299,7 +299,7 @@
     "specialRules": [
       {
         "label": "Banir o mal",
-        "value": "Uma figura pode fazer um ataque a distância sagrado contra um inimigo Morto-Vivo, ou daemônio a até 12cm de distância. O ataque tem modificador de dano +2. O ataque a distância segue as regras normais de uma ação de ataque a distância."
+        "value": "Uma figura pode fazer um ataque à distância sagrado contra um inimigo Morto-Vivo, ou daemônio a até 12cm de distância. O ataque tem modificador de dano +2. O ataque à distância segue as regras normais de uma ação de ataque à distância."
       }
     ]
   },
@@ -337,7 +337,7 @@
     "rarity": 1,
     "purchaseCost": "5 coroas",
     "exclusive": null,
-    "flavorText": "Uma bota de couro resistente, tradicionalmente usada para carregar água e outros líquidos.",
+    "flavorText": "Um cantil de couro resistente, tradicionalmente usado para carregar água e outros líquidos.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -395,7 +395,7 @@
     "specialRules": [
       {
         "label": "Fura Botas",
-        "value": "A estrepes suficientes para durar apenas um uso. Podem ser usados quando um oponente que declarou carga se move dentro de 8cm do usuário das estrepes. A figura que está cargando faz um teste de Vontade com CD 14. Se falhar, seu movimento é interrompido, a carga falha, e a figura que estava cargando toma 2 de dano. Ela ainda tem outras ações."
+        "value": "Há estrepes suficientes para durar apenas um uso. Podem ser usados quando um oponente que declarou carga se move dentro de 8cm do usuário das estrepes. A figura que está carregando faz um teste de Vontade com CD 14. Se falhar, seu movimento é interrompido, a carga falha, e a figura que estava carregando toma 2 de dano. Ela ainda tem outras ações."
       }
     ]
   },
@@ -467,7 +467,7 @@
     "specialRules": [
       {
         "label": "Servo Vigia",
-        "value": "Só pode ser equipado por hérois. Um orc com um Goblin Vigia ganha a habilidade Reflexos Instantâneos da lista de habilidades de Agilidade."
+        "value": "Só pode ser equipado por heróis. Um orc com um Goblin Vigia ganha a habilidade Reflexos Instantâneos da lista de habilidades de Agilidade."
       }
     ]
   },
@@ -491,7 +491,7 @@
     "specialRules": [
       {
         "label": "Servo Sortudo",
-        "value": "Só pode ser equipado por hérois. Um orc com um Goblin Sortudo pode uma vez por jogo, rerolar uma rolagem de dado e escolher o melhor resultado."
+        "value": "Só pode ser equipado por heróis. Um orc com um Goblin Sortudo pode uma vez por jogo, rerolar uma rolagem de dado e escolher o melhor resultado."
       }
     ]
   },
@@ -515,7 +515,7 @@
     "specialRules": [
       {
         "label": "Servo Guerreiro",
-        "value": "Só pode ser equipado por hérois. Um orc com um Goblin Espadachim causa 1 de dano extra em ataques corpo a corpo."
+        "value": "Só pode ser equipado por heróis. Um orc com um Goblin Espadachim causa 1 de dano extra em ataques corpo a corpo."
       }
     ]
   },
@@ -563,7 +563,7 @@
     "specialRules": [
       {
         "label": "Camuflagem Élfica",
-        "value": "Uma figura equipada com um manto élfico ganha a característica Furtividade(12)."
+        "value": "Uma figura equipada com um manto élfico ganha a característica Furtividade(30)."
       }
     ]
   },
@@ -577,7 +577,7 @@
     "rarity": 11,
     "purchaseCost": "60 coroas",
     "exclusive": null,
-    "flavorText": "Os magos Altos Élficos são bem conhecidos como mestres da magia defensiva. Para ajudá-los, desenvolveram várias runas místicas de poder. Frequentemente inscrevem essas runas em pedras semipreciosas, que podem ajudar a fortalecer as defesas mágicas de uma criatura.",
+    "flavorText": "Os magos Altos Élficos são bem conhecidos como mestres da magia defensiva. Para ajudá-los, desenvolveram várias runas místicas de poder. Frequentemente inscrevem essas runas em pedras semipreciosas, que podem ajudar a fortalecer as defesas mágicas de uma figura.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -597,9 +597,7 @@
     "name": "Vinho Élfico",
     "type": "Bebida Alcóolica",
     "damageModifier": null,
-    "availability": [
-      "Elfos Sombrios"
-    ],
+    "availability": ["Elfos Sombrios"],
     "rarity": 10,
     "purchaseCost": "50 coroas",
     "exclusive": null,
@@ -627,7 +625,7 @@
     "rarity": 10,
     "purchaseCost": "20 coroas",
     "exclusive": null,
-    "flavorText": "As peles protetoras e amuletos que os reptlianos usam foram protegidos com magia defensiva. Estes itens ancestrais carregam a bênção dos espíritos de lustria.",
+    "flavorText": "As peles protetoras e amuletos que os reptilianos usam foram protegidos com magia defensiva. Estes itens ancestrais carregam a bênção dos espíritos de Lustria.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -637,7 +635,7 @@
     "specialRules": [
       {
         "label": "Proteção Mágica",
-        "value": "Uma figura equipada com esse manto ganha +1 de armadura. Adicionalmente uma vez durante o jogo, uma magia que tenha a figura usuária como albo é imediatamente cancelada, sem rolagens feitas."
+        "value": "Uma figura equipada com esse manto ganha +1 de armadura. Adicionalmente uma vez durante o jogo, uma magia que tenha a figura usuária como alvo é imediatamente cancelada, sem rolagens feitas."
       }
     ]
   },
@@ -708,7 +706,7 @@
     "specialRules": [
       {
         "label": "Bomba Incendiária",
-        "value": "Uma bomba de fogo pode ser lançada como uma arma a distância com 16cm de alcance. Caso acerte, posicione uma ÁREA DE EFEITO (EXPLOSÃO PEQUENA) centralizada no alvo. Todos os modelos dentro da área de efeito recebem um marcador de chamas e sofrem um ataque flamejante +3."
+        "value": "Uma bomba de fogo pode ser lançada como uma arma a distância com 16cm de alcance. Caso acerte, posicione uma Área de Efeito (Explosão Pequena) centralizada no alvo. Todos os modelos dentro da área de efeito recebem um marcador de chamas e sofrem um ataque flamejante +3."
       }
     ]
   },
@@ -732,7 +730,7 @@
     "specialRules": [
       {
         "label": "Espanta-Besta",
-        "value": "Há fogos de artificio suficiente para durar apenas um uso. Podem ser usados quando uma figura inimigo com a característica Animal que declarou carga se move dentro de 8cm da figura equipada. A figura que está cargando faz um teste de Vontade com CD 16. Se falhar, seu movimento é interrompido, a carga falha e a ativaçãp da figura se encerra imediatamente, quaisquer açòes restantes perdidas."
+        "value": "Há fogos de artifício suficiente para durar apenas um uso. Podem ser usados quando uma figura inimiga com a característica Animal que declarou carga se move dentro de 8cm da figura equipada. A figura que está carregando faz um teste de Vontade com CD 16. Se falhar, seu movimento é interrompido, a carga falha e a ativação da figura se encerra imediatamente, quaisquer ações restantes perdidas."
       }
     ]
   },
@@ -756,7 +754,7 @@
     "specialRules": [
       {
         "label": "Explosão Cegante",
-        "value": "Há pólvora branca suficiente para durar apenas um uso. Podem ser usados quando um oponente que declarou carga se move dentro de 8cm da figura equipada. A figura que está cargando faz um teste de Vontade com CD 14. Se falhar, seu movimento é interrompido, a carga falha, e a figura que estava cargando tem 0 de Ímpeto e Precisão até o começo da sua próxima ativação. Ela ainda tem outras ações"
+        "value": "Há pólvora branca suficiente para durar apenas um uso. Podem ser usados quando um oponente que declarou carga se move dentro de 8cm da figura equipada. A figura que está carregando faz um teste de Vontade com CD 14. Se falhar, seu movimento é interrompido, a carga falha, e a figura que estava carregando tem 0 de Ímpeto e Precisão até o começo da sua próxima ativação. Ela ainda tem outras ações."
       }
     ]
   },
@@ -768,7 +766,7 @@
     "damageModifier": null,
     "availability": ["Todos exceto Mortos-Vivos"],
     "rarity": 1,
-    "purchaseCost": "1 coroa",
+    "purchaseCost": "1 Coroa de Ouro",
     "exclusive": null,
     "flavorText": "O alho é uma erva comum cultivada na maioria dos jardins do Império. Diz-se que afasta Vampiros e outros habitantes das trevas.",
     "user": null,
@@ -880,7 +878,7 @@
     "specialRules": [
       {
         "label": "Orações Sagradas",
-        "value": "Um Sacerdote Guerreiro, Irmã de Sigmar ou Sacerdote Lupino de Ulric equipados com um tomo sagrado adiciona +2 as suas rolagens de conjuração."
+        "value": "Um Sacerdote Guerreiro, Irmã de Sigmar ou Sacerdote Lupino de Ulric equipados com um tomo sagrado adiciona +2 às suas rolagens de conjuração."
       }
     ]
   },
@@ -903,7 +901,7 @@
     "requirements": null,
     "specialRules": [
       {
-        "label": "Flechas Farpaadas",
+        "label": "Flechas Farpadas",
         "value": "Um modelo usando um Arco Curto, Arco, Arco Longo ou Arco Élfico pode usar essas flechas. Um ataque feito com essas flechas ganha um modificador de dano +2."
       }
     ]
@@ -928,7 +926,7 @@
     "specialRules": [
       {
         "label": "Chute de Ferro",
-        "value": "Um guerreiro equipado com botas de ferro sempre conta como equipado com uma adaga, inclusive para fins de lutar com duas armas, mesmo se não tiver nada na mão secundária. Não pode se beneficiar do bonus de lutar com duas armas se tiver um escudo ou uma arma com a característica Duas Mãos equipada. A figura tem -2 de movimento, mesmo se for um anão, devido ao peso das botas."
+        "value": "Um guerreiro equipado com botas de ferro sempre conta como equipado com uma adaga, inclusive para fins de lutar com duas armas, mesmo se não tiver nada na mão secundária. Não pode se beneficiar do bônus de lutar com duas armas se tiver um escudo ou uma arma com a característica Duas Mãos equipada. A figura tem -2 de movimento, mesmo se for um anão, devido ao peso das botas."
       }
     ]
   },
@@ -952,7 +950,7 @@
     "specialRules": [
       {
         "label": "Três Desejos",
-        "value": "Cada vez que um herói usa a lâmpada, na fase de atividades ela lhe concede três desejos, mas cada vez que você rola na 'Tabela da Luz' você deve rolar na 'Tabela da Escuridão' e aplicar os resultados. \n Tabela da Luz\n 1-4: Ganhe 10 XP,\n 5-9: Ganhe um equipamento aleatório da lista da facção\n10-13:Ganhe um equipamento a sua escolha da lista da facção,\n14-17: Ganhe 1d20x10 coroas,\n18-20: Aprenda uma nova magia ou poder que a figura tenha acesso.\nTabela Sombria:\n 1-4:Nada acontece,\n 5-9: Uma figura aleatória do bando perde todo seu equipamento,\n 10-13:o bando perde 1d20x10 coroas,\n 14-17:A lampada é perdida,\n 18-20:O líder do bando rola na tabela de sobrevivência."
+        "value": "Cada vez que um herói usa a lâmpada, na fase de atividades ela lhe concede três desejos, mas cada vez que você rola na 'Tabela da Luz' você deve rolar na 'Tabela da Escuridão' e aplicar os resultados. \n Tabela da Luz\n 1-4: Ganhe 10 XP,\n 5-9: Ganhe um equipamento aleatório da lista da facção\n10-13: Ganhe um equipamento à sua escolha da lista da facção,\n14-17: Ganhe 1d20x10 coroas,\n18-20: Aprenda uma nova magia ou poder que a figura tenha acesso.\nTabela Sombria:\n 1-4: Nada acontece,\n 5-9: Uma figura aleatória do bando perde todo seu equipamento,\n 10-13: o bando perde 1d20x10 coroas,\n 14-17: A lâmpada é perdida,\n 18-20: O líder do bando rola na tabela de sobrevivência."
       }
     ]
   },
@@ -976,7 +974,7 @@
     "specialRules": [
       {
         "label": "Arrombamento",
-        "value": "Uma figura equipado com um conjunto de gazuas pode fazer qualquer teste para desbloquear fragmentos de pedra-bruxa trancada com +5 no teste."
+        "value": "Uma figura equipada com um conjunto de gazuas pode fazer qualquer teste para desbloquear fragmentos de Pedra-Bruxa trancada com +5 no teste."
       }
     ]
   },
@@ -1120,7 +1118,7 @@
     "specialRules": [
       {
         "label": "Sorte do Coelho",
-        "value": "Um pé de coelho permite que uma vez por jogo o guerreiro ganhe +5 em qualquer rolagem de dadoo durante a batalha. Se não usado na batalha, pode ser usado para rolar novamente o dado de exploração desse héroi e escolher o melhor resultado."
+        "value": "Um pé de coelho permite que uma vez por jogo o guerreiro ganhe +5 em qualquer rolagem de dado durante a batalha. Se não usado na batalha, pode ser usado para rolar novamente o dado de exploração desse herói e escolher o melhor resultado."
       }
     ]
   },
@@ -1168,7 +1166,7 @@
     "specialRules": [
       {
         "label": "Invocação",
-        "value": "No início da batalha, o guerreiro é capaz de invocar um único Escorpião da Tumba. Se ele for capaz de passar em um teste cotestado de Vontade contra o escorpião, o escorpião é invocado como membro temporário do bando. Se falhar, o escorpião é uma criatura descontrolada."
+        "value": "No início da batalha, o guerreiro é capaz de invocar um único Escorpião da Tumba. Se ele for capaz de passar em um teste cotestado de Vontade contra o escorpião, o escorpião é invocado como membro temporário do bando. Se falhar, o escorpião é uma figura descontrolada."
       }
     ]
   },
@@ -1216,7 +1214,7 @@
     "specialRules": [
       {
         "label": "Cortina de Fumaça",
-        "value": "A figura equipada pode posicionar uma ÁREA DE EFEITO(ZONA MÉDIA) a até 10cm de si. A Zona bloqueia linha de visão para fora e para dentro. Figuras dentro da Zona tem 0 de Ímpeto e 0 de Precisão. No final de cada turno role um dado. Em 1-8 a novem de fumaça se dissipa."
+        "value": "A figura equipada pode posicionar uma Área de Efeito (Zona Média) a até 10cm de si. A Zona bloqueia linha de visão para fora e para dentro. Figuras dentro da Zona têm 0 de Ímpeto e 0 de Precisão. No final de cada turno role um dado. Em 1-8 a nuvem de fumaça se dissipa."
       }
     ]
   },
@@ -1264,7 +1262,7 @@
     "specialRules": [
       {
         "label": "Qualidade Superior",
-        "value": "Todas as armas a distância usadas pelo bando no próximo jogo ganham um bônus de +1 ao dano."
+        "value": "Todas as armas à distância usadas pelo bando no próximo jogo ganham um bônus de +1 ao dano."
       }
     ]
   },
@@ -1288,7 +1286,7 @@
     "specialRules": [
       {
         "label": "Previsão",
-        "value": "Um Herói com um baralho de cartas de tarot pode consultá-las antes de cada jogo. Faça um teste de Vontade CD 15. Se bem-sucedido, o Herói ganha uma visão favorável do futuro e você pode modificar o resultado de qualquer dado na fase de Exploração por -3/+3. Se o teste de Liderança falhar por 6 ou mais, o Herói se recusa a lutar na próxima batalha."
+        "value": "Um Herói com um baralho de cartas de tarot pode consultá-las antes de cada jogo. Faça um teste de Vontade CD 15. Se bem-sucedido, o Herói ganha uma visão favorável do futuro e você pode modificar o resultado de qualquer dado na fase de Exploração por -3/+3. Se o teste de Vontade falhar por 6 ou mais, o Herói se recusa a lutar na próxima batalha."
       }
     ]
   },
@@ -1312,7 +1310,7 @@
     "specialRules": [
       {
         "label": "Visão Aprimorada",
-        "value": "Qualquer herói usando um telescópio pode aumentar o alcance de qualquer ataque a distância que ele esteja usando em 10cm. Além disso, ele trata a característica Furtividade(X) de qualquer figura inimiga que possa ver como Furtividade(X*3)."
+        "value": "Qualquer herói usando um telescópio pode aumentar o alcance de qualquer ataque à distância que ele esteja usando em 10cm. Além disso, ele trata a característica Furtividade(X) de qualquer figura inimiga que possa ver como Furtividade(X*3)."
       }
     ]
   },
@@ -1336,7 +1334,7 @@
     "specialRules": [
       {
         "label": "Conhecimento Proibido",
-        "value": "Se o bando inclui uma figura capaz de conjurar magias de Tradições Arcanas, ela aprende uma magia de uma de suas tradiçòes. O livro é então descartado."
+        "value": "Se o bando inclui uma figura capaz de conjurar magias de Tradições Arcanas, ela aprende uma magia de uma de suas tradições. O livro é então descartado."
       }
     ]
   },
@@ -1360,7 +1358,7 @@
     "specialRules": [
       {
         "label": "Imunidade ao Veneno",
-        "value": "O Anel do Veneno dá a figura equipada a característica Imune a Veneno."
+        "value": "O Anel de Ramo de Mandragora dá à figura equipada a característica Imune a Veneno."
       }
     ]
   },
@@ -1408,7 +1406,7 @@
     "specialRules": [
       {
         "label": "Encorajamento",
-        "value": "Uma corneta de guerra pode ser usada uma vez por batalha no início de qualquer turno. Durante o turno em que foi usado, todas as criaturas do bando ganham +1 de Vontade e ignoram a condição Ferido."
+        "value": "Uma corneta de guerra pode ser usada uma vez por batalha no início de qualquer turno. Durante o turno em que foi usado, todas as figuras do bando ganham +1 de Vontade e ignoram a condição Ferido."
       }
     ]
   },
@@ -1432,7 +1430,7 @@
     "specialRules": [
       {
         "label": "Transporte",
-        "value": "Um carrinho de mão é colocado no tabuleiro como qualquer outro modelo. Um Herói ou Soldado que não seja um animal pode empurrar um carrinho de mão enquanto estiver em contato de base com ele. Empurrar um carrinho de mão não afeta o movimento normal de uma figura. Um fragmento de pedra-bruxa pode ser carregando no carrinho de mão com uma ação de uma figura o carregando. Ele continua podendo ser empurrado sem afetar o movimento final da figura que o empurra."
+        "value": "Um carrinho de mão é colocado no tabuleiro como qualquer outro modelo. Um Herói ou Soldado que não seja um animal pode empurrar um carrinho de mão enquanto estiver em contato de base com ele. Empurrar um carrinho de mão não afeta o movimento normal de uma figura. Um fragmento de Pedra-Bruxa pode ser carregado no carrinho de mão com uma ação de uma figura o carregando. Ele continua podendo ser empurrado sem afetar o movimento final da figura que o empurra."
       }
     ]
   },
@@ -1456,7 +1454,7 @@
     "specialRules": [
       {
         "label": "Proteção do Lobo",
-        "value": "Para adquirir um Manto do Lobo, um Herói deve pagar 10 coroas para viajar para Middenheim e fazer um teste de Força CD 14. Se bem-sucedido, o Herói encontra e mata o lobo e pode usar sua pele como marca de sua habilidade e proeza. Um modelo usando um Manto do Lobo ganhará +2 de armadura contra ataques a distância."
+        "value": "Para adquirir um Manto do Lobo, um Herói deve pagar 10 coroas para viajar para Middenheim e fazer um teste de Força CD 14. Se bem-sucedido, o Herói encontra e mata o lobo e pode usar sua pele como marca de sua habilidade e proeza. Um modelo usando um Manto do Lobo ganhará +2 de armadura contra ataques à distância."
       }
     ]
   },
@@ -1470,7 +1468,7 @@
     "rarity": 9,
     "purchaseCost": "35 coroas",
     "exclusive": null,
-    "flavorText": "Pêndulos feitos de pedra-bruxa podem supostamente ser usados para encontrar ainda mais da pedra mágica.",
+    "flavorText": "Pêndulos feitos de Pedra-Bruxa podem supostamente ser usados para encontrar ainda mais da pedra mágica.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -1480,7 +1478,7 @@
     "specialRules": [
       {
         "label": "Busca Mística",
-        "value": "Se um héroi equipado com esse item não foi reduzido a 0 de vida na partida anterior, ele pode fazer um teste de vontade CD 14. Se bem-sucedido, quaisquer dados rolados na atividade de exploração podem ser rolados duas vezes e o melhor resultado escolhido."
+        "value": "Se um herói equipado com esse item não foi reduzido a 0 de vida na partida anterior, ele pode fazer um teste de Vontade CD 14. Se bem-sucedido, quaisquer dados rolados na atividade de exploração podem ser rolados duas vezes e o melhor resultado escolhido."
       }
     ]
   }

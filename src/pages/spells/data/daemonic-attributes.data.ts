@@ -76,7 +76,7 @@ export const daemonicAttributes = [
   {
     name: "Parasita Espiritual",
     description:
-      "Sempre que a figura danifica uma criatura em combate corpo a corpo que não seja Morto-Vivo ou Construto, ela imediatamente recupera 2 pontos de Vigor perdido. Isto não pode levar a figura acima de seu Vigor inicial.",
+      "Sempre que a figura danifica uma figura em combate corpo a corpo que não seja Morto-Vivo ou Construto, ela imediatamente recupera 2 pontos de Vigor perdido. Isto não pode levar a figura acima de seu Vigor inicial.",
   },
   {
     name: "Asas da Mutação",
@@ -135,6 +135,6 @@ export const daemonicAttributes = [
   {
     name: "Incubadora Demoníaca",
     description:
-      "No início de cada turno, role um dado. Em uma rolagem de 16+, um imp aparece a até 8cm desta figura. A figura invocada é tratada como uma criatura descontrolada e ativa no fim do turno junto as outras criaturas.",
+      "No início de cada turno, role um dado. Em uma rolagem de 16+, um imp aparece a até 8cm desta figura. A figura invocada é tratada como uma figura descontrolada e ativa no fim do turno junto as outras figuras.",
   },
 ];

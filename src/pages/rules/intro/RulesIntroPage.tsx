@@ -49,14 +49,14 @@ function RulesIntroPage() {
               20Heim é um jogo criado para representar as violentas escaramuças
               entre bandos brigando pelas preciosas Pedra-Bruxa. É um jogo que
               surgiu a partir do amor do seu criador pela história do Velho
-              Mundo e o tom narrativo Inalcançável de Mordheim. O jogo visa
+              Mundo e o tom narrativo inalcançável de Mordheim. O jogo visa
               trazer jogadores mais jovens para as ruas da cidade dos
               condenados, com regras mais limpas, balanceadas, acessíveis e
               usando um motor d20, que com a ascensão do RPG de mesa se tornou
-              um sinônimo de jogabilidade ágil e descomplicado. O jogo também é
-              uma carta de amor a Frostgrave, uma das bases de seu gamedesign,
+              um sinônimo de jogabilidade ágil e descomplicada. O jogo também é
+              uma carta de amor a Frostgrave, uma das bases de seu game design,
               um jogo incrível, leve e descomplicado. Buscando trazer a base
-              dada pelo Incrível McCullough para o velho mundo, 20Heim surgiu.
+              dada pelo incrível McCullough para o velho mundo, 20Heim surgiu.
               Espero que todos possam se divertir jogando.
             </MobileText>
 
@@ -65,11 +65,11 @@ function RulesIntroPage() {
             </div>
             <MobileText>
               20Heim é um jogo de guerra, onde jogadores controlam bandos de
-              mercenários, bandidos, assassinos ou pior lutando pela dominância
+              mercenários, bandidos, assassinos ou pior, lutando pela dominância
               sobre o recurso mais importante neste local destruído: a
               Pedra-Bruxa. Escaramuças sangrentas, batalhas em que bandos rivais
               serão obrigados a se aliar para enfrentar ameaças terríveis e até
-              mesmo momentos de extase ao enviar seus hérois para explorar as
+              mesmo momentos de êxtase ao enviar seus heróis para explorar as
               ruínas da cidade dos condenados o aguardam ao embarcar em uma
               campanha de 20Heim.
             </MobileText>
@@ -82,10 +82,10 @@ function RulesIntroPage() {
               <HeaderH2>Dados</HeaderH2>
             </div>
             <MobileText>
-              Em 20Heim, os sucesso ou fracasso das ações são determinados por
-              rolagens de dados. cada jogador idealmente deve ter pelo menos um{" "}
-              <strong>dado de 20 lados</strong>, para fazer suas próprias
-              rolagens. Ter mais de um desses dados é recomendado, para marcar
+              Em 20Heim, o sucesso ou fracasso das ações são determinados por
+              rolagens de dados. Cada jogador idealmente deve ter pelo menos um{" "}
+              <strong>dado de 20 lados</strong> para fazer suas próprias
+              rolagens. Ter mais de um desses dados é recomendado para marcar a
               vida de soldados, para o qual até mesmo um contador de vida de
               Magic: The Gathering pode ser usado. Nas páginas de regras nos
               referimos a este dado como <strong>d20</strong>.
@@ -118,9 +118,9 @@ function RulesIntroPage() {
               e permita medir distâncias precisas entre bases. Recomenda-se que
               cada bando tenha miniaturas distintas para facilitar a
               identificação durante o jogo. Patreons como One Page Rules,
-              Bestiarium Minis, Mr. Modulork, Printable Heroes entre outros são
-              excelentes fontes de miniaturas. As miniaturas da Citadel também
-              são uma excelente opção, apesar do seu preço elevado.
+              Bestiarium Minis, Mr. Modulork, Printable Heroes, entre outros,
+              são excelentes fontes de miniaturas. As miniaturas da Citadel
+              também são uma excelente opção, apesar do seu preço elevado.
             </MobileText>
 
             <div id="terrain">
@@ -136,7 +136,7 @@ function RulesIntroPage() {
               isopor e outros materiais reciclados. O importante é que a mesa
               conte a história da Cidade dos Condenados, proporcionando
               cobertura tática, pontos de vista elevados e cenários que inspirem
-              narrativas épicas. Empresas como Mantic Games, TTCombat, irmãos
+              narrativas épicas. Empresas como Mantic Games, TTCombat, Irmãos
               Grimm Terrain e Deadly Print Studio oferecem excelentes opções de
               terrenos temáticos para Mordheim.
             </MobileText>

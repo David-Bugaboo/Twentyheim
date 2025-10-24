@@ -57,36 +57,36 @@ function CombatSystemSection() {
       </MobileText>
 
       <MobileText variant="heading" className="mt-2">
-        Ativação de Criaturas Neutras
+        Ativação de Figuras Neutras
       </MobileText>
       <MobileText>
-        Quando todas as figuras dos jogadores tiverem ativado, as criaturas
+        Quando todas as figuras dos jogadores tiverem ativado, as figuras
         neutras começam a agir. Eleja um jogador para rolar por elas (ou
         alternem a cada turno, como preferirem). Se houver um{" "}
         <strong>gamemaster</strong>
         na campanha, idealmente ele assume essa função.
       </MobileText>
       <MobileText>
-        Para cada criatura neutra, <strong>role 1d20</strong>: esse é o valor de
-        <strong> iniciativa</strong> da criatura. Se duas criaturas empatarem na
+        Para cada figura neutra, <strong>role 1d20</strong>: esse é o valor de
+        <strong> iniciativa</strong> da figura. Se duas figuras empatarem na
         iniciativa, elas agem como em uma <strong>ativação em grupo</strong>. Em
-        seguida, na ordem de iniciativa das criaturas, controle‑as seguindo o
+        seguida, na ordem de iniciativa das figuras, controle‑as seguindo o
         algoritmo abaixo:
       </MobileText>
       <MobileText>
         • <strong>Ação de movimento</strong>: se a figura não enxerga nenhuma
         figura controlada por jogador, decida a direção aleatoriamente. Lance um
-        d20: cada face forma um triângulo — mova a criatura seu valor inteiro de
+        d20: cada face forma um triângulo — mova a figura seu valor inteiro de
         <strong> Agilidade</strong> na direção apontada pelo{" "}
         <strong>vértice superior</strong> do número mostrado no dado (considere
-        o vértice alinhado ao topo do algarismo). Se a criatura enxerga uma ou
+        o vértice alinhado ao topo do algarismo). Se a figura enxerga uma ou
         mais figuras, mova em direção à <strong>mais próxima</strong>. Se puder
         <strong>declarar Carga</strong>, declara. Se tiver arma à distância,
         mantém‑se no <strong>limite do alcance</strong> de sua arma, preferindo
         sempre <strong>atirar primeiro</strong> e mover depois.
       </MobileText>
       <MobileText>
-        • <strong>Outra ação</strong>: se a criatura está em combate, usa uma
+        • <strong>Outra ação</strong>: se a figura está em combate, usa uma
         <strong> ação de luta</strong> (nunca escolhe empurrar o inimigo 1"). Se
         tiver arma à distância e estiver em alcance, faz um{" "}
         <strong>ataque à distância</strong>, mantendo‑se no limite do alcance da
@@ -97,8 +97,8 @@ function CombatSystemSection() {
         <strong>
           terminou o movimento e ainda não está em combate ou no alcance de tiro
         </strong>
-        : a criatura usa sua segunda ação para se mover norvamente seguindo as
-        mesmas regras de movimento do jogo e de criaturas neutras.
+        : a figura usa sua segunda ação para se mover norvamente seguindo as
+        mesmas regras de movimento do jogo e de figuras neutras.
       </MobileText>
 
       <MobileText variant="heading" className="mt-2">
@@ -106,11 +106,11 @@ function CombatSystemSection() {
       </MobileText>
       <MobileText>
         Após todos os jogadores ativarem suas figuras, as
-        <strong> criaturas neutras</strong> (se houver) agem segundo suas
-        próprias regras. Então o turno termina — os mortos são contados, os
-        feridos gemem — e o ciclo recomeça. No <strong>próximo turno</strong>, a
-        iniciativa é <strong>rolada novamente</strong>: um novo d20, uma nova
-        ordem, uma nova chance de sobreviver… ou não.
+        <strong> figuras neutras</strong> (se houver) agem segundo suas próprias
+        regras. Então o turno termina — os mortos são contados, os feridos gemem
+        — e o ciclo recomeça. No <strong>próximo turno</strong>, a iniciativa é{" "}
+        <strong>rolada novamente</strong>: um novo d20, uma nova ordem, uma nova
+        chance de sobreviver… ou não.
       </MobileText>
 
       <div className="bg-[#2a1f1f] p-4 rounded-lg border border-[#382929] mt-2">
@@ -122,7 +122,7 @@ function CombatSystemSection() {
         <MobileText>3) Herói: pode ativar até 3 soldados a 8 cm.</MobileText>
         <MobileText>4) Campeão: pode ativar até 2 soldados a 8 cm.</MobileText>
         <MobileText>
-          5) Criaturas neutras: ativam após todos os jogadores.
+          5) Figuras neutras: ativam após todos os jogadores.
         </MobileText>
         <MobileText>
           6) Fim do turno: reinicie (role iniciativa novamente).

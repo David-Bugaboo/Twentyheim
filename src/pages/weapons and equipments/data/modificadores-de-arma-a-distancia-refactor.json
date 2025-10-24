@@ -3,14 +3,12 @@
     "id": "elfico",
     "name": "Élfico",
     "type": "Modificador de Arma a Distancia",
-    "availability": [
-     "Todos"
-    ],
+    "availability": ["Todos"],
     "rarity": 20,
     "damageModifier": null,
     "purchaseCost": "base * 3",
     "exclusive": null,
-    "flavorText": "Construída de madeira do Bosque Sagrado de Athel Loren, e com cordas tecidas do cabelo de donzelas élficas.",
+    "flavorText": "Construída de madeira do Bosque Sagrado de Athel Loren e com cordas tecidas do cabelo de donzelas élficas.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,

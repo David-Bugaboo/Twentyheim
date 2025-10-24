@@ -15,7 +15,7 @@
     "name": "Refinamento Molecular",
     "castingNumber": 8,
     "keywords": ["Linha de Visão"],
-    "effect": "Esta magia tem como alvo uma arma ou armadura escolhida pelo conjurador. Se conjurada em uma arma corpo a corpo, esta arma conta como uma arma mágica com +1 Ímpeto. Arcos e bestas contam como armas mágicas com +1 Precisão, mas os ataques feitos com elas não contam como ataques mágicos. Esta magia pode ser conjurada em uma única flecha ou virote de besta, caso em que essa munição dá +1 Precisão e seu ataque conta como mágico, mas apenas para o próximo ataque a distância. Esta magia pode ser conjurada apenas uma vez em cada arma. Ao usar tanto uma arma mágica de projétil quanto munição mágica, o atirador pode escolher aplicar o bônus de um ou outro, mas não ambos. Esta magia só pode ser conjurada em uma figura usando armadura. se conjurada em uma armadura, esta agoraconta como armadura mágica e concede +1 Armadura pelo resto do jogo. Múltiplas conjurações desta magia no mesmo alvo não têm efeito."
+    "effect": "Esta magia tem como alvo uma arma ou armadura escolhida pelo conjurador. Se conjurada em uma arma corpo a corpo, esta arma conta como uma arma mágica com +1 Ímpeto. Arcos e bestas contam como armas mágicas com +1 Precisão, mas os ataques feitos com elas não contam como ataques mágicos. Esta magia pode ser conjurada em uma única flecha ou virote de besta, caso em que essa munição dá +1 Precisão e seu ataque conta como mágico, mas apenas para o próximo ataque a distância. Esta magia pode ser conjurada apenas uma vez em cada arma. Ao usar tanto uma arma mágica de projétil quanto munição mágica, o atirador pode escolher aplicar o bônus de um ou outro, mas não ambos. Esta magia só pode ser conjurada em uma figura usando armadura. Se conjurada em uma armadura, esta agora conta como armadura mágica e concede +1 Armadura pelo resto do jogo. Múltiplas conjurações desta magia no mesmo alvo não têm efeito."
   },
   {
     "name": "Maldição da Ferrugem",
@@ -26,8 +26,8 @@
   {
     "name": "Flechas de Prata de Arha",
     "castingNumber": 10,
-    "keywords": ["Alcance(30)", "Missil Mágico(Normal)(+5)"],
-    "effect": "ataque a figura alvo com o Míssil Mágico. Apesar de seu dano ser normal, ele conta como mágico contra mortos vivos e lobisomens devido a prata."
+    "keywords": ["Alcance(30)", "Míssil Mágico(Normal)(+5)"],
+    "effect": "Ataque a figura alvo com o Míssil Mágico. Apesar de seu dano ser normal, ele conta como mágico contra mortos-vivos e lobisomens devido à prata."
   },
   {
     "name": "Transmutação em Chumbo",
@@ -51,7 +51,7 @@
     "name": "Transmutação da Permanência",
     "castingNumber": 14,
     "keywords": ["Ritual"],
-    "effect": "Se o ritual for conjurado com sucesso, os bonus dados a uma arma ou armadura com Refinamento Molecular se tornam permanentes."
+    "effect": "Se o ritual for conjurado com sucesso, os bônus dados a uma arma ou armadura com Refinamento Molecular se tornam permanentes."
   },
   {
     "name": "Transmutar em Ouro",

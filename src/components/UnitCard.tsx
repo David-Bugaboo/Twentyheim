@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import GameText from "./GameText";
 import EquipmentTooltip from "./EquipmentTooltip";
 
-interface UnitStats {
+export interface UnitStats {
   move: number | string;
   fight: string;
   shoot: string;
@@ -22,7 +22,7 @@ interface UnitStats {
   };
 }
 
-interface UnitAbility {
+export interface UnitAbility {
   name: string;
   description?: string;
   weapons?: string[];

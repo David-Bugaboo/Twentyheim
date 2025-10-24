@@ -124,8 +124,7 @@ const RulesIntroSection: React.FC = () => {
         sob pressão.
       </MobileText>
       <MobileText>
-        • <strong>Armadura</strong>: o quão resistente a ferimentos a criatura
-        é.
+        • <strong>Armadura</strong>: o quão resistente a ferimentos a figura é.
       </MobileText>
       <MobileText>
         • <strong>Vontade</strong>: fortaleza da mente — inteligência,
@@ -238,9 +237,10 @@ const RulesIntroSection: React.FC = () => {
             com a maior rolagem escolhe qual borda da mesa será a sua. A segunda
             maior rolagem escolhe outra borda (em uma partida de 2 jogadores,
             deve necessiariamente pegar a borda oposta), e assim sucessivamente.
-            Os jogador que teve a maior rolagem posiciona todas as suas figuras, seguido 
-            pelo jogador com a segunda maior rolagem, e assim sucessivamente. As figuras 
-            devem ser todas posicionadas a até 15cm da sua borda da mesa.
+            Os jogador que teve a maior rolagem posiciona todas as suas figuras,
+            seguido pelo jogador com a segunda maior rolagem, e assim
+            sucessivamente. As figuras devem ser todas posicionadas a até 15cm
+            da sua borda da mesa.
           </MobileText>
 
           <MobileText variant="subheading" className="mt-2">
@@ -248,8 +248,10 @@ const RulesIntroSection: React.FC = () => {
           </MobileText>
           <br></br>
           <MobileText>
-            Com tudo resolvido, só falta uma coisa: jogar, deixando os dados e suas jogadas contarem uma história épica na cidade dos codnenados! Boa Sorte, e siga as regras dispostas na seção abaixo
-            para jogar sua partida!
+            Com tudo resolvido, só falta uma coisa: jogar, deixando os dados e
+            suas jogadas contarem uma história épica na cidade dos codnenados!
+            Boa Sorte, e siga as regras dispostas na seção abaixo para jogar sua
+            partida!
           </MobileText>
         </div>
       </div>

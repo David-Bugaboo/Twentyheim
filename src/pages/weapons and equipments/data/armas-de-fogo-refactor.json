@@ -37,11 +37,11 @@
       },
       {
         "label": "Falha de Ignição (1)",
-        "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.\n              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
+        "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) na rolagem de ataque à distância, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre.\n              16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
       },
       {
         "label": "Trovejante(20)",
-        "value": "Qualquer rolagem natural maior ou igual a (X) na rolagem de ataque a distância, desencadeia encontro aleatório que é imediatamente rolado, e as criaturas posicionadas na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
+        "value": "Qualquer rolagem natural maior ou igual a (X) na rolagem de ataque à distância, desencadeia encontro aleatório que é imediatamente rolado, e as figuras posicionadas na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
       }
     ]
   },
@@ -83,15 +83,15 @@
       },
       {
         "label": "Construção Robusta",
-        "value": "Essa arma pode ser usada em combate corpo a corpo como uma arma de duas mãos, mas sem o bonus de +2 de dano que é comum a elas."
+        "value": "Essa arma pode ser usada em combate corpo a corpo como uma arma de duas mãos, mas sem o bônus de +2 de dano que é comum a elas."
       },
       {
         "label": "Falha de Ignição (1)",
-        "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.\n              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
+        "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) na rolagem de ataque à distância, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre.\n              16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
       },
       {
         "label": "Trovejante(19-20)",
-        "value": "Qualquer rolagem natural maior ou igual a (X) na rolagem de ataque a distância, desencadeia encontro aleatório que é imediatamente rolado, e as criaturas posicionadas na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
+        "value": "Qualquer rolagem natural maior ou igual a (X) na rolagem de ataque à distância, desencadeia encontro aleatório que é imediatamente rolado, e as figuras posicionadas na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
       }
     ]
   },
@@ -133,11 +133,11 @@
       },
       {
         "label": "Falha de Ignição (1)",
-        "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.\n              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
+        "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) na rolagem de ataque à distância, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre.\n              16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
       },
       {
         "label": "Trovejante(19-20)",
-        "value": "Qualquer rolagem natural maior ou igual a (X) na rolagem de ataque a distância, desencadeia encontro aleatório que é imediatamente rolado, e as criaturas posicionadas na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
+        "value": "Qualquer rolagem natural maior ou igual a (X) na rolagem de ataque à distância, desencadeia encontro aleatório que é imediatamente rolado, e as figuras posicionadas na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
       }
     ]
   },
@@ -175,7 +175,7 @@
       },
       {
         "label": "Construção Robusta",
-        "value": "Essa arma pode ser usada em combate corpo a corpo, contando como uma Martelo."
+        "value": "Essa arma pode ser usada em combate corpo a corpo, contando como um Martelo."
       },
       {
         "label": "Tiro de Dispersão",
@@ -183,11 +183,11 @@
       },
       {
         "label": "Falha de Ignição (Especial)",
-        "value": "O bacamarte tem regras especiais para falha de ignição. Confira Tiro de Dispersão. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.\n              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
+        "value": "O bacamarte tem regras especiais para falha de ignição. Confira Tiro de Dispersão. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre.\n              16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
       },
       {
         "label": "Trovejante(Especial)",
-        "value": "O bacamarte tem regras especiais para trovejante. Confira Tiro de Dispersão. um encontro aleatório é imediatamente rolado na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
+        "value": "O bacamarte tem regras especiais para trovejante. Confira Tiro de Dispersão. Um encontro aleatório é imediatamente rolado na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
       }
     ]
   },
@@ -225,7 +225,7 @@
       },
       {
         "label": "Construção Robusta",
-        "value": "Essa arma pode ser usada em combate corpo a corpo, contando como uma Martelo."
+        "value": "Essa arma pode ser usada em combate corpo a corpo, contando como um Martelo."
       },
       {
         "label": "Tiro de Dispersão",
@@ -233,7 +233,7 @@
       },
       {
         "label": "Falha de Ignição (Especial)",
-        "value": "O bacamarte tem regras especiais para falha de ignição. Confira Tiro de Dispersão. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.\n              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
+        "value": "O bacamarte tem regras especiais para falha de ignição. Confira Tiro de Dispersão. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre.\n              16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
       }
     ]
   },
@@ -271,11 +271,11 @@
       },
       {
         "label": "Falha de Ignição (3)",
-        "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.\n              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
+        "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) na rolagem de ataque à distância, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre.\n              16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
       },
       {
         "label": "Trovejante(18)",
-        "value": "Qualquer rolagem natural maior ou igual a (X) na rolagem de ataque a distância, desencadeia encontro aleatório que é imediatamente rolado, e as criaturas posicionadas na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
+        "value": "Qualquer rolagem natural maior ou igual a (X) na rolagem de ataque à distância, desencadeia encontro aleatório que é imediatamente rolado, e as figuras posicionadas na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
       }
     ]
   }

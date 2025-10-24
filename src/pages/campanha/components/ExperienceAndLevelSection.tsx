@@ -10,16 +10,9 @@ import {
 import CollapsibleSection from "../../../components/CollapsibleSection";
 import MobileText from "../../../components/MobileText";
 
-
 const ExperienceAndLevelSection = () => {
-
-
   return (
-    <CollapsibleSection
-      id="experiencia-e-nivel"
-      title="4. Experiência e Nível"
-     
-    >
+    <CollapsibleSection id="experiencia-e-nivel" title="4. Experiência e Nível">
       <MobileText className="mb-4">
         Aqueles que sobrevivem aprendem. Aqueles que aprendem prosperam. Após
         cada jogo, heróis, campeões e soldados ganham experiência — o
@@ -141,7 +134,7 @@ const ExperienceAndLevelSection = () => {
               <TableCell
                 sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}
               >
-                Para cada criatura ou membro de bando inimigo que o herói
+                Para cada figura ou membro de bando inimigo que o herói
                 pessoalmente retire do jogo.{" "}
                 <strong>+20 XP se for herói inimigo</strong>,{" "}
                 <strong>+10 XP se for campeão inimigo</strong>. Matar líderes
@@ -265,7 +258,7 @@ const ExperienceAndLevelSection = () => {
               <TableCell
                 sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}
               >
-                Para cada criatura ou membro de bando inimigo que o campeão
+                Para cada figura ou membro de bando inimigo que o campeão
                 pessoalmente retire do jogo.{" "}
                 <strong>+20 XP se for herói inimigo</strong>,{" "}
                 <strong>+10 XP se for campeão inimigo</strong>. A mesma
@@ -403,8 +396,8 @@ const ExperienceAndLevelSection = () => {
               <TableCell
                 sx={{ color: "#d4c4a8", borderBottom: "1px solid #8b7355" }}
               >
-                Para cada fragmento de Pedra-bruxa capturado por esta criatura.
-                A ganância tem suas recompensas.
+                Para cada fragmento de Pedra-bruxa capturado por esta figura. A
+                ganância tem suas recompensas.
               </TableCell>
             </TableRow>
             <TableRow>
@@ -423,7 +416,7 @@ const ExperienceAndLevelSection = () => {
                 +10
               </TableCell>
               <TableCell sx={{ color: "#d4c4a8", borderBottom: "none" }}>
-                Para cada criatura ou membro de bando inimigo que o soldado
+                Para cada figura ou membro de bando inimigo que o soldado
                 pessoalmente retire do jogo.{" "}
                 <strong>+20 XP se for herói inimigo</strong>,{" "}
                 <strong>+10 XP se for campeão inimigo</strong>. Mesmo soldados

@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-
 const DefinitionsContainer = styled(Box)(({ theme }) => ({
   padding: "2rem",
   backgroundColor: "rgba(20, 18, 14, 0.9)",
@@ -92,77 +91,85 @@ function AreaEffectDefinitions() {
     {
       keywords: ["Explosão (Pequena)", "Explosão (Média)", "Explosão (Grande)"],
       title: "Explosão",
-      description: "Explosões são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Elas são Áreas de Efeito circulares com os seguintes diâmetros:",
+      description:
+        "Explosões são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Elas são Áreas de Efeito circulares com os seguintes diâmetros:",
       sizes: [
         "Pequena: 6cm de Diâmetro",
-        "Média: 12cm de Diâmetro", 
-        "Grande: 18cm de Diâmetro"
-      ]
+        "Média: 12cm de Diâmetro",
+        "Grande: 18cm de Diâmetro",
+      ],
     },
     {
       keywords: ["Zona (Pequena)", "Zona (Média)", "Zona (Grande)"],
       title: "Zona",
-      description: "Zonas são Áreas de Efeito permanentes, que ficam no tabuleiro até a magia ser cancelada. A Área de Efeito é um quadrado com os lados dos seguintes tamanhos:",
+      description:
+        "Zonas são Áreas de Efeito permanentes, que ficam no tabuleiro até a magia ser cancelada. A Área de Efeito é um quadrado com os lados dos seguintes tamanhos:",
       sizes: [
         "Pequena: 6cm de lado",
         "Média: 12cm de lado",
-        "Grande: 18cm de lado"
-      ]
+        "Grande: 18cm de lado",
+      ],
     },
     {
       keywords: ["Cone (Pequeno)", "Cone (Médio)", "Cone (Grande)"],
       title: "Cone",
-      description: "Cones são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Áreas de efeito de cone não tem alcance e devem sempre ser posicionadas com a ponta menor do cone adjacente a qualquer ponto da base de uma criatura.",
-      sizes: []
+      description:
+        "Cones são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Áreas de efeito de cone não tem alcance e devem sempre ser posicionadas com a ponta menor do cone adjacente a qualquer ponto da base de uma figura.",
+      sizes: [],
     },
     {
       keywords: ["Muro"],
       title: "Muro",
-      description: "Muros são Áreas de Efeito permanentes, permanecendo no tabuleiro até a magia ser cancelada. A área de efeito tem 14cm de comprimento, 8cm de altura e 2.5cm de largura, e é tratada como uma peça de terreno para todos os efeitos.",
-      sizes: []
+      description:
+        "Muros são Áreas de Efeito permanentes, permanecendo no tabuleiro até a magia ser cancelada. A área de efeito tem 14cm de comprimento, 8cm de altura e 2.5cm de largura, e é tratada como uma peça de terreno para todos os efeitos.",
+      sizes: [],
     },
     {
       keywords: ["Pilar (Pequeno)", "Pilar (Médio)", "Pilar (Grande)"],
       title: "Pilar",
-      description: "Pilares são efeitos permanentes, permanecendo do campo de batalha até a magia ser cancelada. Pilares são cilindros com 8cm de altura em todas as variações, mas os seguintes diâmetros:",
+      description:
+        "Pilares são efeitos permanentes, permanecendo do campo de batalha até a magia ser cancelada. Pilares são cilindros com 8cm de altura em todas as variações, mas os seguintes diâmetros:",
       sizes: [
         "Pequena: 6cm de Diâmetro",
         "Média: 12cm de Diâmetro",
-        "Grande: 18cm de Diâmetro"
-      ]
+        "Grande: 18cm de Diâmetro",
+      ],
     },
     {
-      keywords: ["Armadilha (Pequena)", "Armadilha (Média)", "Armadilha (Grande)"],
+      keywords: [
+        "Armadilha (Pequena)",
+        "Armadilha (Média)",
+        "Armadilha (Grande)",
+      ],
       title: "Armadilhas",
-      description: "Armadilhas são efeitos permanentes, permanecendo do campo de batalha até a magia ser cancelada. Armadilhas são círculos com os seguintes diâmetros:",
+      description:
+        "Armadilhas são efeitos permanentes, permanecendo do campo de batalha até a magia ser cancelada. Armadilhas são círculos com os seguintes diâmetros:",
       sizes: [
         "Pequena: 3cm de Diâmetro",
         "Média: 6cm de Diâmetro",
-        "Grande: 9cm de Diâmetro"
-      ]
-    }
+        "Grande: 9cm de Diâmetro",
+      ],
+    },
   ];
 
   return (
     <DefinitionsContainer>
       <DefinitionsTitle>Definições de Áreas de Efeito</DefinitionsTitle>
-      
+
       {definitions.map((definition, index) => (
         <DefinitionSection key={index}>
           <SectionHeader>
-            
             <SectionTitle>{definition.title}</SectionTitle>
           </SectionHeader>
-          
-          <DefinitionText>
-            {definition.description}
-          </DefinitionText>
-          
+
+          <DefinitionText>{definition.description}</DefinitionText>
+
           {definition.sizes.length > 0 && (
             <SizeList>
               {definition.sizes.map((size, sizeIndex) => (
                 <SizeItem key={sizeIndex}>
-                  <StrongText>{size.split(':')[0]}:</StrongText> {size.split(':')[1]}
+                  <StrongText>{size.split(":")[0]}:</StrongText>{" "}
+                  {size.split(":")[1]}
                 </SizeItem>
               ))}
             </SizeList>

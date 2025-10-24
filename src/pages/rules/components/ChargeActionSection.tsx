@@ -23,9 +23,9 @@ const ChargeActionSection = () => {
           qualquer efeito interrompa seu movimento ou a figura alvo se mova
           reativamente de forma que o movimento não seja suficiente para
           encostar na base, a carga <strong>falha</strong> e não entra em
-          combate. Note, que apesar da carga poder falhar, uma criatura não pode
+          combate. Note, que apesar da carga poder falhar, uma figura não pode
           falhar uma carga de propósito, parando de se mover ou declarando carga
-          contra uma criatura cujo seu movimento não seja suficiente para
+          contra uma figura cujo seu movimento não seja suficiente para
           alcançar, seja naturalmente ou devido a terreno acidentado e outras
           regras de terreno. Cargar contra um inimigo é uma ação de impeto! uma
           corrida maluca rumo a violência deve ser completada!

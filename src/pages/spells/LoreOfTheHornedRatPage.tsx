@@ -84,7 +84,7 @@ export default function LoreOfTheHornedRatPage() {
                 difíceis de conjurar, mesmo que sejam um pouco mais poderosas
                 que o normal.{" "}
                 <strong>
-                  Sempre que uma criatura tenta conjurar uma magia de tradição
+                  Sempre que uma figura tenta conjurar uma magia de tradição
                   sombria, com sucesso ou não, ela sofre 1 de dano.
                 </strong>{" "}
                 Se ela falhar ao conjurar uma magia destas tradições, ela sofre

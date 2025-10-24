@@ -8,7 +8,6 @@ import HeaderH3 from "../../components/HeaderH3";
 import WarningBox from "../../components/WarningBox";
 import GenericTable from "../../components/GenericTable";
 
-
 function ExperienceRollPage() {
   const raceLimits = [
     {
@@ -187,7 +186,7 @@ function ExperienceRollPage() {
 
             <HeaderH1>Experiência de Líderes</HeaderH1>
             <MobileText>
-              Líderes ganham experiência em um ritmo elevado, e tem um potencial
+              Líderes ganham experiência em um ritmo elevado, e têm um potencial
               imenso, podendo subir até o nível 40.
             </MobileText>
             <MobileText>
@@ -200,21 +199,21 @@ function ExperienceRollPage() {
               POR MAGIA ATÉ UM LIMITE DE 50XP
               <br />•{" "}
               <strong>
-                Cada fragmento de pedra-bruxa capturada pelo héroi ou seu bando:
+                Cada fragmento de pedra-bruxa capturada pelo herói ou seu bando:
               </strong>{" "}
               +40XP pontos para cada fragmento capturado
               <br />•{" "}
               <strong>
-                Criaturas não controladas reduzidas a 0 de vida pelo héroi ou
+                Figuras não controladas reduzidas a 0 de vida pelo herói ou
                 soldados ativados junto a ele:
               </strong>{" "}
               +10XP pontos
             </MobileText>
 
-            <HeaderH1>Experiência de Hérois</HeaderH1>
+            <HeaderH1>Experiência de Heróis</HeaderH1>
             <MobileText>
-              Hérois ganham experiência de forma similar aos líderes, mas de
-              forma um pouco mais lenta. Eles só podem subir até o nivel 20.
+              Heróis ganham experiência de forma similar aos líderes, mas de
+              forma um pouco mais lenta. Eles só podem subir até o nível 20.
             </MobileText>
             <MobileText>
               • <strong>Sobreviver à batalha:</strong> +40 EXP
@@ -223,18 +222,18 @@ function ExperienceRollPage() {
               POR MAGIA ATÉ UM LIMITE DE 50XP
               <br />•{" "}
               <strong>
-                Cada fragmento de pedra-bruxa capturada pelo héroi ou seu bando:
+                Cada fragmento de pedra-bruxa capturada pelo herói ou seu bando:
               </strong>{" "}
               +20XP pontos para cada fragmento capturado
               <br />•{" "}
               <strong>
-                Criaturas não controladas reduzidas a 0 de vida pelo héroi ou
+                Figuras não controladas reduzidas a 0 de vida pelo herói ou
                 soldados ativados junto a ele:
               </strong>{" "}
               +5XP pontos
               <br />•{" "}
               <strong>
-                Héroi ou Bando capturaram o Fragmento de Pedra-Bruxa central:
+                Herói ou Bando capturaram o Fragmento de Pedra-Bruxa central:
               </strong>{" "}
               +60XP
             </MobileText>
@@ -242,12 +241,12 @@ function ExperienceRollPage() {
             <HeaderH1>Experiência de Soldados</HeaderH1>
             <MobileText>
               Soldados ganham experiência mais lentamente, e só podem subir até
-              o nivel 10.
+              o nível 10.
             </MobileText>
             <MobileText>
               • <strong>Sobreviver à batalha:</strong> +30 XP
               <br />• <strong>Matar um inimigo:</strong> +5XP por inimigo, +10
-              bônus se matar um héroi ou campeão inimigo.
+              bônus se matar um herói ou campeão inimigo.
               <br />• <strong>
                 Capturar um fragmento de pedra-bruxa:
               </strong>{" "}
@@ -259,7 +258,7 @@ function ExperienceRollPage() {
 
             <WarningBox title="Limite de Experiência" type="info">
               <MobileText>
-                Hérois e Campeões não podem ganhar mais do que 300XP por
+                Heróis e Campeões não podem ganhar mais do que 300XP por
                 partida. Soldados não podem ganhar mais que 100XP por partida.
               </MobileText>
             </WarningBox>
@@ -267,15 +266,15 @@ function ExperienceRollPage() {
             <HeaderH1>Subir de Nível</HeaderH1>
             <MobileText>
               Quando uma figura acumula 100 pontos de experiência ela pode subir
-              de nível! note que uma figura só pode subir de nível qualquer
-              quantidade vezes que sua experiência acumulada permita. Ao
+              de nível! Note que uma figura só pode subir de nível qualquer
+              quantidade de vezes que sua experiência acumulada permita. Ao
               escolher subir de nível a figura deve rolar na tabela de avanço
               abaixo para determinar o que vai ganhar pelo seu novo nível. As
               experiências nas vielas sinuosas da cidade dos condenados moldam
               seu bando de formas que você não pode prever...
             </MobileText>
 
-            <HeaderH2>Tabela de Avanço de Hérois e Campeões</HeaderH2>
+            <HeaderH2>Tabela de Avanço de Heróis e Campeões</HeaderH2>
             <MobileText>Role 1d20 e consulte a tabela abaixo:</MobileText>
             <GenericTable
               data={[
@@ -321,7 +320,7 @@ function ExperienceRollPage() {
               raça tem limites de aumento de atributo que devem ser respeitados.
               Caso uma figura role em um atributo que já tenha chegado ao limite
               racial, rerole o resultado. Soldados só podem aumentar cada
-              atributo uma unica vez.
+              atributo uma única vez.
             </MobileText>
 
             <HeaderH3>Limites Raciais de Atributos</HeaderH3>
@@ -357,11 +356,11 @@ function ExperienceRollPage() {
 
             <HeaderH2>O Rapaz tem Talento!</HeaderH2>
             <MobileText>
-              O soldado se torna um héroi! Ele continua usando sua mesma ficha e
+              O soldado se torna um herói! Ele continua usando sua mesma ficha e
               continua sendo o que era antes (um Barba Curta continua sendo um
               Barba Curta), mas agora pode fazer todas as atividades que um
-              héroi pode e ganhar experiência como héroi. Escolha duas listas de
-              habilidades entre as que hérois do bando tem acesso e ganhe 1
+              herói pode e ganhar experiência como herói. Escolha duas listas de
+              habilidades entre as que heróis do bando têm acesso e ganhe 1
               poder dentre elas, com Classe de Dificuldade 7.
             </MobileText>
           </MobileSection>

@@ -6,9 +6,7 @@
     "damageModifier": null,
     "purchaseCost": "15 coroas",
     "rarity": 18,
-    "availability": [
-      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas"
-    ],
+    "availability": ["Todos exceto Irmãs de Sigmar, Caçadores de Bruxas"],
     "exclusive": null,
     "flavorText": "Nas florestas mais profundas das Terras do Sul cresce uma planta extremamente venenosa. É conhecida como Lótus Negro e é muito procurada por alquimistas, assassinos, magos da Costa Ocidental e esposas entediadas.",
     "user": "Aplicar em arma como ação",
@@ -31,9 +29,7 @@
     "damageModifier": null,
     "purchaseCost": "40 coroas",
     "rarity": 14,
-    "availability": [
-      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas"
-    ],
+    "availability": ["Todos exceto Irmãs de Sigmar, Caçadores de Bruxas"],
     "exclusive": null,
     "flavorText": "Sombra Carmesim é o nome dado pelos habitantes do Velho Mundo às folhas do carvalho sangrento da Estália. É uma droga extremamente viciante, mas concede a seus usuários velocidade e força desumanas.",
     "user": "Beber antes da batalha",
@@ -56,9 +52,7 @@
     "damageModifier": null,
     "purchaseCost": "30 coroas",
     "rarity": 12,
-    "availability": [
-      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas"
-    ],
+    "availability": ["Todos exceto Irmãs de Sigmar, Caçadores de Bruxas"],
     "exclusive": null,
     "flavorText": "Este é um veneno extraído de Heldrakes, serpentes marinhas gigantes que assolam o Oceano Ocidental e a costa de Naggaroth. O menor ferimento infectado por Veneno Sombrio causa dor excruciante, incapacitando os mais bravos dos homens.",
     "user": "Aplicar em arma como ação",
@@ -79,7 +73,7 @@
     "name": "Bálsamo Curtativo",
     "type": "Remédio",
     "damageModifier": null,
-    "purchaseCost": "25",
+    "purchaseCost": "25 coroas",
     "rarity": 1,
     "availability": ["Todos"],
     "exclusive": null,
@@ -92,7 +86,7 @@
     "specialRules": [
       {
         "label": "Cura Completa",
-        "value": "Uma figura pode usar o bálsamo como uma ação para para recuperar 3 de vida."
+        "value": "Uma figura pode usar o bálsamo como uma ação para recuperar 3 de vida."
       }
     ]
   },
@@ -115,7 +109,7 @@
     "specialRules": [
       {
         "label": "Efeito",
-        "value": "Qualquer guerreiro que tome Cogumelos Chapéu da Morte antes de uma batalha será ganha +1 de Ímpeto, +1 de Dano e +2 em testes de conjuração, mas tem -2 de vontade. A criatura toma -2 em seu teste de sobrevivência caso seja reduzido a 0 de vida. Apenas goblins e o Orc Véio podem usar esse remédio."
+        "value": "Qualquer guerreiro que tome Cogumelos Chapéu da Morte antes de uma batalha ganhará +1 de Ímpeto, +1 de Dano e +2 em testes de conjuração, mas tem -2 de Vontade. A figura toma -2 em seu teste de sobrevivência caso seja reduzida a 0 de vida. Apenas goblins e o Orc Véio podem usar esse remédio."
       }
     ]
   },
@@ -147,11 +141,9 @@
     "name": "Esterco de Manticora",
     "type": "Veneno",
     "damageModifier": null,
-    "purchaseCost": "30",
+    "purchaseCost": "30 coroas",
     "rarity": 17,
-    "availability": [
-      "Todos exceto Irmãs de Sigmar, Caçadores de Bruxas."
-    ],
+    "availability": ["Todos exceto Irmãs de Sigmar, Caçadores de Bruxas"],
     "exclusive": null,
     "flavorText": "Uma substância soporífera tão letal quanto a besta que a excretou. A penetração da carne da vítima pela lâmina de um guerreiro manchada com fezes frescas de uma Manticora induz um estado de sono sem sonhos seguido de morte quase certa.",
     "user": "Aplicar em arma como ação",
@@ -163,7 +155,7 @@
     "specialRules": [
       {
         "label": "Veneno Mortal",
-        "value": "Uma figura pode aplicar o esterco de mantícora em uma arma como uma ação. Até o fim do jogo, aquela arma ganha ganha Concussivo (4). "
+        "value": "Uma figura pode aplicar o esterco de manticora em uma arma como uma ação. Até o fim do jogo, aquela arma ganha Concussivo (4)."
       }
     ]
   },
@@ -174,7 +166,7 @@
     "damageModifier": null,
     "purchaseCost": "50 coroas",
     "rarity": 3,
-    "availability": ["Todos exceto Culto dos Possuídos e Cortes Vampiricas"],
+    "availability": ["Todos exceto Culto dos Possuídos e Cortes Vampíricas"],
     "exclusive": null,
     "flavorText": "Lágrimas de Shallaya são frascos de água da nascente sagrada em Couronne. Shallaya é a deusa da cura e misericórdia e diz-se que esta água tem propriedades curativas e é prova contra qualquer veneno.",
     "armorBonus": null,
@@ -185,7 +177,7 @@
     "specialRules": [
       {
         "label": "Cura",
-        "value": "Use um frasco de Shallaya como uma ação. O modelo cura 5 de vida e remove quaisquer marcadores negativos que tenha."
+        "value": "Use um frasco de Lágrimas de Shallaya como uma ação. O modelo cura 5 de vida e remove quaisquer marcadores negativos que tenha."
       }
     ]
   }

@@ -92,7 +92,7 @@ function AreaOfEffectPage() {
             <MobileText>
               Todas as figuras cuja base esteja completamente ou parcialmente
               sob a Área de Efeito são afetadas pelo efeito. Isso inclui aliados
-              e inimigos, a menos que o efeito especifique o contrário. 
+              e inimigos, a menos que o efeito especifique o contrário.
             </MobileText>
 
             <div id="duracao">

@@ -639,8 +639,7 @@ export const commonItemsData = [
           { label: "Modificador de Dano", value: "-4" },
           {
             label: "Tóxica",
-            value:
-              "uma arma com essa característica causa dano Venenoso.",
+            value: "uma arma com essa característica causa dano Venenoso.",
           },
           { label: "Requer", value: "Bolsa de Dardos" },
           { label: "Valor de compra", value: "25 coroas" },
@@ -718,7 +717,7 @@ export const commonItemsData = [
               1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
-              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
+              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
               `,
           },
           {
@@ -764,7 +763,7 @@ export const commonItemsData = [
               1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
-              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
+              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
               `,
           },
           {
@@ -820,7 +819,7 @@ export const commonItemsData = [
               1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
-              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
+              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
               `,
           },
           {
@@ -870,7 +869,7 @@ export const commonItemsData = [
               1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
-              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
+              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
               `,
           },
           {
@@ -932,7 +931,7 @@ export const commonItemsData = [
               1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
-              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
+              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
               `,
           },
           {
@@ -993,7 +992,7 @@ export const commonItemsData = [
               1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
-              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
+              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
               `,
           },
           {
@@ -1037,7 +1036,7 @@ export const commonItemsData = [
               1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.
               6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.
               11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre.
-              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
+              16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre.
               `,
           },
           {
@@ -1228,11 +1227,11 @@ export const commonItemsData = [
           { label: "valor de compra", value: "500 coroas" },
           { label: "valor de venda", value: "200 coroas" },
           { label: "Ingredientes", value: "120 coroas" },
-          { label: "Uso", value: "Fora de jogo, usado em uma criatura morta." },
+          { label: "Uso", value: "Fora de jogo, usado em uma figura morta." },
           {
             label: "Efeito",
             value:
-              "Uma figura morta pode ser preservada por até 5 jogos. Durante esse período, um Sopro de Shallaya ou a magia Milagre podem trazer a criatura de volta à vida, ao invés do período normal de imediatamente após a morte de uma criatura.",
+              "Uma figura morta pode ser preservada por até 5 jogos. Durante esse período, um Sopro de Shallaya ou a magia Milagre podem trazer a figura de volta à vida, ao invés do período normal de imediatamente após a morte de uma figura.",
           },
         ],
         description:
@@ -1342,7 +1341,7 @@ export const commonItemsData = [
           {
             label: "Efeito",
             value:
-              "Beber como uma ação. Até o fim do jogo, apenas uma vez, a figura que bebeu pode como ação cuspir fogo, causando um ataque à distância elemental +3 contra uma criatura a até 15cm.",
+              "Beber como uma ação. Até o fim do jogo, apenas uma vez, a figura que bebeu pode como ação cuspir fogo, causando um ataque à distância elemental +3 contra uma figura a até 15cm.",
           },
         ],
         description:
@@ -1395,7 +1394,7 @@ export const commonItemsData = [
           },
         ],
         description:
-          "Os temidos cultos de Fanáticos Goblin das Montanhas da Borda do Mundo usam esses cogumelos alucinógenos para se levar a um estado frenético. Cheira a terra úmida e loucura. Quando bebido, fúria berserker inunda a mente - dor desaparece, medo evapora, apenas existe a necessidade primal de MATAR. A figura ganha +1 Ímpeto e recebe +1 modificador de dano adicional em qualquer ataque corpo a corpo bem-sucedido. Porém, a figura DEVE, se possível, usar todas suas ações todo turno para mover-se para combate e lutar com a figura inimiga mais próxima (incluindo criaturas não controladas) em linha de visão e não atualmente em combate.\n\nO Elixir de Cogumelo Louco transforma guerreiros em máquinas de matar furiosas - devastadoras em combate, mas completamente descontroladas. Use quando precisar destruir inimigos, mas esteja preparado para perder todo controle tático.",
+          "Os temidos cultos de Fanáticos Goblin das Montanhas da Borda do Mundo usam esses cogumelos alucinógenos para se levar a um estado frenético. Cheira a terra úmida e loucura. Quando bebido, fúria berserker inunda a mente - dor desaparece, medo evapora, apenas existe a necessidade primal de MATAR. A figura ganha +1 Ímpeto e recebe +1 modificador de dano adicional em qualquer ataque corpo a corpo bem-sucedido. Porém, a figura DEVE, se possível, usar todas suas ações todo turno para mover-se para combate e lutar com a figura inimiga mais próxima (incluindo figuras não controladas) em linha de visão e não atualmente em combate.\n\nO Elixir de Cogumelo Louco transforma guerreiros em máquinas de matar furiosas - devastadoras em combate, mas completamente descontroladas. Use quando precisar destruir inimigos, mas esteja preparado para perder todo controle tático.",
       },
       {
         id: "leadblood-elixir",
@@ -1451,7 +1450,7 @@ export const commonItemsData = [
           },
         ],
         description:
-          "Este é um veneno extraído dos Heldrakes, serpentes marinhas gigantescas que assolam o Oceano Ocidental e a costa de Naggaroth. O menor ferimento infectado pelo Veneno Sombrio causa dor excruciante, incapacitando até os mais corajosos dos homens. Líquido negro e viscoso em frasco pequeno, extraído das glândulas venenosas dessas criaturas terríveis. Apenas uma gota é suficiente para causar agonia insuportável - aplicado em lâmina, o veneno espera pacientemente. Este veneno pegajoso pode ser usado para revestir qualquer arma exceto cajado, arco ou besta. Pode ser usado em uma flecha ou virote de besta. Na próxima vez que esta arma causar dano, a figura que receber o dano é envenenada (assumindo que não seja imune a veneno). A arma perde a habilidade de envenenar após o primeiro ataque que causar dano. Esta poção não é mágica e não é afetada por nada que cancele magia.\n\nAssassinos adoram o Veneno Sombrio - silencioso, letal, e legal o suficiente para não chamar atenção de caçadores de bruxas. Um corte pequeno, e a vítima morre lentamente enquanto o veneno trabalha.",
+          "Este é um veneno extraído dos Heldrakes, serpentes marinhas gigantescas que assolam o Oceano Ocidental e a costa de Naggaroth. O menor ferimento infectado pelo Veneno Sombrio causa dor excruciante, incapacitando até os mais corajosos dos homens. Líquido negro e viscoso em frasco pequeno, extraído das glândulas venenosas dessas figuras terríveis. Apenas uma gota é suficiente para causar agonia insuportável - aplicado em lâmina, o veneno espera pacientemente. Este veneno pegajoso pode ser usado para revestir qualquer arma exceto cajado, arco ou besta. Pode ser usado em uma flecha ou virote de besta. Na próxima vez que esta arma causar dano, a figura que receber o dano é envenenada (assumindo que não seja imune a veneno). A arma perde a habilidade de envenenar após o primeiro ataque que causar dano. Esta poção não é mágica e não é afetada por nada que cancele magia.\n\nAssassinos adoram o Veneno Sombrio - silencioso, letal, e legal o suficiente para não chamar atenção de caçadores de bruxas. Um corte pequeno, e a vítima morre lentamente enquanto o veneno trabalha.",
       },
       {
         id: "penumbra-carmesian",
@@ -1502,7 +1501,7 @@ export const commonItemsData = [
           },
         ],
         description:
-          "Alquimistas sem escrúpulos aprenderam a destilar a essencia da pedra-bruxa encontrada em Mordheim. Um gole e qualquer habilidade mágica em uma criatura se torna extremamente poderosa. Contudo, a toxicidade extrema da pedra-bruxa rapidamente cobra seu preço.",
+          "Alquimistas sem escrúpulos aprenderam a destilar a essencia da pedra-bruxa encontrada em Mordheim. Um gole e qualquer habilidade mágica em uma figura se torna extremamente poderosa. Contudo, a toxicidade extrema da pedra-bruxa rapidamente cobra seu preço.",
       },
       {
         roll: "3-5",
@@ -1602,11 +1601,11 @@ export const commonItemsData = [
           {
             label: "Efeito",
             value:
-              "Qualquer criatura com a característica Etérea a 20cm do usuário dessa poção deve passar num teste de Vontade (CD20) ou ser sugada para dentro do frasco e aprisionada. Imediatamente remova a figura da mesa e conceda quaisquer pontos de experiência que teriam sido ganhos por matar tal criatura.",
+              "Qualquer figura com a característica Etérea a 20cm do usuário dessa poção deve passar num teste de Vontade (CD20) ou ser sugada para dentro do frasco e aprisionada. Imediatamente remova a figura da mesa e conceda quaisquer pontos de experiência que teriam sido ganhos por matar tal figura.",
           },
         ],
         description:
-          "O frasco de vida contendo essa solução parece vazio, embora possa se ver uma leve tremulação dentro dele. Uma solução transparente criada a partir de flores abençoadas dos jardins de Morr, esse liquido evapora imediatamente ao entrar em contato com ar, criando uma explosão que só afeta criaturas Etéreas. Sempre carregada por caçadores de vampiros e caçadores de bruxas.",
+          "O frasco de vida contendo essa solução parece vazio, embora possa se ver uma leve tremulação dentro dele. Uma solução transparente criada a partir de flores abençoadas dos jardins de Morr, esse liquido evapora imediatamente ao entrar em contato com ar, criando uma explosão que só afeta figuras Etéreas. Sempre carregada por caçadores de vampiros e caçadores de bruxas.",
       },
       {
         roll: "16-17",
@@ -1796,7 +1795,7 @@ export const commonItemsData = [
           {
             label: "Bonus",
             value:
-              "Uma vez por jogo, o portador pode usar uma ação para soprar o chifre. Escolha uma peça de terreno a até 30cm do portador. Aquela peça de terreno é removida da mesa. Criaturas que estavam sob aquela peça de terreno caem da altura que estavam, tomando dano como adequado.",
+              "Uma vez por jogo, o portador pode usar uma ação para soprar o chifre. Escolha uma peça de terreno a até 30cm do portador. Aquela peça de terreno é removida da mesa. Figuras que estavam sob aquela peça de terreno caem da altura que estavam, tomando dano como adequado.",
           },
         ],
         description:
@@ -1925,7 +1924,7 @@ export const commonItemsData = [
           {
             label: "Bonus",
             value:
-              "Uma figura com a característica animal pode carregar uma dessa reliquia, mesmo sem ter espaços de items. Criaturas com a característica animal carregando esse item ganham +2 de Ímpeto, +2 de Armadura e +1 de Vontade.",
+              "Uma figura com a característica animal pode carregar uma dessa reliquia, mesmo sem ter espaços de items. Figuras com a característica animal carregando esse item ganham +2 de Ímpeto, +2 de Armadura e +1 de Vontade.",
           },
         ],
         description:
@@ -1995,7 +1994,7 @@ export const commonItemsData = [
           {
             label: "Bonus",
             value:
-              "Cada vez que a criatura carregando esse anel rolar um 20 natural em qualquer rolagem de dado, ela recupera 5 de vida. Cada vez que a criatura que carrega esse anel rolar um 1 natural em qualquer rolagem natural, ela recebe 5 de dano.",
+              "Cada vez que a figura carregando esse anel rolar um 20 natural em qualquer rolagem de dado, ela recupera 5 de vida. Cada vez que a figura que carrega esse anel rolar um 1 natural em qualquer rolagem natural, ela recebe 5 de dano.",
           },
         ],
 

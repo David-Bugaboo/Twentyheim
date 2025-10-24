@@ -4,7 +4,6 @@ import MobileSection from "../../components/MobileSection";
 import HeaderH1 from "../../components/HeaderH1";
 import GenericTable from "../../components/GenericTable";
 
-
 function WyrdstoneSellingPage() {
   // Dados para a tabela de vendas de Pedra-Bruxa
   const wyrdstoneSellingData = [
@@ -121,7 +120,7 @@ function WyrdstoneSellingPage() {
               lucro é adicionado ao tesouro do bando.
             </MobileText>
 
-            <GenericTable data={wyrdstoneSellingData} scrollable={false} />
+            <GenericTable data={wyrdstoneSellingData} scrollable={true} />
           </MobileSection>
         </div>
       </div>

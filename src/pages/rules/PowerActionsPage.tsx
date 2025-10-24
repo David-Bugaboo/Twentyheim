@@ -54,19 +54,19 @@ function PowerActionsPage() {
               <HeaderH2>Stress — O Preço da Excelência</HeaderH2>
             </div>
             <MobileText>
-              Ativar um habilidade é usar o auge da habilidade marcial do
+              Ativar uma habilidade é usar o auge da habilidade marcial do
               personagem, e a carga mental e física é grande. Músculos rasgam.
               Nervos queimam. Ossos rangem sob pressão impossível.
             </MobileText>
 
             <MobileText>
-              <strong>Ao tentar ativar um habilidade:</strong> O jogador toma{" "}
+              <strong>Ao tentar ativar uma habilidade:</strong> O jogador toma{" "}
               <strong>1 ponto de dano</strong> automaticamente. O esforço de
               tentar já cobra seu tributo.
             </MobileText>
 
             <MobileText>
-              <strong>Caso falhe em ativar o habilidade:</strong> Toma mais{" "}
+              <strong>Caso falhe em ativar a habilidade:</strong> Toma mais{" "}
               <strong>2 pontos de dano</strong>, para um total de{" "}
               <strong>3 pontos</strong>. Falha não apenas nega o efeito — ela
               machuca. Profundamente.
@@ -77,8 +77,8 @@ function PowerActionsPage() {
             </div>
             <MobileText>
               Esta ação é especial: ela <strong>não gasta</strong> uma das ações
-              do jogador por padrão, a não ser que um habilidade específico
-              exija isso para aplicar seus efeitos. Você pode ativar um
+              do jogador por padrão, a não ser que uma habilidade específica
+              exija isso para aplicar seus efeitos. Você pode ativar uma
               habilidade e ainda mover, atacar, ou realizar outras ações. O
               corpo grita em protesto, mas obedece.
             </MobileText>
@@ -86,8 +86,8 @@ function PowerActionsPage() {
             <div id="forcar-poderes">
               <WarningBox title="Forçar Poderes" type="warning">
                 <MobileText>
-                  Assim como magias, habilidadees podem ser{" "}
-                  <strong>Forçados</strong>. Aumente a rolagem de ativação em{" "}
+                  Assim como magias, habilidades podem ser{" "}
+                  <strong>Forçadas</strong>. Aumente a rolagem de ativação em{" "}
                   <strong>+1 para cada 1 ponto de vida gasto</strong>. A rolagem
                   de ativação nunca pode exceder <strong>18</strong>.
                 </MobileText>
@@ -97,7 +97,7 @@ function PowerActionsPage() {
                   <strong>mesmo depois de já ter rolado</strong> o d20, e{" "}
                   <strong>mesmo se a rolagem tiver tido sucesso</strong>. Isso
                   permite tornar o efeito mais difícil de resistir, aumentar a
-                  potência do habilidade, ou garantir que uma habilidade crucial
+                  potência da habilidade, ou garantir que uma habilidade crucial
                   não falhe. O sangue sempre tem um preço, mas às vezes vale a
                   pena pagá-lo.
                 </MobileText>
@@ -110,29 +110,29 @@ function PowerActionsPage() {
             <MobileText>
               Um jogador pode usar essa ação{" "}
               <strong>uma vez por ativação de cada figura</strong> no jogo,
-              podendo usar vários habilidadees no mesmo turno — um a cada
-              ativação. Mas à medida que o stress se acumula, os habilidadees
+              podendo usar várias habilidades no mesmo turno — uma a cada
+              ativação. Mas à medida que o stress se acumula, as habilidades
               ficam mais difíceis de ativar. O corpo tem limites.
             </MobileText>
 
             <MobileText>
-              <strong>Penalidade Progressiva:</strong> Cada habilidade além do
-              primeiro usado no turno tem sua CD aumentada em{" "}
-              <strong>+3 para cada outro habilidade</strong> ativado antes dele:
+              <strong>Penalidade Progressiva:</strong> Cada habilidade além da
+              primeira usada no turno tem sua CD aumentada em{" "}
+              <strong>+3 para cada outra habilidade</strong> ativada antes dela:
             </MobileText>
 
             <MobileText>
-              • <strong>Primeiro habilidade:</strong> CD normal
-              <br />• <strong>Segundo habilidade:</strong> CD +3
-              <br />• <strong>Terceiro habilidade:</strong> CD +6
-              <br />• <strong>Quarto habilidade:</strong> CD +9
-              <br />• <strong>Quinto habilidade:</strong> CD +12
-              <br />• <strong>Sexto habilidade:</strong> CD +15
+              • <strong>Primeira habilidade:</strong> CD normal
+              <br />• <strong>Segunda habilidade:</strong> CD +3
+              <br />• <strong>Terceira habilidade:</strong> CD +6
+              <br />• <strong>Quarta habilidade:</strong> CD +9
+              <br />• <strong>Quinta habilidade:</strong> CD +12
+              <br />• <strong>Sexta habilidade:</strong> CD +15
             </MobileText>
 
             <MobileText>
               <strong>Limite Absoluto:</strong> Quando a penalidade chegar a{" "}
-              <strong>+15</strong>, habilidades não podem mais ser ativados
+              <strong>+15</strong>, habilidades não podem mais ser ativadas
               neste turno. O corpo simplesmente se recusa. Carne e osso têm
               limites que nem a vontade mais feroz pode ultrapassar.
             </MobileText>
@@ -140,11 +140,11 @@ function PowerActionsPage() {
             <div id="resumo">
               <WarningBox title="Resumo das Ações de Poder" type="info">
                 <MobileText>
-                  • <strong>Rolagem:</strong> d20 contra CD do habilidade
+                  • <strong>Rolagem:</strong> d20 contra CD da habilidade
                 </MobileText>
                 <MobileText>
                   • <strong>Sucesso:</strong> Rolagem de ativação {">="} CD =
-                  habilidade ativado
+                  habilidade ativada
                 </MobileText>
                 <MobileText>
                   • <strong>Falha:</strong> Rolagem de ativação {"<"} CD =

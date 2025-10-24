@@ -17,7 +17,7 @@
   {
     "term": "Marcador de Congelamento",
     "type": "markers and conditions",
-    "description": "Uma figura com um marcador de congelamento só pode tomar uma ação em seu turno. Tomar dano flamejante automaticamente remove o marcador. Uma figura aliada pode gastar uma ação para quebrar o gelo e remover o marcador."
+    "description": "Uma figura com um Marcador de Congelamento só pode tomar uma ação em seu turno. Tomar dano flamejante automaticamente remove o marcador. Uma figura aliada pode gastar uma ação para quebrar o gelo e remover o marcador."
   },
   {
     "term": "Peçonhento",
@@ -26,7 +26,7 @@
   },
   {
     "term": "Marcador de Ferida",
-    "description": "Uma figura recebe esse marcador sempre que sua vida atual é menos que metade da sua vida máxima. O marcador é imediatamente removido se sua vida for restaurada acima de metade da vida. Figuras com marcadores de Ferido só podem tomar uma ação no turno(não acumula com o efeito de marcadores similares)."
+    "description": "Uma figura recebe esse marcador sempre que sua vida atual é menos que metade da sua vida máxima. O marcador é imediatamente removido se sua vida for restaurada acima de metade da vida. Figuras com Marcadores de Ferida só podem tomar uma ação no turno (não acumula com o efeito de marcadores similares)."
   },
   {
     "term": "Ódio(X)",
@@ -34,7 +34,7 @@
   },
   {
     "term": "Marcador de Veneno",
-    "description": "Uma figura com um marcador de Veneno só pode tomar uma ação em seu turno (não acumula com o efeito de marcadores similares)."
+    "description": "Uma figura com um Marcador de Veneno só pode tomar uma ação em seu turno (não acumula com o efeito de marcadores similares)."
   },
   {
     "term": "Mente-Férrea",
@@ -42,7 +42,7 @@
   },
   {
     "term": "Grande",
-    "description": "Esta figura enorme é mais fácil de mirar com ataques a distância. Ela sofre do modificador Alvo Grande (-2) ao se defender contra ataques a distância, mas tem, 6 espaços de itens."
+    "description": "Esta figura enorme é mais fácil de mirar com ataques a distância. Ela sofre do modificador Alvo Grande (-2) ao se defender contra ataques a distância, mas tem 6 espaços de itens."
   },
   {
     "term": "Furtividade(X)",
@@ -50,15 +50,15 @@
   },
   {
     "term": "Forte",
-    "description": "Esta figura causa +2 de dano em ataques corpo-a-corpo."
+    "description": "Esta figura causa +2 de dano em ataques corpo a corpo."
   },
   {
     "term": "Aterrorizante",
-    "description": "Inimigos devem passar em um teste de Vontade CD 12 para declarar carga contra com esta figura. Falha não custa a ação mas impede a tentativa até a próxima ativação."
+    "description": "Inimigos devem passar em um teste de Vontade CD 12 para declarar carga contra esta figura. Falha não custa a ação mas impede a tentativa até a próxima ativação."
   },
   {
     "term": "Morto-Vivo",
-    "description": "Esta figura é imune a veneno e nunca conta como ferida. Criaturas mortas-vivas podem pegar e carregar marcadores de tesouro mas não têm espaços de itens."
+    "description": "Esta figura é imune a veneno e nunca conta como ferida. Figuras mortas-vivas podem pegar e carregar marcadores de tesouro mas não têm espaços de itens."
   },
   {
     "term": "Animal",
@@ -66,11 +66,11 @@
   },
   {
     "term": "Anfíbio",
-    "description": "Esta figura é perfeitamente feliz em terra ou na água. Ela automaticamente passa em todas as Rolagens de Natação, trata água como normal ao invés de terreno acidentado, e não sofre penalidades de Luta por estar na água."
+    "description": "Esta figura é perfeitamente feliz em terra ou na água. Ela automaticamente passa em todas as rolagens de Natação, trata água como normal ao invés de terreno acidentado, e não sofre penalidades de Luta por estar na água."
   },
   {
     "term": "Voador",
-    "description": "Esta figura ignora todas as penalidades de terreno e movimento ao se mover. Além disso, nunca sofre dano de queda. Criaturas voadoras automaticamente passam em todas as Rolagens de Natação."
+    "description": "Esta figura ignora todas as penalidades de terreno e movimento ao se mover. Além disso, nunca sofre dano de queda. Figuras voadoras automaticamente passam em todas as rolagens de Natação."
   },
   {
     "term": "Levitar",
@@ -78,11 +78,11 @@
   },
   {
     "term": "Procurado(X)",
-    "description": "Há uma recompensa de (X) coroas aguardando o bando que matar esta figura"
+    "description": "Há uma recompensa de (X) coroas aguardando o bando que matar esta figura."
   },
   {
     "term": "Visão Verdadeira",
-    "description": "Ignore qualquer efeito com a palavra chave Ilusão direcionado a essa figura. Membros ilusórios de um bando são removidos da mesa se entrarem na linha de visão dessa figura. Criaturas não se beneficiam das características Invisibilidade e Furtividade(X) contra essa figura."
+    "description": "Ignore qualquer efeito com a palavra chave Ilusão direcionado a essa figura. Membros ilusórios de um bando são removidos da mesa se entrarem na linha de visão dessa figura. Figuras não se beneficiam das características Invisibilidade e Furtividade(X) contra essa figura."
   },
   {
     "term": "Venenoso",
@@ -98,7 +98,7 @@
   },
   {
     "term": "Dreno de Energia",
-    "description": "Esta figura causa dano dobrado em combate. mortos-vivos e construtos são imunes a este dano extra e só sofrem a quantidade padrão."
+    "description": "Esta figura causa dano dobrado em combate. Mortos-vivos e construtos são imunes a este dano extra e só sofrem a quantidade padrão."
   },
   {
     "term": "Toque Vampírico",
@@ -110,7 +110,7 @@
   },
   {
     "term": "Resistência Elemental (X)",
-    "description": "Sempre que esta figura sofre dano flamejante, elétrico ou gélido, aumente sua armadura em (X) para determinar o dano daquele ataque."
+    "description": "Sempre que esta figura sofre dano flamejante, elétrico ou gélido, aumente sua Armadura em (X) para determinar o dano daquele ataque."
   },
   {
     "term": "Toque Ardente",
@@ -130,7 +130,7 @@
   },
   {
     "term": "Vulnerabilidade Elemental",
-    "description": "Esta figura é vulnerável a dano elemental. Ao sofrer dano flamejante, elétrico ou gélido, reduza sua armadura em (X) para determinar o dano."
+    "description": "Esta figura é vulnerável a dano elemental. Ao sofrer dano flamejante, elétrico ou gélido, reduza sua Armadura em (X) para determinar o dano."
   },
   {
     "term": "Voraz",
@@ -158,19 +158,19 @@
   },
   {
     "term": "Duas Mãos",
-    "description": "Uma arma com essa característica ocupa dois espaços de items, e não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
+    "description": "Uma arma com essa característica ocupa dois espaços de itens, e não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
   },
   {
     "term": "Penetração de Armadura (X)",
-    "description": "Essa arma trata a armadura de inimigos que atinge como (X) pontos menor."
+    "description": "Essa arma trata a Armadura de inimigos que atinge como (X) pontos menor."
   },
   {
     "term": "Leve",
-    "description": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
+    "description": "A primeira arma com essa característica carregada por uma figura não consome um espaço de itens. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
   },
   {
     "term": "Versátil",
-    "description": "Uma arma com essa característica pode ser usado com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano. Mesmo se usada com uma mão, não pode se beneficiar de uma arma leve na mão secundária, apenas de escudos."
+    "description": "Uma arma com essa característica pode ser usada com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano. Mesmo se usada com uma mão, não pode se beneficiar de uma arma leve na mão secundária, apenas de escudos."
   },
   {
     "term": "Par",
@@ -186,7 +186,7 @@
   },
   {
     "term": "Abençoada (X)",
-    "description": "Essa arma ignora (X) pontos de armadura do alvo, se esta tiver as caracteristicas Morto-Vivo ou Daemônio."
+    "description": "Essa arma ignora (X) pontos de Armadura do alvo, se esta tiver as características Morto-Vivo ou Daemônio."
   },
   {
     "term": "Desbalanceada",
@@ -202,19 +202,19 @@
   },
   {
     "term": "Giros Brutais",
-    "description": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de movimento para girar sua funda com mais força. Aumente o alcance do próximo ataque a distancia em 6cm."
+    "description": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de movimento para girar sua funda com mais força. Aumente o alcance do próximo ataque a distância em 6cm."
   },
   {
     "term": "Arma de Tecido",
-    "description": "Embora não possa ser usada para ganhar +1 de impeto em lutas, uma figura carregando uma arma na mão principal e uma funda na mão secundária ainda pode pode pegar Fragmentos de Pedra-Bruxa, mas não pode usar a funda para atirar enquanto estiver carregando o fragmento."
+    "description": "Embora não possa ser usada para ganhar +1 de Ímpeto em lutas, uma figura carregando uma arma na mão principal e uma funda na mão secundária ainda pode pegar Fragmentos de Pedra-Bruxa, mas não pode usar a funda para atirar enquanto estiver carregando o fragmento."
   },
   {
     "term": "Hibrida",
-    "description": "Pode ser usada como arma corpo a corpo ou a distância, recebendo -1 de dano se for usada como arma a distância."
+    "description": "Pode ser usada como arma corpo a corpo ou à distância, recebendo -1 de dano se for usada como arma à distância."
   },
   {
     "term": "Corda de Alta Tensão",
-    "description": "Devido a alta tensão necessária para disparar uma flecha, um usuário de arco longo precisa de todo folego. Figuras inimigas ganhamn +1 de bonus adicional para sua rolagem de impeto contra tiros feitos pelo portador desse arco caso ele tenha movido antes de atirar."
+    "description": "Devido à alta tensão necessária para disparar uma flecha, um usuário de arco longo precisa de todo fôlego. Figuras inimigas ganham +1 de bônus adicional para sua rolagem de Ímpeto contra tiros feitos pelo portador desse arco caso ele tenha movido antes de atirar."
   },
   {
     "term": "Recarga",
@@ -230,7 +230,7 @@
   },
   {
     "term": "Engenharia Complexa",
-    "description": "Uma arma com essa característica trava em casos específicos. Quando o portador rola um 1 natural em um ataque, a arma trava, e só pode ser usada novamente gastando uma ação, que pode substituir a ação de movimento."
+    "description": "Uma arma com essa característica trava em casos específicos. Quando o portador rola um 1 natural em um ataque, a arma trava, e só pode ser usada novamente gastando uma ação, que pode substituir a ação de Movimento."
   },
   {
     "term": "Coice Violento",
@@ -238,7 +238,7 @@
   },
   {
     "term": "Falha de Ignição (X)",
-    "description": "Quando o portador de uma arma com essa característica faz uma rolagem natural abaixo de (X) na rolagem de ataque a distancia, a arma tem uma falha na ignição. Role outro d20 para saber o resultado: 1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar. 6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas. 11-15: A polvora explode na arma, danificando o atirador. Ele sofre um ataque a distancia +1. A Arma é perdida para sempre. 16-20: A polvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as criaturas a até 8cm dele sofrem um ataque a distancia +1. A Arma e o chifre de pólvora estão perdidos para sempre."
+    "description": "Quando o portador de uma arma com essa característica faz uma rolagem natural abaixo de (X) na rolagem de ataque à distância, a arma tem uma falha na ignição. Role outro d20 para saber o resultado: 1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de Movimento, para consertar. 6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas. 11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre. 16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre."
   },
   {
     "term": "Trovejante(X)",
@@ -246,34 +246,94 @@
   },
   {
     "term": "Construção Robusta",
-    "description": "Essa arma pode ser usada em combate corpo a corpo como uma arma de duas mãos, mas sem o bonus de +2 de dano que é comum a elas."
+    "description": "Essa arma pode ser usada em combate corpo a corpo como uma arma de duas mãos, mas sem o bônus de +2 de dano que é comum a elas."
   },
   {
     "term": "Tripé",
-    "description": "Uma figura só pode atirar com essa arma se esta estiver montada em um tripé. Montar o tripé gasta uma ação que pode substituir a ação de movimento. Desmontar não custa ações, mas deverá montar se quiser atirar de novo."
+    "description": "Uma figura só pode atirar com essa arma se esta estiver montada em um tripé. Montar o tripé gasta uma ação que pode substituir a ação de Movimento. Desmontar não custa ações, mas deverá montar se quiser atirar de novo."
   },
   {
     "term": "Tiro de Dispersão",
-    "description": "A figura que atirou posiciona uma Área de Efeito(Cone) Todas as figuras nessa área de efeito recebem um ataque +0. Role separadamente para cada figura. Quaisquer números iguais nas rolagens desencandeiam Falha na Ignição e Trovejante."
+    "description": "A figura que atirou posiciona uma Área de Efeito (Cone). Todas as figuras nessa área de efeito recebem um ataque +0. Role separadamente para cada figura. Quaisquer números iguais nas rolagens desencadeiam Falha na Ignição e Trovejante."
   },
   {
     "term": "Flamejante",
-    "description": "Um dano crítico desse tipo de dano dá ao alvo um marcador de Chamas."
+    "description": "Um dano crítico desse tipo de dano dá ao alvo um Marcador de Chamas."
   },
   {
     "term": "Gélido",
-    "description": "Um dano crítico desse tipo de dano dá ao alvo um marcador de Congelamento."
+    "description": "Um dano crítico desse tipo de dano dá ao alvo um Marcador de Congelamento."
   },
   {
     "term": "Elétrico",
-    "description": "Um dano crítico desse tipo de dano ignora qualquer bônus por usar armaduras do alvo."
+    "description": "Um dano crítico desse tipo de dano ignora qualquer bônus por usar Armaduras do alvo."
   },
   {
     "term": "Venenoso",
-    "description": "Qualquer dano desse tipo tomado dá ao alvo um marcador de Veneno."
+    "description": "Qualquer dano desse tipo tomado dá ao alvo um Marcador de Veneno."
+  },
+  {
+    "term": "Mágico",
+    "description": "Tipo de dano especial que tem resistências e vulnerabilidades próprias, ignorando resitência e imunidade a dano normal."
   },
   {
     "term": "Tóxica",
     "description": "Uma arma com essa característica causa dano Venenoso."
+  },
+  {
+    "term": "Sagrado",
+    "description": "Atravessa toda e qualquer resistência e ignora regras anti magia se usado contra Daemônios e Mortos-Vivos. Contra outras figuras é dano mágico normal."
+  },
+  {
+    "term": "Área de Efeito (X)",
+    "description": "Posicione o tipo de área de efeito em algum ponto no alcance da magia. Todas as figuras sob a área de efeito são afetadas pela magia. Para informações detalhadas sobre todos os tipos de Áreas de Efeito, incluindo templates e regras específicas, consulte a página dedicada."
+  },
+  {
+    "term": "Explosão Pequena",
+    "description": "Explosões são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Elas são Áreas de Efeito circulares de 6cm de diâmetro."
+  },
+  {
+    "term": "Explosão Média",
+    "description": "Explosões são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Elas são Áreas de Efeito circulares de 12cm de diâmetro."
+  },
+  {
+    "term": "Explosão Grande",
+    "description": "Explosões são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Elas são Áreas de Efeito circulares de 18cm de diâmetro."
+  },
+  {
+    "term": "Zona Pequena",
+    "description": "Zonas são Áreas de Efeito permanentes, que ficam no tabuleiro até o efeito ser cancelado. A Área de Efeito é um quadrado com 6cm de lado."
+  },
+  {
+    "term": "Zona Média",
+    "description": "Zonas são Áreas de Efeito permanentes, que ficam no tabuleiro até o efeito ser cancelado. A Área de Efeito é um quadrado com 12cm de lado."
+  },
+  {
+    "term": "Zona Grande",
+    "description": "Zonas são Áreas de Efeito permanentes, que ficam no tabuleiro até o efeito ser cancelado. A Área de Efeito é um quadrado com 18cm de lado."
+  },
+  {
+    "term": "Cone",
+    "description": "Cones são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Áreas de efeito de cone não tem alcance e devem sempre ser posicionadas com a ponta menor do cone adjacente a qualquer ponto da base de uma figura. O Cone tem 20cm de comprimento e se expande para um angulo de 45 graus."
+  },
+  {
+    "term": "Muro",
+    "description": "Muros são Áreas de Efeito permanentes, permanecendo no tabuleiro até o efeito ser cancelado. A área de efeito é tratada como uma peça de terreno para todos os efeitos. O Muro tem 14cm comprimento × 8cm altura × 2.5cm largura"
+  },
+  {
+    "term": "Pilar Pequeno",
+    "description": "Pilares são efeitos permanentes, permanecendo do campo de batalha até o efeito ser cancelado. Pilares são cilindros com 8cm de altura e 6cm de diâmetro."
+  },
+  {
+    "term": "Pilar Médio",
+    "description": "Pilares são efeitos permanentes, permanecendo do campo de batalha até o efeito ser cancelado. Pilares são cilindros com 8cm de altura e 12cm de diâmetro."
+  },
+  {
+    "term": "Pilar Grande",
+    "description": "Pilares são efeitos permanentes, permanecendo do campo de batalha até o efeito ser cancelado. Pilares são cilindros com 8cm de altura e 18cm de diâmetro."
+  },
+  {
+    "term": "Armadilha",
+    "description": "Armadilhas são efeitos permanentes, permanecendo do campo de batalha até o efeito ser cancelado. Armadilhas são círculos de 3cm de diâmetro."
   }
 ]

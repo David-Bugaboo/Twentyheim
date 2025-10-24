@@ -8,7 +8,7 @@
   {
     "id": "garra-colossal",
     "name": "Garra Colossal",
-    "description": "A mão secundária do mutante vira uma grande garra. Ele sempre conta como tendo um ataque com modificador de dano +2, que pode ser usada para a regra de lutar com duas mãos se tiver uma arma na mão principal. Não pode mais usar escudos ou armas na mão secundária.",
+    "description": "A mão secundária do mutante vira uma grande garra. Ele sempre conta como tendo um ataque com modificador de dano +2, que pode ser usado para a regra de lutar com duas mãos se tiver uma arma na mão principal. Não pode mais usar escudos ou armas na mão secundária.",
     "cost": "50 coroas"
   },
   {
@@ -20,25 +20,25 @@
   {
     "id": "tentáculo",
     "name": "Tentáculo",
-    "description": "Uma vez por turno, se uma figura inimiga anda dentro de 5cm do mutante, este pode fazer um ataque a distância +0 contra aquela criatura. Para cada vez que essa mutação é selecionada essa reação pode ser usado uma vez adicional, mas deve ser usado contra criaturas diferentes.",
+    "description": "Uma vez por turno, se uma figura inimiga anda dentro de 5cm do mutante, este pode fazer um ataque à distância +0 contra aquela figura. Para cada vez que essa mutação é selecionada, essa reação pode ser usada uma vez adicional, mas deve ser usada contra figuras diferentes.",
     "cost": "35 coroas"
   },
   {
     "id": "sangue-profano",
     "name": "Sangue Profano",
-    "description": "Sempre que uma figura causa dano ao mutante, deve fazer um teste de Vontade CD 12. Se falhar a figura imediatamente sofre 3 de dano. Adicionalmente, uma figura que role um 1 natural em uma luta contra o mutante perde qualquer arma sem modificadores ou mágica usada para fazer o ataque permanentemente.",
+    "description": "Sempre que uma figura causa dano ao mutante, deve fazer um teste de Vontade CD 12. Se falhar, a figura imediatamente sofre 3 de dano. Adicionalmente, uma figura que role um 1 natural em uma luta contra o mutante perde qualquer arma sem modificadores ou mágica usada para fazer o ataque permanentemente.",
     "cost": "30 coroas"
   },
   {
     "id": "espinhos",
     "name": "Espinhos",
-    "description": "Qualquer figura não Morto-Vivo ou Construto que começe sua ativação a até 8cm do mutante deve rolar um teste de Vontade CD 12. Se falhar imediatamente recebe 2 de dano.",
+    "description": "Qualquer figura não Morto-Vivo ou Construto que comece sua ativação a até 8cm do mutante deve rolar um teste de Vontade CD 12. Se falhar, imediatamente recebe 2 de dano.",
     "cost": "35 coroas"
   },
   {
     "id": "cauda-de-escorpiao",
     "name": "Cauda de Escorpião",
-    "description": "O Mutante é considerado como estando sempre equipado com uma arma com modificador de dano +2 e a característica Venenos. Um alvo imune a veneno reduz esse modificador de dano a -1.",
+    "description": "O Mutante é considerado como estando sempre equipado com uma arma com modificador de dano +2 e a característica Tóxica. Um alvo imune a veneno reduz esse modificador de dano a -1.",
     "cost": "40 coroas"
   },
   {

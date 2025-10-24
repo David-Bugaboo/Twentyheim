@@ -3,7 +3,7 @@
     "name": "Espada Fulgurante de Rhuin",
     "castingNumber": 10,
     "keywords": ["Linha de Visão"],
-    "effect": "A arma alvo irrompe em chamas arcanas até o fim do jogo. A arma conta como uma arma mágica com bonus de +2 de Ímpeto e que causa dano flamejante."
+    "effect": "A arma alvo irrompe em chamas arcanas até o fim do jogo. A arma conta como uma arma mágica com bônus de +2 de Ímpeto e que causa dano flamejante."
   },
   {
     "name": "Bola de Fogo",
@@ -15,18 +15,18 @@
     "name": "Baforada Flamejante",
     "castingNumber": 12,
     "keywords": ["Área de Efeito (Cone)"],
-    "effect": "Todas as figuras dentro da Área de Efeito sofrem um ataque a distância flamejante +2. Trate o conjurador como ponto de origem para determinar cobertura ou terreno interposto para todas as outras figuras sofrendo o ataque. Qualquer criatura que sofrer mais de 5 de dano ganha um Marcador de Chamas."
+    "effect": "Todas as figuras dentro da Área de Efeito sofrem um ataque à distância flamejante +2. Trate o conjurador como ponto de origem para determinar cobertura ou terreno interposto para todas as outras figuras sofrendo o ataque. Qualquer figura que sofrer mais de 5 de dano ganha um Marcador de Chamas."
   },
   {
     "name": "Conflagração da Perdição",
     "castingNumber": 12,
-    "keywords": ["Area de Efeito (Explosão Média)"],
-    "effect": "Centre a Área de Efeito no Conjurador. Todas as figuras na área de efeito (mas não contando o conjurador, protegido no olho da tempestade flamejante) sofrem um ataque a distancia flamejante +5. Trate o conjurador como ponto de origem para determinar cobertura ou terreno interposto para todas as outras figuras sofrendo o ataque. Todas as figuras atingidas ganham um Marcador de Chamas."
+    "keywords": ["Área de Efeito (Explosão Média)"],
+    "effect": "Centralize a Área de Efeito no Conjurador. Todas as figuras na área de efeito (mas não contando o conjurador, protegido no olho da tempestade flamejante) sofrem um ataque à distância flamejante +5. Trate o conjurador como ponto de origem para determinar cobertura ou terreno interposto para todas as outras figuras sofrendo o ataque. Todas as figuras atingidas ganham um Marcador de Chamas."
   },
   {
     "name": "Chama de Uzhul",
     "castingNumber": 12,
-    "keywords": ["Alcance(40cm)", "Míssil Magico (Flamejante)(+7)"],
+    "keywords": ["Alcance(40cm)", "Míssil Mágico (Flamejante)(+7)"],
     "effect": "O conjurador faz um ataque com o míssil mágico em uma figura alvo."
   },
   {

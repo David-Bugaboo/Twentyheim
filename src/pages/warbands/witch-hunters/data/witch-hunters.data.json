@@ -4,7 +4,7 @@
     "name": "Inquisidor",
     "role": "Líder",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+3",
       "shoot": "+2",
       "armour": 10,
@@ -17,24 +17,24 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Inquisidor pode ativar até 3 figuras a 8cm dele junto a si."
+        "description": "O Inquisidor pode ativar até 3 figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
       },
       {
         "name": "Habilidades",
-        "description": "O Inquisidor começam com 5 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+        "description": "O Inquisidor começa com 5 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Édito da Inquisição",
-        "description": "O inquisidor pode escolher um conjurador o inicio do jogo, antes das miniaturas serem posicionadas. Aquela figura ganha a característica Procurado(X) onde X é seu valor em coroas"
+        "description": "O Inquisidor pode escolher um conjurador no início do jogo, antes das miniaturas serem posicionadas. Aquela figura ganha a característica Procurado(X) onde X é seu valor em coroas."
       },
       {
         "name": "Queimem a Bruxa!",
-        "description": "O Inquisitor tem Ódio(Conjuradores)."
+        "description": "O Inquisidor tem Ódio(Conjuradores)."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
         { "name": "Maça", "cost": "3 coroas" },
         { "name": "Martelo", "cost": "5 coroas" },
         { "name": "Machado", "cost": "5 coroas" },
@@ -59,9 +59,9 @@
   {
     "id": "sacerdote-marcial-de-sigmar",
     "name": "Sacerdote Marcial de Sigmar",
-    "role": "Héroi",
+    "role": "Herói",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+3",
       "shoot": "+0",
       "armour": 10,
@@ -81,7 +81,7 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
         { "name": "Maça", "cost": "3 coroas" },
         { "name": "Martelo", "cost": "5 coroas" },
         { "name": "Machado", "cost": "5 coroas" },
@@ -106,9 +106,9 @@
   {
     "id": "caçador-de-bruxas",
     "name": "Caçador de Bruxas",
-    "role": "Héroi",
+    "role": "Herói",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+2",
       "shoot": "+1",
       "armour": 10,
@@ -121,7 +121,7 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "O Caçador de Bruxas começam com 2 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+        "description": "O Caçador de Bruxas começa com 2 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Queimem a Bruxa!",
@@ -130,7 +130,7 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
         { "name": "Maça", "cost": "3 coroas" },
         { "name": "Martelo", "cost": "5 coroas" },
         { "name": "Machado", "cost": "5 coroas" },
@@ -168,7 +168,7 @@
     "abilities": [],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
+        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
         { "name": "Maça", "cost": "3 coroas" },
         { "name": "Martelo", "cost": "5 coroas" },
         { "name": "Machado", "cost": "5 coroas" },

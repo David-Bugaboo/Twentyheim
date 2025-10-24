@@ -25,7 +25,7 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Feiticeiro Aprendiz pode ativar até 3 criaturas a 8cm dele junto a si."
+        "description": "O Feiticeiro Aprendiz pode ativar até 3 figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
       },
       {
         "name": "Conjurador",
@@ -66,7 +66,7 @@
   {
     "id": "centouro-de-hashut",
     "name": "Centouro de Hashut",
-    "role": "Héroi",
+    "role": "Herói",
     "stats": {
       "move": 24,
       "fight": "+4",
@@ -81,11 +81,11 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "O Centouro de Hashut começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+        "description": "O Centouro de Hashut começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Carga Violenta",
-        "description": "O Centouro de Hashut tem as características Chifres e Grande não pode escalar, e gasta 3 de movimento para cada 1cm de movimento em terreno acidentado."
+        "description": "O Centouro de Hashut tem as características Chifres e Grande, não pode escalar, e gasta 3 de movimento para cada 1cm de movimento em terreno acidentado."
       },
       {
         "name": "Cabeça Dura",
@@ -133,7 +133,7 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "O Campeão Anão do Caos começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
+        "description": "O Campeão Anão do Caos começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Crueldade Paciente",
@@ -145,7 +145,7 @@
       },
       {
         "name": "Força do Deus Touro",
-        "description": "Carcereiros tem a característica Forte."
+        "description": "O Campeão Anão do Caos tem a característica Forte."
       }
     ],
     "equipment": {
@@ -185,12 +185,12 @@
     "quantity": "4+",
     "abilities": [
       {
-        "name": "Coward",
-        "description": "Hobgoblins são criaturas naturalmente covardes que são forçadas a lutar por seus mestres dábios do Caos. Como resultado, eles sofrem dano facilmente e, na primeira oportunidade, tentam escapar de seus captores. Ao rolar na tabela de Sobrevivência do Soldado, qualquer resultado menor que 15 resulta em um hobgoblim morto ou que escapou. Em um 16-20, eles fazem uma recuperação completa."
+        "name": "Covarde",
+        "description": "Hobgoblins são figuras naturalmente covardes que são forçadas a lutar por seus mestres anões do Caos. Como resultado, eles sofrem dano facilmente e, na primeira oportunidade, tentam escapar de seus captores. Ao rolar na tabela de Sobrevivência do Soldado, qualquer resultado menor que 15 resulta em um hobgoblin morto ou que escapou. Em um 16-20, eles fazem uma recuperação completa."
       },
       {
         "name": "Ignorados",
-        "description": "Hobgoblins contam como metade do número de figuras se o bando tiver que fazer um teste de debandada. Por exemplo, em um bando de 12 figuras, se 2 figuras Hobgoblin e 1 figura Anão do Caos estiverem fora de ação, o total seria duas figuras fora de ação (1/2 + 1/2 +1 =2). Além disso, Hobgoblins não podem ser heróis, apenas refaça a rolagens de avanço de `O Moleque tem talento`."
+        "description": "Hobgoblins contam como metade do número de figuras se o bando tiver que fazer um teste de debandada. Por exemplo, em um bando de 12 figuras, se 2 figuras Hobgoblin e 1 figura Anão do Caos estiverem fora de ação, o total seria duas figuras fora de ação (1/2 + 1/2 +1 =2). Além disso, Hobgoblins não podem ser heróis, apenas refaça as rolagens de avanço de 'O Moleque tem talento'."
       }
     ],
     "equipment": {
@@ -228,7 +228,7 @@
     "abilities": [
       {
         "name": "Crueldade Paciente",
-        "description": "Os anões do caos não podem sofrer penalidades na agilidade por uso de equipamentos."
+        "description": "Os anões do caos não podem sofrer penalidades no movimento por uso de equipamentos."
       },
       {
         "name": "Cabeça Dura",
@@ -274,7 +274,7 @@
     "abilities": [
       {
         "name": "Crueldade Paciente",
-        "description": "Os anões do caos não podem sofrer penalidades na agilidade por uso de equipamentos."
+        "description": "Os anões do caos não podem sofrer penalidades no movimento por uso de equipamentos."
       },
       {
         "name": "Cabeça Dura",

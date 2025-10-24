@@ -13,7 +13,7 @@
     "armorBonus": null,
     "movePenalty": null,
     "slots": "1",
-    "effect": "Ganha a característica Capacidade(2), e a característica Falha de Igninição(X) se torna Falha de Ignição(X+2). Pode atirar com os dois canos simultaneamente, para ganhar +2 de dano mas ir a zero balas.",
+    "effect": "Ganha a característica Capacidade(2), e a característica Falha de Ignição(X) se torna Falha de Ignição(X+2). Pode atirar com os dois canos simultaneamente, para ganhar +2 de dano mas ir a zero balas.",
     "requirements": null,
     "specialRules": []
   },
@@ -49,7 +49,7 @@
     "armorBonus": null,
     "movePenalty": null,
     "slots": "1",
-    "effect": "A arma ganha a cacterística capacidade (4).",
+    "effect": "A arma ganha a característica Capacidade (4).",
     "requirements": null,
     "specialRules": []
   }

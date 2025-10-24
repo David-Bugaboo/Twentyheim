@@ -34,7 +34,6 @@ export default function ArmorAndShieldsPage() {
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <PageTitle>Armaduras e Escudos</PageTitle>
@@ -54,9 +53,9 @@ export default function ArmorAndShieldsPage() {
               armadura adiciona 2 pontos à armadura base da figura.
               <br />• <strong>Penalidade de Movimento:</strong> Indica se a
               armadura reduz a velocidade de movimento da figura.
-              <br />• <strong>Espaços:</strong> Indica quantos espaços de
-              equipamento a armadura ocupa. Lembre-se que Heróis têm 5 espaços e
-              Subordinados têm 4 espaços.
+              <br /> • <strong>Espaços:</strong> Indica quantos espaços de
+              equipamento a armadura ocupa. Lembre-se de que heróis têm 5
+              espaços e subordinados têm 4 espaços.
               <br />• <strong>Propriedades Especiais:</strong> Cada armadura
               pode ter regras especiais que modificam como ela funciona em
               combate.

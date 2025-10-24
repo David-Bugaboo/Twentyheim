@@ -50,6 +50,6 @@ export const pactBoons = [
   {
     name: "Pacto do Caos Indiviso",
     description:
-      "Uma vez por jogo, o jogador controlando este ritualista pode rolar novamente qualquer rolagem de dado feita por qualquer membro de seu bando, incluindo rolagens de iniciativa. Não pode ser usado para rolagens feitas por criaturas aleatórias, outros bandos, ou outros efeitos aleatórios. Só pode ser usado durante um jogo e não pode ser guardado de um jogo para o próximo. Quando um dado é rolado novamente, a rolagem anterior é perdida, e a nova rolagem deve ser aceita. Nunca é possível rolar novamente uma rolagem que já foi rolada novamente.",
+      "Uma vez por jogo, o jogador controlando este ritualista pode rolar novamente qualquer rolagem de dado feita por qualquer membro de seu bando, incluindo rolagens de iniciativa. Não pode ser usado para rolagens feitas por figuras aleatórias, outros bandos, ou outros efeitos aleatórios. Só pode ser usado durante um jogo e não pode ser guardado de um jogo para o próximo. Quando um dado é rolado novamente, a rolagem anterior é perdida, e a nova rolagem deve ser aceita. Nunca é possível rolar novamente uma rolagem que já foi rolada novamente.",
   },
 ];

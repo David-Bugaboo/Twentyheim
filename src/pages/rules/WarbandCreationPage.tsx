@@ -12,8 +12,8 @@ function WarbandCreationPage() {
     { id: "intro", title: "Montando Bando", level: 0 },
     { id: "montando-bando", title: "Montando o Bando", level: 0 },
     { id: "passo-1", title: "1) Escolha sua facção", level: 1 },
-    { id: "passo-2", title: "3) Contratando Figuras", level: 1 },
-    { id: "passo-4", title: "4) Equipando o Bando", level: 1 },
+    { id: "passo-2", title: "2) Contratando Figuras", level: 1 },
+    { id: "passo-3", title: "3) Equipando o Bando", level: 1 },
     { id: "onde-comprar", title: "Onde Comprar Equipamentos", level: 1 },
     { id: "dicas-equipamento", title: "Dicas de Equipamento", level: 1 },
   ];
@@ -47,7 +47,7 @@ function WarbandCreationPage() {
               <strong>verdadeira diversão</strong> está nas{" "}
               <strong>campanhas</strong>: ver seu bando{" "}
               <strong>crescer em poder e reputação</strong>, equipar novas
-              armas, conquistar <strong>Pedra-bruxa</strong> e{" "}
+              armas, conquistar <strong>Pedra-Bruxa</strong> e{" "}
               <strong>relíquias mágicas</strong>
               enquanto se embrenha pelos becos sombrios de Mordheim. É ali,
               entre vitórias e cicatrizes, que as lendas nascem.
@@ -57,10 +57,10 @@ function WarbandCreationPage() {
               <HeaderH1>Montando o Bando</HeaderH1>
             </div>
             <MobileText>
-              Cada jogador que jogará uma partida isolada, ou uma campanha, tem
+              Cada jogador que jogará uma partida isolada, ou uma campanha, tem{" "}
               <strong>500 coroas de ouro</strong> para contratar e equipar seus
-              solados. É o bastante para pagar algumas boas mãos para carregar
-              pedra-bruxa para você. As figuras do bando são contratados na
+              soldados. É o bastante para pagar algumas boas mãos para carregar
+              Pedra-Bruxa para você. As figuras do bando são contratadas na
               ordem abaixo. O primeiro passo é criar a sua conta em 20Heim, e
               criar seu bando no nosso construtor de bando. Então, siga os
               passos abaixo para ir criando sua tropa de desgarrados.
@@ -71,33 +71,33 @@ function WarbandCreationPage() {
             </div>
             <MobileText>
               Escolha uma dentre as facções disponíveis no jogo. Ela ditará
-              quais figuras voce pode contratar para o seu bando, e quais
+              quais figuras você pode contratar para o seu bando, e quais
               equipamentos estarão disponíveis para ele, além de determinar o
               motivo narrativo para que o bando esteja em Mordheim.
             </MobileText>
 
             <div id="passo-2">
-              <HeaderH2>3) Contratando Figuras</HeaderH2>
+              <HeaderH2>2) Contratando Figuras</HeaderH2>
             </div>
             <MobileText>
-              Compre hérois e soldados seguindo as regras estabelecidas na seção
+              Compre heróis e soldados seguindo as regras estabelecidas na seção
               Estrutura do Bando de cada facção. Escolha quaisquer magias,
-              habilidades mutações, marcas sagradas e outros benefícios
+              habilidades, mutações, marcas sagradas e outros benefícios
               disponíveis para cada figura. Pague o custo em coroas de cada
               modelo.
             </MobileText>
 
-            <div id="passo-4">
-              <HeaderH2>4) Equipando o Bando</HeaderH2>
+            <div id="passo-3">
+              <HeaderH2>3) Equipando o Bando</HeaderH2>
             </div>
             <MobileText>
-              Após contratar todas= as figuras do seu bando, é hora de
-              equipá-los adequadamente. Cada figura precisa de armas, armaduras
-              e acessórios para sobreviver às ruínas de Mordheim. Use o ouro
+              Após contratar todas as figuras do seu bando, é hora de equipá-los
+              adequadamente. Cada figura precisa de armas, armaduras e
+              acessórios para sobreviver às ruínas de Mordheim. Use o ouro
               restante para comprar equipamentos para cada membro do seu bando,
               podendo comprar quaisquer itens disponíveis para cada personagem
-              de acordo com sua tabela de equipamento. Figuras tem 5 espaços de
-              equipamento para carregar, ou 6 no caos de figuras Grandes.
+              de acordo com sua tabela de equipamento. Figuras têm 5 espaços de
+              equipamento para carregar, ou 6 no caso de figuras Grandes.
             </MobileText>
 
             <div id="onde-comprar">

@@ -5,7 +5,7 @@
     "role": "Líder",
     "quantity": "1",
     "stats": {
-      "move": 15,
+      "move": 14,
       "fight": "+3",
       "shoot": "+0",
       "armour": 10,
@@ -19,7 +19,7 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "A Matriarca Sigmarita pode ativar até outra 3 figuras a até 8cm de distância junto a si."
+        "description": "A Matriarca Sigmarita pode ativar até 3 outras figuras a 8cm de distância dela. Isso pode ser uma ativação em grupo."
       },
       {
         "name": "Sacerdotisa",
@@ -75,7 +75,7 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "A Irmã Superior começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes tem Classe de Dificuldade 8."
+        "description": "A Irmã Superior começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes têm Classe de Dificuldade 8."
       },
       {
         "name": "Segunda em comando",
@@ -124,7 +124,7 @@
     "abilities": [
       {
         "name": "Habilidades",
-        "description": "A Áugure começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes tem Classe de Dificuldade 8."
+        "description": "A Áugure começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes têm Classe de Dificuldade 8."
       },
       {
         "name": "Visão Sagrada",

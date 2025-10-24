@@ -11,14 +11,14 @@
     "name": "Marca de Sotek",
     "restrictions": "Apenas Skinks",
     "cost": "40 coroas",
-    "description": "O guerreiro tem dentes pequenos, mas carregados de veneno. Ele sempre conta como armado com uma arma com a característica Tóxica e modificador de dano -1, mesmo desarmado. Adicionalmente, como uma ação (que pode substituir ação de movimento), pode envenenar uma arma ou projétil, dando ao próximo ataque com a arma a característica venenos."
+    "description": "O guerreiro tem dentes pequenos, mas carregados de veneno. Ele sempre conta como armado com uma arma com a característica Tóxica e modificador de dano -1, mesmo desarmado. Adicionalmente, como uma ação (que pode substituir ação de movimento), pode envenenar uma arma ou projétil, dando ao próximo ataque com a arma a característica Tóxica."
   },
   {
     "id": "marca-de-huanchi",
     "name": "Marca de Huanchi",
     "restrictions": "Apenas Skinks",
     "cost": "40 coroas",
-    "description": "O guerreiro tem escamas refrativas, que refletem a luz. Ganha a característica Furtivo(16). Adicionamente ganha a possibilidade de usar uma ação de mirar como uma acão (que pode substituir a ação de movimento). O próximo ataque a distância ignora terreno interposto entre a figura e o alvo (mas não cobertura)."
+    "description": "O guerreiro tem escamas refrativas, que refletem a luz. Ganha a característica Furtividade(16). Adicionalmente ganha a possibilidade de usar uma ação de mirar como uma ação (que pode substituir a ação de movimento). O próximo ataque à distância ignora terreno interposto entre a figura e o alvo (mas não cobertura)."
   },
   {
     "id": "marca-de-tepok",
