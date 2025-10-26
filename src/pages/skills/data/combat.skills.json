@@ -18,7 +18,7 @@
     "name": "Teia de Ferro",
     "trigger": "Criatura se move dentro de 8cm do ativador da habilidade, sem nenhuma outra figura entre eles",
     "type": "Combate",
-    "description": "A figura tece uma teia de puro aço em volta de si enquanto luta. Ele causa dano crítico em rolagens naturais de 19 ou 20. Se usa uma arma ou está sob um efeito que já causa dano crítico em uma rolagem natural de 19 ou 20, causa dano crítico em uma rolagem de 18,19 ou 20."
+    "description": "A figura tece uma teia de puro aço em volta de si enquanto luta. Uma figura com essa habilidade pode interceptar outras figuras a até 8cm de si ao invés de ."
   },
   {
     "id": "mestre-do-arsenal",
@@ -68,7 +68,7 @@
     "name": "Tiro Habilidoso",
     "trigger": "O usuário da habilidade faz um ataque à distância.",
     "type": "Atirador",
-    "description": "A figura com essa habilidade pode gastar uma ação (que pode ser uma ação de movimento) "
+    "description": "A figura com essa habilidade pode gastar uma ação (que pode ser uma ação de movimento) para ignorar o primeiro terreno interposto (mas não cobertura) entre ela e o alvo do seu próximo ataque a distância."
   },
   {
     "id": "atirador-agil",
@@ -82,7 +82,7 @@
     "name": "Caçador",
     "trigger": "O usuário atinge uma figura inimiga com um ataque à distância com uma rolagem natural de 18, 19 ou 20.",
     "type": "Atirador",
-    "description": "Aquele ataque é considerado um ataque crítico."
+    "description": A figura equipada com essa arma pode fazer um ataque a distância com um arcabuz, rifle de caça de hochland, bacamarte ou bacamarte dos anões do caos no mesmo turno em que recarrega uma dessas armas."
   },
   {
     "id": "presença-inspiradora",
