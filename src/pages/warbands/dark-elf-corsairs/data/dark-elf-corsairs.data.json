@@ -5,11 +5,11 @@
     "role": "Líder",
     "quantity": "1",
     "stats": {
-      "move": 20,
-      "fight": "+3",
-      "shoot": "0",
+      "move": 15,
+      "fight": "+5",
+      "shoot": "+3",
       "armour": 9,
-      "Vontade": "+3",
+      "Vontade": "+4",
       "health": 14,
       "cost": "70 coroas",
       "skills": [
@@ -23,11 +23,7 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. Isso pode ser uma ativação em grupo."
-      },
-      {
-        "name": "Habilidades",
-        "description": "O Nobre Druchii começa com 5 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância junto a si."
       },
       {
         "name": "Visão Excelente",
@@ -70,20 +66,16 @@
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
-      "move": 20,
-      "fight": "+2",
-      "shoot": "+2",
+      "move": 15,
+      "fight": "+3",
+      "shoot": "+3",
       "armour": 9,
-      "Vontade": "+4",
+      "Vontade": "+3",
       "health": 14,
       "cost": "45 coroas",
       "skills": ["Combate", "Agilidade", "Corsários Druchii"]
     },
     "abilities": [
-      {
-        "name": "Seleção de Habilidades",
-        "description": "Quando contratado, o Domador de Feras pode comprar uma ou mais das habilidades disponíveis na tabela de habilidades nessa página. Cada habilidade custa 50 coroas e é permanente."
-      },
       {
         "name": "Domador de Feras Gélidas",
         "description": "Um bando com um Domador de Feras pode contratar até duas Feras Gélidas. O Domador de Feras pode fazer uma ativação em grupo com até duas Feras Gélidas que estejam até 8cm de distância dele."
@@ -129,12 +121,12 @@
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
-      "move": 20,
-      "fight": "+2",
-      "shoot": "0",
+      "move": 15,
+      "fight": "+3",
+      "shoot": "+3",
       "armour": 9,
-      "Vontade": "+4",
-      "health": 10,
+      "Vontade": "+3",
+      "health": 14,
       "cost": "55 coroas"
     },
     "spellAffinity": {
@@ -149,7 +141,7 @@
     "abilities": [
       {
         "name": "Conjurador",
-        "description": "A Bruxa Druchii é uma conjuradora da Tradição das Sombras. Ela começa o jogo com 3 magias, de quaisquer tradições presentes na tabela de tradições mágicas."
+        "description": "A Bruxa Druchii é uma conjuradora da Tradição das Sombras. Ela começa o jogo com 1 magia, de quaisquer tradições presentes na tabela de tradições mágicas. Magias de tradições associadas são adicionadas com +4 no CD."
       },
       {
         "name": "Visão Excelente",
@@ -191,20 +183,16 @@
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
-      "move": 20,
+      "move": 15,
       "fight": "+4",
-      "shoot": "0",
+      "shoot": "+3",
       "armour": 9,
-      "Vontade": "+4",
-      "health": 12,
+      "Vontade": "+3",
+      "health": 14,
       "cost": "40 coroas",
       "skills": ["Combate", "Agilidade", "Corsários Druchii"]
     },
     "abilities": [
-      {
-        "name": "Habilidades",
-        "description": "O Lâmina do Massacre começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
-      },
       {
         "name": "Massacre Violento",
         "description": "Sempre que causa um dano crítico em uma luta, pode imediatamente lutar novamente. Resolva a segunda luta antes de quaisquer outros efeitos especiais."
@@ -227,12 +215,7 @@
         { "name": "Alabarda", "cost": "10 coroas" },
         { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
       ],
-      "ranged": [
-        { "name": "Besta de Repetição", "cost": "35 coroas" },
-        { "name": "Besta de Mão", "cost": "35 coroas" }
-      ],
       "armor": [
-        { "name": "Escudo", "cost": "5 coroas" },
         { "name": "Elmo", "cost": "10 coroas" },
         { "name": "Armadura Leve", "cost": "20 coroas" }
       ],
@@ -248,12 +231,12 @@
     "name": "Corsário Druchii",
     "quantity": "ilimitado",
     "stats": {
-      "move": 20,
+      "move": 15,
       "fight": "+2",
-      "shoot": "0",
+      "shoot": "+2",
       "armour": 9,
-      "Vontade": "-1",
-      "health": 8,
+      "Vontade": "+1",
+      "health": 12,
       "cost": "35 coroas"
     },
     "abilities": [
@@ -294,12 +277,12 @@
     "name": "Sombra",
     "quantity": "0-5",
     "stats": {
-      "move": 20,
+      "move": 14,
       "fight": "+1",
-      "shoot": "+2",
+      "shoot": "+1",
       "armour": 9,
       "Vontade": "+1",
-      "health": 10,
+      "health": 12,
       "cost": "30 coroas"
     },
     "abilities": [
@@ -318,26 +301,26 @@
     ]
   },
   {
-    "id": "cold-one-beasthound",
-    "name": "Cold One Beasthound",
+    "id": "feras-gelidas",
+    "name": "Feras Gélidas",
     "quantity": "0-2",
     "stats": {
-      "move": 16,
+      "move": 13,
       "fight": "+1",
       "shoot": "0",
       "armour": 11,
-      "Vontade": "+2",
-      "health": 10,
+      "Vontade": "-3",
+      "health": 8,
       "cost": "30 coroas"
     },
     "abilities": [
       {
         "name": "Predador Primitivo",
-        "description": "Cold One Beasthounds têm a característica Animal."
+        "description": "Feras Gélidas têm a característica Animal e Voraz."
       },
       {
         "name": "Lealdade Ferrenha",
-        "description": "Cold One Beasthounds não podem ser ativados pela Habilidade Líder do Nobre Druchii. Se não forem ativados em uma ativação em grupo junto com o Domador de Feras, eles agem como figuras não controladas e permanecem assim até o fim do jogo."
+        "description": "Feras Gélidas tem a característica Estupidez. A Única figura que pode ativar junto a eles é o Domador de Feras."
       }
     ],
     "equipment": {
