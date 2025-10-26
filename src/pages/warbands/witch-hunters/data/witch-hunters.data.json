@@ -4,11 +4,11 @@
     "name": "Inquisidor",
     "role": "Líder",
     "stats": {
-      "move": 14,
-      "fight": "+3",
-      "shoot": "+2",
-      "armour": 10,
-      "Vontade": "+5",
+      "move": 11,
+      "fight": "+4",
+      "shoot": "+3",
+      "armour": 9,
+      "Vontade": "+3",
       "health": 16,
       "cost": "60 coroas",
       "skills": ["Combate", "Atirador", "Força", "Acadêmica", "Agilidade"]
@@ -17,15 +17,7 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Inquisidor pode ativar até 3 figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
-      },
-      {
-        "name": "Habilidades",
-        "description": "O Inquisidor começa com 5 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
-      },
-      {
-        "name": "Édito da Inquisição",
-        "description": "O Inquisidor pode escolher um conjurador no início do jogo, antes das miniaturas serem posicionadas. Aquela figura ganha a característica Procurado(X) onde X é seu valor em coroas."
+        "description": "O Inquisidor pode ativar até 3 figuras a 8cm de distância dele."
       },
       {
         "name": "Queimem a Bruxa!",
@@ -44,7 +36,7 @@
       "ranged": [
         { "name": "Besta", "cost": "25 coroas" },
         { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" },
-        { "name": "Besta de Mão", "cost": "35 coroas" }
+        { "name": "Besta de Mão", "cost": "35 coroas(70 coroas por par)" }
       ],
       "armor": [
         { "name": "Armadura Leve", "cost": "20 coroas" },
@@ -61,11 +53,11 @@
     "name": "Sacerdote Marcial de Sigmar",
     "role": "Herói",
     "stats": {
-      "move": 14,
-      "fight": "+3",
-      "shoot": "+0",
-      "armour": 10,
-      "Vontade": "+4",
+      "move": 10,
+      "fight": "+2",
+      "shoot": "+2",
+      "armour": 9,
+      "Vontade": "+3",
       "health": 14,
       "cost": "40 coroas"
     },
@@ -108,21 +100,17 @@
     "name": "Caçador de Bruxas",
     "role": "Herói",
     "stats": {
-      "move": 14,
+      "move": 10,
       "fight": "+2",
-      "shoot": "+1",
-      "armour": 10,
+      "shoot": "+2",
+      "armour": 9,
       "Vontade": "+2",
-      "health": 12,
+      "health": 14,
       "cost": "25 coroas",
       "skills": ["Combate", "Atirador", "Acadêmica", "Agilidade"]
     },
     "quantity": "0-2",
     "abilities": [
-      {
-        "name": "Habilidades",
-        "description": "O Caçador de Bruxas começa com 2 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
-      },
       {
         "name": "Queimem a Bruxa!",
         "description": "Caçadores de Bruxas têm a característica Ódio(Conjuradores)."
@@ -156,12 +144,12 @@
     "id": "fanatico",
     "name": "Fanático",
     "stats": {
-      "move": 14,
+      "move": 10,
       "fight": "0",
-      "shoot": "+0",
-      "armour": 10,
-      "Vontade": "+3",
-      "health": 10,
+      "shoot": "0",
+      "armour": 9,
+      "Vontade": "0",
+      "health": 12,
       "cost": "20 coroas"
     },
     "quantity": "ilimitado",
@@ -194,18 +182,18 @@
     "name": "Flagelante",
     "stats": {
       "move": 14,
-      "fight": "+4",
-      "shoot": "+0",
+      "fight": "+1",
+      "shoot": "-",
       "armour": 10,
-      "Vontade": "+4",
-      "health": 10,
+      "Vontade": "+3",
+      "health": 12,
       "cost": "40 coroas"
     },
     "quantity": "0-5",
     "abilities": [
       {
         "name": "Determinação Fanática",
-        "description": "Esse modelo tem a característica Mente-Férrea."
+        "description": "Esse modelo tem as características Mente-Férrea e Forte."
       }
     ],
     "equipment": {
@@ -224,11 +212,11 @@
     "id": "cao-de-guerra",
     "name": "Cão de Guerra",
     "stats": {
-      "move": 18,
-      "fight": "+1",
-      "shoot": "+0",
-      "armour": 10,
-      "Vontade": "0",
+      "move": 16,
+      "fight": "+2",
+      "shoot": "-",
+      "armour": 9,
+      "Vontade": "-2",
       "health": 8,
       "cost": "15 coroas"
     },
@@ -236,7 +224,7 @@
     "abilities": [
       {
         "name": "Cão de Guerra Treinado",
-        "description": "O cão de guerra tem a característica Animal."
+        "description": "O cão de guerra tem as características Animal e Voraz."
       }
     ]
   }
