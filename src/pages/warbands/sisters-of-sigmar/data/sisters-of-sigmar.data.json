@@ -5,11 +5,11 @@
     "role": "Líder",
     "quantity": "1",
     "stats": {
-      "move": 14,
-      "fight": "+3",
-      "shoot": "+0",
-      "armour": 10,
-      "Vontade": "+4",
+      "move": 11,
+      "fight": "+4",
+      "shoot": "+3",
+      "armour": 9,
+      "Vontade": "+3",
       "health": 16,
       "cost": "70 coroas"
     },
@@ -57,11 +57,11 @@
     "role": "Herói",
     "quantity": "0-3",
     "stats": {
-      "move": 12,
+      "move": 10,
       "fight": "+3",
-      "shoot": "0",
+      "shoot": "+2",
       "armour": 10,
-      "Vontade": "+3",
+      "Vontade": "+2",
       "health": 14,
       "cost": "35 coroas",
       "skills": [
@@ -74,12 +74,8 @@
     },
     "abilities": [
       {
-        "name": "Habilidades",
-        "description": "A Irmã Superior começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes têm Classe de Dificuldade 8."
-      },
-      {
         "name": "Segunda em comando",
-        "description": "A Irmã Superior pode ativar até duas outras figuras a até 8cm de distância junto a si."
+        "description": "A Irmã Superior pode ativar outra figura a até 8cm de distância junto a si."
       }
     ],
     "equipment": {
@@ -112,11 +108,11 @@
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
-      "move": 14,
+      "move": 10,
       "fight": "+1",
-      "shoot": "-",
-      "armour": 10,
-      "Vontade": "+4",
+      "shoot": "+1",
+      "armour": 9,
+      "Vontade": "+2",
       "health": 14,
       "cost": "25 coroas",
       "skills": ["Acadêmica", "Velocidade", "Irmãs de Sigmar"]
@@ -161,12 +157,12 @@
     "name": "Noviças",
     "quantity": "0-10",
     "stats": {
-      "move": 14,
+      "move": 10,
       "fight": "0",
       "shoot": "0",
-      "armour": 10,
-      "Vontade": "+3",
-      "health": 10,
+      "armour": 9,
+      "Vontade": "-1",
+      "health": 12,
       "cost": "15 coroas"
     },
     "abilities": [],
@@ -194,13 +190,13 @@
     "name": "Irmã Hospitalária",
     "quantity": "0-2",
     "stats": {
-      "move": 14,
+      "move": 10,
       "fight": "+1",
       "shoot": "0",
-      "armour": 10,
+      "armour": 9,
       "Vontade": "+3",
       "health": 12,
-      "cost": "50 coroas"
+      "cost": "35 coroas"
     },
     "abilities": [
       {
@@ -230,13 +226,13 @@
   {
     "id": "irma-sigmarita",
     "name": "Irmã Sigmarita",
-    "quantity": "1-5",
+    "quantity": "ilimitada",
     "stats": {
-      "move": 12,
-      "fight": "+3",
-      "shoot": "0",
-      "armour": 10,
-      "Vontade": "+3",
+      "move": 10,
+      "fight": "+1",
+      "shoot": "+1",
+      "armour": 9,
+      "Vontade": "0",
       "health": 12,
       "cost": "25 coroas"
     },
