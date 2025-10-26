@@ -4,11 +4,11 @@
     "role": "Líder",
     "stats": {
       "move": 17,
-      "fight": "+4",
-      "shoot": "+3",
+      "fight": "+2",
+      "shoot": "+2",
       "armour": 9,
-      "Vontade": "+2",
-      "health": 16,
+      "Vontade": "0",
+      "health": 12,
       "cost": "60 coroas",
       "skills": [
         "Combate",
@@ -60,11 +60,11 @@
     "role": "Herói",
     "stats": {
       "move": 14,
-      "fight": "+2",
-      "shoot": "+2",
+      "fight": "+1",
+      "shoot": "+1",
       "armour": 9,
-      "Vontade": "+1",
-      "health": 14,
+      "Vontade": "-1",
+      "health": 12,
       "cost": "45 coroas"
     },
     "quantity": "0-1",
@@ -109,11 +109,11 @@
     "role": "Herói",
     "stats": {
       "move": 17,
-      "fight": "+3",
-      "shoot": "+2",
+      "fight": "+2",
+      "shoot": "+1",
       "armour": 9,
-      "Vontade": "+1",
-      "health": 14,
+      "Vontade": "-1",
+      "health": 12,
       "cost": "40 coroas",
       "skills": ["Combate", "Atirador", "Agilidade", "Skaven do Clã Enshin"]
     },
@@ -159,11 +159,11 @@
     "role": "Herói",
     "stats": {
       "move": 16,
-      "fight": "+1",
-      "shoot": "+2",
+      "fight": "0",
+      "shoot": "+1",
       "armour": 9,
-      "Vontade": "-1",
-      "health": 14,
+      "Vontade": "-3",
+      "health": 12,
       "cost": "20 coroas",
       "skills": ["Combate", "Atirador", "Skaven do Clã Enshin"]
     },
@@ -253,7 +253,7 @@
     "name": "Ogro Rato",
     "stats": {
       "move": 16,
-      "fight": "+4",
+      "fight": "+3",
       "shoot": "+1",
       "armour": 11,
       "Vontade": "-3",
