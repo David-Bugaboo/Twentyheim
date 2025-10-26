@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Raio da Perdição",
+    "castingNumber": 14,
+    "keywords": ["Alcance(30)", "Míssil Mágico(Mágico)(+5)"],
+    "effect": "Ataque a figura inimiga alvo com o Míssil Mágico. Caso o ataque acerte e exista outra figura inimiga alvo a até 15cm, ataque-a com o Míssil Mágico, mas com +4. O raio continuará pulando entre alvos até que o conjurador erre o míssil mágico ou o bonus se torne +0. "
+  },
+  {
+    "name": "Palavra da Dor",
+    "castingNumber": 12,
+    "keywords": ["Linha de Visão"],
+    "effect": "A figura inimiga alvo recebe -3 no seu atributo Ímpeto (para um mínimo de 0) e deve passar em um teste de Vontade contra o número de conjuração dessa magia para declarar cargas. Durante o começo de cada uma de suas ativações, a figura deve fazer um teste de Vontade contra a rolagem de conjuração dessa magia. Caso tenha sucesso, a magia é cancelada."
+  },
+  {
+    "name": "Roubar Alma",
+    "castingNumber": 14,
+    "keywords": ["Linha de Visão"],
+    "effect": "A figura inimiga alvo faz um teste de Vontade contra a rolagem de conjuração dessa magia. Caso falhe, recebe 3 de dano mágico e o conjurador ganha 3 de Vida. O Conjurador sempre ganha 3 de vida, mesmo se o dano causado for reduzido de alguma forma."
+  },
+  {
+    "name": "Lâmina Incandescente",
+    "castingNumber": 18,
+    "keywords": ["Conjurador Apenas", "Concentração"],
+    "effect": "uela arma causa dano flamejante,tem um bônus de dano de +2 e Penetração de Armadura(2)."
+  },
+  {
+    "name": "Espasmos Cadavéricos",
+    "castingNumber": 18,
+    "keywords": ["Alcance(40cm)"],
+    "effect": "A figura alvo deve fazer um teste de Vontade contra a rolagem de conjuração dessa magia. A figura alvo pode gastar vida para aumentar esse teste de vontade em uma proporção de 1:1. Caso falhe no teste, a figura é imediatamente reduzida a 0 de vida."
+  },
+  {
+    "name": "Vôo da Bruxa",
+    "castingNumber": 10,
+    "keywords": ["Conjurador Apenas"],
+    "effect": "Essa magia custa 2 ações para ser conjurada. O conjurador é imediatamente posicionado em qualquer ponto a até 30cm de distância, incluindo em combate com uma figura inimiga, o que conta como completar uma carga. O conjurador causa um dano crítico em uma rolagem natural de 18,19 ou 20 na sua próxima ação de luta apenas."
+  }
+  
+  
+  
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "name": "Investida Magmática",
+    "castingNumber": 10,
+    "keywords": ["Conjurador Apenas"],
+    "effect": "Essa magia consome duas ações. O conjurador imediatamente se move 15cm em qualquer direção, inclusive vertical. Caso termine o movimento no ar, imediatamente cai, tomando dano de queda como normal. O movimento pode ser usado para entrar em combate com uma figura inimiga, o que contará como completar uma carga. Caso o faça o conjurador causa +2 de dano flamejante na sua próxima ação de luta apenas."
+  },
+  {
+    "name": "Espectro de Hashut",
+    "castingNumber": 12,
+    "keywords": ["Linha de Visão"],
+    "effect": "A figura alvo faz um teste de Vontade contra a rolagem de conjuração dessa magia. Caso falhe, recebe um Marcador de Atordoamento. Até a magia ser cancelada, no final de cada uma de suas ativações, a figura alvo refaz esse teste de Vontade. Caso falhe, recebe outro Marcador de Atordoamento."
+  },
+  {
+    "name": "Chamas de Azrgoth",
+    "castingNumber": 10,
+    "keywords": ["Alcance(16)", "Área de Efeito (Explosão Pequena)"],
+    "effect": "Centralize a Área de Efeito em uma figura alvo que o conjurador enxergue completamente. Todas as figuras na área de efeito sofrem um ataque flamejante +5. Trate a figura alvo como ponto de origem para determinar cobertura ou terreno interposto para todas as outras figuras sofrendo ataques."
+  },
+  {
+    "name": "Erupção",
+    "castingNumber": 12,
+    "keywords": ["Área de Efeito (Explosão Grande)"],
+    "effect": "Centralize a Área de Efeito do conjurador. Todas as figuras na área de efeito sofrem um ataque mágico flamejante +0."
+  },
+  {
+    "name": "Estátua de Cinzas",
+    "castingNumber": 16,
+    "keywords": ["Linha de Visão"],
+    "effect": "A figura alvo faz um teste de Vontade contra a rolagem de conjuração dessa magia. Caso falhe, a figura perde suas ações na próxima ativação e recebe -3 em Ímpeto até o final do turno. Criaturas grandes recebem +8 no seu teste de Vontade contra essa magia."
+  },
+  {
+    "name": "Benção do Touro Infernal",
+    "castingNumber": 10,
+    "keywords": ["Linha de Visão"],
+    "effect": "A figura alvo que não seja um conjurador ou uma figura com a característica Daemônio é possuída por uma entidade do reino do caos e ganha +2 Ímpeto, +1 Armadura e -2 Vontade até o fim do jogo e conta como um daemônio (ou seja, será afetada por Banir, Subjugar Daemônio, Círculo de Proteção, etc.). Esta figura não pode ser parte de uma ativação em grupo. Se removida do jogo por uma magia com a palavra-chave Exorcismo, o daemônio é expulso e a sobrevivência da figura é verificada normalmente após o jogo. Um conjurador só pode ter uma magia Dádiva do Caos ativa por vez."
+  }
+
+]

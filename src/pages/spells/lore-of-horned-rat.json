@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Maldição do Rato-Bruxo",
+    "castingNumber": 10,
+    "keywords": ["Linha de Visão"],
+    "effect": "A figura inimiga alvo recebe -2 nos seus atributos Armadura, Ímpeto e Precisão. Durante o começo de cada uma de suas ativações, a figura deve fazer um teste de Vontade contra a rolagem de conjuração dessa magia. Caso tenha sucesso, a magia é cancelada."
+  },
+  {
+    "name": "Olhar do Deus Distorcido",
+    "castingNumber": 12,
+    "keywords": ["Área de Efeito(Explosão Pequena)", "Ilusão"],
+    "effect": "Centralize a Área de Efeito no conjurador. Todas as figuras na área de efeito sofrem um ataque mágico +5. Figuras atingidas por esse ataque são então movidas a quantidade de dano que tomaram em centímetros diretamente para trás em linha reta, atravessando peças de terreno e outras figuras. Uma figura não pode sair do tabuleiro através desse movimento."
+  },
+  {
+    "name": "Fúria Sombria",
+    "castingNumber": 12,
+    "keywords": ["Linha de Visão"],
+    "effect": "A figura aliada alvo ativa imediatamente após o conjurador e ganha a característica Fúria durante sua ativação apenas."
+  },
+  {
+    "name": "Roer Alma",
+    "castingNumber": 10,
+    "keywords": ["Alcance(40)","Missil Mágico(Mágico)(+7)"],
+    "effect": "Ataque a figura alvo com o Míssil Mágico. O Míssil Mágico tem um modificador de dano +2."
+  },
+  {
+    "name": "Prole do Rato Chifrudo",
+    "castingNumber": 8,
+    "keywords": ["Ritual"],
+    "effect": "O conjurador adiciona 3 ratos gigantes ao bando como um membro permanente, que não contam para o limite de figuras do bando. Apenas 3 ratos gigantes invocados dessa forma podem existir simultâneamente, e eles são sempre considerado mortos caso sejam reduzidos a 0 de vida durante uma partida. Caso o conjurador tente usar a magia novamente, ela irá reinvocar quaisquer ratos gigantes que tenham sido reduzidos a 0 de vida na partida anterior."
+  },
+  {
+    "name": "Chamas da Distorção",
+    "castingNumber": 10,
+    "keywords": ["Área de Efeito (Cone)"],
+    "effect": "Todas as figuras em contato com a área de efeito sofrem um ataque à distância mágico flamejante +5."
+  }
+]
