@@ -6,11 +6,11 @@
     "quantity": "1",
     "stats": {
       "move": 7,
-      "fight": "+5",
-      "shoot": "+3",
+      "fight": "+3",
+      "shoot": "+2",
       "armour": 10,
-      "Vontade": "+4",
-      "health": 16,
+      "Vontade": "+2",
+      "health": 12,
       "cost": "85 coroas",
       "skills": ["Combate", "Atirador", "Força", "Caçadores de Tesouro Anões"]
     },
@@ -64,11 +64,11 @@
     "quantity": "0-1",
     "stats": {
       "move": 7,
-      "fight": "+3",
-      "shoot": "+2",
+      "fight": "+2",
+      "shoot": "+1",
       "armour": 10,
-      "Vontade": "+4",
-      "health": 14,
+      "Vontade": "+2",
+      "health": 12,
       "cost": "50 coroas",
       "skills": [
         "Combate",
@@ -126,10 +126,10 @@
     "quantity": "0-2",
     "stats": {
       "move": 7,
-      "fight": "+3",
-      "shoot": "+2",
+      "fight": "+2",
+      "shoot": "+1",
       "armour": 10,
-      "Vontade": "+4",
+      "Vontade": "+2",
       "health": 14,
       "cost": "50 coroas",
       "skills": [
@@ -154,7 +154,7 @@
       },
       {
         "name": "Devagar e Sempre",
-        "description": "O Engenheiro de Kharadron nunca perde movimento devido ao uso de equipamentos."
+        "description": "O Mata-Trolls Anão nunca perde movimento devido ao uso de equipamentos."
       }
     ],
     "equipment": {
