@@ -5,12 +5,12 @@
     "role": "Líder",
     "quantity": "1",
     "stats": {
-      "move": 12,
-      "fight": "+4",
-      "shoot": "+2",
+      "move": 14,
+      "fight": "+2",
+      "shoot": "+1",
       "armour": 10,
-      "Vontade": "+2",
-      "health": 16,
+      "Vontade": "0",
+      "health": 12,
       "cost": "65 coroas",
       "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
     },
@@ -51,12 +51,12 @@
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
-      "move": 12,
-      "fight": "+3",
-      "shoot": "+2",
+      "move": 13,
+      "fight": "+2",
+      "shoot": "+1",
       "armour": 10,
-      "Vontade": "+1",
-      "health": 14,
+      "Vontade": "-1",
+      "health": 12,
       "cost": "45 coroas"
     },
     "spellAffinity": {
@@ -96,11 +96,11 @@
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
-      "move": 12,
-      "fight": "+3 ",
-      "shoot": "+2",
+      "move": 13,
+      "fight": "+2",
+      "shoot": "+1",
       "armour": 10,
-      "Vontade": "+2",
+      "Vontade": "0",
       "health": 14,
       "cost": "45 coroas",
       "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
@@ -138,11 +138,11 @@
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
-      "move": 20,
-      "fight": "+3",
-      "shoot": "+2",
+      "move": 19,
+      "fight": "+2",
+      "shoot": "+1",
       "armour": 10,
-      "Vontade": "+2",
+      "Vontade": "0",
       "health": 14,
       "cost": "80 coroas",
       "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
@@ -187,9 +187,9 @@
     "name": "Ungor",
     "quantity": "ilimitado",
     "stats": {
-      "move": 12,
-      "fight": "+2",
-      "shoot": "0",
+      "move": 13,
+      "fight": "+1",
+      "shoot": "+1",
       "armour": 9,
       "Vontade": "-1",
       "health": 12,
@@ -220,9 +220,9 @@
     "name": "Gor",
     "quantity": "0-5",
     "stats": {
-      "move": 12,
-      "fight": "+3",
-      "shoot": "+2",
+      "move": 13,
+      "fight": "+2",
+      "shoot": "+1",
       "armour": 10,
       "Vontade": "-1",
       "health": 12,
@@ -277,10 +277,10 @@
     "stats": {
       "move": 16,
       "fight": "+4",
-      "shoot": "0",
-      "armour": 12,
-      "Vontade": "+3",
-      "health": 16,
+      "shoot": "+1",
+      "armour": 11,
+      "Vontade": "+1",
+      "health": 20,
       "cost": "200 coroas"
     },
     "abilities": [
