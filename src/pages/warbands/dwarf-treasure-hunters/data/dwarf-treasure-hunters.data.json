@@ -170,8 +170,7 @@
         { "name": "Alabarda", "cost": "10 coroas" }
       ],
       "ranged": [
-        { "name": "Javelin", "cost": "5 coroas" },
-        
+        { "name": "Javelin", "cost": "5 coroas" }
       ],
       "armor": [],
       "miscellaneous": [],
@@ -229,7 +228,6 @@
       "modifiers": [{ "name": "De Gromril", "cost": "3x o custo" }]
     }
   },
-
   {
     "id": "trovejador-anao",
     "name": "Trovejador Anão",
@@ -277,7 +275,7 @@
         { "name": "Elmo", "cost": "10 coroas" }
       ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Repetição", "cost": "base *3" }]
+      "modifiers": [{ "name": "De Repetição", "cost": "base * 3" }]
     }
   },
   {
