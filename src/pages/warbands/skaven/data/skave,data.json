@@ -3,12 +3,12 @@
     "name": "Assassino",
     "role": "Líder",
     "stats": {
-      "move": 20,
-      "fight": "+2",
-      "shoot": "+2",
+      "move": 17,
+      "fight": "+4",
+      "shoot": "+3",
       "armour": 9,
-      "Vontade": "+3",
-      "health": 14,
+      "Vontade": "+2",
+      "health": 16,
       "cost": "60 coroas",
       "skills": [
         "Combate",
@@ -25,17 +25,9 @@
         "description": "O Assassino pode ativar até 3 figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
       },
       {
-        "name": "Habilidades",
-        "description": "O Assassino começa com 4 habilidades de uma das listas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
+        "name": "Anatomista",
+        "description": "Qualquer arma usada pelo assassino ganha a característica Penetração de Armadura(1). Adicionalmente o Assassino tem a característica Chifres."
       },
-      {
-        "name": "Presas do Rato Chifrudo",
-        "description": "O Assassino tem a característica Peçonhento."
-      },
-      {
-        "name": "Apunhalar pelas Costas",
-        "description": "Além disso, Assassinos ganham um adicional +2 a seu Ímpeto se já estiverem recebendo um bônus de um ou mais figuras suporte, o entanto, Assassinos nunca contam como uma figura suporte para outras figuras, mesmo membros da própria bando."
-      }
     ],
     "equipment": {
       "hand-to-hand": [
@@ -67,12 +59,12 @@
     "name": "Bruxo do Clã Eshin",
     "role": "Herói",
     "stats": {
-      "move": 20,
-      "fight": "-1",
-      "shoot": "+0",
+      "move": 14,
+      "fight": "+2",
+      "shoot": "+2",
       "armour": 9,
-      "Vontade": "+3",
-      "health": 12,
+      "Vontade": "+1",
+      "health": 14,
       "cost": "45 coroas"
     },
     "quantity": "0-1",
@@ -116,11 +108,11 @@
     "name": "Skaven Sombrio",
     "role": "Herói",
     "stats": {
-      "move": 20,
-      "fight": "+2",
-      "shoot": "+0",
+      "move": 17,
+      "fight": "+3",
+      "shoot": "+2",
       "armour": 9,
-      "Vontade": "1",
+      "Vontade": "+1",
       "health": 14,
       "cost": "40 coroas",
       "skills": ["Combate", "Atirador", "Agilidade", "Skaven do Clã Enshin"]
@@ -132,8 +124,8 @@
         "description": "O Skaven Sombrio começa com 2 habilidades de uma das listas acima na sua ficha. A Classe de dificuldade dessas Habilidades é 5."
       },
       {
-        "name": "Equipamento Disponível",
-        "description": "Pode comprar veneno sem fazer rolagens de Mercado Negro"
+        "name": "Treinado para matar",
+        "description": "O Skaven Sombrio tem a característica Forte."
       }
     ],
     "equipment": {
@@ -166,12 +158,12 @@
     "name": "Espreitadores Noturnos",
     "role": "Herói",
     "stats": {
-      "move": 20,
-      "fight": "0",
+      "move": 16,
+      "fight": "+1",
       "shoot": "+2",
       "armour": 9,
-      "Vontade": "0",
-      "health": 10,
+      "Vontade": "-1",
+      "health": 14,
       "cost": "20 coroas",
       "skills": ["Combate", "Atirador", "Skaven do Clã Enshin"]
     },
@@ -181,10 +173,6 @@
         "name": "Habilidades",
         "description": "Os Espreitadores Noturnos começam com 2 habilidades de uma das listas acima na sua ficha. A Classe de dificuldade dessas Habilidades é 5."
       },
-      {
-        "name": "Equipamento Disponível",
-        "description": "Pode comprar veneno sem fazer rolagens de Mercado Negro"
-      }
     ],
     "equipment": {
       "hand-to-hand": [
@@ -215,20 +203,16 @@
   {
     "name": "Pestilentos",
     "stats": {
-      "move": 20,
-      "fight": "0",
-      "shoot": "0",
+      "move": 14,
+      "fight": "+1",
+      "shoot": "+1",
       "armour": 9,
       "Vontade": "-2",
-      "health": 8,
+      "health": 12,
       "cost": "20 coroas"
     },
     "quantity": "ilimitado",
     "abilities": [
-      {
-        "name": "Equipamento Disponível",
-        "description": "Pestilentos têm acesso a equipamentos básicos de combate."
-      }
     ],
     "equipment": {
       "hand-to-hand": [
@@ -248,12 +232,12 @@
   {
     "name": "Rato Gigante",
     "stats": {
-      "move": 18,
+      "move": 16,
       "fight": "0",
-      "shoot": "0",
-      "armour": 6,
+      "shoot": "-",
+      "armour": 9,
       "Vontade": "-2",
-      "health": 6,
+      "health": 8,
       "cost": "15 coroas"
     },
     "quantity": "ilimitado",
@@ -270,10 +254,10 @@
     "stats": {
       "move": 16,
       "fight": "+4",
-      "shoot": "0",
-      "armour": 12,
-      "Vontade": "-2",
-      "health": 14,
+      "shoot": "+1",
+      "armour": 11,
+      "Vontade": "-3",
+      "health": 20,
       "cost": "210 coroas"
     },
     "quantity": "0-1",
@@ -284,13 +268,8 @@
       },
       {
         "name": "Mente Limitada",
-        "description": "Ratos Ogróides têm a característica Estúpido. Adicionalmente eles não ganham experiência."
+        "description": "Ratos Ogróides têm a característica Estupidez. Adicionalmente eles não ganham experiência."
       },
-
-      {
-        "name": "Escudo de Carne",
-        "description": "Atiradores não podem fazer ataques à distância contra outras figuras do bando do Rato Ogróide se este for a figura mais próxima."
-      }
     ]
   }
 ]
