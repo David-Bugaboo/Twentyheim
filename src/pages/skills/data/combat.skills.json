@@ -89,7 +89,14 @@
     "name": "Presença Inspiradora",
     "trigger": "No começo da ativação do usuário da habilidade.",
     "type": "Acadêmica",
-    "description": "Caso o usuário seja um Líder, ele poderá ativar uma figura extra com sua habilidade Líder durante essa ativação. Caso seja um herói, essa figura pode comandar uma ativação em grupo com até um outro soldado a 8cm de si durante essa ativação."
+    "description": "Essa habilidade só pode ser utilizada pelo líder do bando. A habilidade Líder agora permite ativar figuras a até 16cm junto do Líder ao invés do normal de 8cm."
+  },
+{
+    "id": "feitiçaria",
+    "name": "Feitiçaria",
+    "trigger": "No começo da ativação do usuário da habilidade.",
+    "type": "Acadêmica",
+    "description": Essa habilidade só pode ser aprendida por Hérois que podem conjurar magias. A figura ganha +3 em suas rolagens de conjuração. Contudo, Sacerdotes não podem aprender essa habilidade. "
   },
   {
     "id": "conhecimento-das-ruas",
@@ -97,7 +104,7 @@
 
     "trigger": "Fora do jogo, na fase de Atividades.",
     "type": "Acadêmica",
-    "description": "Se o poder for ativado com sucesso, qualquer figura que fizer a atividade de exploração \"Visitar o Mercado Negro\" ganha +2 na rolagem da atividade. Esse bônus não acumula, independentemente de quantas figuras ativaram durante esse turno."
+    "description": "Uma figura com a essa habilidade tem contatos no mercado negro. Ele ganha +5 em rolagens de busca de itens."
   },
   {
     "id": "barganhar",
@@ -105,11 +112,11 @@
 
     "trigger": "Fora do jogo, na fase de Atividades.",
     "type": "Acadêmica",
-    "description": "Se o poder for ativado com sucesso, o bando ganha 20% de desconto em qualquer item comprado nessa Fase de Campanha-jogo. Os descontos não acumulam, independentemente de quantas figuras ativaram esse poder."
+    "description": "Cada figura com essa habilidade reduz em 1d20 o preço de compra do primeiro item comprado durante a etapa de gastar coroas fa Fase de Campanha, para um mínimo de 1 coroa."
   },
   {
-    "id": "caçador-de-pedra-bruxa",
-    "name": "Caçador de Pedra-Bruxa",
+    "id": "tradicao-arcana",
+    "name": "Tradição Arcana",
 
     "trigger": "Fora do Jogo, na fase de Atividades.",
     "type": "Acadêmica",
