@@ -1,77 +1,85 @@
 [
   {
-    "id": "golpe-para-ferir",
-    "name": "Golpe para Ferir",
+    "id": "golpe-mortífero",
+    "name": "Golpe Mortífero",
     "trigger": "Ativador vence uma luta",
     "type": "Combate",
-    "description": "A figura perdedora da luta sofre 3 de dano além do dano normal que sofreria."
+    "description": Os golpes da figura são mortíferos. Todo ataque corpo a corpo tem um bônus de +2 de dano."
   },
   {
     "id": "mestre-do-combate",
     "name": "Mestre do Combate",
     "trigger": "Uma figura usa uma ação de luta contra o ativador enquanto ele está em combate com mais de um inimigo.",
     "type": "Combate",
-    "description": "Aquela figura recebe bônus de suporte por combate múltiplo como se tivesse uma figura a menos em combate com o ativador da habilidade."
+    "description": "Figuras ganham bônus de combate múltiplo contra a figura com essa habilidade como se tivesse um aliado a menos em combate."
   },
   {
     "id": "teia-de-ferro",
     "name": "Teia de Ferro",
     "trigger": "Criatura se move dentro de 8cm do ativador da habilidade, sem nenhuma outra figura entre eles",
     "type": "Combate",
-    "description": "O ativador pode interceptar aquela figura, seguindo as regras normais de interceptação. Isso inclui regras que negam interceptação, que fariam com que essa habilidade não funcionasse corretamente."
+    "description": "A figura tece uma teia de puro aço em volta de si enquanto luta. Ele causa dano crítico em rolagens naturais de 19 ou 20. Se usa uma arma ou está sob um efeito que já causa dano crítico em uma rolagem natural de 19 ou 20, causa dano crítico em uma rolagem de 18,19 ou 20."
   },
   {
-    "id": "desarmar",
-    "name": "Desarmar",
-    "trigger": "Criatura vence uma luta",
+    "id": "mestre-do-arsenal",
+    "name": "Mestre do Arsenal",
+    "trigger": "Criatura vence uma lu",
     "type": "Combate",
-    "description": "Ao invés de causar dano, a figura pode fazer com que uma das armas usadas pela figura que perdeu a luta seja derrubada. A figura recuperará a arma depois da partida gratuitamente, mas ela não poderá mais ser usada durante esse jogo."
+    "description": "Essa figura pode usar qualquer arma corpo a corpo, não apenas aquelas que estão na lista de equipamento da sua ficha."
   },
-  {
-    "id": "aparar",
-    "name": "Aparar",
-    "trigger": "Criatura recebe pelo menos 1 de dano de qualquer fonte, exceto magias.",
+{
+    "id": "Evasão Rápida",
+    "name": "",
+    "trigger": "Criatura vence uma lu",
     "type": "Combate",
-    "description": "O dano é reduzido em 4 pontos. Se o dano for reduzido para 0, quaisquer outros efeitos especiais do ataque são anulados."
+    "description": "Sempre que uma figura é acertada por um ataque a distância, ela pode usar uma reação para re-rolar a sua rolagem de Impeto contra aquele ataque com um bônus de +2."
   },
+  
   {
     "id": "tiro-rapido",
     "name": "Tiro Rápido",
     "trigger": "No início da ativação do ativador da habilidade.",
     "type": "Atirador",
-    "description": "Durante essa ativação, o ativador pode usar suas duas ações para fazer ataques à distância. Regras de recarga ainda se aplicam como normal."
+    "description": "A figura pode gastar sua ação de movimento para fazer um ataque a distância, embora deva fazer isso usando apenas metade do seu atributo Precisão (arredondado para baixo). Regras de recarga se aplicam normalmente."
   },
   {
     "id": "pistoleiro",
     "name": "Pistoleiro",
     "trigger": "Em qualquer momento em que o ativador da habilidade atira com uma pistola.",
     "type": "Atirador",
-    "description": "Durante essa ativação, o usuário da habilidade pode recarregar sem gastar ações se usar qualquer arma de fogo com a palavra-chave Pistola."
+    "description": "Uma figura com essa habilidade equipada com um cinto de pistolas pode usar sua ação de movimento para atirar novamente com a segunda pistola do cinto no mesmo turno, embora usando metade do seu atributo Precisão (Arredondado para baixo). Regras normais de recarga aplicam normalmente. Se uma figura estiver equipado com apenas uma pistola, ela pode fazer um ataque como ação livre com a pistola no turno em que recarrega."
   },
   {
     "id": "olhos-de-falcao",
     "name": "Olhos de Falcão",
     "trigger": "Em qualquer momento da ativação do usuário da habilidade.",
     "type": "Atirador",
-    "description": "O usuário da habilidade ganha 10cm de alcance no próximo ataque à distância feito por ele."
+    "description": "A figura com essa habilidade adiciona +15cm no alcance de qualquer arma a distância (excluindo armas de fogo) usada por ela."
+  },
+{
+    "id": "mestre-atirador",
+    "name": "Mestre Atirador",
+    "trigger": "Em qualquer momento da ativação do usuário da habilidade.",
+    "type": "Atirador",
+    "description": "A figura pode usar qualquer arma a distância ou de fogo, não apenas aquelas na seção de equipamentos da sua ficha."
   },
   {
-    "id": "tiro-habilidoso",
+    "id": "tiro-de-precisão",
     "name": "Tiro Habilidoso",
     "trigger": "O usuário da habilidade faz um ataque à distância.",
     "type": "Atirador",
-    "description": "O usuário da habilidade nega todos os bônus para a rolagem de defesa da figura alvo por terreno interposto e cobertura."
+    "description": "A figura com essa habilidade pode gastar uma ação (que pode ser uma ação de movimento) "
   },
   {
     "id": "atirador-agil",
     "name": "Tiro Habilidoso",
     "trigger": "O usuário usa uma ação de movimento enquanto ainda não usou uma ação de ataque à distância no seu turno.",
     "type": "Atirador",
-    "description": "A figura não recebe penalidades por ter se movido no seu próximo ataque à distância."
+    "description": "A figura com essa habilidade pode usar uma ação de movimento como ação livre no turno em que recarrega uma arma de fogo. Adicionalmente, o modificador de Tiro Apressado não se aplica aos seus ataque a distância."
   },
   {
-    "id": "disparo-de-precisão",
-    "name": "Disparo de Precisão",
+    "id": "cacador",
+    "name": "Caçador",
     "trigger": "O usuário atinge uma figura inimiga com um ataque à distância com uma rolagem natural de 18, 19 ou 20.",
     "type": "Atirador",
     "description": "Aquele ataque é considerado um ataque crítico."
