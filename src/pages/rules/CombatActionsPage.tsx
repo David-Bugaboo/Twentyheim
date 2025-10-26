@@ -25,9 +25,7 @@ function CombatActionsPage() {
             <HeaderH1>Entrando em Combate</HeaderH1>
             <MobileText>
               A única forma de entrar em combate com uma figura inimiga é
-              através de uma <strong>Declaração de Carga</strong>. Não há
-              exceções. Uma figura não pode simplesmente "andar até" um inimigo
-              e começar a lutar — ela deve declarar sua intenção de atacar e
+              através de uma <strong> Carga</strong>. Uma figura não pode simplesmente "andar até" um inimigo e começar a lutar — ela deve declarar sua intenção de atacar e
               seguir até o fim.
             </MobileText>
 
@@ -44,20 +42,14 @@ function CombatActionsPage() {
 
             <HeaderH2>Declaração de Carga</HeaderH2>
             <MobileText>
-              No começo de sua primeira ação de movimento do turno, uma figura
-              pode <strong>declarar carga</strong> contra uma figura inimiga que
-              consiga traçar linha de visão e que consiga entrar em contato de
-              base através de uma ação de movimento válida. Ela então deve se
-              mover o dobro do seu movimento normal, usando quaisquer tipos de movimento disponíveis e legais até que sua
+   gastando duas ações, uma figura pode 
+       <strong>declarar carga</strong> contra uma figura inimiga que
+              consiga traçar linha de visão e cuja distância efetiva (levando em consideração penalidades de movimento como terreno acidentado e escaladal entre as duas figuras seja menor ou igual a duas vezes o atributo movimento em cm do declarador da carga. Ela então deve se
+              mover o dobro do seu movimento normal, usando quaisquer tipos de movimento disponíveis até que sua
               base toque a daquela figura.
             </MobileText>
 
-            <WarningBox title="Importante" type="warning">
-              <strong>Importante:</strong> Como dito acima, uma figura só pode
-              declarar carga na <strong>primeira ação de movimento</strong> do
-              turno. Isso significa que só há uma oportunidade de carga por
-              ativação. Use com sabedoria.
-            </WarningBox>
+            
 
             <HeaderH2>Completando a Carga</HeaderH2>
             <MobileText>
@@ -110,10 +102,8 @@ function CombatActionsPage() {
 
             <HeaderH1>Ação de Luta</HeaderH1>
             <MobileText>
-              O momento da verdade. Aço contra aço, força contra força, vida
-              contra morte. Uma figura pode usar uma ação de luta{" "}
-              <strong>contra uma figura que esteja em combate</strong>.
-            </MobileText>
+Uma figura que completou uma carga pode fazer uma Ação de Luta como uma ação livre, podendo batalhar contra o alvo da sua carga.
+               </MobileText>
 
             <HeaderH2>A Rolagem de Luta</HeaderH2>
             <MobileText>
