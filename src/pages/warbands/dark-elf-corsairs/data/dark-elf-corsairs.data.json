@@ -5,12 +5,12 @@
     "role": "Líder",
     "quantity": "1",
     "stats": {
-      "move": 15,
-      "fight": "+5",
-      "shoot": "+3",
+      "move": 16,
+      "fight": "+3",
+      "shoot": "+2",
       "armour": 9,
-      "Vontade": "+4",
-      "health": 14,
+      "Vontade": "+2",
+      "health": 12,
       "cost": "70 coroas",
       "skills": [
         "Combate",
@@ -66,12 +66,12 @@
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
-      "move": 15,
-      "fight": "+3",
-      "shoot": "+3",
+      "move": 16,
+      "fight": "+2",
+      "shoot": "+2",
       "armour": 9,
-      "Vontade": "+3",
-      "health": 14,
+      "Vontade": "+1",
+      "health": 12,
       "cost": "45 coroas",
       "skills": ["Combate", "Agilidade", "Corsários Druchii"]
     },
@@ -121,12 +121,12 @@
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
-      "move": 15,
-      "fight": "+3",
-      "shoot": "+3",
+      "move": 16,
+      "fight": "+2",
+      "shoot": "+2",
       "armour": 9,
-      "Vontade": "+3",
-      "health": 14,
+      "Vontade": "+1",
+      "health": 12,
       "cost": "55 coroas"
     },
     "spellAffinity": {
@@ -183,12 +183,12 @@
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
-      "move": 15,
-      "fight": "+4",
-      "shoot": "+3",
+      "move": 16,
+      "fight": "+3",
+      "shoot": "+2",
       "armour": 9,
-      "Vontade": "+3",
-      "health": 14,
+      "Vontade": "+1",
+      "health": 12,
       "cost": "40 coroas",
       "skills": ["Combate", "Agilidade", "Corsários Druchii"]
     },
@@ -231,7 +231,7 @@
     "name": "Corsário Druchii",
     "quantity": "ilimitado",
     "stats": {
-      "move": 15,
+      "move": 16,
       "fight": "+2",
       "shoot": "+2",
       "armour": 9,
@@ -277,7 +277,7 @@
     "name": "Sombra",
     "quantity": "0-5",
     "stats": {
-      "move": 14,
+      "move": 15,
       "fight": "+1",
       "shoot": "+1",
       "armour": 9,
@@ -307,7 +307,7 @@
     "stats": {
       "move": 13,
       "fight": "+1",
-      "shoot": "0",
+      "shoot": "-",
       "armour": 11,
       "Vontade": "-3",
       "health": 8,
@@ -320,7 +320,7 @@
       },
       {
         "name": "Lealdade Ferrenha",
-        "description": "Feras Gélidas tem a característica Estupidez. A Única figura que pode ativar junto a eles é o Domador de Feras."
+        "description": "Feras Gélidas tem a característica Estupidez. A Única figura que pode ativar junto a eles é o Domador de Feras. Se o domador de feras morrer, as Feras Gélidas não saem do bando imediatamente. Se o domador de feras de feras não puder participar do jogo, as feras gélidas não participam do jogo também."
       }
     ],
     "equipment": {
