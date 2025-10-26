@@ -48,7 +48,7 @@ function CombatActionsPage() {
               pode <strong>declarar carga</strong> contra uma figura inimiga que
               consiga traçar linha de visão e que consiga entrar em contato de
               base através de uma ação de movimento válida. Ela então deve se
-              mover, usando quaisquer tipos de movimento possíveis até que sua
+              mover o dobro do seu movimento normal, usando quaisquer tipos de movimento disponíveis e legais até que sua
               base toque a daquela figura.
             </MobileText>
 
