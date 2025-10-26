@@ -6,11 +6,11 @@
     "quantity": "1",
     "stats": {
       "move": 11,
-      "fight": "+4",
-      "shoot": "+3",
+      "fight": "+2",
+      "shoot": "+1",
       "armour": 9,
-      "Vontade": "+3",
-      "health": 16,
+      "Vontade": "+1",
+      "health": 12,
       "cost": "70 coroas"
     },
     "spellAffinity": {
@@ -58,11 +58,11 @@
     "quantity": "0-3",
     "stats": {
       "move": 10,
-      "fight": "+3",
-      "shoot": "+2",
-      "armour": 10,
-      "Vontade": "+2",
-      "health": 14,
+      "fight": "+2",
+      "shoot": "+1",
+      "armour": 9,
+      "Vontade": "0",
+      "health": 12,
       "cost": "35 coroas",
       "skills": [
         "Combate",
@@ -73,10 +73,6 @@
       ]
     },
     "abilities": [
-      {
-        "name": "Segunda em comando",
-        "description": "A Irmã Superior pode ativar outra figura a até 8cm de distância junto a si."
-      }
     ],
     "equipment": {
       "hand-to-hand": [
@@ -109,11 +105,11 @@
     "quantity": "0-1",
     "stats": {
       "move": 10,
-      "fight": "+1",
-      "shoot": "+1",
+      "fight": "0",
+      "shoot": "0",
       "armour": 9,
-      "Vontade": "+2",
-      "health": 14,
+      "Vontade": "0",
+      "health": 12,
       "cost": "25 coroas",
       "skills": ["Acadêmica", "Velocidade", "Irmãs de Sigmar"]
     },
@@ -124,7 +120,7 @@
       },
       {
         "name": "Visão Sagrada",
-        "description": "A Áugure tem a característica Visão Verdadeira. Ela pode usar sua Visão Sagrada para evitar problemas ao explorar. Se a Áugure fizer a atividade de Exploração, ela ganha +5 na sua rolagem."
+        "description": "A Áugure tem a característica Visão Verdadeira. Ela pode usar sua Visão Sagrada para evitar problemas ao explorar. Se a Áugure fizer a atividade de Explorar as Ruínas, ela ganha +5 na sua rolagem."
       }
     ],
     "equipment": {
@@ -191,10 +187,10 @@
     "quantity": "0-2",
     "stats": {
       "move": 10,
-      "fight": "+1",
+      "fight": "0",
       "shoot": "0",
       "armour": 9,
-      "Vontade": "+3",
+      "Vontade": "+1",
       "health": 12,
       "cost": "35 coroas"
     },
