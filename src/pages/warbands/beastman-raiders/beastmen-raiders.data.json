@@ -5,23 +5,23 @@
     "role": "Líder",
     "quantity": "1",
     "stats": {
-      "move": 16,
+      "move": 12,
       "fight": "+4",
-      "shoot": "0",
+      "shoot": "+2",
       "armour": 10,
-      "Vontade": "+5",
-      "health": 14,
+      "Vontade": "+2",
+      "health": 16,
       "cost": "65 coroas",
       "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
     },
     "abilities": [
       {
         "name": "Líder",
-        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. Isso pode ser uma ativação em grupo."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela."
       },
       {
         "name": "Abominação Bestial",
-        "description": "O Líder Tribal Homem-Fera tem as características Forte e Aterrorizante."
+        "description": "O Líder Tribal Homem-Fera tem a característica Forte."
       }
     ],
     "equipment": {
@@ -51,12 +51,12 @@
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
-      "move": 16,
-      "fight": "+1",
-      "shoot": "0",
+      "move": 12,
+      "fight": "+3",
+      "shoot": "+2",
       "armour": 10,
-      "Vontade": "+5",
-      "health": 12,
+      "Vontade": "0",
+      "health": 14,
       "cost": "45 coroas"
     },
     "spellAffinity": {
@@ -71,7 +71,7 @@
     "abilities": [
       {
         "name": "Magia",
-        "description": "O Xamã Homem-Fera é um feiticeiro da Tradição do Caos. Ele começa com 3 magias, de qualquer uma de suas tradições disponíveis. Magias de tradições associadas são adicionadas com +4 na Classe de Dificuldade."
+        "description": "O Xamã Homem-Fera é um feiticeiro da Tradição do Caos. Ele começa com 1 magia, de qualquer uma de suas tradições disponíveis. Magias de tradições associadas são adicionadas com +4 na Classe de Dificuldade."
       }
     ],
     "equipment": {
@@ -96,23 +96,19 @@
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
-      "move": 16,
-      "fight": "+4",
-      "shoot": "0",
+      "move": 12,
+      "fight": "+3 ",
+      "shoot": "+2",
       "armour": 10,
-      "Vontade": "-1",
-      "health": 12,
+      "Vontade": "+1",
+      "health": 14,
       "cost": "45 coroas",
       "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
     },
     "abilities": [
       {
-        "name": "Habilidades",
-        "description": "O Bestigor começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
-      },
-      {
-        "name": "Aniquilador Córneo",
-        "description": "O Bestigor tem a característica Chifres."
+        "name": "Aniquilador",
+        "description": "O Bestigor tem a característica Forte."
       }
     ],
     "equipment": {
@@ -144,7 +140,7 @@
     "stats": {
       "move": 20,
       "fight": "+3",
-      "shoot": "0",
+      "shoot": "+2",
       "armour": 10,
       "Vontade": "-1",
       "health": 12,
@@ -153,16 +149,16 @@
     },
     "abilities": [
       {
-        "name": "Habilidades",
-        "description": "O Centigor começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
-      },
-      {
         "name": "Carga Violenta",
         "description": "O Centigor tem a característica Chifres. Uma ação de movimento de declaração de carga do Centigor não pode ser interceptada."
       },
       {
+        "name": "Alcóolatra",
+        "description": "O Centigor é alcoolatra e bebe vastas quantias de alcóol antes das batalhas. No começo de cada ativação, o centigor rola um d20. Em uma rolagem de 1-3, ele ganha a característica Estupidez até o fim do turno. Em uma rolagem de 18-20, ele ganha a característica Fúria. Em qualquer outra rolagem nada acontece. Uma figura ganha a característica Mente-Ferrea enquanto tiver Estupidez ou Fúria."
+      },
+      {
         "name": "Movimentação Equina",
-        "description": "O Centigor não pode escalar construções e deve gastar 3 de movimento para cada 1 de movimento em terreno acidentado. Centigors não perdem metade do movimento por carregar Fragmentos de Pedra-Bruxa."
+        "description": "O Centigor não pode escalar pecas de terreno e deve gastar 3 de movimento para cada 1 de movimento em terreno acidentado. Centigors não perdem metade do movimento por carregar Fragmentos de Pedra-Bruxa."
       }
     ],
     "equipment": {
@@ -191,18 +187,18 @@
     "name": "Ungor",
     "quantity": "ilimitado",
     "stats": {
-      "move": 16,
+      "move": 12,
       "fight": "+2",
       "shoot": "0",
-      "armour": 10,
+      "armour": 9,
       "Vontade": "-1",
-      "health": 8,
+      "health": 12,
       "cost": "25 coroas"
     },
     "abilities": [
       {
-        "name": "Descartável",
-        "description": "Ungors são tratados como párias e nunca serão aceitos no círculo de guerreiros de sua Manada. Eles só podem subir 1 ponto em cada atributo e nunca podem aprender Maestrias de Combate."
+        "name": "Escória da Tribo",
+        "description": "Ungors são tratados como párias e nunca serão aceitos no círculo de guerreiros de sua Manada. Eles devem re-rolar qualquer resultado de O Rapaz tem Talento! na tabela de avanços."
       }
     ],
     "equipment": {
@@ -224,12 +220,12 @@
     "name": "Gor",
     "quantity": "0-5",
     "stats": {
-      "move": 16,
+      "move": 12,
       "fight": "+3",
-      "shoot": "0",
+      "shoot": "+2",
       "armour": 10,
       "Vontade": "-1",
-      "health": 10,
+      "health": 12,
       "cost": "35 coroas"
     },
     "abilities": [],
@@ -259,10 +255,10 @@
     "name": "Cão de Guerra do Caos",
     "quantity": "0-5",
     "stats": {
-      "move": 16,
-      "fight": "+1",
+      "move": 18,
+      "fight": "+2",
       "shoot": "0",
-      "armour": 10,
+      "armour": 9,
       "Vontade": "-2",
       "health": 8,
       "cost": "15 coroas"
@@ -270,7 +266,7 @@
     "abilities": [
       {
         "name": "Bestialidade",
-        "description": "Cães de Guerra do Caos têm a característica Animal."
+        "description": "Cães de Guerra do Caos têm a característica Animal e Voraz."
       }
     ]
   },
@@ -279,22 +275,22 @@
     "name": "Minotauro",
     "quantity": "0-1",
     "stats": {
-      "move": 14,
+      "move": 16,
       "fight": "+4",
       "shoot": "0",
       "armour": 12,
-      "Vontade": "+5",
-      "health": 18,
+      "Vontade": "+3",
+      "health": 16,
       "cost": "200 coroas"
     },
     "abilities": [
       {
         "name": "Abominação Bovina",
-        "description": "O Minotauro tem as características Grande, Forte, Aterrorizante e Chifres."
+        "description": "O Minotauro tem as características Grande, Forte, Aterrorizante e Chifres. Ele não ganha experiência nunca pode se tornar o líder do bando."
       },
       {
-        "name": "Sentidos Bestiais",
-        "description": "O Minotauro pode declarar cargas contra figuras para as quais não tem linha de visão, contanto que esteja dentro de 15cm dele."
+        "name": "Sede de Sangue",
+        "description": "Ao reduzir um modelo a 0 de vida, o Minotauro deve fazer um teste de vontade CD 14. Em caso de falha, ele ganha característica fúria até o fim do turno."
       }
     ],
     "equipment": {
