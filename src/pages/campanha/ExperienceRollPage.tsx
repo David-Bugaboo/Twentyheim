@@ -42,7 +42,7 @@ function ExperienceRollPage() {
       Mov: "24",
       Imp: "+6",
       Prec: "+4",
-      Arm: "14"
+      Arm: "14",
       Vont: "+8",
       Vida: "32",
     },
@@ -86,7 +86,7 @@ function ExperienceRollPage() {
       Raça: "Carniçal",
       Mov: "24",
       Imp: "+5",
-      Arm: "13"
+      Arm: "13",
       Prec: "+1",
       Vont: "+6",
       Vida: "24",
@@ -114,7 +114,7 @@ function ExperienceRollPage() {
       Mov: "16",
       Imp: "+5",
       Prec: "+6",
-      Arm: "11"
+      Arm: "11",
       Vont: "+7",
       Vida: "18",
     },
