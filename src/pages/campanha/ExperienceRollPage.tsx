@@ -184,95 +184,19 @@ function ExperienceRollPage() {
               para melhorar suas habilidades e capacidades.
             </MobileText>
 
-            <HeaderH1>Experiência de Líderes</HeaderH1>
-            <MobileText>
-              Líderes ganham experiência em um ritmo elevado, e têm um potencial
-              imenso, podendo subir até o nível 40.
-            </MobileText>
-            <MobileText>
-              • <strong>Sobreviver à batalha:</strong> +60 EXP
-              <br />• <strong>Matar um inimigo:</strong> +5 EXP POR INIMIGO
-              <br />• <strong>Conjurar magias com sucesso:</strong> +10XP POR
-              MAGIA ATÉ UM LIMITE DE 50XP
-              <br />•{" "}
-              <strong>Falhar em conjurar uma magia e receber dano:</strong> +5XP
-              POR MAGIA ATÉ UM LIMITE DE 50XP
-              <br />•{" "}
-              <strong>
-                Cada fragmento de pedra-bruxa capturada pelo herói ou seu bando:
-              </strong>{" "}
-              +40XP pontos para cada fragmento capturado
-              <br />•{" "}
-              <strong>
-                Figuras não controladas reduzidas a 0 de vida pelo herói ou
-                soldados ativados junto a ele:
-              </strong>{" "}
-              +10XP pontos
-            </MobileText>
-
-            <HeaderH1>Experiência de Heróis</HeaderH1>
-            <MobileText>
-              Heróis ganham experiência de forma similar aos líderes, mas de
-              forma um pouco mais lenta. Eles só podem subir até o nível 20.
-            </MobileText>
-            <MobileText>
-              • <strong>Sobreviver à batalha:</strong> +40 EXP
-              <br />• <strong>Matar um inimigo:</strong> +5 EXP POR INIMIGO
-              <br />• <strong>Conjurar magias com sucesso (CD 6+):</strong> +5XP
-              POR MAGIA ATÉ UM LIMITE DE 50XP
-              <br />•{" "}
-              <strong>
-                Cada fragmento de pedra-bruxa capturada pelo herói ou seu bando:
-              </strong>{" "}
-              +20XP pontos para cada fragmento capturado
-              <br />•{" "}
-              <strong>
-                Figuras não controladas reduzidas a 0 de vida pelo herói ou
-                soldados ativados junto a ele:
-              </strong>{" "}
-              +5XP pontos
-              <br />•{" "}
-              <strong>
-                Herói ou Bando capturaram o Fragmento de Pedra-Bruxa central:
-              </strong>{" "}
-              +60XP
-            </MobileText>
-
-            <HeaderH1>Experiência de Soldados</HeaderH1>
-            <MobileText>
-              Soldados ganham experiência mais lentamente, e só podem subir até
-              o nível 10.
-            </MobileText>
-            <MobileText>
-              • <strong>Sobreviver à batalha:</strong> +30 XP
-              <br />• <strong>Matar um inimigo:</strong> +5XP por inimigo, +10
-              bônus se matar um herói ou campeão inimigo.
-              <br />• <strong>
-                Capturar um fragmento de pedra-bruxa:
-              </strong>{" "}
-              +30XP para cada fragmento capturado
-              <br />•{" "}
-              <strong>Capturar o fragmento de pedra-bruxa central:</strong>{" "}
-              +40XP
-            </MobileText>
-
-            <WarningBox title="Limite de Experiência" type="info">
-              <MobileText>
-                Heróis e Campeões não podem ganhar mais do que 300XP por
-                partida. Soldados não podem ganhar mais que 100XP por partida.
-              </MobileText>
-            </WarningBox>
+            
 
             <HeaderH1>Subir de Nível</HeaderH1>
             <MobileText>
-              Quando uma figura acumula 100 pontos de experiência ela pode subir
-              de nível! Note que uma figura só pode subir de nível qualquer
-              quantidade de vezes que sua experiência acumulada permita. Ao
-              escolher subir de nível a figura deve rolar na tabela de avanço
-              abaixo para determinar o que vai ganhar pelo seu novo nível. As
-              experiências nas vielas sinuosas da cidade dos condenados moldam
-              seu bando de formas que você não pode prever...
+              Figuras sobem de nível a medida que acumulam experiência através de batalhas, ou até mesmo ao serem contratados se forem Hérois. Líderes ganham um novo nível a cada 2 pontos de experiência que ganham. a cada 5 níveis ganhos, o valor de experiência necessário para subir de nível aumenta em 1. Por exemplo, uma figura subindo do nível 5 para o 6 precisaria de 3 de experiência para subir de nível ao invés de 2. do nível 10 para o 11 precisaria de 4 ao invés de 3 e assim sucessivamente. Líderes e Hérois podem subir até o nivel 20.
             </MobileText>
+<MobileText>
+              Soldados sobem de nível a cada 1 de experiência ganha. A cada nível ganho, a quantidade de experiência necessária para subir de nível aumenta em 1. Um soldado precisaria de 3 de experiência para subir do nível 2 para o 3, 4 de experiência para subir do nível 3 para o 4 e assim sucessivamente. Um soldado pode subir até o nível 4.
+            </MobileText>
+
+<MobileText>
+              Quando uma figura sobe de nível, role em uma das tabelas de Avanço, a depender se a figura for um Líder, Héroi ou Soldado.
+</MobileText>
 
             <HeaderH2>Tabela de Avanço de Heróis e Campeões</HeaderH2>
             <MobileText>Role 1d20 e consulte a tabela abaixo:</MobileText>
@@ -281,7 +205,7 @@ function ExperienceRollPage() {
                 {
                   "Rolagem de Dado": "1-8",
                   Resultado:
-                    "Novo Poder, Nova Magia ou Melhorar CD de Poder ou Magia.",
+                    "Nova Habilidade",
                 },
                 { "Rolagem de Dado": "9-10", Resultado: "+1 Ímpeto" },
                 { "Rolagem de Dado": "11-12", Resultado: "+1 Precisão" },
@@ -291,7 +215,7 @@ function ExperienceRollPage() {
                 {
                   "Rolagem de Dado": "19-20",
                   Resultado:
-                    "Novo Poder, Nova Magia ou Melhorar CD de Poder ou Magia.",
+                    "Nova Habilidade",
                 },
               ]}
               scrollable={false}
@@ -319,8 +243,7 @@ function ExperienceRollPage() {
               Aumente seu atributo indicado no valor indicado. Note que cada
               raça tem limites de aumento de atributo que devem ser respeitados.
               Caso uma figura role em um atributo que já tenha chegado ao limite
-              racial, rerole o resultado. Soldados só podem aumentar cada
-              atributo uma única vez.
+              racial, re-role o resultado.
             </MobileText>
 
             <HeaderH3>Limites Raciais de Atributos</HeaderH3>
@@ -328,40 +251,23 @@ function ExperienceRollPage() {
 
             <HeaderH2>Aprender nova Magia</HeaderH2>
             <MobileText>
-              Aprenda uma nova magia das Tradições disponíveis para o
-              conjurador. Se for a tradição principal do conjurador apenas
-              adicione a magia a ficha do personagem. Caso seja uma tradição
-              associada, adicione a magia com CD +4.
-            </MobileText>
-
-            <HeaderH2>Melhorar CD de Magia</HeaderH2>
-            <MobileText>
-              Diminua o CD de uma das magias aprendidas pelo conjurador em 1. O
-              conjurador não pode melhorar o CD de uma magia que aprendeu nessa
-              mesma Fase de Campanha-jogo.
+              Esse avanço pode ser ganho no lugar do avanço "Ganhar Habilidade" para figuras capazes de conjurar magias ou orações. Adicione uma nova magia da tradição indicada na ficha da figura ou da tradição Magia Menor.
             </MobileText>
 
             <HeaderH2>Aprender nova Habilidade</HeaderH2>
             <MobileText>
               Aprenda uma nova habilidade dentre as listas de habilidades da
-              figura. O poder é aprendido com CD 7.
+              figura. Adicione a habilidade na ficha da figura.
             </MobileText>
 
-            <HeaderH2>Melhorar CD de Poder</HeaderH2>
-            <MobileText>
-              Diminua o CD de uma das habilidades aprendidos pela figura. O
-              conjurador não pode melhorar o CD de uma habilidade que aprendeu
-              nessa mesma Fase de Campanha-jogo.
-            </MobileText>
-
+            
             <HeaderH2>O Rapaz tem Talento!</HeaderH2>
             <MobileText>
               O soldado se torna um herói! Ele continua usando sua mesma ficha e
               continua sendo o que era antes (um Barba Curta continua sendo um
-              Barba Curta), mas agora pode fazer todas as atividades que um
-              herói pode e ganhar experiência como herói. Escolha duas listas de
-              habilidades entre as que heróis do bando têm acesso e ganhe 1
-              poder dentre elas, com Classe de Dificuldade 7.
+              Barba Curta) e mantém seu nível, mas agora pode fazer todas as atividades que um
+              herói pode e ganha experiência e sobe de nível como herói. Escolha duas listas de
+              habilidades entre as que heróis do bando têm acesso e ganhe acesso a elas.
             </MobileText>
           </MobileSection>
         </div>
