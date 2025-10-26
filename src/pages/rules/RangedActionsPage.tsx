@@ -73,7 +73,7 @@ function RangedActionsPage() {
             <MobileText>
               A figura que quer usar uma ação de ataque a distância deve
               escolher uma figura que consiga traçar linha de visão e que esteja
-              dentro do alcance da sua arma ou habilidade. Se a figura estiver
+              dentro do alcance da sua arma ou habilidade. O atirador deve sempre escolher a figura mais próxima e com menos cobertura ou terrenos interpostos, exceto se estiver em uma posição elevada, onde poderá escolher quaisquer figuras no alcance que estejam em uma posição mais baixa. Se a figura estiver
               em combate, ou não existir uma figura que ela enxerga e esteja
               dentro do alcance, a ação de ataque a distância não pode ser
               declarada.
