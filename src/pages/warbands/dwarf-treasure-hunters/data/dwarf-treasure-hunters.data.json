@@ -5,12 +5,12 @@
     "role": "Líder",
     "quantity": "1",
     "stats": {
-      "move": 10,
-      "fight": "+3",
-      "shoot": "+2",
-      "armour": 11,
+      "move": 7,
+      "fight": "+5",
+      "shoot": "+3",
+      "armour": 10,
       "Vontade": "+4",
-      "health": 20,
+      "health": 16,
       "cost": "85 coroas",
       "skills": ["Combate", "Atirador", "Força", "Caçadores de Tesouro Anões"]
     },
@@ -18,10 +18,6 @@
       {
         "name": "Líder",
         "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. Isso pode ser uma ativação em grupo."
-      },
-      {
-        "name": "Habilidades",
-        "description": "O Nobre de Kharadron começa com 5 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
       },
       {
         "name": "Rancor Antigo",
@@ -67,12 +63,12 @@
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
-      "move": 10,
-      "fight": "+2",
+      "move": 7,
+      "fight": "+3",
       "shoot": "+2",
-      "armour": 11,
-      "Vontade": "+5",
-      "health": 20,
+      "armour": 10,
+      "Vontade": "+4",
+      "health": 14,
       "cost": "50 coroas",
       "skills": [
         "Combate",
@@ -84,12 +80,8 @@
     },
     "abilities": [
       {
-        "name": "Habilidades",
-        "description": "O Engenheiro de Kharadron começa com 5 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade desses poderes é 5."
-      },
-      {
         "name": "Engenharia Militar",
-        "description": "O Engenheiro de Kharadron faz com que todas as armas de fogo, e bestas do bando ganhem 8cm de alcance adicional se ele estiver presente no jogo."
+        "description": "O Engenheiro de Kharadron faz com que todas as armas de fogo e a distância do bando com a característica Pistola ganhem 8cm de alcance, e todas as outras armas de fogo ou a distância 15cm de alcance se ele estiver presente no jogo, mesmo se já tiver sido reduzido a 0 de vida ou entrar em turnos posteriores."
       },
       {
         "name": "Cabeça Dura",
@@ -133,12 +125,12 @@
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
-      "move": 10,
+      "move": 7,
       "fight": "+3",
-      "shoot": "+0",
-      "armour": 11,
+      "shoot": "+2",
+      "armour": 10,
       "Vontade": "+4",
-      "health": 20,
+      "health": 14,
       "cost": "50 coroas",
       "skills": [
         "Combate",
@@ -148,10 +140,6 @@
       ]
     },
     "abilities": [
-      {
-        "name": "Habilidades",
-        "description": "O Mata-Trolls Anão começa com 3 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
-      },
       {
         "name": "Jornada pela Morte",
         "description": "O Mata-Trolls é Imune a Aterrorizante e tem a característica Mente-Férrea."
@@ -181,6 +169,10 @@
         { "name": "Lança", "cost": "10 coroas" },
         { "name": "Alabarda", "cost": "10 coroas" }
       ],
+      "ranged": [
+        { "name": "Javelin", "cost": "5 coroas" },
+        
+      ],
       "armor": [],
       "miscellaneous": [],
       "modifiers": [{ "name": "De Gromril", "cost": "3x o custo" }]
@@ -191,12 +183,12 @@
     "name": "Irmãos de Clã",
     "quantity": "ilimitado",
     "stats": {
-      "move": 10,
-      "fight": "+3",
-      "shoot": "+0",
-      "armour": 11,
-      "Vontade": "+1",
-      "health": 14,
+      "move": 7,
+      "fight": "+2",
+      "shoot": "+1",
+      "armour": 10,
+      "Vontade": "+2",
+      "health": 12,
       "cost": "40 coroas"
     },
     "abilities": [
@@ -243,12 +235,12 @@
     "name": "Trovejador Anão",
     "quantity": "0-5",
     "stats": {
-      "move": 10,
+      "move": 7,
       "fight": "+2",
-      "shoot": "+2",
-      "armour": 11,
-      "Vontade": "+1",
-      "health": 14,
+      "shoot": "+1",
+      "armour": 10,
+      "Vontade": "+2",
+      "health": 12,
       "cost": "40 coroas"
     },
     "abilities": [
@@ -294,10 +286,10 @@
     "quantity": "ilimitado",
     "stats": {
       "move": 10,
-      "fight": "+2",
+      "fight": "+1",
       "shoot": "+0",
-      "armour": 11,
-      "Vontade": "0",
+      "armour": 10,
+      "Vontade": "+1",
       "health": 12,
       "cost": "25 coroas"
     },
