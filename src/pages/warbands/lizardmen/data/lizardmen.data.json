@@ -5,12 +5,12 @@
     "role": "Líder",
     "quantity": "1",
     "stats": {
-      "move": 18,
-      "fight": "+2",
-      "shoot": "0",
-      "armour": 11,
-      "Vontade": "+4",
-      "health": 14,
+      "move": 16,
+      "fight": "+3",
+      "shoot": "+3",
+      "armour": 10,
+      "Vontade": "+1",
+      "health": 16,
       "cost": "60 coroas"
     },
     "spellAffinity": {
@@ -25,11 +25,11 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Magisacerdote Gecko pode ativar até 3 outras figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
+        "description": "O Magisacerdote Gecko pode ativar até 3 outras figuras a 8cm de distância dele. Caso o magisacerdote gecko seja morto, outro pode ser contratado, mas o bando deve jogar um jogo sem líder, enquanto o novo sacerdote chega de Lustria."
       },
       {
         "name": "Conjurador",
-        "description": "O Magisacerdote Gecko é um conjurador da Tradição da Vida. Ele começa com 4 magias, de qualquer uma de suas tradições."
+        "description": "O Magisacerdote Gecko é um conjurador da Tradição da Vida. Ele começa com 1 magia, de qualquer uma de suas tradições. Magias de tradições associadas são associadas a +4 CD."
       },
       {
         "name": "Ancestralidade Reptiliana",
@@ -59,23 +59,23 @@
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
-      "move": 14,
+      "move": 9,
       "fight": "+4",
       "shoot": "-",
-      "armour": 12,
-      "Vontade": "+4",
-      "health": 18,
+      "armour": 11,
+      "Vontade": "+2",
+      "health": 14,
       "cost": "60 coroas",
       "skills": ["Combate", "Força", "Reptilianos"]
     },
     "abilities": [
       {
         "name": "Fúria Totêmica",
-        "description": "O Guerreiro Totêmico Sáurio pode rolar um teste de Vontade no começo da sua ativação, com CD 16. Se obtiver sucesso pode ativar uma fúria totêmica até o final do turno:\nFúria de Sotek:+2 de Ímpeto.\nFúria de Xuanti:+4 de Movimento\nFúria de Tzantli:+2 de Vontade "
+        "description": "O Guerreiro Totêmico Sáurio pode rolar um teste de Vontade no começo da sua ativação, com CD 14. Se obtiver sucesso pode ativar uma fúria totêmica até o final do turno:\nFúria de Sotek:+2 de Ímpeto.\nFúria de Xuanti:+4 de Movimento\nFúria de Tzantli:+2 de Vontade "
       },
       {
-        "name": "Ancestralidade Reptiliana",
-        "description": "O Guerreiro Totêmico Saurío tem a característica Anfíbio."
+        "name": "Ancestralidade Sáuria",
+        "description": "O Guerreiro Totêmico Sáurio tem a característica Anfíbio, Forte e não pode rolar testes de debandada usando sua Vontade."
       }
     ],
     "equipment": {
@@ -102,24 +102,16 @@
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
-      "move": 18,
+      "move": 16,
       "fight": "+2",
       "shoot": "+2",
-      "armour": 11,
-      "Vontade": "-1",
-      "health": 10,
+      "armour": 9,
+      "Vontade": "+1",
+      "health": 12,
       "cost": "30 coroas",
       "skills": ["Atirador", "Agilidade", "Reptilianos"]
     },
     "abilities": [
-      {
-        "name": "Guia Incansável",
-        "description": "Os Lagartos Crista-Alta estão acostumados a lutar e avançar por terrenos muito piores do que os escombros de Mordheim. Eles ignoram penalidades de movimento ao atravessar terreno acidentado."
-      },
-      {
-        "name": "Iniciativa Repentina",
-        "description": "No início do jogo, após ambos os lados se posicionarem, mas antes das primeiras Rolagens de Iniciativa, um jogador com um Lagarto Crista-Alta pode mover essa figura e até uma outra em contato de base com ela em até 8cm. O Guerreiro-de-Crista e a outra figura devem permanecer em contato base-a-base ao final desse movimento."
-      },
       {
         "name": "Ancestralidade Reptiliana",
         "description": "O Gecko Crista-Alta tem a característica Anfíbio."
@@ -148,12 +140,12 @@
     "name": "Batedor Lagarto",
     "quantity": "ilimitado",
     "stats": {
-      "move": 18,
-      "fight": "+1",
-      "shoot": "0",
-      "armour": 12,
-      "Vontade": "-1",
-      "health": 10,
+      "move": 16,
+      "fight": "0",
+      "shoot": "+1",
+      "armour": 9,
+      "Vontade": "-2",
+      "health": 12,
       "cost": "20 coroas"
     },
     "abilities": [
@@ -180,21 +172,21 @@
   },
   {
     "id": "saurio-veterano",
-    "name": "Saurío Veterano",
+    "name": "Sáurio Veterano",
     "quantity": "1-5",
     "stats": {
-      "move": 12,
-      "fight": "+3",
+      "move": 8,
+      "fight": "+2",
       "shoot": "0",
-      "armour": 12,
+      "armour": 11,
       "Vontade": "0",
-      "health": 14,
+      "health": 12,
       "cost": "40 coroas"
     },
     "abilities": [
       {
-        "name": "Ancestralidade Reptiliana",
-        "description": "O Saurío Veterano tem a característica Anfíbio."
+        "name": "Ancestralidade Sáuria",
+        "description": "O Guerreiro Totêmico Sáurio tem a característica Anfíbio, Forte e não pode rolar testes de debandada usando sua Vontade."
       }
     ],
     "equipment": {
@@ -219,12 +211,12 @@
     "name": "Kroxigor",
     "quantity": "0-1",
     "stats": {
-      "move": 10,
-      "fight": "+4",
-      "shoot": "0",
-      "armour": 15,
-      "Vontade": "-2",
-      "health": 18,
+      "move": 13,
+      "fight": "+3",
+      "shoot": "-",
+      "armour": 12,
+      "Vontade": "0",
+      "health": 20,
       "cost": "200 coroas"
     },
     "abilities": [
