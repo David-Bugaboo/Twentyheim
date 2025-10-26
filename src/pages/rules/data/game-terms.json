@@ -335,5 +335,14 @@
   {
     "term": "Armadilha",
     "description": "Armadilhas são efeitos permanentes, permanecendo do campo de batalha até o efeito ser cancelado. Armadilhas são círculos de 3cm de diâmetro."
-  }
+  },
+  {
+    "term": "Fúria",
+    "description": "Modelos com essa característica devem sempre usar ações de carga e luta contra inimigos dentro do alcance de uma carga. Se houver mais de um, o controlador da figura pode escolher. Uma figura com essa caarcterística ganha +2 de dano em ataques corpo a corpo."
+  },
+  {
+    "term": "Estupidez",
+    "description": "Modelos com essa característica que não ativarem junto a outra figura devem fazer um teste de Vontade CD 12 no começo de sua ativação ou agir como uma criatura não controlada durante essa ativação."
+  },
+  
 ]
