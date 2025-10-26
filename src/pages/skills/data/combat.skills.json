@@ -82,7 +82,7 @@
     "name": "Caçador",
     "trigger": "O usuário atinge uma figura inimiga com um ataque à distância com uma rolagem natural de 18, 19 ou 20.",
     "type": "Atirador",
-    "description": A figura equipada com essa arma pode fazer um ataque a distância com um arcabuz, rifle de caça de hochland, bacamarte ou bacamarte dos anões do caos no mesmo turno em que recarrega uma dessas armas."
+    "description": "A figura equipada com essa arma pode fazer um ataque a distância com um arcabuz, rifle de caça de hochland, bacamarte ou bacamarte dos anões do caos no mesmo turno em que recarrega uma dessas armas."
   },
   {
     "id": "presença-inspiradora",
@@ -120,23 +120,29 @@
 
     "trigger": "Fora do Jogo, na fase de Atividades.",
     "type": "Acadêmica",
-    "description": "Se o poder for ativado com sucesso, o jogador pode rerolar um dos dados rolados na Atividade de Exploração \"Adentrar as Ruínas\"."
+    "description": Irmãs de Sigmar, Caçadores de Bruxas, Inquisidores e Sacerdotes Marciais de Sigmar não podem aprender essa habilidade. Uma figura com essa habilidade pode aprender uma Magia Menor se tiver um Tomo da Magia."
   },
   {
-    "id": "subornar",
-    "name": "Subornar",
+    "id": "mago-de-batalha",
+    "name": "Mago de Batalha ",
 
     "trigger": "Fora do Jogo, na fase de Atividades.",
     "type": "Acadêmica",
-    "description": "Se o poder for ativado com sucesso, durante o próximo jogo, em qualquer momento em que um inimigo vença uma luta ou acerte um ataque à distância, você pode tornar aquele ataque em um fracasso. Essa habilidade custa 5 coroas para ser ativada, e só pode ser utilizada uma vez por jogo."
+    "description": Uma figura com essa habilidade pode conjurar magias enquanto usa armaduras, mas não escudos."
   },
   {
-    "id": "intuicao-treinada",
-    "name": "Intuição Treinada",
+    "id": "rastreador-de-pedra-bruxa",
+    "name": "Rastreador de Pedra Bruxa",
     "trigger": "No começo do turno, antes de todas as figuras agirem.",
     "type": "Acadêmica",
-    "description": "O bando do usuário da habilidade imediatamente é considerado como tendo ganho a iniciativa. Ainda se rola iniciativa, para o caso de habilidades e efeitos de cenário que se importam com a rolagem de iniciativa. Se dois bandos estão sob o efeito dessa habilidade, eles rolam entre si para definir a ordem."
+    "description": "Uma figura com essa habilidade enviada para Explorar as Ruínas pode re-rolar seu dado de exploração e escolher o melhor resultado."
   },
+{
+    "id": "escriba",
+    "name": "Escriba",
+    "trigger": "No começo do turno, antes de todas as figuras agirem.",
+    "type": "Acadêmica",
+    "description": "Uma figura com essa habilidade pode começar o jogo com um pergaminho de qualquer magia ou oração que possa conjurar. O pergaminho de uma magia ou oração pode ser consumido para que aquela magia ou oração possa ser conjurada uma vez por jogo com sucesso sem rolagem de conjuração. A rolagem de conjuração dessa magia é considerada como sendo 14. Essa habilidade "
   {
     "id": "golpe-poderoso",
     "name": "Golpe Poderoso",
@@ -152,9 +158,9 @@
     "description": "Reduza o dano para exatamente 5."
   },
   {
-    "id": "intimidação",
-    "name": "Intimidação",
-    "trigger": "Quando uma figura declara carga para o usuário da habilidade.",
+    "id": "foco-mental",
+    "name": "Foco Mental",
+    "trigger": ".",
     "type": "Força",
     "description": "A figura que declarou a carga deve fazer um teste de vontade com CD 16. Caso falhe, a figura deve fazer a carga, mas para a 3cm do usuário da habilidade, a carga falha e a ativação da figura termina, com quaisquer ações restantes perdidas."
   },
