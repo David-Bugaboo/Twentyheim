@@ -25,6 +25,7 @@ function MovementActionsPage() {
     { id: "agua-profunda", title: "Água Profunda", level: 1 },
     { id: "fuga-desesperada", title: "Fuga Desesperada", level: 0 },
     { id: "acao-disparada", title: "Ação de Disparada", level: 0 },
+{ id: "acao-de-escape", title: "Ação de Escape", level: 0 },
     { id: "combinando-movimentos", title: "Combinando Movimentos", level: 0 },
     { id: "interceptacao", title: "Interceptação", level: 0 },
     { id: "resumo", title: "Resumo das Ações de Movimento", level: 1 },
@@ -236,6 +237,14 @@ function MovementActionsPage() {
             </div>
             <MobileText>
               Uma figura pode gastar duas ações para fazer uma ação de disparada, se move do duas vezes seu atributo movimento em centímetros, mas seguindo todas as regras de uma ação de movimento normal.
+            </MobileText>
+
+
+<div id="acao-de-escape">
+              <HeaderH1>Ação de Disparada</HeaderH1>
+            </div>
+            <MobileText>
+              Uma figura pode gastar duas ações para fazer uma ação de escape, se movendo seu atributo Movimento em centimetros usando todas as regras normais de ação de movimento, mas podendo se mover mesmo em combate, para fora dele.
             </MobileText>
 
             <div id="combinando-movimentos">
