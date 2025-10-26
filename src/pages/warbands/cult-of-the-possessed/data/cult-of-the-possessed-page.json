@@ -5,12 +5,12 @@
     "role": "Líder",
     "quantity": "1",
     "stats": {
-      "move": 14,
-      "fight": "+2",
-      "shoot": "+0",
-      "armour": 10,
-      "Vontade": "+5",
-      "health": 14,
+      "move": 10,
+      "fight": "+4",
+      "shoot": "+3",
+      "armour": 9,
+      "Vontade": "+3",
+      "health": 16,
       "cost": "70 coroas"
     },
     "equipment": {
@@ -48,11 +48,11 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dele."
       },
       {
         "name": "Conjurador",
-        "description": "O Magistrado do Caos é um conjurador da Tradição do Caos. Ele começa o jogo com 5 magias, de quaisquer tradições presentes na tabela de tradições mágicas."
+        "description": "O Magistrado do Caos é um conjurador da Tradição do Caos. Ele começa o jogo com 1 magia, de quaisquer tradições presentes na tabela de tradições mágicas. Magias de tradições associadas são adicionadas com +4 no CD."
       }
     ]
   },
@@ -62,31 +62,23 @@
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
-      "move": 18,
+      "move": 14,
       "fight": "+4",
       "shoot": "-",
-      "armour": 11,
-      "Vontade": "+3",
+      "armour": 10,
+      "Vontade": "+2",
       "health": 18,
       "cost": "90 coroas (+ custo das mutações)",
       "skills": ["Combate", "Força", "Agilidade"]
     },
     "abilities": [
       {
-        "name": "Habilidades",
-        "description": "O Possuído começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
-      },
-      {
         "name": "Mutações",
         "description": "Quando contratado, o Possuído pode comprar uma ou mais das mutações disponíveis na tabela de mutações nessa página. Essa mutação é permanente e não pode ser alterada ou removida."
       },
       {
         "name": "Presença Sombria",
-        "description": "O Possuído é uma figura aberrante com uma presença que causa horror. Ele tem as características Aterrorizante e Daemônio."
-      },
-      {
-        "name": "Seleção de Habilidades",
-        "description": "Quando contratado, o Possuído pode comprar uma ou mais das habilidades disponíveis na tabela de habilidades nessa página. Cada habilidade custa 50 coroas e é permanente."
+        "description": "O Possuído é uma figura aberrante com uma presença que causa horror. Ele tem as características Aterrorizante, Forte e Daemônio."
       }
     ]
   },
@@ -96,12 +88,12 @@
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
-      "move": 14,
+      "move": 10,
       "fight": "+2",
-      "shoot": "0",
-      "armour": 10,
+      "shoot": "+2",
+      "armour": 9,
       "Vontade": "+2",
-      "health": 10,
+      "health": 14,
       "cost": "25 coroas (+ custo das mutações)",
       "skills": ["Combate", "Agilidade"]
     },
@@ -130,10 +122,6 @@
     },
     "abilities": [
       {
-        "name": "Habilidades",
-        "description": "O Mutante começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
-      },
-      {
         "name": "Mutações",
         "description": "Quando contratado, o Mutante pode comprar uma ou mais das mutações disponíveis na tabela de mutações nessa página. Essa mutação é permanente e não pode ser alterada ou removida."
       }
@@ -145,11 +133,11 @@
     "quantity": "ilimitado",
     "stats": {
       "move": 14,
-      "fight": "+2",
-      "shoot": "0",
-      "armour": 10,
-      "Vontade": "-1",
-      "health": 10,
+      "fight": "+1",
+      "shoot": "+1",
+      "armour": 9,
+      "Vontade": "+0",
+      "health": 12,
       "cost": "25 coroas"
     },
     "equipment": {
@@ -182,18 +170,18 @@
     "name": "Alma Sombria",
     "quantity": "0-5",
     "stats": {
-      "move": 14,
-      "fight": "0",
+      "move": 10
+      "fight": "0,
       "shoot": "0",
       "armour": 10,
-      "Vontade": "+5",
-      "health": 10,
+      "Vontade": "-1",
+      "health": 12,
       "cost": "35 coroas"
     },
     "abilities": [
       {
         "name": "Mente Profanada",
-        "description": "A Alma Sombria teve sua mente completamente destruída pelo seu antigo processo de possessão. Ela tem a característica Mente de Ferro."
+        "description": "A Alma Sombria teve sua mente completamente destruída pelo seu antigo processo de possessão. Ela tem a característica Mente-Férrea e Forte."
       }
     ],
     "equipment": {
@@ -222,11 +210,11 @@
     "quantity": "0-3",
     "stats": {
       "move": 18,
-      "fight": "+3",
-      "shoot": "0",
-      "armour": "11 (12)",
-      "Vontade": "-1",
-      "health": 14,
+      "fight": "+2",
+      "shoot": "+1",
+      "armour": "10",
+      "Vontade": "0",
+      "health": 16,
       "cost": "45 coroas"
     },
     "abilities": [],
