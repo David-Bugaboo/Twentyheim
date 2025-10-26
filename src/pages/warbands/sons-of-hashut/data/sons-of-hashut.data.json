@@ -4,10 +4,10 @@
     "name": "Feiticeiro Aprendiz",
     "role": "Líder",
     "stats": {
-      "move": 10,
-      "fight": "+2",
-      "shoot": "0",
-      "armour": 11,
+      "move": 8,
+      "fight": "+4",
+      "shoot": "+2",
+      "armour": 10,
       "Vontade": "+4",
       "health": 16,
       "cost": "85 coroas"
@@ -25,7 +25,7 @@
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Feiticeiro Aprendiz pode ativar até 3 figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
+        "description": "O Feiticeiro Aprendiz pode ativar até 3 figuras a 8cm de distância dele."
       },
       {
         "name": "Conjurador",
@@ -68,12 +68,12 @@
     "name": "Centouro de Hashut",
     "role": "Herói",
     "stats": {
-      "move": 24,
-      "fight": "+4",
-      "shoot": "+1",
-      "armour": 11,
+      "move": 18,
+      "fight": "+3",
+      "shoot": "+2",
+      "armour": 10,
       "Vontade": "+4",
-      "health": 18,
+      "health": 14,
       "cost": "75 coroas",
       "skills": ["Combate", "Força", "Filhos de Hashut"]
     },
@@ -85,7 +85,7 @@
       },
       {
         "name": "Carga Violenta",
-        "description": "O Centouro de Hashut tem as características Chifres e Grande, não pode escalar, e gasta 3 de movimento para cada 1cm de movimento em terreno acidentado."
+        "description": "O Centouro de Hashut tem as características Chifres, Forte e Grande, não pode escalar, e gasta 3 de movimento para cada 1cm de movimento em terreno acidentado."
       },
       {
         "name": "Cabeça Dura",
@@ -120,12 +120,12 @@
     "name": "Campeão Anão do Caos",
     "role": "Herói",
     "stats": {
-      "move": 10,
+      "move": 8,
       "fight": "+4",
-      "shoot": "0",
-      "armour": 11,
-      "Vontade": "+3",
-      "health": 20,
+      "shoot": "+2",
+      "armour": 10,
+      "Vontade": "+4",
+      "health": 14,
       "cost": "50 coroas",
       "skills": ["Combate", "Atirador", "Força", "Filhos de Hashut"]
     },
@@ -142,10 +142,6 @@
       {
         "name": "Cabeça Dura",
         "description": "Anões são imunes à palavra-chave Concussiva(X)."
-      },
-      {
-        "name": "Força do Deus Touro",
-        "description": "O Campeão Anão do Caos tem a característica Forte."
       }
     ],
     "equipment": {
@@ -174,12 +170,12 @@
     "id": "hobgoblin",
     "name": "Hobgoblin",
     "stats": {
-      "move": 18,
+      "move": 10,
       "fight": "0",
-      "shoot": "0",
+      "shoot": "+1",
       "armour": 9,
-      "Vontade": "-2",
-      "health": 10,
+      "Vontade": "-1",
+      "health": 12,
       "cost": "15 coroas"
     },
     "quantity": "4+",
@@ -213,15 +209,15 @@
     }
   },
   {
-    "id": "guarda-de-forja",
-    "name": "Guarda de Forja",
+    "id": "guarda-da-forja",
+    "name": "Guarda da Forja",
     "stats": {
-      "move": 10,
-      "fight": "+4",
-      "shoot": "0",
-      "armour": 14,
-      "Vontade": "0",
-      "health": 14,
+      "move": 7,
+      "fight": "+2",
+      "shoot": "+1",
+      "armour": 10,
+      "Vontade": "+2",
+      "health": 12,
       "cost": "40 coroas"
     },
     "quantity": "0-6",
@@ -262,11 +258,11 @@
     "id": "quebra-hordas",
     "name": "Quebra-Hordas",
     "stats": {
-      "move": 10,
-      "fight": "2",
-      "shoot": "2",
-      "armour": 13,
-      "Vontade": "+1",
+      "move": 7,
+      "fight": "+2",
+      "shoot": "+1",
+      "armour": 10,
+      "Vontade": "+2",
       "health": 12,
       "cost": "40 coroas"
     },
@@ -291,7 +287,7 @@
       "ranged": [
         { "name": "Bacamarte dos Anões do Caos", "cost": "40 coroas" },
         { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" }
-      ],
+      ],s
       "armor": [
         { "name": "Armadura Leve", "cost": "20 coroas" },
         { "name": "Armadura Pesada", "cost": "50 coroas" },
