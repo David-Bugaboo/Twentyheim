@@ -5,11 +5,11 @@
     "role": "Líder",
     "stats": {
       "move": 11,
-      "fight": "+4",
-      "shoot": "+3",
+      "fight": "+2",
+      "shoot": "+1",
       "armour": 9,
-      "Vontade": "+3",
-      "health": 16,
+      "Vontade": "+1",
+      "health": 12,
       "cost": "60 coroas",
       "skills": ["Combate", "Atirador", "Força", "Acadêmica", "Agilidade"]
     },
@@ -54,11 +54,11 @@
     "role": "Herói",
     "stats": {
       "move": 10,
-      "fight": "+2",
-      "shoot": "+2",
+      "fight": "+1",
+      "shoot": "+1",
       "armour": 9,
-      "Vontade": "+3",
-      "health": 14,
+      "Vontade": "+1",
+      "health": 12,
       "cost": "40 coroas"
     },
     "quantity": "0-1",
@@ -101,11 +101,11 @@
     "role": "Herói",
     "stats": {
       "move": 10,
-      "fight": "+2",
-      "shoot": "+2",
+      "fight": "+1",
+      "shoot": "+1",
       "armour": 9,
-      "Vontade": "+2",
-      "health": 14,
+      "Vontade": "0",
+      "health": 12,
       "cost": "25 coroas",
       "skills": ["Combate", "Atirador", "Acadêmica", "Agilidade"]
     },
@@ -184,7 +184,7 @@
       "move": 14,
       "fight": "+1",
       "shoot": "-",
-      "armour": 10,
+      "armour": 9,
       "Vontade": "+3",
       "health": 12,
       "cost": "40 coroas"
