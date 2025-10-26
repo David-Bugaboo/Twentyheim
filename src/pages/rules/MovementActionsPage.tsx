@@ -235,12 +235,7 @@ function MovementActionsPage() {
               <HeaderH1>Ação de Disparada</HeaderH1>
             </div>
             <MobileText>
-              Uma figura pode gastar sua segunda ação do turno para se mover
-              novamente, seguindo as mesmas regras de movimento descritas acima,
-              mas tendo apenas{" "}
-              <strong>metade do seu valor de Movimento para o movimento</strong>
-              . Esse movimento não pode ser usado para entrar em contato de base
-              com uma figura inimiga.
+              Uma figura pode gastar duas ações para fazer uma ação de disparada, se move do duas vezes seu atributo movimento em centímetros, mas seguindo todas as regras de uma ação de movimento normal.
             </MobileText>
 
             <div id="combinando-movimentos">
