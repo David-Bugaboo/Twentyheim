@@ -4,7 +4,7 @@
     "name": "Golpe Mortífero",
     "trigger": "Ativador vence uma luta",
     "type": "Combate",
-    "description": Os golpes da figura são mortíferos. Todo ataque corpo a corpo tem um bônus de +2 de dano."
+    "description": "Os golpes da figura são mortíferos. Todo ataque corpo a corpo tem um bônus de +2 de dano."
   },
   {
     "id": "mestre-do-combate",
