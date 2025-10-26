@@ -55,7 +55,7 @@
       "fight": "+3",
       "shoot": "+2",
       "armour": 10,
-      "Vontade": "0",
+      "Vontade": "+1",
       "health": 14,
       "cost": "45 coroas"
     },
@@ -100,7 +100,7 @@
       "fight": "+3 ",
       "shoot": "+2",
       "armour": 10,
-      "Vontade": "+1",
+      "Vontade": "+2",
       "health": 14,
       "cost": "45 coroas",
       "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
@@ -142,15 +142,15 @@
       "fight": "+3",
       "shoot": "+2",
       "armour": 10,
-      "Vontade": "-1",
-      "health": 12,
+      "Vontade": "+2",
+      "health": 14,
       "cost": "80 coroas",
       "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
     },
     "abilities": [
       {
         "name": "Carga Violenta",
-        "description": "O Centigor tem a característica Chifres. Uma ação de movimento de declaração de carga do Centigor não pode ser interceptada."
+        "description": "O Centigor tem a característica Chifres e Forte. Uma ação de movimento de declaração de carga do Centigor não pode ser interceptada."
       },
       {
         "name": "Alcóolatra",
