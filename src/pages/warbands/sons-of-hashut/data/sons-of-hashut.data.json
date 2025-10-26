@@ -5,11 +5,11 @@
     "role": "Líder",
     "stats": {
       "move": 8,
-      "fight": "+4",
-      "shoot": "+2",
+      "fight": "+2",
+      "shoot": "+1",
       "armour": 10,
-      "Vontade": "+4",
-      "health": 16,
+      "Vontade": "+2",
+      "health": 12,
       "cost": "85 coroas"
     },
     "quantity": "1",
@@ -70,10 +70,10 @@
     "stats": {
       "move": 18,
       "fight": "+3",
-      "shoot": "+2",
+      "shoot": "+1",
       "armour": 10,
-      "Vontade": "+4",
-      "health": 14,
+      "Vontade": "+2",
+      "health": 12,
       "cost": "75 coroas",
       "skills": ["Combate", "Força", "Filhos de Hashut"]
     },
@@ -120,12 +120,12 @@
     "name": "Campeão Anão do Caos",
     "role": "Herói",
     "stats": {
-      "move": 8,
-      "fight": "+4",
-      "shoot": "+2",
+      "move": 7,
+      "fight": "+3",
+      "shoot": "+1",
       "armour": 10,
-      "Vontade": "+4",
-      "health": 14,
+      "Vontade": "+2",
+      "health": 12,
       "cost": "50 coroas",
       "skills": ["Combate", "Atirador", "Força", "Filhos de Hashut"]
     },
@@ -175,7 +175,7 @@
       "shoot": "+1",
       "armour": 9,
       "Vontade": "-1",
-      "health": 12,
+      "health": 10,
       "cost": "15 coroas"
     },
     "quantity": "4+",
