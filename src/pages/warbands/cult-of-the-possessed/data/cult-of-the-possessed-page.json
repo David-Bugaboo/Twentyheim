@@ -6,11 +6,11 @@
     "quantity": "1",
     "stats": {
       "move": 10,
-      "fight": "+4",
-      "shoot": "+3",
+      "fight": "+2",
+      "shoot": "+2",
       "armour": 9,
-      "Vontade": "+3",
-      "health": 16,
+      "Vontade": "+1",
+      "health": 12,
       "cost": "70 coroas"
     },
     "equipment": {
@@ -63,11 +63,11 @@
     "quantity": "0-2",
     "stats": {
       "move": 14,
-      "fight": "+4",
+      "fight": "+3",
       "shoot": "-",
       "armour": 10,
-      "Vontade": "+2",
-      "health": 18,
+      "Vontade": "0",
+      "health": 16,
       "cost": "90 coroas (+ custo das mutações)",
       "skills": ["Combate", "Força", "Agilidade"]
     },
@@ -89,11 +89,11 @@
     "quantity": "0-2",
     "stats": {
       "move": 10,
-      "fight": "+2",
-      "shoot": "+2",
+      "fight": "+1",
+      "shoot": "+1",
       "armour": 9,
-      "Vontade": "+2",
-      "health": 14,
+      "Vontade": "0",
+      "health": 12,
       "cost": "25 coroas (+ custo das mutações)",
       "skills": ["Combate", "Agilidade"]
     },
@@ -132,7 +132,7 @@
     "name": "Insanos",
     "quantity": "ilimitado",
     "stats": {
-      "move": 14,
+      "move": 10,
       "fight": "+1",
       "shoot": "+1",
       "armour": 9,
@@ -173,7 +173,7 @@
       "move": 10,
       "fight": "0",
       "shoot": "0",
-      "armour": 10,
+      "armour": 9,
       "Vontade": "-1",
       "health": 12,
       "cost": "35 coroas"
@@ -181,7 +181,7 @@
     "abilities": [
       {
         "name": "Mente Profanada",
-        "description": "A Alma Sombria teve sua mente completamente destruída pelo seu antigo processo de possessão. Ela tem a característica Mente-Férrea e Forte."
+        "description": "A Alma Sombria teve sua mente completamente destruída pelo seu antigo processo de possessão. Ela tem as características Mente-Férrea e Forte."
       }
     ],
     "equipment": {
@@ -209,7 +209,7 @@
     "name": "Homem-Fera",
     "quantity": "0-3",
     "stats": {
-      "move": 18,
+      "move": 13,
       "fight": "+2",
       "shoot": "+1",
       "armour": "10",
