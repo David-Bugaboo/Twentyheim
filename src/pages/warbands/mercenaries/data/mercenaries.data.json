@@ -298,7 +298,7 @@
       "move": 16,
       "fight": "+2",
       "shoot": "-",
-      "armour": 8,
+      "armour": 10,
       "Vontade": "-2",
       "health": 8,
       "cost": "10 coroas"
