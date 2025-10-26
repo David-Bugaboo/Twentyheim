@@ -181,7 +181,7 @@ function ExperienceRollPage() {
             <MobileText>
               Após cada batalha, os membros do bando ganham experiência baseada
               em suas ações e sobrevivência. Esta experiência pode ser usada
-              para melhorar suas habilidades e capacidades.
+              para melhorar suas habilidades e capacidades. Figuras ganham +1 de experiência para cada jogo em que sobrevivem e para cada fragmento de Pedra-Bruxa que capturam pessoalmente. Cenários tem recompensas de experiência dadas para ações específicas.
             </MobileText>
 
             
@@ -205,7 +205,7 @@ function ExperienceRollPage() {
                 {
                   "Rolagem de Dado": "1-8",
                   Resultado:
-                    "Nova Habilidade",
+                    "Aprender nova Habilidade",
                 },
                 { "Rolagem de Dado": "9-10", Resultado: "+1 Ímpeto" },
                 { "Rolagem de Dado": "11-12", Resultado: "+1 Precisão" },
@@ -215,7 +215,7 @@ function ExperienceRollPage() {
                 {
                   "Rolagem de Dado": "19-20",
                   Resultado:
-                    "Nova Habilidade",
+                    "Aprender nova Habilidade",
                 },
               ]}
               scrollable={false}
@@ -251,7 +251,7 @@ function ExperienceRollPage() {
 
             <HeaderH2>Aprender nova Magia</HeaderH2>
             <MobileText>
-              Esse avanço pode ser ganho no lugar do avanço "Ganhar Habilidade" para figuras capazes de conjurar magias ou orações. Adicione uma nova magia da tradição indicada na ficha da figura ou da tradição Magia Menor.
+              Esse avanço pode ser ganho no lugar do avanço "Aprender nova Habilidade" para figuras capazes de conjurar magias ou orações. Adicione uma nova magia da tradição indicada na ficha da figura ou da tradição Magia Menor.
             </MobileText>
 
             <HeaderH2>Aprender nova Habilidade</HeaderH2>
