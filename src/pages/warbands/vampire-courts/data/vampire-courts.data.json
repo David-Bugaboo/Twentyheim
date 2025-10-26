@@ -4,11 +4,11 @@
     "role": "Líder",
     "stats": {
       "move": 17,
-      "fight": "+5",
-      "shoot": "+3",
+      "fight": "+3",
+      "shoot": "+2",
       "armour": 10,
-      "Vontade": "+3",
-      "health": 20,
+      "Vontade": "+1",
+      "health": 26,
       "cost": "110 coroas",
       "skills": ["Combate", "Acadêmica", "Força", "Velocidade"]
     },
@@ -58,11 +58,11 @@
     "role": "Herói",
     "stats": {
       "move": 10,
-      "fight": "+2",
-      "shoot": "+2",
+      "fight": "+1",
+      "shoot": "+1",
       "armour": 9,
-      "Vontade": "+2",
-      "health": 14,
+      "Vontade": "0",
+      "health": 12,
       "cost": "35 coroas"
     },
     "quantity": "0-1",
@@ -105,11 +105,11 @@
     "role": "Herói",
     "stats": {
       "move": 10,
-      "fight": "+1",
-      "shoot": "+1",
+      "fight": "0",
+      "shoot": "0",
       "armour": 9,
-      "Vontade": "+2",
-      "health": 14,
+      "Vontade": "0",
+      "health": 12,
       "cost": "20 coroas",
       "skills": ["Combate", "Força"]
     },
@@ -153,8 +153,8 @@
       "fight": "0",
       "shoot": "-",
       "armour": 9,
-      "Vontade": "-1",
-      "health": 10,
+      "Vontade": "-2",
+      "health": 12,
       "cost": "15 coroas"
     },
     "quantity": "ilimitado",
@@ -177,7 +177,7 @@
     "name": "Carniçal",
     "stats": {
       "move": 10,
-      "fight": "+1",
+      "fight": "0",
       "shoot": "0",
       "armour": 10,
       "Vontade": "-2",
