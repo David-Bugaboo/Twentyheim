@@ -5,12 +5,12 @@
     "role": "Herói",
     "quantity": "1",
     "stats": {
-      "move": 12,
+      "move": 10,
       "fight": "+4",
-      "shoot": "0",
+      "shoot": "+3",
       "armour": 10,
-      "Vontade": "+2",
-      "health": 22,
+      "Vontade": "+3",
+      "health": 16,
       "cost": "80 coroas",
       "skills": ["Combate", "Atirador", "Força", "Agilidade", "Hordas Orc"]
     },
@@ -18,10 +18,6 @@
       {
         "name": "Líder",
         "description": "O Chefaum Orc pode ativar até 3 outras figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
-      },
-      {
-        "name": "Habilidades",
-        "description": "O Chefaum Orc começa com 4 habilidades das listas acima na sua ficha. A classe de dificuldade de cada habilidade é 5."
       },
       {
         "name": "O Fodaum",
@@ -62,12 +58,12 @@
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
-      "move": 14,
-      "fight": "+1",
-      "shoot": "+0",
+      "move": 10,
+      "fight": "+2",
+      "shoot": "+2",
       "armour": 10,
-      "Vontade": "+4",
-      "health": 12,
+      "Vontade": "+2",
+      "health": 14,
       "cost": "40 coroas"
     },
     "spellAffinity": {
@@ -76,7 +72,7 @@
     "abilities": [
       {
         "name": "Conjurador",
-        "description": "O Orc Véio é um conjurador da Tradição da WAAAAAAAAAAAGH!. Ele começa com 2 magias dentre suas tradições disponíveis."
+        "description": "O Orc Véio é um conjurador da Tradição da WAAAAAAAAAAAGH!. Ele começa com 1 magia dentre suas tradições disponíveis. Magias adicionadas de tradições associadas adicionam +4 no CD."
       }
     ],
     "equipment": {
@@ -109,20 +105,16 @@
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
-      "move": 12,
-      "fight": "+4",
-      "shoot": "+0",
+      "move": 10,
+      "fight": "+3",
+      "shoot": "+2",
       "armour": "10",
-      "Vontade": "+1",
-      "health": 18,
+      "Vontade": "+2",
+      "health": 14,
       "cost": "40 coroas",
       "skills": ["Combate", "Atirador", "Força", "Hordas Orc"]
     },
     "abilities": [
-      {
-        "name": "Habilidades",
-        "description": "O Orc Grandaum começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes têm Classe de Dificuldade 8."
-      }
     ],
     "equipment": {
       "hand-to-hand": [
@@ -151,14 +143,14 @@
   {
     "id": "minino-orc",
     "name": "Minino Orc",
-    "quantity": "1-5",
+    "quantity": "ilimitado",
     "stats": {
-      "move": 4,
-      "fight": "+3",
-      "shoot": "+0",
+      "move": 9,
+      "fight": "+1",
+      "shoot": "+1",
       "armour": "10",
-      "Vontade": "-1",
-      "health": 16,
+      "Vontade": "0",
+      "health": 12,
       "cost": "25 coroas"
     },
     "abilities": [
@@ -196,26 +188,26 @@
     "name": "Goblin",
     "quantity": "ilimitado",
     "stats": {
-      "move": 8,
+      "move": 9,
       "fight": "0",
-      "shoot": "-1",
+      "shoot": "+1",
       "armour": 8,
       "Vontade": "-2",
-      "health": 4,
+      "health": 8,
       "cost": "15 coroas"
     },
     "abilities": [
       {
         "name": "Animosidade",
-        "description": "O Minino Orc está sujeito às regras de Animosidade."
+        "description": "O Goblin está sujeito às regras de Animosidade."
       },
       {
         "name": "Não Orcs",
-        "description": "Orcs não esperam muito de não-Orcs, e portanto não ligam nenhum pouco se Goblins ou Squigs das Cavernas são derrotados em batalha. Na verdade, eles esperam isso desses cabras ruim das costa oca! Portanto, ao testar se um Bando Orc precisa fazer um teste de Fuga, cada Guerreiro Goblin ou Squig das Cavernas posto fora de ação conta apenas como meio modelo. Portanto, um bando de 5 Orcs e 10 Goblins (15 modelos) só teria que fazer um teste se 4 modelos caíssem (4 Orcs ou 8 Goblins, ou alguma combinação)."
+        "description": "Orcs não esperam muito de não-Orcs, e portanto não ligam nenhum pouco se Goblins ou Pés-Duros da Cavernas são derrotados em batalha. Na verdade, eles esperam isso desses cabras ruim das costa oca! Portanto, ao testar se um Bando Orc precisa fazer um teste de Fuga, cada Guerreiro Goblin ou Pé-Duro das Cavernas reduzido a 0 de vida conta apenas como meio modelo. Portanto, um bando de 5 Orcs e 10 Goblins (15 modelos) só teria que fazer um teste se 4 modelos caíssem ,com CD 12. (4 Orcs ou 8 Goblins, ou alguma combinação)."
       },
       {
         "name": "Molecada",
-        "description": "Goblins podem ganhar experiência mas se rolarem 'Esse moleque tem talento!' eles são imediatamente mortos por seus senhores Orcs por ficarem muito 'avexados' (remova o Gobbo da lista)."
+        "description": "Goblins podem ganhar experiência, mas se rolarem 'Esse moleque tem talento!' eles são imediatamente mortos por seus senhores Orcs por ficarem muito 'avexados' (remova o Gobbo do bando)."
       }
     ],
     "equipment": {
@@ -243,22 +235,22 @@
     "name": "Pé-Duro das Cavernas",
     "quantity": "0-5",
     "stats": {
-      "move": "1d20",
-      "fight": "+3",
+      "move": "1d20+1",
+      "fight": "+2",
       "shoot": "-",
-      "armour": 12,
-      "Vontade": "0",
-      "health": 12,
+      "armour": 10,
+      "Vontade": "-2",
+      "health": 8,
       "cost": "15 coroas"
     },
     "abilities": [
       {
         "name": "Frenéticos",
-        "description": "Os Pé-Duros das Cavernas não possuem um valor fixo de Agilidade, deslocando-se com um salto desajeitado e imprevisível. Para representar isso, ao mover um Pé-Duro, role 1d20 para determinar a distância que ele se move (mínimo de 5cm). Esse valor também será usado para quaisquer testes de agilidade do Squig. Squigs nunca podem usar uma ação de disparada."
+        "description": "Os Pé-Duros das Cavernas não possuem um valor fixo de Movimento, deslocando-se com um salto desajeitado e imprevisível. Para representar isso, ao mover um Pé-Duro, role 1d20+1 para determinar a distância que ele se move. Esse valor também será usado para quaisquer testes de Movimento do Pé-Duro. Pés-Duros nunca podem usar uma ação de disparada."
       },
       {
         "name": "Habitante das Cavernas",
-        "description": "Pé-Duros das Cavernas têm a característica Animal."
+        "description": "Pé-Duros das Cavernas têm as características Animal e Voraz."
       },
       {
         "name": "Pastores Goblin",
@@ -273,16 +265,16 @@
     "stats": {
       "move": 4,
       "fight": "+4",
-      "shoot": "+0",
-      "armour": 14,
-      "Vontade": "0",
-      "health": 18,
+      "shoot": "-1",
+      "armour": 12,
+      "Vontade": "-3",
+      "health": 20,
       "cost": "200 coroas"
     },
     "abilities": [
       {
         "name": "Besta Fedorenta",
-        "description": "Trolls têm as características Grande, Forte e Aterrorizante e Selvagem."
+        "description": "Trolls têm as características Grande, Forte e Aterrorizante e Voraz."
       },
       {
         "name": "Regeneração Rápida",
@@ -290,7 +282,7 @@
       },
       {
         "name": "Estúpido",
-        "description": "Essa figura tem a característica Estúpido. Adicionalmente ele é muito burro para aprender novas coisas e não ganha experiência."
+        "description": "Essa figura tem a característica Estupidez. Adicionalmente ele é muito burro para aprender novas coisas e não ganha experiência."
       },
       {
         "name": "Vomito Ácido",
