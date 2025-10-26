@@ -338,7 +338,7 @@
   },
   {
     "term": "Fúria",
-    "description": "Modelos com essa característica devem sempre usar ações de carga e luta contra inimigos dentro do alcance de uma carga. Se houver mais de um, o controlador da figura pode escolher. Uma figura com essa caarcterística ganha +2 de dano em ataques corpo a corpo."
+    "description": "Modelos com essa característica devem sempre usar ações de carga e luta contra inimigos dentro do alcance de uma carga. Se houver mais de um, o controlador da figura pode escolher. Uma figura com essa caarcterística ganha +2 de Ímpeto sempre que luta."
   },
   {
     "term": "Estupidez",
