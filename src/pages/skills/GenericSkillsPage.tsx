@@ -12,7 +12,6 @@ import PageTitle from "../../components/PageTitle";
 interface Skill {
   id: string;
   name: string;
-  trigger: string;
   type: string;
   description: string;
 }
@@ -68,11 +67,7 @@ function GenericSkillsPage({
           <div className="space-y-4">
             {skills.map((skill: Skill) => (
               <div key={skill.id} id={`skill-${skill.id}`}>
-                <SkillCard
-                  name={skill.name}
-                  trigger={skill.trigger}
-                  description={skill.description}
-                />
+                <SkillCard name={skill.name} description={skill.description} />
               </div>
             ))}
           </div>
@@ -83,10 +78,6 @@ function GenericSkillsPage({
             <HeaderH2>Como Usar as Habilidades</HeaderH2>
           </div>
           <MobileText>
-            <strong>Gatilho:</strong> A condição específica que deve ser
-            atendida para a habilidade ser ativada.
-            <br />
-            <br />
             <strong>Efeito:</strong> O benefício ou vantagem que a habilidade
             proporciona quando ativada.
             <br />

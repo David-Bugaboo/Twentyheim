@@ -5,7 +5,6 @@ import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
 import HeaderH3 from "../../components/HeaderH3";
 
-import WarningBox from "../../components/WarningBox";
 import GenericTable from "../../components/GenericTable";
 
 function ExperienceRollPage() {
@@ -51,7 +50,7 @@ function ExperienceRollPage() {
       Mov: "26",
       Imp: "+3",
       Prec: "+6",
-      Arm: "11", 
+      Arm: "11",
       Vont: "+9",
       Vida: "24",
     },
@@ -60,7 +59,7 @@ function ExperienceRollPage() {
       Mov: "26",
       Imp: "+8",
       Prec: "-",
-      Arm:"15",
+      Arm: "15",
       Vont: "+9",
       Vida: "28",
     },
@@ -183,22 +182,37 @@ function ExperienceRollPage() {
             <MobileText>
               Após cada batalha, os membros do bando ganham experiência baseada
               em suas ações e sobrevivência. Esta experiência pode ser usada
-              para melhorar suas habilidades e capacidades. Figuras ganham +1 de experiência para cada jogo em que sobrevivem e para cada fragmento de Pedra-Bruxa que capturam pessoalmente. Cenários tem recompensas de experiência dadas para ações específicas.
+              para melhorar suas habilidades e capacidades. Figuras ganham +1 de
+              experiência para cada jogo em que sobrevivem e para cada fragmento
+              de Pedra-Bruxa que capturam pessoalmente. Cenários tem recompensas
+              de experiência dadas para ações específicas.
             </MobileText>
-
-            
 
             <HeaderH1>Subir de Nível</HeaderH1>
             <MobileText>
-              Figuras sobem de nível a medida que acumulam experiência através de batalhas, ou até mesmo ao serem contratados se forem Hérois. Líderes ganham um novo nível a cada 2 pontos de experiência que ganham. a cada 5 níveis ganhos, o valor de experiência necessário para subir de nível aumenta em 1. Por exemplo, uma figura subindo do nível 5 para o 6 precisaria de 3 de experiência para subir de nível ao invés de 2. do nível 10 para o 11 precisaria de 4 ao invés de 3 e assim sucessivamente. Líderes e Hérois podem subir até o nivel 20.
+              Figuras sobem de nível a medida que acumulam experiência através
+              de batalhas, ou até mesmo ao serem contratados se forem Hérois.
+              Líderes ganham um novo nível a cada 2 pontos de experiência que
+              ganham. a cada 5 níveis ganhos, o valor de experiência necessário
+              para subir de nível aumenta em 1. Por exemplo, uma figura subindo
+              do nível 5 para o 6 precisaria de 3 de experiência para subir de
+              nível ao invés de 2. do nível 10 para o 11 precisaria de 4 ao
+              invés de 3 e assim sucessivamente. Líderes e Hérois podem subir
+              até o nivel 20.
             </MobileText>
-<MobileText>
-              Soldados sobem de nível a cada 1 de experiência ganha. A cada nível ganho, a quantidade de experiência necessária para subir de nível aumenta em 1. Um soldado precisaria de 3 de experiência para subir do nível 2 para o 3, 4 de experiência para subir do nível 3 para o 4 e assim sucessivamente. Um soldado pode subir até o nível 4.
+            <MobileText>
+              Soldados sobem de nível a cada 1 de experiência ganha. A cada
+              nível ganho, a quantidade de experiência necessária para subir de
+              nível aumenta em 1. Um soldado precisaria de 3 de experiência para
+              subir do nível 2 para o 3, 4 de experiência para subir do nível 3
+              para o 4 e assim sucessivamente. Um soldado pode subir até o nível
+              4.
             </MobileText>
 
-<MobileText>
-              Quando uma figura sobe de nível, role em uma das tabelas de Avanço, a depender se a figura for um Líder, Héroi ou Soldado.
-</MobileText>
+            <MobileText>
+              Quando uma figura sobe de nível, role em uma das tabelas de
+              Avanço, a depender se a figura for um Líder, Héroi ou Soldado.
+            </MobileText>
 
             <HeaderH2>Tabela de Avanço de Heróis e Campeões</HeaderH2>
             <MobileText>Role 1d20 e consulte a tabela abaixo:</MobileText>
@@ -206,8 +220,7 @@ function ExperienceRollPage() {
               data={[
                 {
                   "Rolagem de Dado": "1-8",
-                  Resultado:
-                    "Aprender nova Habilidade",
+                  Resultado: "Aprender nova Habilidade",
                 },
                 { "Rolagem de Dado": "9-10", Resultado: "+1 Ímpeto" },
                 { "Rolagem de Dado": "11-12", Resultado: "+1 Precisão" },
@@ -216,8 +229,7 @@ function ExperienceRollPage() {
                 { "Rolagem de Dado": "17-18", Resultado: "+1 Vontade" },
                 {
                   "Rolagem de Dado": "19-20",
-                  Resultado:
-                    "Aprender nova Habilidade",
+                  Resultado: "Aprender nova Habilidade",
                 },
               ]}
               scrollable={false}
@@ -253,7 +265,10 @@ function ExperienceRollPage() {
 
             <HeaderH2>Aprender nova Magia</HeaderH2>
             <MobileText>
-              Esse avanço pode ser ganho no lugar do avanço "Aprender nova Habilidade" para figuras capazes de conjurar magias ou orações. Adicione uma nova magia da tradição indicada na ficha da figura ou da tradição Magia Menor.
+              Esse avanço pode ser ganho no lugar do avanço "Aprender nova
+              Habilidade" para figuras capazes de conjurar magias ou orações.
+              Adicione uma nova magia da tradição indicada na ficha da figura ou
+              da tradição Magia Menor.
             </MobileText>
 
             <HeaderH2>Aprender nova Habilidade</HeaderH2>
@@ -262,14 +277,14 @@ function ExperienceRollPage() {
               figura. Adicione a habilidade na ficha da figura.
             </MobileText>
 
-            
             <HeaderH2>O Rapaz tem Talento!</HeaderH2>
             <MobileText>
               O soldado se torna um herói! Ele continua usando sua mesma ficha e
               continua sendo o que era antes (um Barba Curta continua sendo um
-              Barba Curta) e mantém seu nível, mas agora pode fazer todas as atividades que um
-              herói pode e ganha experiência e sobe de nível como herói. Escolha duas listas de
-              habilidades entre as que heróis do bando têm acesso e ganhe acesso a elas.
+              Barba Curta) e mantém seu nível, mas agora pode fazer todas as
+              atividades que um herói pode e ganha experiência e sobe de nível
+              como herói. Escolha duas listas de habilidades entre as que heróis
+              do bando têm acesso e ganhe acesso a elas.
             </MobileText>
           </MobileSection>
         </div>
