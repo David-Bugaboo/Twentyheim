@@ -142,7 +142,16 @@
     "name": "Escriba",
     "trigger": "No começo do turno, antes de todas as figuras agirem.",
     "type": "Acadêmica",
-    "description": "Uma figura com essa habilidade pode começar o jogo com um pergaminho de qualquer magia ou oração que possa conjurar. O pergaminho de uma magia ou oração pode ser consumido para que aquela magia ou oração possa ser conjurada uma vez por jogo com sucesso sem rolagem de conjuração. A rolagem de conjuração dessa magia é considerada como sendo 14. Essa habilidade "
+    "description": "Uma figura com essa habilidade pode começar o jogo com um pergaminho de qualquer magia ou oração que possa conjurar. O pergaminho de uma magia ou oração pode ser consumido para que aquela magia ou oração possa ser conjurada uma vez por jogo com sucesso sem rolagem de conjuração. A rolagem de conjuração dessa magia é considerada como sendo 14. Essa habilidade só pode ser aprendida por figuras que possam conjurar magias ou orações. "
+}, 
+{
+    "id": "canalizar",
+    "name": "Canalizar",
+    "trigger": "No começo do turno, antes de todas as figuras agirem.",
+    "type": "Acadêmica",
+    "description": "Uma figura com essa habilidade pode gastar uma ação (pode substituir a ação de movimento) para canalizar. Se o fizer, e conjurar uma magia na mesma ativação, a figura pode rolar dois dados na rolagem de conjuração e escolher a melhor rolagem. Essa habilidade só pode ser aprendida por uma figura capaz de conjurar magias ou orações."
+}, 
+
   {
     "id": "golpe-poderoso",
     "name": "Golpe Poderoso",
