@@ -713,7 +713,7 @@ function WarbandRosterPage() {
     // Calcula custo final
     const finalCost = calculateItemCost(item.cost, item.modifier);
 
-    // Se for compra, verifica se tem ouro suficiente e desconta
+    // Se for compra, verifica se tem ouro suficiente
     if (isPurchase) {
       const currentGoldMatch = String(sheet.gold || "0").match(/(\d+)/);
       const currentGold = currentGoldMatch
@@ -726,13 +726,6 @@ function WarbandRosterPage() {
         );
         return;
       }
-
-      // Desconta ouro
-      const newGold = Math.max(0, currentGold - finalCost);
-      setSheet((prev) => ({
-        ...prev,
-        gold: String(newGold),
-      }));
 
       toast.success(`Item comprado! ${finalCost} coroas descontadas.`);
     } else {
@@ -800,9 +793,26 @@ function WarbandRosterPage() {
       console.log("[Vault Add] Equipment object:", eqObj);
     }
     const cleaned = stripUndefinedDeep(eqObj);
-    setSheet({
-      ...sheet,
-      vault: [...((sheet.vault || []) as any[]), cleaned],
+
+    // Atualiza tudo de uma vez (ouro + vault)
+    setSheet((prev) => {
+      let newGold = prev.gold;
+
+      // Se for compra, desconta ouro
+      if (isPurchase) {
+        const currentGoldMatch = String(prev.gold || "0").match(/(\d+)/);
+        const currentGold = currentGoldMatch
+          ? parseInt(currentGoldMatch[1], 10)
+          : 0;
+        const finalGold = Math.max(0, currentGold - finalCost);
+        newGold = String(finalGold);
+      }
+
+      return {
+        ...prev,
+        gold: newGold,
+        vault: [...((prev.vault || []) as any[]), cleaned],
+      };
     });
   };
 
