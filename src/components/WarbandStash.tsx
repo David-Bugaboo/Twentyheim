@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import HeaderH1 from "./HeaderH1";
 import MobileText from "./MobileText";
 import meleeDb from "../database/items/melee-weapons.data.json";
@@ -21,12 +22,14 @@ export interface StashItem {
   cost: string;
   data?: any; // objeto bruto do catálogo
   modifier?: { name: string; effect?: string };
+  availability?: string[];
+  exclusions?: string[];
 }
 
 interface WarbandStashProps {
   stash: StashItem[];
   gold: string;
-  onPurchase: (item: StashItem) => void;
+  onPurchase: (item: StashItem, isPurchase: boolean) => void;
   onSell: (index: number) => void;
   onUndo: (index: number) => void;
   onRemoveVaultItemById?: (id: string) => void;
@@ -174,8 +177,8 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
   stash,
   gold: _gold,
   onPurchase,
-  onSell: _onSell,
-  onUndo: _onUndo,
+  onSell,
+  onUndo,
   onRemoveVaultItemById,
   factionKey,
   factionLabel,
@@ -364,25 +367,85 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
     }
   };
 
-  // botão comprar removido
+  // Função para calcular custo final (mesma lógica do WarbandRosterPage)
+  const calculateItemCost = (
+    baseCost: string,
+    modifier?: { name: string; effect?: string }
+  ): number => {
+    const baseCostMatch = String(baseCost || "0").match(/(\d+(?:\.\d+)?)/);
+    const baseCostNum = baseCostMatch ? parseFloat(baseCostMatch[1]) : 0;
 
-  const handleGain = () => {
+    if (!modifier || !modifier.name) return baseCostNum;
+
+    // Busca modificador nos catálogos
+    const modNameLc = String(modifier.name).toLowerCase();
+    const allMods: any[] = [
+      ...(meleeMods as any[]),
+      ...(rangedMods as any[]),
+      ...(firearmsMods as any[]),
+    ];
+    const mod =
+      allMods.find((m) => String(m.name).toLowerCase() === modNameLc) ||
+      (modifier as any);
+
+    const exprRaw = String(mod.purchaseCost || "");
+    const expr = exprRaw.toLowerCase().replace(/\s+/g, "");
+    let multiplier = 1;
+    let addend = 0;
+    let fixedCost: number | null = null;
+
+    const mult = expr.match(/base\*(\d+(?:\.\d+)?)/);
+    const add = expr.match(/base\+(\d+(?:\.\d+)?)/);
+    if (mult) {
+      multiplier = parseFloat(mult[1]);
+    } else if (add) {
+      addend = parseFloat(add[1]);
+    } else if (!expr && typeof (mod as any).purchaseCost === "number") {
+      fixedCost = Number((mod as any).purchaseCost);
+    }
+
+    if (fixedCost != null) {
+      return fixedCost;
+    } else {
+      return baseCostNum * multiplier + addend;
+    }
+  };
+
+  const handlePurchase = (isPurchase: boolean) => {
     if (!selectedItem || !purchaseCategory) return;
     const items = getGlobalItemsByTypeForPurchase(purchaseCategory);
     const item = items.find((i) => i.name === selectedItem);
     if (!item) return;
-    // Adiciona ao cofre sem custo
+
+    // Verifica disponibilidade para compra
+    const isAvailable = isPurchasableForFaction(
+      item.availability,
+      item.exclusions,
+      factionLabel
+    );
+
+    if (isPurchase && !isAvailable) {
+      toast.error(
+        "Este item não está disponível para compra nesta facção. Use 'Loot' para adicionar sem comprar."
+      );
+      return;
+    }
+
     const raw = findItemInCatalogs(item.name);
     const mod = modifierOptions.find((m) => m.key === selectedModifier) as
       | { key: string; label: string; effect?: string }
       | undefined;
-    onPurchase({
-      ...item,
-      data: raw || undefined,
-      cost: item.cost || "-",
-      modifier:
-        mod && mod.key ? { name: mod.key, effect: mod.effect } : undefined,
-    });
+
+    onPurchase(
+      {
+        ...item,
+        data: raw || undefined,
+        cost: item.cost || "-",
+        modifier:
+          mod && mod.key ? { name: mod.key, effect: mod.effect } : undefined,
+      },
+      isPurchase
+    );
     setSelectedItem("");
     setSelectedModifier("");
   };
@@ -466,15 +529,72 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
               </option>
             ))}
           </select>
-          {/* Sem desconto/ouro */}
-          {/* Botão de compra removido */}
-          <button
-            className="px-3 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={!selectedItem || !purchaseCategory}
-            onClick={handleGain}
-          >
-            Adicionar
-          </button>
+          {/* Botões de Comprar e Loot */}
+          {(() => {
+            const items = purchaseCategory
+              ? getGlobalItemsByTypeForPurchase(
+                  purchaseCategory,
+                  factionKey,
+                  factionLabel
+                )
+              : [];
+            const selectedItemObj = items.find((i) => i.name === selectedItem);
+            const isAvailable =
+              selectedItemObj &&
+              isPurchasableForFaction(
+                selectedItemObj.availability,
+                selectedItemObj.exclusions,
+                factionLabel
+              );
+            const mod =
+              selectedModifier &&
+              modifierOptions.find((m) => m.key === selectedModifier);
+            const finalCost = selectedItemObj
+              ? calculateItemCost(
+                  selectedItemObj.cost || "0",
+                  mod && mod.key
+                    ? { name: mod.key, effect: (mod as any).effect || "" }
+                    : undefined
+                )
+              : 0;
+            const currentGoldMatch = String(_gold || "0").match(/(\d+)/);
+            const currentGold = currentGoldMatch
+              ? parseInt(currentGoldMatch[1], 10)
+              : 0;
+            const canAfford = currentGold >= finalCost;
+
+            return (
+              <>
+                <button
+                  className="px-3 py-2 rounded bg-green-600 hover:bg-green-700 text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={
+                    !selectedItem ||
+                    !purchaseCategory ||
+                    !isAvailable ||
+                    !canAfford
+                  }
+                  onClick={() => handlePurchase(true)}
+                  title={
+                    !isAvailable
+                      ? "Item não disponível para compra nesta facção"
+                      : !canAfford
+                      ? `Você não tem coroas suficientes (Necessário: ${finalCost})`
+                      : `Comprar por ${finalCost} coroas`
+                  }
+                >
+                  Comprar ({finalCost} coroas)
+                </button>
+                <button
+                  className="px-3 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={!selectedItem || !purchaseCategory}
+                  onClick={() => handlePurchase(false)}
+                  title="Adicionar ao cofre sem custo (loot)"
+                >
+                  Loot
+                </button>
+              </>
+            );
+          })()}
         </div>
       </div>
 
@@ -493,25 +613,28 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
               const displayName = modifier?.name
                 ? `${baseName} ${modifier.name}`
                 : baseName;
-              
+
               // Calcula custo final: base * multiplier (se houver modificador)
-              const baseCostStr = String(item.cost || itemData?.purchaseCost || itemData?.sellCost || "0");
+              const baseCostStr = String(
+                item.cost || itemData?.purchaseCost || itemData?.sellCost || "0"
+              );
               const baseCostMatch = baseCostStr.match(/(\d+(?:\.\d+)?)/);
               const baseCost = baseCostMatch ? parseFloat(baseCostMatch[1]) : 0;
               const multiplier = modifier?.multiplier ?? 1;
               const modifierAddend = itemData?.modifierAddend ?? 0;
               const modifierFixedCost = itemData?.modifierFixedCost;
-              
+
               let finalCost = baseCost;
               if (modifierFixedCost != null) {
                 finalCost = modifierFixedCost; // Substituição de custo
               } else {
                 finalCost = baseCost * multiplier + modifierAddend; // Multiplicador + adição
               }
-              
-              const costDisplay = finalCost % 1 === 0 
-                ? `${Math.round(finalCost)} coroas`
-                : `${finalCost} coroas`;
+
+              const costDisplay =
+                finalCost % 1 === 0
+                  ? `${Math.round(finalCost)} coroas`
+                  : `${finalCost} coroas`;
 
               return (
                 <div
@@ -531,10 +654,26 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      className="px-2 py-1 rounded bg-yellow-600 hover:bg-yellow-700 text-white text-xs"
+                      onClick={() => onSell(index)}
+                      title={`Vender por ${Math.floor(finalCost / 2)} coroas`}
+                    >
+                      Vender
+                    </button>
+                    <button
+                      type="button"
+                      className="px-2 py-1 rounded bg-red-700 hover:bg-red-800 text-white text-xs"
+                      onClick={() => onUndo(index)}
+                      title="Desfazer (remover sem vender)"
+                    >
+                      Desfazer
+                    </button>
                     {item.id && onRemoveVaultItemById ? (
                       <button
                         type="button"
-                        className="px-2 py-1 rounded bg-red-700 hover:bg-red-800 text-white text-xs"
+                        className="px-2 py-1 rounded bg-gray-700 hover:bg-gray-800 text-white text-xs"
                         onClick={() => onRemoveVaultItemById(item.id!)}
                         title="Remover definitivamente do cofre"
                       >

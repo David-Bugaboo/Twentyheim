@@ -359,11 +359,40 @@ function WarbandRosterPage() {
   const [openMenus, setOpenMenus] = useState<Set<string>>(new Set());
   const menuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  const addFigureFromBase = (base: any) => {
+  const addFigureFromBase = (base: any, shouldChargeCost: boolean = true) => {
     if (!base) return;
     markDirty();
     const id = crypto.randomUUID();
     const fig = buildFigureFromBase(base);
+
+    // Calcula e desconta o custo se necessário
+    if (shouldChargeCost) {
+      const costMatch = String(fig.baseStats.cost || "0").match(/(\d+)/);
+      const unitCost = costMatch ? parseInt(costMatch[1], 10) : 0;
+
+      if (unitCost > 0) {
+        const currentGoldMatch = String(sheet.gold || "0").match(/(\d+)/);
+        const currentGold = currentGoldMatch
+          ? parseInt(currentGoldMatch[1], 10)
+          : 0;
+
+        if (currentGold < unitCost) {
+          toast.error(
+            `Você não tem coroas suficientes! (Necessário: ${unitCost}, Disponível: ${currentGold})`
+          );
+          return;
+        }
+
+        const newGold = Math.max(0, currentGold - unitCost);
+        setSheet((prev) => ({
+          ...prev,
+          gold: String(newGold),
+        }));
+
+        toast.success(`Modelo adicionado! ${unitCost} coroas descontadas.`);
+      }
+    }
+
     // Se for mercenário/lenda com itens fixos (stats.mercEquipment/mercItems), resolve e equipa
     const mercItemsRaw: any[] = (() => {
       if (Array.isArray(base?.stats?.mercEquipment))
@@ -629,11 +658,87 @@ function WarbandRosterPage() {
     };
   }, [openMenus]);
 
-  // Função auxiliar para extrair número de custo
+  // Função para calcular custo final de um item (considerando modificadores)
+  const calculateItemCost = (
+    baseCost: string,
+    modifier?: { name: string; effect?: string }
+  ): number => {
+    // Extrai número do custo base
+    const baseCostMatch = String(baseCost || "0").match(/(\d+(?:\.\d+)?)/);
+    const baseCostNum = baseCostMatch ? parseFloat(baseCostMatch[1]) : 0;
 
-  // Adicionar item ao cofre (vault) — sem mexer no ouro
-  const handlePurchaseItem = (item: StashItem) => {
+    // Se não tem modificador, retorna o custo base
+    if (!modifier || !modifier.name) return baseCostNum;
+
+    // Busca modificador nos catálogos
+    const modNameLc = String(modifier.name).toLowerCase();
+    const allMods: any[] = [
+      ...(meleeMods as any[]),
+      ...(rangedMods as any[]),
+      ...(firearmsMods as any[]),
+    ];
+    const mod =
+      allMods.find((m) => String(m.name).toLowerCase() === modNameLc) ||
+      (modifier as any);
+
+    // Calcula multiplicador a partir da expressão do modificador
+    const exprRaw = String(mod.purchaseCost || "");
+    const expr = exprRaw.toLowerCase().replace(/\s+/g, "");
+    let multiplier = 1;
+    let addend = 0;
+    let fixedCost: number | null = null;
+
+    const mult = expr.match(/base\*(\d+(?:\.\d+)?)/);
+    const add = expr.match(/base\+(\d+(?:\.\d+)?)/);
+    if (mult) {
+      multiplier = parseFloat(mult[1]);
+    } else if (add) {
+      addend = parseFloat(add[1]);
+    } else if (!expr && typeof (mod as any).purchaseCost === "number") {
+      fixedCost = Number((mod as any).purchaseCost);
+    }
+
+    // Calcula custo final
+    if (fixedCost != null) {
+      return fixedCost;
+    } else {
+      return baseCostNum * multiplier + addend;
+    }
+  };
+
+  // Adicionar item ao cofre (vault) — agora suporta comprar (desconta) ou lootear (não desconta)
+  const handlePurchaseItem = (item: StashItem, isPurchase: boolean = false) => {
     markDirty();
+
+    // Calcula custo final
+    const finalCost = calculateItemCost(item.cost, item.modifier);
+
+    // Se for compra, verifica se tem ouro suficiente e desconta
+    if (isPurchase) {
+      const currentGoldMatch = String(sheet.gold || "0").match(/(\d+)/);
+      const currentGold = currentGoldMatch
+        ? parseInt(currentGoldMatch[1], 10)
+        : 0;
+
+      if (currentGold < finalCost) {
+        toast.error(
+          `Você não tem coroas suficientes! (Necessário: ${finalCost}, Disponível: ${currentGold})`
+        );
+        return;
+      }
+
+      // Desconta ouro
+      const newGold = Math.max(0, currentGold - finalCost);
+      setSheet((prev) => ({
+        ...prev,
+        gold: String(newGold),
+      }));
+
+      toast.success(`Item comprado! ${finalCost} coroas descontadas.`);
+    } else {
+      toast.success("Item adicionado ao cofre (loot).");
+    }
+
     // popula vault com Equipment completo
     const eqObj = resolveEquipmentByName(item.name);
     if (!eqObj) return;
@@ -1208,15 +1313,37 @@ function WarbandRosterPage() {
   };
 
   const removeUnit = (id: string) => {
-    // Remove a figura retornando seus equipamentos para o cofre (vault)
+    // Remove a figura retornando seus equipamentos para o cofre (vault) e devolve ouro
+    markDirty();
     setSheet((s) => {
       const unit = s.units.find((u) => u.id === id) as any;
       const figEquip: any[] = (unit?.figure?.equiped || []) as any[];
       const nextVault = [...((s.vault || []) as any[]), ...figEquip];
+
+      // Calcula e devolve ouro da figura
+      let refund = 0;
+      if (unit?.stats?.cost) {
+        const costMatch = String(unit.stats.cost).match(/(\d+)/);
+        refund = costMatch ? parseInt(costMatch[1], 10) : 0;
+      }
+
+      const currentGoldMatch = String(s.gold || "0").match(/(\d+)/);
+      const currentGold = currentGoldMatch
+        ? parseInt(currentGoldMatch[1], 10)
+        : 0;
+      const newGold = currentGold + refund;
+
+      if (refund > 0) {
+        toast.success(`Figura removida! ${refund} coroas devolvidas ao cofre.`);
+      } else {
+        toast.success("Figura removida!");
+      }
+
       return {
         ...s,
         vault: nextVault,
         units: s.units.filter((u) => u.id !== id),
+        gold: String(newGold),
       } as any;
     });
   };
@@ -1523,18 +1650,25 @@ function WarbandRosterPage() {
   // === AVANÇOS ===
   const applyAdvancementDelta = (
     unit: EditableUnit,
-    key: keyof NonNullable<EditableUnit["statBreakdown"]>,
+    statKey: keyof import("../types/figure.type").Figure["baseStats"],
     delta: number
   ): EditableUnit => {
-    const current = unit.statBreakdown || {};
-    const prev = (current as any)[key] || {
-      base: 0,
-      advancement: 0,
-      injury: 0,
-      misc: 0,
-    };
-    const next = { ...prev, advancement: (prev.advancement || 0) + delta };
-    return { ...unit, statBreakdown: { ...current, [key]: next } };
+    const figure = unit.figure as any;
+    if (!figure) return unit;
+    const currentValue = Number(
+      (figure.advancementsStatsModifiers as any)?.[statKey] || 0
+    );
+    const nextValue = currentValue + delta;
+    return {
+      ...unit,
+      figure: {
+        ...figure,
+        advancementsStatsModifiers: {
+          ...figure.advancementsStatsModifiers,
+          [statKey]: nextValue,
+        },
+      },
+    } as EditableUnit;
   };
 
   const handleAddAdvancementToUnit = (unitId: string, adv: string) => {
@@ -1568,7 +1702,7 @@ function WarbandRosterPage() {
         else if (norm.includes("agilidade"))
           updatedUnit = applyAdvancementDelta(updatedUnit, "move", 2);
         else if (norm.includes("vontade"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "vontade", 1);
+          updatedUnit = applyAdvancementDelta(updatedUnit, "Vontade", 1);
         else if (norm.includes("força"))
           updatedUnit = applyAdvancementDelta(updatedUnit, "strength", 1);
         // O Moleque Tem Talento! -> vira Herói (se já não for Líder)
@@ -1627,7 +1761,7 @@ function WarbandRosterPage() {
         else if (norm.includes("agilidade"))
           updatedUnit = applyAdvancementDelta(updatedUnit, "move", -2);
         else if (norm.includes("vontade"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "vontade", -1);
+          updatedUnit = applyAdvancementDelta(updatedUnit, "Vontade", -1);
         else if (norm.includes("força"))
           updatedUnit = applyAdvancementDelta(updatedUnit, "strength", -1);
         return updatedUnit;
@@ -1636,6 +1770,29 @@ function WarbandRosterPage() {
   };
 
   // === INJURIES ===
+  const applyInjuryDelta = (
+    unit: EditableUnit,
+    statKey: keyof import("../types/figure.type").Figure["baseStats"],
+    delta: number
+  ): EditableUnit => {
+    const figure = unit.figure as any;
+    if (!figure) return unit;
+    const currentValue = Number(
+      (figure.injuryStatsModifiers as any)?.[statKey] || 0
+    );
+    const nextValue = currentValue + delta;
+    return {
+      ...unit,
+      figure: {
+        ...figure,
+        injuryStatsModifiers: {
+          ...figure.injuryStatsModifiers,
+          [statKey]: nextValue,
+        },
+      },
+    } as EditableUnit;
+  };
+
   const handleAddInjuryToUnit = (unitId: string, injury: string) => {
     setSheet((prev) => ({
       ...prev,
@@ -1662,72 +1819,15 @@ function WarbandRosterPage() {
           norm.includes("-2") &&
           norm.includes("mov")
         ) {
-          updatedUnit = {
-            ...updatedUnit,
-            statBreakdown: {
-              ...(updatedUnit.statBreakdown || {}),
-              move: {
-                base: 0,
-                advancement: updatedUnit.statBreakdown?.move?.advancement || 0,
-                injury: (updatedUnit.statBreakdown?.move?.injury || 0) - 2,
-                misc: updatedUnit.statBreakdown?.move?.misc || 0,
-              },
-            },
-          } as any;
+          updatedUnit = applyInjuryDelta(updatedUnit, "move", -2);
         } else if (norm.includes("tórax") || norm.includes("torax")) {
-          updatedUnit = {
-            ...updatedUnit,
-            statBreakdown: {
-              ...(updatedUnit.statBreakdown || {}),
-              health: {
-                base: 0,
-                advancement:
-                  updatedUnit.statBreakdown?.health?.advancement || 0,
-                injury: (updatedUnit.statBreakdown?.health?.injury || 0) - 2,
-                misc: updatedUnit.statBreakdown?.health?.misc || 0,
-              },
-            },
-          } as any;
+          updatedUnit = applyInjuryDelta(updatedUnit, "health", -2);
         } else if (norm.includes("cego") || norm.includes("olho")) {
-          updatedUnit = {
-            ...updatedUnit,
-            statBreakdown: {
-              ...(updatedUnit.statBreakdown || {}),
-              shoot: {
-                base: 0,
-                advancement: updatedUnit.statBreakdown?.shoot?.advancement || 0,
-                injury: (updatedUnit.statBreakdown?.shoot?.injury || 0) - 2,
-                misc: updatedUnit.statBreakdown?.shoot?.misc || 0,
-              },
-            },
-          } as any;
+          updatedUnit = applyInjuryDelta(updatedUnit, "shoot", -2);
         } else if (norm.includes("nervosa") || norm.includes("vontade")) {
-          updatedUnit = {
-            ...updatedUnit,
-            statBreakdown: {
-              ...(updatedUnit.statBreakdown || {}),
-              vontade: {
-                base: 0,
-                advancement:
-                  updatedUnit.statBreakdown?.vontade?.advancement || 0,
-                injury: (updatedUnit.statBreakdown?.vontade?.injury || 0) - 1,
-                misc: updatedUnit.statBreakdown?.vontade?.misc || 0,
-              },
-            },
-          } as any;
+          updatedUnit = applyInjuryDelta(updatedUnit, "Vontade", -1);
         } else if (norm.includes("mão") || norm.includes("mao")) {
-          updatedUnit = {
-            ...updatedUnit,
-            statBreakdown: {
-              ...(updatedUnit.statBreakdown || {}),
-              fight: {
-                base: 0,
-                advancement: updatedUnit.statBreakdown?.fight?.advancement || 0,
-                injury: (updatedUnit.statBreakdown?.fight?.injury || 0) - 1,
-                misc: updatedUnit.statBreakdown?.fight?.misc || 0,
-              },
-            },
-          } as any;
+          updatedUnit = applyInjuryDelta(updatedUnit, "fight", -1);
         }
         return updatedUnit;
       }),
@@ -1764,15 +1864,15 @@ function WarbandRosterPage() {
           norm.includes("-2") &&
           norm.includes("mov")
         ) {
-          updatedUnit = applyAdvancementDelta(updatedUnit, "move", +2); // reverte a penalidade usando channel de advancement
+          updatedUnit = applyInjuryDelta(updatedUnit, "move", +2);
         } else if (norm.includes("tórax") || norm.includes("torax")) {
-          updatedUnit = applyAdvancementDelta(updatedUnit, "health", +2);
+          updatedUnit = applyInjuryDelta(updatedUnit, "health", +2);
         } else if (norm.includes("cego") || norm.includes("olho")) {
-          updatedUnit = applyAdvancementDelta(updatedUnit, "shoot", +2);
+          updatedUnit = applyInjuryDelta(updatedUnit, "shoot", +2);
         } else if (norm.includes("nervosa") || norm.includes("vontade")) {
-          updatedUnit = applyAdvancementDelta(updatedUnit, "vontade", +1);
+          updatedUnit = applyInjuryDelta(updatedUnit, "Vontade", +1);
         } else if (norm.includes("mão") || norm.includes("mao")) {
-          updatedUnit = applyAdvancementDelta(updatedUnit, "fight", +1);
+          updatedUnit = applyInjuryDelta(updatedUnit, "fight", +1);
         }
         return updatedUnit;
       }),
@@ -2904,7 +3004,55 @@ function WarbandRosterPage() {
               }
               gold={sheet.gold || "0"}
               onPurchase={handlePurchaseItem}
-              onSell={() => {}}
+              onSell={(index) => {
+                markDirty();
+                const vault = (sheet.vault || []) as any[];
+                const item = vault[index];
+                if (!item) return;
+
+                // Calcula custo original usando a mesma lógica de compra
+                const baseCostStr = String(
+                  item.cost || item.purchaseCost || item.sellCost || "0"
+                );
+                const baseCostMatch = baseCostStr.match(/(\d+(?:\.\d+)?)/);
+                const baseCost = baseCostMatch
+                  ? parseFloat(baseCostMatch[1])
+                  : 0;
+                const multiplier = item.modifier?.multiplier ?? 1;
+                const modifierAddend = item.modifierAddend ?? 0;
+                const modifierFixedCost = item.modifierFixedCost;
+
+                let originalCost = baseCost;
+                if (modifierFixedCost != null) {
+                  originalCost = modifierFixedCost;
+                } else {
+                  originalCost = baseCost * multiplier + modifierAddend;
+                }
+
+                // Vende por metade do custo original
+                const sellPrice = Math.floor(originalCost / 2);
+
+                // Adiciona ouro ao cofre
+                const currentGoldMatch = String(sheet.gold || "0").match(
+                  /(\d+)/
+                );
+                const currentGold = currentGoldMatch
+                  ? parseInt(currentGoldMatch[1], 10)
+                  : 0;
+                const newGold = currentGold + sellPrice;
+
+                // Remove item do cofre
+                const newVault = vault.filter((_, i) => i !== index);
+                setSheet({
+                  ...sheet,
+                  vault: newVault,
+                  gold: String(newGold),
+                });
+
+                toast.success(
+                  `Item vendido! ${sellPrice} coroas adicionadas ao cofre.`
+                );
+              }}
               onUndo={(index) => {
                 markDirty();
                 const newVault = (sheet.vault || []).filter(
