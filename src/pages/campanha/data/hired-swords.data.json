@@ -525,7 +525,7 @@
     "name": "Orc Negro Capataz",
     "lore": "Escolhidos à mão de um grupo de seus melhores guardas, estes Orcs de elite foram ordenados por ninguém menos que Grimgor Ironhide para se infiltrar em Mordheim e manter um olho no saque obtido na Cidade dos Condenados.",
     "role": "Mercenário",
-    "availability": ["Hordas-Orc", "Goblins"],
+    "availability": ["Hordas Orc", "Goblins"],
     "qualidade": "O Supervisor Orc Negro aumenta a qualidade do bando em 15 pontos, +1 para cada ponto de experiência que tem.",
     "stats": {
       "move": 9,

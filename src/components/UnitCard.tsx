@@ -453,6 +453,7 @@ const UnitCard: React.FC<UnitCardProps> = ({
                 {qualidade} pontos ao valor de qualidade do bando
               </p>
             )}
+            
           </div>
         )}
 

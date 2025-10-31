@@ -334,7 +334,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                 {role}
               </span>
             )}
-            {quantity && (
+            {quantity && quantity !== "0" && String(quantity).trim() !== "" && (
               <span className="bg-gray-500 text-white px-2 py-1 rounded text-xs">
                 {quantity}
               </span>
@@ -548,7 +548,8 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
         )}
 
         {/* Availability and Qualidade */}
-        {(availability || qualidade) && (
+        {(availability ||
+          (qualidade && qualidade !== "0" && Number(qualidade) !== 0)) && (
           <div className="mb-6 space-y-2">
             {availability && (
               <p className="text-gray-300">
@@ -558,7 +559,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   : availability}
               </p>
             )}
-            {qualidade && (
+            {qualidade && qualidade !== "0" && Number(qualidade) !== 0 && (
               <p className="text-gray-300">
                 <strong>Qualidade:</strong> {qualidade}
               </p>
