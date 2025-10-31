@@ -32,8 +32,18 @@ function CollapsibleImage({
           <img
             src={src}
             alt={alt}
-            className={`${imgClassName} cursor-pointer hover:opacity-90 transition-opacity`}
+            className={`${imgClassName} cursor-pointer hover:opacity-90 active:opacity-75 transition-opacity`}
             onClick={() => setIsModalOpen(true)}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              setIsModalOpen(true);
+            }}
+            style={{
+              touchAction: "manipulation",
+              WebkitTapHighlightColor: "transparent",
+              WebkitUserSelect: "none",
+              userSelect: "none",
+            }}
           />
         )}
       </div>

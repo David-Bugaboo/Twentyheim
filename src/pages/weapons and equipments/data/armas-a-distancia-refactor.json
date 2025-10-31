@@ -8,7 +8,7 @@
     "purchaseCost": "2 coroas",
     "rarity": 1,
     "availability": ["Todos"],
-    "maxRange": "20cm",
+    "maxRange": "15cm",
     "exclusive": null,
     "flavorText": "Fundas são raramente usadas, principalmente porque não são mais poderosas que arcos e têm um alcance menor. Uma funda é pouco mais que uma tira de pano ou couro em laço na qual uma pedra é colocada. A funda é girada ao redor da cabeça do fundeiro e a pedra da funda é então lançada em direção ao alvo. Embora essa arma seja desprezada pela maioria dos arqueiros, um fundeiro habilidoso pode matar um homem de uma distância considerável, e a munição é fácil de encontrar: pedras estão por toda parte e são gratuitas!",
     "user": null,
@@ -18,17 +18,10 @@
     "effect": null,
     "requirements": null,
     "specialRules": [
-      {
-        "label": "Leve",
-        "value": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item."
-      },
+      
       {
         "label": "Giros Brutais",
-        "value": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de movimento para girar sua funda com mais força. Aumente o alcance do próximo ataque à distância em 6cm."
-      },
-      {
-        "label": "Arma de Tecido",
-        "value": "Embora não possa ser usada para ganhar +1 de impeto em lutas, uma figura carregando uma arma na mão principal e uma funda na mão secundária ainda pode pegar Fragmentos de Pedra-Bruxa, mas não pode usar a funda para atirar enquanto estiver carregando o fragmento."
+        "value": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de movimento para girar sua funda com mais força. Aumente o alcance do próximo ataque à distância em 5cm."
       }
     ]
   },
@@ -40,7 +33,7 @@
     "purchaseCost": "5 coroas",
     "rarity": 1,
     "availability": ["Todos"],
-    "maxRange": "15cm",
+    "maxRange": "25cm",
     "exclusive": null,
     "flavorText": "Javelins são lanças curtas de arremesso especialmente ponderadas para percorrer uma distância considerável. Embora tenham um alcance muito reduzido quando comparadas a uma flecha, podem causar danos bastante consideráveis quando arremessadas por uma pessoa de grande força.",
     "user": null,
@@ -120,7 +113,7 @@
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
-    "slots": "1",
+    "slots": "2",
     "effect": null,
     "requirements": "Aljava",
     "specialRules": [

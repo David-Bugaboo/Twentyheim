@@ -56,7 +56,7 @@
   },
   {
     "term": "Furtividade(X)",
-    "description": "Figuras não podem traçar linha de visão para uma figura com essa característica se estiverem a mais de (X) dela."
+    "description": "Figuras não podem traçar linha de visão para uma figura com essa característica se estiverem a mais de (X) dela. Uma figura com essa característica causa +2 de dano contra figuras que estejam fora da linha de visão de todas as figuras aliadas."
   },
   {
     "term": "Forte",
@@ -95,10 +95,6 @@
     "description": "Pode declarar carga contra uma figura que não tenha linha de visão, contanto que tenha movimento suficiente para completar a carga. Figuras não pode se beneficiar da característica Furtividade(X) contra essa figura"
   },
   {
-    "term": "Venenoso",
-    "description": "Ataques desta figura são venenosos e envenenam a figura alvo."
-  },
-  {
     "term": "Regeneração",
     "description": "A figura recupera 2 de vida no início de sua ativação."
   },
@@ -128,7 +124,7 @@
   },
   {
     "term": "Chifres",
-    "description": "A figura recebe +2 de Ímpeto no turno em que completar uma carga, ou +3 se também tiver a característica Grande."
+    "description": "A figura recebe +2 de Ímpeto no turno em que completar uma carga."
   },
   {
     "term": "Construto",
@@ -155,8 +151,8 @@
     "description": "Ataques a distância contra figuras em Cobertura Leve sofrem -2 em suas rolagens de Tiro."
   },
   {
-    "term": "Imunidade Parcial a Dano Normal",
-    "description": "Sempre que esta figura sofre dano de um ataque não-mágico o dano é reduzido pela metade, arredondando para baixo."
+    "term": "Incorpóreo",
+    "description": "Sempre que esta figura sofre dano de um ataque não-mágico o dano é reduzido pela metade, arredondando para baixo. Além disso, pode se mover através de peças de terreno como se não estivessem lá, mas não podem terminar o movimento dentro de outra peça de terreno."
   },
   {
     "term": "Vulnerabilidade Sagrada",
@@ -168,7 +164,7 @@
   },
   {
     "term": "Duas Mãos",
-    "description": "Uma arma com essa característica ocupa dois espaços de itens, e não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
+    "description": "Uma arma com essa característica ocupa dois espaços de itens, e não pode ser usada junto de nenhuma outra arma na mão secundária: seu peso exige toda a concentração e força do personagem."
   },
   {
     "term": "Penetração de Armadura (X)",
@@ -176,11 +172,11 @@
   },
   {
     "term": "Leve",
-    "description": "A primeira arma com essa característica carregada por uma figura não consome um espaço de itens. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
+    "description": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
   },
   {
     "term": "Versátil",
-    "description": "Uma arma com essa característica pode ser usada com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano. Mesmo se usada com uma mão, não pode se beneficiar de uma arma leve na mão secundária, apenas de escudos."
+    "description": "Uma arma com essa característica pode ser usada com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano."
   },
   {
     "term": "Par",
@@ -209,10 +205,6 @@
   {
     "term": "Giros Brutais",
     "description": "Uma figura equipada com uma funda pode gastar uma ação, que pode substituir a ação de movimento para girar sua funda com mais força. Aumente o alcance do próximo ataque a distância em 6cm."
-  },
-  {
-    "term": "Arma de Tecido",
-    "description": "Embora não possa ser usada para ganhar +1 de Ímpeto em lutas, uma figura carregando uma arma na mão principal e uma funda na mão secundária ainda pode pegar Fragmentos de Pedra-Bruxa, mas não pode usar a funda para atirar enquanto estiver carregando o fragmento."
   },
   {
     "term": "Hibrida",
@@ -344,11 +336,11 @@
   },
   {
     "term": "Fúria",
-    "description": "Modelos com essa característica devem sempre usar ações de carga e luta contra inimigos dentro do alcance de uma carga. Se houver mais de um, o controlador da figura pode escolher. Uma figura com essa caarcterística ganha +2 de Ímpeto sempre que luta. Uma figura com essa característica recebe 3 de dano por puro stress sempre que não terminar uma ativação em combate."
+    "description": "Modelos com essa característica devem sempre usar ações de carga e luta contra inimigos dentro do alcance de uma carga. Caso não existam inimigos dentro do alcance de uma carga, ele deve mover-se na direção do inimigo mais próximo em linha de visão. Se não houverem inimigos em linha de visão, a figura recebe um marcador de atordoamento."
   },
   {
     "term": "Estupidez",
-    "description": "Modelos com essa característica que não ativarem junto a outra figura devem fazer um teste de Vontade CD 12 no começo de sua ativação ou agir como uma criatura não controlada durante essa ativação."
+    "description": "Modelos com essa característica que não ativarem através da habilidade Líder devem fazer um teste de Vontade CD 12 no começo de sua ativação ou agir como uma criatura não controlada durante essa ativação."
   },
   {
     "term": "Necrose de Nurgle",

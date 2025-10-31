@@ -19,8 +19,12 @@
     "requirements": null,
     "specialRules": [
       {
-        "label": "Leve",
-        "value": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
+        "term": "Leve",
+        "description": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
+      },
+      {
+        "term": "Faca na Bota",
+        "description": "A Primeira adaga equipada por uma figura não consome um espaço de item."
       }
     ]
   },
@@ -206,8 +210,8 @@
         "value": "Uma arma com essa característica ignora (X) pontos de armadura do alvo."
       },
       {
-        "label": "Leve",
-        "value": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
+        "term": "Leve",
+        "description": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
       },
       {
         "label": "Aparar",
@@ -238,8 +242,8 @@
         "value": "Armas com essa característica devem sempre ser usadas em pares, ocupando ambas as mãos, mas provendo o bônus de +1 Ímpeto de lutar com duas armas se for leve. A figura equipada nunca pode desequipar apenas uma arma de par, e se perder a arma perde ambas."
       },
       {
-        "label": "Leve",
-        "value": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
+        "term": "Leve",
+        "description": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
       },
       {
         "label": "Aparar",
@@ -275,8 +279,8 @@
         "value": "Armas com essa característica devem sempre ser usadas em pares, ocupando ambas as mãos, mas provendo o bônus de +1 Ímpeto de lutar com duas armas se for leve. A figura equipada nunca pode desequipar apenas uma arma de par, e se perder a arma perde ambas."
       },
       {
-        "label": "Leve",
-        "value": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
+        "term": "Leve",
+        "description": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
       },
       {
         "label": "Tóxica",
@@ -347,6 +351,10 @@
       {
         "label": "Reativa(3)",
         "value": "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de Xcm, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de Xcm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno."
+      },
+      {
+        "term": "Leve",
+        "description": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
       },
       {
         "label": "Velocidade Superior",
@@ -498,7 +506,7 @@
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
-    "slots": "3",
+    "slots": "2",
     "effect": null,
     "requirements": null,
     "specialRules": [
@@ -516,7 +524,7 @@
     "id": "estrela-da-manha",
     "name": "Estrela da Manhã",
     "type": "Arma Corpo a Corpo",
-    "damageModifier": "+1",
+    "damageModifier": "0",
     "availability": ["Todos"],
     "rarity": 1,
     "purchaseCost": "15 coroas",
