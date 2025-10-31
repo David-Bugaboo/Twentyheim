@@ -16,7 +16,12 @@
     "slots": "1",
     "effect": null,
     "requirements": null,
-    "specialRules": []
+    "specialRules": [
+      {
+        "label": "Mão Secundária",
+        "value": "Um escudo deve ser usado na mão secundária para aplicar seus bônus. Caso uma figura esteja usando uma arma com a característica Duas Mãos, ele ainda pode se beneficiar do bônus de armadura de um escudo, mas apenas para ataques a distância."
+      }
+    ]
   },
   {
     "id": "armadura-leve",
@@ -96,11 +101,11 @@
     "specialRules": [
       {
         "label": "Proteger a Cabeça",
-        "value": "Uma vez por jogo, um dano crítico que a figura receberia é transformado em um dano normal."
+        "value": "A figura equipada com elmo trata ataques com a palavra-chave Concussiva(X) como se fosse Concussiva(X+2). Adicionalmente, danos críticos causam -2 de dano extra."
       },
       {
         "label": "Armadura Xamanística",
-        "value": "Pode ser usado por um conjurador sem negar sua habilidade de conjuração."
+        "value": "Pode ser usado por um conjurador sem impedir que ele conjure magias."
       }
     ]
   },
@@ -233,6 +238,10 @@
     "effect": null,
     "requirements": null,
     "specialRules": [
+      {
+        "label": "Mão Secundária",
+        "value": "Um Bróquel deve ser usado na mão secundária para que seus efeitos sejam aplicados."
+      },
       {
         "label": "Aparar",
         "value": "Um modelo equipado com esse item pode usar a reação Aparar."

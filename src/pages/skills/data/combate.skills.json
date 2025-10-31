@@ -27,6 +27,6 @@
     "id": "evasao-rapida",
     "name": "Evasão Rápida",
     "type": "Combate",
-    "description": "Uma figura com essa habilidade pode usar uma reação para re-rolar a sua rolagem de Impeto contra aquele ataque."
+    "description": "Uma figura com essa habilidade pode usar uma reação, desencadeada por ser atingido por um ataque a distância, para re-rolar a sua rolagem de Impeto contra aquele ataque."
   }
 ]

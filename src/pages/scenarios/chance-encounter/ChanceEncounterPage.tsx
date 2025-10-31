@@ -1,14 +1,12 @@
-import { useState } from "react";
 import PageTitle from "../../../components/PageTitle";
 import MobileText from "../../../components/MobileText";
 import MobileSection from "../../../components/MobileSection";
 import QuickNavigation from "../../../components/QuickNavigation";
 import HeaderH2 from "../../../components/HeaderH2";
+import CollapsibleImage from "../../../components/CollapsibleImage";
 import chanceEncounterImg from "../../../assets/scenarios-images/chance-encounter.png";
 
 function ChanceEncounterPage() {
-  const [isImageCollapsed, setIsImageCollapsed] = useState(false);
-
   const navigationSections = [
     { id: "intro", title: "Encontro Casual", level: 0 },
     { id: "flavor", title: "História", level: 1 },
@@ -72,23 +70,11 @@ function ChanceEncounterPage() {
               </MobileText>
             </div>
 
-            <div className="mt-8 mb-6">
-              <button
-                onClick={() => setIsImageCollapsed(!isImageCollapsed)}
-                className="w-full text-left mb-2 text-green-400 hover:text-green-300 transition-colors"
-              >
-                <span className="text-sm font-medium">
-                  {isImageCollapsed ? "▶ Mostrar Imagem" : "▼ Ocultar Imagem"}
-                </span>
-              </button>
-              {!isImageCollapsed && (
-                <img
-                  src={chanceEncounterImg}
-                  alt="Encontro Casual"
-                  className="w-3/4 mx-auto rounded-lg"
-                />
-              )}
-            </div>
+            <CollapsibleImage
+              src={chanceEncounterImg}
+              alt="Encontro Casual"
+              imgClassName="w-3/4 mx-auto rounded-lg"
+            />
 
             <div id="specialRules" className="mt-8">
               <HeaderH2>Regras Especiais</HeaderH2>

@@ -1,14 +1,12 @@
-import { useState } from "react";
 import PageTitle from "../../../components/PageTitle";
 import MobileText from "../../../components/MobileText";
 import MobileSection from "../../../components/MobileSection";
 import QuickNavigation from "../../../components/QuickNavigation";
 import HeaderH2 from "../../../components/HeaderH2";
+import CollapsibleImage from "../../../components/CollapsibleImage";
 import defendTheFindImg from "../../../assets/scenarios-images/defend-the-find.png";
 
 function DefendTheFindPage() {
-  const [isImageCollapsed, setIsImageCollapsed] = useState(false);
-
   const navigationSections = [
     { id: "intro", title: "Defender o Tesouro", level: 0 },
     { id: "flavor", title: "História", level: 1 },
@@ -81,23 +79,11 @@ function DefendTheFindPage() {
               </MobileText>
             </div>
 
-            <div className="mt-8 mb-6">
-              <button
-                onClick={() => setIsImageCollapsed(!isImageCollapsed)}
-                className="w-full text-left mb-2 text-green-400 hover:text-green-300 transition-colors"
-              >
-                <span className="text-sm font-medium">
-                  {isImageCollapsed ? "▶ Mostrar Imagem" : "▼ Ocultar Imagem"}
-                </span>
-              </button>
-              {!isImageCollapsed && (
-                <img
-                  src={defendTheFindImg}
-                  alt="Defender o Tesouro"
-                  className="w-3/4 mx-auto rounded-lg"
-                />
-              )}
-            </div>
+            <CollapsibleImage
+              src={defendTheFindImg}
+              alt="Defender o Tesouro"
+              imgClassName="w-3/4 mx-auto rounded-lg"
+            />
 
             <div id="victory" className="mt-8">
               <HeaderH2>Condição de Vitória</HeaderH2>

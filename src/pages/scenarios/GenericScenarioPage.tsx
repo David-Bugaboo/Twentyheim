@@ -5,6 +5,7 @@ import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
 import QuickNavigation from "../../components/QuickNavigation";
 import HeaderH2 from "../../components/HeaderH2";
+import CollapsibleImage from "../../components/CollapsibleImage";
 import scenariosData from "./data/scenarios.data.json";
 
 // Imports estáticos das imagens dos cenários
@@ -54,7 +55,6 @@ function GenericScenarioPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [scenarioImage, setScenarioImage] = useState<string | null>(null);
-  const [isImageCollapsed, setIsImageCollapsed] = useState(false);
 
   useEffect(() => {
     if (!slug) {
@@ -181,23 +181,11 @@ function GenericScenarioPage() {
             </div>
 
             {scenarioImage && (
-              <div className="mt-8 mb-6">
-                <button
-                  onClick={() => setIsImageCollapsed(!isImageCollapsed)}
-                  className="w-full text-left mb-2 text-green-400 hover:text-green-300 transition-colors"
-                >
-                  <span className="text-sm font-medium">
-                    {isImageCollapsed ? "▶ Mostrar Imagem" : "▼ Ocultar Imagem"}
-                  </span>
-                </button>
-                {!isImageCollapsed && (
-                  <img
-                    src={scenarioImage}
-                    alt={scenario.name}
-                    className="w-3/4 mx-auto rounded-lg"
-                  />
-                )}
-              </div>
+              <CollapsibleImage
+                src={scenarioImage}
+                alt={scenario.name}
+                imgClassName="w-3/4 mx-auto rounded-lg"
+              />
             )}
 
             {scenario.specialRules && (
