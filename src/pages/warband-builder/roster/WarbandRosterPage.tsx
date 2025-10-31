@@ -3296,8 +3296,8 @@ function WarbandRosterPage() {
                                       }}
                                       className="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center gap-2"
                                     >
-                                      <span>🗑️</span>
-                                      <span>Remover</span>
+                                      <span>↩️</span>
+                                      <span>Desfazer</span>
                                     </button>
                                     <button
                                       onClick={() => {
