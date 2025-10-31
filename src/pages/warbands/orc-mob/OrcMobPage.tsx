@@ -42,12 +42,8 @@ interface Unit {
 }
 
 const OrcMobPage: React.FC = () => {
-  const leader = orcMobData.find(
-    (unit) => unit.role === "Herói" && unit.name === "Chefaum Orc"
-  ) as Unit;
-  const heroes = orcMobData.filter(
-    (unit) => unit.role === "Herói" && unit.name !== "Chefaum Orc"
-  ) as Unit[];
+  const leader = orcMobData.find((unit) => unit.role === "Líder") as Unit;
+  const heroes = orcMobData.filter((unit) => unit.role === "Herói") as Unit[];
   const soldiers = orcMobData.filter((unit) => !unit.role) as Unit[];
 
   const navigationSections = [
