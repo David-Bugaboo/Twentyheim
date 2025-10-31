@@ -115,12 +115,16 @@ function OccupyPage() {
             <div id="experience" className="mt-8">
               <HeaderH2>Experiência</HeaderH2>
               <MobileText>
-                Sobrevivência: +1XP para cada figura que sobreviveu a partida.
-                Líder Vencedor: O líder do bando que controla o maior número de
+                <strong>Sobrevivência:</strong> +1XP para cada figura que sobreviveu a partida.
+                <br />
+                <br />
+                <strong>Líder Vencedor:</strong> O líder do bando que controla o maior número de
                 peças de terreno no final da batalha ganha +1 XP. Se ambos os
                 lados ocupam o mesmo número de peças de terreno, então a batalha
-                é considerada um empate e nenhum líder ganha este bônus. Por
-                Inimigo Eliminado: Qualquer Herói ganha +1 de XP para cada
+                é considerada um empate e nenhum líder ganha este bônus.
+                <br />
+                <br />
+                <strong>Por Inimigo Eliminado:</strong> Qualquer Herói ganha +1 de XP para cada
                 inimigo que ele reduz a 0 de vida.
               </MobileText>
             </div>

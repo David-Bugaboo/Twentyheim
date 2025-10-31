@@ -53,7 +53,7 @@ const ChargeActionSection = () => {
         <div className="bg-[#2a1f1f] p-4 rounded-lg border border-[#382929] mb-4">
           <MobileText className="italic text-[#a89968] mb-0">
             A Matriarca viu o Possuído correndo em direção à Noviça indefesa.
-            "Não passará!" gritou, lançando-se no caminho do demônio. O Possuído
+            "Não passará!" gritou, lançando-se no caminho do daemônio. O Possuído
             estava a apenas 2cm quando ela interceptou, forçando-o a desviar
             para colidir com ela em vez da jovem. Aço sagrado encontrou carne
             corrompida, e a Noviça foi salva por uma irmã mais experiente.

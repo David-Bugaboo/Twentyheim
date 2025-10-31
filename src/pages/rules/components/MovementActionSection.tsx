@@ -177,11 +177,11 @@ const MovementActionSection = () => {
           Esse movimento nunca pode ser usado para declarar carga.
         </MobileText>
         <QuoteSection
-          quote="O aprendiz viu o demônio avançar. Terror puro. 'FUJA!' sua mente
+          quote="O aprendiz viu o daemônio avançar. Terror puro. 'FUJA!' sua mente
           gritou. Ele correu — através de escombros, água podre, fogo, tudo.
           Oito centímetros de puro desespero, ignorando cada obstáculo. Então
           parou, ofegante, sem fôlego para mais nada. Sua ativação acabou. Tudo
-          que restava era esperar que o demônio não o alcançasse."
+          que restava era esperar que o daemônio não o alcançasse."
         />
       </ActionSubsubsection>
 

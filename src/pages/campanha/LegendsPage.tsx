@@ -44,7 +44,7 @@ function LegendsPage() {
           <QuickNavigation sections={navigationSections} />
           <MobileSection>
             <div id="intro">
-              <PageTitle>Dramatis Personae</PageTitle>
+              <PageTitle>Lendas</PageTitle>
             </div>
 
             <MobileText>

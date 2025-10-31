@@ -86,21 +86,16 @@ function StreetBrawlPage() {
             <div id="experience" className="mt-8">
               <HeaderH2>Experiência</HeaderH2>
               <MobileText>
-                <ul>
-                  <li>
-                    <strong>Sobrevivência</strong>: Se um Herói ou grupo de
-                    Seguidores sobrevive à batalha, eles ganham +1 de
-                    Experiência.
-                  </li>
-                  <li>
-                    <strong>Líder Vencedor</strong>: O líder do bando vencedor
-                    ganha +1 de Experiência.
-                  </li>
-                  <li>
-                    <strong>Inimigo Fora de Ação</strong>: Um Herói ganha +1 de
-                    Experiência para cada inimigo que ele coloca fora de ação.
-                  </li>
-                </ul>
+                <strong>Sobrevivência:</strong> +1XP para cada figura que
+                sobreviveu a partida.
+                <br />
+                <br />
+                <strong>Líder Vencedor:</strong> O líder do bando vencedor ganha
+                +1 XP.
+                <br />
+                <br />
+                <strong>Por Inimigo Eliminado:</strong> Qualquer Herói ganha +1
+                de XP para cada inimigo que ele reduz a 0 de vida.
               </MobileText>
             </div>
           </MobileSection>

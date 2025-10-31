@@ -100,12 +100,12 @@ function DarkGodsInvocationPage() {
           <QuickNavigation sections={navigationSections} />
           <MobileSection>
             <div id="intro">
-              <PageTitle>A Feitiçaria dos Deuses Sombrios</PageTitle>
+              <PageTitle>Invocações dos Deuses Sombrios</PageTitle>
             </div>
 
             <div id="chaos-gods" className="mt-8">
               <HeaderH2>
-                Magistrados do Caos e os Quatro Grandes Deuses
+                Ritualistas do Caos e os Quatro Grandes Deuses
               </HeaderH2>
               <MobileText variant="quote" className="mb-6 italic">
                 Agrupem-se ao redor de mim, filhos da noite, e ouçam a sabedoria
@@ -146,15 +146,15 @@ function DarkGodsInvocationPage() {
             </div>
 
             <div id="summoning-daemons" className="mt-8">
-              <HeaderH2>Venha, Daemônio, Pois Te Invoco!</HeaderH2>
+              <HeaderH2>Venha, Daemônio!</HeaderH2>
 
               <MobileText className="mb-4">
                 Trazer Daemônios do Reino do Caos para o campo de batalha requer
                 tanto encantamentos mágicos quanto sacrifício adequado de itens
                 preciosos, especialmente sangue. No jogo isso é representado por
-                um Feitiço invocado pelo Magistrado ou Xamã para realmente
-                invocar o Daemônio, e um custo de contratação como o dos
-                mercenários para representar o sacrifício.
+                um Feitiço invocado pelo Ritualista para realmente invocar o
+                Daemônio, e um custo de contratação como o dos mercenários para
+                representar o sacrifício.
               </MobileText>
 
               <MobileText className="mb-4">
@@ -162,8 +162,8 @@ function DarkGodsInvocationPage() {
                 sombrios com outros de sua espécie. O feitiço de invocação é
                 assumido como disponível para todos os Conjuradores dos Rituais
                 do Caos através de seus contatos se forem loucos o suficiente
-                para usá-lo. Ele não precisa ser aprendido à moda de outros
-                feitiços.
+                para usá-lo. Ele não precisa ser aprendido através de um avanço
+                como outros feitiços.
               </MobileText>
             </div>
 
@@ -174,14 +174,14 @@ function DarkGodsInvocationPage() {
                   name="Ritual da Ponte Daemônica"
                   castingNumber={14}
                   keywords={["Área de Efeito(Zona Pequena)"]}
-                  effect="O Conjurador posiciona a Área de Efeito em qualquer ponto em contato de base com ele mesmo. Caso o Conjurador saiba alguns dos Rituais dos Deuses Sombrios, o demônio correspondendo surge dentro da área de efeito, ficando em jogo uma quantidade de turnos igual a por quanto o teste de conjuração superou a classe de dificuldade da magia. O demônio é um membro temporário do bando e segue todas as regras normais, inclusive poder ser ativado com a regra líder."
+                  effect="O Conjurador posiciona a Área de Efeito em qualquer ponto em contato de base com ele mesmo. Caso o Conjurador saiba alguns dos Rituais dos Deuses Sombrios, o daemônio correspondente surge dentro da área de efeito, ficando em jogo uma quantidade de turnos igual a por quanto o teste de conjuração superou a classe de dificuldade da magia. O daemônio é um membro temporário do bando e segue todas as regras normais, inclusive podendo ser ativado com a regra líder."
                 />
               </div>
             </div>
 
             <div id="god-specific-spells" className="mt-8">
               <HeaderH2>
-                Feitiços Específicos dos Deuses para Magisters do Caos
+                Rituais dos Deuses do Caos
               </HeaderH2>
               <MobileText className="mb-4">
                 Quando um conjurador da tradição Rituais do Caos aprender as 6
@@ -204,13 +204,13 @@ function DarkGodsInvocationPage() {
             </div>
 
             <div id="seduction-of-slaanesh" className="mt-8">
-              <HeaderH2>Rituais Específicos dos Deuses do Caos</HeaderH2>
+              <HeaderH2>Os Rituais</HeaderH2>
               <div className="mt-4 mb-6">
                 <LoreSpellCard
                   name="Sedução de Slaanesh"
                   castingNumber={12}
                   keywords={["Alcance(25cm)", "Psicológica"]}
-                  effect="A figura alvo rola um teste de Vontade contra o teste de conjuração da magia. Se o alvo falhar, ele age imediatamente após o magistrado, e tem sua ações controladas por ele. Quando sua ativaçã terminar, ganha dois marcadores de atordoamento."
+                  effect="A figura alvo rola um teste de Vontade contra o teste de conjuração da magia. Se o alvo falhar, ele age imediatamente após o conjurador, e tem sua ações controladas por ele. Quando sua ativação terminar, ganha dois marcadores de Atordoamento imediatamente."
                   colorScheme="purple"
                 />
               </div>

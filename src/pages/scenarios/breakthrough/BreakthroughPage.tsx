@@ -109,11 +109,20 @@ function BreakthroughPage() {
             <div id="experience" className="mt-8">
               <HeaderH2>Experiência</HeaderH2>
               <MobileText>
-                Sobrevivência: +1XP para cada figura que sobreviveu a partida.
-                Líder Vencedor: O líder do bando vencedor ganha +1 XP. Por
-                Inimigo Eliminado: Qualquer Herói ganha +1 de XP para cada
-                inimigo que ele reduz a 0 de vida. Rompendo Linhas: Qualquer
-                figura ganha +1 XP por romper as linhas inimigas.
+                <strong>Sobrevivência:</strong> +1XP para cada figura que
+                sobreviveu a partida.
+                <br />
+                <br />
+                <strong>Líder Vencedor:</strong> O líder do bando vencedor ganha
+                +1 XP.
+                <br />
+                <br />
+                <strong>Por Inimigo Eliminado:</strong> Qualquer Herói ganha +1
+                de XP para cada inimigo que ele reduz a 0 de vida.
+                <br />
+                <br />
+                <strong>Rompendo Linhas:</strong> Qualquer figura ganha +1 XP
+                por romper as linhas inimigas.
               </MobileText>
             </div>
 

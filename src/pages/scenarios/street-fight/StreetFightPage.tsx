@@ -122,12 +122,16 @@ function StreetFightPage() {
             <div id="experience" className="mt-8">
               <HeaderH2>Experiência</HeaderH2>
               <MobileText>
-                Sobrevivência: +1XP para cada figura que sobreviveu a partida.
-                Líder Vencedor: O líder do bando vencedor ganha +1 XP. Por
-                Inimigo Eliminado: Qualquer Herói ganha +1 de XP para cada
-                inimigo que ele reduz a 0 de vida. Escapando: O primeiro Herói
-                de qualquer lado (não ambos!) que sair pela borda oposta da mesa
-                ganha +1 XP.
+                <strong>Sobrevivência:</strong> +1XP para cada figura que
+                sobreviveu a partida.
+                <br />
+                <br />
+                <strong>Líder Vencedor:</strong> O líder do bando vencedor ganha
+                +1 XP.
+                <br />
+                <br />
+                <strong>Por Inimigo Eliminado:</strong> Qualquer Herói ganha +1
+                de XP para cada inimigo que ele reduz a 0 de vida.
               </MobileText>
             </div>
 

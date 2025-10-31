@@ -65,7 +65,7 @@ const giftResults = [
   {
     roll: "13",
     result:
-      "Alma Volátil. Esta figura é permanentemente possuída por um Daemônio de Khorne ansioso pela matança. Se o jogador controlador rolar um '1' natural em uma Rolagem de Iniciativa, o demônio ruge de raiva, e todas as figuras a até 5cm, incluindo o conjurador, imediatamente sofrem um ataque de tiro mágico +1.",
+      "Alma Volátil. Esta figura é permanentemente possuída por um Daemônio de Khorne ansioso pela matança. Se o jogador controlador rolar um '1' natural em uma Rolagem de Iniciativa, o daemônio ruge de raiva, e todas as figuras a até 5cm, incluindo o conjurador, imediatamente sofrem um ataque de tiro mágico +1.",
   },
   {
     roll: "14",

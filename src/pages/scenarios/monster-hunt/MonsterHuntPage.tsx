@@ -135,29 +135,24 @@ function MonsterHuntPage() {
             <div id="experience" className="mt-8">
               <HeaderH2>Experiência</HeaderH2>
               <MobileText>
-                <ul>
-                  <li>
-                    <strong>Don Quixote de Tilea</strong>: +1 Por ferir o
-                    monstro.
-                  </li>
-                  <li>
-                    <strong>Caçador de Monstros</strong>: +2 Por reduzir o
-                    monstro a 0 de vida.
-                  </li>
-                  <li>
-                    <strong>Sobrevivência</strong>: Se um Herói ou grupo de
-                    Seguidores sobrevive à batalha, eles ganham +1 de
-                    Experiência.
-                  </li>
-                  <li>
-                    <strong>Líder Vencedor</strong>: O líder do bando vencedor
-                    ganha +1 de Experiência.
-                  </li>
-                  <li>
-                    <strong>Inimigo Fora de Ação</strong>: Um Herói ganha +1 de
-                    Experiência para cada inimigo que ele coloca fora de ação.
-                  </li>
-                </ul>
+                <strong>Sobrevivência:</strong> +1XP para cada figura que
+                sobreviveu a partida.
+                <br />
+                <br />
+                <strong>Líder Vencedor:</strong> O líder do bando vencedor ganha
+                +1 XP.
+                <br />
+                <br />
+                <strong>Por Inimigo Eliminado:</strong> Qualquer Herói ganha +1
+                de XP para cada inimigo que ele reduz a 0 de vida.
+                <br />
+                <br />
+                <strong>Don Quixote de Tilea:</strong> +1 de XP Por ferir o
+                monstro.
+                <br />
+                <br />
+                <strong>Caçador de Monstros:</strong> +2 de XP Por reduzir o
+                monstro a 0 de vida.
               </MobileText>
             </div>
 

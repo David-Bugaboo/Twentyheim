@@ -90,7 +90,7 @@ const SpellcastingActionSection = () => {
               Maximilian levantou seu cajado, palavras de poder formando-se em
               seus lábios. A escuridão de Mordheim pressionava contra ele, mas
               ele conhecia a luz. "Vade Retro, Cramunhão!", ele declarou,
-              conjurando contra o demônio à sua frente. CD 16 — não era fácil.
+              conjurando contra o daemônio à sua frente. CD 16 — não era fácil.
             </MobileText>
 
             <MobileText className="italic text-[#a89968] mb-3">
@@ -102,7 +102,7 @@ const SpellcastingActionSection = () => {
             </MobileText>
 
             <MobileText className="italic text-[#a89968] mb-3">
-              Luz sagrada explode do cajado, envolvendo o demônio em chamas
+              Luz sagrada explode do cajado, envolvendo o daemônio em chamas
               purificadoras. A figura grita — um som que não deveria existir
               neste mundo. O feitiço funciona conforme descrito na tradição da
               Luz.
