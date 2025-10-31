@@ -1,11 +1,5 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import EquipmentCard from "./EquipmentCard";
-import meleeDb from "../database/items/melee-weapons.data.json";
-import rangedDb from "../database/items/ranged-weapons.data.json";
-import firearmsDb from "../pages/weapons and equipments/data/armas-de-fogo-refactor.json";
-import meleeRefactor from "../pages/weapons and equipments/data/armas-corpo-a-corpo-refactor.json";
-import rangedRefactor from "../pages/weapons and equipments/data/armas-a-distancia-refactor.json";
-import armorDb from "../pages/weapons and equipments/data/armaduras-e-escudos-refactor.json";
 
 type ItemObj = { name: string; category: string; cost?: string; data?: any };
 

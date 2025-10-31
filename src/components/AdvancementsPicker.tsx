@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 export type AdvancementOption = string;
 
@@ -21,11 +21,7 @@ const DEFAULT_OPTIONS: AdvancementOption[] = [
   "O Moleque Tem Talento!",
 ];
 
-function AdvancementsPicker({
-  options,
-  selected,
-  onAdd,
-}: AdvancementsPickerProps) {
+function AdvancementsPicker({ options, onAdd }: AdvancementsPickerProps) {
   const [choice, setChoice] = useState<string>("");
 
   const opts = useMemo(() => {

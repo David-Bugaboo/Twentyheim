@@ -169,8 +169,16 @@ function HiredSwordsPage() {
                   stats={mercenary.stats}
                   lore={mercenary.lore}
                   availability={mercenary.availability}
-                  qualidade={mercenary.qualidade}
-                  spellAffinity={mercenary.spellAffinity}
+                  qualidade={
+                    mercenary.qualidade
+                      ? String(mercenary.qualidade)
+                      : undefined
+                  }
+                  spellAffinity={
+                    "spellAffinity" in mercenary
+                      ? (mercenary as any).spellAffinity
+                      : undefined
+                  }
                   abilities={mercenary.abilities}
                 />
               </div>

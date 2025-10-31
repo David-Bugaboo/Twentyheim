@@ -180,8 +180,14 @@ function LegendsPage() {
                   stats={legend.stats}
                   lore={legend.lore}
                   availability={legend.availability}
-                  qualidade={legend.qualidade}
-                  spellAffinity={legend.spellAffinity}
+                  qualidade={
+                    legend.qualidade ? String(legend.qualidade) : undefined
+                  }
+                  spellAffinity={
+                    "spellAffinity" in legend
+                      ? (legend as any).spellAffinity
+                      : undefined
+                  }
                   abilities={legend.abilities}
                 />
               </div>

@@ -1831,7 +1831,6 @@ function WarbandRosterPage() {
     []
   );
 
-  const [setSelectedUnitId] = useState<string>("");
   const selectedFaction = useMemo(
     () => allFactions.find((f) => f.key === (sheet.faction || "")),
     [allFactions, sheet.faction]
