@@ -753,7 +753,7 @@ function SharedWarbandPage() {
 
                 const active = sortUnits(
                   sheet.units.filter(
-                    (u) => !Boolean((u as Unit)?.figure?.inactive)
+                    (u: any) => !Boolean((u as Unit)?.figure?.inactive)
                   )
                 );
 
@@ -1035,7 +1035,7 @@ function SharedWarbandPage() {
                                   </h4>
                                   <div className="space-y-3">
                                     {fig.skills.map((skill, idx) => {
-                                      const skillObj =
+                                      const skillObj: any =
                                         typeof skill === "string"
                                           ? { name: skill }
                                           : skill;
@@ -1069,7 +1069,7 @@ function SharedWarbandPage() {
                                   </h4>
                                   <div className="space-y-3">
                                     {fig.spells.map((spell, idx) => {
-                                      const spellObj =
+                                      const spellObj: any =
                                         typeof spell === "string"
                                           ? { name: spell }
                                           : spell;
