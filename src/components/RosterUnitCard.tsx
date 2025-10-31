@@ -736,12 +736,6 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
           if (role.includes("lenda") || (figure as any)?.noXP) return null;
           return (
             <div className="mb-6">
-              <h4
-                className="text-lg font-bold mb-3"
-                style={{ color: "#8fbc8f" }}
-              >
-                EXPERIÊNCIA
-              </h4>
               {(() => {
                 const role = (figure?.role || "").toString().toLowerCase();
                 const isHero =
