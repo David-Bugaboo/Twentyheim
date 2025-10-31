@@ -1822,21 +1822,16 @@ function WarbandRosterPage() {
             injuries: [...list, newInjury],
           },
         } as any;
-        const norm = injury.toLowerCase();
-        // Penalidades numéricas simples
-        if (
-          norm.includes("perna") &&
-          norm.includes("-2") &&
-          norm.includes("mov")
-        ) {
+        // Penalidades numéricas - detecção específica
+        if (injury === "Ferimento na Perna") {
           updatedUnit = applyInjuryDelta(updatedUnit, "move", -2);
-        } else if (norm.includes("tórax") || norm.includes("torax")) {
-          updatedUnit = applyInjuryDelta(updatedUnit, "health", -2);
-        } else if (norm.includes("cego") || norm.includes("olho")) {
+        } else if (injury === "Costelas Quebradas") {
+          updatedUnit = applyInjuryDelta(updatedUnit, "health", -4);
+        } else if (injury === "Cego de Um Olho") {
           updatedUnit = applyInjuryDelta(updatedUnit, "shoot", -2);
-        } else if (norm.includes("nervosa") || norm.includes("vontade")) {
+        } else if (injury === "Trauma") {
           updatedUnit = applyInjuryDelta(updatedUnit, "Vontade", -1);
-        } else if (norm.includes("mão") || norm.includes("mao")) {
+        } else if (injury === "Mão Esmigalhada") {
           updatedUnit = applyInjuryDelta(updatedUnit, "fight", -1);
         }
         return updatedUnit;
@@ -1868,20 +1863,16 @@ function WarbandRosterPage() {
             injuries: list,
           },
         } as any;
-        const norm = injury.toLowerCase();
-        if (
-          norm.includes("perna") &&
-          norm.includes("-2") &&
-          norm.includes("mov")
-        ) {
+        // Penalidades numéricas - detecção específica para reversão
+        if (injury === "Ferimento na Perna") {
           updatedUnit = applyInjuryDelta(updatedUnit, "move", +2);
-        } else if (norm.includes("tórax") || norm.includes("torax")) {
-          updatedUnit = applyInjuryDelta(updatedUnit, "health", +2);
-        } else if (norm.includes("cego") || norm.includes("olho")) {
+        } else if (injury === "Costelas Quebradas") {
+          updatedUnit = applyInjuryDelta(updatedUnit, "health", +4);
+        } else if (injury === "Cego de Um Olho") {
           updatedUnit = applyInjuryDelta(updatedUnit, "shoot", +2);
-        } else if (norm.includes("nervosa") || norm.includes("vontade")) {
+        } else if (injury === "Trauma") {
           updatedUnit = applyInjuryDelta(updatedUnit, "Vontade", +1);
-        } else if (norm.includes("mão") || norm.includes("mao")) {
+        } else if (injury === "Mão Esmigalhada") {
           updatedUnit = applyInjuryDelta(updatedUnit, "fight", +1);
         }
         return updatedUnit;
