@@ -1,43 +1,11 @@
-import {
-  Typography,
-  Tooltip,
-  styled,
-  ClickAwayListener,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Paper,
-} from "@mui/material";
+import { Typography, Tooltip, styled, ClickAwayListener } from "@mui/material";
 import { type ReactNode, useState } from "react";
-import WeaponTooltipCard from "./WeaponTooltipCard";
-import {
-  commonItemsData,
-  type EquipmentItem,
-  type EquipmentCategory,
-} from "../pages/weapons and equipments/data/commonItemsData";
 import gameTermsData from "../pages/rules/data/game-terms.json";
 
 interface GameTerm {
   term: string;
   description: string;
 }
-
-// Função para criar mapeamento de equipamentos dos dados comuns
-const createEquipmentMap = () => {
-  const equipmentMap = new Map<string, EquipmentItem>();
-
-  commonItemsData.forEach((category: EquipmentCategory) => {
-    category.items.forEach((item: EquipmentItem) => {
-      equipmentMap.set(item.name, item);
-    });
-  });
-
-  return equipmentMap;
-};
-
-const equipmentMap = createEquipmentMap();
 
 const gameTerms: GameTerm[] = gameTermsData;
 
@@ -55,160 +23,6 @@ const StyledTooltipTerm = styled("span")({
     color: "#98FB98",
   },
 });
-
-// Component for equipment table
-interface EquipmentTableProps {
-  equipmentList: string[];
-}
-
-function EquipmentTable({ equipmentList }: EquipmentTableProps) {
-  // Organiza os equipamentos em colunas (2 colunas)
-  const columns = 2;
-  const rows = Math.ceil(equipmentList.length / columns);
-
-  const equipmentRows = [];
-  for (let i = 0; i < rows; i++) {
-    const row = [];
-    for (let j = 0; j < columns; j++) {
-      const index = i * columns + j;
-      if (index < equipmentList.length) {
-        row.push(equipmentList[index]);
-      } else {
-        row.push(null);
-      }
-    }
-    equipmentRows.push(row);
-  }
-
-  return (
-    <TableContainer
-      component={Paper}
-      sx={{
-        margin: "8px 0",
-        backgroundColor: "rgba(28, 24, 18, 0.05)",
-        border: "1px solid rgba(212, 175, 55, 0.3)",
-        borderRadius: "8px",
-      }}
-    >
-      <Table size="small">
-        <TableBody>
-          {equipmentRows.map((row, rowIndex) => (
-            <TableRow key={rowIndex}>
-              {row.map((equipment, colIndex) => (
-                <TableCell
-                  key={colIndex}
-                  sx={{
-                    border: "none",
-                    padding: "8px 16px",
-                    textAlign: "left",
-                    width: "50%",
-                  }}
-                >
-                  {equipment ? (
-                    <EquipmentTooltip equipmentName={equipment}>
-                      {equipment}
-                    </EquipmentTooltip>
-                  ) : null}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
-}
-
-// Component for equipment tooltips
-interface EquipmentTooltipProps {
-  equipmentName: string;
-  children: React.ReactNode;
-}
-
-function EquipmentTooltip({ equipmentName, children }: EquipmentTooltipProps) {
-  const [open, setOpen] = useState(false);
-  const equipment = equipmentMap.get(equipmentName);
-
-  if (!equipment) {
-    return <span>{children}</span>;
-  }
-
-  const handleTooltipClose = () => {
-    setOpen(false);
-  };
-
-  const handleTooltipToggle = () => {
-    setOpen(!open);
-  };
-
-  return (
-    <ClickAwayListener onClickAway={handleTooltipClose}>
-      <span>
-        <Tooltip
-          title={
-            <div style={{ maxWidth: "400px" }}>
-              <div
-                style={{
-                  marginBottom: "8px",
-                  fontWeight: "bold",
-                  fontSize: "1.1rem",
-                }}
-              >
-                {equipment.name}
-              </div>
-              {equipment.properties && equipment.properties.length > 0 && (
-                <div style={{ marginBottom: "8px" }}>
-                  {equipment.properties.map(
-                    (prop: { label: string; value: string }, index: number) => (
-                      <div
-                        key={index}
-                        style={{ marginBottom: "4px", fontSize: "0.9rem" }}
-                      >
-                        <strong>{prop.label}:</strong> {prop.value}
-                      </div>
-                    )
-                  )}
-                </div>
-              )}
-              <div style={{ fontSize: "0.9rem", lineHeight: "1.3" }}>
-                {equipment.description}
-              </div>
-            </div>
-          }
-          arrow
-          placement="top"
-          open={open}
-          onClose={handleTooltipClose}
-          disableFocusListener
-          disableHoverListener
-          disableTouchListener
-          sx={{
-            "& .MuiTooltip-tooltip": {
-              backgroundColor: "rgba(34, 139, 34, 0.95)",
-              border: "1px solid rgba(144, 238, 144, 0.8)",
-              fontSize: "1.2rem",
-              maxWidth: "600px",
-              padding: "1.5rem 2rem",
-              fontFamily: '"Crimson Text", serif',
-              color: "white",
-            },
-            "& .MuiTooltip-arrow": {
-              color: "rgba(34, 139, 34, 0.95)",
-            },
-          }}
-        >
-          <StyledTooltipTerm
-            onClick={handleTooltipToggle}
-            onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}
-          >
-            {children}
-          </StyledTooltipTerm>
-        </Tooltip>
-      </span>
-    </ClickAwayListener>
-  );
-}
 
 // Component for individual tooltip terms with mobile support
 interface TooltipTermProps {
@@ -281,51 +95,6 @@ function escapeRegex(str: string): string {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-// Função para processar texto de equipamento disponível e adicionar tooltips
-function processEquipmentText(text: string): ReactNode[] {
-  // Verifica se o texto contém "Equipamento Disponível" ou similar
-  if (!text.toLowerCase().includes("equipamento")) {
-    return [text];
-  }
-
-  // Encontra a parte do texto que contém a lista de equipamentos
-  const equipmentMatch = text.match(/(Equipamento Disponível[^.]*)/i);
-  if (!equipmentMatch) {
-    return [text];
-  }
-
-  const equipmentPart = equipmentMatch[1];
-  const matchIndex = equipmentMatch.index || 0;
-  const beforeEquipment = text.substring(0, matchIndex);
-  const afterEquipment = text.substring(matchIndex + equipmentPart.length);
-
-  // Divide a lista de equipamentos por vírgula e espaço
-  const equipmentList = equipmentPart
-    .replace(/^Equipamento Disponível[:\s]*/i, "") // Remove o prefixo
-    .split(/[,\s]+/)
-    .map((item) => item.trim())
-    .filter((item) => item.length > 0);
-
-  // Retorna o texto com a tabela de equipamentos
-  return [
-    beforeEquipment,
-    <div key="equipment-section" style={{ margin: "12px 0" }}>
-      <Typography
-        variant="subtitle2"
-        sx={{
-          fontWeight: "bold",
-          marginBottom: "8px",
-          color: "#d4af37",
-        }}
-      >
-        Equipamento Disponível:
-      </Typography>
-      <EquipmentTable equipmentList={equipmentList} />
-    </div>,
-    afterEquipment,
-  ];
-}
-
 function GameText({
   children,
   component = Typography,
@@ -334,36 +103,9 @@ function GameText({
   const Component = component;
 
   const processText = (text: string): ReactNode[] => {
-    // Primeiro, processa equipamentos se o texto contém "Equipamento Disponível"
-    if (text.toLowerCase().includes("equipamento")) {
-      return processEquipmentText(text);
-    }
-
     const elements: ReactNode[] = [];
     let remainingText = text;
     let keyCounter = 0;
-
-    // Lista de armas que devem usar o tooltip especial
-    const weaponTerms = [
-      "Adaga",
-      "Machado",
-      "Espada",
-      "Arma de Duas Mãos",
-      "Cajado",
-      "Martelo",
-      "Alabarda",
-      "Funda",
-      "Arma Arremessável",
-      "Arco",
-      "Besta",
-      "Besta de Mão",
-      "Pistola",
-      "Arcabuz",
-      "Bacamarte",
-      "Armadura Leve",
-      "Armadura Pesada",
-      "Escudo",
-    ];
 
     const sortedTerms = [...gameTerms].sort(
       (a, b) => b.term.length - a.term.length
@@ -424,27 +166,15 @@ function GameText({
           elements.push(remainingText.substring(0, earliestMatch.index));
         }
 
-        // Add the matched term with tooltip
-        // Check if it's a weapon term to use special tooltip
-        if (weaponTerms.includes(earliestMatch.term)) {
-          elements.push(
-            <WeaponTooltipCard
-              key={`weapon-tooltip-${keyCounter++}`}
-              weaponName={earliestMatch.term}
-            >
-              {earliestMatch.matchedText}
-            </WeaponTooltipCard>
-          );
-        } else {
-          elements.push(
-            <TooltipTerm
-              key={`tooltip-${keyCounter++}`}
-              term={earliestMatch.matchedText}
-              description={earliestMatch.description}
-              termKey={`tooltip-${keyCounter}`}
-            />
-          );
-        }
+        // Add the matched term with tooltip (only from game-terms.json)
+        elements.push(
+          <TooltipTerm
+            key={`tooltip-${keyCounter++}`}
+            term={earliestMatch.matchedText}
+            description={earliestMatch.description}
+            termKey={`tooltip-${keyCounter}`}
+          />
+        );
 
         // Update remaining text
         remainingText = remainingText.substring(

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "quengo-duro",
+    "name": "QUENGO DURO!",
+    "type": "Hordas Orc",
+    "description": "Uma figura com essa habilidade pode, como reação a receber um marcador de Atordoamento, rolar um teste de Vontade contra CD 14. Caso tenha sucesso, aquele marcador de Atordoamento é removido imediatamente. Se estiver usando um elmo que ainda não teve sua habilidade utilizada, recebe +4 de bônus nesse teste."
+  },
+  {
+    "id": "waaaaaagh",
+    "name": "WAAAAAAAAAAGH!",
+    "type": "Hordas Orc",
+    "description": "A figura com essa habilidade ganha 8cm de movimento apenas durante ações cargas (esse movimento extra não é dobrado durante a carga)."
+  },
+  {
+    "id": "umbora-cambada",
+    "name": "UMBORA CAMBADA!",
+    "type": "Hordas Orc",
+    "description": "A figura com essa habilidade se torna Imune a Aterrorizante."
+  },
+  {
+    "id": "sabido-e-brutal",
+    "name": "SABIDO E BRUTAL!",
+    "type": "Hordas Orc",
+    "description": "Apenas o Chefaum Orc pode ter essa habilidade. O Bando ganha +5 em testes de debandada enquanto o Chefaum Orc estiver no tabuleiro."
+  },
+  {
+    "id": "cascudo",
+    "name": "CASCUDO!",
+    "type": "Hordas Orc",
+    "description": "A figura com essa habilidade ganha +1 no atributo Armadura, e aumenta seu limite racial de Armadura em 1."
+  },
+  {
+    "id": "quebra-cuca",
+    "name": "QUEBRA CUCA!",
+    "type": "Hordas Orc",
+    "description": "Todas as armas usadas pela figura com essa habilidade ganha a palavra-chave Concussiva(5). Caso a arma já tenha a palavra-chave Concussiva(X), X aumenta em 1."
+  }
+]

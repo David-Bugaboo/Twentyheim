@@ -1,74 +1,38 @@
 [
   {
-    "name": "Congelamento Invernal",
-    "castingNumber": 10,
-    "keywords": ["Área de Efeito (Zona Média)"],
-    "effect": "Centralize a Área de Efeito no Conjurador e mova a área junto a ele. Todas as figuras inimigas na área de efeito recebem -2 Ímpeto, seus movimentos tornando-se lentos e pesados como se estivessem presos em neve profunda."
-  },
-  {
-    "name": "Fúria da Batalha",
-    "castingNumber": 12,
-    "keywords": ["Linha de Visão"],
-    "effect": "A figura alvo ganha +1 Ímpeto e +1 Movimento pelo resto do jogo. múltiplas conjurações de Fúria da Batalha no mesmo alvo não têm efeito."
-  },
-  {
-    "name": "Uivo do Lobo",
-    "castingNumber": 8,
-    "keywords": ["Linha de Visão"],
-    "effect": "A figura aliada alvo será ativada imediatamente após o sacerdote."
-  },
-  {
-    "name": "Coração do Lobo",
-    "castingNumber": 12,
-    "keywords": ["Linha de Visão"],
-    "effect": "O alvo desta oração torna-se imune a Aterrorizante pelo resto do jogo. A vontade da figura é fortalecida pelo espírito do predador, recebendo +2 Vontade pelo resto do jogo."
-  },
-  {
-    "name": "Fúria Invernal",
-    "castingNumber": 14,
-    "keywords": ["Área de Efeito (Explosão Média)"],
-    "effect": "Centraliza a Área de Efeito no conjurador. Todas as figuras inimigas na área de efeito sofrem um ataque gélido +0. Figuras atingidas ganham um marcador de congelamento."
-  },
-  {
-    "name": "Impacto Gélido",
-    "castingNumber": 14,
-    "keywords": ["Conjurador Apenas"],
-    "effect": "Essa magia só pode ser conjurada em combate. O conjurador recebe uma ação de Luta gratuita que deve ser usada imediatamente. O conjurador recebe +4 Ímpeto durante esta ação, seus golpes caindo como martelos de avalanche. Figuras atingidas por este ataque ganham um Marcador de Atordoamento."
-  },
-  {
-    "name": "Invocar Avalanche",
-    "castingNumber": 12,
-    "keywords": ["Linha de Visão", "Área de Efeito (Explosão Grande)"],
-    "effect": "Todas as figuras na área de efeito devem fazer um teste de Vontade com CD igual à conjuração dessa magia. Se falharem, são empurradas para o centro da área de efeito em linha reta. Figuras que colidirem em terrenos com mais de 3cm de altura interrompem o movimento e ganham um marcador de Atordoamento."
-  },
-  {
-    "name": "Convocar Geleira",
-    "castingNumber": 10,
-    "keywords": ["Linha de Visão", "Área de Efeito (Muro)"],
-    "effect": "A área de efeito deve ser posicionada totalmente dentro da linha de visão do conjurador. A área de efeito bloqueia linha de visão e pode ser usada como cobertura. Quando uma figura tenta escalar essa Área de Efeito, ela deve rolar um teste de Vontade contra a Rolagem de Conjuração dessa magia. Se falhar, sua ativação termina imediatamente e quaisquer outras ações são perdidas."
-  },
-  {
     "name": "Nevasca",
+    "castingNumber": 8,
+    "keywords": ["Área de Efeito(Zona Pequena)", "Concentração"],
+    "effect": "Centralize a Zona no Sacerdote e mova-a junto com ele. Figuras na área de efeito tem =2 de Ímpeto."
+  },
+  {
+    "name": "Impacto Estrondoso",
+    "castingNumber": 16,
+    "keywords": ["Alcance(30cm)"],
+    "effect": "A figura alvo imediatamente sofre um Ataque Gélido +5 com a palavra chave Concussiva(4)"
+  },
+  {
+    "name": "Fúria Lupina",
     "castingNumber": 12,
-    "keywords": ["Área de Efeito (CAMPO INTEIRO)"],
-    "effect": "Todos os ataques com arco e besta são feitos com -1 Precisão pelo resto do jogo. Esta magia pode ser conjurada múltiplas vezes (e por múltiplos conjuradores), com cada conjuração adicional aumentando a penalidade em mais -1, até um máximo de -5."
+    "keywords": ["Conjurador Apenas", "Concentração"],
+    "effect": "O Sacerdote ganha a característica Forte, e causa um dano crítico em uma rolagem de 18, 19 ou 20."
   },
   {
-    "name": "Dádiva de Ulric",
-    "castingNumber": 12,
-    "keywords": ["Ritual"],
-    "effect": "O Conjurador invoca um Grande Lobo Branco como membro permanente do bando, que usa as estatísticas de um lobo, com +2 de Ímpeto, +2 de Armadura e +3 de Vontade, e conta como um soldado do bando. Um conjurador só pode ter um Grande Lobo Branco por vez."
-  },
-  {
-    "name": "Enregelar",
+    "name": "Voracidade do Predador",
     "castingNumber": 10,
-    "keywords": ["Linha de Visão"],
-    "effect": "A figura alvo ganha um marcador de congelamento. Ela pode fazer um teste de Vontade com CD igual à conjuração dessa magia. Se passar, ela remove o Marcador de Congelamento."
+    "keywords": ["Linha de Visão", "Concentração"],
+    "effect": "A figura aliada alvo ganha a característica Fúria enquanto a magia estiver sendo concentrada."
   },
   {
-    "name": "Selvageria Lupina",
-    "castingNumber": 10,
+    "name": "Uivo de Ulric",
+    "castingNumber": 16,
     "keywords": ["Conjurador Apenas"],
-    "effect": "O conjurador pode ativar mais duas vezes durante esse turno, mas essas ativações não podem consecutivas. O conjurador não pode ativar soldados junto a si ou fazer parte de uma ativação em grupo nessas fases. O conjurador pode realizar uma ação em cada uma dessas duas fases e pode tomar qualquer ação - não está limitado ao movimento. Se o conjurador se moveu em alguma ativação anterior durante o turno, qualquer ação de movimento adicional é com metade da velocidade. Se um conjurador conjurar esta magia em turnos consecutivos, ele sofre imediatamente 8 pontos de dano."
+    "effect": "Durante a duração da batalha, todas as figuras do bando do sacerdote são Imunes a Aterrorizante. Adicionalmente, o bando ganha +3 em testes de debandada."
+  },
+  {
+    "name": "Chamado de Ulric",
+    "castingNumber": 16,
+    "keywords": ["Conjurador Apenas"],
+    "effect": "O sacerdote se transforma em um Grande Lobo Branco,  tendo Movimento 17 Ímpeto +4, Precisão 0, Armadura 10, Vontade +1 e Vida 14, ganhando a característica Forte. Durante seu tempo como lobo ele não se aproveita dos efeitos de itens e não pode conjurar magias. Em cada uma de suas ativações, ele pode fazer um teste de Vontade com CD igual a classe de dificuldade dessa magia para voltar a sua forma humana caso tenha sucessa. Se terminar um jogo transformado em lobo, ele pode fazer o teste uma última vez. Em caso de falha, se torna um lobo permanentemente, usando os seguintes status: Movimento 22, Ímpeto 7, Precisão 0, Armadura 10, Vontade +2 e Vida 22. Ele ganha as características Voraz e Animal. Embora se mantenha um héroi, ele não pode mais ganhar experiência e perde todos os seus avanços, também não podendo mais realizar atividades para o bando., mas continua contando como um héroi."
   }
 ]

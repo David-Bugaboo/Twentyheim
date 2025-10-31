@@ -1,0 +1,14 @@
+[
+    {
+      "id": "feerico",
+      "name": "Feérico",
+      "type": "Patrulheiro Elfo",
+      "description": "A figura com essa habilidade tem +5 em testes para resistir ao efeito de magias."
+    },
+    {
+      "id": "abencoado-por-lileath",
+      "name": "Abencoado por Lileath",
+      "type": "Patrulheiro Elfo",
+      "description": "A figura com essa habilidade pode, uma vez por jogo, re-rolar uma rolagem de dado e escolher o melhor resultado."
+    }
+  ]

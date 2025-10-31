@@ -53,6 +53,15 @@ function CampaignPage() {
             <MobileText>Vender fragmentos de Pedra-Bruxa coletados</MobileText>
             <HeaderH3>5. Gastar Coroas</HeaderH3>
             <MobileText>Comprar equipamentos, contratar soldados</MobileText>
+            <HeaderH3>
+              6. Sortear e Decidir Cenários da Próxima Partida
+            </HeaderH3>
+            <MobileText>
+              Os jogadores sorteiam quem jogará um contra o outro na próxima
+              partida, e uma vez que as partidas estejam sorteadas, os jogadores
+              envolvidos em cada partida rolam um dado, com o vencedor
+              escolhendo o Cenário a ser jogado.
+            </MobileText>
 
             <HeaderH2>Navegação Rápida</HeaderH2>
             <MobileText className="mb-4">

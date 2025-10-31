@@ -283,7 +283,7 @@
   {
     "roll": null,
     "id": "facas-de-arremesso",
-    "name": "Faca de Arremesso",
+    "name": "Facas de Arremesso",
     "type": "Arma a Distância",
     "damageModifier": "-1",
     "purchaseCost": "5 coroas",

@@ -1,0 +1,450 @@
+[
+  {
+    "id": "mestre-de-cerimonias",
+    "name": "mestre de Cerimônias",
+    "lore": "Essas figuras conduzem os diabólicos Carnavais do Caos. São os escolhidos de Nurgle e empunham poderes arcanos concedidos por seu deus pestilento. O Mestre é um indivíduo obcecado por poder que lidera sua trupe de artistas daemônicos pelos ermos do Império, espalhando a praga por vários assentamentos. Para o campesinato atrasado das áreas rurais do Império, o Mestre se apresenta como um showman exótico e carismático, trazendo entretenimentos extravagantes a suas vidas monótonas. É a astúcia do Mestre de Cerimônias — e seus encantamentos engenhosos — que mantém seus asseclas sempre um passo à frente das patrulhas dos inúmeros Caçadores de Bruxas que rondam a região.",
+    "role": "Líder",
+    "quantity": "1",
+    "stats": {
+      "move": 10,
+      "fight": "+2",
+      "shoot": "+2",
+      "armour": 10,
+      "Vontade": "+1",
+      "health": 12,
+      "cost": "70 coroas",
+      "strength": "0",
+      "skills": ["Combate", "Atirador", "Acadêmica", "Força", "Agilidade"],
+      "startingXp": 20,
+      "equipmentSlots": 5
+    },
+    "spellAffinity": {
+      "aligned0": ["Rituais de Nurgle"]
+    },
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem."
+      },
+      {
+        "name": "Conjurador",
+        "description": "O Mestre de Cerimônias é um conjurador dos Rituais de Nurgle. Ele é contratado com 1 magia dessa tradição. Ele pode abrir mão de aprender uma habilidade para aprender ou melhorar a classe de dificuldade de uma magia."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Estrela da Manhã",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
+      ],
+      "ranged": [
+        {
+          "name": "Arco Curto",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arco",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Pistola",
+          "cost": "15 coroas"
+        }
+      ],
+      "armor": [
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
+      ],
+      "accessories": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "brutamontes",
+    "name": "Brutamontes",
+    "lore": "São um tipo muito específico de mutante cuja constituição foi reforçada pela vitalidade s0brenatural do Senhor da Decadência. A atenção pútrida de Nurgle transformou o que antes eram homens em criaturas maciças e imponentes, repletas de músculos praguejados e vigor interminável. Brutamontes são indivíduos imensamente fortes e, no grande engodo que é o Carnaval do Caos, atuam como halterofilistas, realizando façanhas de força para entreter as multidões. Quase sempre andam encapuzados como um carrasco, pois embora seus corpos pareçam exteriormente fortes e saudáveis, seus rostos costumam estar tomados por varíola e pústulas. Em batalha, empunham marretas e estrelas da manhã com uma violência terrível, girando-as sobre as cabeças como se fossem brinquedos.",
+    "role": "Herói",
+    "quantity": "0-2",
+    "stats": {
+      "move": 9,
+      "fight": "+3",
+      "shoot": "-",
+      "armour": 10,
+      "Vontade": "0",
+      "health": 12,
+      "strength": "+1",
+      "cost": "60 coroas",
+      "equipmentSlots": 5,
+      "startingXp": 8,
+      "skills": ["Combate", "Força", "Agilidade"]
+    },
+    "abilities": [
+      {
+        "name": "Força Mutante",
+        "description": "O Brutamontes começa o jogo tendo a habilidade Halterofilista."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        {
+          "name": "Estrela da Manhã",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Mangual",
+          "cost": "10 coroas"
+        }
+      ],
+      "armor": [],
+      "ranged": [],
+      "accessories": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "apodrecidos",
+    "name": "Apodrecidos",
+    "lore": "Os Apodrecidos são aqueles mais abençoados e favorecidos pelo Pai Nurgle. Ocupam um lugar de grande importância na hierarquia do circo. Costumam andar pesadamente trajados e protegidos por poderosos encantamentos, pois sob as vestes escondem-se horrores indizíveis. Seus corpos estão tão destruidos por doenças e mutações que é perigoso até para outros mortais do bando tocarem sua pele. Ironicamente, fazem o papel mais prestigioso no Carnaval — o palhaço. Vestidos como bobos da corte, saltitam e brincam entre a plateia durante as apresentações, rindo e gracejando enquanto a infectam com suas inúmeras e terríveis enfermidades. Essas criaturas retorcidas também são oponentes excepcionalmente perigosos em combate, pois estão contaminados com a terrível Podridãon de Nurgle.",
+    "role": "Herói",
+    "quantity": "0-2",
+    "stats": {
+      "move": 10,
+      "fight": "+1",
+      "shoot": "+1",
+      "armour": 10,
+      "Vontade": "0",
+      "health": 12,
+      "strength": "0",
+      "cost": "25 coroas + bençãos de Nurgle",
+      "skills": ["Combate", "Agilidade"],
+      "startingXp": 0,
+      "equipmentSlots": 5
+    },
+    "abilities": [
+      {
+        "name": "Bençães de Nurgle",
+        "description": "O Apodrecido deve ser contratado  com pelo menos uma benção de Nurgle. Cheque a seção Bencãos de Nurgle para checar preços e efeitos."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Estrela da Manhã",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
+      ],
+      "ranged": [
+        {
+          "name": "Arco Curto",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arco",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Pistola",
+          "cost": "15 coroas"
+        }
+      ],
+      "armor": [
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
+      ],
+      "accessories": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "enfermos",
+    "name": "Enfermos",
+    "lore": "Os Enfermos são daemônios do deus do Caos Nurgle, também conhecido como o Senhor da Decadência. Podem ser reconhecidos por seus rostos ciclópicos e corpos horrivelmente apodrecidos. Suas entranhas pendem de fendas esfarrapadas em sua carne verde‑acinzentada tomada pela varíola, e uma aura de morte e putrefação os envolve. São por vezes chamados de Contadores das Pragas ou Cria‑Vermes e são altamente reverenciados pelos membros mortais do bando. Como todos os Daemônios, jamais podem ser destruídos para sempre enquanto o poder de seu deus prevalecer; contudo, sua presença no mundo mortal é tênue e só pode ser mantida por longos períodos através de Magia Sombria e sacrifício. No Circo, os Enfermos se deleitam em seus papéis teatrais como atores de palco, vestindo gibões e calções ostensivos, encrustados de sujeira.",
+    "quantity": "0-2",
+    "noXP":true,
+    "stats": {
+      "move": 11,
+      "fight": "+3",
+      "shoot": "+1",
+      "armour": 13,
+      "Vontade": "+3",
+      "health": 14,
+      "cost": "50 coroas",
+      "strength": "+1",
+      "equipmentSlots": 0
+    },
+    "abilities": [
+      {
+        "name": "Filho do Caos",
+        "description": "Esta figura tem as características Daemônio, Aterrorizante, Mente-Férrea e Imunidade a Marcadores de Atordoamento. Ele não ganha experiência."
+      },
+      {
+        "name": "Nuvem de Moscas",
+        "description": "Figuras em combate com o Enfermo têm -2 em rolagens de Ímpeto."
+      },
+      {
+        "name": "Garras Sujas",
+        "description": "O dano causado pelo Enfermo é venenoso além de mágico."
+      },
+      {
+        "name": "Jato de Imundicie",
+        "description": "O Enfermo pode vomitar toda a sujeira contida em seu interior em uma torrente asquerosa. Ele pode fazer uma ação de ataque a distância, com 15cm de alcance e que causa dano venenoso."
+      },
+      {
+        "name": "Instabilidade Daemônica",
+        "description": "Enfermos são mantidos no mundo material por magia altamente instável. Ao serem reduzidos a 0 de vida, eles devem rolar um dado: em um resultado de 10+, eles são permanentemente destruídos (não role sobrevivência). Se o bando debandar, enfermos sobreviventes devem fazer o mesmo."
+      }
+    ]
+  },
+  {
+    "id": "nurguinhos",
+    "name": "Nurguinhos",
+    "lore": "Nurguinhos são pequenos Daemônios de Nurgle e, para os demais seguidores do deus do pus, assemelham-se a seus amados filhotes. Parecem fístulas apodrecidas com pernas e dentes afiadíssimos, que beliscam, rasgam e infectam seus inimigos com garras incrustadas de imundície. Em combate, geralmente são mais incômodos do que realmente letais, mas em número suficiente podem sobrepujar até os guerreiros mais calejados. São arteiros pacotinhos de sujeira e secreções e se divertem imensamente em seu papel no Circo do Caos, não só como músicos, mas também como palhaços e comediantes  pastelão. Com frequência fazem amizade com as crianças das aldeias por onde passam, apenas revelando sua verdadeira e asquerosa identidade às vítimas aterrorizadas no ato final da ‘Grande Peça de Nurgle’.",
+    "quantity": "ilimitado",
+    "noXP": true,
+    "stats": {
+      "move": 10,
+      "fight": "+1",
+      "shoot": "-",
+      "armour": 11,
+      "Vontade": "+3",
+      "health": 8,
+      "cost": "15 coroas",
+      "equipmentSlots": 0
+    },
+    "abilities": [
+      {
+        "name": "Filho do Caos",
+        "description": "Esta figura tem as características Daemônio, Aterrorizante, Mente-Férrea, Imunidade a Marcadores de Atordoamento e Enxame. Eles não ganham experiência."
+      },
+      {
+        "name": "Nuvem de Moscas",
+        "description": "Figuras em combate com o Enfermo têm -2 em rolagens de Ímpeto."
+      },
+      {
+        "name": "Instabilidade Daemônica",
+        "description": "Enfermos são mantidos no mundo material por magia altamente instável. Ao serem reduzidos a 0 de vida, eles devem rolar um dado: em um resultado de 10+, eles são permanentemente destruídos (não role sobrevivência). Se o bando debandar, enfermos sobreviventes devem fazer o mesmo."
+      },
+      {
+        "name": "Dentinhos Podres",
+        "description": "O dano causado pelos Nurguinhos é venenoso além de mágico."
+      }
+    ]
+  },
+  {
+    "id": "cultista",
+    "name": "Cultista",
+    "lore": "Os Cultistas são seguidores enlouquecidos e devotos de Nurgle, o Senhor da Decadência. Abraçaram por completo a filosofia do Grande Senhor da Putrefação e trilharam de bom grado o caminho da condenação. A maioria está tomada por doenças incuráveis e alguns já começaram a apodrecer; seus rostos são cobertos por verrugas, pústulas e outros dons menores de seu patrono. No Circo, os Cultistas assumem todos os papéis menores — contrarregras, marionetistas, etc. — sustentando a farsa macabra que o espetáculo encena.",
+    "quantity": "ilimitado",
+    "stats": {
+      "move": 10,
+      "fight": "+1",
+      "shoot": "+1",
+      "armour": 10,
+      "Vontade": "0",
+      "health": 12,
+      "cost": "25 coroas",
+      "equipmentSlots": 5
+    },
+    "abilities": [],
+    "equipment": {
+      "hand-to-hand": [
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Estrela da Manhã",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
+      ],
+      "ranged": [
+        {
+          "name": "Arco Curto",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arco",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Pistola",
+          "cost": "15 coroas"
+        }
+      ],
+      "armor": [
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
+      ],
+      "accessories": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "carro-da-praga",
+    "name": "Carro da Praga",
+    "lore": "O Carro da Praga é a personificação de Nurgle e o núcleo do Circo do Caos. Enfeitada com o colorido e espalhafatoso luxo das carruagens de trupes itinerantes, atrai facilmente os olhos sem brilho do campesinato. No entanto, a lona está puída e podre, a estrutura lascada e torta, a ferragem picada e enferrujada e as alimárias apodrecidas e fétidas. Poucos mortais já viram o interior de um desses veículos sinistros, pois apenas o Mestre de Cerimônias e seus asseclas daemônicos têm permissão de entrada. Dizem os rumores que esses vagões caindo aos pedaços abrigam um pentagrama pintado com runas sombrias de incrível potência, capaz de abrir um portal para os domínios do Caos e a morada do grande Nurgle em pessoa.",
+    "quantity": "0-1",
+    "qualidade": 120,
+    "noXP": true,
+    "stats": {
+      "move": 10,
+      "fight": "+1",
+      "shoot": "+1",
+      "armour": 15,
+      "Vontade": "+4",
+      "health": 24,
+      "cost": "120 coroas",
+      "equipmentSlots": 0
+    },
+    "abilities": [
+      {
+        "name": "Filho do Caos",
+        "description": "Esta figura tem as características Daemônio, Aterrorizante, Mente-Férrea, Imunidade a Marcadores de Atordoamento e Enxame. Ela não ganham experiência."
+      },
+      {
+        "name": "Ícone de Nurgle",
+        "description": "As energias malditas que são emitidas do Carro da Praga fazem o bando poder ter 2 figuras extras. Adicionalmente, Quando rolando por conta da habilidade Instabilidade Daemônica, caso o Carro da Praga ainda não sido reduzido a 0 de vida, o Daemônio pode rolar dois dados e escolher o melhor resultado."
+      },
+      {
+        "name": "Estrutura Sólida",
+        "description": "Figuras aliadas em contato de base com essa figura contam como estando cobertura pesada."
+      }
+
+    ]
+  }
+]

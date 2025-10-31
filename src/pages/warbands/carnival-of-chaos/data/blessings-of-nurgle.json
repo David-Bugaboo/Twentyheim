@@ -1,0 +1,32 @@
+[
+  {
+    "id": "torrente-de-sujeira",
+    "name": "Torrente de Sujeira",
+    "cost": "25 coroas",
+    "description": "O Apodrecido ganha um ataque à distância com 15cm de alcance que causa dano venenoso."
+  },
+  {
+    "id": "nuvem-de-moscas",
+    "name": "Nuvem de Moscas",
+    "cost": "25 coroas",
+    "description": "Figuras em combate com o Apodrecido têm -2 em rolagens de Ímpeto."
+  },
+  {
+    "id": "obesidade-morbida",
+    "name": "Obesidade Mórbida",
+    "cost": "40 coroas",
+    "description": "O Apodrecido ganha +2 de Vida máxima e +1 de Armadura, mas sofre -2 em Movimento. Pode ser comprada várias vezes; bônus e penalidades se acumulam."
+  },
+  {
+    "id": "deformado",
+    "name": "Deformado",
+    "cost": "40 coroas",
+    "description": "O Apodrecido ganha a característica Aterrorizante."
+  },
+  {
+    "id": "necrose-de-nurgle",
+    "name": "Necrose de Nurgle",
+    "cost": "50 coroas",
+    "description": "O Apodrecido contamina qualquer figura que reduzir a 0 de Vida ou na qual causar dano crítico. A figura obrigatoriamente perde o próximo jogo e se precisar rolar na Tabela de Sobrevivência, rola duas vezes, escolhendo o pior resultado."
+  }
+]

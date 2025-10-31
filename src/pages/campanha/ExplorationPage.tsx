@@ -70,19 +70,6 @@ function ExplorationPage() {
               uma atividade durante essa etapa da fase de campanha.
             </MobileText>
             <HeaderH1>Atividades Fora de Jogo</HeaderH1>
-            <HeaderH2>Conjurar Ritual</HeaderH2>
-            <MobileText>
-              Conjuradores com acesso a rituais podem conjurá-los durante esse
-              momento. Conjurar uma magia dessa forma gasta um tempo
-              considerável, desde o preparo até a conjuração em si.
-            </MobileText>
-            <HeaderH2>Usar Habilidades Fora do Jogo</HeaderH2>
-            <MobileText>
-              Algumas habilidades tem como gatilho "Fora do Jogo, na etapa de
-              Atividades da Fase de Campanha." O héroi as usa nessa fase. Essas
-              habilidades exigem preparo, consumindo o tempo do héroi na fase de
-              campanha.
-            </MobileText>
             <HeaderH2>Exploração</HeaderH2>
             <MobileText>
               Para cada Herói enviado para as ruínas, o jogador rola um dado,
@@ -121,6 +108,14 @@ function ExplorationPage() {
               o <strong>dado de busca</strong>. Se o jogador rolar mais que a
               raridade do item escolhido, ele encontra o item no mercado negro e
               pode comprá-lo.
+            </MobileText>
+            <HeaderH2>Procurar Lendas</HeaderH2>
+            <MobileText>
+              Escolha uma dentre as lendas disponíveis. Para cada Herói enviado
+              para procurar aquela lenda, role 1d20. Se qualquer um dos dados
+              rolados para buscar aquele Herói rolar um 16 ou mais, a lenda foi
+              encontrada e pode ser contratada na etapa de Gastar Coroas da fase
+              de campanha.
             </MobileText>
           </MobileSection>
         </div>

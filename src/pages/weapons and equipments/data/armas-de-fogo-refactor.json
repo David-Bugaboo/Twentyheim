@@ -5,10 +5,10 @@
     "name": "Pistola",
     "type": "Arma de Fogo",
     "availability": ["Todos"],
-    "rarity": 14,
+    "rarity": 7,
     "damageModifier": "+2",
-    "purchaseCost": "50 coroas",
-    "sellCost": "25 coroas",
+    "purchaseCost": "25 coroas",
+    "sellCost": "12 coroas",
     "maxRange": "25cm",
     "exclusive": null,
     "flavorText": "A pistola é uma pequena arma de pólvora negra disparada por um mecanismo de mola. A maioria das pistolas são caras, não confiáveis e mal construídas. Embora seja portátil e possa ser usada com uma mão, sua natureza primitiva a torna propensa a falhas de ignição e explosões catastróficas. Em Mordheim, ter uma pistola é um sinal de riqueza, mas também de loucura - quem confia em uma arma que pode explodir na sua cara?",
@@ -21,27 +21,19 @@
     "specialRules": [
       {
         "label": "Penetração de Armadura (2)",
-        "value": "Essa arma trata a armadura de inimigos que atinge como o valor entre parênteses menor."
+        "value": "Essa arma trata a armadura de inimigos que atinge como (X) menor."
       },
       {
-        "label": "Coice Violento",
-        "value": "A explosão da pólvora faz a arma ter um recuo violento ao atirar. Ataques à distância com armas com essa característica são feitos a -1."
-      },
-      {
-        "label": "Recarga",
-        "value": "A Pistola requer o uso de uma ação para recarregá-la e poder atirar novamente. Contudo, essa ação pode substituir a ação de Agilidade."
+        "label": "Preparar Tiro",
+        "value": "A Pistola requer o uso de duas ações (uma delas pode substituir a de movimento) para recarregar e preparar o tiro."
       },
       {
         "label": "Pistola",
-        "value": "Uma arma com essa característica é leve e prática, podendo ser usada com apenas uma mão. Ela conta como uma adaga em combate corpo a corpo, inclusive para Lutar com Duas Armas."
+        "value": "Uma arma com essa característica é leve e prática, podendo ser usada com apenas uma mão. Ela conta como uma adaga em combate corpo a corpo, inclusive para Lutar com Duas Armas. Pode comprar um cinto pelo dobro do preço, fazendo com que duas pistolas ocupem apenas um espaço de item."
       },
       {
         "label": "Falha de Ignição (1)",
-        "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) na rolagem de ataque à distância, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre.\n              16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
-      },
-      {
-        "label": "Trovejante(20)",
-        "value": "Qualquer rolagem natural maior ou igual a (X) na rolagem de ataque à distância, desencadeia encontro aleatório que é imediatamente rolado, e as figuras posicionadas na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
+        "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) no teste de ataque à distância, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre.\n              16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
       }
     ]
   },
@@ -51,10 +43,10 @@
     "name": "Arcabuz",
     "type": "Arma de Fogo",
     "availability": ["Todos"],
-    "rarity": 16,
+    "rarity": 8,
     "damageModifier": "+2",
-    "purchaseCost": "100 coroas",
-    "sellCost": "50 coroas",
+    "purchaseCost": "50 coroas",
+    "sellCost": "25 coroas",
     "maxRange": "60cm",
     "exclusive": null,
     "flavorText": "Um arcabuz é uma arma de fogo simples. A qualidade da construção varia desde os rústicos 'hakbuts' de madeira da escola de artilharia de Nuln, até as armas de fogo anãs mais sofisticadas que possuem alavancas e molas que seguram o pavio em chamas, e gatilhos que liberam o mecanismo de disparo. Os arcabuzes não são armas terrivelmente confiáveis: o cano ocasionalmente tende a explodir violentamente ou a pólvora falha em acender. Mas a arma tem um grande alcance e tremendo poder de penetração, fazendo troça até mesmo das armaduras mais espessas. Em Mordheim, arcabuzes são raros e caros, mas um bando que pode ostentar tal arma comandará respeito de todos os seus rivais.",
@@ -66,10 +58,6 @@
     "requirements": "Chifre de Pólvora",
     "specialRules": [
       {
-        "label": "Coice Violento",
-        "value": "A explosão da pólvora faz a arma ter um recuo violento ao atirar. Ataques à distância com armas com essa característica são feitos a -1."
-      },
-      {
         "label": "Penetração de Armadura (2)",
         "value": "Essa arma trata a armadura de inimigos que atinge como o valor entre parênteses menor."
       },
@@ -78,8 +66,12 @@
         "value": "Uma arma com essa característica não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
       },
       {
-        "label": "Recarga",
-        "value": "Essa arma requer o uso de uma ação para recarregá-la e poder atirar novamente. Contudo, essa ação pode substituir a ação de Agilidade."
+        "label": "Preparar Tiro",
+        "value": "O Arcabuz requer o uso de duas ações (uma delas pode substituir a de movimento) para recarregar e preparar o tiro."
+      },
+      {
+        "label": "Coice Violento",
+        "value": "Para aguentar atirar com uma arma de tamanho poder, o portador deve gastar uma ação (que pode substituir a ação de movimento) para firmar-se. Sem faze isso, ele não pode atirar com essa arma."
       },
       {
         "label": "Construção Robusta",
@@ -88,10 +80,6 @@
       {
         "label": "Falha de Ignição (1)",
         "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) na rolagem de ataque à distância, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre.\n              16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
-      },
-      {
-        "label": "Trovejante(19-20)",
-        "value": "Qualquer rolagem natural maior ou igual a (X) na rolagem de ataque à distância, desencadeia encontro aleatório que é imediatamente rolado, e as figuras posicionadas na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
       }
     ]
   },
@@ -100,44 +88,40 @@
     "id": "rifle-de-caca-de-hochland",
     "name": "Rifle de Caça de Hochland",
     "availability": ["Todos"],
-    "rarity": 19,
+    "rarity": 9,
     "type": "Arma de Fogo",
     "damageModifier": "+2",
-    "purchaseCost": "400 coroas",
-    "sellCost": "300 coroas",
+    "purchaseCost": "200 coroas",
+    "sellCost": "150 coroas",
     "maxRange": "120cm",
     "exclusive": null,
     "flavorText": "Hochland é uma província famosa por seus caçadores, e a arma preferida de sua nobreza quando vão caçar é um rifle de longo alcance. Eles são armas extremamente raras e preciosas, e apenas os armeiros mais experientes são capazes de fabricá-las. O Rifle de Caça de Hochland é a evolução natural do arcabuz, refinado pelos mestres armeiros da província para caça de grandes presas e combate à longa distância. Ao contrário dos arcabuzes rústicos, este rifle possui um cano raiado de precisão que elimina o coice violento e dobra o alcance efetivo. Sua construção especializada requer um tripé para estabilização, tornando-o uma arma de posição ideal para emboscadas e defesas.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
-    "slots": "3",
+    "slots": "2",
     "effect": null,
     "requirements": "Chifre de Pólvora",
     "specialRules": [
       {
-        "label": "Penetração de Armadura (2)",
+        "label": "Penetração de Armadura (3)",
         "value": "Essa arma trata a armadura de inimigos que atinge como o valor entre parênteses menor."
       },
       {
-        "label": "Recarga",
-        "value": "Essa arma requer o uso de uma ação para recarregá-la e poder atirar novamente. Contudo, essa ação pode substituir a ação de Agilidade."
+        "label": "Preparar Tiro",
+        "value": "O Rifle de Caça de Hochland requer o uso de duas ações (uma delas pode substituir a de movimento) para recarregar e preparar o tiro."
+      },
+      {
+        "label": "Coice Violento",
+        "value": "Para aguentar atirar com uma arma de tamanho poder, o portador deve gastar uma ação (que pode substituir a ação de movimento) para firmar-se. Sem faze isso, ele não pode atirar com essa arma."
       },
       {
         "label": "Duas Mãos",
         "value": "Uma arma com essa característica não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
       },
       {
-        "label": "Tripé",
-        "value": "Uma figura só pode atirar com essa arma se esta estiver montada em um tripé. Montar o tripé gasta uma ação que pode substituir a ação de movimento. Desmontar não custa ações, mas deverá montar se quiser atirar de novo."
-      },
-      {
         "label": "Falha de Ignição (1)",
         "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) na rolagem de ataque à distância, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre.\n              16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
-      },
-      {
-        "label": "Trovejante(19-20)",
-        "value": "Qualquer rolagem natural maior ou igual a (X) na rolagem de ataque à distância, desencadeia encontro aleatório que é imediatamente rolado, e as figuras posicionadas na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
       }
     ]
   },
@@ -147,10 +131,10 @@
     "name": "Bacamarte",
     "type": "Arma de Fogo",
     "damageModifier": null,
-    "purchaseCost": "100 coroas",
-    "sellCost": "75 coroas",
+    "purchaseCost": "50 coroas",
+    "sellCost": "37 coroas",
     "availability": ["Todos"],
-    "rarity": 18,
+    "rarity": 9,
     "maxRange": "35cm",
     "exclusive": null,
     "flavorText": "Um bacamarte é uma arma primitiva de pólvora que dispara uma chuva de bolas de chumbo, parafusos enferrujados, pregos tortos e outros metais descartados. É uma arma poderosa, embora errática, e leva tanto tempo para carregar que a maioria dos guerreiros a descarta após o primeiro tiro. Quando disparado, o bacamarte transforma tudo à frente em carne rasgada e ossos estilhaçados - perfeito para becos estreitos, portas defendidas, e qualquer lugar onde inimigos se agrupam tolamente. Em Mordheim, o bacamarte é a arma do desesperado e do imprudente - quem usa uma arma que pode explodir a qualquer momento não tem muito a perder.",
@@ -170,8 +154,12 @@
         "value": "Uma arma com essa característica não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
       },
       {
-        "label": "Recarga",
-        "value": "Essa arma requer o uso de uma ação para recarregá-la e poder atirar novamente. Contudo, essa ação pode substituir a ação de Movimento."
+        "label": "Uma Chance",
+        "value": "A Recarga do bacamarte é tão complexa que ele só pode ser disparado uma vez por partida."
+      },
+      {
+        "label": "Coice Violento",
+        "value": "Para aguentar atirar com uma arma de tamanho poder, o portador deve gastar uma ação (que pode substituir a ação de movimento) para firmar-se. Sem faze isso, ele não pode atirar com essa arma."
       },
       {
         "label": "Construção Robusta",
@@ -179,15 +167,11 @@
       },
       {
         "label": "Tiro de Dispersão",
-        "value": "Essa arma não pode atirar normalmente. O portador posiciona uma Área de Efeito de Cone. Todas as figuras dentro da área de efeito sofrem um ataque +0. Se dois dados dentre esses ataques rolarem o mesmo número, uma falha de ignição foi causada e a regra trovejante foi desencadeada."
+        "value": "Essa arma não pode atirar normalmente. O portador posiciona uma Área de Efeito de Cone. Todas as figuras dentro da área de efeito sofrem um ataque +3. Se dois dados dentre esses ataques rolarem o mesmo número, uma falha de ignição foi causada."
       },
       {
         "label": "Falha de Ignição (Especial)",
         "value": "O bacamarte tem regras especiais para falha de ignição. Confira Tiro de Dispersão. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre.\n              16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
-      },
-      {
-        "label": "Trovejante(Especial)",
-        "value": "O bacamarte tem regras especiais para trovejante. Confira Tiro de Dispersão. Um encontro aleatório é imediatamente rolado na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
       }
     ]
   },
@@ -197,10 +181,10 @@
     "name": "Bacamarte dos Anões do Caos",
     "type": "Arma de Fogo",
     "availability": ["Filhos de Hashut"],
-    "rarity": 20,
+    "rarity": 10,
     "damageModifier": null,
-    "purchaseCost": "200 coroas",
-    "sellCost": "100 coroas",
+    "purchaseCost": "100 coroas",
+    "sellCost": "50 coroas",
     "maxRange": "40cm",
     "exclusive": "Filhos de Hashut",
     "flavorText": "Os Anões do Caos são conhecidos em batalha por usar um grande número desses infames bacamartes em suas tropas de infantaria. Eles empregam essa mesma tática em combate nas ruas de Mordheim. O Bacamarte dos Anões do Caos é uma versão refinada e brutalmente eficiente do bacamarte tradicional, forjada nas forjas infernais dos Anões do Caos. Ao contrário dos bacamartes primitivos feitos por humanos, esta versão anã possui um alcance superior e uma confiabilidade excepcional, resultado de séculos de experiência na forja de armas de fogo. Seus projéteis são cuidadosamente selecionados - fragmentos de metal afiados, pregos forjados e até pequenas lascas de obsidiana - criando uma tempestade de morte ainda mais devastadora.",
@@ -220,8 +204,12 @@
         "value": "Uma arma com essa característica não pode ser usada junto de nenhuma outra arma ou escudos: seu peso exige toda a concentração e força do personagem."
       },
       {
-        "label": "Recarga",
-        "value": "Essa arma requer o uso de uma ação para recarregá-la e poder atirar novamente. Contudo, essa ação pode substituir a ação de Movimento."
+        "label": "Preparar Tiro",
+        "value": "O Bacamarte dos Anões do Caos requer o uso de duas ações (uma delas pode substituir a de movimento) para recarregar e preparar o tiro."
+      },
+      {
+        "label": "Coice Violento",
+        "value": "Para aguentar atirar com uma arma de tamanho poder, o portador deve gastar uma ação (que pode substituir a ação de movimento) para firmar-se. Sem faze isso, ele não pode atirar com essa arma."
       },
       {
         "label": "Construção Robusta",
@@ -242,11 +230,11 @@
     "id": "pistola-de-gatilho-bruxo",
     "name": "Pistola de Gatilho-Bruxo",
     "availability": ["Skaven"],
-    "rarity": 20,
+    "rarity": 10,
     "type": "Arma de Fogo",
     "damageModifier": "+3",
-    "purchaseCost": "500 coroas",
-    "sellCost": "250 coroas",
+    "purchaseCost": "250 coroas",
+    "sellCost": "125 coroas",
     "maxRange": "20cm",
     "exclusive": "Skaven",
     "flavorText": "As pistolas warplock são armas aterrorizantes, testemunho do gênio louco dos engenheiros do Clã Skryre. As pistolas warplock disparam munição feita de pedra-bruxa tratada magicamente e feridas causadas por pistolas warplock são horríveis de se contemplar e frequentemente causam infecções. Diferente das armas de pólvora tradicionais, ela utiliza cristais de warp refinados como munição, resultando em projéteis que pulsam com energia verde-sombria e causam dano excepcional. Seu alcance é reduzido devido à instabilidade da energia warp, mas sua penetração de armadura é superior a qualquer arma de fogo convencional. Em combate corpo a corpo, ela conta como uma espada, permitindo combinações mortais de tiro e lâmina.",
@@ -262,20 +250,16 @@
         "value": "Essa arma trata a armadura de inimigos que atinge como o valor entre parênteses menor."
       },
       {
-        "label": "Recarga",
-        "value": "Essa arma requer o uso de uma ação para recarregá-la e poder atirar novamente. Contudo, essa ação pode substituir a ação de Agilidade."
+        "label": "Preparar Tiro",
+        "value": "A Pistola requer o uso de duas ações (uma delas pode substituir a de movimento) para recarregar e preparar o tiro."
       },
       {
-        "label": "Pistol",
-        "value": "Uma arma com essa característica é leve e precisa, podendo ser usada com apenas uma mão. Ela conta como uma espada em combate corpo a corpo, inclusive para Lutar com Duas Armas."
+        "label": "Pistola",
+        "value": "Uma arma com essa característica é leve e prática, podendo ser usada com apenas uma mão. Ela conta como uma adaga em combate corpo a corpo, inclusive para Lutar com Duas Armas. Pode comprar um cinto pelo dobro do preço, fazendo com que duas pistolas ocupem apenas um espaço de item."
       },
       {
         "label": "Falha de Ignição (3)",
         "value": "Quando o portador de uma arma com essa característica faz uma rolagem natural menor ou igual a (X) na rolagem de ataque à distância, a arma tem uma falha na ignição. Role outro d20 para saber o resultado:\n\n              1-5: A Arma apenas engasga. Deve gastar uma ação, que pode substituir a ação de movimento, para consertar.\n              6-10: A arma falha de maneira espetacular. Não pode mais ser usada durante aquele jogo apenas.\n              11-15: A pólvora explode na arma, danificando o atirador. Ele sofre um ataque à distância +1. A Arma é perdida para sempre.\n              16-20: A pólvora explode espetacularmente e reage com o chifre de pólvora do atirador, danificando o atirador. O atirador e todas as figuras a até 8cm dele sofrem um ataque à distância +1. A Arma e o chifre de pólvora estão perdidos para sempre.\n              "
-      },
-      {
-        "label": "Trovejante(18)",
-        "value": "Qualquer rolagem natural maior ou igual a (X) na rolagem de ataque à distância, desencadeia encontro aleatório que é imediatamente rolado, e as figuras posicionadas na borda do mapa mais próxima da figura que rolou esse resultado na sua rolagem de ataque à distância."
       }
     ]
   }

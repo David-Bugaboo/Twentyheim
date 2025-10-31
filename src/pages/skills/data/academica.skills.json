@@ -1,0 +1,68 @@
+[
+  {
+    "id": "presença-inspiradora",
+    "name": "Presença Inspiradora",
+    "type": "Acadêmica",
+    "description": "Essa habilidade só pode ser utilizada pelo líder do bando. A habilidade Líder agora permite ativar figuras a até 16cm junto do Líder ao invés do normal de 8cm."
+  },
+  {
+    "id": "feitiçaria",
+    "name": "Feitiçaria",
+    "type": "Acadêmica",
+    "description": "Essa habilidade só pode ser aprendida por Heróis que podem conjurar magias. A figura ganha +2 em suas rolagens de conjuração. Contudo, Sacerdotes não podem aprender essa habilidade. "
+  },
+  {
+    "id": "conhecimento-das-ruas",
+    "name": "Conhecimento das Ruas",
+    "type": "Acadêmica",
+    "description": "Uma figura com a essa habilidade tem contatos no mercado negro. Ele ganha +5 em rolagens de busca de itens."
+  },
+  {
+    "id": "barganhar",
+    "name": "Barganhar",
+    "type": "Acadêmica",
+    "description": "Cada figura com essa habilidade reduz em 1d20 o preço de compra do primeiro item comprado durante a etapa de gastar coroas fa Fase de Campanha, para um mínimo de 1 coroa."
+  },
+  {
+    "id": "aprendizado-arcano",
+    "name": "Aprendizado Arcano",
+    "type": "Acadêmica",
+    "description": "Irmãs de Sigmar, Caçadores de Bruxas, Inquisidores e Sacerdotes Marciais de Sigmar não podem aprender essa habilidade. Uma figura com essa habilidade pode aprender uma magia da tradição Magia Inferior, mas apenas utilizando um Tomo Arcano."
+  },
+  {
+    "id": "mago-de-batalha",
+    "name": "Mago de Batalha ",
+    "type": "Acadêmica",
+    "description": "Uma figura com essa habilidade pode conjurar magias enquanto usa armaduras, mas não escudos."
+  },
+  {
+    "id": "rastreador-de-pedra-bruxa",
+    "name": "Rastreador de Pedra Bruxa",
+    "type": "Acadêmica",
+    "description": "Uma figura com essa habilidade enviada para Explorar as Ruínas pode re-rolar seu dado de exploração e escolher o melhor resultado."
+  },
+  {
+    "id": "escriba",
+    "name": "Escriba",
+    "type": "Acadêmica",
+    "description": "Uma figura com essa habilidade pode começar o jogo com um pergaminho de qualquer magia ou oração que possa conjurar. O pergaminho de uma magia ou oração pode ser consumido para que aquela magia ou oração possa ser conjurada uma vez por jogo com sucesso sem rolagem de conjuração. A rolagem de conjuração dessa magia é considerada como sendo 14. Essa habilidade só pode ser aprendida por figuras que possam conjurar magias ou orações. "
+  },
+  {
+    "id": "canalizar",
+    "name": "Canalizar",
+    "type": "Acadêmica",
+    "description": "Essa habilidade só pode ser aprendida por figuras que possam aprender magias ou orações. Uma figura com essa habilidade ganha +5 em Testes de Concentração."
+  },
+  {
+    "id": "estrategista",
+    "name": "Estrategista",
+    "type": "Acadêmica",
+    "description": "Essa habilidade só pode ser aprendida por Líderes. Um bando cujo líder tenha essa habilidade pode reposicionar até 3 figuras depois da fase de posicionamento. Se mais de um bando possuir Líderes com essa habilidade, role para ver qual lado reposiciona suas figuras primeira."
+  },
+  {
+    "id": "tecelao-dos-ventos",
+    "name": "Tecelão de Ventos",
+    "type": "Acadêmica",
+    "description": "Uma figura com essa habilidade pode usar como uma reação a uma figura inimiga conjurar uma magia, mas não uma oração, em linha de visão e até 30cm, tentar negar a conjuração da magia. Ela deve rolar um teste de conjuração (aplicando todos os seus bônus normais para testes de conjuração) e superar o resultado do teste de conjuração da figura inimiga. Caso tenha sucesso, a magia da figura inimiga falha. Essa habilidade só pode ser aprendida por figuras que possam conjurar magias, mas não por figuras que possam conjurar orações."
+  }
+]

@@ -15,7 +15,7 @@ function WarbandCreationPage() {
     { id: "passo-2", title: "2) Contratando Figuras", level: 1 },
     { id: "passo-3", title: "3) Equipando o Bando", level: 1 },
     { id: "onde-comprar", title: "Onde Comprar Equipamentos", level: 1 },
-    { id: "dicas-equipamento", title: "Dicas de Equipamento", level: 1 },
+    { id: "passo-4", title: "4) Calculando a Qualidade do Bando", level: 1 },
   ];
 
   return (
@@ -84,7 +84,14 @@ function WarbandCreationPage() {
               Estrutura do Bando de cada facção. Escolha quaisquer magias,
               habilidades, mutações, marcas sagradas e outros benefícios
               disponíveis para cada figura. Pague o custo em coroas de cada
-              modelo.
+              modelo. Algumas figuras ganham uma quantidade inicial de
+              experiência. siga para a página de{" "}
+              <a href="/campaign/experience">Experiência e Nível</a> para checar
+              quantos avanços a figura ganha devido a essa experiência inicial.
+              Role todos os avanços imediatamente. Você também pode contratar
+              mercenários. Siga para a página de{" "}
+              <a href="/campaign/mercenaries">Mercenários</a> para mais detalhes
+              em como contratá-los e suas regras específicas.
             </MobileText>
 
             <div id="passo-3">
@@ -96,8 +103,8 @@ function WarbandCreationPage() {
               acessórios para sobreviver às ruínas de Mordheim. Use o ouro
               restante para comprar equipamentos para cada membro do seu bando,
               podendo comprar quaisquer itens disponíveis para cada personagem
-              de acordo com sua tabela de equipamento. Figuras têm 5 espaços de
-              equipamento para carregar, ou 6 no caso de figuras Grandes.
+              de acordo com sua tabela de equipamento. Figuras têm uma quantidade de 
+              espaços de equipamento definido em sua ficha.
             </MobileText>
 
             <div id="onde-comprar">
@@ -116,7 +123,7 @@ function WarbandCreationPage() {
               <br />• <strong>Lista de Itens:</strong> Veja a lista completa com
               custos e estatísticas em{" "}
               <a
-                href="/items/common-items"
+                href="/equipment"
                 className="text-green-300 hover:text-green-200 underline hover:no-underline transition-colors duration-200"
               >
                 Itens Comuns
@@ -124,18 +131,14 @@ function WarbandCreationPage() {
               .
             </MobileText>
 
-            <div id="dicas-equipamento">
-              <HeaderH3>Dicas de Equipamento</HeaderH3>
+            <div id="passo-4">
+              <HeaderH2>4) Calculando a Qualidade do Bando</HeaderH2>
             </div>
             <MobileText>
-              • <strong>Armas corpo a corpo:</strong> Dê a cada figura uma arma
-              adequada ao seu papel no bando
-              <br />• <strong>Armas à distância:</strong> Equipe alguns soldados
-              com arcos, bestas ou armas de fogo
-              <br />• <strong>Armaduras:</strong> Proteja seus soldados mais
-              valiosos com armaduras adequadas
-              <br />• <strong>Acessórios:</strong> Tochas, aljavas e outros
-              equipamentos podem ser cruciais para a sobrevivência
+              Após contratar e equipar todas as figuras, é hora de calcular a
+              qualidade do bando. Cheque a página de{" "}
+              <a href="/rules/qualidade-do-bando">Qualidade do Bando</a> para
+              mais detalhes.
             </MobileText>
           </MobileSection>
         </div>

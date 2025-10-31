@@ -1,0 +1,32 @@
+[
+  {
+    "id": "investida-de-khaine",
+    "name": "Fúria de Khaine",
+    "type": "Corsários Druchii",
+    "description": "Quando a figura com essa habilidade elimina todos os inimigos em combate consigo, pode imediatamente se mover até 10cm como ação livre. Esse movimento pode ser usado para entrar em combate com um inimigo."
+  },
+  {
+    "id": "constituicao-poderosa",
+    "name": "Constituição Poderosa",
+    "type": "Corsários Druchii",
+    "description": "Uma figura com essa habilidade pode escolher habilidades da lista de Força. A Bruxa Druchii nunca pode escolher essa habilidade e não mais que dois guerreiros do bando podem ter essa habilidade."
+  },
+  {
+    "id": "reflexos-feericos",
+    "name": "Reflexos Feéricos",
+    "type": "Corsários Druchii",
+    "description": "Uma figura com essa habilidade pode usar a reação de Aparar para aparar um ataque a distância. Caso possua as habilidades Evadir ou Rolamento, ganha +2 para cada uma dessas habilidades que possua em sua rolagem de Ímpeto para aparar."
+  },
+  {
+    "id": "caminhante-das-sombras",
+    "name": "Caminhante das Sombras",
+    "type": "Corsários Druchii",
+    "description": "A figura com essa habilidade pode ser posicionada no começo do jogo em qualquer lugar do tabuleiro, contanto que fora da linha de visão de todas as figuras inimigas e a mais de 30cm de todas as figuras inimigas."
+  },
+  {
+    "id": "mestre-dos-venenos",
+    "name": "Mestre dos Venenos",
+    "type": "Corsários Druchii",
+    "description": "A figura com essa habilidade ganha a atividade 'Fabricar Venenos' durante a etapa de atividades da Fase de Campanha. Uma figura que faça essa atividade começa sua próxima partida com 1 unidade de Veneno Sombrio. Esse frasco de veneno deve ser vendido e estraga caso não seja usada durante a próxima partida."
+  }
+]

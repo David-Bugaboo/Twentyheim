@@ -2,44 +2,77 @@
   {
     "id": "chefe-tribal-homem-fera",
     "name": "Chefe Tribal Homem-Fera",
+    "lore": "O chefe de uma tribo de Homens-Fera ganhou sua posição através de pura brutalidade. Eles lidera os Homens-Fera para Mordheim para reunir energia e alimentar suas Pedra-Pastor.",
     "role": "Líder",
     "quantity": "1",
     "stats": {
       "move": 14,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "0",
-      "health": 12,
+      "health": 11,
       "cost": "65 coroas",
-      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
+      "strength": "+1",
+      "equipmentSlots": 5,
+      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"],
+      "startingXp": 20
     },
     "abilities": [
       {
         "name": "Líder",
-        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela."
-      },
-      {
-        "name": "Abominação Bestial",
-        "description": "O Líder Tribal Homem-Fera tem a característica Forte."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "accessories": [],
       "modifiers": []
@@ -48,43 +81,67 @@
   {
     "id": "xama-homem-fera",
     "name": "Xamã Homem-Fera",
+    "lore": "Xamãs dos Homens-Fera são profetas dos Deuses Sombrios, e os mais respeitados entre o seu tipo.",
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
       "move": 13,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "-1",
       "health": 12,
-      "cost": "45 coroas"
+      "cost": "45 coroas",
+      "equipmentSlots": 5,
+      "startingXp": 11,
+      "skills": ["Combate", "Agilidade", "Saqueadores Homem-Fera"]
     },
     "spellAffinity": {
-      "aligned0": ["Tradição do Caos"],
-      "aligned2": [
-        "Tradição do Fogo",
-        "Tradição das Sombras",
-        "Tradição das Bestas",
-        "Tradição da Vida"
-      ]
+      "aligned0": ["Rituais do Caos"]
     },
     "abilities": [
       {
         "name": "Magia",
-        "description": "O Xamã Homem-Fera é um feiticeiro da Tradição do Caos. Ele começa com 1 magia, de qualquer uma de suas tradições disponíveis. Magias de tradições associadas são adicionadas com +4 na Classe de Dificuldade."
+        "description": "O Xamã Homem-Fera é um conjurador dos Rituais do Caos. Ele é contratado com 1 magia dessa tradição. Ele pode abrir mão de aprender uma habilidade para aprender ou melhorar a classe de dificuldade de uma magia."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado de Batalha", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado de Batalha",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
-      "armor": [{ "name": "Elmo de Osso", "cost": "5 coroas" }],
+      "armor": [
+        {
+          "name": "Elmo de Osso",
+          "cost": "5 coroas"
+        }
+      ],
       "ranged": [],
       "accessories": [],
       "modifiers": []
@@ -93,40 +150,72 @@
   {
     "id": "bestigor",
     "name": "Bestigor",
+    "lore": "Bestigors são o maior tipo de Homem-Fera, os grandes guerreiros chifrudos de suas tribos. São criaturas massivas com uma resistência inumana à dor.",
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
       "move": 13,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "0",
-      "health": 14,
+      "health": 12,
+      "strength": "+1",
       "cost": "45 coroas",
-      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
+      "equipmentSlots": 5,
+      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"],
+      "startingXp": 8
     },
-    "abilities": [
-      {
-        "name": "Aniquilador",
-        "description": "O Bestigor tem a característica Forte."
-      }
-    ],
+    "abilities": [],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado de Batalha", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado de Batalha",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "accessories": [],
       "modifiers": []
@@ -135,22 +224,26 @@
   {
     "id": "centigor",
     "name": "Centigor",
+    "lore": "Um Centigor é um cruzamento perturbador entre um cavalo ou boi e um Homem-Fera. Ser quadrúpede lhes concede grande força e velocidade, enquanto seus torsos humanoides superiores permitem que empunhem armas de maneira devastadora. Os Centigors são criaturas poderosas, mas são desajeitados ao navegar diferentes tipos de terrenos.",
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
       "move": 19,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "0",
       "health": 14,
       "cost": "80 coroas",
-      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"]
+      "strength": "+1",
+      "equipmentSlots": 5,
+      "skills": ["Combate", "Força", "Agilidade", "Saqueadores Homem-Fera"],
+      "startingXp": 8
     },
     "abilities": [
       {
         "name": "Carga Violenta",
-        "description": "O Centigor tem a característica Chifres e Forte. Uma ação de movimento de declaração de carga do Centigor não pode ser interceptada."
+        "description": "O Centigor tem a característica Chifres. Uma ação de movimento de declaração de carga do Centigor não pode ser interceptada."
       },
       {
         "name": "Alcóolatra",
@@ -163,20 +256,53 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado de Batalha", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado de Batalha",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "accessories": [],
       "modifiers": []
@@ -185,15 +311,17 @@
   {
     "id": "ungor",
     "name": "Ungor",
+    "lore": "Ungors são os mais numerosos dos Homens-Fera. São criaturas pequenas e rancorosas, mas perigosas quando atacam em bando.",
     "quantity": "ilimitado",
     "stats": {
       "move": 13,
       "fight": "+1",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "-1",
       "health": 12,
-      "cost": "25 coroas"
+      "cost": "25 coroas",
+      "equipmentSlots": 5
     },
     "abilities": [
       {
@@ -203,14 +331,34 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "3 coroas" },
-        { "name": "Machado de Batalha", "cost": "5 coroas" },
-        { "name": "Lança", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado de Batalha",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [],
-      "armor": [{ "name": "Escudo", "cost": "5 coroas" }],
+      "armor": [
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        }
+      ],
       "accessories": [],
       "modifiers": []
     }
@@ -218,33 +366,68 @@
   {
     "id": "gor",
     "name": "Gor",
+    "lore": "Gors são quase tão numerosos quanto os Ungors, mas são maiores e mais brutais.",
     "quantity": "0-5",
     "stats": {
       "move": 13,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "-1",
       "health": 12,
-      "cost": "35 coroas"
+      "cost": "35 coroas",
+      "equipmentSlots": 5
     },
     "abilities": [],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado de Batalha", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado de Batalha",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "accessories": [],
       "modifiers": []
@@ -253,62 +436,104 @@
   {
     "id": "cao-guerra-caos",
     "name": "Cão de Guerra do Caos",
+    "lore": "Cães de Guerra do Caos são cães enormes e corrompidos, semelhantes a mastins, lutando com uma ferocidade infernal.",
     "quantity": "0-5",
+    "noXP": true,
     "stats": {
       "move": 18,
       "fight": "+2",
       "shoot": "0",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "-2",
       "health": 8,
-      "cost": "15 coroas"
+      "strength": "+1",
+      "cost": "15 coroas",
+      "equipmentSlots": 0
     },
     "abilities": [
       {
         "name": "Bestialidade",
-        "description": "Cães de Guerra do Caos têm a característica Animal e Voraz."
+        "description": "Cães de Guerra do Caos têm a característica Animal."
       }
     ]
   },
   {
     "id": "minotauro",
     "name": "Minotauro",
+    "lore": "Minotauros são gigantescos Homens-Fera com cabeça de touro. Formidáveis e poderosos, qualquer Chefe Tribal dos Homens-Fera tentará recrutar um Minotauro para seu bando se possível.",
     "quantity": "0-1",
+    "qualidade": 20,
+    "noXP": true,
     "stats": {
       "move": 16,
       "fight": "+4",
       "shoot": "+1",
-      "armour": 11,
+      "armour": 12,
       "Vontade": "+1",
       "health": 20,
-      "cost": "200 coroas"
+      "strength": "+1",
+      "cost": "200 coroas",
+      "equipmentSlots": 6
     },
     "abilities": [
       {
         "name": "Abominação Bovina",
-        "description": "O Minotauro tem as características Grande, Forte, Aterrorizante e Chifres. Ele não ganha experiência nunca pode se tornar o líder do bando."
+        "description": "O Minotauro tem as características Grande, Aterrorizante e Chifres. Ele não ganha experiência nunca pode se tornar o líder do bando."
       },
       {
         "name": "Sede de Sangue",
-        "description": "Ao reduzir um modelo a 0 de vida, o Minotauro deve fazer um teste de vontade CD 14. Em caso de falha, ele ganha característica fúria até o fim do turno."
+        "description": "Ao reduzir um modelo a 0 de vida, o Minotauro deve fazer um teste de vontade CD 14. Em caso de falha, ele ganha característica fúria até o fim do jogo."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado de Batalha", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado de Batalha",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "accessories": [],
       "modifiers": []

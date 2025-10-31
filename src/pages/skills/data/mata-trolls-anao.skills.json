@@ -1,0 +1,20 @@
+[
+  {
+    "id": "carga-feroz",
+    "name": "Carga Feroz",
+    "type": "Mata-Trolls Anão",
+    "description": "Se a figura com essa habilidade vencer uma luta e causar pelo menos 1 de dano durante a ativação em que completou uma carga, ele pode imediatamente lutar novamente contra a figura inimiga ou outra figura em combate com ela. Essa segunda luta é feita com uma penalidade de -2 de Ímpeto."
+  },
+  {
+    "id": "matador-de-monstros",
+    "name": "Matador de Monstros",
+    "type": "Mata-Trolls Anão",
+    "description": "O Usuário da habilidade ganha a palavra-chave Penetração de Armadura(1) em qualquer arma que use. Se a arma já tiver a palavra-chave Penetração de Armadura(X), X aumenta em 1. Adicionalmente a figura com essa habilidade sempre causa no mínimo 2 de dano, mesmo se a armadura do alvo, reduziria seu ataque a 0."
+  },
+  {
+    "id": "beserker",
+    "name": "Beserker",
+    "type": "Mata-Trolls Anão",
+    "description": "O usuário da habilidade ganha +2 de Ímpeto durante a ativação em que completa uma carga."
+  }
+]

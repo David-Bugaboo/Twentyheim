@@ -23,12 +23,6 @@ const bridesUnits = [
     },
     spellAffinity: {
       aligned0: ["Tradição das Sombras"],
-      aligned2: [
-        "Tradição do Fogo",
-        "Tradição do Metal",
-        "Tradição do Caos",
-        "Tradição da Morte",
-      ],
     },
     abilities: [
       {
@@ -386,6 +380,7 @@ function BridesOfKhainePage() {
                   <UnitCard
                     name={unit.name}
                     role={unit.role}
+                    qualidade={(unit as any).qualidade || 0}
                     stats={unit.stats}
                     abilities={unit.abilities}
                     {...(unit.spellAffinity && {

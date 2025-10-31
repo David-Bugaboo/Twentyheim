@@ -1,0 +1,26 @@
+[
+  {
+    "id": "maldicao-do-regresso",
+    "name": "Maldição do Regresso",
+    "type": "Habilidades de Strigoi",
+    "description": "A figura com essa habilidade tem a habilidade Regeneração. A habilidade não ativa caso o Vampiro tenha recebido dano sagrado no turno anterior."
+  },
+  {
+    "id": "monstruosidade-massiva",
+    "name": "Monstruosidade Massiva",
+    "type": "Habilidades de Strigoi",
+    "description": "A figura com essa habilidade ganha a característica Grande e ganha +4 no atributo Vida."
+  },
+  {
+    "id": "tendões-de-ferro",
+    "name": "Tendões de Ferro",
+    "type": "Habilidades de Strigoi",
+    "description": "A figura com essa habilidade ganha a carracterística Forte."
+  },
+  {
+    "id": "furia-infinita",
+    "name": "Fúria Infinita",
+    "type": "Habilidades de Strigoi",
+    "description": "Quando o vampiro vence uma luta, ele pode imediatamente lutar novamente contra a mesma figura como uma ação livre, mas com uma penalidade de -3 em seu teste de Ímpeto para atacar."
+  }
+]

@@ -1,0 +1,471 @@
+[
+  {
+    "id": "chefim-goblin",
+    "name": "Chefim Goblin",
+    "lore": "Goblins  são geralmente liderados pelo Ghefim Goblin, o mais forte  astuto do bando. Este Chefe rotineiramente encontra maneiras de expulsar outros goblins da sua pilha de saque e coletar ouro para Mork e Gork.",
+    "role": "Líder",
+    "quantity": "1",
+    "stats": {
+      "move": 11,
+      "fight": "+1",
+      "shoot": "+2",
+      "armour": 10,
+      "Vontade": "0",
+      "health": 12,
+      "cost": "80 coroas",
+      "skills": ["Combate", "Atirador", "Acadêmico", "Agilidade"],
+      "startingXp": 17,
+      "equipmentSlots": 4
+    },
+    "abilities": [
+      {
+        "name": "Líder",
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem."
+      },
+      {
+        "name": "Waaaaaaaaagh!",
+        "description": "O Chefim Goblin guincha waaaaaaaaaaaaaaaaaaaagh! com sua voz esganiçada, convocando todos os seus subordinados para um frenesi de batalha incontrolável. Essa habilidade deve ser usada no começo de um turno, antes das rolagens de iniciativa serem feitas. O bando automaticamente vence a rolagem de iniciativa (role normalmente contra bandos com efeitos semelhantes), suas figuras ganham +6 de movimento, +1 de Ímpeto, +1 de dano corpo a corpo, +1 de Vontade e +1 de Armadura. A WAAAAAAGH! termina no fim do turno. Qualquer figura que não terminar o turno em combate ganha um marcador de Atordoamento no início do próximo turno."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Estandarte do Chefim",
+          "cost": "20 coroas"
+        }
+      ],
+      "ranged": [
+        {
+          "name": "Zarabatana",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Arco Curto",
+          "cost": "5 coroas"
+        }
+      ],
+      "armor": [
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "goblin-veim",
+    "name": "Goblin Veim",
+    "lore": "Xamãs usam o poder do Waaagh para direcionar a força de Padim Gork e Padim Mork contra seus inimigos. Geralmente encontrados procurando misteriosas partes de animais ao invés de ouro, a maioria dos outros Goblins concorda que 'os cabra são abestado'.",
+    "role": "Herói",
+    "quantity": "0-1",
+    "stats": {
+      "move": 11,
+      "fight": "0",
+      "shoot": "+1",
+      "armour": 10,
+      "Vontade": "-1",
+      "health": 12,
+      "cost": "20 coroas",
+      "skills": ["Acadêmico", "Agilidade"],
+      "startingXp": 6,
+      "equipmentSlots": 4
+    },
+    "spellAffinity": {
+      "aligned0": ["Magia de Goblin"]
+    },
+    "abilities": [
+      {
+        "name": "Conjurador",
+        "description": "O Goblin Veim é um conjurador da Magia de Goblin. Ele começa com 1 magia dessa Tradição, e pode abrir mão de aprender uma habilidade para aprender uma nova magia ou reduzir a classe de dificuldade de uma magia que sabe em 1 ponto."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Estandarte do Chefim",
+          "cost": "20 coroas"
+        }
+      ],
+      "ranged": [
+        {
+          "name": "Zarabatana",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Arco Curto",
+          "cost": "5 coroas"
+        }
+      ],
+      "armor": [
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "goblin-aluado",
+    "name": "Goblin Aluado",
+    "lore": "As cavernas onde esses goblins vivem são ricas em várias formas de fungos. Os goblins conseguem fazer uso destes e até cultivar alguns deles. Os mais conhecidos são os cogumelos Chapéu-da-Morte. Estes levam qualquer um que os coma a uma fúria de batalha espumante. Alguns dos Goblins são deliberadamente alimentados com grandes quantidades de cogumelos Chapéu-da-Morte para transformá-los em máquinas de matar enlouquecidas. Frequentemente vistos em campos de batalha abertos empunhando uma enorme bola e corrente, eles optaram por usá-las até mesmo nos corredores apertados de Mordheim.",
+    "role": "Herói",
+    "quantity": "0-4",
+    "stats": {
+      "move": 10,
+      "fight": "0",
+      "shoot": "+1",
+      "armour": "10",
+      "Vontade": "-1",
+      "health": 12,
+      "cost": "20 coroas",
+      "skills": ["Combate", "Atirador", "Agilidade"],
+      "startingXp": 6,
+      "equipmentSlots": 4
+    },
+    "abilities": [
+      {
+        "name": "Fanático",
+        "description": "O Goblin Fanático sempre começa o jogo sob o efeito de Cogumelos Chapéu-da-Morte."
+      },
+      {
+        "name": "Animosidade",
+        "description": "O Goblin Fanático está sujeito as regras de Animosidade."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Boss Pole",
+          "cost": "20 coroas"
+        }
+      ],
+      "ranged": [
+        {
+          "name": "Zarabatana",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Arco Curto",
+          "cost": "5 coroas"
+        }
+      ],
+      "armor": [
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "guerreiro-goblin",
+    "name": "Guerreiro Goblin",
+    "lore": "Guerreiros Goblin formam a linha de frente de um bando desses pequenos oele-verde. Eles usam seus talentos naturais para perturbar seus inimigos enquanto se escondem nos entulhos da cidade.",
+    "quantity": "ilimitado",
+    "stats": {
+      "move": 10,
+      "fight": "0",
+      "shoot": "+1",
+      "armour": "10",
+      "Vontade": "-1",
+      "health": 10,
+      "cost": "15 coroas",
+      "equipmentSlots": 4
+    },
+    "abilities": [
+      {
+        "name": "Animosidade",
+        "description": "O Guerreiro Goblin está sujeito às regras de Animosidade."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "5 coroas"
+        }
+      ],
+      "ranged": [
+        {
+          "name": "Zarabatana",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Facas de Arremesso",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        }
+      ],
+      "armor": [
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "goblin-dos-dente-vermeio",
+    "name": "Goblin dos Dente Vermeio",
+    "lore": "De todas as várias facções que compõem a não muito complexa civilização Goblin, a infame tribo dos Dente Vermeio é a mais temida. São tropas de choque de elite, valorizadas pelos Chefins por sua fúria cega em batalha.",
+    "quantity": "0-5",
+    "stats": {
+      "move": 10,
+      "fight": "0",
+      "shoot": "+1",
+      "armour": "10",
+      "Vontade": "-1",
+      "health": 10,
+      "cost": "25 coroas",
+      "equipmentSlots": 4
+    },
+    "abilities": [
+      {
+        "name": "Animosidade",
+        "description": "O Guerreiro Goblin está sujeito às regras de Animosidade."
+      },
+      {
+        "name": "Puto da Vida",
+        "description": "Um Goblin do Dente Vermeio tem a característica Fúria. Adicionalmente ele ignora as regras de animosidade se tiver uma figura inimiga como alvo válido para declarar carga."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "5 coroas"
+        }
+      ],
+      "ranged": [
+        {
+          "name": "Zarabatana",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Facas de Arremesso",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        }
+      ],
+      "armor": [
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "joga-predas",
+    "name": "Joga-Predas",
+    "lore": "Joga-Pedras praticam a arte de arremessar vários objetos até que possam lançar vários projéteis em uma fração de segundo. Isso os torna úteis para distrair inimigos com uma saraivada de armas de arremesso. ",
+    "quantity": "0-5",
+    "stats": {
+      "move": 10,
+      "fight": "0",
+      "shoot": "+1",
+      "armour": "10",
+      "Vontade": "-1",
+      "health": 10,
+      "cost": "20 coroas",
+      "equipmentSlots": 4
+    },
+    "abilities": [
+      {
+        "name": "Animosidade",
+        "description": "O Guerreiro Goblin está sujeito às regras de Animosidade."
+      },
+      {
+        "name": "Apeedrejador Ligeiro",
+        "description": "Um joga-pedras pode usar suas duas ações no turno para fazer um lançamento duplo. Ele pode então fazer fazer um ataque a distância rolando dois dados e escolhendo o melhor resultado."
+      }
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "5 coroas"
+        }
+      ],
+      "ranged": [
+        {
+          "name": "Zarabatana",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Facas de Arremesso",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        }
+      ],
+      "armor": [
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        }
+      ],
+      "miscellaneous": [],
+      "modifiers": []
+    }
+  },
+  {
+    "id": "caranguejeira-gigante",
+    "name": "Caranguejeira Gigante",
+    "lore": "Caranguejeiras Gigantes são melhor evitadas quando encontradas na natureza, devido ao seu veneno mortal e tamanho enorme. Quando instigadas a lutar por domadores de feras Goblins, elas se tornam duplamente perigosas e muito mais difíceis de evitar.",
+    "quantity": "0-1",
+    "noXP": true,
+    "qualidade": 20,
+    "stats": {
+      "move": 16,
+      "fight": "+2",
+      "shoot": "-",
+      "armour": 12,
+      "Vontade": "-3",
+      "health": 20,
+      "strength": "+2",
+      "cost": "200 coroas",
+      "equipmentSlots": 0
+    },
+    "abilities": [
+      {
+        "name": "Inseto Colossal",
+        "description": "Caranguejeira Gigantes têm as características Grande, Voraz, Peçonhento, Aterrorizante e Estupidez."
+      },
+      {
+        "name": "Nativo das Matas",
+        "description": "Uma Caranguejeira gigante não recebe penalidades de movimento por atravessar terreno de floresta."
+      },
+      {
+        "name": "Montaria do Chefe",
+        "description": "Uma Caranguejeira gigante pode ser montada por um Chefim Goblin, inclusive começando o jogo já dessa forma. Caso não comece o jogo montado, o chefim goblin deve gastar uma ação de movimento para montar ou desmontar a Caranguejeira, se estiver em contato de base com a mesmo (desmonta em contato de base). Um Chefim Goblin montado em uma Caranguejeira Gigante ocupa o mesmo espaço que ela, não pode ser alvo de ataques corpo a corpo mesmo se a Caranguejeira Gigante for cargada e recebe cobertura pesada contra ataques a distância. Durante a ativação do Chefim Goblin, a ação de movimento ou carga será usada como a da Caranguejeira, mas qualquer outra ação deve ser do Chefim Goblin, que ganha +1 de Ímpeto em ataques corpo a corpo e a característica Peçonhento."
+      }
+    ]
+  }
+]

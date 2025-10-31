@@ -1,0 +1,32 @@
+[
+  {
+    "id": "fome-sombria",
+    "name": "Fome Sombria",
+    "type": "Skaven do Clã Enshin",
+    "description": "Uma figura com essa habilidade pode declarar o uso de fome sombria no começo da sua ativação. A figura ganha 1 ação extra durante a ativação, mas recebe 3 de dano. Para cada uso consecutivo dessa habilidade, o dano aumenta em mais 3."
+  },
+  {
+    "id": "lutar-com-a-cauda",
+    "name": "Lutar com a Cauda",
+    "type": "Skaven do Clã Enshin",
+    "description": "Uma figura com essa habilidade pode equipar uma adaga ou escudo na sua cauda. Se equipar um escudo ganha +1 de bônus de armadura, e se equipar uma adaga ganha +1 de Ímpeto em ataques corpo a corpo. Uma figura não pode equipar um escudo se já usar um na sua mão secundária."
+  },
+  {
+    "id": "rastejar-pelas-paredes",
+    "name": "Rastejar pelas Paredes",
+    "type": "Skaven do Clã Enshin",
+    "description": "Uma figura com essa habilidade pode atravessar obstáculos de até 16cm de altura como se não estivessem lá, mas não pode terminar seu movimento com partes da sua base ou modelo dentro de um obstáculo."
+  },
+  {
+    "id": "infiltração-silenciosa",
+    "name": "Infiltração Silenciosa",
+    "type": "Skaven do Clã Enshin",
+    "description": "Uma figura com essa habilidade pode ser posicionada no começo do jogo em qualquer lugar do tabuleiro, contanto que fora da linha de visão e a mais de 30cm de todas as figuras inimigas. Ela sempre é posicionada depois de todas as figuras do bando inimigo. Figuras com habilidades similares a essa sempre rolam para determinar a ordem do posicionamento."
+  },
+  {
+    "id": "arte-da-morte-silenciosa",
+    "name": "Arte da Morte Silenciosa",
+    "type": "Skaven do Clã Enshin",
+    "description": "Uma figura com essa habilidade pode lutar desarmado sem nenhuma penalidade, e conta como se estivesse equipado com uma arma na mão secundária (+1 de Ímpeto pelas regras de lutar com duas mãos), mas ainda podendo pegar fragmentos de Pedra-Bruxa. Se lutar dessa forma, causa um dano crítico em uma rolagem natural de 19 ou 20. Pode usar essa habilidade em conjunto com Garras de Combate, ganhando +2 de Ímpeto pelas regras de lutar com duas mãos ao invés do habitual 1 e mantendo a faixa extra de dano crítico."
+  }
+]

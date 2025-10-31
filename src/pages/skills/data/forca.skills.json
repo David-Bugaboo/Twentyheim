@@ -1,0 +1,32 @@
+[
+  {
+    "id": "esmaga-crânio",
+    "name": "Esmaga Crânio",
+    "type": "Força",
+    "description": "Todos os ataques corpo a corpo de uma figura com essa habilidade causam +2 de dano extra do mesmo tipo que o tipo de dano da arma usada."
+  },
+  {
+    "id": "resiliente",
+    "name": "Resiliente",
+    "type": "Força",
+    "description": "Aumente o valor de armadura da figura com essa habilidade em 1. Ataques que causem 0 de dano nunca causam nenhum de seus efeitos adicionais na figura com essa habilidade."
+  },
+  {
+    "id": "intimidador",
+    "name": "Intimidador",
+    "type": "Força",
+    "description": "Uma figura com essa habilidade ganha a característica Aterrorizante, com uma CD 14 ao invés de 12 no teste de Vontade para cargá-lo."
+  },
+  {
+    "id": "halterofilista",
+    "name": "Halterofilista",
+    "type": "Força",
+    "description": "O usuário ganha +5 de bônus em testes de Força, e ganha +1 no atributo Força."
+  },
+  {
+    "id": "carga-imparável",
+    "name": "Carga Imparável",
+    "type": "Força",
+    "description": "A figura ganha +2 de Ímpeto na ativação que completa uma carga e pode atravessar terrenos e figuras durante o movimento da carga"
+  }
+]

@@ -73,7 +73,7 @@
     "specialRules": [
       {
         "label": "Proteger a Cabeça",
-        "value": "Uma vez por jogo, um dano crítico que a figura receberia é transformado em um dano normal."
+        "value": "A figura equipada com elmo trata ataques com a palavra-chave Concussiva(X) como se fosse Concussiva(X+2). Adicionalmente, danos críticos causam -2 de dano extra."
       }
     ]
   },
@@ -215,5 +215,28 @@
     "effect": null,
     "requirements": null,
     "specialRules": []
+  },
+  {
+    "id": "broquel",
+    "name": "Bróquel",
+    "type": "Armadura",
+    "damageModifier": null,
+    "purchaseCost": "90 coroas",
+    "rarity": 16,
+    "availability": ["Todos"],
+    "exclusive": null,
+    "flavorText": "Ithilmar é um metal prateado que é leve como seda e mais forte que aço. Os elfos são especialistas em forjar armas e armaduras de ithilmar, e o reino élfico de Caledor é o único lugar no mundo onde este metal pode ser encontrado.",
+    "user": null,
+    "armorBonus": "0",
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Aparar",
+        "value": "Um modelo equipado com esse item pode usar a reação Aparar."
+      }
+    ]
   }
 ]

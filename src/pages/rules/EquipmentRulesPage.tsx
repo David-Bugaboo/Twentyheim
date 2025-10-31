@@ -103,29 +103,17 @@ function EquipmentRulesPage() {
               <HeaderH1>Espaços de Item</HeaderH1>
             </div>
             <MobileText>
-              Figuras têm 5 espaços de item, 6 se forem Grandes. Espaços de item
-              representam quantas coisas uma figura pode carregar e não apenas
-              armas e armaduras. Uma aljava, por exemplo, gasta um espaço de
-              item assim como o arco para quem fornece flechas. É importante
-              lembrar que equipamentos particularmente volumosos como armaduras
-              pesadas e armas de duas mãos ocupam dois espaços de item, tornando
-              importante pensar estratégicamente no que carregar. Por exemplo,
-              um guerreiro carregando uma armadura pesada e uma arma de duas
-              mãos só teria espaço para mais um item, diminuindo suas escolhas
-              estratégicas.
+              Figuras têm uma quantidade de espaços de item delimitados em sua
+              ficha. Espaços de item representam quantas coisas uma figura pode
+              carregar e não apenas armas e armaduras. Uma aljava, por exemplo,
+              gasta um espaço de item assim como o arco para quem fornece
+              flechas. É importante lembrar que equipamentos particularmente
+              volumosos como armaduras pesadas e armas de duas mãos ocupam dois
+              espaços de item, tornando importante pensar estratégicamente no
+              que carregar. Por exemplo, um guerreiro carregando uma armadura
+              pesada e uma arma de duas mãos só teria espaço para mais um item,
+              diminuindo suas escolhas estratégicas.
             </MobileText>
-
-            <div id="regra-um">
-              <WarningBox
-                title="A Regra de Um: Limitações para acessórios"
-                type="info"
-              >
-                Uma figura só pode carregar 1 de cada tipo de acessório. Isso
-                significa que apenas um anel, uma ferramenta e etc. A excessão
-                são equipamentos do tipo frasco que podem ser trazidos em
-                qualquer quantidade e combinação.
-              </WarningBox>
-            </div>
 
             <div id="armas">
               <HeaderH1>Armas</HeaderH1>

@@ -4,14 +4,14 @@
     "name": "Marca de Chotec",
     "restrictions": "Apenas saurídeos",
     "cost": "40 coroas",
-    "description": "O guerreiro tem mandíbulas brutais. Ele sempre conta como armado. Adicionalmente, se estiver lutando com uma arma, a combinação de suas mandíbulas e armas concedem a ele a característica Penetração de Armadura(1)"
+    "description": "O guerreiro tem mandíbulas comparáveis a de um Kroxigor. Ele ganha a característica Voraz quando desarmado. Adicionalmente, se estiver lutando com uma arma, a combinação de suas mandíbulas e armas concedem a ele a característica Penetração de Armadura(1)"
   },
   {
     "id": "marca-de-sotek",
     "name": "Marca de Sotek",
     "restrictions": "Apenas Skinks",
     "cost": "40 coroas",
-    "description": "O guerreiro tem dentes pequenos, mas carregados de veneno. Ele sempre conta como armado com uma arma com a característica Tóxica e modificador de dano -1, mesmo desarmado. Adicionalmente, como uma ação (que pode substituir ação de movimento), pode envenenar uma arma ou projétil, dando ao próximo ataque com a arma a característica Tóxica."
+    "description": "O guerreiro tem dentes pequenos, mas carregados de veneno. Ele sempre conta como armado com uma arma com a característica Tóxica e modificador de dano -1. Adicionalmente, como uma ação (que pode substituir ação de movimento), pode envenenar uma arma ou projétil, dando ao próximo ataque com a arma a característica Tóxica."
   },
   {
     "id": "marca-de-huanchi",

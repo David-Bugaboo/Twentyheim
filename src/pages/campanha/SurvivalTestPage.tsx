@@ -65,6 +65,18 @@ function SurvivalTestPage() {
                 usa a tabela de Avanço normalmente.
               </p>
             </WarningBox>
+            <HeaderH2>Recalculando a Qualidade do Bando</HeaderH2>
+            <MobileText>
+              Sempre que uma ou mais figuras morrem,{" "}
+              <a href="/rules/warband-quality">
+                recalcule a classificação do bando
+              </a>
+              Se a figura está incapacitada de jogar uma ou mais partidas,
+              recalcule apenas para aquelas partidas,e o faça de novo quando ele
+              voltar ao bando.
+            </MobileText>
+            Se o líder do bando for um vampiro, o necromante do bando deve
+            assumir o comando.
             <HeaderH1>Tabela de Sobrevivência</HeaderH1>
             <HeaderH2>Resultados(D20)</HeaderH2>
             <HeaderH3>1 - Morto</HeaderH3>
@@ -228,8 +240,8 @@ function SurvivalTestPage() {
             </MobileText>
             <HeaderH3>19 - Vendido as Arenas Clandestinas</HeaderH3>
             <MobileText>
-              A figura acorda nas notórias Arenas Clandestinas do Refúgio dos
-              Miseráveis e deve lutar contra um Gladiador.
+              A figura acorda nas notórias Arenas Clandestinas do Covil dos
+              Saqueadores e deve lutar contra um Gladiador.
               <br />
               <br />
               A figura rola um teste de Ímpeto ou Precisão CD 15.

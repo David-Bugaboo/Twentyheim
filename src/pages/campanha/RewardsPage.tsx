@@ -2,8 +2,10 @@ import PageTitle from "../../components/PageTitle";
 import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
 import HeaderH1 from "../../components/HeaderH1";
+import { useNavigate } from "react-router-dom";
 
 function RewardsPage() {
+  const navigate = useNavigate();
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <div className="py-4">
@@ -36,18 +38,46 @@ function RewardsPage() {
               mercado negro, ele pode comprar os itens rolados na atividade.
             </MobileText>
 
+            <HeaderH1>Contratar e Pagar Mercenários</HeaderH1>
+            <MobileText>
+              O jogador pode contratar quaisquer mercenários disponíveis para
+              seu bando e então pagar suas taxas de manutenção. Se contratar
+              mercenários, recalcule a qualidade do bando, lembrando de somar os
+              valores específicos que cada mercenário adiciona a qualidade do
+              bando.
+            </MobileText>
+
+            <button
+              onClick={() => navigate("/campaign/mercenaries")}
+              className="w-full px-4 py-2 rounded-md transition-all duration-150 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white text-sm"
+            >
+              Mercenários
+            </button>
+
+            <HeaderH1>Contratar e Pagar Lendas</HeaderH1>
+            <MobileText>
+              O jogador pode contratar quaisquer lendas que seus Heróis tenham
+              encontrado durante a atividade "Encontrar Lendas". Se uma lenda já
+              estiver no bando, ele então paga o custo de manutenção nessa
+              etapa. Recalcule a qualidade do bando, lembrando de somar os
+              valores específicos que cada lenda adiciona a qualidade do bando.
+            </MobileText>
+
+            <button
+              onClick={() => navigate("/campaign/legends")}
+              className="w-full px-4 py-2 rounded-md transition-all duration-150 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white text-sm"
+            >
+              Lendas
+            </button>
+
             <HeaderH1>Contratar Soldados e Heróis</HeaderH1>
             <MobileText>
-              Você pode contratar novos soldados, pagando a mesma quantidade que
-              pagaria no começo da campanha. A diferença principal é que um novo
-              soldado só pode ser equipado com um item raro se este for obtido
-              através de <strong>Procurar no Mercado Negro.</strong> Todos os
-              limites normais de limite de soldados se aplica. Todos começam no
-              nível 1. Você pode contratar soldados de nível mais alto
-              multiplicando o custo pelo nível pretendido. (um Carniçal de 50
-              coroas custaria 150 coroas para contratar no nível 3.) Role todos
-              os avanços imediatamente. Uma figura nunca pode ser comprada com o
-              nível maior que o maior nível dentre as figuras do bando.
+              Você pode contratar novos soldados ou hérois, pagando a mesma
+              quantidade que pagaria no começo da campanha. A diferença
+              principal é que um novo soldado só pode ser equipado com um item
+              não-comum se este for obtido através de{" "}
+              <strong>Procurar no Mercado Negro.</strong> Recalcule a{" "}
+              <a href="/rules/qualidade-do-bando">qualidade do bando</a>.
             </MobileText>
           </MobileSection>
         </div>

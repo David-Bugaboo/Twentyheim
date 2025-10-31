@@ -1,0 +1,38 @@
+[
+  {
+    "name": "BORA CAMBADA!",
+    "castingNumber": 14,
+    "keywords": ["Área de Efeito(Zona Pequena)", "Concentração"],
+    "effect": "Centralize a Área de Efeito no conjurador e mova-a junto com ele. Todas as figuras aliadas que começarem sua ativação na Área de Efeito ganham +4 no atributo movimento."
+  },
+  {
+    "name": "SAI!",
+    "castingNumber": 10,
+    "keywords": ["Área de Efeito(Explosão Média)"],
+    "effect": "Centralize a Área de Efeito no conjurador. Qualquer figura dentro da área de efeito sofre um ataque +6. Qualquer figura atingida não sofre dano, mas é movida em linha reta para longe do conjurador uma quantidade de centímetros igual ao dano recebido. Se a figura colidir com outra figura ou uma peça de terreno como parte desse movimento, todos os envolvidos na colisão (exceto terrenos, claro) recebem um ataque +3."
+  },
+  {
+    "name": "PEI!",
+    "castingNumber": 8,
+    "keywords": ["Alcance(30cm)", "Míssil Mágico(Mágico)(+4)"],
+    "effect": "Ataque a figura inimiga alvo com o Míssil Mágico. O ataque ignora qualquer bônus de armadura da figura inimiga alvo. "
+  },
+  {
+    "name": "PEGUEI O BOBO, NA CASCA DO OVO!",
+    "castingNumber": 8,
+    "keywords": ["Conjurador Apenas"],
+    "effect": "Nenhuma figura pode declarar carga contra o conjurador até o final deste turno. Se o conjurador estiver em combate, ele imediatamente se move 10cm para fora de combate, mas não pode se mover para fora do tabuleiro ou em combate."
+  },
+  {
+    "name": "TOMA!",
+    "castingNumber": 10,
+    "keywords": ["Alcance(40cm)", "Concentração"],
+    "effect": "O conjurador invoca uma Maça espectral em uma das suas mãos livres, que causa dano mágico e tem um modificador de dano +2. O porrete dá um bônus de +2 ao Ímpeto em ataques corpo a corpo feito com esse porrete. A magia dura até o conjurador receber dano."
+  },
+  {
+    "name": "FOGARÉU DE GORK",
+    "castingNumber": 12,
+    "keywords": ["Alcance(30cm)", "Míssil Mágico(Flamejante)(+3)"],
+    "effect": "O conjurador ataca a até duas figuras alvo com o Míssil Mágico. Alternativamente, o conjurador pode atacar uma figura alvo com dois Mísseis Mágicos, com um ataque a distância separado para cada um."
+  }
+]

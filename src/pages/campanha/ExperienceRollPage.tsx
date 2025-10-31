@@ -13,6 +13,7 @@ function ExperienceRollPage() {
       Raça: "Humanos",
       Mov: "20",
       Imp: "+5",
+      For: "1",
       Prec: "+5",
       Arm: 11,
       Vont: "+8",
@@ -22,6 +23,7 @@ function ExperienceRollPage() {
       Raça: "Elfo",
       Mov: "20",
       Imp: "+6",
+      For: "1",
       Prec: "+6",
       Arm: "11",
       Vont: "+9",
@@ -31,6 +33,7 @@ function ExperienceRollPage() {
       Raça: "Anão",
       Mov: "10",
       Imp: "6",
+      For: "1",
       Arm: "13",
       Prec: "5",
       Vont: "+9",
@@ -40,6 +43,7 @@ function ExperienceRollPage() {
       Raça: "Ogro",
       Mov: "24",
       Imp: "+6",
+      For: "+2",
       Prec: "+4",
       Arm: "14",
       Vont: "+8",
@@ -49,6 +53,7 @@ function ExperienceRollPage() {
       Raça: "Nanico",
       Mov: "26",
       Imp: "+3",
+      For: "0",
       Prec: "+6",
       Arm: "11",
       Vont: "+9",
@@ -58,6 +63,7 @@ function ExperienceRollPage() {
       Raça: "Possuído",
       Mov: "26",
       Imp: "+8",
+      For: "3",
       Prec: "-",
       Arm: "15",
       Vont: "+9",
@@ -67,6 +73,7 @@ function ExperienceRollPage() {
       Raça: "Vampiro",
       Mov: "30",
       Imp: "+7",
+      For: "4",
       Prec: "+5",
       Arm: "15",
       Vont: "+9",
@@ -76,6 +83,7 @@ function ExperienceRollPage() {
       Raça: "Skaven",
       Mov: "24",
       Imp: "+5",
+      For: "1",
       Prec: "+5",
       Arm: "11",
       Vont: "+6",
@@ -85,6 +93,7 @@ function ExperienceRollPage() {
       Raça: "Carniçal",
       Mov: "24",
       Imp: "+5",
+      For: "1",
       Arm: "13",
       Prec: "+1",
       Vont: "+6",
@@ -94,6 +103,7 @@ function ExperienceRollPage() {
       Raça: "Saurídeo",
       Mov: "20",
       Imp: "+6",
+      For: "2",
       Prec: "-",
       Arm: "14",
       Vont: "+9",
@@ -103,6 +113,7 @@ function ExperienceRollPage() {
       Raça: "Gecko",
       Mov: "30",
       Imp: "+4",
+      For: "1",
       Prec: "+5",
       Arm: "11",
       Vont: "+7",
@@ -112,6 +123,7 @@ function ExperienceRollPage() {
       Raça: "Goblin",
       Mov: "16",
       Imp: "+5",
+      For: "1",
       Prec: "+6",
       Arm: "11",
       Vont: "+7",
@@ -121,6 +133,7 @@ function ExperienceRollPage() {
       Raça: "Orc",
       Mov: "18",
       Imp: "+5",
+      For: "1",
       Prec: "+5",
       Arm: "13",
       Vont: "+8",
@@ -139,6 +152,7 @@ function ExperienceRollPage() {
       Raça: "Centouro de Hashut",
       Mov: "36",
       Imp: "+7",
+      For: "2",
       Prec: "+2",
       Arm: "15",
       Vont: "+8",
@@ -148,6 +162,7 @@ function ExperienceRollPage() {
       Raça: "Ungor",
       Mov: "32",
       Imp: "+6",
+      For: "1",
       Arm: "13",
       Prec: "+5",
       Vont: "+6",
@@ -157,6 +172,7 @@ function ExperienceRollPage() {
       Raça: "Centigor",
       Mov: "30",
       Imp: "7",
+      For: "1",
       Prec: "6",
       Arm: "15",
       Vont: "+8",
@@ -166,6 +182,7 @@ function ExperienceRollPage() {
       Raça: "Gors",
       Mov: "28",
       Imp: "+6",
+      For: "1",
       Prec: "+4",
       Arm: "13",
       Vont: "9",
@@ -188,30 +205,76 @@ function ExperienceRollPage() {
               de experiência dadas para ações específicas.
             </MobileText>
 
-            <HeaderH1>Subir de Nível</HeaderH1>
+            <HeaderH1>Bônus de Azarão</HeaderH1>
             <MobileText>
-              Figuras sobem de nível a medida que acumulam experiência através
-              de batalhas, ou até mesmo ao serem contratados se forem Hérois.
-              Líderes ganham um novo nível a cada 2 pontos de experiência que
-              ganham. a cada 5 níveis ganhos, o valor de experiência necessário
-              para subir de nível aumenta em 1. Por exemplo, uma figura subindo
-              do nível 5 para o 6 precisaria de 3 de experiência para subir de
-              nível ao invés de 2. do nível 10 para o 11 precisaria de 4 ao
-              invés de 3 e assim sucessivamente. Líderes e Hérois podem subir
-              até o nivel 20.
+              Quando um bando luta contra um bando inimigo com uma classificação
+              maior, cada figura ganha pontos de Experiência extras conforme
+              mostrado na tabela abaixo. Quanto maior a classificação do bando
+              oponente, mais pontos o azarão ganha.
             </MobileText>
+
+            <GenericTable
+              data={[
+                {
+                  "Diferença de Qualidade": "0-50 pontos",
+                  "Bônus de Experiência": "Nenhum",
+                },
+                {
+                  "Diferença de Qualidade": "51-75 pontos",
+                  "Bônus de Experiência": "+1 ponto de experiência",
+                },
+                {
+                  "Diferença de Qualidade": "76-100 pontos",
+                  "Bônus de Experiência": "+2 pontos de experiência",
+                },
+                {
+                  "Diferença de Qualidade": "101-150 pontos",
+                  "Bônus de Experiência": "+3 pontos de experiência",
+                },
+                {
+                  "Diferença de Qualidade": "151-300 pontos",
+                  "Bônus de Experiência": "+4 pontos de experiência",
+                },
+                {
+                  "Diferença de Qualidade": "301+ pontos",
+                  "Bônus de Experiência": "+5 pontos de experiência",
+                },
+              ]}
+              scrollable={false}
+            />
+
+            <HeaderH1>Recalcular a Qualidade do Bando</HeaderH1>
             <MobileText>
-              Soldados sobem de nível a cada 1 de experiência ganha. A cada
-              nível ganho, a quantidade de experiência necessária para subir de
-              nível aumenta em 1. Um soldado precisaria de 3 de experiência para
-              subir do nível 2 para o 3, 4 de experiência para subir do nível 3
-              para o 4 e assim sucessivamente. Um soldado pode subir até o nível
-              4.
+              Sempre que uma ou mais figuras ganham experiência,{" "}
+              <a href="/rules/warband-quality">
+                recalcule a classificação do bando
+              </a>
+              .
             </MobileText>
 
             <MobileText>
-              Quando uma figura sobe de nível, role em uma das tabelas de
-              Avanço, a depender se a figura for um Líder, Héroi ou Soldado.
+              <strong>Exemplo:</strong> Se um bando com classificação 500 pontos
+              luta contra um bando com 650 pontos, a diferença é de 150 pontos.
+              O bando com menor classificação ganha +4 pontos de experiência
+              extras para cada figura que participou da batalha.
+            </MobileText>
+
+            <HeaderH1>Ganhar um avanço</HeaderH1>
+            <MobileText>
+              Figuras ganham avanços a medida que acumulam experiência através
+              de batalhas, ou até mesmo no ato de serem contratados se forem
+              Líderes ou Heróis.
+            </MobileText>
+            <MobileText>
+              Figuras marcam uma caixa de experiência no seu espaço na ficha do
+              bando para cada ponto de experiência ganha. Quando marcarem uma
+              caixa destacada, ganham um avanço.
+            </MobileText>
+            <MobileText>
+              Quando uma figura ganhar um avanço, role em uma das tabelas de
+              Avanço, a depender se a figura for um Líder, Herói ou Soldado.
+              Role sempre de forma que todos os jogadores possam testemunhar as
+              rolagens.
             </MobileText>
 
             <HeaderH2>Tabela de Avanço de Heróis e Campeões</HeaderH2>
@@ -219,17 +282,24 @@ function ExperienceRollPage() {
             <GenericTable
               data={[
                 {
-                  "Rolagem de Dado": "1-8",
+                  "Rolagem de Dado": "1-4",
                   Resultado: "Aprender nova Habilidade",
                 },
-                { "Rolagem de Dado": "9-10", Resultado: "+1 Ímpeto" },
-                { "Rolagem de Dado": "11-12", Resultado: "+1 Precisão" },
-                { "Rolagem de Dado": "13-14", Resultado: "+2 de Vida" },
-                { "Rolagem de Dado": "15-16", Resultado: "+2 de Movimento" },
-                { "Rolagem de Dado": "17-18", Resultado: "+1 Vontade" },
                 {
-                  "Rolagem de Dado": "19-20",
-                  Resultado: "Aprender nova Habilidade",
+                  "Rolagem de Dado": "5-8",
+                  Resultado: "+1 Força ou +1 de Ímpeto",
+                },
+                {
+                  "Rolagem de Dado": "9-12",
+                  Resultado: "+1 Precisão ou +2 Movimento",
+                },
+                {
+                  "Rolagem de Dado": "13-16",
+                  Resultado: "+1 Armadura ou +2 de Vida ",
+                },
+                {
+                  "Rolagem de Dado": "17-20",
+                  Resultado: "+2 de Vida ou +1 de Vontade",
                 },
               ]}
               scrollable={false}
@@ -239,11 +309,22 @@ function ExperienceRollPage() {
             <MobileText>Role 1d20 e consulte a tabela abaixo:</MobileText>
             <GenericTable
               data={[
-                { "Rolagem de Dado": "1-6", Resultado: "+1 Ímpeto" },
-                { "Rolagem de Dado": "7-8", Resultado: "+1 Precisão" },
-                { "Rolagem de Dado": "9-12", Resultado: "+2 de Movimento" },
-                { "Rolagem de Dado": "13-14", Resultado: "+2 de Vida" },
-                { "Rolagem de Dado": "15-16", Resultado: "+1 Vontade" },
+                {
+                  "Rolagem de Dado": "1-4",
+                  Resultado: "+1 Força ou +1 de Ímpeto",
+                },
+                {
+                  "Rolagem de Dado": "5-8",
+                  Resultado: "+1 Precisão ou +2 Movimento",
+                },
+                {
+                  "Rolagem de Dado": "9-12",
+                  Resultado: "+1 Armadura ou +2 de Vida ",
+                },
+                {
+                  "Rolagem de Dado": "13-16",
+                  Resultado: "+2 de Vida ou +1 de Vontade",
+                },
                 {
                   "Rolagem de Dado": "17-20",
                   Resultado: "O Moleque tem Talento!",
@@ -257,7 +338,8 @@ function ExperienceRollPage() {
               Aumente seu atributo indicado no valor indicado. Note que cada
               raça tem limites de aumento de atributo que devem ser respeitados.
               Caso uma figura role em um atributo que já tenha chegado ao limite
-              racial, re-role o resultado.
+              racial, re-role o resultado. Se o jogador rolar um avanço de
+              atributo cujo limite racial foi atingido, re-role o avanço.
             </MobileText>
 
             <HeaderH3>Limites Raciais de Atributos</HeaderH3>
@@ -269,6 +351,14 @@ function ExperienceRollPage() {
               Habilidade" para figuras capazes de conjurar magias ou orações.
               Adicione uma nova magia da tradição indicada na ficha da figura ou
               da tradição Magia Menor.
+            </MobileText>
+
+            <HeaderH2>Diminuir Classe de Dificuldade de Magia</HeaderH2>
+            <MobileText>
+              Esse avanço pode ser ganho no lugar do avanço "Aprender nova
+              Habilidade" para figuras capazes de conjurar magias ou orações.
+              Escolha uma magia que a figura sabe. Aquela magia tem sua classe
+              de dificuldade diminuida em 1.
             </MobileText>
 
             <HeaderH2>Aprender nova Habilidade</HeaderH2>

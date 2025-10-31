@@ -1,0 +1,159 @@
+[
+  {
+    "id": "hidra",
+    "name": "Hidra",
+    "role": "Monstro",
+    "quantity": "1",
+    "stats": {
+      "move": 15,
+      "fight": "+5",
+      "shoot": "-",
+      "armour": 13,
+      "Vontade": "+5",
+      "health": "10/10/10/10",
+      "cost": "0"
+    },
+    "abilities": [
+      {
+        "name": "Monstruosidade",
+        "description": "A Hidra tem as características Grande, Forte, Aterrorizante e Mente-Férrea."
+      },
+      {
+        "name": "Baforada",
+        "description": "Como uma ação de ataque a distância a Hidra pode posicionar uma Área de Efeito(Cone). Figuras nessa área de efeito recebem um ataque venenoso +(quantidade de cabeças não reduzidas a 0 de vida). A Baforada é um esforço conjunto entre as cabeças e só pode ser usada uma vez por turno independente de quantas ações a hidra tenha."
+      },
+      {
+        "name": "Multiplas Cabeças",
+        "description": "A vida da hidra é marcada como 10/10/10/10. Cada um desses incrementos de 10 perdidos pela Hidra decepa uma de suas multiplas cabeças. A Hidra tem uma ação na sua ativação para cada uma de suas cabeças não reduzidas a 0 de vida. No começo de cada turno, role 1d20 para cada cabeça perdida: em uma rolagem de 10+, uma cabeça é totalmente regenerada. Adicionalmente, enquanto tiver mais de uma cabeça, a Hidra é imune a receber Marcadores de Atordoamento."
+      }
+    ]
+  },
+  {
+    "id": "dragão",
+    "name": "Dragão",
+    "role": "Monstro",
+    "quantity": "1",
+    "stats": {
+      "move": 18,
+      "fight": "+4",
+      "shoot": "-",
+      "armour": 15,
+      "Vontade": "+2",
+      "health": "40",
+      "cost": "0"
+    },
+    "abilities": [
+      {
+        "name": "Monstruosidade",
+        "description": "O Dragão tem as características Grande, Forte, Aterrorizante e Mente-Férrea."
+      },
+      {
+        "name": "Baforada",
+        "description": "Como uma ação de ataque a distância o Dragão pode posicionar uma Área de Efeito(Cone). Figuras nessa área de efeito recebem um ataque flamejante +5. Figuras atingidas por esse ataque ganham um Marcador de Chamas."
+      },
+      {
+        "name": "Crânio de Ferro",
+        "description": "O Dragão é imune a palavra-chave Concussiva(X)."
+      }
+    ]
+  },
+  {
+    "id": "grifo",
+    "name": "Grifo",
+    "role": "Monstro",
+    "quantity": "1",
+    "stats": {
+      "move": 18,
+      "fight": "+4",
+      "shoot": "-",
+      "armour": 11,
+      "Vontade": "+4",
+      "health": "36",
+      "cost": "0"
+    },
+    "abilities": [
+      {
+        "name": "Monstruosidade",
+        "description": "O Grifo tem as características Grande, Forte, Voraz, Aterrorizante e Mente-Férrea."
+      },
+      {
+        "name": "Bico de Aço",
+        "description": "Os ataques do Grifo tem a palavra-chave Penetração de Armadura(3)."
+      },
+      {
+        "name": "Crânio de Ferro",
+        "description": "O Grifo é imune a palavra-chave Concussiva(X)."
+      }
+    ]
+  },
+  {
+    "id": "hipogrifo",
+    "name": "Hipogrifo",
+    "role": "Monstro",
+    "quantity": "1",
+    "stats": {
+      "move": 18,
+      "fight": "+5",
+      "shoot": "-",
+      "armour": 13,
+      "Vontade": "+6",
+      "health": "40",
+      "cost": "0"
+    },
+    "abilities": [
+      {
+        "name": "Monstruosidade",
+        "description": "O Hipogrifo tem as características Grande, Forte, Voraz, Chifres, Aterrorizante e Mente-Férrea."
+      },
+      {
+        "name": "Bico de Aço",
+        "description": "Os ataques do Hipogrifo tem a palavra-chave Penetração de Armadura(4)."
+      },
+      {
+        "name": "Crânio de Ferro",
+        "description": "O Grifo é imune a palavra-chave Concussiva(X)."
+      }
+    ]
+  },
+  {
+    "id": "quimera",
+    "name": "Quimera",
+    "role": "Monstro",
+    "quantity": "1",
+    "stats": {
+      "move": 18,
+      "fight": "+5",
+      "shoot": "-",
+      "armour": 13,
+      "Vontade": "+6",
+      "health": "15/15/15",
+      "cost": "0"
+    },
+    "abilities": [
+      {
+        "name": "Monstruosidade",
+        "description": "A quimera tem as características Grande, Forte, Voraz, Aterrorizante e Mente-Férrea."
+      },
+      {
+        "name": "Cabeça de Dragão",
+        "description": "Como uma ação de ataque a distância a Quimera pode posicionar uma Área de Efeito(Cone). Figuras nessa área de efeito recebem um ataque flamejante +5. Figuras atingidas por esse ataque ganham um Marcador de Chamas."
+      },
+      {
+        "name": "Cabeça de Leão",
+        "description": "Os ataques do Hipogrifo tem a palavra-chave Penetração de Armadura(2)."
+      },
+      {
+        "name": "Cabeça de Bode",
+        "description": "A Quimera tem a característica Chifres."
+      },
+      {
+        "name": "Multiplas Cabeças",
+        "description": "A vida da Quimera é marcada como 15/15/15. Cada um desses incrementos de 15 perdidos pela Quimera decepa uma de suas três cabeças. O jogador decepando aquela cabeça pode escolher qual das três está decepando. A Quimera perde a habilidade associada aquela cabeça."
+      },
+      {
+        "name": "Crânio de Ferro",
+        "description": "O Grifo é imune a palavra-chave Concussiva(X)."
+      }
+    ]
+  }
+]

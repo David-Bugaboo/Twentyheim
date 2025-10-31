@@ -1,0 +1,26 @@
+[
+  {
+    "id": "esgrimista-extraordinario",
+    "name": "Esgrimista Extraordinário",
+    "type": "Habilidades de Dragão Carmesim",
+    "description": "A figura com essa habilidade ganha +2 no teste de Ímpeto na reação aparar. Adicionalmente, ele apara um ataque com sucesso mesmo se empatar a rolagem, o que permite que apare golpes críticos em uma rolagem natural de 20."
+  },
+  {
+    "id": "furia-carmesim",
+    "name": "Fúria Carmesim",
+    "type": "Habilidades de Dragão Carmesim",
+    "description": "A figura com essa habilidade ganha +2 no Atributo Ímpeto, e aumenta +2 no seu Limite racial de ímpeto."
+  },
+  {
+    "id": "perfurar-coração",
+    "name": "Perfurar Coração",
+    "type": "Habilidades de Dragão Carmesim",
+    "description": "A figura com essa habilidade ganha +2 em rolagens de Ímpeto de ataques corpo a corpo na ativação em que completar uma carga."
+  },
+  {
+    "id": "forca-do-aco",
+    "name": "Força do Aço",
+    "type": "Habilidades de Dragão Carmesim",
+    "description": "A figura com essa habilidade causa +2 de dano em ataques corpo a corpo durante a ativação em que completar uma carga."
+  }
+]

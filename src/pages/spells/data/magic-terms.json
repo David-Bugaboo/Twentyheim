@@ -1,5 +1,93 @@
 [
   {
+    "term": "Míssil Mágico",
+    "description": "Um míssil mágico funciona exatamente como um ataque a distância, mas usando a Rolagem de Conjuração + (X) ao invés de d20 + Precisão. O Míssil Mágico causa dano (TIPO). Apesar do nome, alguns mísseis mágicos causam dano normal."
+  },
+  {
+    "term": "Área de Efeito(X)",
+    "description": "Posicione o tipo de área de efeito em algum ponto no alcance da magia. Todas as figuras sob a área de efeito são afetadas pela magia."
+  },
+  {
+    "term": "Linha de Visão",
+    "description": "Pode afetar qualquer figura para qual o conjurador pode traçar de visão."
+  },
+  {
+    "term": "Alcance",
+    "description": "A Magia afeta uma figura a até (X)cm do conjurador."
+  },
+  {
+    "term": "Psicológica",
+    "description": "Essa magia é um efeito que mexe com a mente da figura alvo. Palavra-chave relevante para interagir com efeitos de outras magias e habilidades."
+  },
+  {
+    "term": "Sagrada",
+    "description": "Essa magia é um efeito ganho através de fé e dedicação. Magias com essa palavra chave não são afetadas por habilidades e características que anulam, defletem ou oferecem resistência a magia."
+  },
+  {
+    "term": "Conjurador Apenas",
+    "description": "Essa magia só pode ter o próprio conjurador como alvo."
+  },
+  {
+    "term": "Toque",
+    "description": "A magia pode afetar o próprio conjurador ou qualquer figura que ele esteja em contato de base."
+  },
+  {
+    "term": "Ilusão",
+    "description": "Magias que manipulam a percepção das figuras inimigas. Palavra-chave relevante para interagir com efeitos de outras magias e habilidades."
+  },
+  {
+    "term": "Concentração",
+    "description": "Essa magia requer que a figura se mantenha concentrando sobre ela. Uma figura pode concentrar qualquer número de magias ao mesmo tempo, mas apenas uma de cada tipo por vez. Uma figura deve rolar um teste de Vontade com CD igual classe de dificuldade da magia que está concentrando (chamado de Teste de Concentração) no começo de cada uma de suas ativações, sempre que sofre dano, adicionando o dano sofrido a CD, sempre que recebe um marcador de atordoamento (com a penalidade de -2 em rolagens de dado causado pelo marcador de atordoamento) e sempre que é movido por uma força externa, adicionando a quantidade de centímetros que foi movido a CD. A figura faz esse teste nessas condições para cada magia que esteja concentrando, e o efeito de magias para qual ele falha o Teste de Concentração é cancelado."
+  },
+  {
+    "term": "Explosão Pequena",
+    "description": "Explosão instantânea em formato circular. Diâmetro: 6cm. A área de efeito é posicionada, as figuras afetadas e então desaparece."
+  },
+  {
+    "term": "Explosão Média",
+    "description": "Explosão instantânea em formato circular. Diâmetro: 12cm. A área de efeito é posicionada, as figuras afetadas e então desaparece."
+  },
+  {
+    "term": "Explosão Grande",
+    "description": "Explosão instantânea em formato circular. Diâmetro: 18cm. A área de efeito é posicionada, as figuras afetadas e então desaparece."
+  },
+  {
+    "term": "Zona Pequena",
+    "description": "Zona permanente em formato quadrado. Lado: 6cm. Fica no tabuleiro até o efeito ser cancelado."
+  },
+  {
+    "term": "Zona Média",
+    "description": "Zona permanente em formato quadrado. Lado: 12cm. Fica no tabuleiro até o efeito ser cancelado."
+  },
+  {
+    "term": "Zona Grande",
+    "description": "Zona permanente em formato quadrado. Lado: 18cm. Fica no tabuleiro até o efeito ser cancelado."
+  },
+  {
+    "term": "Cone",
+    "description": "Cones são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Áreas de efeito de cone não tem alcance e devem sempre ser posicionadas com a ponta menor do cone adjacente a qualquer ponto da base de uma figura."
+  },
+  {
+    "term": "Muro",
+    "description": "Muros são Áreas de Efeito permanentes, permanecendo no tabuleiro até o efeito ser cancelado. A área de efeito é tratada como uma peça de terreno para todos os efeitos. Dimensões padrão: 14cm comprimento × 8cm altura × 2.5cm largura."
+  },
+  {
+    "term": "Pilar Pequeno",
+    "description": "Pilar permanente em formato de cilindro. Diâmetro: 6cm. Altura: 8cm. Permanece no campo de batalha até o efeito ser cancelado."
+  },
+  {
+    "term": "Pilar Médio",
+    "description": "Pilar permanente em formato de cilindro. Diâmetro: 12cm. Altura: 8cm. Permanece no campo de batalha até o efeito ser cancelado."
+  },
+  {
+    "term": "Pilar Grande",
+    "description": "Pilar permanente em formato de cilindro. Diâmetro: 18cm. Altura: 8cm. Permanece no campo de batalha até o efeito ser cancelado."
+  },
+  {
+    "term": "Armadilhas",
+    "description": "Armadilhas são efeitos permanentes, permanecendo do campo de batalha até o efeito ser cancelado. Armadilhas são círculos de 3cm de diâmetro."
+  },
+  {
     "term": "Flamejante",
     "description": "Um dano crítico desse tipo de dano dá ao alvo um Marcador de Chamas."
   },
@@ -17,106 +105,10 @@
   },
   {
     "term": "Mágico",
-    "description": "Tipo de dano especial que tem resistências e vulnerabilidades próprias, ignorando resistência e imunidade a dano normal."
-  },
-  {
-    "term": "Tóxica",
-    "description": "Uma arma com essa característica causa dano Venenoso."
+    "description": "Tipo de dano especial que tem resistências e vulnerabilidades próprias, ignorando resitência e imunidade a dano normal."
   },
   {
     "term": "Sagrado",
     "description": "Atravessa toda e qualquer resistência e ignora regras anti magia se usado contra Daemônios e Mortos-Vivos. Contra outras figuras é dano mágico normal."
-  },
-  {
-    "term": "Linha de Visão",
-    "description": "Linhas de visão são efeitos permanentes, permanecendo do campo de batalha até o efeito ser cancelado. Linhas de visão são círculos de 3cm de diâmetro."
-  },
-  {
-    "term": "Alcance (X)",
-    "description": "A Magia afeta uma figura a até (X)cm do conjurador."
-  },
-  {
-    "term": "CAMPO INTEIRO",
-    "description": "Afeta todas as figuras no campo de batalha."
-  },
-  {
-    "term": "Invocação",
-    "description": "Essa magia invoca uma figura, que deve ser posicionada a até 14cm do conjurador."
-  },
-  {
-    "term": "Psicológico",
-    "description": "Essa magia é um efeito que altera a mente da figura alvo. Palavra-chave relevante para interagir com efeitos de outras magias e habilidades."
-  },
-  {
-    "term": "Conjurador Apenas",
-    "description": "Essa magia só pode ter o próprio conjurador como alvo."
-  },
-  {
-    "term": "Toque",
-    "description": "A magia pode afetar o próprio conjurador ou qualquer figura que ele esteja em contato de base."
-  },
-  {
-    "term": "Ilusão",
-    "description": "Magias que manipulam a percepção das figuras inimigas. Palavra-chave relevante para interagir com efeito de outras magias e habilidades."
-  },
-  {
-    "term": "Ritual",
-    "description": "Essa magia pode ser usada durante a etapa de Conjurar Rituais da Fase de Campanha-jogo. A magia não causa dano ou efeitos negativos por falhar na conjuração, mas não pode ser forçada."
-  },
-  {
-    "term": "Míssil Mágico",
-    "description": "Um míssil mágico funciona exatamente como um ataque à distância, mas usando a Rolagem de Conjuração + (X) ao invés de D20 + Precisão. O Míssil Mágico causa dano (TIPO). Apesar do nome, alguns mísseis mágicos causam dano normal."
-  },
-  {
-    "term": "Área de Efeito (X)",
-    "description": "Posicione o tipo de área de efeito em algum ponto no alcance da magia. Todas as figuras sob a área de efeito são afetadas pela magia. Para informações detalhadas sobre todos os tipos de Áreas de Efeito, incluindo templates e regras específicas, consulte a página dedicada."
-  },
-  {
-    "term": "Explosão Pequena",
-    "description": "Explosões são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Elas são Áreas de Efeito circulares de 6cm de diâmetro."
-  },
-  {
-    "term": "Explosão Média",
-    "description": "Explosões são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Elas são Áreas de Efeito circulares de 12cm de diâmetro."
-  },
-  {
-    "term": "Explosão Grande",
-    "description": "Explosões são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Elas são Áreas de Efeito circulares de 18cm de diâmetro."
-  },
-  {
-    "term": "Zona Pequena",
-    "description": "Zonas são Áreas de Efeito permanentes, que ficam no tabuleiro até o efeito ser cancelado. A Área de Efeito é um quadrado com 6cm de lado."
-  },
-  {
-    "term": "Zona Média",
-    "description": "Zonas são Áreas de Efeito permanentes, que ficam no tabuleiro até o efeito ser cancelado. A Área de Efeito é um quadrado com 12cm de lado."
-  },
-  {
-    "term": "Zona Grande",
-    "description": "Zonas são Áreas de Efeito permanentes, que ficam no tabuleiro até o efeito ser cancelado. A Área de Efeito é um quadrado com 18cm de lado."
-  },
-  {
-    "term": "Cone",
-    "description": "Cones são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Áreas de efeito de cone não têm alcance e devem sempre ser posicionadas com a ponta menor do cone adjacente a qualquer ponto da base de uma figura. O Cone tem 20cm de comprimento e se expande para um ângulo de 45 graus."
-  },
-  {
-    "term": "Muro",
-    "description": "Muros são Áreas de Efeito permanentes, permanecendo no tabuleiro até o efeito ser cancelado. A área de efeito é tratada como uma peça de terreno para todos os efeitos. O Muro tem 14cm comprimento × 8cm altura × 2,5cm largura."
-  },
-  {
-    "term": "Pilar Pequeno",
-    "description": "Pilares são efeitos permanentes, permanecendo no campo de batalha até o efeito ser cancelado. Pilares são cilindros com 8cm de altura e 6cm de diâmetro."
-  },
-  {
-    "term": "Pilar Médio",
-    "description": "Pilares são efeitos permanentes, permanecendo no campo de batalha até o efeito ser cancelado. Pilares são cilindros com 8cm de altura e 12cm de diâmetro."
-  },
-  {
-    "term": "Pilar Grande",
-    "description": "Pilares são efeitos permanentes, permanecendo no campo de batalha até o efeito ser cancelado. Pilares são cilindros com 8cm de altura e 18cm de diâmetro."
-  },
-  {
-    "term": "Armadilha",
-    "description": "Armadilhas são efeitos permanentes, permanecendo no campo de batalha até o efeito ser cancelado. Armadilhas são círculos de 3cm de diâmetro."
   }
 ]

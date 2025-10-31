@@ -3,9 +3,10 @@ import GameText from "./GameText";
 interface SkillCardProps {
   name: string;
   description: string;
+  footer?: React.ReactNode;
 }
 
-function SkillCard({ name, description }: SkillCardProps) {
+function SkillCard({ name, description, footer }: SkillCardProps) {
   return (
     <div className="bg-green-900/20 border border-green-500/40 rounded-lg p-4 mb-4">
       <div className="flex items-center gap-3 mb-3">
@@ -18,6 +19,11 @@ function SkillCard({ name, description }: SkillCardProps) {
           {description}
         </GameText>
       </div>
+      {footer && (
+        <div className="mt-3 pt-3 border-t border-gray-600">
+          {footer}
+        </div>
+      )}
     </div>
   );
 }

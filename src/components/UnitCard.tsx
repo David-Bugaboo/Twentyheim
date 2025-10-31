@@ -9,10 +9,16 @@ export interface UnitStats {
   shoot: string;
   armour: number | string;
   Vontade: string;
-  health: number;
+  health: number | string;
   cost: string;
   lore?: string;
   skills?: string[];
+  startingXp?: number;
+  strength?: number | string;
+  força?: number | string;
+  For?: number | string;
+  upkeep?: string;
+  equipmentSlots?: number | string;
   equipment?: {
     "hand-to-hand"?: Array<{ name: string; cost: string }>;
     ranged?: Array<{ name: string; cost: string }>;
@@ -37,6 +43,9 @@ interface UnitCardProps {
   role?: string;
   quantity?: string;
   stats: UnitStats;
+  lore?: string;
+  availability?: string | string[];
+  qualidade?: string;
   spellAffinity?: {
     aligned0?: string[];
     aligned2?: string[];
@@ -57,6 +66,9 @@ const UnitCard: React.FC<UnitCardProps> = ({
   role,
   quantity,
   stats,
+  lore,
+  availability,
+  qualidade,
   spellAffinity,
   abilities,
   equipment,
@@ -78,35 +90,49 @@ const UnitCard: React.FC<UnitCardProps> = ({
     // Lista de habilidades com suas rotas
     const skillMappings = [
       // Habilidades Básicas
-      { name: "Combate", route: "/skills/combat" },
-      { name: "Atirador", route: "/skills/ranged" },
-      { name: "Acadêmica", route: "/skills/academic" },
-      { name: "Força", route: "/skills/strength" },
-      { name: "Velocidade", route: "/skills/agility" },
-      { name: "Agilidade", route: "/skills/agility" },
-
+      { name: "Combate", route: "/skills/combate" },
+      { name: "Atirador", route: "/skills/atirador" },
+      { name: "Acadêmica", route: "/skills/academica" },
+      { name: "Força", route: "/skills/forca" },
+      { name: "Agilidade", route: "/skills/agilidade" },
       // Habilidades Específicas
-      { name: "Irmãs de Sigmar", route: "/skills/sisters-of-sigmar" },
-      { name: "Skaven do Clã Enshin", route: "/skills/skaven-enshin" },
-      { name: "Saqueadores Homem-Fera", route: "/skills/beastmen-raiders" },
+      { name: "Irmãs de Sigmar", route: "/skills/irmas-de-sigmar" },
+      { name: "Skaven do Clã Enshin", route: "/skills/skaven-do-cla-enshin" },
+      {
+        name: "Saqueadores Homem-Fera",
+        route: "/skills/saqueadores-homem-fera",
+      },
       {
         name: "Caçadores de Tesouro Anões",
-        route: "/skills/dwarf-treasure-hunters",
+        route: "/skills/cacadores-de-tesouro-anoes",
       },
-      { name: "Mata-Trolls Anão", route: "/skills/dwarf-troll-slayers" },
-      { name: "Engenharia da Montanha", route: "/skills/engineering" },
-      { name: "Habilidades Von Carstein", route: "/skills/von-carstein" },
+      { name: "Mata-Trolls Anão", route: "/skills/mata-trolls-anoes" },
+      {
+        name: "Engenharia da Montanha",
+        route: "/skills/engenharia-da-montanha",
+      },
+      {
+        name: "Habilidades Von Carstein",
+        route: "/skills/habilidades-von-carstein",
+      },
       {
         name: "Habilidades de Dragão Carmesim",
-        route: "/skills/crimson-dragon",
+        route: "/skills/habilidades-de-dragão-carmesim",
       },
-      { name: "Habilidades de Lahmia", route: "/skills/lahmia" },
-      { name: "Habilidades de Strigoi", route: "/skills/strigoi" },
-      { name: "Corsários Druchii", route: "/skills/dark-elf-corsairs" },
-      { name: "Habilidades de Geckos", route: "/skills/geckos" },
-      { name: "Habilidades de Saúrios", route: "/skills/saurus" },
-      { name: "Hordas Orc", route: "/skills/orc-hordes" },
-      { name: "Filhos de Hashut", route: "/skills/sons-of-hashut" },
+      { name: "Habilidades de Lahmia", route: "/skills/habilidades-de-lahmia" },
+      {
+        name: "Habilidades de Strigoi",
+        route: "/skills/habilidades-de-strigoi",
+      },
+      { name: "Corsários Druchii", route: "/skills/corsarios-druchii" },
+      { name: "Habilidades de Geckos", route: "/skills/habilidades-de-geckos" },
+      {
+        name: "Habilidades de Saúrios",
+        route: "/skills/habilidades-de-saurios",
+      },
+      { name: "Hordas Orc", route: "/skills/hordas-orc" },
+      { name: "Filhos de Hashut", route: "/skills/filhos-de-hashut" },
+      { name: "Patrulheiro Elfo", route: "/skills/patrulheiro-elfo" },
     ];
 
     // Primeiro, tenta correspondência exata
@@ -226,30 +252,41 @@ const UnitCard: React.FC<UnitCardProps> = ({
 
     const normalizedInput = normalizeString(traditionName);
 
-    // Lista de tradições com suas rotas
+    // Lista de tradições com suas rotas (incluindo nomes em português e inglês)
     const loreMappings = [
-      // Tradições Arcanas
-      { name: "Lore of Fire", route: "/magic/lore-of-fire" },
-      { name: "Lore of Beasts", route: "/magic/lore-of-beasts" },
-      { name: "Lore of Death", route: "/magic/lore-of-death" },
-      { name: "Lore of Heavens", route: "/magic/lore-of-heavens" },
-      { name: "Lore of Life", route: "/magic/lore-of-life" },
-      { name: "Lore of Light", route: "/magic/lore-of-light" },
-      { name: "Lore of Metal", route: "/magic/lore-of-metal" },
-      { name: "Lore of Shadows", route: "/magic/lore-of-shadows" },
-
       // Tradições Sombrias
-      { name: "Lore of Hashut", route: "/magic/lore-of-hashut" },
-      { name: "Lore of Chaos", route: "/magic/lore-of-chaos" },
+      { name: "Rituais do Caos", route: "/magic/rituals-of-chaos" },
+      { name: "Rituais de Nurgle", route: "/magic/rituals-of-nurgle" },
+      { name: "Rituais de Hashut", route: "/magic/rituals-of-hashut" },
+      { name: "Tradição do Rato Chifrudo", route: "/magic/lore-of-horned-rat" },
+      { name: "Tradição da Necromancia", route: "/magic/lore-of-necromancy" },
+      { name: "Tradição da Necromancy", route: "/magic/lore-of-necromancy" },
+      { name: "Lore of Chaos", route: "/magic/rituals-of-chaos" },
+      { name: "Lore of Hashut", route: "/magic/rituals-of-hashut" },
       { name: "Lore of the Horned Rat", route: "/magic/lore-of-horned-rat" },
       { name: "Lore of Necromancy", route: "/magic/lore-of-necromancy" },
 
       // Tradições Divinas
+      { name: "Orações de Sigmar", route: "/magic/prayers-of-sigmar" },
+      { name: "Orações de Ulric", route: "/magic/prayers-of-ulric" },
       { name: "Prayers of Sigmar", route: "/magic/prayers-of-sigmar" },
       { name: "Prayers of Ulric", route: "/magic/prayers-of-ulric" },
 
-      // Tradições Orc
-      { name: "Lore of the Big Waaagh", route: "/magic/lore-of-big-waaagh" },
+      // Tradições Greenskin
+      { name: "Magia de Waaaaagh!", route: "/magic/magic-of-the-waaaaagh" },
+      { name: "Magia da WAAAAAAAGH!", route: "/magic/magic-of-the-waaaaagh" },
+      { name: "Magia dos Goblins", route: "/magic/magic-of-the-goblins" },
+      { name: "Lore of the Big Waaagh", route: "/magic/magic-of-the-waaaaagh" },
+
+      // Magia Druchii e dos Antigos
+      { name: "Magia Druchii", route: "/magic/druchii-magic" },
+      { name: "Magia dos Antigos", route: "/magic/magic-of-the-old-ones" },
+      { name: "Magia dos Anciões", route: "/magic/magic-of-the-old-ones" },
+      { name: "Magic of the Old Ones", route: "/magic/magic-of-the-old-ones" },
+
+      // Magia Inferior
+      { name: "Magia Inferior", route: "/magic/lesser-magic" },
+      { name: "Lesser Magic", route: "/magic/lesser-magic" },
     ];
 
     // Primeiro, tenta correspondência exata
@@ -259,66 +296,65 @@ const UnitCard: React.FC<UnitCardProps> = ({
       }
     }
 
-    // Se não encontrar correspondência exata, tenta correspondência parcial
-    for (const mapping of loreMappings) {
-      const normalizedMapping = normalizeString(mapping.name);
-
-      // Verifica se o input contém palavras-chave da tradição
-      const inputWords = normalizedInput.split(" ");
-      const mappingWords = normalizedMapping.split(" ");
-
-      // Se pelo menos 2 palavras coincidem
-      const matchingWords = inputWords.filter((word) =>
-        mappingWords.some(
-          (mappingWord) =>
-            mappingWord.includes(word) || word.includes(mappingWord)
-        )
-      );
-
-      if (matchingWords.length >= 2) {
-        return mapping.route;
-      }
-
-      // Verifica se contém palavras-chave específicas
-      if (normalizedInput.includes("fire") && mapping.name.includes("Fire"))
-        return mapping.route;
-      if (normalizedInput.includes("beasts") && mapping.name.includes("Beasts"))
-        return mapping.route;
-      if (normalizedInput.includes("death") && mapping.name.includes("Death"))
-        return mapping.route;
-      if (
-        normalizedInput.includes("heavens") &&
-        mapping.name.includes("Heavens")
-      )
-        return mapping.route;
-      if (normalizedInput.includes("life") && mapping.name.includes("Life"))
-        return mapping.route;
-      if (normalizedInput.includes("light") && mapping.name.includes("Light"))
-        return mapping.route;
-      if (normalizedInput.includes("metal") && mapping.name.includes("Metal"))
-        return mapping.route;
-      if (
-        normalizedInput.includes("shadows") &&
-        mapping.name.includes("Shadows")
-      )
-        return mapping.route;
-      if (normalizedInput.includes("hashut") && mapping.name.includes("Hashut"))
-        return mapping.route;
-      if (normalizedInput.includes("chaos") && mapping.name.includes("Chaos"))
-        return mapping.route;
-      if (normalizedInput.includes("horned") && mapping.name.includes("Horned"))
-        return mapping.route;
-      if (
-        normalizedInput.includes("necromancy") &&
-        mapping.name.includes("Necromancy")
-      )
-        return mapping.route;
-      if (normalizedInput.includes("sigmar") && mapping.name.includes("Sigmar"))
-        return mapping.route;
-      if (normalizedInput.includes("ulric") && mapping.name.includes("Ulric"))
-        return mapping.route;
-      if (normalizedInput.includes("waaagh") && mapping.name.includes("Waaagh"))
-        return mapping.route;
+    // Se não encontrar correspondência exata, tenta correspondência parcial por palavras-chave
+    if (normalizedInput.includes("caos") || normalizedInput.includes("chaos")) {
+      return "/magic/rituals-of-chaos";
+    }
+    if (normalizedInput.includes("hashut")) {
+      return "/magic/rituals-of-hashut";
+    }
+    if (
+      normalizedInput.includes("rato") ||
+      normalizedInput.includes("chifrudo") ||
+      normalizedInput.includes("horned") ||
+      normalizedInput.includes("rat")
+    ) {
+      return "/magic/lore-of-horned-rat";
+    }
+    if (
+      normalizedInput.includes("necromancia") ||
+      normalizedInput.includes("necromancy")
+    ) {
+      return "/magic/lore-of-necromancy";
+    }
+    if (
+      normalizedInput.includes("sigmar") &&
+      (normalizedInput.includes("oracoes") ||
+        normalizedInput.includes("prayers"))
+    ) {
+      return "/magic/prayers-of-sigmar";
+    }
+    if (
+      normalizedInput.includes("ulric") &&
+      (normalizedInput.includes("oracoes") ||
+        normalizedInput.includes("prayers"))
+    ) {
+      return "/magic/prayers-of-ulric";
+    }
+    if (
+      normalizedInput.includes("waaaagh") ||
+      normalizedInput.includes("waaagh")
+    ) {
+      return "/magic/magic-of-the-waaaaagh";
+    }
+    if (normalizedInput.includes("goblin")) {
+      return "/magic/magic-of-the-goblins";
+    }
+    if (normalizedInput.includes("druchii")) {
+      return "/magic/druchii-magic";
+    }
+    if (
+      normalizedInput.includes("anci") ||
+      normalizedInput.includes("antigo") ||
+      normalizedInput.includes("old ones")
+    ) {
+      return "/magic/magic-of-the-old-ones";
+    }
+    if (
+      normalizedInput.includes("inferior") ||
+      (normalizedInput.includes("lesser") && normalizedInput.includes("magic"))
+    ) {
+      return "/magic/lesser-magic";
     }
 
     return "/magic";
@@ -334,6 +370,15 @@ const UnitCard: React.FC<UnitCardProps> = ({
     navigate(route);
   };
 
+  // Normaliza custo para controle de renderização de badge
+  const costDisplay = (() => {
+    const raw = stats.cost as unknown as string | number | undefined;
+    if (raw === undefined || raw === null) return "";
+    const str = String(raw).trim();
+    if (str === "-" || str === "—") return "";
+    return str;
+  })();
+
   return (
     <div
       id={id}
@@ -341,36 +386,76 @@ const UnitCard: React.FC<UnitCardProps> = ({
     >
       {/* Header */}
       <div className="w-full p-6">
-        <div className="flex items-center gap-3">
-          <h3
-            className="text-2xl font-bold"
-            style={{
-              fontFamily: '"Cinzel", serif',
-              color: "#8fbc8f",
-            }}
-          >
-            {name}
-          </h3>
-          {role && (
-            <span className="bg-gray-600 text-white px-2 py-1 rounded text-sm">
-              {role}
-            </span>
-          )}
-          {quantity && (
-            <span className="bg-gray-500 text-white px-2 py-1 rounded text-xs">
-              {quantity}
-            </span>
-          )}
-          {stats.cost && stats.cost !== "-" && (
-            <span className="bg-green-600 text-white px-2 py-1 rounded text-xs">
-              {stats.cost}
-            </span>
-          )}
-        </div>
+        <h3
+          className="text-2xl font-bold text-center"
+          style={{
+            fontFamily: '"Cinzel", serif',
+            color: "#8fbc8f",
+          }}
+        >
+          {name}
+        </h3>
+        {(role === "Herói" ||
+          role === "Líder" ||
+          quantity ||
+          (stats.cost && stats.cost !== "-") ||
+          stats.upkeep) && (
+          <div className="flex justify-center items-center gap-3 mt-3 flex-wrap">
+            {role && (role === "Herói" || role === "Líder") && (
+              <span className="bg-gray-600 text-white px-2 py-1 rounded text-sm">
+                {role}
+              </span>
+            )}
+            {quantity && (
+              <span className="bg-gray-500 text-white px-2 py-1 rounded text-xs">
+                {quantity}
+              </span>
+            )}
+            {costDisplay && (
+              <span className="bg-green-600 text-white px-2 py-1 rounded text-xs">
+                {costDisplay}
+              </span>
+            )}
+            {stats.upkeep && (
+              <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">
+                Manutenção: {stats.upkeep}
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Content */}
       <div className="px-6 pt-6 pb-6 border-t border-gray-600">
+        {/* Lore - First, no header */}
+        {(lore || stats.lore) && (
+          <div className="mb-6">
+            <p className="text-gray-300 leading-relaxed italic">
+              {lore || stats.lore}
+            </p>
+          </div>
+        )}
+
+        {/* Availability and Qualidade - Simple format */}
+        {(availability || qualidade) && (
+          <div className="mb-6 space-y-2">
+            {availability && (
+              <p className="text-gray-300">
+                <strong>Disponibilidade:</strong>{" "}
+                {Array.isArray(availability)
+                  ? availability.join(", ")
+                  : availability}
+              </p>
+            )}
+            {qualidade && qualidade !== "0" && Number(qualidade) !== 0 && (
+              <p className="text-gray-300">
+                <strong>Aumento de Qualidade:</strong> o(a) {name} adiciona{" "}
+                {qualidade} pontos ao valor de qualidade do bando
+              </p>
+            )}
+          </div>
+        )}
+
         {/* Stats Table */}
         <div className="mb-6">
           <h4 className="text-lg font-bold mb-3" style={{ color: "#8fbc8f" }}>
@@ -390,6 +475,18 @@ const UnitCard: React.FC<UnitCardProps> = ({
               <span className="font-bold">{stats.shoot}</span>
             </div>
             <div className="flex justify-between">
+              <span className="text-gray-300">Força:</span>
+              <span className="font-bold">
+                {stats.strength !== undefined
+                  ? stats.strength
+                  : stats.força !== undefined
+                  ? stats.força
+                  : stats.For !== undefined
+                  ? stats.For
+                  : 0}
+              </span>
+            </div>
+            <div className="flex justify-between">
               <span className="text-gray-300">Armadura:</span>
               <span className="font-bold">{stats.armour}</span>
             </div>
@@ -400,6 +497,10 @@ const UnitCard: React.FC<UnitCardProps> = ({
             <div className="flex justify-between">
               <span className="text-gray-300">Vigor:</span>
               <span className="font-bold">{stats.health}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-300">Experiência Inicial:</span>
+              <span className="font-bold">{stats.startingXp ?? 0}</span>
             </div>
           </div>
         </div>
@@ -510,6 +611,12 @@ const UnitCard: React.FC<UnitCardProps> = ({
 
             return (
               <div className="mb-6">
+                {stats.equipmentSlots !== undefined &&
+                  stats.equipmentSlots !== null && (
+                    <p className="text-xs text-gray-400 mb-2">
+                      Espaços de Equipamento: {stats.equipmentSlots}
+                    </p>
+                  )}
                 <h4
                   className="text-lg font-bold mb-3"
                   style={{ color: "#8fbc8f" }}
@@ -728,16 +835,6 @@ const UnitCard: React.FC<UnitCardProps> = ({
                 </div>
               ))}
             </div>
-          </div>
-        )}
-
-        {/* Lore */}
-        {stats.lore && (
-          <div>
-            <h4 className="text-lg font-bold mb-3" style={{ color: "#8fbc8f" }}>
-              HISTÓRIA
-            </h4>
-            <p className="text-gray-300 leading-relaxed italic">{stats.lore}</p>
           </div>
         )}
       </div>

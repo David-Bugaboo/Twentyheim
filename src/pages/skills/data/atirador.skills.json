@@ -1,0 +1,44 @@
+[
+  {
+    "id": "tiro-rapido",
+    "name": "Tiro Rápido",
+    "type": "Atirador",
+    "description": "A figura pode gastar duas ações para atacar a distância, rolando dois dados e escolhendo o melhor resultado."
+  },
+  {
+    "id": "pistoleiro",
+    "name": "Pistoleiro",
+    "type": "Atirador",
+    "description": "Uma figura com essa habilidade equipada com um cinto de pistolas pode usar duas ações para atacar com um ataque a distância usando um cinto de pistolas, rolando dois dados e escolhendo o melhor resultado. Ambas as pistolas precisarão ser recarregadas. Se uma figura estiver equipado com apenas uma pistola, ela pode fazer um ataque como ação livre com a pistola no turno em que a recarrega."
+  },
+  {
+    "id": "olhos-de-falcao",
+    "name": "Olhos de Falcão",
+    "type": "Atirador",
+    "description": "A figura com essa habilidade adiciona +15cm no alcance de qualquer arma a distância (excluindo armas de fogo) usada por ela."
+  },
+  {
+    "id": "mestre-atirador",
+    "name": "Mestre Atirador",
+    "type": "Atirador",
+    "description": "A figura pode usar qualquer arma a distância ou de fogo, não apenas aquelas na seção de equipamentos da sua ficha."
+  },
+  {
+    "id": "tiro-de-precisão",
+    "name": "Tiro Habilidoso",
+    "type": "Atirador",
+    "description": "A figura com essa habilidade pode gastar uma ação (que pode substituir uma ação de movimento) para ignorar o primeiro terreno interposto (mas não cobertura) entre ela e o alvo do seu próximo ataque a distância."
+  },
+  {
+    "id": "atirador-agil",
+    "name": "Tiro Habilidoso",
+    "type": "Atirador",
+    "description": "A figura com essa habilidade pode usar uma ação de movimento como ação livre no turno em que recarrega uma arma de fogo. Adicionalmente, o modificador de Tiro Apressado não se aplica aos seus ataque a distância."
+  },
+  {
+    "id": "cacador",
+    "name": "Caçador",
+    "type": "Atirador",
+    "description": "A figura equipada com essa arma pode fazer um ataque a distância com um arcabuz, rifle de caça de hochland, bacamarte ou bacamarte dos anões do caos sem precisar fazer uma ação de firmar-se."
+  }
+]

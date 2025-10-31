@@ -1,63 +1,123 @@
 [
   {
+    "id": "capitao-mercenario",
     "name": "Capitão Mercenário",
+    "lore": "Um Capitão Mercenário é um guerreiro profissional calejado, um homem que lutará por qualquer um ou contra qualquer coisa, desde que o preços seja bom. Mordheim oferece a um desses guerreiros a chance de se tornar rico além de seus sonhos, embora com grande risco. Mas como implacabilidade, falta de misericórdia e compaixão são as marcas registradas de um Capitão Mercenário de sucesso, não é de se admirar que eles se aglomerem na Cidade dos Condenados.",
     "role": "Líder",
     "stats": {
       "move": 11,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "+1",
       "health": 12,
       "cost": "60 coroas",
-      "skills": ["Combate", "Atirador", "Acadêmica", "Força", "Agilidade"]
+      "skills": ["Combate", "Atirador", "Acadêmica", "Força", "Agilidade"],
+      "startingXp": 20,
+      "equipmentSlots": 5
     },
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Capitão Mercenário pode ativar até 3 outras figuras a 8cm de distância dele."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "10 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Estrela da Manhã", "cost": "15 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Estrela da Manhã",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Besta", "cost": "25 coroas" },
-        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
-        { "name": "Arco", "cost": "10 coroas" }
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 para cinto)"
+        },
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "10 coroas" },
-        { "name": "Armadura Pesada", "cost": "25 coroas" },
-        { "name": "Elmo", "cost": "15 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" }
+        {
+          "name": "Bróquel",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
     }
   },
   {
-    "name": "Sargento",
+    "id": "campeao-mercenario",
+    "name": "Campeão",
+    "lore": "Em qualquer bando de Mercenários há um guerreiro que é maior, mais forte (e frequentemente mais feio) do que seus camaradas. Esses homens são chamados de Campeões (ou berserkers, primeiros espadachins e vários outros nomes). Campeões estão entre os melhores do bando. Eles frequentemente respondem a desafios e, após o Capitão, recebem prioridade na divisão do saque.",
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
       "move": 10,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "0",
       "health": 12,
       "cost": "35 coroas",
-      "skills": ["Combate", "Atirador", "Força", "Velocidade "]
+      "skills": ["Combate", "Atirador", "Força", "Velocidade "],
+      "startingXp": 8,
+      "equipmentSlots": 5
     },
     "abilities": [
       {
@@ -71,43 +131,96 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "10 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Besta", "cost": "25 coroas" },
-        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
-        { "name": "Arco", "cost": "10 coroas" }
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 para cinto)"
+        },
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        }
       ],
       "armor": [
-        { "name": "Elmo", "cost": "5 coroas" },
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "10 coroas" }
+        {
+          "name": "Bróquel",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
     }
   },
-
   {
+    "id": "sacerdote-lupino-de-ulric",
     "name": "Sacerdote Lupino de Ulric",
+    "lore": "Os Sacerdotes Lupinos de Ulric vêm de Middenheim, a cidade do Lobo Branco, construída em um platô que, segundo a lenda, foi criado por um golpe poderoso do punho de Ulric. Ulric, o Lobo Branco, é o violento deus do inverno, e seus sacerdotes veem o do cometa em Mordheim como o julgamento de Ulric sobre os decadentes Sigmaritas.",
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
       "move": 10,
-      "fight": "+2",
+      "fight": "+1",
       "shoot": "0",
       "armour": 10,
       "Vontade": "+1",
       "health": 12,
-      "cost": "50 coroas"
+      "cost": "60 coroas",
+      "skills": ["Combate", "Acadêmica", "Força", "Agilidade"],
+      "startingXp": 12,
+      "equipmentSlots": 5
     },
     "spellAffinity": {
       "aligned0": ["Orações de Ulric"]
@@ -115,40 +228,44 @@
     "abilities": [
       {
         "name": "Sacerdote",
-        "description": "O Sacerdote Lupino de Ulric é um sacerdote e tem uma seleção limitada de magias comparado a outros conjuradores. No entanto, pode conjurar enquanto usa armadura ou escudo e em combate, tomando uma penalidade de -4 na rolagem de conjuração se o fizer. Ele começa com 1 magias das Orações de Ulric."
+        "description": "O Sacerdote Lupino de Ulric é um sacerdote das Orações de Ulric. Ele começa com 1 oração dessa Tradição, e pode abrir mão de aprender uma habilidade para aprender uma nova magia ou reduzir a classe de dificuldade de uma magia que sabe em 1 ponto."
       }
     ],
     "equipment": {
-      "hand-to-hand": [{ "name": "Arma de Duas Mãos", "cost": "15 coroas" }],
+      "hand-to-hand": [
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
+      ],
       "ranged": [],
       "armor": [],
-      "miscellaneous": [{ "name": "Manto Lupino", "cost": "10 coroas" }],
+      "miscellaneous": [
+        {
+          "name": "Manto Lupino",
+          "cost": "10 coroas"
+        }
+      ],
       "modifiers": []
     }
   },
   {
+    "id": "recruta",
     "name": "Recruta",
+    "lore": "Estes são jovens e inexperientes soldados, ansiosos para ganhar suas primeiras cicatrizes e histórias na luta selvagem dentro e ao redor das ruínas de Mordheim.",
     "quantity": "0-2",
     "stats": {
       "move": 10,
       "fight": "0",
       "shoot": "0",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "-1",
       "health": 12,
-      "cost": "15 coroas"
+      "cost": "15 coroas",
+      "equipmentSlots": 5
     },
-    "skills": [
-      "Combate",
-      "Atirador (Reikland, Marienburg, Ostermark)",
-      "Força (Reikland, Middenheim, Ostermark)",
-      "Velocidade (Reikland, Marienburg)"
-    ],
+    "skills": ["Combate", "Atirador", "Força", "Velocidade"],
     "abilities": [
-      {
-        "name": "Habilidades",
-        "description": "O Recruta começa com 2 habilidades das listas de poderes acima na sua ficha. Todos os poderes têm Classe de Dificuldade 8."
-      },
       {
         "name": "Habilidades Regionais",
         "description": "Apenas Recrutas de Reikland, Marienburg e Ostermark podem pegar habilidades da lista de Atirador. Apenas Recrutas de Reikland, Middenheim e Ostermark podem pegar habilidades da lista de força. Apenas Recrutas de Marienburg e Reikland podem pegar habilidades da lista de Agilidade."
@@ -156,123 +273,272 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "10 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Besta", "cost": "25 coroas" },
-        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
-
-        { "name": "Arco", "cost": "10 coroas" }
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 para cinto)"
+        },
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        }
       ],
       "armor": [
-        { "name": "Elmo", "cost": "5 coroas" },
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "10 coroas" }
+        {
+          "name": "Bróquel",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
     }
   },
   {
+    "id": "soldado",
     "name": "Soldados",
+    "lore": "Esses cães de guerra são lutadores endurecidos pelas suas experiências, que não temem ninguém enquanto estiverem armados. Eles formam o núcleo de qualquer bando de Mercenários.",
     "quantity": "ilimitado",
     "stats": {
       "move": 10,
       "fight": "+1",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "0",
       "health": 12,
-      "cost": "25 coroas"
+      "cost": "25 coroas",
+      "equipmentSlots": 5
     },
     "abilities": [],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "10 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Besta", "cost": "25 coroas" },
-        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
-
-        { "name": "Arco", "cost": "10 coroas" }
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 para cinto)"
+        },
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        }
       ],
       "armor": [
-        { "name": "Elmo", "cost": "5 coroas" },
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "10 coroas" }
+        {
+          "name": "Bróquel",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
     }
   },
-
   {
+    "id": "atiradores",
     "name": "Atiradores",
+    "lore": "Os arqueiros e caçadores do Velho Mundo são famosos por sua habilidade, e diz-se que eles podem acertar uma moeda a 300 passos com um arco longo. Nas lutas de rua selvagens de Mordheim, eles atiram no inimigo das janelas de prédios em ruínas e assassinam líderes inimigos com suas flechas.",
     "quantity": "0-7",
     "stats": {
       "move": 10,
       "fight": "+1",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "0",
       "health": 12,
-      "cost": "25 coroas"
+      "cost": "25 coroas",
+      "equipmentSlots": 5
     },
     "abilities": [],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Besta", "cost": "25 coroas" },
-        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
-        { "name": "Arco", "cost": "10 coroas" },
-        { "name": "Arco Longo", "cost": "15 coroas" },
-        { "name": "Bacamarte", "cost": "30 coroas" },
-        { "name": "Arcabuz", "cost": "35 coroas" },
-        { "name": "Rifle de Caça de Hochland", "cost": "200 coroas" }
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 para cinto)"
+        },
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arco Longo",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Bacamarte",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arcabuz",
+          "cost": "17 coroas"
+        },
+        {
+          "name": "Rifle de Caça de Hochland",
+          "cost": "100 coroas"
+        }
       ],
       "armor": [
-        { "name": "Elmo", "cost": "5 coroas" },
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Escudo", "cost": "10 coroas" }
+        {
+          "name": "Bróquel",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
     }
   },
   {
+    "id": "espadachim",
     "name": "Espadachim",
+    "lore": "Espadachins são guerreiros profissionais, especialistas em enfrentar e derrotar vários oponentes ao mesmo tempo. Eles são muito procurados por líderes de bandos, pois suas habilidades são ideais para lutar em Mordheim.",
     "quantity": "0-5",
     "stats": {
       "move": 10,
       "fight": "+1",
       "shoot": "+0",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "0",
       "health": 12,
-      "cost": "35 coroas"
+      "cost": "35 coroas",
+      "equipmentSlots": 5
     },
-
     "abilities": [
       {
         "name": "Arte da Esgrima",
@@ -280,28 +546,49 @@
       }
     ],
     "equipment": {
-      "hand-to-hand": [{ "name": "Espada", "cost": "10 coroas" }],
+      "hand-to-hand": [
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        }
+      ],
       "ranged": [],
       "armor": [
-        { "name": "Elmo", "cost": "5 coroas" },
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" }
+        {
+          "name": "Bróquel",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
     }
   },
   {
+    "id": "cao-de-guerra",
     "name": "Cão de Guerra",
+    "lore": "Ostermarkers frequentemente mantêm matilhas de cães de caça ferozes. Com suas mandíbulas enormes e mordida poderosa, são perfeitos para caçar (e despedaçar) qualquer inimigo de um bando de mercenários.",
     "quantity": "0-5",
     "stats": {
       "move": 16,
       "fight": "+2",
       "shoot": "-",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "-2",
       "health": 8,
-      "cost": "10 coroas"
+      "cost": "10 coroas",
+      "equipmentSlots": 0
     },
     "abilities": [
       {

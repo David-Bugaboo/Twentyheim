@@ -12,6 +12,7 @@ interface Unit {
   name: string;
   role?: string;
   quantity?: string;
+  lore?: string;
   stats: {
     move: number;
     fight: string;
@@ -149,6 +150,8 @@ const SonsOfHashutPage: React.FC = () => {
                 name={leader.name}
                 role={leader.role}
                 quantity={leader.quantity}
+                lore={leader.lore}
+                qualidade={(leader as any).qualidade || 0}
                 stats={leader.stats}
                 spellAffinity={leader.spellAffinity}
                 abilities={leader.abilities}
@@ -166,6 +169,8 @@ const SonsOfHashutPage: React.FC = () => {
                 name={hero.name}
                 role={hero.role}
                 quantity={hero.quantity}
+                lore={hero.lore}
+                qualidade={(hero as any).qualidade || 0}
                 stats={hero.stats}
                 spellAffinity={hero.spellAffinity}
                 abilities={hero.abilities}
@@ -182,6 +187,8 @@ const SonsOfHashutPage: React.FC = () => {
                 id={soldier.id}
                 name={soldier.name}
                 quantity={soldier.quantity}
+                lore={soldier.lore}
+                qualidade={(soldier as any).qualidade || 0}
                 stats={soldier.stats}
                 abilities={soldier.abilities}
                 equipment={soldier.equipment}

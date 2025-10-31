@@ -2,22 +2,26 @@
   {
     "id": "chefaum-orc",
     "name": "Chefaum Orc",
-    "role": "Herói",
+    "lore": "Um Chefaum Orc é um guerreiro duro e brutal, que jogará seus cabras em qualquer luta que ele achar que pode lucrar. Ele é o mais forte, mais duro e mais bárbaro membro do bando e se algum de seus Mininos pensar o contrário, o bando logo pode se encontrar com um abestado a menos!",
+    "role": "Líder",
     "quantity": "1",
     "stats": {
       "move": 10,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "0",
       "health": 12,
+      "strength": "+1",
       "cost": "80 coroas",
-      "skills": ["Combate", "Atirador", "Força", "Agilidade", "Hordas Orc"]
+      "skills": ["Combate", "Atirador", "Força", "Agilidade", "Hordas Orc"],
+      "startingXp": 20,
+      "equipmentSlots": 6
     },
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Chefaum Orc pode ativar até 3 outras figuras a 8cm de distância dele."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem."
       },
       {
         "name": "O Fodaum",
@@ -25,28 +29,67 @@
       },
       {
         "name": "WAAAAAAAAAAAGH!",
-        "description": "O Chefaum Orc urra WAAAAAAAAAAAAAAAAAAAAAAAAGH, convocando todos os seus subordinados para um frenesi de batalha incontrolável. Essa habilidade deve ser usada no começo de um turno, antes das rolagens de iniciativa serem feitas. O bando automaticamente vence a rolagem de iniciativa (role normalmente contra bandos com efeitos semelhantes), suas figuras ganham +4 de movimento, +2 de Ímpeto, +2 de Vontade e +2 de Armadura. Figuras não podem sair da mesa durante a WAAAAAAAGH! A WAAAAAAGH! termina no fim do turno. Qualquer figura que não terminar o turno em combate ganha um marcador de Atordoamento no início do próximo turno."
+        "description": "O Chefaum Orc urra WAAAAAAAAAAAAAAAAAAAAAAAAGH, convocando todos os seus subordinados para um frenesi de batalha incontrolável. Essa habilidade deve ser usada no começo de um turno, antes das rolagens de iniciativa serem feitas. O bando automaticamente vence a rolagem de iniciativa (role normalmente contra bandos com efeitos semelhantes), suas figuras ganham +4 de movimento, +2 de Ímpeto, +2 de Dano corpo a corpo, +2 de Vontade e +2 de Armadura. Figuras não podem sair da mesa durante a WAAAAAAAGH! A WAAAAAAGH! termina no fim do turno. Qualquer figura que não terminar o turno em combate ganha um marcador de Atordoamento no início do próximo turno."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Estrela da Manhã", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Estrela da Manhã",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco", "cost": "10 coroas" },
-        { "name": "Besta", "cost": "25 coroas" }
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
@@ -55,45 +98,88 @@
   {
     "id": "orc-veio",
     "name": "Orc Véio",
+    "lore": "Orc Véios são párias da sociedade Orc. Eles são abençoados pelos deuses Orc Gork e Mork com poderes que eles não conseguem nem entender nem controlar completamente. Muitos se juntam a bandos de Orc errantes onde não são mais rejeitados por suas habilidades, mas respeitados por elas.",
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
       "move": 9,
       "fight": "+1",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "0",
       "health": 12,
-      "cost": "40 coroas"
+      "cost": "40 coroas",
+      "skills": ["Força", "Agilidade", "Hordas Orc"],
+      "startingXp": 10,
+      "equipmentSlots": 4
     },
     "spellAffinity": {
-      "aligned0": ["Tradição da WAAAAAAAAAAAGH!"]
+      "aligned0": ["Magia de Waaaaagh!"]
     },
     "abilities": [
       {
         "name": "Conjurador",
-        "description": "O Orc Véio é um conjurador da Tradição da WAAAAAAAAAAAGH!. Ele começa com 1 magia dentre suas tradições disponíveis. Magias adicionadas de tradições associadas adicionam +4 no CD."
+        "description": "O Orc Véio é um conjurador da Magia de Waaaagh!. Ele começa com 1 magia dessa Tradição, e pode abrir mão de aprender uma habilidade para aprender uma nova magia ou reduzir a classe de dificuldade de uma magia que sabe em 1 ponto."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Estrela da Manhã", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Estrela da Manhã",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco", "cost": "10 coroas" },
-        { "name": "Besta", "cost": "25 coroas" }
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
@@ -102,39 +188,80 @@
   {
     "id": "orc-grandaum",
     "name": "Orc Grandaum",
+    "lore": "A sociedade Orc é uma hierarquia selvagem onde apenas os mais fortes sobrevivem e sobem na hierarquia (frequentemente por cima do cadáver de seus rivais). Grandões são estrelas em ascensão, cumprindo as ordens do Chefaum Orc. Se o Chefaum alguma vez cair, cabe a esses decidir sobre um novo líder (geralmente através de combate pessoal).",
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
       "move": 9,
       "fight": "+1",
       "shoot": "+1",
-      "armour": "10",
+      "armour": "11",
       "Vontade": "0",
       "health": 12,
       "cost": "40 coroas",
-      "skills": ["Combate", "Atirador", "Força", "Hordas Orc"]
+      "skills": ["Combate", "Atirador", "Força", "Hordas Orc"],
+      "startingXp": 15,
+      "equipmentSlots": 6
     },
-    "abilities": [
-    ],
+    "abilities": [],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Estrela da Manhã", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Estrela da Manhã",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco", "cost": "10 coroas" },
-        { "name": "Besta", "cost": "25 coroas" }
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
@@ -143,15 +270,17 @@
   {
     "id": "minino-orc",
     "name": "Minino Orc",
+    "lore": "Os Mininos Orcs são selvagens e resistentes. Eles não temem nada que possam pegar com as próprias mãos, embora sejam ainda mais ignorantes e supersticiosos do que a maioria dos outros seres no velho-mundo. Eles formam o núcleo de qualquer bando de Orcs.",
     "quantity": "ilimitado",
     "stats": {
       "move": 9,
       "fight": "+1",
       "shoot": "+1",
-      "armour": "10",
+      "armour": "11",
       "Vontade": "0",
       "health": 12,
-      "cost": "25 coroas"
+      "cost": "25 coroas",
+      "equipmentSlots": 5
     },
     "abilities": [
       {
@@ -161,23 +290,62 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Estrela da Manhã", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Estrela da Manhã",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco", "cost": "10 coroas" },
-        { "name": "Besta", "cost": "25 coroas" }
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
@@ -186,15 +354,17 @@
   {
     "id": "goblin",
     "name": "Goblin",
+    "lore": "Goblins são frequentemente usados como bucha de canhão (bem como uma fonte de comida em tempos difíceis!) por seus primos Orcs maiores. Eles geralmente não são tão bem equipados quanto os Mininos Orcs, tendo que se contentar com o que os Orcs não querem ou não conseguem usar.",
     "quantity": "ilimitado",
     "stats": {
       "move": 9,
       "fight": "0",
       "shoot": "+1",
-      "armour": 8,
+      "armour": 9,
       "Vontade": "-2",
       "health": 10,
-      "cost": "15 coroas"
+      "cost": "15 coroas",
+      "equipmentSlots": 4
     },
     "abilities": [
       {
@@ -212,36 +382,62 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Bola e Corrente", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Bola e Corrente",
+          "cost": "15 coroas"
+        }
       ],
-      "ranged": [{ "name": "Arco Curto", "cost": "5 coroas" }],
+      "ranged": [
+        {
+          "name": "Arco Curto",
+          "cost": "5 coroas"
+        }
+      ],
       "armor": [
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
-      "miscellaneous": [
-        { "name": "Espetador de Pé-Duro", "cost": "15 coroas" },
-        { "name": "Cogumelos Chapéu-da-Morte", "cost": "grátis" }
-      ],
+      "miscellaneous": [],
       "modifiers": []
     }
   },
   {
     "id": "pe-duro-das-cavernas",
     "name": "Pé-Duro das Cavernas",
+    "lore": "Goblins criam os bestiais Pés-Duros das Cavernas. Essas criaturas são uma curiosa mistura de animal e fungo, compostas principalmente de dentes, chifres e um temperamento desagradável.",
     "quantity": "0-5",
     "stats": {
       "move": "1d20+1",
       "fight": "+2",
       "shoot": "-",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "-2",
-      "health": 8,
-      "cost": "15 coroas"
+      "health": 10,
+      "strength": "+1",
+      "cost": "15 coroas",
+      "equipmentSlots": 0
     },
     "abilities": [
       {
@@ -261,20 +457,25 @@
   {
     "id": "troll",
     "name": "Troll",
+    "lore": "Trolls não são inteligentes o suficiente para reconhecer o valor do ouro, mas grandes quantidades de comida geralmente podem instilar uma certa lealdade neles.",
     "quantity": "0-1",
+    "noXP": true,
+    "qualidade": 20,
     "stats": {
       "move": 4,
       "fight": "+3",
       "shoot": "-1",
-      "armour": 11,
+      "armour": 12,
       "Vontade": "-3",
       "health": 20,
-      "cost": "200 coroas"
+      "strength": "+1",
+      "cost": "200 coroas",
+      "equipmentSlots": 0
     },
     "abilities": [
       {
         "name": "Besta Fedorenta",
-        "description": "Trolls têm as características Grande, Forte e Aterrorizante e Voraz."
+        "description": "Trolls têm as características Grande, Aterrorizante e Voraz."
       },
       {
         "name": "Regeneração Rápida",

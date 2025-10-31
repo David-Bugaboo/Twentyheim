@@ -2,37 +2,35 @@
   {
     "id": "feiticeiro-aprendiz",
     "name": "Feiticeiro Aprendiz",
+    "lore": "Tendo servido um dos poderosos senhores feiticeiros de Zharr-Naggrund, os aprendizes estão ansiosos para provar seu valor e conhecimento nas ruas selvagens de Mordheim. Sua única ambição é alcançar o nível de seus mestres.",
     "role": "Líder",
     "stats": {
       "move": 8,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+2",
       "health": 12,
-      "cost": "85 coroas"
+      "cost": "85 coroas",
+      "skills": ["Combate", "Acadêmica", "Filhos de Hashut"],
+      "startingXp": 20,
+      "equipmentSlots": 6
     },
     "quantity": "1",
     "spellAffinity": {
-      "aligned0": ["Tradição de Hashut"],
-      "aligned2": [
-        "Tradição das Sombras",
-        "Tradição do Metal",
-        "Tradição do Fogo",
-        "Tradição do Caos"
-      ]
+      "aligned0": ["Rituais de Hashut"]
     },
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Feiticeiro Aprendiz pode ativar até 3 figuras a 8cm de distância dele."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem."
       },
       {
         "name": "Conjurador",
-        "description": "O Feiticeiro Aprendiz é um conjurador da Tradição de Hashut. Ele começa com 5 magias entre suas tradições disponíveis."
+        "description": "O Feiticeiro Aprendiz é um conjurador dos Rituais de Hashut. Ele é contratado com 1 magia dessa Tradição, e pode abrir mão de aprender uma habilidade para aprender uma nova magia ou reduzir a classe de dificuldade de uma magia que sabe em 1 ponto."
       },
       {
-        "name": "Cabeça Dura",
+        "name": "Tenacidade do Deus Touro",
         "description": "Anões são imunes à palavra-chave Concussiva(X)."
       },
       {
@@ -42,128 +40,238 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Arma de Obsidiana", "cost": "30 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "1ª grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arma de Obsidiana",
+          "cost": "30 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" }
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 coroas por par)"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Obsidiana", "cost": "base * 4" }]
+      "modifiers": [
+        
+      ]
     }
   },
   {
     "id": "centouro-de-hashut",
     "name": "Centouro de Hashut",
+    "lore": "Os Centouros são os escolhidos de Hashut e são famosos por serem adversários absolutamente implacáveis. É considerada um grande privilégio ter um Centouro em seu bando.",
     "role": "Herói",
     "stats": {
       "move": 18,
       "fight": "+3",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+2",
       "health": 12,
+      "strength": "+1",
       "cost": "75 coroas",
-      "skills": ["Combate", "Força", "Filhos de Hashut"]
+      "skills": ["Combate", "Força", "Filhos de Hashut"],
+      "startingLevel": 12,
+      "equipmentSlots": 7
     },
     "quantity": "0-1",
     "abilities": [
       {
-        "name": "Habilidades",
-        "description": "O Centouro de Hashut começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
-      },
-      {
         "name": "Carga Violenta",
-        "description": "O Centouro de Hashut tem as características Chifres, Forte e Grande, não pode escalar, e gasta 3 de movimento para cada 1cm de movimento em terreno acidentado."
+        "description": "O Centouro de Hashut tem as características Chifres e Grande, não pode escalar, e gasta 3cm de movimento para cada 1cm de movimento em terreno acidentado."
       },
       {
-        "name": "Cabeça Dura",
+        "name": "Tenacidade do Deus Touro",
         "description": "Anões são imunes à palavra-chave Concussiva(X)."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Arma de Obsidiana", "cost": "30 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "1ª grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arma de Obsidiana",
+          "cost": "30 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" }
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 coroas por par)"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Obsidiana", "cost": "base * 4" }]
+      "modifiers": [
+        
+      ]
     }
   },
   {
     "id": "campeao-ano-do-caos",
     "name": "Campeão Anão do Caos",
+    "lore": "Estes são os guerreiros favorecidos pelos aprendizes dos feiticeiros e as bençãos de Hashut. Eles são excelentes lutadores e feitores confiáveis para seus escravos.",
     "role": "Herói",
     "stats": {
       "move": 7,
       "fight": "+3",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+2",
       "health": 12,
       "cost": "50 coroas",
-      "skills": ["Combate", "Atirador", "Força", "Filhos de Hashut"]
+      "skills": ["Combate", "Atirador", "Força", "Filhos de Hashut"],
+      "startingXp": 8,
+      "equipmentSlots": 6
     },
     "quantity": "0-2",
     "abilities": [
-      {
-        "name": "Habilidades",
-        "description": "O Campeão Anão do Caos começa com 2 poderes dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
-      },
       {
         "name": "Crueldade Paciente",
         "description": "Os anões do caos não podem sofrer penalidades no movimento por uso de equipamentos."
       },
       {
-        "name": "Cabeça Dura",
+        "name": "Tenacidade do Deus Touro",
         "description": "Anões são imunes à palavra-chave Concussiva(X)."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "1ª grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" }
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 coroas por par)"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Obsidiana", "cost": "base * 4" }]
+      "modifiers": [
+       
+      ]
     }
   },
   {
@@ -173,10 +281,11 @@
       "move": 10,
       "fight": "0",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "-1",
       "health": 10,
-      "cost": "15 coroas"
+      "cost": "15 coroas",
+      "equipmentSlots": 4
     },
     "quantity": "4+",
     "abilities": [
@@ -191,18 +300,42 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Adagas Envenenadas Hobgoblin", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "1ª grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Adagas Envenenadas Hobgoblin",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco Curto", "cost": "5 coroas" },
-        { "name": "Arco", "cost": "10 coroas" }
+        {
+          "name": "Arco Curto",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
@@ -215,10 +348,11 @@
       "move": 7,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+2",
       "health": 12,
-      "cost": "40 coroas"
+      "cost": "40 coroas",
+      "equipmentSlots": 6
     },
     "quantity": "0-6",
     "abilities": [
@@ -227,31 +361,69 @@
         "description": "Os anões do caos não podem sofrer penalidades no movimento por uso de equipamentos."
       },
       {
-        "name": "Cabeça Dura",
+        "name": "Tenacidade do Deus Touro",
         "description": "Anões são imunes à palavra-chave Concussiva(X)."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Arma de Obsidiana", "cost": "30 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "1ª grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arma de Obsidiana",
+          "cost": "30 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" }
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 coroas por par)"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Obsidiana", "cost": "base * 4" }]
+      "modifiers": [
+        
+      ]
     }
   },
   {
@@ -261,10 +433,11 @@
       "move": 7,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+2",
       "health": 12,
-      "cost": "40 coroas"
+      "cost": "40 coroas",
+      "equipmentSlots": 6
     },
     "quantity": "0-3",
     "abilities": [
@@ -273,28 +446,57 @@
         "description": "Os anões do caos não podem sofrer penalidades no movimento por uso de equipamentos."
       },
       {
-        "name": "Cabeça Dura",
+        "name": "Tenacidade do Deus Touro",
         "description": "Anões são imunes à palavra-chave Concussiva(X)."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
-        { "name": "Martelo", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "1ª grátis/2 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Bacamarte dos Anões do Caos", "cost": "40 coroas" },
-        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" }
-      ],s
+        {
+          "name": "Bacamarte dos Anões do Caos",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 coroas por par)"
+        }
+      ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Obsidiana", "cost": "base * 4" }]
+      "modifiers": [
+        
+      ]
     }
   }
 ]

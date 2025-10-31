@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Vigor Daemônico",
+    "castingNumber": 14,
+    "keywords": ["Área de Efeito(Explosão Grande)"],
+    "effect": "Todos os Nurguinhos e Enfermos na área de efeito recuperam 3 de vida e ganham +1 de Armadura até o fim do turno."
+  },
+  {
+    "name": "Torrente de Pus",
+    "castingNumber": 10,
+    "keywords": ["Míssil Mágico(Venenoso)(+6)", "Alcance(20cm)"],
+    "effect": "Ataque a figura alvo com o míssil mágico."
+  },
+  {
+    "name": "Fedor de Nurgle",
+    "castingNumber": 14,
+    "keywords": ["Área de Efeito(Explosão Média)"],
+    "effect": "Centralize a Área de Efeito no conjurador. Todas as figuras sem a característica Daemônio ou Morto-Vivo na área de efeito devem rolar um teste de vontade contra o teste de conjuração da magia. Se falharem, só ganham um marcador de Atordoamento."
+  },
+
+  {
+    "name": "Pestilência",
+    "castingNumber": 18,
+    "keywords": ["Área de Efeito(Explosão Grande)"],
+    "effect": "Centralize a Área de Efeito no conjurador. Todas as figuras inimigas na Área de Efeito recebem um ataque mágico venenoso +3."
+  },
+  {
+    "name": "Cicatrização Acelerada",
+    "castingNumber": 8,
+    "keywords": ["Conjurador Apenas", "Concentração"],
+    "effect": "O Conjurador tem 14 de armadura enquanto a concentração na magia durar."
+  },
+
+  {
+    "name": "Explosão da Necrose",
+    "castingNumber": 16,
+    "keywords": ["Área de Efeito (Explosão Pequena)"],
+    "effect": "Centralize a Área de Efeito no invocador. Todas as figuras na área de efeito devem rolar Vontade contra o teste de conjuração dessa magia. Se falharem, contraem a Necrose de Nurgle. Uma figura que passe no teste de vontade é imune a esse magia pelo resto do jogo."
+  }
+]

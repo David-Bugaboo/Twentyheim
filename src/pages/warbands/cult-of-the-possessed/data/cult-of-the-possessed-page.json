@@ -2,74 +2,115 @@
   {
     "id": "magistrado-do-caos",
     "name": "Magistrado do Caos",
+    "lore": "Magistrados lideram os diversos Cultos dos deuses sombrios espalhados por Mordheim. Eles receberam poderes mágicos de seus deuses patronos em troca de sua alma. São seguidores fanáticos dos Deuses Sombrios, totalmente dedicados a trazer o Caos ao mundo.",
     "role": "Líder",
     "quantity": "1",
     "stats": {
       "move": 10,
       "fight": "+2",
       "shoot": "+2",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "+1",
       "health": 12,
-      "cost": "70 coroas"
+      "cost": "70 coroas",
+      "skills": ["Combate", "Acadêmico", "Velocidade"],
+      "startingXp": 20,
+      "equipmentSlots": 5
     },
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco", "cost": "15 coroas" },
-        { "name": "Arco Curto", "cost": "10 coroas" }
+        {
+          "name": "Arco",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arco Curto",
+          "cost": "10 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "accessories": [],
       "modifiers": []
     },
     "spellAffinity": {
-      "aligned0": ["Tradição do Caos"],
-      "aligned2": [
-        "Tradição das Sombras",
-        "Tradição do Fogo",
-        "Tradição da Morte",
-        "Tradição dos Céus"
-      ]
+      "aligned0": ["Rituais do Caos"]
     },
     "abilities": [
       {
         "name": "Líder",
-        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dele."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem."
       },
       {
         "name": "Conjurador",
-        "description": "O Magistrado do Caos é um conjurador da Tradição do Caos. Ele começa o jogo com 1 magia, de quaisquer tradições presentes na tabela de tradições mágicas. Magias de tradições associadas são adicionadas com +4 no CD."
+        "description": "O Magistrado do Caos é um conjurador dos Rituais do Caos. Ele é contratado com 1 magia dessa tradição. Ele pode abrir mão de aprender uma habilidade para aprender ou melhorar a Classe de Dificuldade de uma magia."
       }
     ]
   },
   {
     "id": "possuido",
     "name": "Possuído",
+    "lore": "Os Possuídos cometeram a maior das heresias: entregaram seus corpos aos Daemônios. Como resultado, são criaturas nascidas de pesadelos, uma fusão de carne, metal e magia negra. Dentro deles vive algo feito da essência do puro mal, um Daemônio das profundezas sombrias do Reino do Caos. A energia distorcida de um Daemônio pode fundir várias criaturas, sejam homens ou animais, em um horror indescrítivel. Esses Possuídos monstruosos são talvez as criaturas mais perigosas de Mordheim, e certamente as mais repulsivas e terríveis.",
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
       "move": 14,
       "fight": "+3",
       "shoot": "-",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "0",
       "health": 16,
+      "strength": "+1",
       "cost": "90 coroas (+ custo das mutações)",
-      "skills": ["Combate", "Força", "Agilidade"]
+      "skills": ["Combate", "Força", "Agilidade"],
+      "startingXp": 8,
+      "equipmentSlots": 0
     },
     "abilities": [
       {
@@ -78,44 +119,85 @@
       },
       {
         "name": "Presença Sombria",
-        "description": "O Possuído é uma figura aberrante com uma presença que causa horror. Ele tem as características Aterrorizante, Forte e Daemônio."
+        "description": "O Possuído é uma figura aberrante com uma presença que causa horror. Ele tem as características Aterrorizante e Daemônio."
       }
     ]
   },
   {
     "id": "mutante",
     "name": "Mutante",
+    "lore": "Mutantes são reverenciados como os abençoados dos Deuses Sombrios, suas deformidades físicas marcando o quão malignas são suas almas. Eles vêm em muitas formas e tamanhos, cada um mais bizarro que o outro.",
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
       "move": 10,
       "fight": "+1",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "0",
       "health": 12,
       "cost": "25 coroas (+ custo das mutações)",
-      "skills": ["Combate", "Agilidade"]
+      "skills": ["Combate", "Agilidade"],
+      "equipmentSlots": 5
     },
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco", "cost": "15 coroas" },
-        { "name": "Arco Curto", "cost": "10 coroas" }
+        {
+          "name": "Arco",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arco Curto",
+          "cost": "10 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "accessories": [],
       "modifiers": []
@@ -128,37 +210,78 @@
     ]
   },
   {
-    "id": "insanos",
-    "name": "Insanos",
+    "id": "cultista",
+    "name": "Cultista",
+    "lore": "cultistas são os seguidores humanos enlouquecidos dos cultos dos deuses sombrios, ansiosos para descer à condenação. Suas ações vis e atos indizíveis os levaram à beira da insanidade.",
     "quantity": "ilimitado",
     "stats": {
       "move": 10,
       "fight": "+1",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "+0",
       "health": 12,
-      "cost": "25 coroas"
+      "cost": "25 coroas",
+      "equipmentSlots": 5
     },
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco", "cost": "15 coroas" },
-        { "name": "Arco Curto", "cost": "10 coroas" }
+        {
+          "name": "Arco",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arco Curto",
+          "cost": "10 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "accessories": [],
       "modifiers": []
@@ -168,15 +291,17 @@
   {
     "id": "alma-sombria",
     "name": "Alma Sombria",
+    "lore": "Almas Sombrias são homens que foram enlouquecidos pela possessão daemoníaca que se tornou muito comum após a destruição de Mordheim. Os Daemônios deixaram os corpos desses indivíduos, mas suas mentes foram marcadas pelo horror da experiência. Sua determinação insana torna as Almas Sombrias lutadores perigosos. Os Cultistas os adoram como homens santos e deixam que eles liberem sua raiva irracional em batalha. Em suas mentes torturadas, as Almas Sombrias acreditam ser Daemônios. Elas usam máscaras daemoníacas sorridentes e se vestem com armaduras e roupas semelhantes à pele escamosa dos seus possessores.",
     "quantity": "0-5",
     "stats": {
       "move": 10,
       "fight": "0",
       "shoot": "0",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "-1",
       "health": 12,
-      "cost": "35 coroas"
+      "cost": "35 coroas",
+      "equipmentSlots": 5
     },
     "abilities": [
       {
@@ -186,19 +311,49 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "accessories": [],
       "modifiers": []
@@ -207,33 +362,69 @@
   {
     "id": "homem-fera",
     "name": "Homem-Fera",
+    "lore": "Homens-Fera são monstruosidades mutantes que infestam as florestas do Império: criaturas massivas e chifrudas com uma resistência inumana à dor. A destruição de Mordheim trouxe muitos Homens-Fera para a cidade em ruínas para devorar seus poucos sobreviventes. Eles prontamente se aliam a qualquer culto dos deuses dos caos, ansiosos por provar sua devoção a aqueles que os abençoaram com suas mutações.",
     "quantity": "0-3",
     "stats": {
       "move": 13,
       "fight": "+2",
       "shoot": "+1",
-      "armour": "10",
+      "armour": "11",
       "Vontade": "0",
       "health": 16,
-      "cost": "45 coroas"
+      "strength": "+1",
+      "cost": "45 coroas",
+      "equipmentSlots": 5
     },
     "abilities": [],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Maça de Correntes", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Maça de Correntes",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "accessories": [],
       "modifiers": []

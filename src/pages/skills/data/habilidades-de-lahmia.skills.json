@@ -1,0 +1,26 @@
+[
+  {
+    "id": "glamour",
+    "name": "Glamour",
+    "type": "Habilidades de Lahmia",
+    "description": "Figuras inimigas que começam sua ativação em contato de base com a figura com essa habilidade rolam um teste de Vontade contestado contra a figura com essa habilidade. Caso falhe, não pode escolher usar ações de luta contra a figura com essa habilidade, mas ainda pode tomar quaisquer outras ações, inclusive de luta contra outras figuras. Esse é um efeito Psicológico."
+  },
+  {
+    "id": "transfixar",
+    "name": "Transfixar",
+    "type": "Habilidades de Lahmia",
+    "description": "Como uma ação, uma figura inimiga a escolha da figura com essa habilidade, que esteja em combate com ela, deve rolar um teste contestado de Vontade contra a figura com essa habilidade. Caso falhe, a figura inimiga não pode usar ações de luta contra a figura com essa habilidade e seu Ímpeto conta como 0 em lutas contra ela até o final da sua próxima ativação. Esse é um efeito Psicológico"
+  },
+  {
+    "id": "sedução",
+    "name": "Sedução",
+    "type": "Habilidades de Lahmia",
+    "description": "Como uma ação, uma figura inimiga em combate com a figura com essa habilidade deve fazer um teste de Vontade contra CD 15. Caso falhe, a figura inimiga se torna um membro temporário do bando da figura com essa habilidade até o final da sua próxima ativação. A figura não pode ser movida para fora do tabuleiro ou fazer ações auto-destrutivas, mas pode usar ações de carga e atacar corpo a corpo ou a distância normalmente."
+  },
+  {
+    "id": "inocencia-perdida",
+    "name": "Inocência Perdida",
+    "type": "Habilidades de Lahmia",
+    "description": "A figura com essa habilidade ganha +2 de Ímpeto durante a ativação em que uma figura completa uma carga com sucesso contra ela."
+  }
+]

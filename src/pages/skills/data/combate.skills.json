@@ -1,0 +1,32 @@
+[
+  {
+    "id": "golpe-mortífero",
+    "name": "Golpe Mortífero",
+    "type": "Combate",
+    "description": "Os golpes da figura são mortíferos. Todo ataque corpo a corpo dessa figura causa dano crítico em uma rolagem natural de 19 ou 20. Se outro efeito já dá essa faixa aumentada de crítico, ele então causa um dano critico em uma rolagem natural de 18, 19 ou 20."
+  },
+  {
+    "id": "mestre-do-combate",
+    "name": "Mestre do Combate",
+    "type": "Combate",
+    "description": "Figuras ganham bônus de combate múltiplo contra a figura com essa habilidade como se tivesse um aliado a menos em combate."
+  },
+  {
+    "id": "teia-de-ferro",
+    "name": "Teia de Ferro",
+    "type": "Combate",
+    "description": "A figura tece uma teia de puro aço em volta de si enquanto luta. Uma figura com essa habilidade pode usar a reação Tnterceptar contra outras figuras a até 8cm de si ao invés de 3cm."
+  },
+  {
+    "id": "mestre-do-arsenal",
+    "name": "Mestre do Arsenal",
+    "type": "Combate",
+    "description": "Essa figura pode usar qualquer arma corpo a corpo, não apenas aquelas que estão na lista de equipamento da sua ficha."
+  },
+  {
+    "id": "evasao-rapida",
+    "name": "Evasão Rápida",
+    "type": "Combate",
+    "description": "Uma figura com essa habilidade pode usar uma reação para re-rolar a sua rolagem de Impeto contra aquele ataque."
+  }
+]

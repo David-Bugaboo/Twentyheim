@@ -1,0 +1,131 @@
+[
+  {
+    "id": "daemonnete",
+    "name": "Daemonette",
+    "role": "Daemônio",
+    "chaosGod": "slaanesh",
+    "stats": {
+      "move": 13,
+      "fight": "+6",
+      "shoot": "+5",
+      "armour": 10,
+      "Vontade": "+6",
+      "health": 12,
+      "cost": "—"
+    },
+    "abilities": [
+      {
+        "name": "Filho do Caos",
+        "description": "Esta figura tem as características Daemônio, Aterrorizante, Mente-Férrea, Imunidade a Marcadores de Atordoamento e Incorpóreo."
+      },
+      {
+        "name": "Sedução Sombria",
+        "description": "Uma figura que deseje declarar carga, fazer uma ação de luta ou ação de ataque à distância contra a Daemonette deve rolar um teste de Vontade CD 14. Se falhar, não pode direcionar essa ação à Daemonette."
+      }
+    ]
+  },
+  {
+    "id": "pink-horror",
+    "name": "Horror Rosa",
+    "role": "Daemônio",
+    "chaosGod": "tzeentch",
+    "stats": {
+      "move": 12,
+      "fight": "+6",
+      "shoot": "+5",
+      "armour": 10,
+      "Vontade": "+6",
+      "health": 12,
+      "cost": "—"
+    },
+    "abilities": [
+      {
+        "name": "Filho do Caos",
+        "description": "Esta figura tem as características Daemônio, Aterrorizante, Mente-Férrea, Imunidade a Marcadores de Atordoamento e Incorpóreo."
+      },
+      {
+        "name": "Divisão",
+        "description": "Quando um Horror Rosa é reduzido a 0 de vida, ele se divide em dois Horrores Azuis."
+      },
+      {
+        "name": "Prole de Tzeentch",
+        "description": "Esta figura pode usar uma ação de conjuração para conjurar Raio da Perdição."
+      }
+    ]
+  },
+  {
+    "id": "blue-horror",
+    "name": "Horror Azul",
+    "role": "Daemônio",
+    "chaosGod": "tzeentch",
+    "stats": {
+      "move": 14,
+      "fight": "+3",
+      "shoot": "+3",
+      "armour": 10,
+      "Vontade": "+7",
+      "health": 7,
+      "cost": "—"
+    },
+    "abilities": [
+      {
+        "name": "Filho do Caos",
+        "description": "Esta figura tem as características Daemônio, Aterrorizante, Mente-Férrea, Imunidade a Marcadores de Atordoamento e Incorpóreo."
+      },
+      {
+        "name": "Divisão",
+        "description": "Quando um Horror Azul é reduzido a 0 de vida, ele se divide em dois Horrores de Enxofre."
+      }
+    ]
+  },
+  {
+    "id": "brimstone-horror",
+    "name": "Horror de Enxofre",
+    "role": "Daemônio",
+    "chaosGod": "tzeentch",
+    "stats": {
+      "move": 16,
+      "fight": "+0",
+      "shoot": "+0",
+      "armour": 8,
+      "Vontade": "+0",
+      "health": 3,
+      "cost": "-"
+    },
+    "abilities": [
+      {
+        "name": "Filho do Caos",
+        "description": "Esta figura tem as características Daemônio, Aterrorizante, Mente-Férrea, Imunidade a Marcadores de Atordoamento e Incorpóreo."
+      }
+    ]
+  },
+  {
+    "id": "plaguebearer",
+    "name": "Enfermo",
+    "role": "Daemônio",
+    "chaosGod": "nurgle",
+    "stats": {
+      "move": 8,
+      "fight": "+5",
+      "shoot": "+3",
+      "armour": 13,
+      "Vontade": "+5",
+      "health": 16,
+      "cost": "—"
+    },
+    "abilities": [
+      {
+        "name": "Filho do Caos",
+        "description": "Esta figura tem as características Daemônio, Aterrorizante, Mente-Férrea, Imunidade a Marcadores de Atordoamento e Incorpóreo."
+      },
+      {
+        "name": "Nuvem de Moscas",
+        "description": "Figuras em combate com o Enfermo têm -2 em rolagens de Ímpeto."
+      },
+      {
+        "name": "Lâmina da Praga",
+        "description": "O dano causado pelo Enfermo é venenoso além de mágico. Uma criatura reduzida a 0 de vida pelo Enfermo rola um dado; em 15+ ela está contaminada com Necrose de Nurgle."
+      }
+    ]
+  }
+]

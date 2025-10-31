@@ -1,0 +1,14 @@
+[
+  {
+    "id": "urro-aterrorizante",
+    "name": "Urro Aterrorizante",
+    "type": "Habilidades de Saúrideo",
+    "description": "Como uma ação, que pode substituir a ação de movimento, A figura com essa habilidade emite um urro de puro terror. Todas as figuras inimigas em combate com ele recebem -2 de Ímpeto até o final da sua próxima ativação. Esse é um efeito Psicológico."
+  },
+  {
+    "id": "escamas-impenetráveis",
+    "name": "Escamas Impenetráveis",
+    "type": "Habilidades de Saúrideo",
+    "description": "O Sáurio escolhe entre ganhar +2 no atributo Armadura ou +4 no Atributo Vida. Essa habilidade pode ser aprendida duas vezes para ganhar ambos os bônus."
+  }
+]

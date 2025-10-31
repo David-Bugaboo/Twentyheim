@@ -73,8 +73,8 @@
     "requirements": null,
     "specialRules": [
       {
-        "label": "Defensiva",
-        "value": "Inimigos causam -1 de dano no portador de uma arma com essa característica"
+        "label": "Aparar",
+        "value": "Uma arma com essa característica permite usar a reação Aparar."
       }
     ]
   },
@@ -208,6 +208,10 @@
       {
         "label": "Leve",
         "value": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
+      },
+      {
+        "label": "Aparar",
+        "value": "Um modelo equipado com essa arma pode usar a reação Aparar."
       }
     ]
   },
@@ -238,8 +242,12 @@
         "value": "A primeira arma com essa característica carregada por uma figura não consome um espaço de item. Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas."
       },
       {
-        "label": "Special",
-        "value": "Um modelo equipado com essa arma pode escalar sem gastar nenhum Agilidade extra."
+        "label": "Aparar",
+        "value": "Um modelo equipado com essa arma pode usar a reação Aparar."
+      },
+      {
+        "label": "Equipamento de Assassino",
+        "value": "Um modelo equipado com essa arma tem a característica Escalador."
       }
     ]
   },
@@ -273,6 +281,10 @@
       {
         "label": "Tóxica",
         "value": "Uma arma com essa característica causa dano Venenoso."
+      },
+      {
+        "label": "Aparar",
+        "value": "Um modelo equipado com essa arma pode usar a reação Aparar."
       }
     ]
   },
@@ -335,6 +347,10 @@
       {
         "label": "Reativa(3)",
         "value": "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de Xcm, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de Xcm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno."
+      },
+      {
+        "label": "Velocidade Superior",
+        "value": "Armas com essa característica não podem ser aparadas."
       }
     ]
   },
@@ -433,6 +449,10 @@
       {
         "label": "Chicote(3)",
         "value": "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de X, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de Xcm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno."
+      },
+      {
+        "label": "Velocidade Superior",
+        "value": "Armas com essa característica não podem ser aparadas."
       }
     ]
   },
@@ -516,6 +536,42 @@
       {
         "label": "Desbalanceada",
         "value": "Uma arma com essa característica nunca pode ser usada com uma arma leve na mão secundária, apenas escudos."
+      }
+    ]
+  },
+  {
+    "id": "estandarte-do-chefim",
+    "name": "Estandarte do Chefim",
+    "type": "Arma Corpo a Corpo",
+    "damageModifier": "-1",
+    "availability": ["Goblins"],
+    "rarity": 1,
+    "purchaseCost": "20 coroas",
+    "sellCost": "10 coroas",
+    "exclusive": "Goblins",
+    "flavorText": "Alguns Chefins Goblin influentes carregam estandartes de autoridade, longas hastesde madeira com uma bandeira ou lâmina afiada na ponta. Isso permite que o herói e qualquer Goblin subordinado dentro de 15cm ignorem a regra de Animosidade. Além disso, o Estandarte do Chefim é uma excelente arma de haste.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "2",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Reativa(3)",
+        "value": "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de Xcm, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de Xcm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno."
+      },
+      {
+        "label": "Desbalanceada",
+        "value": "Uma arma com essa característica nunca pode ser usada com uma arma leve na mão secundária, apenas escudos."
+      },
+      {
+        "label": "Versátil",
+        "value": "Uma arma com essa característica pode ser usada com uma ou duas mãos. Se usada com duas mãos, causa +1 de dano."
+      },
+      {
+        "label": "Autoridade Goblin",
+        "value": "O herói equipado com esta arma e qualquer Goblin subordinado dentro de 15cm ignoram as regras de Animosidade."
       }
     ]
   }

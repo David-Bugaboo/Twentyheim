@@ -139,6 +139,15 @@ function FiguresAndAttributesPage() {
               até mesmo resistir a possessão demoníaca.
             </MobileText>
 
+            <div id="vontade">
+              <HeaderH2>Força</HeaderH2>
+            </div>
+            <MobileText>
+              <strong>Força</strong> Força determina o quão poderosos são os
+              ataques da criatura e é adicionada a todo dano corpo a corpo
+              causado por ela.
+            </MobileText>
+
             <div id="vigor">
               <HeaderH2>Vida</HeaderH2>
             </div>

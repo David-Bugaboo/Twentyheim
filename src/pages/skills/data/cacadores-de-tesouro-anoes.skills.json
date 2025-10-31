@@ -1,0 +1,32 @@
+[
+  {
+    "id": "mestre-das-laminas",
+    "name": "Mestre das Lâminas",
+    "type": "Caçadores de Tesouro Anões",
+    "description": "A figura com essa habilidade ganha +2 de bônus em rolagens de Ímpeto se usar a reação Aparar. Adicionalmente, se a figura estiver equipada com duas armas com a palavra-chave Aparar, ele ganha uma reação extra, que só pode ser usada para a reação de Aparar."
+  },
+  {
+    "id": "sangue-da-montanha",
+    "name": "Sangue da Montanha",
+    "type": "Caçadores de Tesouro Anões",
+    "description": "Quando a figura com essa habilidade rola na tabela de sobrevivência, ele pode rolar um dado extra e usar o melhor resultado."
+  },
+  {
+    "id": "minerador-experiente",
+    "name": "Minerador Experiente",
+    "type": "Caçadores de Tesouro Anões",
+    "description": "Durante a etapa de atividades, se a figura com essa habilidade for enviada para a atividade de Explorar as Ruínas, pode modificar o seu dado de exploração em até +3/-3."
+  },
+  {
+    "id": "garra-exemplar",
+    "name": "Garra Exemplar",
+    "type": "Caçadores de Tesouro Anões",
+    "description": "A primeira vez que a figura com essa habilidade for reduzida a 0 de vida durante uma partida, ela ao invés disso é reduzida a 1 de vida."
+  },
+  {
+    "id": "Tenacidade",
+    "name": "Tenacidade",
+    "type": "Caçadores de Tesouro Anões",
+    "description": "Uma figura com essa habilidade pode, como reação a receber um marcador de Atordoamento, rolar um teste de Vontade contra CD 14. Caso tenha sucesso, aquele marcador de Atordoamento é removido imediatamente. Se estiver usando um elmo que ainda não teve sua habilidade utilizada, recebe +4 de bônus nesse teste."
+  }
+]

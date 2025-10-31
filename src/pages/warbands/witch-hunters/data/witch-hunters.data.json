@@ -2,22 +2,25 @@
   {
     "id": "inquisidor",
     "name": "Inquisidor",
+    "lore": "Impulsionados pelo fanatismo, os Capitães Caçadores de Bruxas são obcecados com limpar Mordheim e trazer a justiça de Sigmar a todos. Carregando o édito do próprio Grande Teogonista, eles têm o direito divino de julgar e executar bruxos, bruxas, adoradores do Caos... na verdade, todos os que ousam se opor a eles.",
     "role": "Líder",
     "stats": {
       "move": 11,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "+1",
       "health": 12,
       "cost": "60 coroas",
-      "skills": ["Combate", "Atirador", "Força", "Acadêmica", "Agilidade"]
+      "skills": ["Combate", "Atirador", "Força", "Acadêmica", "Agilidade"],
+      "startingXp": 20,
+      "equipmentSlots": 5
     },
     "quantity": "1",
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Inquisidor pode ativar até 3 figuras a 8cm de distância dele."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem."
       },
       {
         "name": "Queimem a Bruxa!",
@@ -26,23 +29,62 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Besta", "cost": "25 coroas" },
-        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" },
-        { "name": "Besta de Mão", "cost": "35 coroas(70 coroas por par)" }
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 coroas por par)"
+        },
+        {
+          "name": "Besta de Mão",
+          "cost": "35 coroas(70 coroas por par)"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
@@ -51,15 +93,19 @@
   {
     "id": "sacerdote-marcial-de-sigmar",
     "name": "Sacerdote Marcial de Sigmar",
+    "lore": "Muitos homens poderosos de combate vieram das fileiras dos fiéis. Os Sacerdotes de Sigmar não são exceção, e a asa militar do culto é temida e respeitada em todo o Império. O próprio Grande Teogonista concedeu aos Sacerdotes Marciais um édito para limpar Mordheim da imundície do Caos. Com fogo ardendo em seus olhos, os Sacerdotes Marciais entram em batalha, cantando em voz alta o Deus Sigmar, o louvor do deus patrono do Império.",
     "role": "Herói",
     "stats": {
       "move": 10,
       "fight": "+1",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "+1",
       "health": 12,
-      "cost": "40 coroas"
+      "cost": "40 coroas",
+      "skills": ["Combate", "Acadêmica", "Força"],
+      "startingXp": 12,
+      "equipmentSlots": 5
     },
     "quantity": "0-1",
     "spellAffinity": {
@@ -68,28 +114,67 @@
     "abilities": [
       {
         "name": "Sacerdote",
-        "description": "O Sacerdote Guerreiro de Sigmar é um sacerdote e tem uma seleção muito limitada de magias comparado a outros conjuradores. No entanto, pode conjurar enquanto usa armaduras ou escudos e em combate, tendo -4 na sua rolagem de conjuração se o fizer. O sacerdote começa com 2 magias das Orações de Sigmar."
+        "description": "O Sacerdote Marcial de Sigmar é uma sacerdote das Orações de Sigmar. Ele começa com 1 oração dessa Tradição, e pode abrir mão de aprender uma habilidade para aprender uma nova magia ou reduzir a classe de dificuldade de uma magia que sabe em 1 ponto."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Besta", "cost": "25 coroas" },
-        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" },
-        { "name": "Besta de Mão", "cost": "35 coroas" }
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 coroas por par)"
+        },
+        {
+          "name": "Besta de Mão",
+          "cost": "35 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
@@ -98,16 +183,19 @@
   {
     "id": "caçador-de-bruxas",
     "name": "Caçador de Bruxas",
+    "lore": "Os Caçadores de Bruxas são membros da sinistra Ordem dos Caçadores de Bruxas, dedicados a erradicar o Caos e todos os seus lacaios. Geralmente eles perambulam pelo Velho Mundo individualmente tentando e executando os inimigos de Sigmar, mas a situação em Mordheim exige que eles se reúnam.",
     "role": "Herói",
     "stats": {
       "move": 10,
       "fight": "+1",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "0",
       "health": 12,
       "cost": "25 coroas",
-      "skills": ["Combate", "Atirador", "Acadêmica", "Agilidade"]
+      "skills": ["Combate", "Atirador", "Acadêmica", "Agilidade"],
+      "startingXp": 8,
+      "equipmentSlots": 5
     },
     "quantity": "0-2",
     "abilities": [
@@ -118,23 +206,62 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Besta", "cost": "25 coroas" },
-        { "name": "Pistola", "cost": "15 coroas (30 coroas por par)" },
-        { "name": "Besta de Mão", "cost": "35 coroas" }
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 coroas por par)"
+        },
+        {
+          "name": "Besta de Mão",
+          "cost": "35 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
@@ -143,35 +270,73 @@
   {
     "id": "fanatico",
     "name": "Fanático",
+    "lore": "Quando um homem perde sua família, lar e tudo que ele se importava, a religião geralmente é o último refúgio que resta para ele. Esses homens se tornam peregrinos errantes, fanáticos amargos e perigosos que estão preparados para vingar sua perda a qualquer custo. Eles são chamados de Zelotes. Zelotes abandonaram suas vidas anteriores e existem apenas para destruir o mal e os lacaios do Caos. Embora possam ter sido camponeses e artesãos antes, e portanto podem não ser tão perigosos em uma luta quanto mercenários experientes, sua determinação e fanatismo não devem ser subestimados.",
     "stats": {
       "move": 10,
       "fight": "0",
       "shoot": "0",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "0",
       "health": 12,
-      "cost": "20 coroas"
+      "cost": "20 coroas",
+      "equipmentSlots": 5
     },
     "quantity": "ilimitado",
     "abilities": [],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Lança", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco", "cost": "10 coroas" },
-        { "name": "Arco Curto", "cost": "5 coroas" }
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arco Curto",
+          "cost": "5 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
@@ -180,27 +345,39 @@
   {
     "id": "flagelante",
     "name": "Flagelante",
+    "lore": "Flagelantes são fanáticos e loucos obcecados com o fim do mundo. Eles são frequentemente homens que perderam suas famílias para a guerra ou qualquer outra coisa, enlouquecendo no processo. Com determinação insana, eles viajam por toda a extensão do Império, pregando o apocalipse. Com seus discursos vibrantes, os Caçadores de Bruxas podem reunir esses lunáticos para lutar nas ruas de Mordheim, onde nenhum homem são ousa pisar. Flagelantes são oponentes extremamente perigosos no combate corpo a corpo, pois eles têm a força de loucos, e seus corpos se tornaram insensíveis à dor devido à auto-mutilação.",
     "stats": {
       "move": 14,
       "fight": "+1",
       "shoot": "-",
-      "armour": 9,
+      "armour": 11,
       "Vontade": "+3",
       "health": 12,
-      "cost": "40 coroas"
+      "strength": "+1",
+      "cost": "40 coroas",
+      "equipmentSlots": 5
     },
     "quantity": "0-5",
     "abilities": [
       {
         "name": "Determinação Fanática",
-        "description": "Esse modelo tem as características Mente-Férrea e Forte."
+        "description": "Esse modelo tem as características Mente-Férrea."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Mangual", "cost": "15 coroas" },
-        { "name": "Estrela da Manhã", "cost": "15 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Mangual",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Estrela da Manhã",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [],
       "armor": [],
@@ -211,14 +388,16 @@
   {
     "id": "cao-de-guerra",
     "name": "Cão de Guerra",
+    "lore": "Os Caçadores de Bruxas frequentemente mantêm matilhas de cães de caça ferozes. Com suas mandíbulas enormes e mordida poderosa, são perfeitos para caçar (e despedaçar) qualquer herege, mutante e bruxa.",
     "stats": {
       "move": 16,
       "fight": "+2",
       "shoot": "-",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "-2",
       "health": 8,
-      "cost": "15 coroas"
+      "cost": "15 coroas",
+      "equipmentSlots": 5
     },
     "quantity": "0-5",
     "abilities": [

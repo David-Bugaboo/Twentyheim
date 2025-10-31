@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Chamas de Uzhul",
+    "castingNumber": 10,
+    "keywords": ["Alcance(30cm)", "Míssil Mágico(Flamejante)(+4)"],
+    "effect": "Ataque a figura alvo com o Míssil Mágico. Caso o dano seja crítico, a figura alvo ganha um marcador de Chamas."
+  },
+  {
+    "name": "Revoada de Zimmeran",
+    "castingNumber": 10,
+    "keywords": ["Conjurador Apenas"],
+    "effect": "O Conjurador se move para qualquer ponto dentro de 30cm de distância, incluindo em combate com uma figura inimiga, o que conta como completar uma carga."
+  },
+  {
+    "name": "Terror de Aramar",
+    "castingNumber": 10,
+    "keywords": ["Linha de Visão"],
+    "effect": "A figura inimiga alvo deve fazer um teste de Vontade contra a rolagem de conjuração dessa magia. Caso falhe, a figura alvo é movida 8cm para longe do Conjurador, desviando de obstáculos e outras figuras. Ela não pode ser interceptada durante esse movimento."
+  },
+  {
+    "name": "Flecha Prateada de Arha",
+    "castingNumber": 10,
+    "keywords": ["Alcance(60cm)", "Míssil Mágico(Normal)(+3)"],
+    "effect": "Essa magia só pode ser conjurada se não há figuras a menos de 12cm do conjurador. O Conjurador ataca a figura alvo com o Míssil Mágico.  "
+  },
+  {
+    "name": "Sorte de Shemtek",
+    "castingNumber": 8,
+    "keywords": ["Alcance(60cm)", "Míssil Mágico(Normal)(+3)"],
+    "effect": "Essa magia deve ser conjurada como uma reação a falhar em uma rolagem de dados. O Conjurador re-rola aquele dado, escolhendo o melhor resultado. O Conjurador não pode conjurar magias durante a sua próxima ativação."
+  },
+  {
+    "name": "Espada de Rhezebel",
+    "castingNumber": 12,
+    "keywords": ["Conjurador Apenas", "Concentração"],
+    "effect": "O conjurador invoca uma espada mágica que causa dano flamejante e provêm um bônus de +1 para o Ímpeto e Dano."
+  }
+]

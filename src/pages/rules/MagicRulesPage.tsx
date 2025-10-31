@@ -5,6 +5,9 @@ import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
 import HeaderH3 from "../../components/HeaderH3";
 import QuickNavigation from "../../components/QuickNavigation";
+import TzeentchCurseTable from "../../components/TzeentchCurseTable";
+import WrathOfGodsTable from "../../components/WrathOfGodsTable";
+import TzeentchGiftsTable from "../../components/TzeentchGiftsTable";
 import { useNavigate } from "react-router-dom";
 
 function MagicRulesPage() {
@@ -14,10 +17,10 @@ function MagicRulesPage() {
     { id: "intro", title: "Magia em Mordheim", level: 0 },
     { id: "natureza-magia", title: "A Natureza da Magia", level: 0 },
     { id: "ventos-magia", title: "Os Ventos da Magia", level: 0 },
+    { id: "tipos-magia", title: "Tipos de Magia", level: 0 },
     { id: "magia-arcana", title: "Magia Arcana", level: 1 },
     { id: "magia-divina", title: "Magia Divina", level: 1 },
     { id: "magia-sombria", title: "Magia Sombria", level: 1 },
-    { id: "magia-waaagh", title: "Magia da WAAAAAAAGH!", level: 1 },
     { id: "anatomia-magia", title: "Anatomia de uma Magia", level: 0 },
     { id: "palavras-chave", title: "Lista de Palavras-chave", level: 0 },
   ];
@@ -85,10 +88,35 @@ function MagicRulesPage() {
               forem seus métodos, todos os conjuradores arriscam suas vidas e
               até suas almas quando praticam magia.
             </MobileText>
+            <div id="tipos-magia">
+              <HeaderH1>Tipos de Magia</HeaderH1>
+            </div>
             <MobileText>
-              Existem quatro tipos principais de magia: arcana, divina, sombria
-              e da WAAAAAAAGH!. Cada uma possui suas próprias características,
-              riscos e métodos únicos de invocação.
+              Existem dois tipos principais de magia: arcana e divina.{" "}
+              <strong>Conjuradores arcanos</strong>, tipicamente conhecidos como
+              Magos, usam fórmulas mágicas e força de vontade pessoal para
+              comandar e controlar os Ventos da Magia. Esses conjuradores não
+              podem conjurar magias se estiverem usando Armaduras e Escudos, ou
+              em combate, devido ao foco mental absoluto e a liberdade de
+              movimentos necessários para executar as sequências de gestos e
+              encantamentos necessários para conjurar magia.{" "}
+              <strong>Conjuradores divinos</strong>, tipicamente conhecidos como
+              Sacerdotes, usam fé e rituais religiosos para trabalhar magia.
+              Assim, os Magos acreditam que sua própria força interior alimenta
+              seus feitiços, enquanto os Sacerdotes acreditam que seus feitiços
+              são presentes dos Deuses em troca de devoção e oração. A Magia
+              Divina tende a ser mais segura que a Magia Arcana porque é
+              altamente ritualizada. Sacerdotes usam magia de uma forma mais
+              intuitiva, e portanto podem conjurar magia mesmo usando Armadura e
+              Escudos, devido a não necessidade de usar encantamentos completos
+              e gestos específicos.
+            </MobileText>
+            <MobileText>
+              Toda magia tem seus riscos, no entanto, como é amplamente
+              demonstrado pela Magia Sombria. Esta é um subconjunto da Magia
+              Arcana, cujos praticantes estão dispostos a correr riscos pessoais
+              ainda maiores por poder aumentado. Conjuradores das sombras usam
+              as mesmas regras de conjuradores arcanos, mas com riscos extras.
             </MobileText>
             <div id="magia-arcana">
               <HeaderH2>Magia Arcana</HeaderH2>
@@ -104,18 +132,41 @@ function MagicRulesPage() {
               requer anos de estudo e prática para dominar.
             </MobileText>
             <MobileText>
+              <strong>Maldição de Tzeentch:</strong> Um mago que rola um 1
+              natural em sua rolagem de conjuração deve rolar na Tabela de
+              Maldição de Tzeentch e aplicar o resultado imediatamente. Este é o
+              preço de brincar com os Ventos da Magia — às vezes, o Caos retorna
+              em formas terríveis e imprevisíveis.
+            </MobileText>
+            <TzeentchCurseTable />
+            <MobileText>
               Cada cor dos Ventos da Magia possui suas próprias especialidades:
               Chamon para metal e transformação, Ghur para bestas e natureza,
               Ghyran para vida e cura, Hysh para luz e purificação, Aqshy para
               fogo e paixão, Azyr para céu e profecia, Ulgu para sombras e
               ilusão, e Shyish para morte e necromancia.
             </MobileText>
-            <div className="mt-4 mb-6 flex justify-center">
+            <MobileText className="mb-3 mt-4">
+              <strong>Tradições Arcanas Disponíveis:</strong>
+            </MobileText>
+            <div className="space-y-3 mb-6">
               <button
-                onClick={() => navigate("/magic/arcane-lores")}
-                className="w-full md:w-1/2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-bold"
+                onClick={() => navigate("/magic/magic-of-the-old-ones")}
+                className="w-full px-4 py-2 rounded-md transition-all duration-150 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white text-sm"
               >
-                Explorar Magia Arcana
+                Magia dos Anciões
+              </button>
+              <button
+                onClick={() => navigate("/magic/magic-of-the-goblins")}
+                className="w-full px-4 py-2 rounded-md transition-all duration-150 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white text-sm"
+              >
+                Magia dos Goblins
+              </button>
+              <button
+                onClick={() => navigate("/magic/magic-of-the-waaaaagh")}
+                className="w-full px-4 py-2 rounded-md transition-all duration-150 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white text-sm"
+              >
+                Magia da Waaaaaagh!
               </button>
             </div>
             <div id="magia-divina">
@@ -131,17 +182,34 @@ function MagicRulesPage() {
               e estruturada, mas também é mais limitada em escopo.
             </MobileText>
             <MobileText>
+              <strong>Ira dos Deuses:</strong> Um sacerdote que rola um 1
+              natural em sua rolagem de conjuração deve rolar na Tabela de Ira
+              dos Deuses e aplicar o resultado imediatamente. Esta tabela é
+              menos hostil que a Maldição de Tzeentch, mas ainda pode ser
+              desastrosa.
+            </MobileText>
+            <WrathOfGodsTable />
+            <MobileText>
               Cada divindade possui suas próprias especialidades: Sigmar para
               proteção e justiça, Ulric para força e inverno, Taal para natureza
               e caça, Morr para morte e sonhos, Verena para conhecimento e
               sabedoria, e Shallya para cura e misericórdia.
             </MobileText>
-            <div className="mt-4 mb-6 flex justify-center">
+            <MobileText className="mb-3 mt-4">
+              <strong>Orações Disponíveis:</strong>
+            </MobileText>
+            <div className="space-y-3 mb-6">
               <button
-                onClick={() => navigate("/magic/prayers")}
-                className="w-full md:w-1/2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-bold"
+                onClick={() => navigate("/magic/prayers-of-sigmar")}
+                className="w-full px-4 py-2 rounded-md transition-all duration-150 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white text-sm"
               >
-                Explorar Magia Divina
+                Orações de Sigmar
+              </button>
+              <button
+                onClick={() => navigate("/magic/prayers-of-ulric")}
+                className="w-full px-4 py-2 rounded-md transition-all duration-150 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white text-sm"
+              >
+                Orações de Ulric
               </button>
             </div>
             <div id="magia-sombria">
@@ -161,36 +229,48 @@ function MagicRulesPage() {
               Necromantes, Bruxas Sombrias, e Cultistas do Caos são exemplos de
               praticantes da Magia Sombria.
             </MobileText>
-            <div className="mt-4 mb-6 flex justify-center">
+            <MobileText>
+              <strong>Magica Corruptiva:</strong> Um conjurador de Magia Sombria
+              que rola um 1 natural em sua rolagem de conjuração não apenas deve
+              rolar na Tabela de Maldição de Tzeentch, mas também deve rolar na
+              Tabela de Dádivas de Tzeentch. O poder descontrolado do Caos
+              distorce tanto corpo quanto alma — o preço do poder das sombras é
+              a própria essência da humanidade.
+            </MobileText>
+            <TzeentchGiftsTable />
+            <MobileText className="mb-3 mt-4">
+              <strong>Tradições Sombrias Disponíveis:</strong>
+            </MobileText>
+            <div className="space-y-3 mb-6">
               <button
-                onClick={() => navigate("/magic/dark-lores")}
-                className="w-full md:w-1/2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-bold"
+                onClick={() => navigate("/magic/rituals-of-chaos")}
+                className="w-full px-4 py-2 rounded-md transition-all duration-150 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white text-sm"
               >
-                Explorar Magia Sombria
+                Rituais do Caos
               </button>
-            </div>
-            <div id="magia-waaagh">
-              <HeaderH2>Magia da WAAAAAAAGH!</HeaderH2>
-            </div>
-            <MobileText>
-              Única aos Orcs e Goblins, sendo uma forma de magia selvagem e
-              instintiva. Os Xamãs Orcs não estudam magia como os Magos humanos
-              - eles a sentem, a vivem, e a canalizam através de sua natureza
-              brutal e violenta. A Magia da WAAAAAAAGH! é imprevisível,
-              poderosa, e frequentemente explosiva.
-            </MobileText>
-            <MobileText>
-              Ela se manifesta através de gritos de guerra, rituais de
-              destruição, e a energia coletiva de uma horda de Orcs em frenesi
-              de batalha. Quanto maior a horda, mais poderosa a magia se torna,
-              mas também mais perigosa para o próprio Xamã.
-            </MobileText>
-            <div className="mt-4 mb-6 flex justify-center">
               <button
-                onClick={() => navigate("/magic/greenskin-lores")}
-                className="w-full md:w-1/2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white px-6 py-3 rounded-lg transition-colors duration-200 font-bold"
+                onClick={() => navigate("/magic/rituals-of-hashut")}
+                className="w-full px-4 py-2 rounded-md transition-all duration-150 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white text-sm"
               >
-                Explorar WAAAAAAAGH!
+                Rituais de Hashut
+              </button>
+              <button
+                onClick={() => navigate("/magic/lore-of-necromancy")}
+                className="w-full px-4 py-2 rounded-md transition-all duration-150 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white text-sm"
+              >
+                Tradição da Necromancia
+              </button>
+              <button
+                onClick={() => navigate("/magic/lore-of-the-horned-rat")}
+                className="w-full px-4 py-2 rounded-md transition-all duration-150 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white text-sm"
+              >
+                Tradição do Rato Chifrudo
+              </button>
+              <button
+                onClick={() => navigate("/magic/druchii-magic")}
+                className="w-full px-4 py-2 rounded-md transition-all duration-150 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white text-sm"
+              >
+                Magia Druchii
               </button>
             </div>
             <div id="anatomia-magia">
@@ -263,11 +343,6 @@ function MagicRulesPage() {
             <MobileText>
               A Magia afeta uma figura a até (X)cm do conjurador.
             </MobileText>
-            <HeaderH3>INVOCAÇÃO</HeaderH3>
-            <MobileText>
-              Essa magia invoca uma figura, que deve ser posicionada a até 14cm
-              do jogador.
-            </MobileText>
             <HeaderH3>PSICOLÓGICA</HeaderH3>
             <MobileText>
               Essa magia é um efeito que mexe com a mente da figura alvo.
@@ -296,11 +371,22 @@ function MagicRulesPage() {
               Palavra-chave relevante para interagir com efeitos de outras
               magias e habilidades.
             </MobileText>
-            <HeaderH3>RITUAL</HeaderH3>
+            <HeaderH3>CONCENTRAÇÃO</HeaderH3>
             <MobileText>
-              Essa magia pode ser usada durante a etapa de Conjurar Rituais da
-              Fase de Campanha-jogo. A magia não causa dano ou efeitos negativos
-              por falhar na conjuração, mas não pode ser forçada.
+              Essa magia requer que a figura se mantenha concentrando sobre ela.
+              Uma figura pode concentrar qualquer número de magias ao mesmo
+              tempo, mas apenas uma de cada tipo por vez. Uma figura deve rolar
+              um teste de Vontade com CD igual classe de dificuldade da magia
+              que está concentrando (chamado de{" "}
+              <strong>Teste de Concentração</strong>) no começo de cada uma de
+              suas ativações, sempre que sofre dano, adicionando o dano sofrido
+              a CD, sempre que recebe um marcador de atordoamento (com a
+              penalidade de -2 em rolagens de dado causado pelo marcador de
+              atordoamento) e sempre que é movido por uma força externa,
+              adicionando a quantidade de centímetros que foi movido a CD. A
+              figura faz esse teste nessas condições para cada magia que esteja
+              concentrando, e o efeito de magias para qual ele falha o Teste de
+              Concentração é cancelado.
             </MobileText>
           </MobileSection>
         </div>

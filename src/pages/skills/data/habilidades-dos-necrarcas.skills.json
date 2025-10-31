@@ -1,0 +1,26 @@
+[
+  {
+    "id": "herdeiro-de-nekehara",
+    "name": "Herdeiro de Nekehara",
+    "type": "Habilidades dos Necrarcas",
+    "description": "A figura com essa habilidade imediatamente aprende uma magia da Tradição da Necromancia. Ele ganha +2 em rolagens de conjuração, que pode acumular com a habilidade Feitiçaria."
+  },
+  {
+    "id": "discurso-profano",
+    "name": "Discurso Profano",
+    "type": "Habilidades dos Necrarcas",
+    "description": "Uma vez por jogo, a figura com essa habilidade pode rolar duas vezes sua rolagem de conjuração e escolher o melhor resultado. Caso ambas as rolagens tenham o mesmo resultado, o personagem sofre a Maldição de Tzeentch. A figura não pode fazer outras ações no turno que opta por usar essa habilidade."
+  },
+  {
+    "id": "o-despertar",
+    "name": "O Despertar",
+    "type": "Habilidades dos Necrarcas",
+    "description": "Como uma ação, a figura com essa habilidade pode levantar um Zumbi como membro temporário do bando por esse jogo apenas, podendo extrapolar o limite de figuras do bando. O Zumbi aparece em contato de base com a figura utilizando a habilidade. Apenas um Zumbi pode ser levantado dessa forma por vez, mas uma vez que o último Zumbi invocado seja removido do tabuleiro, outro pode ser levantado com essa habilidade."
+  },
+  {
+    "id": "senhor-do-dhar",
+    "name": "Senhor do Dhar",
+    "type": "Habilidades dos Necrarcas",
+    "description": "A figura com essa habilidade adiciona 15cm no alcance de suas magias. Apenas magias com a palavra-chave Alcance são afetadas por essa habilidade."
+  }
+]

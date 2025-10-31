@@ -2,34 +2,32 @@
   {
     "id": "magisacerdote-Gecko",
     "name": "Magisacerdote Gecko",
+    "lore": "O líder de um bando de Reptilianos será um dos Magisacerdotes Gecko selecionados a dedo, renomados por sua confiabilidade. A natureza de sua missão é observar os saqueadores de pele seca e tentar obter fragmentos de pedra-bruxa sem conflito se possível. O Magisacerdote Gecko deve ser capaz de tomar a decisão delicada de quando atacar e quando não atacar. Magisacerdotes Gecko são facilmente reconhecíveis, pois pintam sua pele com símbolos místicos coloridos associados ao seu deus. Sacerdotes de Chotec, por exemplo, têm serpentes aladas desenhadas em seus corpos, enquanto os de Sotek usam tatuagens de víboras verdes.",
     "role": "Líder",
     "quantity": "1",
     "stats": {
       "move": 16,
       "fight": "+3",
       "shoot": "+3",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+1",
       "health": 16,
-      "cost": "60 coroas"
+      "cost": "60 coroas",
+      "skills": ["Acadêmico", "Agilidade", "Habilidades de Gecko"],
+      "startingXp": 20,
+      "equipmentSlots": 4
     },
     "spellAffinity": {
-      "aligned0": ["Tradição da Vida"],
-      "aligned2": [
-        "Tradição das Bestas",
-        "Tradição dos Céus",
-        "Tradição do Metal",
-        "Tradição da Morte"
-      ]
+      "aligned0": ["Magia dos Anciões"]
     },
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Magisacerdote Gecko pode ativar até 3 outras figuras a 8cm de distância dele. Caso o magisacerdote gecko seja morto, outro pode ser contratado, mas o bando deve jogar um jogo sem líder, enquanto o novo sacerdote chega de Lustria."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem."
       },
       {
         "name": "Conjurador",
-        "description": "O Magisacerdote Gecko é um conjurador da Tradição da Vida. Ele começa com 1 magia, de qualquer uma de suas tradições. Magias de tradições associadas são associadas a +4 CD."
+        "description": "O Magisacerdote Gecko é um conjurador da Magia dos Anciões. Ele começa com 1 magia dessa Tradição, e pode abrir mão de aprender uma habilidade para aprender uma nova magia ou reduzir a classe de dificuldade de uma magia que sabe em 1 ponto."
       },
       {
         "name": "Ancestralidade Reptiliana",
@@ -38,35 +36,67 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Maça", "cost": "3 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco Curto", "cost": "15 coroas" },
-        { "name": "Javelin", "cost": "5 coroas" },
-        { "name": "Zarabatana", "cost": "10 coroas" }
+        {
+          "name": "Arco Curto",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Javelin",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Zarabatana",
+          "cost": "10 coroas"
+        }
       ],
-      "armor": [{ "name": "Elmo de Osso", "cost": "5 coroas" }],
+      "armor": [
+        {
+          "name": "Elmo de Osso",
+          "cost": "5 coroas"
+        }
+      ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Aço Estelar", "cost": "base *4" }]
+      "modifiers": [
+       
+      ]
     }
   },
   {
     "id": "guerreiro-totemico-saurio",
     "name": "Guerreiro Totêmico Saurío",
+    "lore": "Quando um guerreiro Sáurio matou vinte inimigos, ele é aceito em um dos três Totens de Guerreiro: Águia, Onça ou Jacaré. Ele então deve ir e matar o animal de seu novo Totem para provar seu valor na Ordem dos Guerreiros Totêmicos. Ao atingir o status de Guerreiro Totêmico, ele é recrutado pelos Magisacerdotes Gecko para participar de incursões nas ruínas da cidade dos condenados.",
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
       "move": 9,
       "fight": "+4",
       "shoot": "-",
-      "armour": 11,
+      "armour": 12,
       "Vontade": "+2",
       "health": 14,
       "cost": "60 coroas",
-      "skills": ["Combate", "Força", "Reptilianos"]
+      "strength": "+1",
+      "skills": ["Combate", "Força", "Reptilianos"],
+      "startingXp": 11,
+      "equipmentSlots": 6
     },
     "abilities": [
       {
@@ -75,78 +105,141 @@
       },
       {
         "name": "Ancestralidade Sáuria",
-        "description": "O Guerreiro Totêmico Sáurio tem a característica Anfíbio, Forte e não pode rolar testes de debandada usando sua Vontade."
+        "description": "O Guerreiro Totêmico Sáurio tem a característica Anfíbio. Um bando não pode rolar debandada usando a vontade de um Sáurio."
+      },
+      {
+        "name": "Mordida Poderosa",
+        "description": "Um Guerreiro Totêmico Sáurio nunca conta como desarmado."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [],
       "armor": [
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Armadura Leve", "cost": "10 coroas" }
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Aço Estelar", "cost": "base *4" }]
+      "modifiers": [
+        
+      ]
     }
   },
   {
     "id": "gecko-crista-alta",
     "name": "Gecko Crista-Alta",
+    "lore": "Cristas Altas, como são conhecidos, são líderes de muitos grupos de ataque e se tornaram hábeis em reconhecimento, rastreamento, emboscadas e escaramuças. Sua pele é mais variada em cor do que os Geckos normais, então eles se misturam com qualquer ambiente de forma mais eficaz. Eles também usam folhas ou se cobrem de lama para se misturar com entulho e os jardins mortos dos nobres de Mordheim. Eles atuam como líderes e patrulham as ruínas, reportando qualquer movimentação estranha para seu magisacerdote.",
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
       "move": 16,
       "fight": "+2",
       "shoot": "+2",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "+1",
       "health": 12,
       "cost": "30 coroas",
-      "skills": ["Atirador", "Agilidade", "Reptilianos"]
+      "skills": ["Atirador", "Agilidade", "Reptilianos"],
+      "startingXp": 8,
+      "equipmentSlots": 4
     },
     "abilities": [
-      {
-        "name": "Ancestralidade Reptiliana",
-        "description": "O Gecko Crista-Alta tem a característica Anfíbio."
-      }
+      
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco Curto", "cost": "15 coroas" },
-        { "name": "Javelin", "cost": "5 coroas" },
-        { "name": "Zarabatana", "cost": "10 coroas" }
+        {
+          "name": "Arco Curto",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Javelin",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Zarabatana",
+          "cost": "10 coroas"
+        }
       ],
-      "armor": [{ "name": "Escudo", "cost": "5 coroas" }],
+      "armor": [
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        }
+      ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Aço Estelar", "cost": "base *4" }]
+      "modifiers": [
+        
+      ]
     }
   },
   {
-    "id": "batedor-lagarto",
-    "name": "Batedor Lagarto",
+    "id": "batedor-gecko",
+    "name": "Batedor Gecko",
+    "lore": "Geckos são rápidos, ágeis e inteligentes. Embora careçam da força bruta e agressão total dos Sáurios, são bons em disparar saraivadas de flechas ou javelins. Eles também dispensar a durabilidade dos seus primos maiores em troca de uma astúcia e agilidade que permite surpreender seus inimigos em posiçòes desvantajosas.",
     "quantity": "ilimitado",
     "stats": {
       "move": 16,
       "fight": "0",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "-2",
       "health": 12,
-      "cost": "20 coroas"
+      "cost": "20 coroas",
+      "equipmentSlots": 4
     },
     "abilities": [
       {
@@ -156,16 +249,39 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Maça", "cost": "3 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco Curto", "cost": "15 coroas" },
-        { "name": "Javelin", "cost": "5 coroas" },
-        { "name": "Zarabatana", "cost": "10 coroas" }
+        {
+          "name": "Arco Curto",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Javelin",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Zarabatana",
+          "cost": "10 coroas"
+        }
       ],
-      "armor": [{ "name": "Escudo", "cost": "5 coroas" }],
+      "armor": [
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        }
+      ],
       "miscellaneous": [],
       "modifiers": []
     }
@@ -173,34 +289,62 @@
   {
     "id": "saurio-veterano",
     "name": "Sáurio Veterano",
+    "lore": "Sáurios têm peles grossas, córneas e escamosas que os protegem como armadura natural. Sáurios são suficientemente inteligentes para entender comandos claros e simples. São guerreiros excelentes, mas não são muito bons em mais nada. São criaturas extremamente teimosas e muito difíceis de incapacitar. São criaturas muito ferozes e atacarão um inimigo até a aniquilação total.",
     "quantity": "1-5",
     "stats": {
       "move": 8,
       "fight": "+2",
       "shoot": "0",
-      "armour": 11,
+      "armour": 12,
       "Vontade": "0",
-      "health": 12,
-      "cost": "40 coroas"
+      "health": 14,
+      "strength": "+1",
+      "cost": "40 coroas",
+      "equipmentSlots": 5
     },
     "abilities": [
       {
         "name": "Ancestralidade Sáuria",
-        "description": "O Guerreiro Totêmico Sáurio tem a característica Anfíbio, Forte e não pode rolar testes de debandada usando sua Vontade."
+        "description": "O Sáurio Veterano tem a característica Anfíbio e Forte. Um bando não pode rolar debandada usando a vontade de um Sáurio."
+      },
+      {
+        "name": "Mordida Poderosa",
+        "description": "Um Sáurio Veterano nunca conta como desarmado."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [],
       "armor": [
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Armadura Leve", "cost": "10 coroas" }
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
@@ -209,20 +353,25 @@
   {
     "id": "kroxigor",
     "name": "Kroxigor",
+    "lore": "Kroxigors lembram Sáurios, mas são muito maiores e  muito mais poderosos, lembrando enormes crocodilos. Eles tem a inteligência de um animal e são incapazes de falar, emitindo apenas rugidos estonteantes. São fortes e usados principalmente para construção, instigados ao trabalho pelos ágeis Geckos.",
     "quantity": "0-1",
+    "noXP": true,
+    "qualidade": 20,
     "stats": {
       "move": 13,
       "fight": "+3",
       "shoot": "-",
-      "armour": 12,
+      "armour": 13,
       "Vontade": "0",
       "health": 20,
-      "cost": "200 coroas"
+      "strength": "+1",
+      "cost": "200 coroas",
+      "equipmentSlots": 6
     },
     "abilities": [
       {
         "name": "Besta Primeval",
-        "description": "O Kroxigor tem as características Grande, Forte, Aterrorizante e Anfíbio. Ele tem inteligência animalesca e não ganha experiência."
+        "description": "O Kroxigor tem as características Grande, Aterrorizante e Anfíbio. Ele tem inteligência animalesca e não ganha experiência."
       },
       {
         "name": "Mandíbula Esmagadora",
@@ -230,7 +379,12 @@
       }
     ],
     "equipment": {
-      "hand-to-hand": [{ "name": "Alabarda", "cost": "10 coroas" }],
+      "hand-to-hand": [
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
+      ],
       "ranged": [],
       "armor": [],
       "miscellaneous": [],

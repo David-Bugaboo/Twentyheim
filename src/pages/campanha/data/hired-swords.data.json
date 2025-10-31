@@ -1,0 +1,595 @@
+[
+  {
+    "id": "mata-trolls-anao",
+    "name": "Mata-Trolls Anão",
+    "lore": "Mata-Trolls são membros do culto mórbido dos Anões obcecados em buscar uma morte honrosa em combate. Tendo cometido algum crime imperdoável ou sido desonrado de alguma forma, um Anão abandonará seu lar e vagará para morrer lutando contra um inimigo poderosa. Mata-Trolls são indivíduos são desajustadas, psicopatas e violentos. No entanto, há poucos lutadores melhores no Mundo Conhecido, que vendem seus serviços em Mordheim para quem eles acreditem que possam guiá-los para sua morte gloriosa em combate.",
+    "role": "Mercenário",
+    "availability": ["Mercenários", "Caçadores de Bruxas"],
+    "qualidade": 12,
+    "stats": {
+      "move": 7,
+      "fight": "+2",
+      "shoot": "+1",
+      "armour": 11,
+      "Vontade": "+2",
+      "health": 12,
+      "cost": "25 coroas",
+      "upkeep": "10 coroas",
+      "skills": ["Combate", "Força", "Mata-Trolls Anão"],
+      "mercEquipment": ["Machado Anão", "Machado Anão"]
+    },
+    "abilities": [
+      {
+        "name": "Jornada pela Morte",
+        "description": "O Mata-Trolls é Imune a Aterrorizante e tem a característica Mente-Férrea."
+      },
+      {
+        "name": "Rancor Antigo",
+        "description": "Essa figura tem Ódio(Orcs e Goblins)"
+      },
+      {
+        "name": "Cabeça Dura",
+        "description": "Anões são imunes à palavra-chave Concussiva(X)."
+      },
+      {
+        "name": "Devagar e Sempre",
+        "description": "O Mata-Trolls Anão nunca perde movimento devido ao uso de equipamentos."
+      },
+      {
+        "name": "Equipamento",
+        "description": "2x Machados Anões."
+      }
+    ]
+  },
+  {
+    "id": "rato-ogroide-de-clan-skryre",
+    "name": "Rato Ogróide do Clã Skryre",
+    "lore": "Os engenheiros-bruxos do Clã Skryre são famosos por suas invenções hediondas que misturam magia vil e maquinário arcano. O Rato Ogróide do Clã Skryre é o auge dessa engenharia: um cadáver de Rato Ogróide combinado a um exoesqueleto mecânico e alimentado por Pedra-bruxa refinada. O clã aluga os poucos protótipos que produziu para testá-los em combate — uma besta aterrorizante e instável.",
+    "role": "Mercenário",
+    "availability": ["Skaven"],
+    "noXP": true,
+    "qualidade": 25,
+    "stats": {
+      "move": 8,
+      "fight": "+3",
+      "shoot": "+1",
+      "armour": 13,
+      "Vontade": "+3",
+      "health": 20,
+      "strength": "+2",
+      "cost": "100 coroas",
+      "upkeep": "1 Pedra-bruxa",
+      "skills": ["Força", "Combate"]
+    },
+    "abilities": [
+      {
+        "name": "Grande",
+        "description": "O Rato Ogróide do Clã Skyre tem as características Grande, Voraz, Aterrorizante e Construto."
+      },
+      {
+        "name": "Aterrorizante",
+        "description": "Causa Medo."
+      },
+      {
+        "name": "Alimentado por Pedra-bruxa",
+        "description": "Não requer pagamento em ouro para manutenção, mas exige 1 fragmento de Pedra-bruxa antes de cada partida para ser ativado."
+      },
+      {
+        "name": "Máquina Pesada",
+        "description": "Não pode correr."
+      },
+      {
+        "name": "Lançador de Chamas Corrompidas",
+        "description": "O Rato Ogróide do Clã Skyre pode como uma ação de ataque a distância disparar seu lançador de chamas corrompidas montado em seu braço. Posiciona uma Área de Efeito(Cone). Todas as figuras na Área de Efeito recebem um ataque flamejante +2 com a característica Incendiária(5). Se quaisquer dois números iguais foram rolados nesses ataques, a palavra Falha na Ignição é desencadeada."
+      },
+      {
+        "name": "Sem Experiência",
+        "description": "Não ganha experiência."
+      }
+    ]
+  },
+  {
+    "id": "guarda-de-estradas",
+    "name": "Guarda de Estradas",
+    "lore": "Patrulhando as perigosas estradas do Império, Guardas de Estradas são homens sisudos de coragem inabalável. Figuras solitárias, percorrem longas distâncias em qualquer clima, com pouca comida. São lutadores duros e implacáveis, sem código de cavalaria — não oferecem misericórdia, pois não esperam recebê-la. São especializados no uso da besta, com a qual são caçadores e atiradores letais. Salteadores, vagabundos e bandidos são sua presa; a segurança das estradas é seu dever, executado com severidade inabalável.",
+    "role": "Mercenário",
+    "availability": [
+      "Caçadores de Bruxas",
+      "Irmãs de Sigmar",
+      "Caçadores de Tesouro Anões",
+      "Mercenários"
+    ],
+    "qualidade": 22,
+    "stats": {
+      "move": 20,
+      "fight": "+1",
+      "shoot": "+2",
+      "armour": 11,
+      "Vontade": "+1",
+      "health": 12,
+      "cost": "40 coroas",
+      "upkeep": "20 coroas",
+      "skills": ["Combate", "Atirador", "Força", "Cavalaria"],
+      "mercEquipment": ["Besta", "Martelo", "Adaga", "Armadura Pesada", "Tocha"]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Besta, Martelo, Adaga, Armadura Pesada, Tocha."
+      },
+      {
+        "name": "Cavaleiro Perito",
+        "description": "O Guarda de Estradas está montado em um cavalo de guerra. Ele não pode ser desmontado do seu cavalo, não pode escalar e gasta 3cm de movimento para 1cm de movimento ao atravessar terreno difícil. Ele não recebe penalidades por se mover antes de atirar, e pode usar a ação especial da habilidade Tiro Habilidoso como parte de uma ação de movimento."
+      },
+      {
+        "name": "Severo",
+        "description": "O Guarda de Estradas é imune a Aterrorizante."
+      },
+      {
+        "name": "Inimizade",
+        "description": "Um Guarda de Estradas nunca se juntará a um bando que também contenha um Salteador."
+      }
+    ]
+  },
+  {
+    "id": "gladiador",
+    "name": "Gladiador",
+    "lore": "Gladiadores são homens perigosos que ganham a vida nas arenas ilegais de combate do Império. Muitos são escravos e prisioneiros, mas alguns são homens livres que tiram seu sustento de lutas sangrentas em lugares como A Fenda dos Miseráveis ou os Poços Negros. Embora proibidas em muitas províncias, as arenas de combate são populares e muitas coroas são apostadas em seus resultados, levando autoridades a fecharem os olhos para esses sangrentos espetáculos. Fora das fossas, oferecem seus serviços a quem estiver disposto a pagar e são prontamente contratados por bandos que exploram as ruínas de Mordheim. São combatentes poderosos e perigosos, e seu armamento único lhes dá vantagem contra quase qualquer oponente.",
+    "role": "Mercenário",
+    "availability": ["Todos", "Skaven"],
+    "exclusions": ["Mortos-Vivos"],
+    "qualidade": 22,
+    "stats": {
+      "move": 11,
+      "fight": "+3",
+      "shoot": "+1",
+      "armour": 10,
+      "Vontade": "+1",
+      "health": 12,
+      "cost": "30 coroas",
+      "upkeep": "15 coroas",
+      "skills": ["Combate", "Agilidade", "Força"],
+      "mercEquipment": ["Estrela da Manhã", "Bróquel", "Elmo", "Armadura Leve"]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Estrela da Manhã, Bróquel, Elmo, Armadura Leve."
+      },
+      {
+        "name": "Gladiador",
+        "description": "O Gladiador tem a característica Forte."
+      }
+    ]
+  },
+  {
+    "id": "ogro-guarda-costas",
+    "name": "Ogro Guarda-Costas",
+    "lore": "Ogros são criaturas enormes e brutais, com mais de três metros de altura, compostos de ossos e músculos. Por isso, são muito requisitados como guarda-costas e mercenários, apesar de sua falta de inteligência. Um bando respaldado por um Ogro torna-se um inimigo temível, pois eles são lutadores extremamente perigosos e absolutamente aterrorizantes quando enfurecidos. Eles aceitam qualquer empregador, pois notoriamente não se importam com por quem lutam.",
+    "role": "Mercenário",
+    "availability": ["Todos"],
+    "exclusions": ["Skaven"],
+    "qualidade": 25,
+    "stats": {
+      "move": 15,
+      "fight": "+2",
+      "shoot": "+0",
+      "armour": 12,
+      "Vontade": "+0",
+      "health": 20,
+      "cost": "80 coroas",
+      "upkeep": "30 coroas",
+      "skills": ["Combate", "Força"],
+      "mercEquipment": ["Arma de Duas Mãos", "Armadura Leve"]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Arma de Duas Mãos, Armadura Leve."
+      },
+      {
+        "name": "Guarda Costas Monstruoso",
+        "description": "O Ogro tem as características Grande, Forte e Aterrorizante."
+      }
+    ]
+  },
+  {
+    "id": "patrulheiro-elfo",
+    "name": "Patrulheiro Elfo",
+    "lore": "Elfos são uma raça maravilhosa: ágeis, altos, belos, longevos e mágicos. Geralmente, são temidos e desconfiados pelos humanos, embora alguns vivam nas cidades entre homens e ofereçam seus serviços como menestréis e arqueiros em troca de uma taxa alta. Embora os Elfos se tornem mais raros no Velho Mundo a cada ano, ainda há alguns vagando pelas trilhas sem caminho da Floresta de Drakwald e da Floresta das Sombras. Elfos sensatamente tendem a evitar as ruínas de Mordheim, pois na Cidade dos Condenados há pouco para atrair essa raça feérica e estranha. As vezes são contratados por caçadores de tesouros, pois poucos podem igualar sua habilidade com o arco, ou sua rapidez e agilidade inumanas. Os sentidos de um Elfo são muito mais aguçados que os de qualquer humano, e eles são excelentes batedores.",
+    "role": "Mercenários",
+    "availability": ["Todos"],
+    "qualidade": 8,
+    "stats": {
+      "move": 16,
+      "fight": "+2",
+      "shoot": "+3",
+      "armour": 10,
+      "Vontade": "+2",
+      "health": 12,
+      "cost": "40 coroas",
+      "upkeep": "20 coroas",
+      "skills": ["Atirador", "Agilidade", "Patrulheiro Elfo"],
+      "mercEquipment": ["Arco Longo", "Espada", "Manto Élfico", "Aljava"]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Arco Longo, Espada, Manto Élfico, Aljava."
+      },
+      {
+        "name": "Explorador",
+        "description": "Quando o patrulheiro elfo é escolhido para a atividade de Explorar as Ruínas, ele pode modificar seu dado de exploração em até +3/-3."
+      },
+      {
+        "name": "Visão Excelente",
+        "description": "Elfos tem uma visão muito melhor que humanos. Eles adicionam +10cm ao alcance de qualquer arma a distância e consideram inimigos com a característica Furtividade(X) como (X+10)"
+      }
+    ]
+  },
+  {
+    "id": "caçador-de-bestas",
+    "name": "Caçador de Bestas",
+    "lore": "O Caçador de Bestas é um andarilho sombrio, cheio de mistério e autoaversão. Sua história é lamentável. Parentes e amigos massacrados pelas criaturas bestiais das terras selvagens. Ele é um dos muitos homens que foram levados à beira do abismo por suas experiências, ansiando agora apenas por vingança insaciável contra aqueles que destruíram suas vidas outrora normais. Eles se adornam com as peles de seus inimigos e assumem um aspecto verdadeiramente assustador. Apenas um capitão corajoso  contrataria tais 'homens selvagens' da floresta, mas suas habilidades de caçador são incomparáveis e sua força bruta em combate é impressionante demais para ser ignorada. Perigoso e feroz, qualidades ideais para sobrevivência nas terras selvagens escuras e desenfreadas.",
+    "role": "Mercenário",
+    "availability": [
+      "Todos",
+      "Bestas",
+      "Mortos-Vivos",
+      "Orcs & Goblins",
+      "Possuídos",
+      "Carnaval do Caos"
+    ],
+    "exclusions": ["Skaven"],
+    "qualidade": 18,
+    "stats": {
+      "move": 12,
+      "fight": "+1",
+      "shoot": "+2",
+      "armour": 10,
+      "Vontade": "+0",
+      "health": 12,
+      "cost": "35 coroas",
+      "upkeep": "15 coroas",
+      "skills": ["Combate", "Força"],
+      "mercEquipment": [
+        "Machado",
+        "Adaga",
+        "Facas de Arremesso",
+        "Armadura Leve"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Machado, Adaga, Facas de Arremesso, Armadura Leve."
+      },
+      {
+        "name": "Vingança contra Bestas",
+        "description": "O Caçador de Bestas tem a característica Ódio(Homens-Fera). Ele não cobra seu custo de manutenção em partidas contra Homens-Fera,"
+      },
+      {
+        "name": "Manto de Crânios",
+        "description": "O Caçador de Bestas usa um manto de crânios macabro adornado com crânios de Homens-Fera. Ele tem a característica Aterrorizante contra Homens-Fera."
+      },
+      {
+        "name": "Predador",
+        "description": "O Caçador de Bestas é um predador de todas as criaturas malignas, mas especialmente de Homens-Fera. Em qualquer batalha ambientada na natureza (fora de Mordheim) que envolva Homens-Fera, o Caçador de Bestas pode ser posicionado após ambos os bandos terem se posicionado. Ele pode ser posicionado em qualquer lugar do tabuleiro que esteja fora da linha de visão de todas as figuras inimigas e fora da zona de posicionamento inimiga."
+      }
+    ]
+  },
+  {
+    "id": "cavaleiro-errante",
+    "name": "Cavaleiro Errante",
+    "lore": "Assim como guerreiros das classes sociais mais baixas podem se tornar mercenários, escudeiros ou nobres podem oferecer suas habilidades para contratação, tornando-se Cavaleiros-Errantes. Cavaleiros-Errantes são frequentemente os filhos mais novos de nobres, que herdaram pouco além de suas armas, cavalo e armadura. Tendo se desiludido com sua sorte na vida, eles tomaram o único caminho disponível para eles: o de um Mercenário. Considerações financeiras têm precedência sobre os dogmas da honra e cavalaria. Muitos Cavaleiros-Errantes se estabeleceram nos guetos ao redor de Mordheim, oferecendo sua considerável força aos contratantes mais ricos.",
+    "role": "Mercenário",
+    "availability": ["Mercenários", "Caçadores de Bruxas"],
+    "qualidade": 21,
+    "stats": {
+      "move": 20,
+      "fight": "+2",
+      "shoot": "+1",
+      "armour": 10,
+      "Vontade": "0",
+      "health": 12,
+      "strength": "+1",
+      "cost": "50 coroas",
+      "upkeep": "20 coroas",
+      "skills": ["Combate", "Força"],
+      "mercEquipment": ["Armadura Pesada", "Escudo", "Lança", "Espada"]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Armadura Pesada, Escudo, Lança, Espada."
+      },
+      {
+        "name": "Cavaleiro Nobre",
+        "description": "O Cavaleiro Errante luta montado em um Cavalo de Guerra. Ele nunca pode ser desmontado do seu cavalo, não pode escalar e gasta 3cm de movimento para 1cm de movimento ao atravessar terreno difícil, mas ganha as características Chifres e Forte."
+      }
+    ]
+  },
+  {
+    "id": "patrulheiro-nanico",
+    "name": "Patrulheiro Nanico",
+    "lore": "Nanicos são criaturas diminutas, geralmente mais preocupadas com o horário da próxima refeição (ou duas) do que com feitos militares. Medem entre noventa centímetros e pouco mais de um metro, não são muito fortes nem resistentes, mas são naturalmente bons atiradores e bravos diante do perigo. Alguns Nanicos são mais aventureiros do que outros, e esses espíritos ousados são muito procurados por bandos mercenários: excelentes arqueiros — e cozinheiros ainda melhores.",
+    "role": "Mercenário",
+    "availability": ["Todos"],
+    "exclusions": [
+      "Cortes Vampiricas",
+      "Filhos de Hashut",
+      "Circo do Caos",
+      "Culto dos Possuídos",
+      "Horda Orc",
+      "Goblins",
+      "Saqueadores Homem-Fera"
+    ],
+    "qualidade": 5,
+    "stats": {
+      "move": 12,
+      "fight": "+0",
+      "shoot": "+2",
+      "armour": 9,
+      "Vontade": "+1",
+      "health": 12,
+      "strength": "+1",
+      "cost": "15 coroas",
+      "upkeep": "5 coroas",
+      "skills": ["Agilidade", "Atirador"],
+      "mercEquipment": ["Arco", "Adaga", "Elmo"]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Arco, Adaga, Elmo."
+      },
+      {
+        "name": "Cozinheiro",
+        "description": "Bandos com um Patrulheiro Nanico aumentam seu tamanho máximo em +1, já que guerreiros de toda parte são atraídos pelo cheiro de comida excelente. A figura extra não pode ser um Herói."
+      },
+      {
+        "name": "Diminuto",
+        "description": "Halflings são criaturas diminutas com pouca força física. Eles causam -1 de dano em ataques corpo a corpo."
+      }
+    ]
+  },
+  {
+    "id": "salteador",
+    "name": "Salteador",
+    "lore": "Vagando pelas florestas e caminhos isolados do Império, salteadores atacam as muitas caravanas e carroças tolas ou desesperadas o suficiente para viajar por lá. Eles são homens sombrios e perigosos, frequentemente empregados por seu conhecimento de rotas de carga e maestria em arapucas e emboscadas. Muitas vezes aparecem em público, desprovidos de suas roupas negras, afetados e charmosos, mas essa farsa é uma máscara, pois conhecem apenas a crueldade. Pistoleiros mortais e cavaleiros de primeira, são um trunfo para qualquer bando, mas não confie muito neles, pois são capazes de trair qualquer um na primeira oportunidade.",
+    "role": "Mercenário",
+    "availability": ["Todos"],
+    "exclusions": ["Irmãs de Sigmar", "Caçadores de Bruxas"],
+    "qualidade": 20,
+    "stats": {
+      "move": 20,
+      "fight": "+3",
+      "shoot": "+4",
+      "armour": 7,
+      "Vontade": "0",
+      "health": 12,
+      "cost": "35 coroas",
+      "upkeep": "20 coroas",
+      "skills": ["Combate", "Atirador", "Agilidade"],
+      "mercEquipment": ["Adaga", "Pistola", "Pistola", "Espada"]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Adaga, Pistola, Pistola, Espada."
+      },
+      {
+        "name": "Pistoleiro Especialista",
+        "description": "A habilidade do Salteador com um par de pistolas é incomparável e ele pode usar a ação preparar tiro com apenas uma ação ao invés de duas."
+      },
+      {
+        "name": "Cavaleiro",
+        "description": "O Salteador está montado em um cavalo de corrida. Ele não pode ser desmontado do seu cavalo, não pode escalar e gasta 3cm de movimento para 1cm de movimento ao atravessar terreno difícil. Ele não recebe penalidades por se mover antes de atirar"
+      },
+      {
+        "name": "Inimizade",
+        "description": "Um Salteador nunca se juntará a um bando que também contenha um Guarda de Estradas."
+      }
+    ]
+  },
+  {
+    "id": "assassino-imperial",
+    "name": "Assassino Imperial",
+    "lore": "A política é um jogo perigoso, e nem todos eles são encontrados no campo de batalha. O Assassino se especializa em remover 'obstáculos' com discrição. Ele será contratará pelo maior lance e a satisfação é garantida. Ele despacha suas tarefas desagradáveis com meticulosidade e fineza. Entre seus trabalhos, tal figura frequentemente se junta a um bando errante para aprimorar suas habilidades; assassinato não é uma profissão para os mal-treinados!",
+    "role": "Mercenário",
+    "availability": ["Todos"],
+    "qualidade": 22,
+    "stats": {
+      "move": 13,
+      "fight": "+3",
+      "shoot": "+2",
+      "armour": 10,
+      "Vontade": "+1",
+      "health": 12,
+      "cost": "40 coroas",
+      "upkeep": "20 coroas",
+      "skills": ["Combate", "Atirador", "Agilidade", "Assassino"],
+      "mercEquipment": ["Espada", "Adaga", "Facas de Arremesso", "Besta de Mão"]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Espada, Adaga, Facas de Arremesso, Besta de Mão."
+      },
+      {
+        "name": "Envenenador",
+        "description": "Assassinos se especializam no uso de venenos. O Assassino começa cada jogo com uma de suas armas envenenada com Lótus Negro ou Veneno Sombrio. O jogador controlador decide qual veneno o Assassino está armado antes do jogo começar, e este veneno não precisa ser comprado."
+      }
+    ]
+  },
+  {
+    "id": "atirador-de-elite-tileano",
+    "name": "Atirador de Elite Tileano",
+    "lore": "O Império não é o único lugar que produz mercenários. As constantes guerras entre as cidades-estado de Tilea proporcionam muitas oportunidades para um homem que sabe usar uma arma. Ainda assim, às vezes as guerras civis diminuem em Tilea e muitos desses mercenários são forçados a buscar emprego em outras terras. Muitos desses matadores profissionais temporariamente desempregados ouviram falar dos problemas que se avolumam em Mordheim e vieram procurar um novo patrocinador.",
+    "role": "Mercenário",
+    "availability": ["Todos", "Orcs", "Mortos-Vivos"],
+    "exclusions": ["Skaven"],
+    "qualidade": 16,
+    "stats": {
+      "move": 10,
+      "fight": "+1",
+      "shoot": "+2",
+      "armour": 11,
+      "Vontade": "0",
+      "health": 12,
+      "cost": "30 coroas",
+      "upkeep": "15 coroas",
+      "skills": ["Atirador"],
+      "mercEquipment": ["Armadura Leve", "Espada", "Adaga", "Besta"]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Armadura Leve, Espada, Adaga, Besta."
+      },
+      {
+        "name": "Mãos Firmes",
+        "description": "A mira do Atirador de Elite Tileano nunca vacila. Ele pode gastar uma ação para mirar nos pontos fracos (pode substituir sua ação de movimento), ganhando Penetração de Armadura(2) no seu próximo ataque a distância."
+      },
+      {
+        "name": "Tiro de Olho de Águia",
+        "description": "O Atirador tem olhos de águia e pode acertar o menor alvo. Ele sempre ignora o primeiro terreno interposto (mas não cobertura) entre ele e o alvo dos seus ataque a distância. Adicionalmente, ele trata figuras com a Característica Furtividade(X) como (X+10)"
+      }
+    ]
+  },
+  {
+    "id": "bruxo",
+    "name": "Bruxo",
+    "lore": "Magos, xamãs, místicos, todos estes e mais são associados com homens que podem empunhar o poder da magia. Toda magia é potencialmente perigosa e se origina do Caos, então aqueles abençoados (ou amaldiçoados) com o poder da feitiçaria são odiados e temidos. Ainda assim, não é difícil encontrar emprego se você é um mago, pois muitos estão dispostos a correr o risco da perseguição. Mas contratar um Bruxo não significa apenas que você perde seu ouro – se os ensinamentos do Culto de Sigmar são para ser acreditados, sua alma também está em risco...",
+    "role": "Mercenário",
+    "availability": ["Todos", "Irmãs de Sigmar"],
+    "exclusions": ["Caçadores de Bruxas"],
+    "qualidade": 16,
+    "stats": {
+      "move": 8,
+      "fight": "0",
+      "shoot": "0",
+      "armour": 10,
+      "Vontade": "+1",
+      "health": 12,
+      "cost": "30 coroas",
+      "upkeep": "15 coroas",
+      "skills": ["Acadêmico"],
+      "mercEquipment": ["Cajado"]
+    },
+    "spellAffinity": {
+      "aligned0": ["Magia Inferior"]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Cajado."
+      },
+      {
+        "name": "Magia",
+        "description": "Bruxos são conjuradores da Tradição Magia Inferior. Eles são contratados com 1 magia dessa Tradição, e podem abrir mão de aprender uma habilidade para aprender uma nova magia ou reduzir a classe de dificuldade de uma magia que sabe em 1 ponto."
+      }
+    ]
+  },
+  {
+    "id": "menestrel",
+    "name": "Menestrel",
+    "lore": "Nas ruas escuras e deprimentes de Mordheim, uma melodia empolgante que prenuncia a vitória do bando pode elevar até os espíritos mais deprimidos. Um Menestrel pode parecer fora de lugar na Cidade dos Condenados, mas há aqueles que estão dispostos a cantar seus hinos de batalha para qualquer um disposto a pagar. Estes homens são frequentemente treinados em combate também, pois apenas os cantores mais corajosos considerariam procurar uma audiência em Mordheim.",
+    "role": "Mercenário",
+    "availability": ["Mercenários", "Irmãs de Sigmar", "Caçadores de Bruxas"],
+    "qualidade": "O Bardo aumenta a qualidade do bando em 8 pontos, +1 para cada ponto de experiência que tem.",
+    "stats": {
+      "move": 8,
+      "fight": "+3",
+      "shoot": "+3",
+      "armour": 10,
+      "Vontade": "+3",
+      "health": 10,
+      "cost": "20 coroas",
+      "upkeep": "10 coroas",
+      "skills": ["Acadêmico", "Agilidade"]
+    },
+    "abilities": [
+      {
+        "name": "Cantor",
+        "description": "As canções de guerra empolgantes do Menestrel fortalecem os corações de todos ao seu redor. Qualquer figura dentro de 15cm do Menestrel tem +1 em Vontade."
+      },
+      {
+        "name": "Equipamento",
+        "description": "Espada, Adaga, Armadura Leve."
+      }
+    ]
+  },
+  {
+    "id": "orc-negro-capataz",
+    "name": "Orc Negro Capataz",
+    "lore": "Escolhidos à mão de um grupo de seus melhores guardas, estes Orcs de elite foram ordenados por ninguém menos que Grimgor Ironhide para se infiltrar em Mordheim e manter um olho no saque obtido na Cidade dos Condenados.",
+    "role": "Mercenário",
+    "availability": ["Hordas-Orc", "Goblins"],
+    "qualidade": "O Supervisor Orc Negro aumenta a qualidade do bando em 15 pontos, +1 para cada ponto de experiência que tem.",
+    "stats": {
+      "move": 9,
+      "fight": "+2",
+      "shoot": "+1",
+      "armour": 13,
+      "Vontade": "0",
+      "health": 12,
+      "strength": "+1",
+      "cost": "60 coroas",
+      "upkeep": "40 coroas",
+      "skills": ["Combate", "Força"]
+    },
+    "abilities": [
+      {
+        "name": "CALA BOCA, PORRA!",
+        "description": "Enquanto um Chefaum Orc ou um Chefim Goblin tem este guerreiro feroz no bando, os pele-verde relutam em causar problemas. Qualquer Orc ou Goblin dentro de 15cm do Orc Negro não sofre os efeitos da Animosidade. O resto do bando testa normalmente."
+      },
+      {
+        "name": "É NÓIS!",
+        "description": "Se qualquer líder Orc ou Goblin for reduzido a zero de vida durante a batalha, o Orc Negro assume o controle do bando. Pela duração da batalha ele ganha a habilidade 'Líder'. Se o líder Orc ou Goblin receber o resultado 'Morto' após a batalha, então o Orc Negro decide preencher a nova posição vaga permanentemente. O Orc Negro se torna o novo líder do bando, mas mantém seu custo de manutenção."
+      },
+      {
+        "name": "Equipamento",
+        "description": "O Supervisor Orc Negro usa Armadura Pesada e Elmo. Ele pode escolher entre um Machado e Adaga ou uma Arma de Duas Mãos."
+      }
+    ]
+  },
+  {
+    "id": "gecko-camaleao",
+    "name": "Gecko-Camaleão ",
+    "lore": "Geckos-Camaleão são uma raça incrivelmente rara de Skink que pode mudar a cor de sua pele à vontade para se misturar com seu ambiente. Desnecessário dizer que eles são muito furtivos e difíceis de detectar.",
+    "role": "Mercenário",
+    "availability": ["Reptilianos"],
+    "qualidade": "O Gecko-Camaleão aumenta a qualidade do bando em 16 pontos, +1 para cada ponto de experiência que tem.",
+    "stats": {
+      "move": 17,
+      "fight": "+2",
+      "shoot": "+2",
+      "armour": 9,
+      "Vontade": "+0",
+      "health": 12,
+      "strength": "+1",
+      "cost": "70 coroas",
+      "upkeep": "12 coroas",
+      "skills": ["Atirador", "Agilidade"]
+    },
+    "abilities": [
+      {
+        "name": "Ancestralidade Reptiliana",
+        "description": "O Gecko Crista-Alta tem a característica Anfíbio."
+      },
+      {
+        "name": "Pele de Camaleão",
+        "description": "Devido a sua camuflagem natural, o Gecko-Camaleão tem a característica Furtividade(25). Adicionalmente, ele ganha +2 nos seus testes de Ímpeto contra ataques a distância se estiver em cobertura."
+      },
+      {
+        "name": "Infiltrador",
+        "description": "O Camaleão Skink é um mestre do disfarce e posicionamento. Você pode posicioná-lo em qualquer lugar do tabuleiro fora da linha de visão e a pelo menos 30cm de qualquer modelo inimigo."
+      },
+      {
+        "name": "Equipamento",
+        "description": "O Camaleão Skink vem equipado com uma Adaga, Zarabatana e um Broquel."
+      }
+    ]
+  }
+]

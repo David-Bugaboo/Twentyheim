@@ -778,7 +778,7 @@ function ExplorationEventsPage() {
                   ou Corsários Druchii
                 </strong>{" "}
                 podem sacrificar as vítimas (sem dúvida terminando o trabalho
-                dos captores). Todos os Hérois do bando ganham +50 XP.
+                dos captores). Todos os Heróis do bando ganham +50 XP.
               </MobileText>
               <MobileText>
                 <strong>Bandos Mortos-Vivos</strong> podem matar cruelmente os

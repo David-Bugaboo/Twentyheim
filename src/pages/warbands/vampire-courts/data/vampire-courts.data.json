@@ -1,163 +1,278 @@
 [
   {
+    "id": "conde-vampiro",
     "name": "Conde Vampiro",
+    "lore": "Embora sejam apenas sombras pálidas comparados aos temidos Lordes Vampiros, os servos imortais da noite ainda são algumas das criaturas mais poderosas que lutam em Mordheim. A maioria deles serve o conde imortal de Sylvania, mas alguns encontraram a cidade do seu agrado e se tornaram independentes. Os Vampiros lideram os Mortos-Vivos em sua busca pelas pedras mágicas que darão poder ao seu mestre para conquistar o Império.",
     "role": "Líder",
+    "qualidade": 20,
     "stats": {
       "move": 17,
       "fight": "+3",
       "shoot": "+2",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+1",
-      "health": 26,
+      "health": 16,
+      "strength": "+1",
       "cost": "110 coroas",
-      "skills": ["Combate", "Acadêmica", "Força", "Velocidade"]
+      "skills": ["Combate", "Acadêmica", "Força", "Velocidade"],
+      "startingXp": 20,
+      "equipmentSlots": 5
     },
     "quantity": "1",
-
     "abilities": [
       {
         "name": "Líder",
-        "description": "O Conde Vampiro pode ativar até 3 figuras a 8cm de distância dele. Isso pode ser uma ativação em grupo."
-      },
-      {
-        "name": "Habilidades",
-        "description": "Vampiros começam com 5 habilidades dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem."
       },
       {
         "name": "Morto-Vivo Superior",
-        "description": "Condes Vampiros têm as seguintes características: Morto-Vivo, Forte, Imune a Édito de Nagash, e Aterrorizante. Apesar de serem mortos-vivos têm 5 espaços para equipamento como normal."
+        "description": "Condes Vampiros têm as seguintes características: Morto-Vivo, Forte e Aterrorizante. Apesar de serem mortos-vivos têm 5 espaços para equipamento como normal."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "1ª grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco", "cost": "10 coroas" },
-        { "name": "Arco Curto", "cost": "5 coroas" }
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arco Curto",
+          "cost": "5 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
     }
   },
   {
+    "id": "necromante",
     "name": "Necromante",
+    "lore": "Necromantes são magos malignos, estudando a arte corrupta da Necromancia. Muitos deles são acólitos e servos de Vlad von Carstein, e seguem os agentes de seu mestre para a cidade dos Condenados. Outros são recrutados entre magos e bruxos que caíram sob suspeita dos vários agentes de Sigmar e fugiram para Mordheim para evitar perseguição.",
     "role": "Herói",
     "stats": {
       "move": 10,
       "fight": "+1",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "0",
       "health": 12,
-      "cost": "35 coroas"
+      "cost": "35 coroas",
+      "skills": ["Acadêmica", "Agilidade"],
+      "startingXp": 8,
+      "equipmentSlots": 5
     },
     "quantity": "0-1",
     "spellAffinity": {
-      "aligned0": ["Tradição da Necromancia"],
-      "aligned2": [
-        "Tradição da Morte",
-        "Tradição das Sombras",
-        "Tradição do Metal",
-        "Tradição dos Céus"
-      ]
+      "aligned0": ["Tradição da Necromancia"]
     },
     "abilities": [
       {
         "name": "Conjurador",
-        "description": "Necromantes são conjuradores da Tradição da Necromancia. Eles começam com 2 magias dentre suas tradições disponíveis."
+        "description": "Necromantes são conjuradores da Tradição da Necromancia. Eles são contratados com 1 magia dessa Tradição, e pode abrir mão de aprender uma habilidade para aprender uma nova magia ou reduzir a classe de dificuldade de uma magia que sabe em 1 ponto."
       }
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "1ª grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco", "cost": "10 coroas" },
-        { "name": "Arco Curto", "cost": "5 coroas" }
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arco Curto",
+          "cost": "5 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
     }
   },
   {
+    "id": "escoria",
     "name": "Escória",
+    "lore": "A Escória são os sobreviventes humanos mais miseráveis da destruição de Mordheim. Eles são indivíduos deformados e rejeitados, evitados até mesmo pelos outros homens e mulheres que ainda vivem nas ruínas e catacumbas da cidade. Os Vampiros frequentemente recrutam a Escória como seus servos e os tratam com surpreendente bondade. Como resultado, a Escória é frequentemente fanaticamente leal aos seus senhores Mortos-Vivos e fará qualquer coisa para protegê-los e servi-los. A Escória é muito útil para seus mestres, pois pode ser enviada para comprar equipamentos, armas e suprimentos dos assentamentos ao redor de Mordheim, que muitas vezes não receberiam Necromantes ou onde Vampiros seriam suspeitos dos Caçadores de Bruxas. Eles também podem fazer as vontades de seu mestre vampírico durante o dia, quando os Vampiros devem descansar em seus caixões.",
     "role": "Herói",
     "stats": {
       "move": 10,
       "fight": "0",
       "shoot": "0",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "0",
       "health": 12,
       "cost": "20 coroas",
-      "skills": ["Combate", "Força"]
+      "skills": ["Combate", "Força"],
+      "equipmentSlots": 5
     },
     "quantity": "0-3",
-
-    "abilities": [
-      {
-        "name": "Habilidades",
-        "description": "Escórias começam com 1 habilidade dentre as listas marcadas acima na sua ficha. A classe de dificuldade dessas habilidades é 5."
-      }
-    ],
+    "abilities": [],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "1ª grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "1ª grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Arco", "cost": "10 coroas" },
-        { "name": "Arco Curto", "cost": "5 coroas" }
+        {
+          "name": "Arco",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arco Curto",
+          "cost": "5 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
       "modifiers": []
     }
   },
   {
+    "id": "zumbi",
     "name": "Zumbi",
+    "lore": "Zumbis são os mais comuns dos Mortos-Vivos: criaturas animadas pela vontade de seus mestres Necromânticos.",
     "stats": {
       "move": 8,
       "fight": "0",
       "shoot": "-",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "-2",
       "health": 12,
-      "cost": "15 coroas"
+      "cost": "15 coroas",
+      "equipmentSlots": 0
     },
     "quantity": "ilimitado",
+    "noXP": true,
     "abilities": [
       {
         "name": "Morto-Vivo",
@@ -166,7 +281,7 @@
       {
         "name": "Arrastar-se",
         "description": "Zumbis nunca podem tomar ações de disparada ou escape, mas podem executar cargas mormalmente."
-      }, 
+      },
       {
         "name": "Acéfalo",
         "description": "Zumbis não podem ganhar experiência. Eles não aprendem com seus erros. O que você esperava?"
@@ -174,15 +289,19 @@
     ]
   },
   {
+    "id": "carnical",
     "name": "Carniçal",
+    "lore": "Carniçais são os descendentes de homens malignos e insanos que comeram a carne dos mortos. Quando os tempos famintos da fome chegam ao Velho Mundo, os mais depravados e destituídos passaram a se banquetear com cadáveres para sobreviver. Impulsionados por seu desejo indizível pela carne de seus companheiros, essas criaturas desistiram de sua vida humana e habitam perto de cemitérios, criptas e túmulos, desenterrando os cadáveres podres dos recentemente enterrados e consumindo a carne fria com dentes e garras nus. A destruição de Mordheim atraiu muitos clãs carniceiros do norte, e agora eles se estabeleceram permanentemente nas criptas e cemitérios da cidade arruinada.",
     "stats": {
       "move": 10,
       "fight": "0",
       "shoot": "0",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "-2",
       "health": 12,
-      "cost": "40 coroas"
+      "strength": "+1",
+      "cost": "40 coroas",
+      "equipmentSlots": 0
     },
     "quantity": "ilimitado",
     "abilities": [
@@ -193,17 +312,22 @@
     ]
   },
   {
+    "id": "lobo-atroz",
     "name": "Lobo Atroz",
+    "lore": "Lobos Atrozes são cães Mortos-Vivos raivosos, os restos animados dos lobos gigantes das Montanhas da Borda do Mundo. Seus uivos arrepiantes podem causar medo nos corações dos guerreiros mais corajosos ou dos mercenários Anões mais implacáveis. Eles vagam pelas ruas de Mordheim como sombras, e muitos homens morreram com as mandíbulas gélidas de um Lobo Atroz ao redor do pescoço.",
     "stats": {
       "move": 22,
       "fight": "+1",
       "shoot": "+0",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "-3",
       "health": 8,
-      "cost": "50 coroas"
+      "strength": "+1",
+      "cost": "50 coroas",
+      "equipmentSlots": 0
     },
     "quantity": "0-5",
+    "noXP": true,
     "abilities": [
       {
         "name": "Besta Reanimada",
@@ -211,7 +335,7 @@
       },
       {
         "name": "Mandíbulas do Túmulo",
-        "description": "Lobos Atrozes têm a característica Agarrar e Forte."
+        "description": "Lobos Atrozes têm a característica Agarrar e Voraz."
       }
     ]
   }

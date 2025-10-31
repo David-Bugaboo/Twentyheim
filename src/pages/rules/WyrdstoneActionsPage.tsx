@@ -1,21 +1,25 @@
 import PageTitle from "../../components/PageTitle";
 import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
+import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
-import WarningBox from "../../components/WarningBox";
 import QuickNavigation from "../../components/QuickNavigation";
+import WarningBox from "../../components/WarningBox";
 
 function WyrdstoneActionsPage() {
   const navigationSections = [
+    { id: "intro", title: "Carregar Itens", level: 0 },
+    { id: "ato-carregar", title: "O Ato de Carregar", level: 0 },
     {
-      id: "intro",
-      title: "Ação de Pegar — Fragmentos de Pedra-bruxa",
-      level: 0,
+      id: "restricoes-proximidade",
+      title: "Restrições de Proximidade",
+      level: 1,
     },
-    { id: "ato-pegar", title: "O Ato de Pegar", level: 0 },
-    { id: "peso-ganancia", title: "O Peso da Ganância", level: 0 },
-    { id: "grande-fuga", title: "A Grande Fuga", level: 0 },
-    { id: "resumo", title: "Resumo da Ação de Pegar Pedra-bruxa", level: 1 },
+    { id: "containers", title: "Containers e Baús", level: 1 },
+    { id: "penalidades", title: "Penalidades por Carregar", level: 0 },
+    { id: "sobrecarga", title: "Sobrecarga", level: 1 },
+    { id: "movimento", title: "Movimento Reduzido", level: 1 },
+    { id: "fugir", title: "Fugir com o Item", level: 0 },
   ];
 
   return (
@@ -25,127 +29,157 @@ function WyrdstoneActionsPage() {
           <QuickNavigation sections={navigationSections} />
           <MobileSection>
             <div id="intro">
-              <PageTitle>Ação de Pegar — Fragmentos de Pedra-Bruxa</PageTitle>
-            </div>
-
-            <MobileText>
-              A razão pela qual todos estão aqui. A maldição verde que atrai
-              tolos, desesperados e gananciosos para as ruínas. Os fragmentos de
-              Pedra-Bruxa — pedaços do próprio cometa que aniquilou esta cidade
-              condenada. Não são pequenas lascas, apesar do nome "fragmentos" —
-              são <strong>grandes pedaços</strong> do cometa, pesados, pulsantes
-              de energia corrupta, e terrivelmente valiosos.
-            </MobileText>
-
-            <div id="ato-pegar">
-              <HeaderH2>O Ato de Pegar</HeaderH2>
-            </div>
-            <MobileText>
-              Uma figura pode gastar uma ação para pegar um fragmento de
-              Pedra-Bruxa do chão. O momento em que a ganância supera o bom
-              senso. Porém, há restrições — afinal, pegar tesouros amaldiçoados
-              enquanto inimigos observam raramente termina bem.
-            </MobileText>
-
-            <MobileText>
-              <strong>Fragmentos em Baús e Containers:</strong> Alguns
-              fragmentos de Pedra-Bruxa estarão em baús e containers fechados.
-              Para poder pegar o fragmento, a figura deve primeiro gastar uma
-              ação para destravar o container, fazendo um teste de{" "}
-              <strong>Liderança (Ld)</strong> contra <strong>CD 14</strong>. Só
-              após o sucesso neste teste é que uma ação pode ser gasta para
-              pegar o fragmento.
-            </MobileText>
-
-            <MobileText>
-              <strong>Restrição de Proximidade:</strong> Uma figura{" "}
-              <strong>não pode usar essa ação</strong> se um inimigo está a
-              menos de <strong>3 cm do fragmento</strong>. Tente pegar pedras
-              brilhantes enquanto alguém está querendo te matar e veja como
-              termina.
-            </MobileText>
-
-            <div id="peso-ganancia">
-              <HeaderH2>O Peso da Ganância</HeaderH2>
-            </div>
-            <MobileText>
-              Enquanto estiver carregando o fragmento, a figura tem apenas{" "}
-              <strong>metade do seu movimento normal</strong> (arredonde para
-              baixo). O cometa é pesado. A ganância, mais pesada ainda.
-            </MobileText>
-
-            <MobileText>
-              <strong>Sobrecarga:</strong> Uma figura que esteja usando qualquer
-              coisa que não seja uma arma sem as características{" "}
-              <strong>Duas Mãos ou Desbalanceada</strong> ou{" "}
-              <strong>adaga</strong> fica sobrecarregada, sofrendo{" "}
-              <strong>-2</strong> em Ímpeto, Precisão, rolagens de conjuração e
-              Ld. Carregar uma espada de duas mãos e um pedaço de cometa?
-              Possível. Sábio? Discutível.
-            </MobileText>
-
-            <MobileText>
-              <strong>Exceções e Restrições:</strong> Figuras com uma{" "}
-              <strong>arma leve na mão secundária não podem pegar</strong>{" "}
-              fragmentos de Pedra-Bruxa. Contudo, figuras com uma{" "}
-              <strong>funda ou escudo</strong> podem (seguindo regras normais de
-              sobrecarga se aplicável).
-            </MobileText>
-
-            <div id="grande-fuga">
-              <HeaderH2>A Grande Fuga</HeaderH2>
-            </div>
-            <MobileText>
-              Uma figura carregando um fragmento de Pedra-bruxa pode{" "}
-              <strong>sair do mapa</strong>, capturando-a para seu bando. A
-              figura e o fragmento não voltam para o jogo — ela fugiu com o
-              tesouro, levando sua ganância (e o cometa amaldiçoado) para longe
-              das ruínas. Missão cumprida. Sobrevivência garantida. Corrupção...
-              bem, isso é problema para amanhã.
-            </MobileText>
-
-            <div id="resumo">
-              <WarningBox
-                title="Resumo da Ação de Pegar Pedra-bruxa"
-                type="info"
-              >
-                <MobileText>
-                  • <strong>Ação:</strong> Gasta uma ação para pegar um
-                  fragmento
-                </MobileText>
-                <MobileText>
-                  • <strong>Baús/Containers:</strong> Primeiro destravar (Ld CD
-                  14), depois pegar
-                </MobileText>
-                <MobileText>
-                  • <strong>Restrição:</strong> Inimigo não pode estar a menos
-                  de 3 cm
-                </MobileText>
-                <MobileText>
-                  • <strong>Movimento:</strong> Reduzido para metade
-                  (arredondado para baixo)
-                </MobileText>
-                <MobileText>
-                  • <strong>Sobrecarga:</strong> -2 em Ímpeto, Precisão,
-                  Conjuração e Vontade (exceto adaga/arma de mão)
-                </MobileText>
-                <MobileText>
-                  • <strong>Exceção:</strong> Adaga na mão secundária impede
-                  pegar fragmentos
-                </MobileText>
-                <MobileText>
-                  • <strong>Fuga:</strong> Pode sair do mapa com o fragmento
-                </MobileText>
-              </WarningBox>
+              <PageTitle>Carregar Itens</PageTitle>
             </div>
 
             <MobileText
               variant="quote"
-              className="text-center italic text-lg leading-relaxed mt-8"
+              className="text-center italic text-lg leading-relaxed mb-6 p-4 bg-green-900/20 border border-green-500/40 rounded-lg text-white"
             >
-              "A Pedra-Bruxa promete riqueza além dos sonhos. Mas em Mordheim,
-              cada promessa tem seu preço. E o preço da ganância é pago em
-              sangue."
+              "A Pedra-Bruxa pulsava em suas mãos, pesada demais para ser um
+              simples tesouro. Cada passo era um suplício. Mas o ouro que ela
+              valeria nas sombras de Mordheim... isso valeria qualquer
+              sacrifício."
+              <br />
+              <span className="text-sm text-white mt-2 block">
+                — Memórias de um Buscador de Tesouros
+              </span>
+            </MobileText>
+
+            <MobileText>
+              Em Mordheim, nem todo tesouro é leve. Alguns itens valiosos — como
+              fragmentos de Pedra-Bruxa, baús de moedas, artefatos mágicos, ou
+              equipamentos pesados — são objetos grandes e pesados que exigem
+              esforço significativo para serem carregados.
+            </MobileText>
+
+            <MobileText>
+              As regras de carregar itens se aplicam a qualquer objeto pesado ou
+              valioso que uma figura queira transportar durante uma batalha.
+              Essas regras refletem o peso físico do item, bem como a
+              dificuldade de manobrar enquanto segura algo tão valioso.
+            </MobileText>
+
+            <div id="ato-carregar">
+              <HeaderH1>O Ato de Carregar</HeaderH1>
+            </div>
+
+            <MobileText>
+              Uma figura pode gastar <strong>uma ação</strong> para pegar e
+              começar a carregar um item pesado do chão. Esta ação representa o
+              esforço de levantar o objeto e posicioná-lo de forma que possa ser
+              transportado.
+            </MobileText>
+
+            <div id="restricoes-proximidade">
+              <HeaderH2>Restrições de Proximidade</HeaderH2>
+            </div>
+
+            <MobileText>
+              Uma figura <strong>não pode usar essa ação</strong> se um inimigo
+              está a menos de <strong>3 cm do item</strong>. Tentar pegar um
+              tesouro pesado enquanto inimigos estão por perto é uma receita
+              para o desastre — a figura estará vulnerável e desbalanceada
+              durante o processo.
+            </MobileText>
+
+            <div id="containers">
+              <HeaderH2>Items trancados</HeaderH2>
+            </div>
+            <MobileText>
+              Se o item está dentro de um baú, container ou estrutura fechada, a
+              figura deve primeiro gastar uma ação para{" "}
+              <strong>destravar o container</strong>, fazendo um teste de{" "}
+              <strong>Vontade</strong> contra <strong>CD 14</strong>.
+            </MobileText>
+
+            <MobileText>
+              Somente após o sucesso neste teste é que uma ação pode ser gasta
+              para pegar o item. Destravar requer foco e habilidade — nem todos
+              os fechos podem ser abertos sob pressão.
+            </MobileText>
+
+            <div id="penalidades">
+              <HeaderH1>Penalidades por Carregar</HeaderH1>
+            </div>
+            <MobileText>
+              Carregar itens pesados impõe penalidades significativas à figura.
+              O peso físico do objeto, combinado com a necessidade de protegê-lo
+              durante a batalha, torna a figura mais lenta e menos eficaz em
+              combate.
+            </MobileText>
+
+            <div id="movimento">
+              <HeaderH2>Movimento Reduzido</HeaderH2>
+            </div>
+            <MobileText>
+              Enquanto estiver carregando um item pesado, a figura tem apenas{" "}
+              <strong>metade do seu movimento normal</strong> (arredonde para
+              baixo). Um soldado que normalmente se move 16 cm agora se move
+              apenas 8 cm.
+            </MobileText>
+
+            <MobileText>
+              Este movimento reduzido afeta todas as formas de movimento,
+              incluindo cargas, escaladas e outros movimentos especiais.
+            </MobileText>
+
+            <div id="sobrecarga">
+              <HeaderH2>Sobrecarga</HeaderH2>
+            </div>
+            <MobileText>
+              Carregar um item pesado exige manter equilíbrio enquanto se tenta
+              lutar. Uma figura carregando um item pesado fica{" "}
+              <strong>sobrecarregada</strong> se estiver usando qualquer arma
+              que não seja uma <strong>adaga</strong> ou arma de mão sem as
+              características <strong>Duas Mãos</strong> ou{" "}
+              <strong>Desbalanceada</strong>.
+            </MobileText>
+
+            <MobileText>
+              Uma figura sobrecarregada sofre <strong>-2</strong> em{" "}
+              <strong>Ímpeto</strong>, <strong>Precisão</strong>, rolagens de{" "}
+              <strong>conjuração</strong> e <strong>Liderança</strong>.
+            </MobileText>
+
+            <WarningBox title="Exceções" type="info">
+              <MobileText>
+                <strong>Figuras com armas leves na mão secundária</strong> devem
+                abrir mão do bônus de lutar com duas armas para conseguir
+                carregar itens pesados.
+              </MobileText>
+            </WarningBox>
+
+            
+
+            <WarningBox title="Resumo das Regras de Carregar Itens" type="info">
+              <MobileText>
+                • <strong>Ação:</strong> Uma ação para pegar item pesado
+              </MobileText>
+              <MobileText>
+                • <strong>Proximidade:</strong> Inimigos a menos de 3 cm impedem
+                a ação
+              </MobileText>
+              <MobileText>
+                • <strong>Containers:</strong> Destravar primeiro (Ld CD 14)
+              </MobileText>
+              <MobileText>
+                • <strong>Movimento:</strong> Reduzido para metade (arredondado
+                para baixo)
+              </MobileText>
+              <MobileText>
+                • <strong>Sobrecarga:</strong> -2 em Ímpeto, Precisão,
+                Conjuração e Vontade
+              </MobileText>
+            </WarningBox>
+
+            <MobileText
+              variant="quote"
+              className="text-center italic text-lg leading-relaxed mt-8 p-4 bg-green-900/20 border border-green-500/40 rounded-lg text-white"
+            >
+              "A ganância tem peso. Em Mordheim, esse peso é medido em
+              centímetros perdidos, golpes falhados e inimigos alcançando suas
+              costas enquanto você tropeça com suas riquezas malditas."
             </MobileText>
           </MobileSection>
         </div>

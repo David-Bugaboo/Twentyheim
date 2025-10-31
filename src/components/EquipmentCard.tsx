@@ -43,6 +43,11 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
   effect,
   specialRules = [],
 }) => {
+  const parseNumeric = (v: string | null | undefined): number => {
+    const s = v == null ? "" : String(v);
+    const m = s.match(/-?\d+/);
+    return m ? parseInt(m[0], 10) : 0;
+  };
   return (
     <div className="bg-[#1a1a1a] text-white mb-4 border border-gray-700 rounded-lg overflow-hidden">
       {/* Header */}
@@ -60,7 +65,7 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
 
       {/* Content */}
       <div className="px-6 pt-6 pb-6 border-t border-gray-600">
-        {description && description.length > 0 && (
+        {Array.isArray(description) && description.length > 0 && (
           <div className="mb-4">
             {description?.map((paragraph, index) => (
               <MobileText
@@ -75,11 +80,13 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
 
         {/* General Information */}
         <div className="mb-4">
-          <div className="mb-2">
-            <span className="font-bold">Custo: </span>
-            <span style={{ color: "#8fbc8f" }}>{cost}</span>
-          </div>
-          {rarity && (
+          {cost != null && (
+            <div className="mb-2">
+              <span className="font-bold">Custo: </span>
+              <span style={{ color: "#8fbc8f" }}>{cost}</span>
+            </div>
+          )}
+          {rarity != null && (
             <div className="mb-2">
               <span className="font-bold">Raridade: </span>
               <span style={{ color: "#ffa500" }}>
@@ -87,65 +94,69 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
               </span>
             </div>
           )}
-          <div className="mb-2">
-            <span className="font-bold">Disponibilidade: </span>
-            <span>
-              {availability ? availability.join(", ") : exclusive || "Comum"}
-            </span>
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Espaços de Equipamento: </span>
-            <span>{spaces}</span>
-          </div>
+          {(availability || exclusive) && (
+            <div className="mb-2">
+              <span className="font-bold">Disponibilidade: </span>
+              <span>
+                {availability ? availability.join(", ") : exclusive || "Comum"}
+              </span>
+            </div>
+          )}
+          {spaces != null && (
+            <div className="mb-2">
+              <span className="font-bold">Espaços de Equipamento: </span>
+              <span>{spaces}</span>
+            </div>
+          )}
         </div>
 
         {/* Description */}
 
         {/* Statistics */}
         <div className="mb-4">
-          {maxRange && (
+          {maxRange != null && (
             <div className="mb-2">
               <span className="font-bold">Alcance: </span>
               <span>{maxRange || "Corpo a Corpo"}</span>
             </div>
           )}
-          {damageModifier && (
+          {damageModifier != null && (
             <div className="mb-2">
               <span className="font-bold">Modificador de Dano: </span>
               <span>{damageModifier}</span>
             </div>
           )}
-          {armorBonus && (
+          {parseNumeric(armorBonus) > 0 && (
             <div className="mb-2">
               <span className="font-bold">Bônus de Armadura: </span>
               <span style={{ color: "#8fbc8f" }}>{armorBonus}</span>
             </div>
           )}
-          {movePenalty && (
+          {movePenalty != null && (
             <div className="mb-2">
               <span className="font-bold">Penalidade de Movimento: </span>
               <span style={{ color: "#ff6b6b" }}>{movePenalty}</span>
             </div>
           )}
-          {strength && (
+          {strength != null && (
             <div className="mb-2">
               <span className="font-bold">Requisito de Força: </span>
               <span>{strength}</span>
             </div>
           )}
-          {requirements && (
+          {requirements != null && (
             <div className="mb-2">
               <span className="font-bold">Requisitos: </span>
               <span style={{ color: "#ffa500" }}>{requirements}</span>
             </div>
           )}
-          {effect && (
+          {effect != null && (
             <div className="mb-2">
               <span className="font-bold">Efeito: </span>
               <span style={{ color: "#ffa500" }}>{effect}</span>
             </div>
           )}
-          {type && (
+          {type != null && (
             <div className="mb-2">
               <span className="font-bold">Tipo: </span>
               <span style={{ color: "#8fbc8f" }}>{type}</span>
@@ -154,17 +165,21 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
         </div>
 
         {/* Special Rules */}
-        {specialRules && specialRules.length > 0 && (
+        {Array.isArray(specialRules) && specialRules.length > 0 && (
           <div>
             <h4 className="font-bold text-lg mb-1">REGRAS ESPECIAIS</h4>
-            {specialRules?.map((rule, index) => (
-              <div key={index} className="mb-2">
-                <span className="font-bold">{rule.label}: </span>
-                <GameText component="span" className="text-gray-300">
-                  {rule.value}
-                </GameText>
-              </div>
-            ))}
+            {specialRules
+              ?.filter(
+                (r) => r && typeof r.value === "string" && r.value.length > 0
+              )
+              .map((rule, index) => (
+                <div key={index} className="mb-2">
+                  <span className="font-bold">{rule.label}: </span>
+                  <GameText component="span" className="text-gray-300">
+                    {rule.value}
+                  </GameText>
+                </div>
+              ))}
           </div>
         )}
       </div>

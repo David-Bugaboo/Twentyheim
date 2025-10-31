@@ -73,16 +73,19 @@ function RangedActionsPage() {
             <MobileText>
               A figura que quer usar uma ação de ataque a distância deve
               escolher uma figura que consiga traçar linha de visão e que esteja
-              dentro do alcance da sua arma ou habilidade. O atirador deve sempre escolher a figura mais próxima e com menos cobertura ou terrenos interpostos, exceto se estiver em uma posição elevada, onde poderá escolher quaisquer figuras no alcance que estejam em uma posição mais baixa. Se a figura estiver
-              em combate, ou não existir uma figura que ela enxerga e esteja
-              dentro do alcance, a ação de ataque a distância não pode ser
-              declarada.
+              dentro do alcance da sua arma ou habilidade. O atirador deve
+              sempre escolher a figura mais próxima e com menos cobertura ou
+              terrenos interpostos, exceto se estiver em uma posição elevada,
+              onde poderá escolher quaisquer figuras no alcance que estejam em
+              uma posição mais baixa. Se a figura estiver em combate, ou não
+              existir uma figura que ela enxerga e esteja dentro do alcance, a
+              ação de ataque a distância não pode ser declarada.
             </MobileText>
             <MobileText>
-              A figura atiradora rola <strong>Precisão (d20)</strong>,
-              adicionando quaisquer modificadores advindos de feitiços, poderes,
-              itens ou traits. A figura alvo então rola{" "}
-              <strong>Ímpeto (d20)</strong>, adicionando quaisquer modificadores
+              A figura atiradora rola <strong>D20 +Precisão</strong>, o teste de
+              ataque a distância, adicionando quaisquer modificadores advindos
+              de feitiços, poderes, itens ou traits. A figura alvo então rola{" "}
+              <strong>D20 + Ímpeto</strong>, adicionando quaisquer modificadores
               relevantes — incluindo os da tabela de defesa contra tiro abaixo.
             </MobileText>
 
@@ -106,8 +109,8 @@ function RangedActionsPage() {
             <MobileText>
               Se a rolagem de Precisão for <strong>maior</strong> que a de
               Ímpeto do alvo, o atacante causa dano seguindo as mesmas regras do
-              combate corpo a corpo. Em caso de <strong>empate</strong> ou caso
-              a rolagem de Ímpeto seja maior,{" "}
+              combate corpo a corpo, mas sem adicionar o atributo Força. Em caso
+              de <strong>empate</strong> ou caso a rolagem de Ímpeto seja maior,{" "}
               <strong>nenhum dano é causado</strong> — a flecha erra, o virote
               desvia, a bala se perde nas sombras.
             </MobileText>

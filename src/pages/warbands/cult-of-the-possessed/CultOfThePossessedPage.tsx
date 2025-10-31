@@ -13,6 +13,7 @@ interface Unit {
   name: string;
   role?: string;
   quantity?: string;
+  lore?: string;
   stats: {
     move: number;
     fight: string;
@@ -50,7 +51,7 @@ export default function CultOfThePossessedPage() {
 
   // Separate units by role
   const leader = units.find((unit) => unit.role === "Líder");
-  const heroes = units.filter((unit) => unit.role === "Héroi");
+  const heroes = units.filter((unit) => unit.role === "Herói");
   const soldiers = units.filter(
     (unit) => !unit.role || unit.role === "Soldado"
   );
@@ -112,7 +113,7 @@ export default function CultOfThePossessedPage() {
           <PageTitle>Culto dos Possuídos</PageTitle>
 
           <MobileSection id="introducao">
-               <MobileText>
+            <MobileText>
               No rescaldo da destruição de Mordheim, todo tipo de mutante
               surgiu. Enquanto muitos que até então eram imaculados sentem o
               despertar de poderes estranhos, os primeiros sinais de dons
@@ -164,8 +165,8 @@ export default function CultOfThePossessedPage() {
               Possuídos (0-2).
               <br />• <strong>Mutante:</strong> Seu bando pode incluir até dois
               Mutantes (0-2).
-              <br />• <strong>Insanos:</strong> Seu bando pode incluir qualquer
-              número de Insanos (ilimitado).
+              <br />• <strong>Cultistas:</strong> Seu bando pode incluir
+              qualquer número de Cultistas (ilimitado).
               <br />• <strong>Alma Sombria:</strong> Seu bando pode incluir até
               cinco Almas Sombrias (0-5).
               <br />• <strong>Homem-Fera:</strong> Seu bando pode incluir até
@@ -229,6 +230,8 @@ export default function CultOfThePossessedPage() {
                 name={leader.name}
                 role={leader.role}
                 quantity={leader.quantity}
+                lore={leader.lore}
+                qualidade={(leader as any).qualidade || 0}
                 stats={leader.stats}
                 spellAffinity={leader.spellAffinity}
                 abilities={leader.abilities}
@@ -246,6 +249,8 @@ export default function CultOfThePossessedPage() {
                   name={hero.name}
                   role={hero.role}
                   quantity={hero.quantity}
+                  lore={hero.lore}
+                  qualidade={(hero as any).qualidade || 0}
                   stats={hero.stats}
                   abilities={hero.abilities}
                   equipment={hero.equipment}
@@ -262,6 +267,8 @@ export default function CultOfThePossessedPage() {
                   id={soldier.id}
                   name={soldier.name}
                   quantity={soldier.quantity}
+                  lore={soldier.lore}
+                  qualidade={(soldier as any).qualidade || 0}
                   stats={soldier.stats}
                   abilities={soldier.abilities}
                   equipment={soldier.equipment}

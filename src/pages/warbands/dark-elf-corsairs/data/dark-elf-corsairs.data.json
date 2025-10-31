@@ -2,13 +2,14 @@
   {
     "id": "nobre-druchii",
     "name": "Nobre Druchii",
+    "lore": "Os Líderes dos Elfos Sombrios são tipicamente recrutados da nobreza e lideram o bando em busca de ouro, escravos e artefatos arcanos para trazer de volta a Naggaroth. São assassinos frios e implacáveis e comandam o respeito de suas tropas através de assassinatos e terror. Alcançaram sua posição de liderança eliminando nobres rivais que estavam em seu caminho e através de sua astúcia notável. Eles são inimigos perigosos que incorporam os traços impiedosos da raça Druchii.",
     "role": "Líder",
     "quantity": "1",
     "stats": {
       "move": 16,
       "fight": "+3",
       "shoot": "+2",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "+2",
       "health": 12,
       "cost": "70 coroas",
@@ -18,12 +19,14 @@
         "Acadêmica",
         "Agilidade",
         "Corsários Druchii"
-      ]
+      ],
+      "startingXp": 20,
+      "equipmentSlots": 5
     },
     "abilities": [
       {
         "name": "Líder",
-        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância junto a si."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem."
       },
       {
         "name": "Visão Excelente",
@@ -36,44 +39,82 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Besta de Repetição", "cost": "35 coroas" },
-        { "name": "Besta de Mão", "cost": "35 coroas" }
+        {
+          "name": "Besta de Repetição",
+          "cost": "35 coroas"
+        },
+        {
+          "name": "Besta de Mão",
+          "cost": "35 coroas"
+        }
       ],
       "armor": [
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" },
-        { "name": "Armadura Leve", "cost": "20 coroas" }
-      ],
-      "miscellaneous": [
-        { "name": "Veneno Sombrio", "cost": "15 coroas" },
-        { "name": "Manto de Dragão Marinho", "cost": "50 coroas" }
-      ],
-      "modifiers": [{ "name": "De Aço Negro", "cost": "+20 coroas" }]
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Bróquel",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        }
+      ]
     }
   },
-
   {
     "id": "domador-de-feras",
     "name": "Domador de Feras",
+    "lore": "Enquanto os Altos Elfos têm grande afinidade com Dragões, Grifos e outras criaturas nobres, seus parentes malignos têm Domadores de Feras, Elfos Sombrios de particular crueldade que criam muitas bestas cruéis e as lideram em combate. Diferente dos Altos Elfos que tratam suas bestas como companheiras, os Domadores de Feras dos Elfos Negros são mestres rancorosos, prontos para punir seus domados com chicotadas dolorosas.",
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
       "move": 16,
       "fight": "+2",
       "shoot": "+2",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "+1",
       "health": 12,
       "cost": "45 coroas",
-      "skills": ["Combate", "Agilidade", "Corsários Druchii"]
+      "skills": [
+        "Combate",
+        "Agilidade",
+        "Corsários Druchii"
+      ],
+      "startingXp": 8,
+      "equipmentSlots": 5
     },
     "abilities": [
       {
@@ -91,57 +132,106 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Chicote de Domador", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Chicote de Domador",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Besta de Repetição", "cost": "35 coroas" },
-        { "name": "Besta de Mão", "cost": "35 coroas" }
+        {
+          "name": "Besta de Repetição",
+          "cost": "35 coroas"
+        },
+        {
+          "name": "Besta de Mão",
+          "cost": "35 coroas"
+        }
       ],
       "armor": [
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" },
-        { "name": "Armadura Leve", "cost": "20 coroas" }
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Bróquel",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        }
       ],
       "miscellaneous": [
-        { "name": "Veneno Sombrio", "cost": "15 coroas" },
-        { "name": "Manto de Dragão Marinho", "cost": "50 coroas" }
-      ],
-      "modifiers": [{ "name": "De Aço Negro", "cost": "+20 coroas" }]
+        {
+          "name": "Veneno Sombrio",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Manto de Dragão Marinho",
+          "cost": "50 coroas"
+        }
+      ]
     }
   },
   {
     "id": "bruxa-druchii",
     "name": "Bruxa Druchii",
+    "lore": "Os Elfos Sombrios são estranhos no fato de que, além do terrível Rei Bruxo, não há outros feiticeiros do sexo masculino. Todos os outros praticantes de magia na raça dos Elfos Negros são do sexo feminino, pertencentes a famosa ordem das Noivas de Khaine. Existem rumores de que qualquer homem que desenvolva afinidade pela magia entre os Elfos Sombrios é imediatamente condenado a morte para cumprir alguma profecia sombria. As Bruxas dos Elfos Sombrios são mulheres lindas e misteriosas de cabelos negros, respeitadas e demandadas a contragosto até mesmo pelos poderosos Nobres da sua raça.",
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
       "move": 16,
       "fight": "+2",
       "shoot": "+2",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "+1",
       "health": 12,
-      "cost": "55 coroas"
+      "cost": "55 coroas",
+      "skills": [
+        "Acadêmica",
+        "Agilidade",
+        "Corsários Druchii"
+      ],
+      "startingXp": 12,
+      "equipmentSlots": 5
     },
     "spellAffinity": {
-      "aligned0": ["Tradição das Sombras"],
-      "aligned2": [
-        "Tradição do Fogo",
-        "Tradição do Metal",
-        "Tradição do Caos",
-        "Tradição da Morte"
+      "aligned0": [
+        "Magia Druchii"
       ]
     },
     "abilities": [
       {
         "name": "Conjurador",
-        "description": "A Bruxa Druchii é uma conjuradora da Tradição das Sombras. Ela começa o jogo com 1 magia, de quaisquer tradições presentes na tabela de tradições mágicas. Magias de tradições associadas são adicionadas com +4 no CD."
+        "description": "A Bruxa Druchii é uma conjuradora da Magia Druchii. Ela é contratado com 1 magia dessa tradição. Ela pode abrir mão de aprender uma habilidade para aprender ou melhorar a Classe de Dificuldade de uma magia."
       },
       {
         "name": "Visão Excelente",
@@ -154,49 +244,84 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Besta de Repetição", "cost": "35 coroas" },
-        { "name": "Besta de Mão", "cost": "35 coroas" }
+        {
+          "name": "Besta de Repetição",
+          "cost": "35 coroas"
+        },
+        {
+          "name": "Besta de Mão",
+          "cost": "35 coroas"
+        }
       ],
       "armor": [
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" },
-        { "name": "Armadura Leve", "cost": "20 coroas" }
-      ],
-      "miscellaneous": [
-        { "name": "Veneno Sombrio", "cost": "15 coroas" },
-        { "name": "Manto de Dragão Marinho", "cost": "50 coroas" }
-      ],
-      "modifiers": [{ "name": "De Aço Negro", "cost": "+20 coroas" }]
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Bróquel",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        }
+      ]
     }
   },
   {
     "id": "lamina-do-massacre",
     "name": "Lâmina do Massacre",
+    "lore": "As Lâminas do Massacre são guerreiros de elite dos exércitos dos Elfos Sombrios e frequentemente estão ligados à casa de uma família Nobre. As Lâminas do Massacre vivem uma vida de rigoroso treinamento militar, cada guerreiro especializado em uma arma e estilo de luta particular. Matar é um modo de vida para esses guerreiros. Inimigos não devem esperar misericórdia. Os Lâminas do Massacre acompanham grupos de corsários como guarda-costas contratados ou para aprimorar ainda mais suas habilidades na nobre arte do assassinato.",
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
       "move": 16,
       "fight": "+3",
       "shoot": "+2",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "+1",
       "health": 12,
       "cost": "40 coroas",
-      "skills": ["Combate", "Agilidade", "Corsários Druchii"]
+      "skills": [
+        "Combate",
+        "Agilidade",
+        "Corsários Druchii"
+      ],
+      "startingXp": 12,
+      "equipmentSlots": 5
     },
     "abilities": [
-      {
-        "name": "Massacre Violento",
-        "description": "Sempre que causa um dano crítico em uma luta, pode imediatamente lutar novamente. Resolva a segunda luta antes de quaisquer outros efeitos especiais."
-      },
       {
         "name": "Visão Excelente",
         "description": "A figura tem +10cm de alcance com qualquer arma à distância."
@@ -208,36 +333,61 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "armor": [
-        { "name": "Elmo", "cost": "10 coroas" },
-        { "name": "Armadura Leve", "cost": "20 coroas" }
-      ],
-      "miscellaneous": [
-        { "name": "Veneno Sombrio", "cost": "15 coroas" },
-        { "name": "Manto de Dragão Marinho", "cost": "50 coroas" }
-      ],
-      "modifiers": [{ "name": "De Aço Negro", "cost": "+20 coroas" }]
+        {
+          "name": "Bróquel",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        }
+      ]
     }
   },
   {
     "id": "corsario-druchii",
     "name": "Corsário Druchii",
+    "lore": "Os Elfos Negros são lutadores cruéis e ferozes. Isso é especialmente verdade para os Corsários - os tripulantess das Arcas Negras. Estes são habilidosos com espada e machado, bem como com a besta de repetição, uma maravilha da engenhenharia dos Elfos Sombrios. Sempre que uma Arca Negra explora a costa de Mordheim, os Corsários são os primeiros a se lançar na pilhagem.",
     "quantity": "ilimitado",
     "stats": {
       "move": 16,
       "fight": "+2",
       "shoot": "+2",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "+1",
       "health": 12,
-      "cost": "35 coroas"
+      "cost": "35 coroas",
+      "equipmentSlots": 5
     },
     "abilities": [
       {
@@ -251,39 +401,75 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Besta de Repetição", "cost": "35 coroas" },
-        { "name": "Besta de Mão", "cost": "35 coroas" }
+        {
+          "name": "Besta de Repetição",
+          "cost": "35 coroas"
+        },
+        {
+          "name": "Besta de Mão",
+          "cost": "35 coroas"
+        }
       ],
       "armor": [
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" },
-        { "name": "Armadura Leve", "cost": "20 coroas" }
-      ],
-      "miscellaneous": [
-        { "name": "Manto de Dragão Marinho", "cost": "50 coroas" }
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Bróquel",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        }
       ]
     }
   },
   {
     "id": "sombra",
     "name": "Sombra",
+    "lore": "Os Batedores furtivos dos Elfos Sombrios dependem de suas bestas de repetição para constantemente incomodar o inimigo com saraivadas de virotes ao invés de enfrentá-los em combate direto, pois emboscadas e táticas de guerrilha são o seu estilo de luta preferido. Os sombras são jovens e inexperientes batedores que veem as expedições para Mordheim como uma valiosa oportunidade de treinamento.",
     "quantity": "0-5",
     "stats": {
       "move": 15,
       "fight": "+1",
       "shoot": "+1",
-      "armour": 9,
+      "armour": 10,
       "Vontade": "+1",
       "health": 12,
-      "cost": "30 coroas"
+      "cost": "30 coroas",
+      "equipmentSlots": 5
     },
     "abilities": [
       {
@@ -298,20 +484,56 @@
         "name": "Ódio Ancestral",
         "description": "A figura tem a característica Ódio(Altos Elfos)."
       }
-    ]
+    ],
+    "equipment": {
+      "hand-to-hand": [
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        }
+      ],
+      "ranged": [
+        {
+          "name": "Besta de Repetição",
+          "cost": "35 coroas"
+        }
+      ],
+      "armor": [
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        }
+      ],
+      "miscellaneous": []
+    }
   },
   {
     "id": "feras-gelidas",
     "name": "Feras Gélidas",
+    "lore": "Os Elfos Sombrios capturam e criam muitas criaturas exóticas para lutar por eles e lutas entre animais de estimação são frequentemente encenadas como uma forma de entretenimento entre a sua espécie. Um dessas espécies de animal foi descoberta nas selvas exóticas de Lustria. Distantemente relacionadas aos Reptilianos, as Feras Gélidas vivem em pântanos e brejos. Elas são maiores que cães de guerra e de constituição similar, mas são em todos os outros aspectos répteis. Fileiras de dentes afiados enchem sua mandíbula, e quando provocadas, as Fera Gélidas são extremamente agressivas. Os Elfos Sombrios capturam e treinam essas criaturas para lutar em batalhas por todo o mundo, destroçando os inimigos do Rei-Bruxo com presas afiadas como adagas.",
     "quantity": "0-2",
+    "noXP": true,
     "stats": {
       "move": 13,
       "fight": "+1",
       "shoot": "-",
-      "armour": 11,
+      "armour": 12,
       "Vontade": "-3",
       "health": 8,
-      "cost": "30 coroas"
+      "cost": "30 coroas",
+      "equipmentSlots": 0
     },
     "abilities": [
       {

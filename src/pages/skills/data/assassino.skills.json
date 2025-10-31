@@ -1,0 +1,14 @@
+[
+  {
+    "id": "apunhalar-pelas-costas",
+    "name": "Apunhalar pelas Costas",
+    "type": "Assassino",
+    "description": "A figura com essa habilidade pode declarar uma carga contra um oponente que não ten linha de visão desde que o modelo alvo cumpra todos os outros requisitos para uma carga. Se completar a carga e lutar contra o alvo da sua carga, ele surpreende seu oponente e recebe +2 em Ímpeto e +2 em Dano para aquela luta apenas."
+  },
+  {
+    "id": "esconder-nas-sombras",
+    "name": "Esgueirar pelas Sombras",
+    "type": "Assassino",
+    "description": "A figura com essa habilidade tem a característica Furtividade(30)."
+  }
+]

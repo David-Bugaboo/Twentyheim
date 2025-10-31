@@ -3,7 +3,10 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react({
+    include: "**/*.{jsx,tsx}",
+    exclude: /node_modules/,
+  })],
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp'],
   build: {
     assetsInlineLimit: 0, // Evita inline de imagens grandes

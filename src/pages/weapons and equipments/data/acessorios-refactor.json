@@ -283,8 +283,12 @@
     "name": "Água Benta",
     "type": "Frasco",
     "damageModifier": null,
-    "availability": [
-      "Todos menos Cortes Vampíricas, Filhos de Hashut, Saqueadores Homem-Fera e Skaven"
+    "availability": ["Todos"],
+    "exclusions": [
+      "Cortes Vampíricas",
+      "Filhos de Hashut",
+      "Saqueadores Homem-Fera",
+      "Skaven"
     ],
     "rarity": 10,
     "purchaseCost": "20 coroas",
@@ -313,7 +317,7 @@
     "rarity": 20,
     "purchaseCost": "300 coroas",
     "exclusive": null,
-    "flavorText": "Este é um livro que contém transcrições das famosas escrituras de Nagash, o Grande Necromante. Suas páginas antigas estão repletas de conhecimento proibido sobre magia das trevas e necromancia.",
+    "flavorText": "Alguns sobreviventes do cataclismo ainda vivem nos muitos assentamentos ao redor de Mordheim e ganham a vida preparando mapas da cidade de memória. Muitos desses mapas são falsificados, e mesmo os reais costumam ser rudes e imprecisos.",
     "user": null,
     "armorBonus": null,
     "movePenalty": null,
@@ -357,7 +361,8 @@
     "name": "Cerveja de Bugman",
     "type": "Bebida Alcóolica",
     "damageModifier": null,
-    "availability": ["Todos exceto Elfos"],
+    "availability": ["Todos"],
+    "exclusions": ["Elfos"],
     "rarity": 16,
     "purchaseCost": "60 coroas",
     "exclusive": null,
@@ -764,7 +769,8 @@
     "name": "Cabeça de Alho",
     "type": "Amuleto",
     "damageModifier": null,
-    "availability": ["Todos exceto Mortos-Vivos"],
+    "availability": ["Todos"],
+    "exclusions": ["Mortos-Vivos"],
     "rarity": 1,
     "purchaseCost": "1 Coroa de Ouro",
     "exclusive": null,
@@ -788,7 +794,8 @@
     "name": "Livro de Receitas Halfling",
     "type": "Livro",
     "damageModifier": null,
-    "availability": ["Todos exceto Mortos-Vivos"],
+    "availability": ["Todos"],
+    "exclusions": ["Mortos-Vivos"],
     "rarity": 12,
     "purchaseCost": "40 coroas",
     "exclusive": null,
@@ -1176,7 +1183,7 @@
     "name": "Manto de Dragão Marinho",
     "type": "Manto",
     "damageModifier": null,
-    "availability": ["Elfos Sombrios"],
+    "availability": ["Corsários Druchii"],
     "rarity": 16,
     "purchaseCost": "60 coroas",
     "exclusive": null,
@@ -1272,7 +1279,8 @@
     "name": "Cartas de Tarot",
     "type": "Livro",
     "damageModifier": null,
-    "availability": ["Todos exceto Caçadores de Bruxas e Irmãs de Sigmar"],
+    "availability": ["Todos"],
+    "exclusions": ["Caçadores de Bruxas", "Irmãs de Sigmar"],
     "rarity": 14,
     "purchaseCost": "50 coroas",
     "exclusive": null,
@@ -1316,11 +1324,12 @@
   },
   {
     "roll": null,
-    "id": "tomo-de-magia",
-    "name": "Tomo de Magia",
+    "id": "tomo-arcano",
+    "name": "Tomo Arcano",
     "type": "Livro",
     "damageModifier": null,
-    "availability": ["Todos exceto Caçadores de Bruxas e Irmãs de Sigmar"],
+    "availability": ["Todos"],
+    "exclusions": ["Caçadores de Bruxas", "Irmãs de Sigmar"],
     "rarity": 20,
     "purchaseCost": "300 coroas",
     "exclusive": null,
@@ -1334,7 +1343,7 @@
     "specialRules": [
       {
         "label": "Conhecimento Proibido",
-        "value": "Se o bando inclui uma figura capaz de conjurar magias de Tradições Arcanas, ela aprende uma magia de uma de suas tradições. O livro é então descartado."
+        "value": "Se o bando inclui uma figura capaz de aprender magias, ela aprende uma Magia Inferior. O livro é então descartado. Sacerdotes não podem usar esse item."
       }
     ]
   },
@@ -1479,6 +1488,30 @@
       {
         "label": "Busca Mística",
         "value": "Se um herói equipado com esse item não foi reduzido a 0 de vida na partida anterior, ele pode fazer um teste de Vontade CD 14. Se bem-sucedido, quaisquer dados rolados na atividade de exploração podem ser rolados duas vezes e o melhor resultado escolhido."
+      }
+    ]
+  },
+  {
+    "roll": null,
+    "id": "mapa-de-mordheim",
+    "name": "Mapa de Mordheim",
+    "type": "Livro",
+    "damageModifier": null,
+    "availability": ["Todos"],
+    "rarity": 16,
+    "purchaseCost": "40 coroas",
+    "exclusive": null,
+    "flavorText": "Alguns sobreviventes do cataclismo ainda vivem nos muitos assentamentos ao redor de Mordheim e ganham a vida preparando mapas da cidade a partir da sua memória. Muitos desses mapas são falsificados, e mesmo os reais costumam ser crus e imprecisos.",
+    "user": null,
+    "armorBonus": null,
+    "movePenalty": null,
+    "slots": "1",
+    "effect": null,
+    "requirements": null,
+    "specialRules": [
+      {
+        "label": "Mapa",
+        "value": "Um mapa pode ajudar um bando a se guiar pelas ruínas da cidade dos condenados e achar áreas cheia de saque e ouro. Ao comprar um mapa, role um d20. 1-4: O Mapa é falso e não tem nenhuma serventia. 5-8: O mapa é vago e mal feito. Você pode re-rolar um dado de exploração uma vez por fase de campanha, mas deve aceitar o melhor resultado. 9-12: Esse é um mapa das catacumbas sinuosas de Mordheim. Você ganha +5 nas rolegsn para escolher o cenário jogado em partidas. 13-16: Esse é um mapa muito detalhado e preciso. Você pode re-rolar até 3 dados de exploração em cada fase de campanha. 17-20: Esse é um dos lendários 12 mapas feitos para o Conde de Steinhardt. Enquanto um héroi do bando estiver em posse do mapa, e não houver sido reduzido a 0 de vida no jogo anterior, qualquer número de dados de exploração podem ser re-rolados durante a fase de campanha."
       }
     ]
   }

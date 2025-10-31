@@ -1,13 +1,8 @@
 [
   {
-    "term": "Marcador de Sangramento",
-    "type": "markers and conditions",
-    "description": "Uma figura com um Marcador de Sangramento sofre 2 de dano sempre que se move ou sofre dano. Poções de cura ou magias/poderes de cura podem remover Marcadores de Sangramento."
-  },
-  {
     "term": "Marcador de Atordoamento",
     "type": "markers and conditions",
-    "description": "Uma figura com um Marcador de Atordoamento deve gastar uma ação para remover o Marcador de Atordoamento. Ela então age normalmente com quaisquer ação restantes. Uma figura nunca pode ter mais que dois marcadores de atordoamento por vez."
+    "description": "Uma figura com um Marcador de Atordoamento deve gastar uma ação para remover o Marcador de Atordoamento. Ela então age normalmente com quaisquer ação restantes. Uma figura nunca pode ter mais que dois marcadores de atordoamento por vez. Uma figura com um Marcador de Atordoamento recebe -2 em todas as rolagens de dado para cada marcador de atordoamento que tenha."
   },
   {
     "term": "Marcador de Chamas",
@@ -18,6 +13,21 @@
     "term": "Marcador de Congelamento",
     "type": "markers and conditions",
     "description": "Uma figura com um Marcador de Congelamento só pode tomar uma ação em seu turno. Tomar dano flamejante automaticamente remove o marcador. Uma figura aliada pode gastar uma ação para quebrar o gelo e remover o marcador."
+  },
+  {
+    "term": "Marcador de Sangramento",
+    "type": "markers and conditions",
+    "description": "Uma figura com um Marcador de Sangramento recebe 3 de dano no ínicio da sua ativação para cada marcador de sangramento que tiver."
+  },
+  {
+    "term": "Incendiária(X)",
+    "type": "damage types",
+    "description": "Uma figura que receba mais de (X) de dano de uma arma com essa característica ganha um Marcador de Chamas."
+  },
+  {
+    "term": "Cruel(X)",
+    "type": "damage types",
+    "description": "Uma figura que receba mais de (X) de dano de uma arma com essa característica ganha um Marcador de Sangramento."
   },
   {
     "term": "Peçonhento",
@@ -38,19 +48,19 @@
   },
   {
     "term": "Mente-Férrea",
-    "description": "Esta figura é imune a qualquer efeito com a palavra-chave Psicológico."
+    "description": "Esta figura é imune a qualquer efeito com a palavra-chave Psicológico, e a característica Aterrorizante."
   },
   {
     "term": "Grande",
-    "description": "Esta figura enorme é mais fácil de mirar com ataques a distância. Ela sofre do modificador Alvo Grande (-2) ao se defender contra ataques a distância, mas tem 6 espaços de itens."
+    "description": "Esta figura enorme é mais fácil de mirar com ataques a distância. Ela sofre do modificador Alvo Grande (-2) ao se defender contra ataques a distância, e sempre pode ser escolhida como alvo, mesmo se não for a figura mais próxima do atirador. mas tem 6 espaços de itens. Figuras sem a característica Grande podem pegar cobertura leve em uma figura com essa característica."
   },
   {
     "term": "Furtividade(X)",
-    "description": "Figuras não podem traçar linha de visão para uma figura com essa característica se estiverem a mais de (X) dela ou ela estiver em cobertura."
+    "description": "Figuras não podem traçar linha de visão para uma figura com essa característica se estiverem a mais de (X) dela."
   },
   {
     "term": "Forte",
-    "description": "Esta figura causa +2 de dano em ataques corpo a corpo."
+    "description": "Esta figura causa +2 de dano em ataques corpo a corpo, ou +3 se também tiver a característica Grande."
   },
   {
     "term": "Aterrorizante",
@@ -58,7 +68,7 @@
   },
   {
     "term": "Morto-Vivo",
-    "description": "Esta figura é imune a veneno e nunca conta como ferida. Figuras mortas-vivas podem pegar e carregar marcadores de tesouro mas não têm espaços de itens."
+    "description": "Esta figura é imune a dano Venenoso, a efeitos Psicológicos e de Ilusão, a característica Aterrorizante e não podem receber marcadores de Atordoamento. Recebem -2 em testes para resistir a Orações."
   },
   {
     "term": "Animal",
@@ -82,7 +92,7 @@
   },
   {
     "term": "Visão Verdadeira",
-    "description": "Ignore qualquer efeito com a palavra chave Ilusão direcionado a essa figura. Membros ilusórios de um bando são removidos da mesa se entrarem na linha de visão dessa figura. Figuras não se beneficiam das características Invisibilidade e Furtividade(X) contra essa figura."
+    "description": "Pode declarar carga contra uma figura que não tenha linha de visão, contanto que tenha movimento suficiente para completar a carga. Figuras não pode se beneficiar da característica Furtividade(X) contra essa figura"
   },
   {
     "term": "Venenoso",
@@ -118,7 +128,7 @@
   },
   {
     "term": "Chifres",
-    "description": "A figura recebe +2 de Ímpeto no turno em que completar uma carga."
+    "description": "A figura recebe +2 de Ímpeto no turno em que completar uma carga, ou +3 se também tiver a característica Grande."
   },
   {
     "term": "Construto",
@@ -175,10 +185,6 @@
   {
     "term": "Par",
     "description": "Armas com essa característica devem sempre ser usadas em pares, ocupando ambas as mãos, mas provendo o bônus de +1 Ímpeto de lutar com duas armas se for leve. A figura equipada nunca pode desequipar apenas uma arma de par, e se perder a arma perde ambas."
-  },
-  {
-    "term": "Venenosa",
-    "description": "Uma arma com essa característica envenena o alvo em um ataque bem-sucedido, mesmo se não causar dano."
   },
   {
     "term": "Concussiva(X)",
@@ -338,11 +344,14 @@
   },
   {
     "term": "Fúria",
-    "description": "Modelos com essa característica devem sempre usar ações de carga e luta contra inimigos dentro do alcance de uma carga. Se houver mais de um, o controlador da figura pode escolher. Uma figura com essa caarcterística ganha +2 de Ímpeto sempre que luta."
+    "description": "Modelos com essa característica devem sempre usar ações de carga e luta contra inimigos dentro do alcance de uma carga. Se houver mais de um, o controlador da figura pode escolher. Uma figura com essa caarcterística ganha +2 de Ímpeto sempre que luta. Uma figura com essa característica recebe 3 de dano por puro stress sempre que não terminar uma ativação em combate."
   },
   {
     "term": "Estupidez",
     "description": "Modelos com essa característica que não ativarem junto a outra figura devem fazer um teste de Vontade CD 12 no começo de sua ativação ou agir como uma criatura não controlada durante essa ativação."
+  },
+  {
+    "term": "Necrose de Nurgle",
+    "description": "A figura obrigatoriamente perde o próximo jogo e se precisar rolar na Tabela de Sobrevivência, rola duas vezes, escolhendo o pior resultado.."
   }
-  
 ]

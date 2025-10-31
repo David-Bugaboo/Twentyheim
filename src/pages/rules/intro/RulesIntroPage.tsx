@@ -141,6 +141,20 @@ function RulesIntroPage() {
               terrenos temáticos para Mordheim.
             </MobileText>
 
+            <div id="terrain">
+              <HeaderH2>Jogando</HeaderH2>
+            </div>
+            <MobileText>
+              Para jogar 20Heim, os jogadores precisam primeiro{" "}
+              <a href="/rules/warband-creation">Montar seus Bandos</a>. Com seus
+              bandos montados, eles então escolhem um{" "}
+              <a href="/scenarios">Cenário</a> para jogar. Caso os jogadores não
+              consigam chegar a um consenso, role um d20, e a maior rolagem
+              escolhe o cenário. Com isso teoricamente os jogadores teriam tudo
+              que era necessário para jogar. Estude as regras de como prosseguir
+              com sua partida seguindo os links na barra de navegação.
+            </MobileText>
+
             <div id="explore">
               <HeaderH1>Explore as Regras</HeaderH1>
             </div>

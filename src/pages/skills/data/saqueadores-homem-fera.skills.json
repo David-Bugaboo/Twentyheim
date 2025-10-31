@@ -1,0 +1,38 @@
+[
+  {
+    "id": "pelo-emaranhado",
+    "name": "Pelo Emaranhado",
+    "type": "Saqueadores Homem-Fera",
+    "description": "A figura com essa habilidade ganha +1 no atributo Armadura, e aumenta seu limite racial de Armadura em 1."
+  },
+  {
+    "id": "linhagem-corrompida",
+    "name": "Linhagem Corrompida",
+    "type": "Saqueadores Homem-Fera",
+    "description": "A figura com essa habilidade pode comprar uma mutação da lista de mutações do bando Culto dos Possuídos."
+  },
+  {
+    "id": "furia-destemida",
+    "name": "Fúria Destemida",
+    "type": "Saqueadores Homem-Fera",
+    "description": "A figura com essa habilidade é imune a característica Aterrorizante."
+  },
+  {
+    "id": "besta-de-4-chifres",
+    "name": "Besta de 4 Chifres",
+    "type": "Saqueadores Homem-Fera",
+    "description": "A figura com essa habilidade ganha a característica Chifres. Se já tiver essa característica ganha um bônus extra de 1 de Ímpeto durante a ativação em que completa uma carga."
+  },
+  {
+    "id": "berro-de-guerra",
+    "name": "Berro de Guerra",
+    "type": "Saqueadores Homem-Fera",
+    "description": "Apenas o Chefe Tribal Homem-Fera pode ter essa habilidade. O Bando ganha +5 em testes de debandada enquanto o Chefe Tribal Homem-Fera estiver no tabuleiro."
+  },
+  {
+    "id": "misantropia",
+    "name": "Misantropia",
+    "type": "Saqueadores Homem-Fera",
+    "description": "A figura com essa habilidade ganha a característica Ódio(Humanos)."
+  }
+]

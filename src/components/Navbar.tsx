@@ -7,6 +7,8 @@ import {
   Button,
   IconButton,
   Modal,
+  Menu,
+  MenuItem,
   List,
   ListItem,
   ListItemButton,
@@ -20,6 +22,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import logoImage from "../assets/20heim.png";
+import { onAuthStateChanged, type User } from "firebase/auth";
+import { auth, loginWithGoogle, logout } from "../firebase.ts";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -28,8 +32,13 @@ const Navbar: React.FC = () => {
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState<string | null>(
     null
   );
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [userMenuAnchor, setUserMenuAnchor] = useState<null | HTMLElement>(
+    null
+  );
 
   const navItems = [
+    { label: "Gestor de Bando (Beta)", path: "/warband-builder" },
     { label: "Início", path: "/" },
     {
       label: "Regras",
@@ -70,7 +79,10 @@ const Navbar: React.FC = () => {
         { label: "Caçadores de Bruxas", path: "/warbands/witch-hunters" },
         { label: "Reptilianos", path: "/warbands/lizardmen" },
         { label: "Horda Orc", path: "/warbands/orc-mob" },
+        { label: "Goblins", path: "/warbands/goblins" },
         { label: "Filhos de Hashut", path: "/warbands/sons-of-hashut" },
+        { label: "Carnival of Chaos", path: "/warbands/carnival-of-chaos" },
+        { label: "Criar Bando", path: "/warband-builder/warbands" },
       ],
     },
     {
@@ -94,58 +106,76 @@ const Navbar: React.FC = () => {
       path: "/magic",
       children: [
         { label: "Regras de Magia", path: "/magic" },
-        {
-          label: "Tradições Arcanas",
-          path: "/magic/arcane-lores",
-        },
-        {
-          label: "Tradições Sombrias",
-          path: "/magic/dark-lores",
-        },
-        {
-          label: "Tradições Divinas",
-          path: "/magic/prayers",
-        },
-        {
-          label: "Tradições Orc",
-          path: "/magic/greenskin-lores",
-        },
         { label: "Áreas de Efeito", path: "/rules/area-of-effect" },
+        { label: "Magia Daemonica", path: "/magic/magic-of-the-dark-gods" },
+        {
+          label: "Tradição do Rato Chifrudo",
+          path: "/magic/lore-of-horned-rat",
+        },
+        { label: "Tradição da Necromancia", path: "/magic/lore-of-necromancy" },
+        { label: "Magia Druchii", path: "/magic/druchii-magic" },
+        { label: "Rituais de Nurgle", path: "/magic/rituals-of-nurgle" },
+        { label: "Magia dos Antigos", path: "/magic/magic-of-the-old-ones" },
+        { label: "Rituais do Caos", path: "/magic/rituals-of-chaos" },
+        { label: "Rituais de Hashut", path: "/magic/rituals-of-hashut" },
+        { label: "Magia dos Goblins", path: "/magic/magic-of-the-goblins" },
+        { label: "Magia da WAAAAAAAGH!", path: "/magic/magic-of-the-waaaaagh" },
+        { label: "Magia Inferior", path: "/magic/lesser-magic" },
+        { label: "Orações de Sigmar", path: "/magic/prayers-of-sigmar" },
+        { label: "Orações de Ulric", path: "/magic/prayers-of-ulric" },
       ],
     },
-
     {
       label: "Habilidades",
       path: "/skills",
       children: [
         { label: "Habilidades", path: "/skills" },
-        { label: "Combate", path: "/skills/combat" },
-        { label: "Atirador", path: "/skills/ranged" },
-        { label: "Acadêmica", path: "/skills/academic" },
-        { label: "Força", path: "/skills/strength" },
-        { label: "Agilidade", path: "/skills/agility" },
-        { label: "Irmãs de Sigmar", path: "/skills/sisters-of-sigmar" },
-        { label: "Skaven do Clã Enshin", path: "/skills/skaven-enshin" },
-        { label: "Saqueadores Homem-Besta", path: "/skills/beastmen-raiders" },
+        { label: "Combate", path: "/skills/combate" },
+        { label: "Atirador", path: "/skills/atirador" },
+        { label: "Acadêmica", path: "/skills/academica" },
+        { label: "Força", path: "/skills/forca" },
+        { label: "Velocidade", path: "/skills/agilidade" },
+        { label: "Irmãs de Sigmar", path: "/skills/irmas-de-sigmar" },
+        { label: "Skaven do Clã Enshin", path: "/skills/skaven-do-cla-enshin" },
+        {
+          label: "Saqueadores Homem-Fera",
+          path: "/skills/saqueadores-homem-fera",
+        },
         {
           label: "Caçadores de Tesouro Anões",
-          path: "/skills/dwarf-treasure-hunters",
+          path: "/skills/cacadores-de-tesouro-anoes",
         },
-        { label: "Mata-Trolls Anão", path: "/skills/dwarf-troll-slayers" },
-        { label: "Engenharia da Montanha", path: "/skills/engineering" },
-        { label: "Habilidades Von Carstein", path: "/skills/von-carstein" },
+        {
+          label: "Habilidades Von Carstein",
+          path: "/skills/habilidades-von-carstein",
+        },
         {
           label: "Habilidades de Dragão Carmesim",
-          path: "/skills/crimson-dragon",
+          path: "/skills/habilidades-de-dragao-carmesim",
         },
-        { label: "Habilidades de Lahmia", path: "/skills/lahmia" },
-        { label: "Habilidades de Strigoi", path: "/skills/strigoi" },
-        { label: "Corsários Druchii", path: "/skills/dark-elf-corsairs" },
-        { label: "Habilidades de Geckos", path: "/skills/skink" },
-        { label: "Habilidades de Saúrios", path: "/skills/saurus" },
-        { label: "Hordas Orc", path: "/skills/orc-hordes" },
-        { label: "Filhos de Hashut", path: "/skills/sons-of-hashut" },
-        { label: "Áreas de Efeito", path: "/rules/area-of-effect" },
+        {
+          label: "Habilidades dos Necrarcas",
+          path: "/skills/habilidades-dos-necrarcas",
+        },
+        {
+          label: "Habilidades de Lahmia",
+          path: "/skills/habilidades-de-lahmia",
+        },
+        {
+          label: "Habilidades de Strigoi",
+          path: "/skills/habilidades-de-strigoi",
+        },
+        { label: "Corsários Druchii", path: "/skills/corsarios-druchii" },
+        {
+          label: "Habilidades de Geckos",
+          path: "/skills/habilidades-de-geckos",
+        },
+        {
+          label: "Habilidades de Saurídeo",
+          path: "/skills/habilidades-de-saurideo",
+        },
+        { label: "Hordas Orc", path: "/skills/hordas-orc" },
+        { label: "Filhos de Hashut", path: "/skills/filhos-de-hashut" },
       ],
     },
     {
@@ -182,6 +212,38 @@ const Navbar: React.FC = () => {
         },
         { label: "Venda de Pedra-bruxa", path: "/campaign/wyrdstone-selling" },
         { label: "Gastando Coroas", path: "/campaign/rewards" },
+        { label: "Mercenários", path: "/campaign/mercenaries" },
+        { label: "Lendas", path: "/campaign/legends" },
+        { label: "Magia Daemonica", path: "/campaign/dark-gods-invocation" },
+      ],
+    },
+    {
+      label: "Cenários 1v1",
+      path: "/scenarios",
+      children: [
+        { label: "Todos os Cenários", path: "/scenarios" },
+        { label: "Defender o Tesouro", path: "/scenarios/defend-the-find" },
+        { label: "Escaramuça", path: "/scenarios/skirmish" },
+        { label: "Caça à Pedra-Bruxa", path: "/scenarios/wyrdstone-hunt" },
+        { label: "Romper Linhas", path: "/scenarios/breakthrough" },
+        { label: "Briga de Rua", path: "/scenarios/street-fight" },
+        { label: "Encontro Casual", path: "/scenarios/chance-encounter" },
+        { label: "Tesouro Escondido", path: "/scenarios/hidden-treasure" },
+        { label: "Ocupar", path: "/scenarios/occupy" },
+        { label: "Ataque Surpresa", path: "/scenarios/surprise-attack" },
+      ],
+    },
+    {
+      label: "Cenários Multijogador",
+      path: "/scenarios",
+      children: [
+        { label: "Todos os Cenários", path: "/scenarios" },
+        { label: "Mansão do Bruxo", path: "/scenarios/wizard-mansion" },
+        { label: "Caça ao Tesouro", path: "/scenarios/treasure-hunt" },
+        { label: "Briga de Rua", path: "/scenarios/street-brawl" },
+        { label: "O Roubo", path: "/scenarios/heist" },
+        { label: "O Lago", path: "/scenarios/the-pool" },
+        { label: "O Herdeiro Perdido", path: "/scenarios/lost-prince" },
       ],
     },
   ];
@@ -228,6 +290,42 @@ const Navbar: React.FC = () => {
         document.removeEventListener("mousedown", handleClickOutside);
     }
   }, [desktopDropdownOpen]);
+
+  // Auth state
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (u) => setCurrentUser(u));
+    return () => unsub();
+  }, []);
+
+  const handleLogin = async () => {
+    try {
+      await loginWithGoogle();
+    } catch {}
+  };
+
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setUserMenuAnchor(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => setUserMenuAnchor(null);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } finally {
+      handleCloseUserMenu();
+    }
+  };
+
+  const getInitials = (displayName?: string | null, email?: string | null) => {
+    const source =
+      (displayName && displayName.trim()) || (email || "").split("@")[0];
+    if (!source) return "?";
+    const parts = source.split(/\s|\.|_/).filter(Boolean);
+    const first = parts[0]?.[0]?.toUpperCase() || "";
+    const last =
+      parts.length > 1 ? parts[parts.length - 1][0]?.toUpperCase() : "";
+    return first + last || first || "?";
+  };
 
   return (
     <AppBar
@@ -410,6 +508,74 @@ const Navbar: React.FC = () => {
               </Box>
             ))}
           </Box>
+        </Box>
+
+        {/* Auth controls (desktop and mobile) */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          {currentUser ? (
+            <>
+              <IconButton
+                onClick={handleOpenUserMenu}
+                sx={{
+                  p: 0,
+                  border: "1px solid rgba(16, 185, 129, 0.5)",
+                  borderRadius: "50%",
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: "50%",
+                    backgroundColor: "rgba(16, 185, 129, 0.2)",
+                    color: "#a7f3d0",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontFamily: '"Cinzel", serif',
+                    fontWeight: 700,
+                    fontSize: "0.9rem",
+                  }}
+                  aria-label="perfil"
+                >
+                  {getInitials(currentUser.displayName, currentUser.email)}
+                </Box>
+              </IconButton>
+              <Menu
+                anchorEl={userMenuAnchor}
+                open={Boolean(userMenuAnchor)}
+                onClose={handleCloseUserMenu}
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                transformOrigin={{ vertical: "top", horizontal: "right" }}
+              >
+                <MenuItem disabled>
+                  {currentUser.email || currentUser.displayName}
+                </MenuItem>
+                <MenuItem
+                  component={Link}
+                  to="/warband-builder"
+                  onClick={handleCloseUserMenu}
+                >
+                  Meus Bandos
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>Sair</MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <Button
+              onClick={handleLogin}
+              sx={{
+                color: "white",
+                textTransform: "none",
+                border: "1px solid rgba(16, 185, 129, 0.5)",
+                borderRadius: "20px",
+                padding: "6px 12px",
+                "&:hover": { backgroundColor: "rgba(16, 185, 129, 0.1)" },
+              }}
+            >
+              Entrar
+            </Button>
+          )}
         </Box>
 
         {/* Mobile Menu Button - Hamburger Icon */}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "transfixar",
+    "name": "Transfixar",
+    "type": "Habilidades Von Carstein",
+    "description": "Como uma ação, uma figura inimiga a escolha da figura com essa habilidade, que esteja em combate com ela, deve rolar um teste contestado de Vontade contra a figura com essa habilidade. Caso falhe, a figura inimiga não pode usar ações de luta contra a figura com essa habilidade e seu Ímpeto conta como 0 em lutas contra ela até o final da sua próxima ativação. Esse é um efeito Psicológico"
+  },
+  {
+    "id": "aura-de-majestosidade",
+    "name": "Aura de Majestosidade",
+    "type": "Habilidades Von Carstein",
+    "description": "A figura com essa habilidade pode ativar figuras a até 14cm, ao invés dos 8cm normais. Adicionalmente, o bando da figura com essa habilidade ganha +5 no primeiro teste de debandada feito durante o jogo, caso a figura ainda esteja no tabuleiro."
+  },
+  {
+    "id": "invocar-morcegos",
+    "name": "Invocar Morcegos",
+    "type": "Habilidades Von Carstein",
+    "description": "A figura com essa habilidade pode invocar um Morcego Corrompido como membro temporário do bando, gastando uma ação, a até 14cm do usuário da habilidade, e a mais de 14cm de figuras inimigas."
+  },
+  {
+    "id": "convocar-ventos",
+    "name": "Convocar Ventos",
+    "type": "Habilidades Von Carstein",
+    "description": "A figura com essa habilidade pode declarar o uso de convocar ventos no começo da sua ativação, gastando uma ação. Ataques a distância contra a figura tem -2 de penalidade em suas rolagens de ataque até o começo da próxima ativação da figura com essa habilidade."
+  }
+]

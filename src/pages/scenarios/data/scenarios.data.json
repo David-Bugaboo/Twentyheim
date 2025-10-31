@@ -1,0 +1,192 @@
+[
+  {
+    "id": "defend-the-find",
+    "name": "Defender o Tesouro",
+    "type": "1v1",
+    "summary": "Você precisa proteger fragmentos de Pedra-Bruxa da invasão inimiga.",
+    "flavor": "Muitas vezes, um bando encontra um lugar com um monte de pedra-bruxa ou outro tesouro lá dentro — só pra ser desafiada por outro bando de desesperados. Isso quase sempre acaba em uma briga sangrenta, já que é bem improvável que qualquer um dos lados vá querer abrir mão da riqueza sem abrir alguns crânios antes.",
+    "description": "Você precisa proteger fragmentos de Pedra-Bruxa da invasão inimiga.",
+    "setup": "Cada jogador, alternando, coloca uma peça de terreno — seja um prédio em ruínas, torre ou item similar, até que a mesa esteja densamente populada com terreno, cheias de becos e curvas sinuosas. Sugerimos que o terreno seja montado dentro de uma área aproximada de 3' x 3' (90cm x 90cm).",
+    "warbands": "O bando com menos figuras é automaticamente o defensor. Se os dois lados tem o mesmo número de figuras, os Líderes dos bandos fazem um teste contestado de Vontade. O Vencedor é o defensor.",
+    "deployment": "O Bando defensor deve posicionar suas figuras dentro ou a até 15cm da peça de terreno central. O Bando atacante deve posicionar suas figuras a até 15cm de qualquer borda do tabuleiro. O Bando atacante pode dividir seu bando entre várias das bordas do tabuleiro.",
+    "victoryCondition": "Se no final de um turno, o atacante tem mais figuras dentro ou a até 15cm da peça de terreno central que o defensor, o jogo acaba com os atacantes vencendo. Alternativamente o jogo também acaba se um dos bandos for totalmente eliminado ou debandar, com o outro bando vencendo.",
+    "experience": "Sobrevivência: +1XP para cada figura que sobreviveu a partida. Vitória: +1 de XP para o líder do bando vencedor. Massacre: Heróis ganham +1 de XP para cada inimigo que reduzem a 0 de vida.",
+    "wyrdstone": "Um fragmento de pedra-bruxa para cada Herói ou Líder dentro ou a até 15cm da peça de terreno central."
+  },
+  {
+    "id": "skirmish",
+    "name": "Escaramuça",
+    "type": "1v1",
+    "summary": "Uma briga entre bandos rivais nas ruínas de Mordheim.",
+    "flavor": "Nas vastidões das ruínas de Mordheim, sempre existe o risco de se deparar com um bando rival. Embora dois grupos às vezes passem um pelo outro sem luta, mais frequentemente há uma batalha feroz entre as ruínas. Se um bando conseguir afastar seus rivais, terá uma área maior para procurar pedra-bruxa.",
+    "description": "Uma briga entre bandos rivais nas ruínas de Mordheim.",
+    "setup": "Cada jogador, alternando, coloca uma peça de terreno — seja um prédio em ruínas, torre ou item similar, até que a mesa esteja densamente populada com terreno, cheias de becos e curvas sinuosas. Sugerimos que o terreno seja montado dentro de uma área aproximada de 3' x 3' (90cm x 90cm).",
+    "warbands": "Cada jogador rola um dado. Quem obtiver o maior resultado escolhe quem posiciona as figuras primeiro. O primeiro jogador então escolhe qual borda da mesa usar, colocando todas as suas figuras dentro de 20cm dessa borda. Seu oponente então coloca dentro de 20cm da borda oposta.",
+    "deployment": "O primeiro jogador escolhe qual borda do tabuleiro usar e posiciona todas as suas figuras dentro de 20cm dessa borda. O oponente então posiciona suas figuras dentro de 20cm da borda oposta.",
+    "victoryCondition": "Quando um dos bandos falha em seu teste de Debandada, o jogo termina. O bando que debandou perde e seus oponentes vencem.",
+    "experience": "Sobrevivência: +1XP para cada figura que sobreviveu a partida.\n Líder Vencedor: O líder do bando vencedor ganha +1 de XP extra. \n Por Inimigo Eliminado: Qualquer Herói ganha +1 de XP para cada inimigo que ele reduz a 0 de vida.",
+    "wyrdstone": "Não há ganho de pedra-bruxa nesse cenário."
+  },
+  {
+    "id": "wyrdstone-hunt",
+    "name": "Caça à Pedra-Bruxa",
+    "type": "1v1",
+    "summary": "Coletar os fragmentos de Pedra-Bruxa espalhados pelas ruínas.",
+    "flavor": "Vários fragmentos de Pedra-Bruxa foram encontrados espalhados pelas ruínas. Ambos os bandos competem para coletar o máximo possível antes que seus rivais os alcancem.",
+    "description": "Coletar os fragmentos de Pedra-Bruxa espalhados pelas ruínas.",
+    "setup": "Cada jogador, alternando, coloca uma peça de terreno — seja um prédio em ruínas, torre ou item similar, até que a mesa esteja densamente populada com terreno, cheias de becos e curvas sinuosas. Sugerimos que o terreno seja montado dentro de uma área aproximada de 3' x 3' (90cm x 90cm).",
+    "warbands": "Depois de posicionar o terreno, cada jogador, alternando, posiciona um marcador de Pedra-Bruxa no tabuleiro, até 4 marcadores terem sido posicionados. Role um dado para ver qual jogador coloca primeiro. Os marcadores devem ser posicionados a mais de 25cm da borda da mesa e pelo menos 15cm afastados uns dos outros.",
+    "deployment": "Ambos os jogadores rolam um D6 para ver quem posiciona primeiro. Quem obtiver o maior resultado posiciona primeiro, dentro de 20cm da borda da mesa de sua escolha. Seu oponente então posiciona dentro de 20cm da borda oposta.",
+    "specialRules": "Marcadores de Pedra-Bruxa podem ser pegos gastando uma ação e ficam em posse da figura até que ela o solte ou seja reduzida a 0 de vida, caso em que o marcador de Pedra-Bruxa é derrubado na posição onde a figura estava.",
+    "victoryCondition": "O jogo termina quando um bando falha em seu teste de Debandada ou é totalmente eliminado. O bando que debandou ou falhou automaticamente perde.",
+    "experience": "Sobrevivência: +1XP para cada figura que sobreviveu a partida.\n Líder Vencedor: O líder do bando vencedor ganha +1 XP.\n Por Marcador de Pedra-Bruxa: Se um Herói ou Soldado está segurando um fragmento de Pedra-Bruxa no fim do jogo +1 XP.\n Por Inimigo Eliminado: Qualquer Herói ganha +1 de XP para cada inimigo que ele reduz a 0 de vida.",
+    "wyrdstone": "Seus guerreiros ganham um fragmento de Pedra-Bruxa para cada figura carregando pedra-bruxa no final do jogo."
+  },
+  {
+    "id": "breakthrough",
+    "name": "Romper Linhas",
+    "type": "1v1",
+    "summary": "O atacante precisa alcançar o outro lado do tabuleiro.",
+    "flavor": "Quando rumores de um grande depósito de Pedra-Bruxa começam a circular, bandos montam expedições para desenterrar a riqueza. No entanto, seus rivais frequentemente tentam sabotá-los, ansiosos para reivindicar toda a Pedra-Bruxa para si mesmos.",
+    "description": "O atacante precisa alcançar o outro lado do tabuleiro.",
+    "setup": "Cada jogador, alternando, coloca uma peça de terreno — seja um prédio em ruínas, torre ou item similar, até que a mesa esteja densamente populada com terreno, cheias de becos e curvas sinuosas. Sugerimos que o terreno seja montado dentro de uma área aproximada de 3' x 3' (90cm x 90cm).",
+    "warbands": "O jogador com o bando de menor qualidade pode escolher ser o atacante ou defensor.",
+    "deployment": "Cada jogador rola um dado. Quem obtiver o maior resultado decide em qual borda da mesa o atacante posiciona. O atacante posiciona primeiro, dentro de 20cm de sua borda da mesa. O defensor então posiciona em qualquer lugar da mesa, contanto que todas as suas figuras estejam a pelo menos 35cm de distância de qualquer atacante, mas devem escolher um lado da mesa de qualquer forma.",
+    "victoryCondition": "Se um dos bandos falhar em um teste de Debandada, o jogo termina imediatamente e o bando que debandou perde. Se o atacante conseguir mover duas ou mais figuras para dentro de 5cm da borda da mesa do defensor, elas romperam as linhas e vencem o jogo.",
+    "experience": "Sobrevivência: +1XP para cada figura que sobreviveu a partida.\n Líder Vencedor: O líder do bando vencedor ganha +1 XP.\n Por Inimigo Eliminado: Qualquer Herói ganha +1 de XP para cada inimigo que ele reduz a 0 de vida.\n Rompendo Linhas: Qualquer figura ganha +1 XP por romper as linhas inimigas.",
+    "wyrdstone": "Não há ganho de pedra-bruxa nesse cenário."
+  },
+  {
+    "id": "street-fight",
+    "name": "Briga de Rua",
+    "type": "1v1",
+    "summary": "Ambos os bandos tentam alcançar o outro lado da rua.",
+    "flavor": "Frequentemente, dois bandos se encontram cara a cara nas ruas estreitas de Mordheim. Às vezes eles passam um pelo outro sem maiores problemas, mas frequentemente o encontro termina em derramamento de sangue.",
+    "description": "Ambos os bandos tentam alcançar o outro lado da rua.",
+    "setup": "Posicione todas as peças de terreno formando uma única rua, sem lacunas nas laterais. Atrás das peças de terreno estão ruínas intransponíveis, embora as próprias peças de terreno ainda sejam acessíveis. A única saída é pela rua. A rua pode ser tão sinuosa quanto você quiser e não deve ser muito estreita para lutar, mas pode ter gargalos estreitos em alguns pontos. Espalhe pequenos obstáculos, barricadas e peças de cobertura na rua em si. Sugerimos que o terreno seja montado dentro de uma área aproximada de 3' x 3' (90cm x 90cm).",
+    "warbands": "Ambos os jogadores rolam um dado para ver quem posiciona primeiro. Quem obtiver o maior resultado escolhe se posiciona primeiro ou não. Os bandos são posicionados dentro de 15cm das extremidades opostas da rua.",
+    "deployment": "Ambos os jogadores rolam um D6 para ver quem posiciona primeiro. Quem obtiver o maior resultado escolhe se posiciona primeiro ou segundo em que extremidade da rua posicionará. Os bandos são posicionados dentro de 15cm das extremidades opostas da rua.",
+    "specialRules": "Nenhum bando pode sair da rua pela sua própria extremidade dela.",
+    "victoryCondition": "Quando um dos bandos consegue mover todas as suas figuras restantes para fora do tabuleiro através da extremidade oposta da rua em que começou, o jogo termina e esse jogador é vitorioso. Alternativamente, um bando que falha em um teste de Debandada perde o jogo.",
+    "experience": "Sobrevivência: +1XP para cada figura que sobreviveu a partida.\n Líder Vencedor: O líder do bando vencedor ganha +1 XP.\n Por Inimigo Eliminado: Qualquer Herói ganha +1 de XP para cada inimigo que ele reduz a 0 de vida.\n Escapando: O primeiro Herói de qualquer lado (não ambos!) que sair pela borda oposta da mesa ganha +1 XP.",
+    "wyrdstone": "Não há ganho de pedra-bruxa nesse cenário."
+  },
+  {
+    "id": "chance-encounter",
+    "name": "Encontro Casual",
+    "type": "1v1",
+    "summary": "Dois bandos tentam roubar a Pedra-Bruxa um do outro.",
+    "flavor": "Ambos os bandos completaram sua busca diária pelas ruínas e estão a caminho de seu acampamento quando se encontram. Nenhum dos lados esperava uma luta, e o bando que reage mais rapidamente tem a vantagem.",
+    "description": "Dois bandos tentam roubar a Pedra-Bruxa um do outro.",
+    "setup": "Cada jogador, alternando, coloca uma peça de terreno — seja um prédio em ruínas, torre ou item similar, até que a mesa esteja densamente populada com terreno, cheias de becos e curvas sinuosas. Sugerimos que o terreno seja montado dentro de uma área aproximada de 3' x 3' (90cm x 90cm).",
+    "warbands": "Cada jogador rola um dado. O jogador com a pontuação mais alta pode escolher posicionar primeiro ou segundo. O primeiro jogador a posicionar configura todo o seu bando na zona de posicionamento A. Ele pode escolher qual quadrante da mesa será designado como zona de posicionamento A. O segundo bando pode então ser posicionado na zona de posicionamento B, mas nenhuma figura pode ser posicionada a 35cm de distância de qualquer figura inimiga.",
+    "deployment": "Cada jogador rola um D6. O jogador com a pontuação mais alta pode escolher posicionar primeiro ou segundo. O primeiro jogador a posicionar configura todo o seu bando na zona de posicionamento A. Ele pode escolher qual quadrante da mesa será designado como zona de posicionamento A. O segundo bando pode então ser posicionado na zona de posicionamento B, mas nenhuma figura pode ser posicionada a 35cm de distância de qualquer figura inimiga.",
+    "specialRules": "Cada bando carrega 3 fragmentos de Pedra-Bruxa no início da batalha. Anote o número que cada bando possui. Ambos os bandos ganham toda a Pedra-Bruxa que estavam carregando no início da batalha, menos o número de seus próprios Heróis que foram reduzidos a 0 de vida durante o jogo, até um mínimo de zero. Além disso, eles ganham um fragmento extra de Pedra-Bruxa para cada Herói inimigo que reduzirem a 0 de vida, até o número máximo de fragmentos que o bando oponente estava carregando no início da batalha.",
+    "victoryCondition": "A batalha termina quando um bando falha em um teste de Debandada. O bando que debandou perde.",
+    "experience": "Sobrevivência: +1XP para cada figura que sobreviveu a partida.\n Líder Vencedor: O líder do bando vencedor ganha +1 XP.\n Por Inimigo Eliminado: Qualquer Herói ganha +1 de XP para cada inimigo que ele reduz a 0 de vida.",
+    "wyrdstone": "Não há ganho de pedra-bruxa nesse cenário."
+  },
+  {
+    "id": "hidden-treasure",
+    "name": "Tesouro Escondido",
+    "type": "1v1",
+    "summary": "Procurar as peças de terreno por um tesouro escondido.",
+    "flavor": "Há um rumor de que uma das peças de terreno arruinadas tem um porão oculto com um baú de tesouro escondido nele. Dois bandos rivais ouviram falar do porão e agora estão procurando na área. Quem sabe o que eles encontrarão?",
+    "description": "Procurar as peças de terreno por um tesouro escondido.",
+    "setup": "Cada jogador, alternando, coloca uma peça de terreno — seja um prédio em ruínas, torre ou item similar, até que a mesa esteja densamente populada com terreno, cheias de becos e curvas sinuosas. Sugerimos que o terreno seja montado dentro de uma área aproximada de 3' x 3' (90cm x 90cm).",
+    "warbands": "Ambos os jogadores rolam um dado e quem obtiver o maior resultado escolhe qual bando posiciona primeiro. Este bando é posicionado dentro de 20cm de qualquer borda da mesa que o jogador escolher. Seu oponente então posiciona dentro de 20cm do lado oposto.",
+    "deployment": "Ambos os jogadores rolam um D6 e quem obtiver o maior resultado escolhe qual bando posiciona primeiro. Este bando é posicionado dentro de 20cm de qualquer borda da mesa que o jogador escolher. Seu oponente então posiciona dentro de 20cm do lado oposto.",
+    "specialRules": "Todos os guerreiros (não animais!) em cada bando sabem aproximadamente o que estão procurando e devem inspecionar as peças de terreno para encontrar o tesouro. Cada vez que uma figura está adjacente a uma peça de terreno grande que não foi previamente revistada por nenhum dos lados, ela pode gastar uma ação para revistar aquela peça de terreno rolando um dado. Em uma rolagem de 20, ela encontrou o tesouro. Peças de terreno nas zonas de posicionamento não podem ser revistadas (já que já foram completamente saqueadas) e cada peça de terreno só pode ser revistada uma vez. Se nenhum dos bandos conseguiu 20 em nenhuma rolagem quando resta apenas uma peça de terreno a ser revistada, o tesouro será automaticamente encontrado lá. Depois de encontrar o baú de tesouro, o guerreiro deve então levá-lo para segurança, saindo do tabuleiro pela borda da mesa em que o seu controlador posicionou suas figuras. Carregar o baú de tesouro segue as regras de carregar itens pesados.",
+    "victoryCondition": "Quando um bando consegue capturar o tesouro, ou um bando falha em um teste de Debandada ou é completamente eliminado, o jogo termina. Nesse caso específico o bando vitorioso então ganha o baú de tesouro.",
+    "experience": "Sobrevivência: +1XP para cada figura que sobreviveu a partida.\n Líder Vencedor: O líder do bando vencedor ganha +1 XP.\n Por Inimigo Eliminado: Qualquer Herói ganha +1 de XP para cada inimigo que ele reduz a 0 de vida.\n Por Encontrar o Baú: Se um Herói ou Soldado encontrar o baú de tesouro ele ganha +2 XP.",
+    "wyrdstone": "Se conseguiu capturar o tesouro, no fim do jogo, faça uma rolagem para cada item na tabela de tesouro. Se fizer a rolagem indicada ou maior, ganha aquele item.",
+    "treasureTable": [
+      { "item": "1d20+5 coroas", "roll": "Automático" },
+      { "item": "3 fragmentos de pedra-bruxa", "roll": "16+" },
+      { "item": "Armadura Leve", "roll": "10+" },
+      { "item": "Espada", "roll": "8+" },
+      { "item": "3 gemas valendo 10 coroas cada", "roll": "14+" }
+    ]
+  },
+  {
+    "id": "occupy",
+    "name": "Ocupar",
+    "type": "1v1",
+    "summary": "Ambos os bandos tentam capturar o maior número de peças de terreno possível.",
+    "flavor": "Este cenário acontece em uma parte de Mordheim onde as peças de terreno estão lotadas com fragmentos de Pedra-Bruxa e outras riquezas. Tomar e conseguir fortificar essas peças de terreno significa que seu bando ganha uma boa grana. Infelizmente, os outros bandos têm a mesma ideia.",
+    "description": "Ambos os bandos tentam capturar o maior número de peças de terreno possível.",
+    "setup": "Cada jogador, alternando, coloca uma peça de terreno — seja um prédio em ruínas, torre ou item similar, até que a mesa esteja densamente populada com terreno, cheias de becos e curvas sinuosas. Sugerimos que o terreno seja montado dentro de uma área aproximada de 3' x 3' (90cm x 90cm).",
+    "warbands": "Cada jogador rola um dado. O jogador com a pontuação mais alta decide qual bando posiciona primeiro. O primeiro jogador escolhe a borda da mesa em que quer posicionar e coloca todas as suas figuras dentro de 20cm dela. Seu oponente então posiciona dentro de 20cm da borda oposta.",
+    "deployment": "Cada jogador rola um D6. O jogador com a pontuação mais alta decide qual bando posiciona primeiro. O primeiro jogador escolhe a borda da mesa em que quer posicionar e coloca todas as suas figuras dentro de 20cm dela. Seu oponente então posiciona dentro de 20cm da borda oposta.",
+    "specialRules": "O objetivo é capturar 5 das peças de terreno na mesa. Marque essas peças de terreno, começando com o terreno no centro da mesa. E as 4 maiores peças de terreno mais próximas dela. Uma peça de terreno é ocupada se pelo menos uma de suas figuras está dentro ou adjacente a peça e nenhuma figura inimiga está dentro ou adjacente àquela peça de terreno.",
+    "victoryCondition": "Nesse jogo testes de Debandada não são feitos — pois o jogo dura no máximo oito turnos. Se um bando debandar voluntariamente, ou for completamente eliminado o jogo termina e o bando vencedor ocupa todas as peças de terreno da mesa.",
+    "experience": "Sobrevivência: +1XP para cada figura que sobreviveu a partida.\n Líder Vencedor: O líder do bando que controla o maior número de peças de terreno no final da batalha ganha +1 XP. Se ambos os lados ocupam o mesmo número de peças de terreno, então a batalha é considerada um empate e nenhum líder ganha este bônus.\n Por Inimigo Eliminado: Qualquer Herói ganha +1 de XP para cada inimigo que ele reduz a 0 de vida.",
+    "wyrdstone": "Não há ganho de pedra-bruxa nesse cenário."
+  },
+  {
+    "id": "surprise-attack",
+    "name": "Ataque Surpresa",
+    "type": "1v1",
+    "summary": "O Defensor tenta repelir o atacante e começa com números limitados.",
+    "flavor": "Um bando está procurando saque nas ruínas de Mordheim quando é atacado por um bando inimigo. Os defensores estão espalhados e devem montar uma defesa rapidamente para expulsar seus atacantes.",
+    "description": "O Defensor tenta repelir o atacante e começa com números limitados.",
+    "setup": "Cada jogador, alternando, coloca uma peça de terreno — seja um prédio em ruínas, torre ou item similar, até que a mesa esteja densamente populada com terreno, cheias de becos e curvas sinuosas. Sugerimos que o terreno seja montado dentro de uma área aproximada de 3' x 3' (90cm x 90cm).",
+    "warbands": "Os líderes dos bandos rolam um teste contestado de Vontade. O Vencedor é o defensor. O jogador defensor rola um dado para cada figura no seu bando, em qualquer ordem que escolher. Em um 10 ou menos, elas estão em outro lugar nas ruínas e aparecem mais tarde como reforços. Em um 11 ou mais elas são posicionadas no início do jogo. Note que pelo menos um Herói e 5 Soldados estarão presentes no início do jogo. Se todas rolarem 10 ou menos, o último Herói ou os últimos 5 Soldados serão automaticamente posicionados no início da batalha. O defensor posiciona seus Heróis e Soldados disponíveis na mesa. O atacante rola um d20 e posiciona seu bando na borda do tabuleiro cuja sua rolagem de dado esteja na faixa.",
+    "deployment": "Os líderes dos bandos rolam um teste contestado de Vontade. O Vencedor é o defensor. O jogador defensor rola um dado para cada figura no seu bando, em qualquer ordem que escolher. Em um 10 ou menos, elas estão em outro lugar nas ruínas. Em um 11 ou mais elas são posicionadas no início. O defensor posiciona seus Heróis e Soldados disponíveis na mesa, nenhuma figura pode estar mais próxima que 20cm de outra figura ou de uma borda da mesa. O atacante posiciona todo o seu bando dentro de 20cm de uma borda aleatória da mesa que ele rolou.",
+    "specialRules": "O defensor, a partir do segundo turno de jogo, no começo de cada turno o defensor pode rolar um dado para cada um de seus Soldados ou Heróis ainda não posicionados. Em um 10+ elas são posicionadas na mesa em uma borda aleatória, decidida da mesma forma que a borda do tabuleiro do atacante. Todas as figuras de reforço desse turno chegam da mesma borda do tabuleiro e podem agir normalmente quando chegam.",
+    "victoryCondition": "O jogo termina quando um bando falha em um teste de Debandada ou for eliminado. O bando que debandou ou foi eliminado perde.",
+    "experience": "Sobrevivência: +1XP para cada figura que sobreviveu a partida.\n Líder Vencedor: O líder do bando vencedor ganha +1 XP.\n Por Inimigo Eliminado: Qualquer Herói ganha +1 de XP para cada inimigo que ele reduz a 0 de vida.",
+    "wyrdstone": "Não há ganho de pedra-bruxa nesse cenário."
+  },
+  {
+    "id": "monster-hunt",
+    "name": "Caça ao Monstro",
+    "type": "Multiplayer",
+    "summary": "Bandos se unem (ou não) para enfrentar um monstro.",
+    "flavor": "Os bandos ouviram rumores de que uma terrível criatura saiu de sua toca sob a cidade após a devastação recente e estabeleceu um novo lar nas ruínas. Você ouviu histórias sobre tais criaturas e o tesouro que elas acumulam é coisa de lendas. Você decidiu verificar por si mesmo se os rumores são verdadeiros.",
+    "description": "Bandos se unem (ou não) para enfrentar um monstro.",
+    "setup": "Cada jogador, alternando, coloca uma peça de terreno — seja um prédio em ruínas, torre ou item similar. Sugerimos que o terreno seja montado dentro de uma área aproximada de 4' x 6' (120cm x 180cm). O primeiro prédio deve ser bastante grande (pelo menos 15cm x 15cm) e de topo aberto, preferencialmente ruínas. Este prédio deve ser posicionado no centro da mesa, e é onde está localizado o novo covil do monstro.",
+    "warbands": "Os jogadores usam as regras normais de configuração de bandos para múltiplos jogadores.",
+    "deployment": "Os jogadores usam as regras normais de configuração de bandos para múltiplos jogadores.",
+    "specialRules": "O covil do monstro está localizado no prédio central e é onde a besta estará. O monstro é jovem para sua espécie e seu perfil reflete isso. Além disso, uma vida inteira vivendo em cavernas sob a cidade manteve a criatura de aprender a usar suas asas. Portanto, ao contrário da maioria dos monstros, esta besta não pode voar. O monstro não deixará seu covil por nenhuma razão, embora use sua arma de respiração contra qualquer modelo no alcance que possa ver e, é claro, atacará qualquer modelo que entrar em seu covil.",
+    "victoryCondition": "Quando um bando (ou mais de um, se os jogadores concordaram em compartilhar o tesouro do monstro) é o único a ter qualquer modelo dentro de 15cm do covil do monstro, e o monstro foi posto fora de ação, esse bando é vitorioso e ganha o tesouro do monstro.",
+    "experience": "+1 Por ferir o monstro. +2 Por colocar o monstro fora de ação. +1 Sobrevivência. +1 Líder Vencedor. +1 Por Inimigo Fora de Ação.",
+    "wyrdstone": "O tesouro do monstro pode conter fragmentos de Pedra-Bruxa. Veja a tabela de tesouro."
+  },
+  {
+    "id": "wizard-mansion",
+    "name": "A Mansão do Bruxo",
+    "type": "Multiplayer",
+    "summary": "Um jogador defende a mansão do bruxo de outros bandos."
+  },
+  {
+    "id": "treasure-hunt",
+    "name": "Caça ao Tesouro",
+    "type": "Multiplayer",
+    "summary": "Bandos de condenados lutam por pedra bruxa."
+  },
+  {
+    "id": "street-brawl",
+    "name": "Briga de Rua",
+    "type": "Multiplayer",
+    "summary": "Bandos disputam a posse de uma região valiosa da cidade."
+  },
+  {
+    "id": "heist",
+    "name": "O Roubo",
+    "type": "Multiplayer",
+    "summary": "Bandos tentam roubar o saque de Pedra-Bruxa de outro."
+  },
+  {
+    "id": "the-pool",
+    "name": "O Lago",
+    "type": "Multiplayer",
+    "summary": "Bandos reviram um Lago contaminado em Mordheim em busca de Pedra-Bruxa."
+  },
+  {
+    "id": "lost-prince",
+    "name": "O Herdeiro Perdido",
+    "type": "Multiplayer",
+    "summary": "Os Bandos tentam resgatar um rico herdeiro."
+  }
+]

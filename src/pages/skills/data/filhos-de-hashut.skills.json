@@ -1,0 +1,32 @@
+[
+  {
+    "id": "sangue-vulcanico",
+    "name": "Sangue Vulcânico",
+    "type": "Filhos de Hashut",
+    "description": "Quando a figura com essa habilidade rola na tabela de sobrevivência, ele pode rolar um dado extra e usar o melhor resultado."
+  },
+  {
+    "id": "feitor-de-escravos",
+    "name": "Feitor de Escravos",
+    "type": "Filhos de Hashut",
+    "description": "Durante a etapa de atividades, se a figura com essa habilidade for enviada para a atividade de Explorar as Ruínas, pode modificar o seu dado de exploração em até +3/-3."
+  },
+  {
+    "id": "persistencia-infernal",
+    "name": "Persistência Infernal",
+    "type": "Filhos de Hashut",
+    "description": "A primeira vez que a figura com essa habilidade for reduzida a 0 de vida durante uma partida, ela ao invés disso é reduzida a 1 de vida."
+  },
+  {
+    "id": "teimosia-maligna",
+    "name": "Teimosia Maligna",
+    "type": "Filhos de Hashut",
+    "description": "Uma figura com essa habilidade pode, como reação a receber um marcador de Atordoamento, rolar um teste de Vontade contra CD 14. Caso tenha sucesso, aquele marcador de Atordoamento é removido imediatamente. Se estiver usando um elmo que ainda não teve sua habilidade utilizada, recebe +4 de bônus nesse teste."
+  },
+  {
+    "id": "supremacista",
+    "name": "Supremacista",
+    "type": "Filhos de Hashut",
+    "description": "Uma figura com essa habilidade ganha a característica Ódio(Tudo)."
+  }
+]

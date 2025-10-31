@@ -1,68 +1,44 @@
 [
   {
-    "name": "Salto Rastejante",
+    "name": "Maldição do Rato-Bruxo",
+    "castingNumber": 10,
+    "keywords": ["Linha de Visão"],
+    "effect": "A figura inimiga alvo recebe -2 nos seus atributos Armadura, Ímpeto e Precisão. Durante o começo de cada uma de suas ativações, a figura deve fazer um teste de Vontade contra a rolagem de conjuração dessa magia. Caso tenha sucesso, a magia é cancelada."
+  },
+  {
+    "name": "Olhar do Deus Distorcido",
+    "castingNumber": 12,
+    "keywords": ["Área de Efeito(Explosão Pequena)", "Ilusão"],
+    "effect": "Centralize a Área de Efeito no conjurador. Todas as figuras na área de efeito sofrem um ataque mágico +5. Figuras atingidas por esse ataque são então movidas a quantidade de dano que tomaram em centímetros diretamente para trás em linha reta, atravessando peças de terreno e outras figuras. Uma figura não pode sair do tabuleiro através desse movimento."
+  },
+  {
+    "name": "Fúria Sombria",
     "castingNumber": 12,
     "keywords": ["Linha de Visão"],
-    "effect": "Traição perfeita. O feiticeiro torce as Energias Sombrias e troca posições de duas figuras - geralmente colocando um aliado expendível no caminho do perigo enquanto ele mesmo escapa. É a essência da covardia Skaven: usar outros como escudo, sacrificar os fracos para salvar a própria pele imunda. A realidade se distorce por um instante, e duas figuras simplesmente... trocam de lugar. O feiticeiro pode até trocar a si mesmo - geralmente teleportando-se para longe do perigo enquanto algum pobre infeliz toma seu lugar na linha de fogo. Esta magia troca a posição de duas figuras na mesa. As duas figuras devem estar dentro de linha de visão do conjurador e a até 30cm uma da outra. O conjurador pode trocar de posição consigo mesmo. Membros de bandos opostos podem fazer Rolagem de Vontade com CD igual à Rolagem de Conjuração para resistir. Se bem-sucedida, a magia é cancelada e ninguém move. Figuras amigas e figuras descontroladas não resistem - obedecem ou não têm escolha."
+    "effect": "A figura aliada alvo ativa imediatamente após o conjurador e ganha a característica Fúria durante sua ativação apenas."
   },
   {
-    "name": "Armadura das Sombras",
-    "castingNumber": 12,
-    "keywords": ["Linha de Visão", "Ilusão"],
-    "effect": "A figura alvo ganha +1 de Armadura, não podendo levar a figura a mais de 13 de armadura. Adicionalmente, figuras têm -1 de Precisão ao fazer ataques à distância contra a figura alvo. Ambos os efeitos duram até o fim do jogo."
-  },
-  {
-    "name": "Tufão das Presas Amarelas",
+    "name": "Roer Alma",
     "castingNumber": 10,
-    "keywords": ["Linha de Visão", "Área de Efeito (Zona Pequena)"],
-    "effect": "A figura alvo é atacada por um enxame de ratazanas. A Área de Efeito é centralizada e se move junto com a figura alvo enquanto a magia permanecer. Afeta todas as figuras, incluindo a figura alvo, dentro da área de efeito. Enquanto sendo incomodada pelos ratos, uma figura tem -4 Ímpeto e -4 Precisão (mínimo de +0) e -2 em Rolagens de Conjuração. Após esta figura ativar a cada turno, pode fazer um teste de Vontade com CD igual à Rolagem de Conjuração. Se bem-sucedida, a magia é cancelada. Outras figuras dentro da Área de Efeito podem simplesmente se afastar para escapar. Uma figura pode ser afetada por apenas uma magia Tufão das Presas Amarelas por vez, seja como alvo ou por estar dentro da Área de Efeito. Figuras Grandes, mortos-vivos e construtos são imunes a esta magia."
+    "keywords": ["Alcance(40)", "Missil Mágico(Mágico)(+7)"],
+    "effect": "Ataque a figura alvo com o Míssil Mágico. O Míssil Mágico tem um modificador de dano +2."
   },
   {
-    "name": "Passo da Ratazana Leve",
-    "castingNumber": 10,
-    "keywords": ["Linha de Visão"],
-    "effect": "A figura alvo ganha a característica Levitar até o fim do jogo."
-  },
-  {
-    "name": "Fome Negra",
-    "castingNumber": 12,
-    "keywords": ["Linha de Visão"],
-    "effect": "A figura alvo ganha as características Forte e Mente Férrea até o fim do jogo. No final de qualquer ativação em que a figura alvo não estiver em combate, ela recebe 3 de dano e se torna uma figura não-controlada, permanecendo assim até o fim do jogo."
-  },
-  {
-    "name": "Pelagem Sombria",
-    "castingNumber": 10,
-    "keywords": ["Linha de Visão", "Ilusão"],
-    "effect": "A figura alvo ganha a característica Furtividade(30) até o fim do jogo."
-  },
-  {
-    "name": "Dádiva Pestilenta",
-    "castingNumber": 10,
-    "keywords": ["Linha de Visão"],
-    "effect": "A figura alvo ganha um par de garras tóxicas até o fim do jogo. Elas contam como armas com a característica Par e Venenosa, e têm um modificador de dano de +2."
-  },
-  {
-    "name": "Dedos Mucosos",
-    "castingNumber": 12,
-    "keywords": ["Linha de Visão"],
-    "effect": "Até o fim do jogo, sempre que a figura alvo vencer uma luta contra uma figura carregando um fragmento de Pedra-Bruxa, ela automaticamente passa a estar segurando aquele fragmento."
-  },
-  {
-    "name": "Rastejo Célere",
-    "castingNumber": 10,
-    "keywords": ["Linha de Visão"],
-    "effect": "A figura alvo ganha +4 de Movimento até o fim do jogo."
-  },
-  {
-    "name": "Estrelas Distorcidas",
-    "castingNumber": 10,
-    "keywords": ["Linha de Visão", "Míssil Mágico (Mágico Venenoso)(+3)"],
-    "effect": "Ataque a figura alvo com o Míssil Mágico."
+    "name": "Prole do Rato Chifrudo",
+    "castingNumber": 8,
+    "keywords": ["Ritual"],
+    "effect": "O conjurador adiciona 3 ratos gigantes ao bando durante o próximo jogo, que não contam contra o limite de figuras no bando. Os ratos gigantes invocados dessa forma somem após cada jogo."
   },
   {
     "name": "Chamas da Distorção",
     "castingNumber": 10,
     "keywords": ["Área de Efeito (Cone)"],
-    "effect": "Todas as figuras em contato com qualquer uma das áreas de efeito sofrem um ataque à distância mágico flamejante +3. Esse ataque tem modificador de dano +2 e ignora o bônus de armadura de qualquer armadura não mágica vestida por uma figura atacada. As áreas de efeito não podem se interpor."
+    "effect": "Todas as figuras em contato com a área de efeito sofrem um ataque à distância mágico flamejante +5."
+  },
+  {
+    "name": "Chamas da Distorção",
+    "castingNumber": 10,
+    "keywords": ["Área de Efeito (Cone)"],
+    "effect": "Todas as figuras em contato com a área de efeito sofrem um ataque à distância mágico flamejante +5."
   }
 ]

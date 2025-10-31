@@ -25,7 +25,7 @@ function MovementActionsPage() {
     { id: "agua-profunda", title: "Água Profunda", level: 1 },
     { id: "fuga-desesperada", title: "Fuga Desesperada", level: 0 },
     { id: "acao-disparada", title: "Ação de Disparada", level: 0 },
-{ id: "acao-de-escape", title: "Ação de Escape", level: 0 },
+    { id: "acao-de-escape", title: "Ação de Escape", level: 0 },
     { id: "combinando-movimentos", title: "Combinando Movimentos", level: 0 },
     { id: "interceptacao", title: "Interceptação", level: 0 },
     { id: "resumo", title: "Resumo das Ações de Movimento", level: 1 },
@@ -57,6 +57,16 @@ function MovementActionsPage() {
                 </MobileText>
               </WarningBox>
             </div>
+
+            <div id="movimento-normal">
+              <HeaderH1>Ficar parado</HeaderH1>
+            </div>
+            <MobileText>
+              A figura não se move. Essa ação de movimento é usada quando uma
+              figura deseja ficar parada apesar da ação de movimento
+              obrigatória. O personagem é obrigado a Ficar Parado caso só tenha
+              sua ação de movimento restante e ainda esteja em combate.
+            </MobileText>
 
             <div id="movimento-normal">
               <HeaderH1>Movimento Normal</HeaderH1>
@@ -224,27 +234,31 @@ function MovementActionsPage() {
               <HeaderH1>Fuga Desesperada</HeaderH1>
             </div>
             <MobileText>
-              Uma figura pode gastar sua primeira ação do turno para tomar uma
-              ação de fuga desesperada. Ao tomar essa ação, ela se move até{" "}
-              <strong>8 cm</strong>, independente de quaisquer penalidades de
-              movimento e terreno. A ativação da figura então termina
-              imediatamente. Esse movimento não pode ser usado para entrar em
-              contato de base com uma figura inimiga.
+              Uma figura pode gastar suas duas ações (incluindo uma ação de
+              movimento) para tomar uma ação de fuga desesperada. Ao tomar essa
+              ação, ela se move até <strong>8 cm</strong>, independente de
+              quaisquer penalidades de movimento e terreno. A ativação da figura
+              então termina imediatamente.
             </MobileText>
 
             <div id="acao-disparada">
               <HeaderH1>Ação de Disparada</HeaderH1>
             </div>
             <MobileText>
-              Uma figura pode gastar duas ações para fazer uma ação de disparada, se move do duas vezes seu atributo movimento em centímetros, mas seguindo todas as regras de uma ação de movimento normal.
+              Uma figura pode gastar duas ações para fazer uma ação de
+              disparada, se move do duas vezes seu atributo movimento em
+              centímetros, mas seguindo todas as regras de uma ação de movimento
+              normal.
             </MobileText>
 
-
-<div id="acao-de-escape">
-              <HeaderH1>Ação de Disparada</HeaderH1>
+            <div id="acao-de-escape">
+              <HeaderH1>Desengajar</HeaderH1>
             </div>
             <MobileText>
-              Uma figura pode gastar duas ações para fazer uma ação de escape, se movendo seu atributo Movimento em centimetros usando todas as regras normais de ação de movimento, mas podendo se mover mesmo em combate, para fora dele.
+              Uma figura pode gastar duas ações para<strong>desengajar</strong>,
+              se movendo seu atributo Movimento em centimetros usando todas as
+              regras normais de movimento, mas podendo se mover mesmo em
+              combate.
             </MobileText>
 
             <div id="combinando-movimentos">

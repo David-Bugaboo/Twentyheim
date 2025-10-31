@@ -2,22 +2,30 @@
   {
     "id": "nobre-de-kharadron",
     "name": "Nobre de Kharadron",
+    "lore": "Nobres Anões são caçadores de tesouro que recrutaram um bando de Anões de pensamento similar e partiram da fortaleza do seu clã em busca de riquezas. Um Nobre Anão é extremamente respeitado por membros do seu bando. Frequentemente ele faz parte de uma das famílias nobres das fortalezas Anãs perdidas, sonhando em coletar ouro suficiente para restaurar a antiga glória dos Reinos Anões.",
     "role": "Líder",
     "quantity": "1",
     "stats": {
       "move": 7,
       "fight": "+3",
       "shoot": "+2",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+2",
       "health": 12,
       "cost": "85 coroas",
-      "skills": ["Combate", "Atirador", "Força", "Caçadores de Tesouro Anões"]
+      "skills": [
+        "Combate",
+        "Atirador",
+        "Força",
+        "Caçadores de Tesouro Anões"
+      ],
+      "startingXp": 20,
+      "equipmentSlots": 6
     },
     "abilities": [
       {
         "name": "Líder",
-        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. Isso pode ser uma ativação em grupo."
+        "description": "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem."
       },
       {
         "name": "Rancor Antigo",
@@ -34,39 +42,88 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Machado Anão", "cost": "15 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" },
-        { "name": "Armadura de Gromril", "cost": "75 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Machado Anão",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Armadura de Gromril",
+          "cost": "75 coroas"
+        }
       ],
-      "ranged": [{ "name": "Pistola", "cost": "15 coroas (30 para cinto)" }],
+      "ranged": [
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 para cinto)"
+        }
+      ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Armadura de Gromril", "cost": "75 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
-      ],
-      "miscellaneous": [],
-      "modifiers": [{ "name": "De Gromril", "cost": "3x o custo" }]
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Armadura de Gromril",
+          "cost": "75 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
+      ]
     }
   },
   {
     "id": "engenheiro-de-kharadron",
     "name": "Engenheiro de Kharadron",
+    "lore": "Engenheiros Anões são membros respeitados da sociedade Anã. São eles que projetam e constroem as complexas máquinas de guerra e dispositivos que tornaram os Anões famosos.",
     "role": "Herói",
     "quantity": "0-1",
     "stats": {
       "move": 7,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+2",
       "health": 12,
       "cost": "50 coroas",
@@ -76,7 +133,9 @@
         "Acadêmica",
         "Caçadores de Tesouro Anões",
         "Engenharia de Kharadron"
-      ]
+      ],
+      "startingXp": 10,
+      "equipmentSlots": 6
     },
     "abilities": [
       {
@@ -98,37 +157,76 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
-        { "name": "Besta", "cost": "25 coroas" },
-        { "name": "Arcabuz", "cost": "35 coroas" }
+        {
+          "name": "Pistola",
+          "cost": "15 coroas (30 para cinto)"
+        },
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Arcabuz",
+          "cost": "17 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Repetição", "cost": "base * 3" }]
+      "modifiers": [
+       
+      ]
     }
   },
   {
     "id": "mata-trolls-anao",
     "name": "Mata-Trolls Anão",
+    "lore": "Mata-Trolls são membros do culto mórbido dos Anões obcecados em buscar uma morte honrosa em combate. Tendo cometido algum crime imperdoável ou sido desonrado de alguma forma, um Anão abandonará seu lar e vagará para morrer lutando contra um inimigo poderosa. Mata-Trolls são indivíduos são desajustadas, psicopatas e violentos. No entanto, há poucos lutadores melhores no Mundo Conhecido, então eles são muito procurados pelos bandos do seu povo.",
     "role": "Herói",
     "quantity": "0-2",
     "stats": {
       "move": 7,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+2",
       "health": 14,
       "cost": "50 coroas",
@@ -137,7 +235,9 @@
         "Força",
         "Caçadores de Tesouro Anões",
         "Mata-Trolls Anão"
-      ]
+      ],
+      "startingXp": 8,
+      "equipmentSlots": 6
     },
     "abilities": [
       {
@@ -159,36 +259,70 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Machado Anão", "cost": "15 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Machado Anão",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Javelin", "cost": "5 coroas" }
+        {
+          "name": "Javelin",
+          "cost": "5 coroas"
+        }
       ],
       "armor": [],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Gromril", "cost": "3x o custo" }]
+      "modifiers": [
+        
+      ]
     }
   },
   {
     "id": "irmaos-de-clao",
     "name": "Irmãos de Clã",
+    "lore": "Estes são guerreiros Anões no auge: guerreiros resilientes, teimosos e bravos em quem se pode confiar para se manter uma formação contra qualquer inimigo.",
     "quantity": "ilimitado",
     "stats": {
       "move": 7,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+2",
       "health": 12,
-      "cost": "40 coroas"
+      "cost": "40 coroas",
+      "equipmentSlots": 6
     },
     "abilities": [
       {
@@ -206,40 +340,91 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Machado Anão", "cost": "15 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Machado Anão",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
-      "ranged": [{ "name": "Pistola", "cost": "15 coroas (30 para cinto)" }],
+      "ranged": [
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 para cinto)"
+        }
+      ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Armadura de Gromril", "cost": "75 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Armadura de Gromril",
+          "cost": "75 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Gromril", "cost": "3x o custo" }]
+      "modifiers": [
+        
+      ]
     }
   },
   {
-    "id": "trovejador-anao",
-    "name": "Trovejador Anão",
+    "id": "fuzileiro-anao",
+    "name": "Fuzileiro Anão",
+    "lore": "Fuzileiros Anões são exímios atiradores, treinados para atirar bem com qualquer arma a distância. Muitos Orcs ou Goblins morreram pela ferroada de um virote de besta ou de uma bala trovejante de arcabuz disparada por um Fuzileiro Anão.",
     "quantity": "0-5",
     "stats": {
       "move": 7,
       "fight": "+2",
       "shoot": "+1",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+2",
       "health": 12,
-      "cost": "40 coroas"
+      "cost": "40 coroas",
+      "equipmentSlots": 6
     },
     "abilities": [
       {
@@ -257,39 +442,79 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "5 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        }
       ],
       "ranged": [
-        { "name": "Pistola", "cost": "15 coroas (30 para cinto)" },
-        { "name": "Besta", "cost": "25 coroas" },
-        { "name": "Arcabuz", "cost": "35 coroas" }
+        {
+          "name": "Pistola",
+          "cost": "15 coroas (30 para cinto)"
+        },
+        {
+          "name": "Besta",
+          "cost": "25 coroas"
+        },
+        {
+          "name": "Arcabuz",
+          "cost": "17 coroas"
+        }
       ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Repetição", "cost": "base * 3" }]
+      "modifiers": [
+        
+      ]
     }
   },
   {
     "id": "barba-curta",
     "name": "Barba Curta",
+    "lore": "Estes são jovens Anões que se juntaram à comitiva de um caçador de tesouro Anão experiente com a esperança de fazer fortuna.",
     "quantity": "ilimitado",
     "stats": {
       "move": 10,
       "fight": "+1",
       "shoot": "+0",
-      "armour": 10,
+      "armour": 11,
       "Vontade": "+1",
       "health": 12,
-      "cost": "25 coroas"
+      "cost": "25 coroas",
+      "equipmentSlots": 6
     },
     "abilities": [
       {
@@ -307,26 +532,75 @@
     ],
     "equipment": {
       "hand-to-hand": [
-        { "name": "Adaga", "cost": "primeira grátis/2 coroas" },
-        { "name": "Maça", "cost": "3 coroas" },
-        { "name": "Martelo", "cost": "3 coroas" },
-        { "name": "Machado", "cost": "5 coroas" },
-        { "name": "Espada", "cost": "10 coroas" },
-        { "name": "Machado Anão", "cost": "15 coroas" },
-        { "name": "Arma de Duas Mãos", "cost": "15 coroas" },
-        { "name": "Lança", "cost": "10 coroas" },
-        { "name": "Alabarda", "cost": "10 coroas" }
+        {
+          "name": "Adaga",
+          "cost": "primeira grátis/2 coroas"
+        },
+        {
+          "name": "Maça",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Martelo",
+          "cost": "3 coroas"
+        },
+        {
+          "name": "Machado",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Espada",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Machado Anão",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Arma de Duas Mãos",
+          "cost": "15 coroas"
+        },
+        {
+          "name": "Lança",
+          "cost": "10 coroas"
+        },
+        {
+          "name": "Alabarda",
+          "cost": "10 coroas"
+        }
       ],
-      "ranged": [{ "name": "Pistola", "cost": "15 coroas (30 para cinto)" }],
+      "ranged": [
+        {
+          "name": "Pistola",
+          "cost": "7 coroas (15 para cinto)"
+        }
+      ],
       "armor": [
-        { "name": "Armadura Leve", "cost": "20 coroas" },
-        { "name": "Armadura Pesada", "cost": "50 coroas" },
-        { "name": "Armadura de Gromril", "cost": "75 coroas" },
-        { "name": "Escudo", "cost": "5 coroas" },
-        { "name": "Elmo", "cost": "10 coroas" }
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "name": "Armadura de Gromril",
+          "cost": "75 coroas"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas"
+        }
       ],
       "miscellaneous": [],
-      "modifiers": [{ "name": "De Gromril", "cost": "3x o custo" }]
+      "modifiers": [
+        
+      ]
     }
   }
 ]

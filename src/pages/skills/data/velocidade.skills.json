@@ -1,0 +1,38 @@
+[
+  {
+    "id": "investida-em-salto",
+    "name": "Investida em Salto",
+    "type": "Agilidade",
+    "description": "Uma figura com essa habilidade pode saltar a distância de salto máxima sem precisar de um movimento prévio de 10cm, inclusive como parte de uma carga."
+  },
+  {
+    "id": "corredor",
+    "name": "Corredor",
+    "type": "Agilidade",
+    "description": "Uma figura com essa habilidade se move até o triplo do seu atributo movimento em centímetros ao usar uma ação de disparada ou carga, ao invés de o dobro."
+  },
+  {
+    "id": "acrobata",
+    "name": "Acrobata",
+    "type": "Agilidade",
+    "description": "Uma figura com essa habilidade pode cair de uma distância de até 20cm sem tomar dano de queda."
+  },
+  {
+    "id": "escalar-superficies-ingremes",
+    "name": "Escalar Superfícies Ingremes",
+    "type": "Agilidade",
+    "description": "Uma figura com essa habilidade pode escalar usando seu movimento normal ao invés de gastar 2 de movimento para cada centímetro escalado."
+  },
+  {
+    "id": "reflexos-instantaneos",
+    "name": "Reflexos Instantâneos",
+    "type": "Agilidade",
+    "description": "Uma figura com essa habilidade ganha uma segunda reação no turno."
+  },
+  {
+    "id": "rolamento",
+    "name": "rolamento",
+    "type": "Agilidade",
+    "description": "Uma figura com essa habilidade pode, como uma reação a ser alvo de uma carga ou ataque a distância, imediatamente se mover até 3cm em qualquer direção (não pode sair do tabuleiro ou entrar em combate com esse movimento). Se a carga ainda for completada ou o ataque ainda tiver alcance, a figura ganha +2 em quaisquer rolagens de Ímpeto feitas durante a ativação em que essa reação foi usada."
+  }
+]

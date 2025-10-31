@@ -13,6 +13,7 @@ interface Unit {
   name: string;
   role?: string;
   quantity?: string;
+  lore?: string;
   stats: {
     move: number;
     fight: string;
@@ -344,6 +345,8 @@ const VampireCourtsPage: React.FC = () => {
                 name={filteredLeader.name}
                 role={filteredLeader.role}
                 quantity={filteredLeader.quantity}
+                lore={filteredLeader.lore}
+                qualidade={(filteredLeader as any).qualidade || 0}
                 stats={filteredLeader.stats}
                 spellAffinity={filteredLeader.spellAffinity}
                 abilities={filteredLeader.abilities}
@@ -361,6 +364,8 @@ const VampireCourtsPage: React.FC = () => {
                 name={hero.name}
                 role={hero.role}
                 quantity={hero.quantity}
+                lore={hero.lore}
+                qualidade={(hero as any).qualidade || 0}
                 stats={hero.stats}
                 spellAffinity={hero.spellAffinity}
                 abilities={hero.abilities}
@@ -377,6 +382,8 @@ const VampireCourtsPage: React.FC = () => {
                 id={soldier.name.toLowerCase().replace(/\s+/g, "-")}
                 name={soldier.name}
                 quantity={soldier.quantity}
+                lore={soldier.lore}
+                qualidade={(soldier as any).qualidade || 0}
                 stats={soldier.stats}
                 abilities={soldier.abilities}
                 equipment={soldier.equipment}

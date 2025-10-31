@@ -1,4 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Navbar from "./components/Navbar";
@@ -19,8 +26,6 @@ import SpellcastingActionsPage from "./pages/rules/SpellcastingActionsPage";
 import PowerActionsPage from "./pages/rules/PowerActionsPage";
 import OtherActionsPage from "./pages/rules/OtherActionsPage";
 import WyrdstoneActionsPage from "./pages/rules/WyrdstoneActionsPage";
-import GameEndPage from "./pages/rules/GameEndPage";
-import GameSetupPage from "./pages/rules/GameSetupPage";
 import MagicRulesPage from "./pages/rules/MagicRulesPage";
 import WarbandCreationPage from "./pages/rules/WarbandCreationPage";
 import ExperienceRollPage from "./pages/campanha/ExperienceRollPage";
@@ -30,25 +35,6 @@ import ExplorationPage from "./pages/campanha/ExplorationPage";
 import ExplorationEventsPage from "./pages/campanha/ExplorationEventsPage";
 import WyrdstoneSellingPage from "./pages/campanha/WyrdstoneSellingPage";
 import SkillsIndexPage from "./pages/skills/SkillsIndexPage";
-import CombatSkillsPage from "./pages/skills/CombatSkillsPage";
-import RangedSkillsPage from "./pages/skills/RangedSkillsPage";
-import AcademicSkillsPage from "./pages/skills/AcademicSkillsPage";
-import StrengthSkillsPage from "./pages/skills/StrengthSkillsPage";
-import AgilitySkillsPage from "./pages/skills/AgilitySkillsPage";
-import SistersOfSigmarSkillsPage from "./pages/skills/SistersOfSigmarSkillsPage";
-import SkavenEnshinSkillsPage from "./pages/skills/SkavenEnshinSkillsPage";
-import BeastmenRaidersSkillsPage from "./pages/skills/BeastmenRaidersSkillsPage";
-import DwarfTreasureHuntersSkillsPage from "./pages/skills/DwarfTreasureHuntersSkillsPage";
-import DwarfTrollSlayersSkillsPage from "./pages/skills/DwarfTrollSlayersSkillsPage";
-import EngineeringSkillsPage from "./pages/skills/EngineeringSkillsPage";
-import VonCarsteinSkillsPage from "./pages/skills/VonCarsteinSkillsPage";
-import CrimsonDragonSkillsPage from "./pages/skills/CrimsonDragonSkillsPage";
-import StrigoiSkillsPage from "./pages/skills/StrigoiSkillsPage";
-import DarkElfCorsairsSkillsPage from "./pages/skills/DarkElfCorsairsSkillsPage";
-import GeckoSkillsPage from "./pages/skills/GeckoSkillsPage";
-import SaurusSkillsPage from "./pages/skills/SaurusSkillsPage";
-import OrcHordesSkillsPage from "./pages/skills/OrcHordesSkillsPage";
-import SonsOfHashutSkillsPage from "./pages/skills/SonsOfHashutSkillsPage";
 import WeaponsAndEquipmentsPage from "./pages/weapons and equipments/WeaponsAndEquipmentsPage";
 import MeleeWeaponsPage from "./pages/weapons and equipments/MeleeWeaponsPage";
 import ArmorAndShieldsPage from "./pages/weapons and equipments/ArmorAndShieldsPage";
@@ -70,29 +56,42 @@ import SkavenPage from "./pages/warbands/skaven/SkavenPage";
 import SonsOfHashutPage from "./pages/warbands/sons-of-hashut/SonsOfHashutPage";
 import VampireCourtsPage from "./pages/warbands/vampire-courts/VampireCourtsPage";
 import WitchHuntersPage from "./pages/warbands/witch-hunters/WitchHuntersPage";
-import LahmiaSkillsPage from "./pages/skills/LahmiaSkillsPage";
+import CarnivalOfChaosPage from "./pages/warbands/carnival-of-chaos/CarnivalOfChaosPage";
+import WarbandRosterPage from "./pages/warband-builder/roster/WarbandRosterPage";
+import WarbandBuilderPage from "./pages/warband-builder/builder/WarbandBuilderPage";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
+
 import AttributeTestsPage from "./pages/rules/AttributeTestsPage";
 import CampaignPage from "./pages/campanha/CampaignPage";
 import ArcaneLoresPage from "./pages/spells/lores/ArcaneLoresPage";
-import LoreOfFirePage from "./pages/spells/LoreOfFirePage";
-import LoreOfBeastsPage from "./pages/spells/LoreOfBeastsPage";
-import LoreOfDeathPage from "./pages/spells/LoreOfDeathPage";
-import LoreOfHeavensPage from "./pages/spells/LoreOfHeavensPage";
-import LoreOfLifePage from "./pages/spells/LoreOfLifePage";
-import LoreOfLightPage from "./pages/spells/LoreOfLightPage";
-import LoreOfMetalPage from "./pages/spells/LoreOfMetalPage";
-import LoreOfShadowsPage from "./pages/spells/LoreOfShadowsPage";
-import DarkLoresPage from "./pages/spells/lores/DarkLoresPage";
-import LoreOfHashutPage from "./pages/spells/LoreOfHashutPage";
-import LoreOfChaosPage from "./pages/spells/LoreOfChaosPage";
-import LoreOfTheHornedRatPage from "./pages/spells/LoreOfTheHornedRatPage";
-import LoreOfNecromancyPage from "./pages/spells/LoreOfNecromancyPage";
-import DivineLoresPage from "./pages/spells/lores/DivineLoresPage";
-import PrayersOfSigmarPage from "./pages/spells/PrayersOfSigmarPage";
-import PrayersOfUlricPage from "./pages/spells/PrayersOfUlricPage";
-import GreenskinLoresPage from "./pages/spells/lores/GreenskinLoresPage";
-import LoreOfTheBigWaaaghPage from "./pages/spells/LoreOfTheBigWaaaghPage";
 import HappeningsPage from "./pages/rules/Happenings";
+import ReactionsPage from "./pages/rules/ReactionsPage";
+import ChargeActionsPage from "./pages/rules/ChargeActionsPage";
+import FightActionsPage from "./pages/rules/FightActionsPage";
+import GenericLorePage from "./pages/spells/GenericLorePage";
+import GenericSkillsPage from "./pages/skills/GenericSkillsPage";
+import ScenariosPage from "./pages/scenarios/ScenariosPage";
+import GoblinsPage from "./pages/warbands/goblins/GoblinsPage";
+import DefendTheFindPage from "./pages/scenarios/defend-the-find/DefendTheFindPage";
+import SkirmishPage from "./pages/scenarios/skirmish/SkirmishPage";
+import WyrdstoneHuntPage from "./pages/scenarios/wyrdstone-hunt/WyrdstoneHuntPage";
+import BreakthroughPage from "./pages/scenarios/breakthrough/BreakthroughPage";
+import StreetFightPage from "./pages/scenarios/street-fight/StreetFightPage";
+import ChanceEncounterPage from "./pages/scenarios/chance-encounter/ChanceEncounterPage";
+import HiddenTreasurePage from "./pages/scenarios/hidden-treasure/HiddenTreasurePage";
+import OccupyPage from "./pages/scenarios/occupy/OccupyPage";
+import SurpriseAttackPage from "./pages/scenarios/surprise-attack/SurpriseAttackPage";
+import MonsterHuntPage from "./pages/scenarios/monster-hunt/MonsterHuntPage";
+import WizardMansionPage from "./pages/scenarios/wizard-mansion/WizardMansionPage";
+import TreasureHuntPage from "./pages/scenarios/treasure-hunt/TreasureHuntPage";
+import StreetBrawlPage from "./pages/scenarios/street-brawl/StreetBrawlPage";
+import HeistPage from "./pages/scenarios/heist/HeistPage";
+import ThePoolPage from "./pages/scenarios/the-pool/ThePoolPage";
+import LostPrincePage from "./pages/scenarios/lost-prince/LostPrincePage";
+import LegendsPage from "./pages/campanha/LegendsPage";
+import HiredSwordsPage from "./pages/campanha/MercenariesPage";
+import DarkGodsInvocationPage from "./pages/campanha/DarkGodsInvocationPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -151,6 +150,42 @@ function App() {
 function AppContent() {
   useScrollToTop();
 
+  // Pequeno guard para proteger rotas específicas do gestor de bando
+  function ProtectedRosterRoute({
+    children,
+  }: {
+    children: React.ReactElement;
+  }) {
+    const location = useLocation();
+    const [isAuthChecked, setIsAuthChecked] = useState(false as boolean);
+    const [user, setUser] = useState<any>(null);
+
+    React.useEffect(() => {
+      const unsub = onAuthStateChanged(auth, (u) => {
+        setUser(u);
+        setIsAuthChecked(true);
+      });
+      return () => unsub();
+    }, []);
+
+    if (!isAuthChecked) {
+      return null; // evita flicker durante checagem
+    }
+
+    if (!user) {
+      // Não autenticado: redireciona para a página do Gestor de Bando (que abre o modal)
+      return (
+        <Navigate
+          to="/warband-builder"
+          replace
+          state={{ from: location.pathname, requireLogin: true }}
+        />
+      );
+    }
+
+    return children;
+  }
+
   return (
     <>
       <Navbar />
@@ -174,20 +209,22 @@ function AppContent() {
           element={<MovementActionsPage />}
         />
         <Route path="/rules/combat-actions" element={<CombatActionsPage />} />
+        <Route path="/rules/charge-actions" element={<ChargeActionsPage />} />
+        <Route path="/rules/fight-actions" element={<FightActionsPage />} />
         <Route path="/rules/ranged-actions" element={<RangedActionsPage />} />
-        <Route path="/rules/happenings" element={<HappeningsPage/>} />
+        <Route path="/rules/happenings" element={<HappeningsPage />} />
         <Route
           path="/rules/spellcasting-actions"
           element={<SpellcastingActionsPage />}
         />
         <Route path="/rules/skill-actions" element={<PowerActionsPage />} />
         <Route path="/rules/other-actions" element={<OtherActionsPage />} />
+        <Route path="/rules/reactions" element={<ReactionsPage />} />
         <Route
           path="/rules/wyrdstone-actions"
           element={<WyrdstoneActionsPage />}
         />
-        <Route path="/rules/game-end" element={<GameEndPage />} />
-        <Route path="/rules/game-setup" element={<GameSetupPage />} />
+
         <Route path="/rules/attribute-tests" element={<AttributeTestsPage />} />
         <Route
           path="/rules/warband-creation"
@@ -207,62 +244,54 @@ function AppContent() {
           path="/campaign/exploration-events"
           element={<ExplorationEventsPage />}
         />
-
+        <Route path="/scenarios" element={<ScenariosPage />} />
+        <Route
+          path="/scenarios/defend-the-find"
+          element={<DefendTheFindPage />}
+        />
+        <Route path="/scenarios/skirmish" element={<SkirmishPage />} />
+        <Route
+          path="/scenarios/wyrdstone-hunt"
+          element={<WyrdstoneHuntPage />}
+        />
+        <Route path="/scenarios/breakthrough" element={<BreakthroughPage />} />
+        <Route path="/scenarios/street-fight" element={<StreetFightPage />} />
+        <Route
+          path="/scenarios/chance-encounter"
+          element={<ChanceEncounterPage />}
+        />
+        <Route
+          path="/scenarios/hidden-treasure"
+          element={<HiddenTreasurePage />}
+        />
+        <Route path="/scenarios/occupy" element={<OccupyPage />} />
+        <Route
+          path="/scenarios/surprise-attack"
+          element={<SurpriseAttackPage />}
+        />
+        <Route path="/scenarios/monster-hunt" element={<MonsterHuntPage />} />
+        <Route
+          path="/scenarios/wizard-mansion"
+          element={<WizardMansionPage />}
+        />
+        <Route path="/scenarios/treasure-hunt" element={<TreasureHuntPage />} />
+        <Route path="/scenarios/street-brawl" element={<StreetBrawlPage />} />
+        <Route path="/scenarios/heist" element={<HeistPage />} />
+        <Route path="/scenarios/the-pool" element={<ThePoolPage />} />
+        <Route path="/scenarios/lost-prince" element={<LostPrincePage />} />
         <Route
           path="/campaign/wyrdstone-selling"
           element={<WyrdstoneSellingPage />}
         />
+        <Route path="/campaign/mercenaries" element={<HiredSwordsPage />} />
+        <Route path="/campaign/legends" element={<LegendsPage />} />
+        <Route
+          path="/campaign/dark-gods-invocation"
+          element={<DarkGodsInvocationPage />}
+        />
         <Route path="/campaign/skills-index" element={<SkillsIndexPage />} />
         <Route path="/skills" element={<SkillsIndexPage />} />
-        <Route path="/skills/combat" element={<CombatSkillsPage />} />
-        <Route path="/skills/ranged" element={<RangedSkillsPage />} />
-        <Route path="/skills/academic" element={<AcademicSkillsPage />} />
-        <Route path="/skills/strength" element={<StrengthSkillsPage />} />
-        <Route path="/skills/agility" element={<AgilitySkillsPage />} />
-        <Route
-          path="/skills/sisters-of-sigmar"
-          element={<SistersOfSigmarSkillsPage />}
-        />
-        <Route
-          path="/skills/skaven-enshin"
-          element={<SkavenEnshinSkillsPage />}
-        />
-        <Route
-          path="/skills/beastmen-raiders"
-          element={<BeastmenRaidersSkillsPage />}
-        />
-        <Route
-          path="/skills/dwarf-treasure-hunters"
-          element={<DwarfTreasureHuntersSkillsPage />}
-        />
-        <Route
-          path="/skills/dwarf-troll-slayers"
-          element={<DwarfTrollSlayersSkillsPage />}
-        />
-        <Route path="/skills/engineering" element={<EngineeringSkillsPage />} />
-        <Route
-          path="/skills/von-carstein"
-          element={<VonCarsteinSkillsPage />}
-        />
-        <Route
-          path="/skills/crimson-dragon"
-          element={<CrimsonDragonSkillsPage />}
-        />
-        <Route path="/skills/lahmia" element={<LahmiaSkillsPage />} />
-        <Route path="/skills/strigoi" element={<StrigoiSkillsPage />} />
-        <Route
-          path="/skills/dark-elf-corsairs"
-          element={<DarkElfCorsairsSkillsPage />}
-        />
-        <Route path="/skills/geckos" element={<GeckoSkillsPage />} />
-        <Route path="/skills/saurus" element={<SaurusSkillsPage />} />
-        <Route path="/skills/orc-hordes" element={<OrcHordesSkillsPage />} />
-        <Route
-          path="/skills/sons-of-hashut"
-          element={<SonsOfHashutSkillsPage />}
-        />
-        <Route path="/skills/skink" element={<GeckoSkillsPage />} />
-        <Route path="/skills/saurian" element={<SaurusSkillsPage />} />
+        <Route path="/skills/:slug" element={<GenericSkillsPage />} />
         <Route path="/equipment" element={<WeaponsAndEquipmentsPage />} />
         <Route path="/equipment/melee-weapons" element={<MeleeWeaponsPage />} />
         <Route
@@ -282,41 +311,10 @@ function AppContent() {
         <Route path="/equipment/accessories" element={<AccessoriesPage />} />
         <Route path="/magic" element={<MagicRulesPage />} />
         <Route path="/magic/arcane-lores" element={<ArcaneLoresPage />} />
-        <Route path="/magic/arcane-lores/fire" element={<LoreOfFirePage />} />
+        <Route path="/magic/:slug" element={<GenericLorePage />} />
         <Route
-          path="/magic/arcane-lores/beasts"
-          element={<LoreOfBeastsPage />}
-        />
-        <Route path="/magic/arcane-lores/death" element={<LoreOfDeathPage />} />
-        <Route
-          path="/magic/arcane-lores/heavens"
-          element={<LoreOfHeavensPage />}
-        />
-        <Route path="/magic/arcane-lores/life" element={<LoreOfLifePage />} />
-        <Route path="/magic/arcane-lores/light" element={<LoreOfLightPage />} />
-        <Route path="/magic/arcane-lores/metal" element={<LoreOfMetalPage />} />
-        <Route
-          path="/magic/arcane-lores/shadows"
-          element={<LoreOfShadowsPage />}
-        />
-        <Route path="/magic/dark-lores" element={<DarkLoresPage />} />
-        <Route path="/magic/dark-lores/hashut" element={<LoreOfHashutPage />} />
-        <Route path="/magic/dark-lores/chaos" element={<LoreOfChaosPage />} />
-        <Route
-          path="/magic/dark-lores/horned-rat"
-          element={<LoreOfTheHornedRatPage />}
-        />
-        <Route
-          path="/magic/dark-lores/necromancy"
-          element={<LoreOfNecromancyPage />}
-        />
-        <Route path="/magic/prayers" element={<DivineLoresPage />} />
-        <Route path="/magic/prayers/sigmar" element={<PrayersOfSigmarPage />} />
-        <Route path="/magic/prayers/ulric" element={<PrayersOfUlricPage />} />
-        <Route path="/magic/greenskin-lores" element={<GreenskinLoresPage />} />
-        <Route
-          path="/magic/greenskin/big-waaagh"
-          element={<LoreOfTheBigWaaaghPage />}
+          path="magic/magic-of-the-dark-gods"
+          element={<DarkGodsInvocationPage />}
         />
         <Route path="/warbands" element={<WarbandsIndexPage />} />
         <Route
@@ -335,6 +333,7 @@ function AppContent() {
           path="/warbands/dwarf-treasure-hunters"
           element={<DwarfTreasureHuntersPage />}
         />
+        <Route path="/warbands/goblins" element={<GoblinsPage />} />
         <Route path="/warbands/lizardmen" element={<LizardmenPage />} />
         <Route path="/warbands/mercenaries" element={<MercenariesPage />} />
         <Route path="/warbands/orc-mob" element={<OrcMobPage />} />
@@ -349,6 +348,19 @@ function AppContent() {
           element={<VampireCourtsPage />}
         />
         <Route path="/warbands/witch-hunters" element={<WitchHuntersPage />} />
+        <Route
+          path="/warbands/carnival-of-chaos"
+          element={<CarnivalOfChaosPage />}
+        />
+        <Route path="/warband-builder" element={<WarbandBuilderPage />} />
+        <Route
+          path="/warband-builder/roster"
+          element={
+            <ProtectedRosterRoute>
+              <WarbandRosterPage />
+            </ProtectedRosterRoute>
+          }
+        />
       </Routes>
     </>
   );

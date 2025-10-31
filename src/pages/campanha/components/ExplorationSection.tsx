@@ -1,12 +1,9 @@
 import CollapsibleSection from "../../../components/CollapsibleSection";
 import MobileText from "../../../components/MobileText";
 
-
 const ExplorationSection = () => {
-
-  
   return (
-    <CollapsibleSection id="exploracao" title="3. Enviar Líderes" >
+    <CollapsibleSection id="exploracao" title="3. Enviar Líderes">
       <MobileText className="mb-4">
         Heróis e campeões podem ser enviados para explorar as ruínas de
         Mordheim, Buscando mercadores de items raros, guerreiros experientes ou
@@ -22,7 +19,7 @@ const ExplorationSection = () => {
         Explorar Ruinas
       </MobileText>
       <MobileText className="mb-3">
-        O jogador pode enviar o Héroi ou Campeão do seu bando para explorar as
+        O jogador pode enviar o Herói ou Campeão do seu bando para explorar as
         ruínas. Para cada um deles enviado, role 2d20 e compare as duas rolagens
         com a tabela na página <strong>Eventos de Exploração</strong>. Resolva o
         resultado do evento rolado antes de rolar do próximo guerreiro ou fazer
@@ -33,7 +30,7 @@ const ExplorationSection = () => {
         Buscar no Mercado Negro
       </MobileText>
       <MobileText className="mb-3">
-        O jogador pode enviar o Héroi ou Campeão do seu bando para buscar items
+        O jogador pode enviar o Herói ou Campeão do seu bando para buscar items
         no mercado negro. Para cada um deles enviado, role 4 vezes na{" "}
         <strong>Tabela de Troca de Pedra-Bruxa</strong>, ignorando resultados de
         coroas e Mapa de Mordheim. Role nas subtabelas adequadas, e anote os
@@ -47,7 +44,7 @@ const ExplorationSection = () => {
         Buscar Guerreiros Experientes
       </MobileText>
       <MobileText className="mb-3">
-        O jogador pode enviar o Héroi ou Campeão do seu bando para procurar os
+        O jogador pode enviar o Herói ou Campeão do seu bando para procurar os
         serviços de mercenários experientes e até mesmo guerreiros lendários.
         Para cada um deles enviado, role uma vez na{" "}
         <strong>Tabela de Contratação de Guerreiros</strong>. Aquele guerreiro

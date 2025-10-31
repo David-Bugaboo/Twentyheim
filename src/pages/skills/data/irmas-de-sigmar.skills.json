@@ -1,0 +1,32 @@
+[
+  {
+    "id": "sinal-de-sigmar",
+    "name": "Sinal de Sigmar",
+    "type": "Irmãs de Sigmar",
+    "description": "Figuras com as características Daemônio ou Morto-Vivo tem -2 de Ímpeto em testes de ataque corpo a corpo contra a figura com essa habilidade."
+  },
+  {
+    "id": "proteção-de-sigmar",
+    "name": "Proteção de Sigmar",
+    "type": "Irmãs de Sigmar",
+    "description": "A figura com essa habilidade tem +5 em testes para resistir a efeitos de magias, independente do atributo rolado."
+  },
+  {
+    "id": "determinação-inabalável",
+    "name": "Determinação Inabalável",
+    "type": "Irmãs de Sigmar",
+    "description": "Apenas uma Matriarca Sigmarita pode ter essa habilidade. O Bando ganha +5 em testes de debandada enquanto a Matriarca Sigmarita estiver no tabuleiro."
+  },
+  {
+    "id": "furia-justa",
+    "name": "Fúria Justa",
+    "type": "Irmãs de Sigmar",
+    "description": "A figura com essa habilidade ganha a característica Ódio(Culto dos Possuídos, Saqueadores Homem-Fera, Elfos Negros, Filhos de Hashut, Skaven e Cortes Vampíricas)."
+  },
+  {
+    "id": "fé-absoluta",
+    "name": "Fé Absoluta",
+    "type": "Irmãs de Sigmar",
+    "description": "A figura com essa habilidade ganha a característica Mente-Férrea e Imune a Aterrorizante."
+  }
+]

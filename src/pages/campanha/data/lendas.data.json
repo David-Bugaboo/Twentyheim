@@ -1,0 +1,340 @@
+[
+  {
+    "id": "aenur-espada-do-crepusculo",
+    "name": "Aenur, a Espada do Crepúsculo",
+    "lore": "Muitos espadachins famosos vieram para Mordheim para fazer fortuna, mas poucos podem igualar a reputação aterrorizante do espadachim Elfo Aenur. Este poderoso guerreiro foi responsável por matar todo o bando Possuído de Karl Zimmeran, e sozinho limpou o Abismo do Rato, um assentamento que havia sido invadido por Homens-Fera. Rumores sobre a origem de Aenur abundam. Elfos geralmente evitam assentamentos humanos, e Mordheim ainda mais, mas por alguma razão o espadachim alto e pálido permaneceu nas proximidades da cidade arruinada por meses. Alguns dizem que Aenur vem de além do Grande Oceano, dos reinos élficos de contos de fada, e que ele é o capitão da lendária Ordem dos Santos Espadachins. Outros afirmam que ele é um príncipe Elfo Silvano no exílio. Aenur mesmo diz pouco sobre seu passado e aqueles que são sábios não o questionam. Sempre que um bando prepara uma expedição para explorar a cidade interior, há uma chance de que possam ouvir uma batida aguda no portão de seu acampamento – seu visitante inesperado será Aenur, oferecendo seus serviços ao seu líder. Se, de fato, Aenur busca algo nas ruínas sombrias de Mordheim, ninguém sabe o que isso pode ser. Alguns dizem que ele deseja explorar o próprio Abismo, e matar o enigmático Senhor das Sombras, embora tal tarefa deva certamente estar acima até mesmo deste poderoso guerreiro.",
+    "role": "Lenda",
+    "availability": ["Todos"],
+    "exclusions": [
+      "Skaven",
+      "Cortes Vampíricos",
+      "Culto dos Possuídos",
+      "Corsários Druchii",
+      "Filhos de Hashut"
+    ],
+    "qualidade": 100,
+    "stats": {
+      "move": 18,
+      "fight": "+6",
+      "shoot": "+4",
+      "armour": 10,
+      "Vontade": "+7",
+      "health": 18,
+      "strength": "+1",
+      "cost": "150 coroas",
+      "upkeep": "0 coroas",
+      "mercEquipment": ["Armadura de Ithilmar", "Manto Élfico", "Espada"],
+      "legendSkills": [
+        "Golpe Mortífero",
+        "Mestre do Combate",
+        "Evasão Rápida",
+        "Corredor",
+        "Reflexos Instantâneos",
+        "Rolamento",
+        "Golpe Poderoso"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Armadura de Ithilmar, Manto Élfico, Espada."
+      },
+      {
+        "name": "Espadachim Invencível",
+        "description": "Aenur sempre causa dano em lutas, mesmo quando perde a luta. Ele continua recebendo dano como normal. Ele tem a característica Forte."
+      },
+      {
+        "name": "Andarilho",
+        "description": "Aenur apenas permanece com um bando pela duração da batalha. Um bando que usou Aenur em sua última batalha não pode procurá-lo até que tenham lutado pelo menos uma batalha sem ele."
+      },
+      {
+        "name": "Ienh-Khain (a Mão de Khaine)",
+        "description": "Ienh-Khain é uma espada de um fio incrivelmente longa, que Aenur usa com uma habilidade sobre-humana. Esta espada é uma Arma de Duas Mãos com +1 de modificador de dano e que causa um dano crítico em uma rolagem natural de 19 e 20."
+      },
+      {
+        "name": "Habilidades",
+        "description": "Aenur tem as seguintes habilidades: Golpe Mortífero, Mestre do Combate, Evasão Rápida, Corredor, Reflexos Instantâneos, Rolamento e Golpe Poderoso."
+      }
+    ]
+  },
+  {
+    "id": "bertha-bestraufrung",
+    "name": "Bertha Bestraufrung, Alta Matriarca da Irmandade de Sigmar",
+    "lore": "Anos atrás, Bertha buscou refúgio na disciplina rigorosa e devoções das Irmãs de Sigmar. Apenas o deus guerreiro do Império era digno de sua estima. Apenas Ele era constante e fiel. E não havia o santo Sigmar, na verdade, escolhido ela para ser uma de suas servas? O sangue dos Unberogens corre nas veias de Bertha, como evidenciado por suas longas tranças douradas e olhos azuis ferozes, que podem congelar um Goblin a vinte passos com um olhar gelado. Até sua voz comanda autoridade, transformando homens fortes e musculosos em miseráveis trêmulos. As Irmãs olham para Bertha como um exemplo de santidade feminina. Ela subiu rapidamente pelas fileiras da Irmandade, e em seu leito de morte a reverenciada Matriarca Cassandra nomeou Bertha sua sucessora, nova Alta Matriarca, e Abadessa da Rocha de Sigmar. Às vezes, enquanto Bertha veste sua armadura de Gromril na luz do amanhecer, ela reflete sobre a inocência perdida de sua juventude. Então, com raiva, ela aperta as correias de couro cravejadas firmemente sobre seus membros duros como ferro e sai para passar horas praticando com seus grandes martelos de guerra, preparando-se, como uma noiva de Sigmar deveria, para o dia da batalha.",
+    "role": "Lenda",
+    "availability": ["Irmãs de Sigmar"],
+    "qualidade": 105,
+    "stats": {
+      "move": 11,
+      "fight": "+4",
+      "shoot": "+2",
+      "armour": 10,
+      "Vontade": "+8",
+      "health": 20,
+      "strength": "+1",
+      "cost": "0 coroas",
+      "upkeep": "0 coroas",
+      "mercEquipment": [
+        "Martelo de Guerra Sigmarita",
+        "Martelo de Guerra Sigmarita",
+        "Água Benta",
+        "Relíquia Sagrada",
+        "Armadura de Gromril"
+      ],
+      "legendSpells": [
+        "Martelo de Sigmar",
+        "Água Corações de Aço",
+        "Fogo Espiritual",
+        "Escudo da Fé",
+        "Imposição de Mãos",
+        "Couraça da Justiça"
+      ],
+      "legendSkills": [
+        "Esmaga Crânio",
+        "Evasão Rápida",
+        "Carga Imparável",
+        "Fúria Justa"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Martelo de Guerra Sigmarita, Martelo de Guerra Sigmarita, Água Benta, Relíquia Sagrada, Armadura de Gromril."
+      },
+      {
+        "name": "Alta Matriarca",
+        "description": "Como Alta Matriarca da Misericórdia das Irmãs de Sigmar, Bertha será automaticamente a líder de qualquer bando que ela se junte, ganhando a habilidade Líder."
+      },
+      {
+        "name": "Serva de Sigmar",
+        "description": "Bertha é favorecida acima de todas as outras Irmãs aos olhos de Sigmar. Ela ganha +4 em todas as suas rolagens de conjuração."
+      },
+      {
+        "name": "Sacerdotisa",
+        "description": "Bertha é uma Sacerdotisa das Orações de Sigmar. Ela entra para o bando sabendo todas as orações dessa Tradição."
+      },
+      {
+        "name": "Habilidades",
+        "description": "Bertha tem as seguintes habilidades: Esmaga Crânio, Carga Imparável e Fúria Justa."
+      },
+      {
+        "name": "Condições de Contratação",
+        "description": "Bertha só virá em auxílio de um bando das Irmãs de Sigmar se enviarem uma ou mais de suas Heroínas para procurá-la. Cada heroína enviada rola um 1d20. Escolha o melhor resultado. Ela só ajudará se o inimigo tiver uma qualidade de bando maior. Diferença de qualidade: 0-49 (não vem), 50-99 (20+), 100-149 (16+), 150-199 (12+), 200+ (10+)."
+      }
+    ]
+  },
+  {
+    "id": "condessa-marianna-chevaux",
+    "name": "Condessa Marianna Chevaux, Assassina Vampira",
+    "lore": "Uma vez uma assassina-ladra, as ambições de Marianna a superaram. Em uma expedição ousada a Araby, ela entrou em contato com a antiga Vampira Serutat. Marianna teve sucesso em sua missão, roubando a gema, o Noctu, da cripta de Serutat, mas a Vampira a alcançou, contaminando-a com a maldição do Vampirismo antes que a assassina astuta pudesse escapar. Em um momento Marianna havia se tornado uma criatura da noite e ainda assim ela não estava completamente condenada, uma meio-vampira. Saciando sua sede de sangue nas numerosas cortesãs, capitães e pretendentes que vinham em seu caminho, Marianna fugiu da vingança amarga da Vampira Lahmiana, Serutat, para Mordheim. Com a Cidade dos Condenados sua relativa anonimidade estaria assegurada. Marianna é uma pragmática, neutra em sua persona, servindo apenas seus próprios meios, alugando suas habilidades como assassina, tomando cuidado para ocultar seu segredo. Cautelosa com caçadores de bruxas e outros servos devotos de Sigmar, Marianna é uma criatura das sombras, seus poderes vampíricos aprimorando suas habilidades imensamente. E ainda assim a fuga para Mordheim serve um motivo ulterior. Vampira transformada em Caçadora de Vampiros e como tal um exílio no submundo dos Mortos-Vivos, Marianna rastreia os perseguidores noturnos de Mordheim, torturando-os por informações; o paradeiro de Serutat e a verdadeira natureza do Noctu, a joia negra roubada de sua cripta.",
+    "role": "Lenda",
+    "availability": ["Todos"],
+    "exclusions": [
+      "Caçadores de Bruxas",
+      "Irmãs de Sigmar",
+      "Culto dos Possuídos",
+      "Cortes Vampíricas"
+    ],
+    "qualidade": 90,
+    "stats": {
+      "move": 12,
+      "fight": "+5",
+      "shoot": "+4",
+      "armour": 11,
+      "Vontade": "+8",
+      "health": 16,
+      "strength": "+1",
+      "cost": "150 coroas",
+      "upkeep": "75 coroas",
+      "mercEquipment": [
+        "Espada",
+        "Adaga",
+        "Facas de Arremesso",
+        "Besta de Mão"
+      ],
+      "legendSkills": [
+        "Mestre do Combate",
+        "Evasão Rápida",
+        "Investida em Salto",
+        "Acrobata",
+        "Reflexos Instantâneos",
+        "Rolamento",
+        "Escalar Superfícies Íngremes"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Espada, Adaga, Facas de Arremesso, Besta de Mão."
+      },
+      {
+        "name": "Morto-Vivo Superior",
+        "description": "A Condessa têm as seguintes características: Morto-Vivo, Forte e Aterrorizante."
+      },
+      {
+        "name": "Lutando Contra Mortos-Vivos",
+        "description": "Devido à sua vocação como Assassina Vampira transformada em Caçadora de Vampiros, todos os Vampiros tem a característica Ódio contra a condessa."
+      },
+      {
+        "name": "O Noctu",
+        "description": "A gema roubada do covil de Serutat tem propriedades poderosas de camuflagem. O véu de sombra que cria faz com que Marianna seja considerada sempre em cobertura Leve."
+      },
+      {
+        "name": "Habilidades",
+        "description": "Marianna tem as seguintes habilidades: Mestre do Combate, Evasão Rápida, Investida em Salto, Acrobata, Reflexos Instantâneos, Rolamento  e Escalar Superfícies Íngremes."
+      },
+      {
+        "name": "Essência de Alho",
+        "description": "Sua munição de besta e espada são revestidas com essência de alho, que age como Lótus Negro quando usada contra Vampiros. Ela também tem um guarda-roupa extenso de vestidos de seda Bretoniana muito caros!"
+      },
+      {
+        "name": "Você nunca pode escapar do seu passado...",
+        "description": "No último turno do jogo em que Marianna não foi reduzida a 0 de vida ou assim que um bando debada, terminando o jogo, role um D20: 1-7 (Marianna descobriu que Serutat está se aproximando e deixará o serviço do bando após o jogo), 8-15 (Marianna descobriu uma pista útil que deve perseguir nesta área e ficará por mais um jogo se o bando puder pagar sua manutenção), 16-20 (Um grupo de lacaios de Serutat a alcançaram! Lute 3 turnos extras como se o bando perdedor não tivesse fugido. Adicione 4 carniçais e 3 zumbis na borda do campo mais próxima da Condessa. Eles agem como criaturas não controladas normalmente)."
+      }
+    ]
+  },
+  {
+    "id": "johann-a-faca",
+    "name": "Johann, a Faca",
+    "lore": "Dos muitos assassinos e assassinos contratados que infestam os assentamentos ao redor de Mordheim, Johann, a Faca é o mais famoso. Ele se gaba sua vocação como lutador de facas contratado e assassino extraordinário com as várias facas letais penduradas em seu cinto, e o brilho malicioso de seus olhos. Johann usa equipamentos de couro negro, ligeiramente fora de moda, que nunca foram lavados (ou assim dizem as garçonetes das tavernas que ele frequenta). Seu rosto longo carrega as cicatrizes de muitas lutas, e seu cabelo desgrenhado é liso e oleoso. A bolsa de Johann está sempre pesada com ouro, e ele não se incomoda em escondê-la, já que apenas um tolo tentaria roubá-lo. Muitos tentaram, e todos morreram... muito rapidamente. A qualidade das adagas de Johann são incomparáveis, pois ele as tomou dos corpos dos muitos oponentes ricos, mas fracos, que despachou em duelos violentos.",
+    "role": "Lenda",
+    "availability": ["Todos"],
+    "exclusions": [
+      "Skaven",
+      "Cortes Vampíricas",
+      "Culto dos Possuídos",
+      "Filhos de Hashut"
+    ],
+    "qualidade": 60,
+    "stats": {
+      "move": 8,
+      "fight": "+2",
+      "shoot": "+6",
+      "armour": 10,
+      "Vontade": "+2",
+      "health": 16,
+      "strength": "+1",
+      "cost": "70 coroas",
+      "upkeep": "30 coroas",
+      "mercEquipment": ["Facas de Arremesso", "Espada", "Adaga"],
+      "legendSkills": [
+        "Rolamento",
+        "Escalar Superfícies Íngremes",
+        "Tiro Rápido",
+        "Olhos de Águia"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Facas de Arremesso, Espada, Adaga."
+      },
+      {
+        "name": "Lutador de Facas Extraordinário",
+        "description": "Quando Johann usa a habilidade Tiro Rápido, ele pode abrir mão de rolar um dado extra para fazer um segundo ataque a distância com suas facas de arremesso. Johann causa +1 de dano quando ataca com facas de arremesso."
+      },
+      {
+        "name": "Habilidades",
+        "description": "Johann tem as seguintes habilidades: Rolamento, Escalar Superfícies Íngremes, Tiro Rápido e Olhos de Águia"
+      },
+      {
+        "name": "Vício",
+        "description": "Johann é viciado em Sombra Carmesim, então você pode contratá-lo e manter seu custo de manutenção por um frasco de Sombra Carmesim se desejar. Ele o consome entre as partidas, então não pode ser usado durante elas."
+      }
+    ]
+  },
+  {
+    "id": "nicodemus-o-peregrino-amaldicoado",
+    "name": "Nicodemus, o Peregrino Amaldiçoado",
+    "lore": "Nicodemus foi um aprendiz promissor do poderoso mago Ganthrandir. Em uma das muitas ausências de seu mestre, Nicodemus ouviu um chamado irresistível vindo de uma antiga lanterna mágica guardada no laboratório: um artefato exótico que aprisionava a essência de um poderoso Demônio. Apesar dos avisos de seu mestre, o jovem quebrou os selos rúnicos e libertou a entidade. Ao exigir seu desejo, pediu para tornar-se o maior mago conhecido pela humanidade. O Demônio atendeu de forma literal e cruel: desde então seu corpo cresce sem parar. Em busca de um antídoto, Nicodemus encontrou um eremita nas Montanhas das Bordas do Mundo que lhe ensinou uma poção capaz de retardar o efeito – mas que exige Pedra‑bruxa constante. Assim, ele vaga por Mordheim, onde esse mineral maldito é mais abundante, oferecendo sua ajuda em troca de fragmentos.",
+    "role": "Lenda",
+    "availability": ["Todos"],
+    "exclusions": [
+      "Skaven",
+      "Mortos‑Vivos",
+      "Culto dos Possuídos",
+      "Caçadores de Bruxas"
+    ],
+    "qualidade": 85,
+    "stats": {
+      "move": 10,
+      "fight": "+1",
+      "shoot": "+1  ",
+      "armour": 11,
+      "Vontade": "+1",
+      "health": 16,
+      "strength": "+1",
+      "cost": "0 coroas",
+      "upkeep": "1 Pedra-bruxa por partida",
+      "mercEquipment": ["Alabarda"],
+      "legendsSpells": [
+        "Chamas de Uzhul",
+        "Revoada de Zimmeran",
+        "Terror de Aramar",
+        "Flecha Prateada de Arha",
+        "Sorte de Shemtek",
+        "Espada de Rhezebel"
+      ]
+    },
+    "abilities": [
+      {
+        "name": "Amaldiçoado",
+        "description": "Nicodemus não se interessa por ouro: ele precisa desesperadamente de fragmentos de Pedra‑bruxa para retardar seu crescimento anormal. Quando entra no bando e após CADA batalha que disputar, você deve pagá-lo com 1 fragmento de Pedra‑bruxa. Se não puder ou não quiser pagar, Nicodemus deixa o bando e nunca retorna."
+      },
+      {
+        "name": "Equipamento",
+        "description": "Nicodemus tem um Cajado do Mago."
+      },
+      {
+        "name": "Cajado do Mago",
+        "description": "Conta como uma Alabarda com a palavra-chave Aparar."
+      },
+      {
+        "name": "Feiticeiro Temível",
+        "description": "Nicodemus é um conjurador da tradição Magia Inferior. Ele é contratado sabendo todas as magias dessa tradição. Ele tem as características Aterrorizante e Forte."
+      }
+    ]
+  },
+  {
+    "id": "veskit-carrasco-de-clan-eshin",
+    "name": "Veskit, Alto Carrasco do Clã Eshin",
+    "lore": "Veskit já era um assassino talentoso do Clã Eshin quando recebeu sua missão mais difícil: libertar um antigo Engenheiro-Bruxo do Clã Skryre mantido refém por um clã rival. Ele conseguiu resgatar o prisioneiro, abrindo caminho entre guardas, mas quase morreu. Os Engenheiros do Clã Skryre o reconstruíram com implantes meio tecnológicos, meio mágicos, transformando-o em um arsenal ambulante. Enviado a Mordheim para desencorajar os coisa-homem a explorarem a cidade, o olho rubro de Veskit não deixa nada escapar e poucos que ele caça retornam pelo Portão da Gárgula.",
+    "role": "Lenda",
+    "availability": ["Skaven"],
+    "qualidade": "Veskit aumenta a qualidade do bando em 70 pontos.",
+    "stats": {
+      "move": 10,
+      "fight": "+4",
+      "shoot": "+3",
+      "armour": 13,
+      "Vontade": "+5",
+      "health": 16,
+      "strength": "+1",
+      "cost": "80 coroas",
+      "upkeep": "35 coroas",
+      "mercEquipment": ["Garras de Combate", "Pistola Warplock"]
+    },
+    "abilities": [
+      {
+        "name": "Equipamento",
+        "description": "Garras de Combate, Pistola Warplock."
+      },
+      {
+        "name": "Insensível",
+        "description": "Uma máquina fria e calculista. Verskit tem Imune a Aterrorizante e Mente-Férrea."
+      },
+      {
+        "name": "Sem Dor",
+        "description": "Ignoras a Regra Concussiva(X) de armas. Não pode receber dano crítico."
+      },
+      {
+        "name": "Olho Inabalável",
+        "description": "Veskit Ignora a característica Furtividade(X)."
+      },
+      {
+        "name": "Garras de Combate Modificadas",
+        "description": "Veskit está armado com Garras de Combate especiais. Elas tem pistolas warplock embutidas, que só gastam uma ação para ser recarregadas e podem atirar mesmo em combate."
+      }
+    ]
+  }
+]
