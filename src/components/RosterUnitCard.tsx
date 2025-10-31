@@ -192,11 +192,174 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     );
   };
 
-  const handleSkillClick = () => {
-    // Mesma lógica do UnitCard
+  // Função para mapear tipos de habilidades para suas rotas com algoritmo de comparação
+  const getSkillRoute = (skillType: string): string => {
+    const normalizeString = (str: string): string => {
+      return str
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s]/g, "") // Remove pontuação
+        .replace(/\s+/g, " "); // Normaliza espaços
+    };
 
-    // ... simplificado, pode usar a mesma lógica do UnitCard
-    navigate("/skills");
+    const normalizedInput = normalizeString(skillType);
+
+    // Lista de habilidades com suas rotas
+    const skillMappings = [
+      // Habilidades Básicas
+      { name: "Combate", route: "/skills/combate" },
+      { name: "Atirador", route: "/skills/atirador" },
+      { name: "Acadêmica", route: "/skills/academica" },
+      { name: "Força", route: "/skills/forca" },
+      { name: "Agilidade", route: "/skills/agilidade" },
+      // Habilidades Específicas
+      { name: "Irmãs de Sigmar", route: "/skills/irmas-de-sigmar" },
+      { name: "Skaven do Clã Enshin", route: "/skills/skaven-do-cla-enshin" },
+      {
+        name: "Saqueadores Homem-Fera",
+        route: "/skills/saqueadores-homem-fera",
+      },
+      {
+        name: "Caçadores de Tesouro Anões",
+        route: "/skills/cacadores-de-tesouro-anoes",
+      },
+      { name: "Mata-Trolls Anão", route: "/skills/mata-trolls-anoes" },
+      {
+        name: "Engenharia da Montanha",
+        route: "/skills/engenharia-da-montanha",
+      },
+      {
+        name: "Habilidades Von Carstein",
+        route: "/skills/habilidades-von-carstein",
+      },
+      {
+        name: "Habilidades de Dragão Carmesim",
+        route: "/skills/habilidades-de-dragão-carmesim",
+      },
+      { name: "Habilidades de Lahmia", route: "/skills/habilidades-de-lahmia" },
+      {
+        name: "Habilidades de Strigoi",
+        route: "/skills/habilidades-de-strigoi",
+      },
+      { name: "Corsários Druchii", route: "/skills/corsarios-druchii" },
+      { name: "Habilidades de Geckos", route: "/skills/habilidades-de-geckos" },
+      {
+        name: "Habilidades de Saúrios",
+        route: "/skills/habilidades-de-saurios",
+      },
+      { name: "Hordas Orc", route: "/skills/hordas-orc" },
+      { name: "Filhos de Hashut", route: "/skills/filhos-de-hashut" },
+      { name: "Patrulheiro Elfo", route: "/skills/patrulheiro-elfo" },
+    ];
+
+    // Primeiro, tenta correspondência exata
+    for (const mapping of skillMappings) {
+      if (normalizeString(mapping.name) === normalizedInput) {
+        return mapping.route;
+      }
+    }
+
+    // Se não encontrar correspondência exata, tenta correspondência parcial
+    for (const mapping of skillMappings) {
+      const normalizedMapping = normalizeString(mapping.name);
+
+      // Verifica se o input contém palavras-chave da habilidade
+      const inputWords = normalizedInput.split(" ");
+      const mappingWords = normalizedMapping.split(" ");
+
+      // Se pelo menos 2 palavras coincidem
+      const matchingWords = inputWords.filter((word) =>
+        mappingWords.some(
+          (mappingWord) =>
+            mappingWord.includes(word) || word.includes(mappingWord)
+        )
+      );
+
+      if (matchingWords.length >= 2) {
+        return mapping.route;
+      }
+
+      // Verifica palavras-chave específicas
+      if (
+        normalizedInput.includes("combate") &&
+        mapping.name.includes("Combate")
+      )
+        return mapping.route;
+      if (
+        normalizedInput.includes("atirador") &&
+        mapping.name.includes("Atirador")
+      )
+        return mapping.route;
+      if (
+        normalizedInput.includes("Acadêmica") &&
+        mapping.name.includes("Acadêmica")
+      )
+        return mapping.route;
+      if (normalizedInput.includes("força") && mapping.name.includes("Força"))
+        return mapping.route;
+      if (
+        normalizedInput.includes("velocidade") &&
+        mapping.name.includes("Velocidade")
+      )
+        return mapping.route;
+      if (
+        normalizedInput.includes("agilidade") &&
+        mapping.name.includes("Agilidade")
+      )
+        return mapping.route;
+      if (normalizedInput.includes("sigmar") && mapping.name.includes("Sigmar"))
+        return mapping.route;
+      if (normalizedInput.includes("skaven") && mapping.name.includes("Skaven"))
+        return mapping.route;
+      if (normalizedInput.includes("homem") && mapping.name.includes("Homem"))
+        return mapping.route;
+      if (normalizedInput.includes("anões") && mapping.name.includes("Anões"))
+        return mapping.route;
+      if (normalizedInput.includes("troll") && mapping.name.includes("Troll"))
+        return mapping.route;
+      if (
+        normalizedInput.includes("engenharia") &&
+        mapping.name.includes("Engenharia")
+      )
+        return mapping.route;
+      if (
+        normalizedInput.includes("carstein") &&
+        mapping.name.includes("Carstein")
+      )
+        return mapping.route;
+      if (normalizedInput.includes("dragão") && mapping.name.includes("Dragão"))
+        return mapping.route;
+      if (normalizedInput.includes("lahmia") && mapping.name.includes("Lahmia"))
+        return mapping.route;
+      if (
+        normalizedInput.includes("strigoi") &&
+        mapping.name.includes("Strigoi")
+      )
+        return mapping.route;
+      if (
+        normalizedInput.includes("druchii") &&
+        mapping.name.includes("Druchii")
+      )
+        return mapping.route;
+      if (normalizedInput.includes("geckos") && mapping.name.includes("Geckos"))
+        return mapping.route;
+      if (
+        normalizedInput.includes("saúrios") &&
+        mapping.name.includes("Saúrios")
+      )
+        return mapping.route;
+      if (normalizedInput.includes("orc") && mapping.name.includes("Orc"))
+        return mapping.route;
+      if (normalizedInput.includes("hashut") && mapping.name.includes("Hashut"))
+        return mapping.route;
+    }
+
+    return "/skills";
+  };
+
+  const handleSkillClick = (skillType: string) => {
+    const route = getSkillRoute(skillType);
+    navigate(route);
   };
 
   // sem navegação de magia aqui
@@ -679,7 +842,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                     {baseStats.skills.map((skill, index) => (
                       <button
                         key={index}
-                        onClick={() => handleSkillClick()}
+                        onClick={() => handleSkillClick(skill)}
                         className="bg-gray-600 hover:bg-gray-500 text-white px-3 py-1 rounded text-sm transition-colors duration-200 cursor-pointer"
                       >
                         {skill}
