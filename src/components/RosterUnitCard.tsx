@@ -540,7 +540,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   "+1 Ímpeto",
                   "+1 Precisão",
                   "+1 Armadura",
-                  "+2 Vigor",
+                  "+2 Vida",
                   "+2 Movimento",
                   "+1 Vontade",
                   "+1 Força",
@@ -579,7 +579,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                         "Aumenta permanentemente a Precisão em +1.",
                       "+1 Armadura":
                         "Aumenta permanentemente a Armadura base em +1.",
-                      "+2 Vigor": "Aumenta permanentemente o Vigor em +2.",
+                      "+2 Vida": "Aumenta permanentemente a Vida em +2.",
                       "+2 Movimento":
                         "Aumenta permanentemente o Movimento em +2.",
                       "+1 Vontade": "Aumenta permanentemente a Vontade em +1.",
@@ -790,7 +790,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   : skey === "Vontade"
                   ? "Vontade"
                   : skey === "health"
-                  ? "Vigor"
+                  ? "Vida"
                   : "Força";
               const showPlus =
                 skey === "fight" || skey === "shoot" || skey === "Vontade";
@@ -1227,7 +1227,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                       : editingStat === "Vontade"
                       ? "Vontade"
                       : editingStat === "health"
-                      ? "Vigor"
+                      ? "Vida"
                       : "Força";
                   return label;
                 })()}

@@ -1707,9 +1707,9 @@ function WarbandRosterPage() {
           updatedUnit = applyAdvancementDelta(updatedUnit, "shoot", 1);
         else if (norm.includes("armadura"))
           updatedUnit = applyAdvancementDelta(updatedUnit, "armour", 1);
-        else if (norm.includes("vigor"))
+        else if (norm.includes("vida"))
           updatedUnit = applyAdvancementDelta(updatedUnit, "health", 2);
-        else if (norm.includes("agilidade"))
+        else if (norm.includes("movimento"))
           updatedUnit = applyAdvancementDelta(updatedUnit, "move", 2);
         else if (norm.includes("vontade"))
           updatedUnit = applyAdvancementDelta(updatedUnit, "Vontade", 1);
@@ -1766,9 +1766,9 @@ function WarbandRosterPage() {
           updatedUnit = applyAdvancementDelta(updatedUnit, "shoot", -1);
         else if (norm.includes("armadura"))
           updatedUnit = applyAdvancementDelta(updatedUnit, "armour", -1);
-        else if (norm.includes("vigor"))
+        else if (norm.includes("vida"))
           updatedUnit = applyAdvancementDelta(updatedUnit, "health", -2);
-        else if (norm.includes("agilidade"))
+        else if (norm.includes("movimento"))
           updatedUnit = applyAdvancementDelta(updatedUnit, "move", -2);
         else if (norm.includes("vontade"))
           updatedUnit = applyAdvancementDelta(updatedUnit, "Vontade", -1);
