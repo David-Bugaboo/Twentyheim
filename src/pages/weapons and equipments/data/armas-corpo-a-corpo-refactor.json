@@ -19,12 +19,12 @@
     "requirements": null,
     "specialRules": [
       {
-        "term": "Leve",
-        "description": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
+        "label": "Leve",
+        "value": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
       },
       {
-        "term": "Faca na Bota",
-        "description": "A Primeira adaga equipada por uma figura não consome um espaço de item."
+        "label": "Faca na Bota",
+        "value": "A Primeira adaga equipada por uma figura não consome um espaço de item."
       }
     ]
   },
@@ -210,8 +210,8 @@
         "value": "Uma arma com essa característica ignora (X) pontos de armadura do alvo."
       },
       {
-        "term": "Leve",
-        "description": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
+        "label": "Leve",
+        "value": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
       },
       {
         "label": "Aparar",
@@ -242,8 +242,8 @@
         "value": "Armas com essa característica devem sempre ser usadas em pares, ocupando ambas as mãos, mas provendo o bônus de +1 Ímpeto de lutar com duas armas se for leve. A figura equipada nunca pode desequipar apenas uma arma de par, e se perder a arma perde ambas."
       },
       {
-        "term": "Leve",
-        "description": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
+        "label": "Leve",
+        "value": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
       },
       {
         "label": "Aparar",
@@ -279,8 +279,8 @@
         "value": "Armas com essa característica devem sempre ser usadas em pares, ocupando ambas as mãos, mas provendo o bônus de +1 Ímpeto de lutar com duas armas se for leve. A figura equipada nunca pode desequipar apenas uma arma de par, e se perder a arma perde ambas."
       },
       {
-        "term": "Leve",
-        "description": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
+        "label": "Leve",
+        "value": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
       },
       {
         "label": "Tóxica",
@@ -353,8 +353,8 @@
         "value": "Uma arma com essa característica pode ser usada para fazer ataques à distância, até uma distância máxima de Xcm, usando seu atributo Ímpeto. Adicionalmente, uma vez por turno, se um modelo se mover dentro de Xcm do portador dessa arma, ele pode fazer um ataque à distância +0 contra aquele alvo, usando quaisquer modificadores de dano e ímpeto que a arma possa vir a ter nesse ataque. Usar um em cada mão não permite usar essa reação duas vezes por turno."
       },
       {
-        "term": "Leve",
-        "description": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
+        "label": "Leve",
+        "value": "Pode ser usada na mão secundária para ganhar +1 de Ímpeto em lutas. "
       },
       {
         "label": "Velocidade Superior",
@@ -416,11 +416,11 @@
       },
       {
         "label": "Aleatória",
-        "value": "A única forma de empunhar uma Bola e Corrente é balançá-la em grandes círculos, usando seu corpo como contrapeso. Infelizmente este não é um estilo de luta muito controlável, e assim que ele começa a balançar sua Bola e Corrente, um guerreiro começa a perder o controle. Começar a girar a bola é uma ação. O modelo é movido 1d20cm em uma direção nomeada pelo jogador controlador. Em todas as outras ativações, role um D20 para determinar o que o modelo faz: \n1-4: modelo tropeça e se enforca com a corrente. O modelo é reduzido a 0 de vida e retirado do tabuleiro. \n5-17: O modelo se move 1d20cm em uma direção nomeada pelo jogador controlador. \n20: O modelo se move 1d20cm em uma direção aleatória."
+        "value": "A única forma de empunhar uma Bola e Corrente é balançá-la em grandes círculos, usando seu corpo como contrapeso. Infelizmente este não é um estilo de luta muito controlável, e assim que ele começa a balançar sua Bola e Corrente, um guerreiro começa a perder o controle. Começar a girar a bola é uma ação. O modelo é movido 1d20cm em uma direção nomeada pelo jogador controlador. Em todas as outras ativações, role um D20 para delabelinar o que o modelo faz: \n1-4: modelo tropeça e se enforca com a corrente. O modelo é reduzido a 0 de vida e retirado do tabuleiro. \n5-17: O modelo se move 1d20cm em uma direção nomeada pelo jogador controlador. \n20: O modelo se move 1d20cm em uma direção aleatória."
       },
       {
         "label": "Giro Imparável",
-        "value": "Uma vez que a bola e corrente está girando, ela não pode ser parada. Se durante seu movimento, a figura encostar em uma peça de terreno, ela recebe um marcador de Atordoamento e sua ativação termina imediatamente. Se encostar em uma figura, aliada ou inimiga, ela entra em combate e luta com aquela figura."
+        "value": "Uma vez que a bola e corrente está girando, ela não pode ser parada. Se durante seu movimento, a figura encostar em uma peça de terreno, ela recebe um marcador de Atordoamento e sua ativação labelina imediatamente. Se encostar em uma figura, aliada ou inimiga, ela entra em combate e luta com aquela figura."
       },
       {
         "label": "Desajeitada",

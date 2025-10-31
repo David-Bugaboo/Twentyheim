@@ -191,6 +191,7 @@ function WarbandRosterPage() {
   const fixedFaction = params.get("faction") || "";
   const warbandId = params.get("id") || "";
   const [userUid, setUserUid] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const dirtyRef = useRef<boolean>(false);
 
   useEffect(() => {
@@ -436,6 +437,7 @@ function WarbandRosterPage() {
   useEffect(() => {
     if (!warbandId || !userUid) return;
     let first = true;
+    setIsLoading(true);
     const ref = doc(db, "users", userUid, "warbands", warbandId);
     const unsub = onSnapshot(ref, (snap) => {
       if (!snap.exists()) return;
@@ -504,6 +506,7 @@ function WarbandRosterPage() {
         // Sinaliza que já carregamos do Firestore para evitar overwrite inicial
         (hasLoadedRef as any).current = true;
         dirtyRef.current = false;
+        setIsLoading(false);
         try {
           // eslint-disable-next-line no-console
           console.log("[Firestore Hydrated]");
@@ -2105,12 +2108,499 @@ function WarbandRosterPage() {
     );
   })();
 
+  if (isLoading) {
+    return (
+      <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+        <div className="py-4">
+          <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+            <MobileSection>
+              <PageTitle>Carregando bando…</PageTitle>
+              <div className="flex items-center justify-center py-12">
+                <div className="h-10 w-10 rounded-full border-4 border-green-500/40 border-t-green-400 animate-spin" />
+              </div>
+            </MobileSection>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <MobileSection>
             <PageTitle>Ficha do Bando</PageTitle>
+
+            {/* Exportar PDF (printer-friendly) */}
+            {(() => {
+              const handleExportPdf = () => {
+                try {
+                  const safe = (v: any): string =>
+                    v === null || v === undefined ? "" : String(v);
+
+                  const resolveModifier = (e: any): any => {
+                    if (!e?.modifier || !e?.modifier?.name) return null;
+                    const modNameLc = String(e.modifier.name).toLowerCase();
+                    const allMods: any[] = [
+                      ...(meleeMods as any[]),
+                      ...(rangedMods as any[]),
+                      ...(firearmsMods as any[]),
+                    ];
+                    return (
+                      allMods.find(
+                        (m) => String(m.name).toLowerCase() === modNameLc
+                      ) || e.modifier
+                    );
+                  };
+
+                  const buildEquipmentName = (e: any): string => {
+                    const baseName = safe(e?.name);
+                    if (e?.modifier?.name) {
+                      return `${baseName} (${safe(e.modifier.name)})`;
+                    }
+                    return baseName;
+                  };
+
+                  const buildEquipmentCards = (equiped: any[]): string => {
+                    if (!equiped || equiped.length === 0) return "";
+                    const cardsHtml = equiped
+                      .map((e: any) => {
+                        const mod = resolveModifier(e);
+                        const equipName = buildEquipmentName(e);
+                        const rules = Array.isArray(e?.specialRules)
+                          ? e.specialRules
+                              .map((r: any) => {
+                                if (r?.label && r?.value)
+                                  return `<div><strong>${safe(
+                                    r.label
+                                  )}:</strong> ${safe(r.value)}</div>`;
+                                if (r?.term && r?.description)
+                                  return `<div><strong>${safe(
+                                    r.term
+                                  )}:</strong> ${safe(r.description)}</div>`;
+                                return "";
+                              })
+                              .join("")
+                          : "";
+                        const modEffect =
+                          mod?.effect || e?.modifier?.effect || "";
+                        const allRules = modEffect
+                          ? rules +
+                            `<div><strong>Modificador:</strong> ${safe(
+                              modEffect
+                            )}</div>`
+                          : rules;
+
+                        return `
+                          <div class="equip-card">
+                            <div class="equip-title">${equipName}</div>
+                            <div class="equip-grid">
+                              <div><strong>Tipo:</strong> ${safe(e?.type)}</div>
+                              <div><strong>Custo:</strong> ${safe(
+                                e?.purchaseCost || e?.cost
+                              )}</div>
+                              <div><strong>Espaços:</strong> ${safe(
+                                e?.slots || e?.spaces
+                              )}</div>
+                              ${
+                                e?.damageModifier != null
+                                  ? `<div><strong>Mod. Dano:</strong> ${safe(
+                                      e?.damageModifier
+                                    )}</div>`
+                                  : ""
+                              }
+                              ${
+                                e?.armorBonus != null
+                                  ? `<div><strong>Bônus Armadura:</strong> ${safe(
+                                      e?.armorBonus
+                                    )}</div>`
+                                  : ""
+                              }
+                              ${
+                                e?.movePenalty != null
+                                  ? `<div><strong>Penal. Movimento:</strong> ${safe(
+                                      e?.movePenalty
+                                    )}</div>`
+                                  : ""
+                              }
+                            </div>
+                            ${
+                              e?.effect
+                                ? `<div><strong>Efeito:</strong> ${safe(
+                                    e?.effect
+                                  )}</div>`
+                                : ""
+                            }
+                            ${allRules}
+                          </div>
+                        `;
+                      })
+                      .join("");
+                    return `
+                      <div class="equipment-section">
+                        <div class="section-title">Cards de Equipamentos</div>
+                        <div class="equip-grid-page">${cardsHtml}</div>
+                      </div>
+                    `;
+                  };
+
+                  const buildUnitHtml = (u: any): string => {
+                    const fig = u?.figure || {};
+                    const stats = u?.stats || {};
+                    const skills = (fig.skills || [])
+                      .map((s: any) => s?.name || s)
+                      .filter(Boolean);
+                    const spells = (fig.spells || [])
+                      .map((s: any) => s?.name || s)
+                      .filter(Boolean);
+                    const injuries = (fig.injuries || [])
+                      .map((i: any) => i?.name || i)
+                      .filter(Boolean);
+                    const advancements = (fig.advancements || [])
+                      .map((a: any) => a?.name || a)
+                      .filter(Boolean);
+                    const equiped = (fig.equiped || [])
+                      .map((e: any) => e?.name || e)
+                      .filter(Boolean);
+                    const equipedFull = (fig.equiped || []) as any[];
+                    const specialAbilities = [
+                      ...(Array.isArray(fig.nurgleBlessings)
+                        ? fig.nurgleBlessings
+                        : []),
+                      ...(Array.isArray(fig.mutations) ? fig.mutations : []),
+                      ...(Array.isArray(fig.sacredMarks)
+                        ? fig.sacredMarks
+                        : []),
+                    ]
+                      .map((a: any) => a?.name || a)
+                      .filter(Boolean);
+                    const specialRules = Array.isArray(u?.abilities)
+                      ? (u.abilities as any[])
+                          .map((r: any) => ({
+                            name: r?.name || "",
+                            description: r?.description || "",
+                          }))
+                          .filter((r) => r.name)
+                      : Array.isArray((fig as any).specialRules)
+                      ? ((fig as any).specialRules as any[])
+                          .map((r: any) => ({
+                            name: r?.name || "",
+                            description: r?.description || "",
+                          }))
+                          .filter((r) => r.name)
+                      : [];
+
+                    return `
+                      <div class="card">
+                        <div class="card-header">
+                          <div>
+                            <div class="title">${
+                              safe(fig?.narrativeName)
+                                ? safe(fig?.narrativeName) + ", "
+                                : ""
+                            }${safe(u?.name)}</div>
+                            <div class="subtitle">${safe(
+                              u?.role || fig?.role || ""
+                            )} ${safe(u?.quantity || "")}</div>
+                          </div>
+                          <div class="right-info">
+                            <div><strong>Facção:</strong> ${safe(
+                              sheet.faction
+                            )}</div>
+                            <div><strong>Custo:</strong> ${safe(
+                              stats?.cost
+                            )}</div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="section-title">Atributos</div>
+                            <table class="table">
+                              <tr><td>Movimento</td><td>${safe(
+                                stats?.move
+                              )}</td></tr>
+                              <tr><td>Ímpeto</td><td>${safe(
+                                stats?.fight
+                              )}</td></tr>
+                              <tr><td>Precisão</td><td>${safe(
+                                stats?.shoot
+                              )}</td></tr>
+                              <tr><td>Armadura</td><td>${safe(
+                                stats?.armour
+                              )}</td></tr>
+                              <tr><td>Vontade</td><td>${safe(
+                                stats?.Vontade
+                              )}</td></tr>
+                              <tr><td>Vigor</td><td>${safe(
+                                stats?.health
+                              )}</td></tr>
+                              ${
+                                stats?.strength !== undefined
+                                  ? `<tr><td>Força</td><td>${safe(
+                                      stats?.strength
+                                    )}</td></tr>`
+                                  : ""
+                              }
+                            </table>
+                          </div>
+                          <div class="col">
+                            <div class="section-title">Equipamentos</div>
+                            <ul class="list">${
+                              equiped
+                                .map((n: string) => `<li>${n}</li>`)
+                                .join("") || "<li>-</li>"
+                            }</ul>
+                            <div class="section-title">Habilidades</div>
+                            <ul class="list">${
+                              skills
+                                .map((n: string) => `<li>${n}</li>`)
+                                .join("") || "<li>-</li>"
+                            }</ul>
+                            <div class="section-title">Habilidades Especiais</div>
+                            <ul class="list">${
+                              specialAbilities
+                                .map((n: string) => `<li>${n}</li>`)
+                                .join("") || "<li>-</li>"
+                            }</ul>
+                          </div>
+                          <div class="col">
+                            <div class="section-title">Magias</div>
+                            <ul class="list">${
+                              spells
+                                .map((n: string) => `<li>${n}</li>`)
+                                .join("") || "<li>-</li>"
+                            }</ul>
+                            <div class="section-title">Ferimentos</div>
+                            <ul class="list">${
+                              injuries
+                                .map((n: string) => `<li>${n}</li>`)
+                                .join("") || "<li>-</li>"
+                            }</ul>
+                          </div>
+                        </div>
+                        ${
+                          advancements && advancements.length
+                            ? `
+                        <div class="section-title">Avanços</div>
+                        <ul class="list">${advancements
+                          .map((n: string) => `<li>${n}</li>`)
+                          .join("")}</ul>
+                        `
+                            : ""
+                        }
+                        ${
+                          specialRules.length
+                            ? `
+                        <div class="section-title">Regras Especiais</div>
+                        <div class="rules-block">
+                          ${specialRules
+                            .map(
+                              (r) =>
+                                `<div class="rule-item"><strong>${safe(
+                                  r.name
+                                )}:</strong> ${safe(r.description)}</div>`
+                            )
+                            .join("")}
+                        </div>`
+                            : ""
+                        }
+                      </div>
+                      ${buildEquipmentCards(equipedFull)}
+                    `;
+                  };
+
+                  const buildAllDetailPages = (): string => {
+                    const blocks: string[] = [];
+                    (sheet.units || []).forEach((u: any) => {
+                      const fig = u?.figure || {};
+                      const unitName = safe(u?.name);
+                      const unitRole = safe(u?.role || fig?.role || "");
+
+                      // Habilidades
+                      const skills = (fig.skills || []).map((s: any) => ({
+                        name: s?.name || s,
+                        description: s?.description || "",
+                      }));
+                      const skillsHtml = skills.length
+                        ? skills
+                            .map(
+                              (k: any) => `
+                              <div class="equip-card">
+                                <div class="equip-title">${safe(k.name)}</div>
+                                <div>${safe(k.description)}</div>
+                              </div>`
+                            )
+                            .join("")
+                        : '<div class="muted">Sem habilidades</div>';
+
+                      // Magias
+                      const spells = (fig.spells || []).map((s: any) => ({
+                        name: s?.name || s,
+                        effect: s?.effect || "",
+                        cn: s?.castingNumber || s?.cn || "",
+                        keywords: Array.isArray(s?.keywords) ? s.keywords : [],
+                      }));
+                      const spellsHtml = spells.length
+                        ? spells
+                            .map(
+                              (sp: any) => `
+                              <div class="equip-card">
+                                <div class="equip-title">${safe(sp.name)}</div>
+                                <div><strong>CD:</strong> ${safe(
+                                  String(sp.cn)
+                                )}</div>
+                                ${
+                                  Array.isArray(sp.keywords) &&
+                                  sp.keywords.length
+                                    ? `<div><strong>Palavras-chave:</strong> ${sp.keywords
+                                        .map((x: any) => safe(x))
+                                        .join(", ")}</div>`
+                                    : ""
+                                }
+                                <div>${safe(sp.effect)}</div>
+                              </div>`
+                            )
+                            .join("")
+                        : '<div class="muted">Sem magias</div>';
+
+                      // Habilidades Especiais
+                      const specialAbilities = [
+                        ...(Array.isArray(fig.nurgleBlessings)
+                          ? fig.nurgleBlessings
+                          : []),
+                        ...(Array.isArray(fig.mutations) ? fig.mutations : []),
+                        ...(Array.isArray(fig.sacredMarks)
+                          ? fig.sacredMarks
+                          : []),
+                      ].map((a: any) => ({
+                        name: a?.name || a,
+                        description: a?.description || "",
+                      }));
+                      const specHtml = specialAbilities.length
+                        ? specialAbilities
+                            .map(
+                              (a) => `
+                              <div class="equip-card">
+                                <div class="equip-title">${safe(a.name)}</div>
+                                <div>${safe(a.description)}</div>
+                              </div>`
+                            )
+                            .join("")
+                        : '<div class="muted">Sem habilidades especiais</div>';
+
+                      blocks.push(`
+                        <div class="page-break"></div>
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="title">Cartas de ${unitName}</div>
+                            <div class="subtitle">${unitRole}</div>
+                          </div>
+                          <div class="section-title">Habilidades</div>
+                          <div class="equip-grid-page">${skillsHtml}</div>
+                          <div class="section-title">Magias</div>
+                          <div class="equip-grid-page">${spellsHtml}</div>
+                          <div class="section-title">Habilidades Especiais</div>
+                          <div class="equip-grid-page">${specHtml}</div>
+                        </div>
+                      `);
+                    });
+                    return blocks.join("");
+                  };
+
+                  // Todos os cards de figura juntos primeiro
+                  const unitsHtml = (sheet.units || [])
+                    .map((u: any) => buildUnitHtml(u))
+                    .join("");
+
+                  // Depois todos os detalhes agrupados
+                  const detailPagesHtml = buildAllDetailPages();
+
+                  const html = `<!DOCTYPE html>
+                    <html>
+                      <head>
+                        <meta charset="utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1" />
+                        <title>${safe(sheet?.name || "Bando")}</title>
+                        <style>
+                          @media print {
+                            .page-break { page-break-before: always; }
+                          }
+                          body { background: #ffffff; color: #000; font-family: Arial, Helvetica, sans-serif; margin: 20px; }
+                          .header { margin-bottom: 16px; }
+                          .header .h1 { font-size: 22px; font-weight: 700; }
+                          .muted { color: #333; }
+                          .card { border: 1px solid #000; padding: 12px; margin-bottom: 16px; background: #fff; }
+                          .card-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #000; padding-bottom: 6px; margin-bottom: 8px; }
+                          .title { font-size: 18px; font-weight: 700; }
+                          .subtitle { font-size: 12px; }
+                          .row { display: flex; gap: 12px; }
+                          .col { flex: 1; }
+                          .section-title { font-weight: 700; margin: 8px 0 4px; border-bottom: 1px solid #000; }
+                          .section-separator { page-break-before: always; margin: 20px 0; }
+                          .section-header { font-size: 20px; font-weight: 700; text-align: center; border-bottom: 2px solid #000; padding-bottom: 8px; }
+                          .equipment-section { margin-top: 12px; }
+                          .table { width: 100%; border-collapse: collapse; }
+                          .table td { border-bottom: 1px solid #000; padding: 2px 4px; font-size: 12px; }
+                          .list { margin: 0; padding-left: 16px; font-size: 12px; }
+                          .rules-block { margin-top: 8px; font-size: 12px; }
+                          .rule-item { margin-bottom: 4px; }
+                          .equip-grid-page { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+                          .equip-card { border: 1px solid #000; padding: 8px; background: #fff; }
+                          .equip-title { font-weight: 700; margin-bottom: 4px; }
+                          .equip-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; font-size: 12px; }
+                        </style>
+                      </head>
+                      <body>
+                        <div class="header">
+                          <div class="h1">${safe(sheet?.name || "Bando")}</div>
+                          <div><strong>Facção:</strong> ${safe(
+                            sheet.faction
+                          )} &nbsp; | &nbsp; <strong>Warband Rating:</strong> ${safe(
+                    String(warbandRating)
+                  )}</div>
+                          <div><strong>Coroas:</strong> ${safe(
+                            sheet.gold
+                          )} &nbsp; | &nbsp; <strong>Pedra-Bruxa:</strong> ${safe(
+                    sheet.wyrdstone
+                  )}</div>
+                        </div>
+                        ${unitsHtml}
+                        <div class="page-break"></div>
+                        <div class="section-separator">
+                          <h2 class="section-header">Cartas Detalhadas de Habilidades e Magias</h2>
+                        </div>
+                        ${detailPagesHtml}
+                        <script>
+                          window.onload = function() {
+                            setTimeout(function(){ window.print(); }, 100);
+                          };
+                        </script>
+                      </body>
+                    </html>`;
+
+                  const w = window.open("", "_blank");
+                  if (!w) return;
+                  w.document.open();
+                  w.document.write(html);
+                  w.document.close();
+                } catch (e) {
+                  // eslint-disable-next-line no-console
+                  console.error(e);
+                }
+              };
+
+              return (
+                <div className="mt-4 mb-4">
+                  <button
+                    onClick={handleExportPdf}
+                    className="px-4 py-2 rounded bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white transition-colors duration-200 font-semibold"
+                  >
+                    📄 Exportar PDF (Printer-friendly)
+                  </button>
+                </div>
+              );
+            })()}
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
               <label className="flex flex-col gap-2">
