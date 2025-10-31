@@ -246,6 +246,7 @@ const Navbar: React.FC = () => {
         { label: "O Herdeiro Perdido", path: "/scenarios/lost-prince" },
       ],
     },
+    { label: "Changelog", path: "/changelog" },
   ];
 
   const handleCloseMobileMenu = () => {

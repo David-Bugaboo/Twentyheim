@@ -89,6 +89,7 @@ import LostPrincePage from "./pages/scenarios/lost-prince/LostPrincePage";
 import LegendsPage from "./pages/campanha/LegendsPage";
 import HiredSwordsPage from "./pages/campanha/MercenariesPage";
 import DarkGodsInvocationPage from "./pages/campanha/DarkGodsInvocationPage";
+import ChangelogPage from "./pages/ChangelogPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -340,6 +341,7 @@ function AppContent() {
           }
         />
         <Route path="/share/warband/:id" element={<SharedWarbandPage />} />
+        <Route path="/changelog" element={<ChangelogPage />} />
       </Routes>
     </>
   );
