@@ -370,6 +370,18 @@ function CombatSystemPage() {
               </a>
 
               <a
+                href="/rules/reactions"
+                className="block w-full md:w-1/2 mx-auto bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 rounded-lg p-4 transition-colors duration-200 group text-center"
+              >
+                <HeaderH3 className="text-green-300 group-hover:text-green-200 mb-2 text-center">
+                  Reações
+                </HeaderH3>
+                <MobileText className="text-white text-sm text-center">
+                  Ações desencadeadas em resposta a eventos do jogo.
+                </MobileText>
+              </a>
+
+              <a
                 href="/rules/combat-actions"
                 className="block w-full md:w-1/2 mx-auto bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 rounded-lg p-4 transition-colors duration-200 group text-center"
               >

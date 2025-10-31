@@ -90,6 +90,7 @@ const Navbar: React.FC = () => {
       children: [
         { label: "Sistema de Combate", path: "/rules/combat-system" },
         { label: "Ações de Movimento", path: "/rules/movement-actions" },
+        { label: "Reações", path: "/rules/reactions" },
         { label: "Ações de Combate", path: "/rules/combat-actions" },
         { label: "Ações de Ataque a Distância", path: "/rules/ranged-actions" },
         { label: "Ações de Conjuração", path: "/rules/spellcasting-actions" },

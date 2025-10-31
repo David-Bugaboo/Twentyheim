@@ -345,5 +345,9 @@
   {
     "term": "Necrose de Nurgle",
     "description": "A figura obrigatoriamente perde o próximo jogo e se precisar rolar na Tabela de Sobrevivência, rola duas vezes, escolhendo o pior resultado.."
+  },
+  {
+    "term": "Aparar",
+    "description": "Uma figura que perca uma luta pode usar a reação Aparar. Role Ímpeto novamente, mas sem aplicar bonus advindos de completar carga. Ganhe +2 nessa rolagem se ambas as armas usadas tiverem a característica Aparar. Caso tenha sucesso na rolagem negue o dano e efeitos especiais do ataque."
   }
 ]

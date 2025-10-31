@@ -73,7 +73,7 @@ function ReactionsPage() {
             </MobileText>
 
             <div id="interceptacao">
-              <HeaderH1>Interceptação e Vigília</HeaderH1>
+              <HeaderH1>Interceptação, Vigília e Aparar</HeaderH1>
             </div>
 
             <WarningBox title="Reações Universais" type="info">
@@ -83,6 +83,13 @@ function ReactionsPage() {
                   figura pode usar
                 </strong>{" "}
                 em um turno, sem precisar de habilidades ou magias específicas.
+              </MobileText>
+              <MobileText>
+                Embora Qualquer figura possa usar a reação Aparar, ela só pode
+                ser usada se a figura estiver equipada com uma ou mais armas com
+                a palavra-chave
+                <strong>Aparar</strong> ou tiver habilidades que permitam usar
+                mesmo sem armas específicas.
               </MobileText>
             </WarningBox>
 
