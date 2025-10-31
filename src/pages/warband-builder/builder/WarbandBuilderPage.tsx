@@ -4,8 +4,7 @@ import PageTitle from "../../../components/PageTitle";
 import MobileSection from "../../../components/MobileSection";
 import MobileText from "../../../components/MobileText";
 import AuthModal from "../../../components/AuthModal";
-import { auth } from "../../../firebase.ts";
-import { onAuthStateChanged } from "firebase/auth";
+import { useAuth } from "../../../context/AuthContext";
 import CreateWarbandModal from "../../../components/CreateWarbandModal";
 import { db } from "../../../firebase.ts";
 import {
@@ -31,11 +30,14 @@ type SavedWarband = {
 
 function WarbandBuilderPage() {
   const navigate = useNavigate();
+  const { currentUser, loading } = useAuth();
   const [list, setList] = useState<SavedWarband[]>([]);
   const [authOpen, setAuthOpen] = useState(false);
   const [createOpen, setCreateOpen] = useState(false);
-  const [userDisplayName, setUserDisplayName] = useState<string>("");
-  const [currentUser, setCurrentUser] = useState<any>(null);
+  const userDisplayName = useMemo(
+    () => currentUser?.displayName || currentUser?.email || "",
+    [currentUser]
+  );
 
   // Facções disponíveis no jogo (slug + rótulo)
   const factionOptions = useMemo(
@@ -62,34 +64,36 @@ function WarbandBuilderPage() {
     return m;
   }, [factionOptions]);
 
-  // Observa o estado de autenticação; se não houver usuário, abre o modal
+  // Observa coleção de bandos por usuário - só carrega depois que o usuário estiver populado
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setAuthOpen(!user);
-      setUserDisplayName(user?.displayName || user?.email || "");
+    // Se ainda está carregando a autenticação, não faz nada
+    if (loading) {
+      return;
+    }
 
-      // Observa coleção de bandos por usuário
-      if (user) {
-        const col = collection(db, "users", user.uid, "warbands");
-        const q = query(col, orderBy("createdAt", "desc"));
-        const off = onSnapshot(q, (snap) => {
-          const items: SavedWarband[] = snap.docs.map((d) => ({
-            id: d.id,
-            name: d.get("name") || "",
-            faction: d.get("faction") || "",
-            initialCrowns: d.get("initialCrowns") ?? 0,
-            createdAt: d.get("createdAt"),
-          }));
-          setList(items);
-        });
-        return () => off();
-      } else {
-        setList([]);
-      }
+    // Se não tem usuário após o loading terminar, abre modal de login
+    if (!currentUser) {
+      setAuthOpen(true);
+      setList([]);
+      return;
+    }
+
+    // Tem usuário: carrega os bandos
+    setAuthOpen(false);
+    const col = collection(db, "users", currentUser.uid, "warbands");
+    const q = query(col, orderBy("createdAt", "desc"));
+    const off = onSnapshot(q, (snap) => {
+      const items: SavedWarband[] = snap.docs.map((d) => ({
+        id: d.id,
+        name: d.get("name") || "",
+        faction: d.get("faction") || "",
+        initialCrowns: d.get("initialCrowns") ?? 0,
+        createdAt: d.get("createdAt"),
+      }));
+      setList(items);
     });
-    return () => unsub();
-  }, []);
+    return () => off();
+  }, [currentUser, loading]);
 
   // Removido: persistência local foi substituída por Firestore
 
@@ -98,9 +102,8 @@ function WarbandBuilderPage() {
     faction: string;
     initialCrowns: number;
   }) => {
-    const user = auth.currentUser;
-    if (!user) throw new Error("É necessário estar logado.");
-    const col = collection(db, "users", user.uid, "warbands");
+    if (!currentUser) throw new Error("É necessário estar logado.");
+    const col = collection(db, "users", currentUser.uid, "warbands");
     const docRef = await addDoc(col, {
       name: data.name,
       faction: data.faction,
@@ -110,35 +113,57 @@ function WarbandBuilderPage() {
     navigate(
       `/warband-builder/roster?faction=${encodeURIComponent(data.faction)}&id=${
         docRef.id
-      }`
+      }&userId=${currentUser.uid}`
     );
   };
 
   // Removido: exclusão local substituída por Firestore
 
   const goToWarband = (wb: SavedWarband) => {
+    if (!currentUser) return;
     navigate(
-      `/warband-builder/roster?faction=${encodeURIComponent(wb.faction)}&id=${wb.id}`
+      `/warband-builder/roster?faction=${encodeURIComponent(wb.faction)}&id=${
+        wb.id
+      }&userId=${currentUser.uid}`
     );
   };
 
   const handleDeleteWarband = async (id: string) => {
-    const user = auth.currentUser;
-    if (!user) return;
+    if (!currentUser) return;
     const ok = window.confirm(
       "Excluir este bando? Esta ação não pode ser desfeita."
     );
     if (!ok) return;
-    await deleteDoc(doc(db, "users", user.uid, "warbands", id));
+    await deleteDoc(doc(db, "users", currentUser.uid, "warbands", id));
   };
+
+  // Mostra loading enquanto authContext está carregando
+  if (loading) {
+    return (
+      <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+        <div className="py-4">
+          <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48 max-w-3xl mx-auto">
+            <MobileSection>
+              <div className="text-center py-12">
+                <PageTitle>Carregando usuário…</PageTitle>
+                <div className="flex items-center justify-center py-12">
+                  <div className="h-10 w-10 rounded-full border-4 border-green-500/40 border-t-green-400 animate-spin" />
+                </div>
+              </div>
+            </MobileSection>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48 max-w-3xl mx-auto">
-          <AuthModal 
-            open={authOpen} 
-            onClose={() => setAuthOpen(false)} 
+          <AuthModal
+            open={authOpen}
+            onClose={() => setAuthOpen(false)}
             user={currentUser}
           />
           <MobileSection>

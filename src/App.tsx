@@ -1,18 +1,16 @@
-import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Navbar from "./components/Navbar";
 import useScrollToTop from "./hooks/useScrollToTop";
+import ProtectedRosterRoute from "./components/ProtectedRosterRoute";
 
 import "./App.css";
 import { TOCProvider } from "./context/table-of-contents.context";
+import { AuthProvider } from "./context/AuthContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./styles/toast.css";
 import RulesIntroPage from "./pages/rules/intro/RulesIntroPage";
 import FiguresAndAttributesPage from "./pages/rules/FiguresAndAttributesPage";
 import NegativeConditionsPage from "./pages/rules/NegativeConditionsPage";
@@ -59,8 +57,7 @@ import WitchHuntersPage from "./pages/warbands/witch-hunters/WitchHuntersPage";
 import CarnivalOfChaosPage from "./pages/warbands/carnival-of-chaos/CarnivalOfChaosPage";
 import WarbandRosterPage from "./pages/warband-builder/roster/WarbandRosterPage";
 import WarbandBuilderPage from "./pages/warband-builder/builder/WarbandBuilderPage";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase";
+import SharedWarbandPage from "./pages/share/SharedWarbandPage";
 
 import AttributeTestsPage from "./pages/rules/AttributeTestsPage";
 import CampaignPage from "./pages/campanha/CampaignPage";
@@ -136,55 +133,36 @@ const darkTheme = createTheme({
 
 function App() {
   return (
-    <TOCProvider>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <Router>
-          <AppContent />
-        </Router>
-      </ThemeProvider>
-    </TOCProvider>
+    <AuthProvider>
+      <TOCProvider>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <Router>
+            <AppContent />
+          </Router>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+            style={{
+              fontFamily: '"Cinzel", serif',
+            }}
+          />
+        </ThemeProvider>
+      </TOCProvider>
+    </AuthProvider>
   );
 }
 
 function AppContent() {
   useScrollToTop();
-
-  // Pequeno guard para proteger rotas específicas do gestor de bando
-  function ProtectedRosterRoute({
-    children,
-  }: {
-    children: React.ReactElement;
-  }) {
-    const location = useLocation();
-    const [isAuthChecked, setIsAuthChecked] = useState(false as boolean);
-    const [user, setUser] = useState<any>(null);
-
-    React.useEffect(() => {
-      const unsub = onAuthStateChanged(auth, (u) => {
-        setUser(u);
-        setIsAuthChecked(true);
-      });
-      return () => unsub();
-    }, []);
-
-    if (!isAuthChecked) {
-      return null; // evita flicker durante checagem
-    }
-
-    if (!user) {
-      // Não autenticado: redireciona para a página do Gestor de Bando (que abre o modal)
-      return (
-        <Navigate
-          to="/warband-builder"
-          replace
-          state={{ from: location.pathname, requireLogin: true }}
-        />
-      );
-    }
-
-    return children;
-  }
 
   return (
     <>
@@ -361,6 +339,7 @@ function AppContent() {
             </ProtectedRosterRoute>
           }
         />
+        <Route path="/share/warband/:id" element={<SharedWarbandPage />} />
       </Routes>
     </>
   );

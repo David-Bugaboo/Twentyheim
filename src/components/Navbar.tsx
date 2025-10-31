@@ -22,17 +22,17 @@ import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import logoImage from "../assets/20heim.png";
-import { onAuthStateChanged, type User } from "firebase/auth";
-import { auth, loginWithGoogle, logout } from "../firebase.ts";
+import { useAuth } from "../context/AuthContext";
+import { loginWithGoogle, logout } from "../firebase.ts";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
+  const { currentUser } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState<string | null>(
     null
   );
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [userMenuAnchor, setUserMenuAnchor] = useState<null | HTMLElement>(
     null
   );
@@ -81,8 +81,7 @@ const Navbar: React.FC = () => {
         { label: "Horda Orc", path: "/warbands/orc-mob" },
         { label: "Goblins", path: "/warbands/goblins" },
         { label: "Filhos de Hashut", path: "/warbands/sons-of-hashut" },
-        { label: "Carnival of Chaos", path: "/warbands/carnival-of-chaos" },
-        { label: "Criar Bando", path: "/warband-builder/warbands" },
+        { label: "Circo do Caos", path: "/warbands/carnival-of-chaos" },
       ],
     },
     {
@@ -290,12 +289,6 @@ const Navbar: React.FC = () => {
         document.removeEventListener("mousedown", handleClickOutside);
     }
   }, [desktopDropdownOpen]);
-
-  // Auth state
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (u) => setCurrentUser(u));
-    return () => unsub();
-  }, []);
 
   const handleLogin = async () => {
     try {

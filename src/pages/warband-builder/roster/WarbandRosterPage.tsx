@@ -39,12 +39,20 @@ import remediesPoisonsDb from "../../../pages/weapons and equipments/data/remedi
 import meleeMods from "../../../pages/weapons and equipments/data/modificadores-de-arma-refactor.json";
 import rangedMods from "../../../pages/weapons and equipments/data/modificadores-de-arma-a-distancia-refactor.json";
 import firearmsMods from "../../../pages/weapons and equipments/data/modificadores-de-armas-de-fogo-refactor.json";
-import { useLocation } from "react-router-dom";
-import { auth, db } from "../../../firebase.ts";
-import { doc, onSnapshot, updateDoc } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+import { useLocation, useNavigate } from "react-router-dom";
+import { db } from "../../../firebase.ts";
+import {
+  collection,
+  doc,
+  addDoc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
+import { useAuth } from "../../../context/AuthContext";
 import type { Equipment as FullEquipment } from "../types/equipment.type";
 import { buildFigureFromBase } from "../types/figure.type";
+import WarbandNotFoundPage from "./WarbandNotFoundPage";
+import { toast } from "react-toastify";
 
 type EditableUnit = {
   id: string;
@@ -187,17 +195,19 @@ const createRosterStats = (
 
 function WarbandRosterPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const fixedFaction = params.get("faction") || "";
   const warbandId = params.get("id") || "";
-  const [userUid, setUserUid] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const dirtyRef = useRef<boolean>(false);
+  const userId = params.get("userId") || "";
+  const { currentUser, loading } = useAuth();
 
-  useEffect(() => {
-    const off = onAuthStateChanged(auth, (u) => setUserUid(u?.uid || ""));
-    return () => off();
-  }, []);
+  // Verifica se o usuário logado é o dono do warband
+  const isAuthorized = currentUser && currentUser.uid === userId;
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [notFound, setNotFound] = useState<boolean>(false);
+  const dirtyRef = useRef<boolean>(false);
 
   const [sheet, setSheet] = useState<WarbandSheet>({
     name: "",
@@ -345,6 +355,10 @@ function WarbandRosterPage() {
   const [selectedMercId, setSelectedMercId] = useState<string>("");
   const [selectedLegendId, setSelectedLegendId] = useState<string>("");
 
+  // Hooks para menu dropdown de unidades (movidos da IIFE)
+  const [openMenus, setOpenMenus] = useState<Set<string>>(new Set());
+  const menuRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
   const addFigureFromBase = (base: any) => {
     if (!base) return;
     markDirty();
@@ -433,14 +447,28 @@ function WarbandRosterPage() {
     }));
   };
 
+  // Redireciona se não autorizado após o loading
+  useEffect(() => {
+    if (loading) return; // Ainda carregando auth
+    // Se não tem usuário logado OU userId na URL é diferente do usuário logado, redireciona
+    if (!currentUser || !isAuthorized) {
+      navigate("/warband-builder");
+    }
+  }, [loading, currentUser, isAuthorized, navigate]);
+
   // Carrega warband do Firestore (se id presente)
   useEffect(() => {
-    if (!warbandId || !userUid) return;
+    // Se ainda está carregando a autenticação ou não tem IDs ou não está autorizado, não carrega
+    if (loading || !warbandId || !userId || !isAuthorized) return;
     let first = true;
     setIsLoading(true);
-    const ref = doc(db, "users", userUid, "warbands", warbandId);
+    const ref = doc(db, "users", userId, "warbands", warbandId);
     const unsub = onSnapshot(ref, (snap) => {
-      if (!snap.exists()) return;
+      if (!snap.exists()) {
+        setNotFound(true);
+        setIsLoading(false);
+        return;
+      }
       const data: any = snap.data() || {};
       // Usamos somente o root do documento (ignoramos legado em data.sheet)
       const source = data;
@@ -514,7 +542,7 @@ function WarbandRosterPage() {
       }
     });
     return () => unsub();
-  }, [warbandId, userUid]);
+  }, [warbandId, userId, loading, isAuthorized]);
 
   // Ativa escrita apenas após alguma interação do usuário
   useEffect(() => {
@@ -542,9 +570,9 @@ function WarbandRosterPage() {
 
   // Persiste alterações no Firestore (debounce simples)
   useEffect(() => {
-    if (!warbandId || !userUid || !hasLoadedRef.current || !dirtyRef.current)
+    if (!warbandId || !userId || !hasLoadedRef.current || !dirtyRef.current)
       return;
-    const ref = doc(db, "users", userUid, "warbands", warbandId);
+    const ref = doc(db, "users", userId, "warbands", warbandId);
     const h = setTimeout(() => {
       const payloadRaw: any = {
         // Persistimos flatten para facilitar consultas
@@ -578,7 +606,28 @@ function WarbandRosterPage() {
       }
     }, 500);
     return () => clearTimeout(h);
-  }, [warbandId, userUid, sheet]);
+  }, [warbandId, userId, sheet]);
+
+  // Fecha menus ao clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      const shouldClose = Object.values(menuRefs.current).every(
+        (ref) => ref && !ref.contains(target)
+      );
+      if (shouldClose) {
+        setOpenMenus(new Set());
+      }
+    };
+
+    if (openMenus.size > 0) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openMenus]);
 
   // Função auxiliar para extrair número de custo
 
@@ -2108,6 +2157,24 @@ function WarbandRosterPage() {
     );
   })();
 
+  // Mostra loading enquanto authContext está carregando
+  if (loading) {
+    return (
+      <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+        <div className="py-4">
+          <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
+            <MobileSection>
+              <PageTitle>Carregando usuário…</PageTitle>
+              <div className="flex items-center justify-center py-12">
+                <div className="h-10 w-10 rounded-full border-4 border-green-500/40 border-t-green-400 animate-spin" />
+              </div>
+            </MobileSection>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (isLoading) {
     return (
       <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
@@ -2123,6 +2190,10 @@ function WarbandRosterPage() {
         </div>
       </div>
     );
+  }
+
+  if (notFound) {
+    return <WarbandNotFoundPage />;
   }
 
   return (
@@ -2590,13 +2661,58 @@ function WarbandRosterPage() {
                 }
               };
 
+              const handleShare = async () => {
+                try {
+                  // Cria snapshot do warband
+                  const payloadRaw: any = {
+                    name: sheet.name,
+                    faction: sheet.faction,
+                    notes: sheet.notes ?? "",
+                    gold: sheet.gold ?? "0",
+                    wyrdstone: sheet.wyrdstone ?? "0",
+                    vault: (sheet.vault || []).map((e: any) =>
+                      stripUndefinedDeep(e)
+                    ),
+                    figures: (sheet.units || [])
+                      .map((u: any) => u?.figure)
+                      .filter(Boolean)
+                      .map((f: any) => stripUndefinedDeep(f)),
+                    ownerName:
+                      currentUser?.displayName ||
+                      currentUser?.email ||
+                      "Usuário",
+                    createdAt: new Date(),
+                  };
+                  const payload = stripUndefinedDeep(payloadRaw);
+
+                  const col = collection(db, "warband-snapshots");
+                  const docRef = await addDoc(col, payload);
+
+                  const shareUrl = `${window.location.origin}/share/warband/${docRef.id}`;
+
+                  // Copia para clipboard
+                  await navigator.clipboard.writeText(shareUrl);
+
+                  toast.success("Link copiado para a área de transferência!");
+                } catch (e) {
+                  console.error("Erro ao compartilhar bando:", e);
+                  toast.error("Erro ao compartilhar bando. Tente novamente.");
+                }
+              };
+
               return (
-                <div className="mt-4 mb-4">
+                <div className="mt-4 mb-4 flex gap-3">
                   <button
                     onClick={handleExportPdf}
                     className="px-4 py-2 rounded bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white transition-colors duration-200 font-semibold"
                   >
                     📄 Exportar PDF (Printer-friendly)
+                  </button>
+                  <button
+                    onClick={handleShare}
+                    className="px-4 py-2 rounded bg-blue-900/20 border border-blue-500/40 hover:bg-blue-800/30 hover:border-blue-400/60 text-white transition-colors duration-200 font-semibold"
+                  >
+                    🔗 Compartilhar Bando
                   </button>
                 </div>
               );
@@ -2908,36 +3024,6 @@ function WarbandRosterPage() {
                     Boolean((u as any)?.figure?.inactive)
                   )
                 );
-                const [openMenus, setOpenMenus] = useState<Set<string>>(
-                  new Set()
-                );
-                const menuRefs = useRef<Record<string, HTMLDivElement | null>>(
-                  {}
-                );
-
-                // Fecha menus ao clicar fora
-                useEffect(() => {
-                  const handleClickOutside = (event: MouseEvent) => {
-                    const target = event.target as Node;
-                    const shouldClose = Object.values(menuRefs.current).every(
-                      (ref) => ref && !ref.contains(target)
-                    );
-                    if (shouldClose) {
-                      setOpenMenus(new Set());
-                    }
-                  };
-
-                  if (openMenus.size > 0) {
-                    document.addEventListener("mousedown", handleClickOutside);
-                  }
-
-                  return () => {
-                    document.removeEventListener(
-                      "mousedown",
-                      handleClickOutside
-                    );
-                  };
-                }, [openMenus]);
 
                 const renderList = (list: typeof sheet.units) => (
                   <div className="space-y-6">
