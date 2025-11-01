@@ -3689,13 +3689,13 @@ function WarbandRosterPage() {
       <button
         onClick={handleSaveChanges}
         disabled={isSaving || !hasUnsavedChanges || !warbandId || !userId}
-        className="fixed bottom-32 md:bottom-42 right-6 z-50 bg-green-800 text-white p-4 md:p-10 rounded-full shadow-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="fixed bottom-22 md:bottom-36 right-6 z-50 bg-green-800 text-white p-[19.36px] md:p-[38.72px] rounded-full shadow-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         title={hasUnsavedChanges ? "Salvar alterações" : "Tudo salvo"}
       >
         {isSaving ? (
           <div className="animate-spin">
             <svg
-              className="w-6 h-6 md:w-14 md:h-14"
+              className="w-[29.04px] h-[29.04px] md:w-[58.08px] md:h-[58.08px]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -3709,9 +3709,15 @@ function WarbandRosterPage() {
             </svg>
           </div>
         ) : hasUnsavedChanges ? (
-          <SaveIcon sx={{ fontSize: "1.5rem" }} className="md:!text-[3rem]" />
+          <SaveIcon
+            sx={{ fontSize: "1.815rem" }}
+            className="md:!text-[2.42rem]"
+          />
         ) : (
-          <CheckIcon sx={{ fontSize: "1.5rem" }} className="md:!text-[3rem]" />
+          <CheckIcon
+            sx={{ fontSize: "1.815rem" }}
+            className="md:!text-[2.42rem]"
+          />
         )}
       </button>
     </div>
