@@ -11,10 +11,11 @@ interface AdvancementsPickerProps {
 const DEFAULT_OPTIONS: AdvancementOption[] = [
   "Nova Habilidade",
   "Nova Magia",
+  "Fortalecer Magia",
   "+1 Ímpeto",
   "+1 Precisão",
   "+1 Armadura",
-  "+2 Vigor",
+  "+2 Vida",
   "+2 Movimento",
   "+1 Vontade",
   "+1 Força",

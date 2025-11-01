@@ -1026,27 +1026,27 @@ function SharedWarbandPage() {
                                               string
                                             > = {
                                               "Nova Habilidade":
-                                                "Escolha e adicione uma nova habilidade à figura.",
+                                                "Aprenda uma nova habilidade dentre as listas de habilidades da figura. Adicione a habilidade na ficha da figura.",
                                               "Nova Magia":
-                                                "Escolha e adicione uma nova magia à figura.",
-                                              "Diminuir CD de Magia":
-                                                "Reduza em 1 o Número de Conjuração (CD) de uma magia conhecida.",
+                                                "Esse avanço pode ser ganho no lugar de 'Aprender nova Habilidade' para figuras capazes de conjurar magias ou orações. Adicione uma nova magia da tradição indicada na ficha da figura ou da tradição Magia Menor.",
+                                              "Fortalecer Magia":
+                                                "Esse avanço pode ser ganho no lugar de 'Aprender nova Habilidade' para figuras capazes de conjurar magias ou orações. Escolha uma magia que a figura sabe. Aquela magia tem sua Classe de Dificuldade diminuída em 1.",
                                               "+1 Ímpeto":
-                                                "Aumenta permanentemente o atributo Ímpeto em +1.",
+                                                "Aumente seu atributo de Ímpeto em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
                                               "+1 Precisão":
-                                                "Aumenta permanentemente a Precisão em +1.",
+                                                "Aumente seu atributo de Precisão em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
                                               "+1 Armadura":
-                                                "Aumenta permanentemente a Armadura base em +1.",
-                                              "+2 Vigor":
-                                                "Aumenta permanentemente o Vigor em +2.",
+                                                "Aumente seu atributo de Armadura em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
+                                              "+2 Vida":
+                                                "Aumente seu atributo de Vida em +2. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
                                               "+2 Movimento":
-                                                "Aumenta permanentemente o Movimento em +2.",
+                                                "Aumente seu atributo de Movimento em +2. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
                                               "+1 Vontade":
-                                                "Aumenta permanentemente a Vontade em +1.",
+                                                "Aumente seu atributo de Vontade em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
                                               "+1 Força":
-                                                "Aumenta permanentemente a Força em +1.",
+                                                "Aumente seu atributo de Força em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
                                               "O Moleque Tem Talento!":
-                                                "Promoção: transforme um soldado promissor em herói conforme as regras da sua facção.",
+                                                "O soldado se torna um herói! Ele continua usando sua mesma ficha e continua sendo o que era antes (um Barba Curta continua sendo um Barba Curta) e mantém seu nível, mas agora pode fazer todas as atividades que um herói pode e ganha experiência e sobe de nível como herói. Escolha duas listas de habilidades entre as que heróis do bando têm acesso e ganhe acesso a elas.",
                                             };
                                             const advName =
                                               typeof a === "string"

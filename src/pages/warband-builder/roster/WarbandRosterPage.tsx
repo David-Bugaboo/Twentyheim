@@ -12,6 +12,7 @@ import RosterUnitCard, {
   type RosterUnitStats,
 } from "../../../components/RosterUnitCard";
 import { type UnitAbility, type UnitStats } from "../../../components/UnitCard";
+import QuickNavigation from "../../../components/QuickNavigation";
 
 // Datasheets por facção
 import sistersData from "../../warbands/sisters-of-sigmar/data/sisters-of-sigmar.data.json";
@@ -1306,6 +1307,56 @@ function WarbandRosterPage() {
     }));
   };
 
+  // === ADICIONAR SPECIAL RULE ===
+  const handleAddSpecialRuleToUnit = (
+    unitId: string,
+    specialRule: { name: string; description: string }
+  ) => {
+    setHasUnsavedChanges(true);
+    setSheet((prev) => ({
+      ...prev,
+      units: prev.units.map((u) => {
+        if (u.id !== unitId) return u;
+        const fig = (u as any).figure || {};
+        const specialRules = fig.specialRules || [];
+        // Verifica se já existe a regra
+        const exists = specialRules.some(
+          (r: any) => r?.name === specialRule.name
+        );
+        if (exists) return u;
+        const nextFigure = {
+          ...fig,
+          specialRules: [...specialRules, specialRule],
+        };
+        return { ...u, figure: nextFigure } as any;
+      }),
+    }));
+  };
+
+  // === REMOVER SPECIAL RULE ===
+  const handleRemoveSpecialRuleFromUnit = (
+    unitId: string,
+    specialRuleName: string
+  ) => {
+    setHasUnsavedChanges(true);
+    setSheet((prev) => ({
+      ...prev,
+      units: prev.units.map((u) => {
+        if (u.id !== unitId) return u;
+        const fig = (u as any).figure || {};
+        const specialRules = fig.specialRules || [];
+        const filtered = specialRules.filter(
+          (r: any) => r?.name !== specialRuleName
+        );
+        const nextFigure = {
+          ...fig,
+          specialRules: filtered,
+        };
+        return { ...u, figure: nextFigure } as any;
+      }),
+    }));
+  };
+
   const getGlobalItemsByType = (type: string, unit?: EditableUnit) => {
     if (type === "Arma Corpo a Corpo") {
       return (meleeDb as any[])
@@ -1894,7 +1945,7 @@ function WarbandRosterPage() {
         if (injury === "Ferimento na Perna") {
           updatedUnit = applyInjuryDelta(updatedUnit, "move", -2);
         } else if (injury === "Costelas Quebradas") {
-          updatedUnit = applyInjuryDelta(updatedUnit, "health", -4);
+          updatedUnit = applyInjuryDelta(updatedUnit, "health", -2);
         } else if (injury === "Cego de Um Olho") {
           updatedUnit = applyInjuryDelta(updatedUnit, "shoot", -2);
         } else if (injury === "Trauma") {
@@ -1902,6 +1953,36 @@ function WarbandRosterPage() {
         } else if (injury === "Mão Esmigalhada") {
           updatedUnit = applyInjuryDelta(updatedUnit, "fight", -1);
         }
+
+        // Adiciona special rules associadas aos ferimentos
+        const figWithInjury = (updatedUnit as any).figure || {};
+        const specialRulesWithInjury = figWithInjury.specialRules || [];
+        let rulesToAdd: Array<{ name: string; description: string }> = [];
+        if (injury === "Insanidade(Estupidez)") {
+          rulesToAdd.push({
+            name: "Retardado",
+            description: "A figura ganha a característica Estupidez",
+          });
+        } else if (injury === "Insanidade(Fúria)") {
+          rulesToAdd.push({
+            name: "Louco Espumante",
+            description: "A figura ganha a característica Fúria",
+          });
+        }
+        const newSpecialRules = [...specialRulesWithInjury];
+        rulesToAdd.forEach((rule) => {
+          if (!newSpecialRules.some((r: any) => r?.name === rule.name)) {
+            newSpecialRules.push(rule);
+          }
+        });
+        updatedUnit = {
+          ...updatedUnit,
+          figure: {
+            ...figWithInjury,
+            specialRules: newSpecialRules,
+          },
+        } as any;
+
         return updatedUnit;
       }),
     }));
@@ -1936,7 +2017,7 @@ function WarbandRosterPage() {
         if (injury === "Ferimento na Perna") {
           updatedUnit = applyInjuryDelta(updatedUnit, "move", +2);
         } else if (injury === "Costelas Quebradas") {
-          updatedUnit = applyInjuryDelta(updatedUnit, "health", +4);
+          updatedUnit = applyInjuryDelta(updatedUnit, "health", +2);
         } else if (injury === "Cego de Um Olho") {
           updatedUnit = applyInjuryDelta(updatedUnit, "shoot", +2);
         } else if (injury === "Trauma") {
@@ -1944,6 +2025,28 @@ function WarbandRosterPage() {
         } else if (injury === "Mão Esmigalhada") {
           updatedUnit = applyInjuryDelta(updatedUnit, "fight", +1);
         }
+
+        // Remove special rules associadas aos ferimentos
+        const fig = (updatedUnit as any).figure || {};
+        const specialRules = fig.specialRules || [];
+        let rulesToRemove: string[] = [];
+        if (injury === "Insanidade(Estupidez)") {
+          rulesToRemove.push("Retardado");
+        } else if (injury === "Insanidade(Fúria)") {
+          rulesToRemove.push("Louco Espumante");
+        }
+        // Outros ferimentos com special rules (Caleijado, Deformado, Rancor) serão tratados em outro lugar
+        const filteredSpecialRules = specialRules.filter(
+          (r: any) => !rulesToRemove.includes(r?.name)
+        );
+        updatedUnit = {
+          ...updatedUnit,
+          figure: {
+            ...fig,
+            specialRules: filteredSpecialRules,
+          },
+        } as any;
+
         return updatedUnit;
       }),
     }));
@@ -2366,12 +2469,22 @@ function WarbandRosterPage() {
     return <WarbandNotFoundPage />;
   }
 
+  // Seções estáticas de navegação
+  const navigationSections = [
+    { id: "informacoes-bando", title: "Informações do Bando", level: 0 },
+    { id: "estoque-bando", title: "Estoque do Bando", level: 0 },
+    { id: "figuras-ativas", title: "Figuras", level: 0 },
+  ];
+
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <QuickNavigation sections={navigationSections} />
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <MobileSection>
-            <PageTitle>Ficha do Bando</PageTitle>
+            <div id="informacoes-bando">
+              <PageTitle>Ficha do Bando</PageTitle>
+            </div>
 
             {/* Exportar PDF (printer-friendly) */}
             {(() => {
@@ -3083,87 +3196,89 @@ function WarbandRosterPage() {
             </div>
 
             {/* Cofre do Bando (unificado com vault) */}
-            <WarbandStash
-              stash={
-                (sheet.vault || []).map((e: any) => ({
-                  id: e.id,
-                  name: e.name,
-                  category: e.type || e.category || "",
-                  cost: String(e.purchaseCost || e.sellCost || "-"),
-                  data: e,
-                  modifier: e.modifier
-                    ? { name: e.modifier.name, effect: e.modifier.effect }
-                    : undefined,
-                })) as any
-              }
-              gold={sheet.gold || "0"}
-              onPurchase={handlePurchaseItem}
-              onSell={(index) => {
-                setHasUnsavedChanges(true);
-                const vault = (sheet.vault || []) as any[];
-                const item = vault[index];
-                if (!item) return;
-
-                // Calcula custo original usando a mesma lógica de compra
-                const baseCostStr = String(
-                  item.cost || item.purchaseCost || item.sellCost || "0"
-                );
-                const baseCostMatch = baseCostStr.match(/(\d+(?:\.\d+)?)/);
-                const baseCost = baseCostMatch
-                  ? parseFloat(baseCostMatch[1])
-                  : 0;
-                const multiplier = item.modifier?.multiplier ?? 1;
-                const modifierAddend = item.modifierAddend ?? 0;
-                const modifierFixedCost = item.modifierFixedCost;
-
-                let originalCost = baseCost;
-                if (modifierFixedCost != null) {
-                  originalCost = modifierFixedCost;
-                } else {
-                  originalCost = baseCost * multiplier + modifierAddend;
+            <div id="estoque-bando">
+              <WarbandStash
+                stash={
+                  (sheet.vault || []).map((e: any) => ({
+                    id: e.id,
+                    name: e.name,
+                    category: e.type || e.category || "",
+                    cost: String(e.purchaseCost || e.sellCost || "-"),
+                    data: e,
+                    modifier: e.modifier
+                      ? { name: e.modifier.name, effect: e.modifier.effect }
+                      : undefined,
+                  })) as any
                 }
+                gold={sheet.gold || "0"}
+                onPurchase={handlePurchaseItem}
+                onSell={(index) => {
+                  setHasUnsavedChanges(true);
+                  const vault = (sheet.vault || []) as any[];
+                  const item = vault[index];
+                  if (!item) return;
 
-                // Vende por metade do custo original
-                const sellPrice = Math.floor(originalCost / 2);
+                  // Calcula custo original usando a mesma lógica de compra
+                  const baseCostStr = String(
+                    item.cost || item.purchaseCost || item.sellCost || "0"
+                  );
+                  const baseCostMatch = baseCostStr.match(/(\d+(?:\.\d+)?)/);
+                  const baseCost = baseCostMatch
+                    ? parseFloat(baseCostMatch[1])
+                    : 0;
+                  const multiplier = item.modifier?.multiplier ?? 1;
+                  const modifierAddend = item.modifierAddend ?? 0;
+                  const modifierFixedCost = item.modifierFixedCost;
 
-                // Adiciona ouro ao cofre
-                const currentGoldMatch = String(sheet.gold || "0").match(
-                  /(\d+)/
-                );
-                const currentGold = currentGoldMatch
-                  ? parseInt(currentGoldMatch[1], 10)
-                  : 0;
-                const newGold = currentGold + sellPrice;
+                  let originalCost = baseCost;
+                  if (modifierFixedCost != null) {
+                    originalCost = modifierFixedCost;
+                  } else {
+                    originalCost = baseCost * multiplier + modifierAddend;
+                  }
 
-                // Remove item do cofre
-                const newVault = vault.filter((_, i) => i !== index);
-                setSheet({
-                  ...sheet,
-                  vault: newVault,
-                  gold: String(newGold),
-                });
+                  // Vende por metade do custo original
+                  const sellPrice = Math.floor(originalCost / 2);
 
-                toast.success(
-                  `Item vendido! ${sellPrice} coroas adicionadas ao cofre.`
-                );
-              }}
-              onUndo={(index) => {
-                setHasUnsavedChanges(true);
-                const newVault = (sheet.vault || []).filter(
-                  (_, i) => i !== index
-                );
-                setSheet({ ...sheet, vault: newVault });
-              }}
-              onRemoveVaultItemById={(id) => {
-                setHasUnsavedChanges(true);
-                setSheet({
-                  ...sheet,
-                  vault: (sheet.vault || []).filter((e: any) => e.id !== id),
-                });
-              }}
-              factionKey={sheet.faction || ""}
-              factionLabel={factionLabel}
-            />
+                  // Adiciona ouro ao cofre
+                  const currentGoldMatch = String(sheet.gold || "0").match(
+                    /(\d+)/
+                  );
+                  const currentGold = currentGoldMatch
+                    ? parseInt(currentGoldMatch[1], 10)
+                    : 0;
+                  const newGold = currentGold + sellPrice;
+
+                  // Remove item do cofre
+                  const newVault = vault.filter((_, i) => i !== index);
+                  setSheet({
+                    ...sheet,
+                    vault: newVault,
+                    gold: String(newGold),
+                  });
+
+                  toast.success(
+                    `Item vendido! ${sellPrice} coroas adicionadas ao cofre.`
+                  );
+                }}
+                onUndo={(index) => {
+                  setHasUnsavedChanges(true);
+                  const newVault = (sheet.vault || []).filter(
+                    (_, i) => i !== index
+                  );
+                  setSheet({ ...sheet, vault: newVault });
+                }}
+                onRemoveVaultItemById={(id) => {
+                  setHasUnsavedChanges(true);
+                  setSheet({
+                    ...sheet,
+                    vault: (sheet.vault || []).filter((e: any) => e.id !== id),
+                  });
+                }}
+                factionKey={sheet.faction || ""}
+                factionLabel={factionLabel}
+              />
+            </div>
 
             <div className="flex gap-3 mt-4 flex-wrap">
               <label className="px-4 py-2 rounded bg-blue-900/40 border border-blue-500/40 text-white hover:bg-blue-900/60 cursor-pointer">
@@ -3201,7 +3316,7 @@ function WarbandRosterPage() {
               </button>
             </div>
 
-            <div className="mt-8">
+            <div id="figuras-ativas" className="mt-8">
               <HeaderH1>Figuras</HeaderH1>
               <div className="mt-2 inline-flex items-center gap-2 bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2">
                 <span className="text-sm text-gray-300">Warband Rating:</span>
@@ -3291,7 +3406,15 @@ function WarbandRosterPage() {
                       };
 
                       return (
-                        <div key={u.id} className="relative">
+                        <div
+                          key={u.id}
+                          id={
+                            !Boolean((u as any)?.figure?.inactive)
+                              ? `figura-ativa-${u.id}`
+                              : `figura-inativa-${u.id}`
+                          }
+                          className="relative"
+                        >
                           <div className="absolute top-2 right-2 z-10">
                             <div
                               className="relative"
@@ -3528,6 +3651,15 @@ function WarbandRosterPage() {
                               )
                             }
                             onToggleInactive={() => handleToggleInactive(u.id)}
+                            onAddSpecialRule={(specialRule) =>
+                              handleAddSpecialRuleToUnit(u.id, specialRule)
+                            }
+                            onRemoveSpecialRule={(specialRuleName) =>
+                              handleRemoveSpecialRuleFromUnit(
+                                u.id,
+                                specialRuleName
+                              )
+                            }
                           />
                         </div>
                       );
@@ -3539,7 +3671,7 @@ function WarbandRosterPage() {
                   <>
                     {active.length > 0 && renderList(active)}
                     {inactive.length > 0 && (
-                      <div className="mt-10">
+                      <div id="figuras-inativas" className="mt-10">
                         <HeaderH1>Inativos</HeaderH1>
                         {renderList(inactive)}
                       </div>
@@ -3557,13 +3689,13 @@ function WarbandRosterPage() {
       <button
         onClick={handleSaveChanges}
         disabled={isSaving || !hasUnsavedChanges || !warbandId || !userId}
-        className="fixed bottom-6 right-24 md:right-32 z-50 bg-green-800 text-white p-4 md:p-8 rounded-full shadow-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="fixed bottom-32 md:bottom-42 right-6 z-50 bg-green-800 text-white p-4 md:p-10 rounded-full shadow-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         title={hasUnsavedChanges ? "Salvar alterações" : "Tudo salvo"}
       >
         {isSaving ? (
           <div className="animate-spin">
             <svg
-              className="w-6 h-6 md:w-12 md:h-12"
+              className="w-6 h-6 md:w-14 md:h-14"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -3577,9 +3709,9 @@ function WarbandRosterPage() {
             </svg>
           </div>
         ) : hasUnsavedChanges ? (
-          <SaveIcon sx={{ fontSize: "2.5rem" }} />
+          <SaveIcon sx={{ fontSize: "1.5rem" }} className="md:!text-[3rem]" />
         ) : (
-          <CheckIcon sx={{ fontSize: "2.5rem" }} />
+          <CheckIcon sx={{ fontSize: "1.5rem" }} className="md:!text-[3rem]" />
         )}
       </button>
     </div>

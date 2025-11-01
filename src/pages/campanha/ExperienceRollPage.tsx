@@ -327,7 +327,7 @@ function ExperienceRollPage() {
                 },
                 {
                   "Rolagem de Dado": "17-20",
-                  Resultado: "O Moleque tem Talento!",
+                  Resultado: "O Moleque Tem Talento!",
                 },
               ]}
               scrollable={false}
@@ -353,7 +353,7 @@ function ExperienceRollPage() {
               da tradição Magia Menor.
             </MobileText>
 
-            <HeaderH2>Diminuir Classe de Dificuldade de Magia</HeaderH2>
+            <HeaderH2>Fortalecer Magia</HeaderH2>
             <MobileText>
               Esse avanço pode ser ganho no lugar do avanço "Aprender nova
               Habilidade" para figuras capazes de conjurar magias ou orações.
@@ -367,7 +367,7 @@ function ExperienceRollPage() {
               figura. Adicione a habilidade na ficha da figura.
             </MobileText>
 
-            <HeaderH2>O Rapaz tem Talento!</HeaderH2>
+            <HeaderH2>O Moleque Tem Talento!</HeaderH2>
             <MobileText>
               O soldado se torna um herói! Ele continua usando sua mesma ficha e
               continua sendo o que era antes (um Barba Curta continua sendo um

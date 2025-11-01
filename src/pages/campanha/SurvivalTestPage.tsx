@@ -101,24 +101,24 @@ function SurvivalTestPage() {
               Role o dado novamente:
               <br />
               <br />
-              1-5 = Ferimento grave no braço. O braço deve ser amputado. A
-              figura só poderá usar uma única arma sem a característica Duas
-              Mãos a partir de agora.
+              1-5 = Antebraço Esmagado. O braço deve ser amputado. A figura só
+              poderá usar uma única arma sem a característica Duas Mãos a partir
+              de agora.
               <br />
               <br />
-              6-20 = Ferimento leve. A figura não joga o próximo jogo.
+              6-20 = Ombro Deslocado. A figura não joga o próximo jogo.
             </MobileText>
             <HeaderH3>5 - Insanidade</HeaderH3>
             <MobileText>
               Role o dado novamente:
               <br />
               <br />
-              1-5 = Insanidade completa. A figura age como uma figura
-              descontrolada em todo combate que participa.
+              1-5:Insanidade(Estupidez). A figura ganha a característica
+              estupidez, e não é substituida como Líder do bando pelo héroi com
+              mais experência.
               <br />
               <br />
-              6-20 = Insanidade Temporária. No próximo jogo, a figura ganha um
-              marcador de Atordoamento sempre que não terminar uma ativação em
+              6-20:Insanidade (Fúria). A figura ganha a característica Fúria.
               combate.
             </MobileText>
             <HeaderH3>6 - Perna Esmagada</HeaderH3>
@@ -126,19 +126,21 @@ function SurvivalTestPage() {
               Role o dado novamente:
               <br />
               <br />
-              1-5 = A figura não pode mais tomar ações de disparada ou escalar.
+              1-5:Fratura Exposta na Perna. A figura não pode mais tomar ações
+              de disparada ou escalar.
               <br />
               <br />
-              6-20 = A figura não pode participar do próximo jogo.
+              6-20:Perna Deslocada. A figura não pode participar do próximo
+              jogo.
             </MobileText>
-            <HeaderH3>7 - Ferimento no Tórax</HeaderH3>
+            <HeaderH3>7 - Costelas Quebradas</HeaderH3>
             <MobileText>
-              A figura sofreu um ferimento grave no peito. Sua vida máxima é
-              reduzida permanentemente em -2.
+              Costelas Quebradas:A figura sofreu um ferimento grave no peito.
+              Sua vida máxima é reduzida permanentemente em -2.
             </MobileText>
             <HeaderH3>8 - Cego de Um Olho</HeaderH3>
             <MobileText>
-              A figura sobrevive, mas perde a visão em um olho; determine
+              Cego de Um Olho:A figura sobrevive, mas perde a visão em um olho; determine
               aleatoriamente qual. Um personagem que perde um olho tem sua
               Precisão reduzida em -2.
               <br />
@@ -148,18 +150,18 @@ function SurvivalTestPage() {
             </MobileText>
             <HeaderH3>9 - Ferimento Infectado</HeaderH3>
             <MobileText>
-              A figura sobrevive, mas sua ferida o impedirá de lutar se você
+              Ferimento Infectado:A figura sobrevive, mas sua ferida o impedirá de lutar se você
               rolar 1-5 em um dado no início de qualquer batalha. Role no início
               de cada batalha a partir de agora.
             </MobileText>
-            <HeaderH3>10 - Condição Nervosa</HeaderH3>
+            <HeaderH3>10 - Trauma</HeaderH3>
             <MobileText>
               O sistema nervoso da figura foi danificado. Sua Vontade é reduzida
               em -1.
             </MobileText>
-            <HeaderH3>11 - Ferimento na Mão</HeaderH3>
+            <HeaderH3>11 - Mão Esmigalhada</HeaderH3>
             <MobileText>
-              A mão da figura está gravemente ferida. Seu Ímpeto é reduzido
+              Mão Esmigalhada:A mão da figura está gravemente ferida. Seu Ímpeto é reduzido
               permanentemente em -1.
             </MobileText>
             <HeaderH3>12 - Ferimento Profundo</HeaderH3>

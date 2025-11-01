@@ -38,6 +38,11 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
 
   // Process sections: use existing children if defined, otherwise auto-group
   const groupedSections = React.useMemo(() => {
+    // Early return if no sections
+    if (!sections || sections.length === 0) {
+      return [];
+    }
+
     // Check if any section already has children defined
     const hasPredefinedChildren = sections.some(
       (section) => section.children && section.children.length > 0
@@ -106,6 +111,10 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
   }, [sections]);
 
   useEffect(() => {
+    if (!sections || sections.length === 0) {
+      return;
+    }
+
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
       setShowBackToTop(scrollTop > 300);
@@ -167,7 +176,7 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
       {/* Floating Book Button */}
       <button
         onClick={() => setIsIndexOpen(!isIndexOpen)}
-        className="fixed bottom-6 right-6 z-50 bg-green-800 text-white p-4 md:p-8 rounded-full shadow-lg hover:bg-green-700 transition-colors"
+        className="fixed bottom-6 right-6 z-40 bg-green-800 text-white p-4 md:p-8 rounded-full shadow-lg hover:bg-green-700 transition-colors"
       >
         <svg
           className="w-6 h-6 md:w-12 md:h-12"
@@ -232,25 +241,27 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
           </Box>
 
           {/* Navigation Items */}
-          <List sx={{ 
-            flex: 1, 
-            padding: 0, 
-            overflow: "auto",
-            maxHeight: "calc(100vh - 80px)",
-            "&::-webkit-scrollbar": {
-              width: "8px",
-            },
-            "&::-webkit-scrollbar-track": {
-              backgroundColor: "#2a2a2a",
-            },
-            "&::-webkit-scrollbar-thumb": {
-              backgroundColor: "#8fbc8f",
-              borderRadius: "4px",
-              "&:hover": {
-                backgroundColor: "#7fb87f",
+          <List
+            sx={{
+              flex: 1,
+              padding: 0,
+              overflow: "auto",
+              maxHeight: "calc(100vh - 80px)",
+              "&::-webkit-scrollbar": {
+                width: "8px",
               },
-            },
-          }}>
+              "&::-webkit-scrollbar-track": {
+                backgroundColor: "#2a2a2a",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "#8fbc8f",
+                borderRadius: "4px",
+                "&:hover": {
+                  backgroundColor: "#7fb87f",
+                },
+              },
+            }}
+          >
             {groupedSections.map((section, index) => {
               const hasChildren =
                 section.children && section.children.length > 0;

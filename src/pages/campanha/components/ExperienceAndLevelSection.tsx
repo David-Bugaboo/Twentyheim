@@ -465,7 +465,7 @@ const ExperienceAndLevelSection = () => {
       <MobileText className="mb-3 pl-4">
         <strong>1. Aumentar um Atributo:</strong> Aumente um dos atributos da
         figura (+1 Movimento, +1 Ímpeto, +1 Precisão, +1 Armadura, +1 Vontade ou
-        +2 Vigor) seguindo os limites raciais de cada raça na tabela abaixo.
+        +2 Vida) seguindo os limites raciais de cada raça na tabela abaixo.
         Mesmo que uma figura consiga fazer dois avanços de uma vez, ela só pode
         aumentar atributos uma vez. Mais forte. Mais rápido. Mais resistente.
       </MobileText>
