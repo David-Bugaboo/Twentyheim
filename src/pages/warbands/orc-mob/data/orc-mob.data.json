@@ -450,7 +450,7 @@
       },
       {
         "name": "Pastores Goblin",
-        "description": "Cada Pé-Duro das Cavernas deve sempre permanecer a 8cm de um Guerreiro Goblin, que mantém a figura sob controle. Se um Squig das Cavernas se encontrar sem um Goblin a 8cm no início de sua fase de Movimento, ele ficará selvagem. A partir desse ponto, ele age como uma figura não controlada e se mantém assim até o final do jogo."
+        "description": "Cada Pé-Duro das Cavernas deve sempre permanecer a 8cm de um Guerreiro Goblin, que mantém a figura sob controle. Se um Pé-Duro das Cavernas se encontrar sem um Goblin a 8cm no início de sua fase de Movimento, ele ficará selvagem. A partir desse ponto, ele age como uma figura não controlada e se mantém assim até o final do jogo."
       }
     ]
   },
