@@ -352,7 +352,8 @@ function WarbandRosterPage() {
     [flattenAllUnits, factionLabelAlt]
   );
 
-  const [selectedFactionUnitId, setSelectedFactionUnitId] = useState<string>("");
+  const [selectedFactionUnitId, setSelectedFactionUnitId] =
+    useState<string>("");
   const [selectedMercId, setSelectedMercId] = useState<string>("");
   const [selectedLegendId, setSelectedLegendId] = useState<string>("");
 
@@ -515,6 +516,15 @@ function WarbandRosterPage() {
 
         // Sempre monta units a partir de figures (fonte de verdade)
         if (Array.isArray(source.figures) && source.figures.length > 0) {
+          // Função para garantir IDs únicos em arrays de objetos (skills, spells, equipment, etc)
+          const ensureIds = (arr: any[], generateId: () => string): any[] => {
+            if (!Array.isArray(arr)) return arr;
+            return arr.map((item) => {
+              if (!item || typeof item !== "object") return item;
+              return { ...item, id: item.id || generateId() };
+            });
+          };
+
           const rebuilt = (source.figures as any[]).map((fig) => {
             const id = String(fig?.id || crypto.randomUUID());
             const role = fig?.role;
@@ -524,7 +534,27 @@ function WarbandRosterPage() {
             // Corrige narrativeName para lendas: sempre vazio (não têm narrative name)
             const correctedFigure = {
               ...fig,
+              id, // Garante que a figure tenha ID único
               narrativeName: role === "Lenda" ? "" : fig?.narrativeName || "",
+              // Garante IDs únicos em todos os arrays de objetos
+              skills: ensureIds(fig?.skills || [], () => crypto.randomUUID()),
+              spells: ensureIds(fig?.spells || [], () => crypto.randomUUID()),
+              mutations: ensureIds(fig?.mutations || [], () =>
+                crypto.randomUUID()
+              ),
+              nurgleBlessings: ensureIds(fig?.nurgleBlessings || [], () =>
+                crypto.randomUUID()
+              ),
+              sacredMarks: ensureIds(fig?.sacredMarks || [], () =>
+                crypto.randomUUID()
+              ),
+              advancements: ensureIds(fig?.advancements || [], () =>
+                crypto.randomUUID()
+              ),
+              injuries: ensureIds(fig?.injuries || [], () =>
+                crypto.randomUUID()
+              ),
+              equiped: ensureIds(fig?.equiped || [], () => crypto.randomUUID()),
             };
             return {
               id,
@@ -997,7 +1027,7 @@ function WarbandRosterPage() {
     }));
   };
 
-  const handleRemoveSkillFromUnit = (unitId: string, skillName: string) => {
+  const handleRemoveSkillFromUnit = (unitId: string, skillId: string) => {
     markDirty();
     setSheet((prev) => ({
       ...prev,
@@ -1008,7 +1038,7 @@ function WarbandRosterPage() {
               figure: {
                 ...(u as any).figure,
                 skills: (((u as any).figure?.skills || []) as any[]).filter(
-                  (s: any) => s.name !== skillName
+                  (s: any) => s.id !== skillId
                 ),
               },
             }

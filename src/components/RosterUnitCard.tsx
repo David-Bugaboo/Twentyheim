@@ -89,7 +89,7 @@ interface RosterUnitCardProps {
     description: string;
     type?: string;
   }) => void;
-  onRemoveSkill?: (skillName: string) => void;
+  onRemoveSkill?: (skillId: string) => void;
   // Adicionar tradição e lista de habilidades
   onAddTradition?: (traditionName: string) => void;
   onAddSkillCategory?: (category: string) => void;
@@ -868,14 +868,14 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                     </h5>
                     <div className="space-y-3">
                       {selectedSkills.map((skill, index) => (
-                        <div key={index}>
+                        <div key={skill.id || index}>
                           <SkillCard
                             name={skill.name}
                             description={skill.description}
                             footer={
-                              onRemoveSkill ? (
+                              onRemoveSkill && skill.id ? (
                                 <button
-                                  onClick={() => onRemoveSkill(skill.name)}
+                                  onClick={() => onRemoveSkill(skill.id!)}
                                   className="w-full sm:w-auto px-3 py-1.5 rounded bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm whitespace-nowrap"
                                 >
                                   Remover

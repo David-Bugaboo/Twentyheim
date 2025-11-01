@@ -1,4 +1,5 @@
 export interface Advancement {
-    name: string;
-    effect: string;
+  id?: string;
+  name: string;
+  effect: string;
 }

@@ -33,6 +33,6 @@
     "id": "quebra-cuca",
     "name": "QUEBRA CUCA!",
     "type": "Hordas Orc",
-    "description": "Todas as armas usadas pela figura com essa habilidade ganha a palavra-chave Concussiva(5). Caso a arma já tenha a palavra-chave Concussiva(X), X aumenta em 1."
+    "description": "Todas as armas usadas pela figura com essa habilidade ganha a palavra-chave Concussiva(5). Caso a arma já tenha a palavra-chave Concussiva(X), X diminue em 1."
   }
 ]

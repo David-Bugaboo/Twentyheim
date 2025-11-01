@@ -1,5 +1,6 @@
 export interface SacredMark {
-    name: string;
-    cost: string;
-    description: string;
+  id: string;
+  name: string;
+  cost: string;
+  description: string;
 }
