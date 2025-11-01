@@ -74,9 +74,7 @@
         }
       ],
       "miscellaneous": [],
-      "modifiers": [
-       
-      ]
+      "modifiers": []
     }
   },
   {
@@ -87,14 +85,14 @@
     "quantity": "0-1",
     "stats": {
       "move": 9,
-      "fight": "+4",
+      "fight": "+2",
       "shoot": "-",
       "armour": 12,
       "Vontade": "+2",
       "health": 14,
       "cost": "60 coroas",
       "strength": "+1",
-      "skills": ["Combate", "Força", "Reptilianos"],
+      "skills": ["Combate", "Força", "Habilidades de Sáurio"],
       "startingXp": 11,
       "equipmentSlots": 6
     },
@@ -151,9 +149,7 @@
         }
       ],
       "miscellaneous": [],
-      "modifiers": [
-        
-      ]
+      "modifiers": []
     }
   },
   {
@@ -164,8 +160,8 @@
     "quantity": "0-2",
     "stats": {
       "move": 16,
-      "fight": "+2",
-      "shoot": "+2",
+      "fight": "+1",
+      "shoot": "+1",
       "armour": 10,
       "Vontade": "+1",
       "health": 12,
@@ -174,9 +170,7 @@
       "startingXp": 8,
       "equipmentSlots": 4
     },
-    "abilities": [
-      
-    ],
+    "abilities": [],
     "equipment": {
       "hand-to-hand": [
         {
@@ -221,9 +215,7 @@
         }
       ],
       "miscellaneous": [],
-      "modifiers": [
-        
-      ]
+      "modifiers": []
     }
   },
   {

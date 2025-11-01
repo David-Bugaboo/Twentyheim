@@ -112,7 +112,7 @@
     "specialRules": [
       {
         "label": "Efeito",
-        "value": "Qualquer guerreiro que tome Cogumelos Chapéu da Morte antes de uma batalha ganhará +1 de Ímpeto, +1 de Dano e +2 em testes de conjuração, mas tem -2 de Vontade. A figura toma -2 em seu teste de sobrevivência caso seja reduzida a 0 de vida. Apenas goblins e o Orc Véio podem usar esse remédio."
+        "value": "Qualquer guerreiro que tome Cogumelos Chapéu da Morte antes de uma batalha ganhará a característica Fúria."
       }
     ]
   },

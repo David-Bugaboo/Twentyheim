@@ -86,7 +86,7 @@
     "id": "elmo-de-osso",
     "name": "Elmo de Osso",
     "type": "Armadura",
-    "availability": ["Gecko Magisacerdote", "Xamã Homem-Fera"],
+    "availability": ["Reptilianios", "Homem-Fera"],
     "rarity": 1,
     "damageModifier": null,
     "purchaseCost": "5 coroas",
