@@ -7,6 +7,7 @@ import SkillCard from "../../components/SkillCard";
 import LoreSpellCard from "../../components/LoreSpellCard";
 import HeaderH1 from "../../components/HeaderH1";
 import GameText from "../../components/GameText";
+import EquipmentCard from "../../components/EquipmentCard";
 import { db } from "../../firebase.ts";
 import { doc, onSnapshot } from "firebase/firestore";
 import { type Figure } from "../warband-builder/types/figure.type";
@@ -30,6 +31,17 @@ function SharedWarbandPage() {
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [sheet, setSheet] = useState<any>(null);
+  const [collapsedUnits, setCollapsedUnits] = useState<{
+    [key: string]: boolean;
+  }>({});
+  const [collapsedAdvancements, setCollapsedAdvancements] = useState<{
+    [key: string]: boolean;
+  }>({});
+  const [collapsedInjuries, setCollapsedInjuries] = useState<{
+    [key: string]: boolean;
+  }>({});
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewData, setPreviewData] = useState<any | null>(null);
 
   useEffect(() => {
     if (!id) {
@@ -132,7 +144,127 @@ function SharedWarbandPage() {
     );
     const inj = Number((u.figure?.injuryStatsModifiers as any)?.[statKey] || 0);
     const misc = Number((u.figure?.miscStatsModifiers as any)?.[statKey] || 0);
-    return base + adv + inj + misc;
+    let total = base + adv + inj + misc;
+
+    // Para armadura, adiciona bônus de equipamentos
+    if (statKey === "armour" && u.figure?.equiped) {
+      let equipmentArmorBonus = 0;
+      for (const equip of u.figure.equiped) {
+        const armorBonus = equip.armorBonus;
+        if (typeof armorBonus === "number") {
+          equipmentArmorBonus += armorBonus;
+        }
+      }
+      total += equipmentArmorBonus;
+      // Limita a 17
+      total = Math.min(total, 17);
+    }
+
+    return total;
+  };
+
+  // Função para normalizar dados de equipamento para EquipmentCard
+  const normalizeToEquipmentCard = (raw: any) => {
+    if (!raw) return null;
+    const toStr = (v: any) =>
+      v === undefined || v === null ? null : String(v);
+    const toArr = (v: any) => (Array.isArray(v) ? v : v ? [String(v)] : []);
+
+    const baseName = String(raw.name || "");
+    const modifier = raw.modifier;
+    const nameWithMod = modifier?.name
+      ? `${baseName} ${modifier.name}`
+      : baseName;
+
+    const toSpecialRules = (
+      sr: any
+    ): Array<{ label: string; value: string }> => {
+      if (!Array.isArray(sr)) return [];
+      const out: Array<{ label: string; value: string }> = [];
+      for (const item of sr) {
+        if (!item) continue;
+        if (typeof item === "string") {
+          out.push({ label: "Regra Especial", value: item });
+        } else if (item.label || item.value) {
+          out.push({
+            label: String(item.label || "Regra Especial"),
+            value: String(item.value || ""),
+          });
+        }
+      }
+      return out.filter((r) => r.value);
+    };
+
+    const base = {
+      name: toStr(nameWithMod),
+      type: toStr(raw.type || raw.category),
+      damageModifier: toStr(
+        raw.damageModifier || raw.damage || raw.modificadorDeDano
+      ),
+      maxRange: toStr(raw.maxRange || raw.range || raw.alcance),
+      exclusive: toStr(raw.exclusive),
+      specialProperties: Array.isArray(raw.specialProperties)
+        ? raw.specialProperties
+        : undefined,
+      cost: (() => {
+        const baseCostStr = String(
+          raw.cost || raw.purchaseCost || raw.sellCost || "0"
+        );
+        const baseCostMatch = baseCostStr.match(/(\d+(?:\.\d+)?)/);
+        const baseCost = baseCostMatch ? parseFloat(baseCostMatch[1]) : 0;
+        const multiplier = raw.modifier?.multiplier ?? 1;
+        const modifierAddend = raw.modifierAddend ?? 0;
+        const modifierFixedCost = raw.modifierFixedCost;
+
+        let finalCost = baseCost;
+        if (modifierFixedCost != null) {
+          finalCost = modifierFixedCost;
+        } else {
+          finalCost = baseCost * multiplier + modifierAddend;
+        }
+
+        return finalCost % 1 === 0
+          ? `${Math.round(finalCost)} coroas`
+          : `${finalCost} coroas`;
+      })(),
+      spaces: toStr(
+        raw.spaces || raw.equipmentSpaces || raw.espacos || raw.slots
+      ),
+      description: toArr(raw.description || raw.descricao),
+      strength: toStr(
+        raw.strength || raw.requisitoDeForca || raw.requisitosDeForca
+      ),
+      armorBonus: toStr(
+        raw.armorBonus || raw.armourBonus || raw.armadura || raw.bonusArmadura
+      ),
+      movePenalty: toStr(raw.movePenalty || raw.penalidadeMovimento),
+      requirements: toStr(raw.requirements || raw.requisitos),
+      rarity: raw.rarity ?? null,
+      availability: Array.isArray(raw.availability)
+        ? raw.availability
+        : undefined,
+      effect: toStr(raw.effect || raw.efeito),
+      specialRules: (() => {
+        const baseRules = toSpecialRules((raw as any).specialRules);
+        const modifier = raw.modifier;
+        if (modifier?.name && modifier?.effect) {
+          baseRules.push({
+            label: `Modificador — ${modifier.name}`,
+            value: String(modifier.effect),
+          });
+        }
+        return baseRules;
+      })(),
+    };
+    return base;
+  };
+
+  const openPreview = (item: any) => {
+    const normalized = normalizeToEquipmentCard(item);
+    if (normalized) {
+      setPreviewData(normalized);
+      setPreviewOpen(true);
+    }
   };
 
   if (loading) {
@@ -315,6 +447,24 @@ function SharedWarbandPage() {
                       .map((e: any) => e?.name || e)
                       .filter(Boolean);
                     const equipedFull = (fig.equiped || []) as any[];
+
+                    // Calcula armadura total incluindo bônus de equipamentos
+                    let armourTotal = stats?.armour || 0;
+                    if (equipedFull && equipedFull.length > 0) {
+                      let equipmentArmorBonus = 0;
+                      for (const equip of equipedFull) {
+                        const armorBonus = equip.armorBonus;
+                        if (typeof armorBonus === "number") {
+                          equipmentArmorBonus += armorBonus;
+                        }
+                      }
+                      armourTotal = Math.min(
+                        armourTotal + equipmentArmorBonus,
+                        17
+                      );
+                    }
+                    const finalStats = { ...stats, armour: armourTotal };
+
                     const specialAbilities = [
                       ...(Array.isArray(fig.nurgleBlessings)
                         ? fig.nurgleBlessings
@@ -355,7 +505,7 @@ function SharedWarbandPage() {
                               sheet.faction
                             )}</div>
                             <div><strong>Custo:</strong> ${safe(
-                              stats?.cost
+                              finalStats?.cost
                             )}</div>
                           </div>
                         </div>
@@ -364,27 +514,27 @@ function SharedWarbandPage() {
                             <div class="section-title">Atributos</div>
                             <table class="table">
                               <tr><td>Movimento</td><td>${safe(
-                                stats?.move
+                                finalStats?.move
                               )}</td></tr>
                               <tr><td>Ímpeto</td><td>${safe(
-                                stats?.fight
+                                finalStats?.fight
                               )}</td></tr>
                               <tr><td>Precisão</td><td>${safe(
-                                stats?.shoot
+                                finalStats?.shoot
                               )}</td></tr>
                               <tr><td>Armadura</td><td>${safe(
-                                stats?.armour
+                                finalStats?.armour
                               )}</td></tr>
                               <tr><td>Vontade</td><td>${safe(
-                                stats?.Vontade
+                                finalStats?.Vontade
                               )}</td></tr>
                               <tr><td>Vigor</td><td>${safe(
-                                stats?.health
+                                finalStats?.health
                               )}</td></tr>
                               ${
-                                stats?.strength !== undefined
+                                finalStats?.strength !== undefined
                                   ? `<tr><td>Força</td><td>${safe(
-                                      stats?.strength
+                                      finalStats?.strength
                                     )}</td></tr>`
                                   : ""
                               }
@@ -773,6 +923,7 @@ function SharedWarbandPage() {
                         roleStr.includes("lider") || roleStr.includes("líder");
                       const showXP = !isLenda && !(fig as any)?.noXP;
 
+                      const isCollapsed = collapsedUnits[u.id] ?? false;
                       return (
                         <div
                           key={u.id}
@@ -782,19 +933,39 @@ function SharedWarbandPage() {
                           }
                         >
                           <div className="w-full p-6 pt-8">
-                            <h3
-                              className="text-2xl font-bold text-center mt-4"
-                              style={{
-                                fontFamily: '"Cinzel", serif',
-                                color: "#8fbc8f",
-                              }}
+                            <div
+                              className="flex items-center justify-between cursor-pointer hover:bg-[#252525] transition-colors p-2 rounded"
+                              onClick={() =>
+                                setCollapsedUnits({
+                                  ...collapsedUnits,
+                                  [u.id]: !isCollapsed,
+                                })
+                              }
                             >
-                              {isLenda
-                                ? u.name
-                                : narrativeName
-                                ? `${narrativeName}, ${u.name}`
-                                : u.name}
-                            </h3>
+                              <h3
+                                className="text-2xl font-bold text-center mt-4 flex-1"
+                                style={{
+                                  fontFamily: '"Cinzel", serif',
+                                  color: "#8fbc8f",
+                                }}
+                              >
+                                {isLenda
+                                  ? u.name
+                                  : narrativeName
+                                  ? `${narrativeName}, ${u.name}`
+                                  : u.name}
+                              </h3>
+                              <button
+                                className="text-white text-2xl transition-transform"
+                                style={{
+                                  transform: isCollapsed
+                                    ? "rotate(0deg)"
+                                    : "rotate(180deg)",
+                                }}
+                              >
+                                ▼
+                              </button>
+                            </div>
                             {u.role && (isHero || isLider) && (
                               <div className="flex justify-center items-center gap-3 mt-3 flex-wrap">
                                 <span className="bg-gray-600 text-white px-2 py-1 rounded text-sm">
@@ -807,470 +978,551 @@ function SharedWarbandPage() {
                                 )}
                               </div>
                             )}
-
-                            {/* Avanços */}
-                            {showXP &&
-                              fig.advancements &&
-                              Array.isArray(fig.advancements) &&
-                              fig.advancements.length > 0 && (
-                                <div className="mb-6">
-                                  <h4
-                                    className="text-lg font-bold mb-3"
-                                    style={{ color: "#8fbc8f" }}
-                                  >
-                                    AVANÇOS
-                                  </h4>
-                                  <div className="mt-3 space-y-3">
-                                    {fig.advancements.map((a, idx) => {
-                                      const advDesc: Record<string, string> = {
-                                        "Nova Habilidade":
-                                          "Escolha e adicione uma nova habilidade à figura.",
-                                        "Nova Magia":
-                                          "Escolha e adicione uma nova magia à figura.",
-                                        "Diminuir CD de Magia":
-                                          "Reduza em 1 o Número de Conjuração (CD) de uma magia conhecida.",
-                                        "+1 Ímpeto":
-                                          "Aumenta permanentemente o atributo Ímpeto em +1.",
-                                        "+1 Precisão":
-                                          "Aumenta permanentemente a Precisão em +1.",
-                                        "+1 Armadura":
-                                          "Aumenta permanentemente a Armadura base em +1.",
-                                        "+2 Vigor":
-                                          "Aumenta permanentemente o Vigor em +2.",
-                                        "+2 Movimento":
-                                          "Aumenta permanentemente o Movimento em +2.",
-                                        "+1 Vontade":
-                                          "Aumenta permanentemente a Vontade em +1.",
-                                        "+1 Força":
-                                          "Aumenta permanentemente a Força em +1.",
-                                        "O Moleque Tem Talento!":
-                                          "Promoção: transforme um soldado promissor em herói conforme as regras da sua facção.",
-                                      };
-                                      const advName =
-                                        typeof a === "string"
-                                          ? a
-                                          : a.name || "";
-                                      const desc = advDesc[advName] || "";
-                                      return (
-                                        <div
-                                          key={idx}
-                                          className="relative bg-[#2a2a2a] rounded p-3 border border-gray-700"
-                                        >
-                                          <div className="text-white font-semibold">
-                                            {advName}
-                                          </div>
-                                          {desc && (
-                                            <div className="text-sm text-gray-300 mt-1">
-                                              {desc}
-                                            </div>
-                                          )}
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
-                                </div>
-                              )}
-
-                            {/* Ferimentos */}
-                            {(isHero || isLider || isLenda) &&
-                              fig.injuries &&
-                              Array.isArray(fig.injuries) &&
-                              fig.injuries.length > 0 && (
-                                <div className="mb-6">
-                                  <h4
-                                    className="text-lg font-bold mb-3"
-                                    style={{ color: "#8fbc8f" }}
-                                  >
-                                    FERIMENTOS
-                                  </h4>
-                                  <div className="mt-3 space-y-3">
-                                    {fig.injuries.map((injuryName, idx) => {
-                                      const descMap: Record<string, string> = {
-                                        "Ferimento na Perna":
-                                          "-2 permanentes em Movimento.",
-                                        "Ombro Deslocado":
-                                          "Perde o Próximo Jogo se recuperando.",
-                                        "Antebraço Esmagado":
-                                          "Braço Amputado. Só pode usar uma arma por vez e sem a característica Duas Mãos.",
-                                        "Insanidade(Estupidez)":
-                                          "O Personagem ganha a característica Estupidez.",
-                                        "Insanidade(Fúria)":
-                                          "O Personagem ganha a característica Fúria.",
-                                        "Perna Deslocada":
-                                          "Perde o próximo jogo se recuperando.",
-                                        "Fratura Exposta na Perna":
-                                          "Não pode mais usar a ação de disparada e a ação de carga não dobra mais o movimento.",
-                                        "Costelas Quebradas":
-                                          "-4 permanentes em Vida.",
-                                        "Cego de Um Olho":
-                                          "-2 permanentes em Precisão. Se rolar de novo, é removido do bando.",
-                                        "Ferimento Infectado":
-                                          "Rola um d20 antes de cada partida. Em um resultado de 1-5, não pode participar aquela partida.",
-                                        Trauma: "-1 permanente em Vontade.",
-                                        "Mão Esmigalhada":
-                                          "-1 permanente em Ímpeto.",
-                                        "Ferimento Profundo":
-                                          "Perde os próximos 3 jogos se recuperando. Não pode fazer atividades na fase de campanha enquanto se recupera.",
-                                      };
-                                      const injName =
-                                        typeof injuryName === "string"
-                                          ? injuryName
-                                          : injuryName.name || "";
-                                      let desc = descMap[injName] || "";
-                                      if (!desc) {
-                                        const paren =
-                                          injName.match(/\(([^)]+)\)/);
-                                        if (paren && paren[1]) desc = paren[1];
-                                      }
-                                      return (
-                                        <div
-                                          key={idx}
-                                          className="relative bg-[#2a2a2a] rounded p-3 border border-gray-700"
-                                        >
-                                          <div className="text-white font-semibold">
-                                            {injName}
-                                          </div>
-                                          {desc && (
-                                            <div className="text-sm text-gray-300 mt-1">
-                                              {desc}
-                                            </div>
-                                          )}
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
-                                </div>
-                              )}
                           </div>
 
-                          {/* Content */}
-                          <div className="px-6 pt-6 pb-6 border-t border-gray-600">
-                            {/* XP */}
-                            {showXP && (
-                              <div className="mb-6">
-                                <h4
-                                  className="text-lg font-bold mb-3"
-                                  style={{ color: "#8fbc8f" }}
-                                >
-                                  EXPERIÊNCIA
-                                </h4>
-                                {isHero || isLider ? (
-                                  <div className="bg-[#2a2a2a] p-4 rounded">
-                                    <div className="text-center text-3xl font-bold text-white">
-                                      {fig.xp || 0}
+                          {!isCollapsed && (
+                            <div className="px-6 pb-6">
+                              {/* Avanços */}
+                              {showXP &&
+                                fig.advancements &&
+                                Array.isArray(fig.advancements) &&
+                                fig.advancements.length > 0 &&
+                                (() => {
+                                  const isAdvCollapsed =
+                                    collapsedAdvancements[u.id] ?? true;
+                                  return (
+                                    <div className="mb-6">
+                                      <div
+                                        className="flex items-center justify-between cursor-pointer hover:bg-[#252525] transition-colors p-2 rounded"
+                                        onClick={() =>
+                                          setCollapsedAdvancements({
+                                            ...collapsedAdvancements,
+                                            [u.id]: !isAdvCollapsed,
+                                          })
+                                        }
+                                      >
+                                        <h4
+                                          className="text-lg font-bold"
+                                          style={{ color: "#8fbc8f" }}
+                                        >
+                                          AVANÇOS
+                                        </h4>
+                                        <button
+                                          className="text-white text-lg transition-transform"
+                                          style={{
+                                            transform: isAdvCollapsed
+                                              ? "rotate(0deg)"
+                                              : "rotate(180deg)",
+                                          }}
+                                        >
+                                          ▼
+                                        </button>
+                                      </div>
+                                      {!isAdvCollapsed && (
+                                        <div className="mt-3 space-y-3">
+                                          {fig.advancements.map((a, idx) => {
+                                            const advDesc: Record<
+                                              string,
+                                              string
+                                            > = {
+                                              "Nova Habilidade":
+                                                "Escolha e adicione uma nova habilidade à figura.",
+                                              "Nova Magia":
+                                                "Escolha e adicione uma nova magia à figura.",
+                                              "Diminuir CD de Magia":
+                                                "Reduza em 1 o Número de Conjuração (CD) de uma magia conhecida.",
+                                              "+1 Ímpeto":
+                                                "Aumenta permanentemente o atributo Ímpeto em +1.",
+                                              "+1 Precisão":
+                                                "Aumenta permanentemente a Precisão em +1.",
+                                              "+1 Armadura":
+                                                "Aumenta permanentemente a Armadura base em +1.",
+                                              "+2 Vigor":
+                                                "Aumenta permanentemente o Vigor em +2.",
+                                              "+2 Movimento":
+                                                "Aumenta permanentemente o Movimento em +2.",
+                                              "+1 Vontade":
+                                                "Aumenta permanentemente a Vontade em +1.",
+                                              "+1 Força":
+                                                "Aumenta permanentemente a Força em +1.",
+                                              "O Moleque Tem Talento!":
+                                                "Promoção: transforme um soldado promissor em herói conforme as regras da sua facção.",
+                                            };
+                                            const advName =
+                                              typeof a === "string"
+                                                ? a
+                                                : a.name || "";
+                                            const desc = advDesc[advName] || "";
+                                            return (
+                                              <div
+                                                key={idx}
+                                                className="relative bg-[#2a2a2a] rounded p-3 border border-gray-700"
+                                              >
+                                                <div className="text-white font-semibold">
+                                                  {advName}
+                                                </div>
+                                                {desc && (
+                                                  <div className="text-sm text-gray-300 mt-1">
+                                                    {desc}
+                                                  </div>
+                                                )}
+                                              </div>
+                                            );
+                                          })}
+                                        </div>
+                                      )}
                                     </div>
+                                  );
+                                })()}
+
+                              {/* Ferimentos */}
+                              {(isHero || isLider || isLenda) &&
+                                fig.injuries &&
+                                Array.isArray(fig.injuries) &&
+                                fig.injuries.length > 0 &&
+                                (() => {
+                                  const isInjCollapsed =
+                                    collapsedInjuries[u.id] ?? true;
+                                  return (
+                                    <div className="mb-6">
+                                      <div
+                                        className="flex items-center justify-between cursor-pointer hover:bg-[#252525] transition-colors p-2 rounded"
+                                        onClick={() =>
+                                          setCollapsedInjuries({
+                                            ...collapsedInjuries,
+                                            [u.id]: !isInjCollapsed,
+                                          })
+                                        }
+                                      >
+                                        <h4
+                                          className="text-lg font-bold"
+                                          style={{ color: "#8fbc8f" }}
+                                        >
+                                          FERIMENTOS
+                                        </h4>
+                                        <button
+                                          className="text-white text-lg transition-transform"
+                                          style={{
+                                            transform: isInjCollapsed
+                                              ? "rotate(0deg)"
+                                              : "rotate(180deg)",
+                                          }}
+                                        >
+                                          ▼
+                                        </button>
+                                      </div>
+                                      {!isInjCollapsed && (
+                                        <div className="mt-3 space-y-3">
+                                          {fig.injuries.map(
+                                            (injuryName, idx) => {
+                                              const descMap: Record<
+                                                string,
+                                                string
+                                              > = {
+                                                "Ferimento na Perna":
+                                                  "-2 permanentes em Movimento.",
+                                                "Ombro Deslocado":
+                                                  "Perde o Próximo Jogo se recuperando.",
+                                                "Antebraço Esmagado":
+                                                  "Braço Amputado. Só pode usar uma arma por vez e sem a característica Duas Mãos.",
+                                                "Insanidade(Estupidez)":
+                                                  "O Personagem ganha a característica Estupidez.",
+                                                "Insanidade(Fúria)":
+                                                  "O Personagem ganha a característica Fúria.",
+                                                "Perna Deslocada":
+                                                  "Perde o próximo jogo se recuperando.",
+                                                "Fratura Exposta na Perna":
+                                                  "Não pode mais usar a ação de disparada e a ação de carga não dobra mais o movimento.",
+                                                "Costelas Quebradas":
+                                                  "-4 permanentes em Vida.",
+                                                "Cego de Um Olho":
+                                                  "-2 permanentes em Precisão. Se rolar de novo, é removido do bando.",
+                                                "Ferimento Infectado":
+                                                  "Rola um d20 antes de cada partida. Em um resultado de 1-5, não pode participar aquela partida.",
+                                                Trauma:
+                                                  "-1 permanente em Vontade.",
+                                                "Mão Esmigalhada":
+                                                  "-1 permanente em Ímpeto.",
+                                                "Ferimento Profundo":
+                                                  "Perde os próximos 3 jogos se recuperando. Não pode fazer atividades na fase de campanha enquanto se recupera.",
+                                              };
+                                              const injName =
+                                                typeof injuryName === "string"
+                                                  ? injuryName
+                                                  : injuryName.name || "";
+                                              let desc = descMap[injName] || "";
+                                              if (!desc) {
+                                                const paren =
+                                                  injName.match(/\(([^)]+)\)/);
+                                                if (paren && paren[1])
+                                                  desc = paren[1];
+                                              }
+                                              return (
+                                                <div
+                                                  key={idx}
+                                                  className="relative bg-[#2a2a2a] rounded p-3 border border-gray-700"
+                                                >
+                                                  <div className="text-white font-semibold">
+                                                    {injName}
+                                                  </div>
+                                                  {desc && (
+                                                    <div className="text-sm text-gray-300 mt-1">
+                                                      {desc}
+                                                    </div>
+                                                  )}
+                                                </div>
+                                              );
+                                            }
+                                          )}
+                                        </div>
+                                      )}
+                                    </div>
+                                  );
+                                })()}
+
+                              {/* Content */}
+                              <div className="pt-6 border-t border-gray-600">
+                                {/* XP */}
+                                {showXP && (
+                                  <div className="mb-6">
+                                    <h4
+                                      className="text-lg font-bold mb-3"
+                                      style={{ color: "#8fbc8f" }}
+                                    >
+                                      EXPERIÊNCIA
+                                    </h4>
+                                    {isHero || isLider ? (
+                                      <div className="bg-[#2a2a2a] p-4 rounded">
+                                        <div className="text-center text-3xl font-bold text-white">
+                                          {fig.xp || 0}
+                                        </div>
+                                      </div>
+                                    ) : (
+                                      <div className="bg-[#2a2a2a] p-4 rounded">
+                                        <div className="text-center text-2xl font-bold text-white">
+                                          {fig.xp || 0}
+                                        </div>
+                                      </div>
+                                    )}
                                   </div>
-                                ) : (
-                                  <div className="bg-[#2a2a2a] p-4 rounded">
-                                    <div className="text-center text-2xl font-bold text-white">
-                                      {fig.xp || 0}
+                                )}
+
+                                {/* Stats */}
+                                <div className="mb-6">
+                                  <h4
+                                    className="text-lg font-bold mb-3"
+                                    style={{ color: "#8fbc8f" }}
+                                  >
+                                    ATRIBUTOS
+                                  </h4>
+                                  <div className="bg-[#2a2a2a] p-4 rounded space-y-2">
+                                    {[
+                                      { key: "move", label: "Movimento" },
+                                      { key: "fight", label: "Ímpeto" },
+                                      { key: "shoot", label: "Precisão" },
+                                      { key: "armour", label: "Armadura" },
+                                      { key: "Vontade", label: "Vontade" },
+                                      { key: "health", label: "Vigor" },
+                                      { key: "strength", label: "Força" },
+                                    ].map(({ key, label }) => {
+                                      if (
+                                        key === "strength" &&
+                                        (fig.baseStats?.strength ===
+                                          undefined ||
+                                          fig.baseStats?.strength === null)
+                                      )
+                                        return null;
+                                      const total = getTotalStat(
+                                        u,
+                                        key as keyof Figure["baseStats"]
+                                      );
+                                      const showPlus =
+                                        key === "fight" ||
+                                        key === "shoot" ||
+                                        key === "Vontade";
+                                      return (
+                                        <div
+                                          key={key}
+                                          className="flex items-center justify-between py-2 border-b border-gray-600 last:border-b-0"
+                                        >
+                                          <span className="text-gray-300 font-semibold">
+                                            {label}
+                                          </span>
+                                          <span className="text-lg font-bold">
+                                            {showPlus && total >= 0
+                                              ? `+${total}`
+                                              : `${total}`}
+                                          </span>
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                </div>
+
+                                {/* Skills */}
+                                {fig.role !== "Soldado" &&
+                                  fig.skills &&
+                                  Array.isArray(fig.skills) &&
+                                  fig.skills.length > 0 && (
+                                    <div className="mb-6">
+                                      <h4
+                                        className="text-lg font-bold mb-3"
+                                        style={{ color: "#8fbc8f" }}
+                                      >
+                                        HABILIDADES
+                                      </h4>
+                                      <div className="space-y-3">
+                                        {fig.skills.map((skill, idx) => {
+                                          const skillObj: any =
+                                            typeof skill === "string"
+                                              ? { name: skill }
+                                              : skill;
+                                          return (
+                                            <div key={idx}>
+                                              <SkillCard
+                                                name={skillObj.name || ""}
+                                                description={
+                                                  skillObj.description || ""
+                                                }
+                                                footer={undefined}
+                                              />
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  )}
+
+                                {/* Spells */}
+                                {fig.role !== "Soldado" &&
+                                  fig.spells &&
+                                  Array.isArray(fig.spells) &&
+                                  fig.spells.length > 0 && (
+                                    <div className="mb-6">
+                                      <h4
+                                        className="text-lg font-bold mb-3"
+                                        style={{ color: "#8fbc8f" }}
+                                      >
+                                        MAGIAS
+                                      </h4>
+                                      <div className="space-y-3">
+                                        {fig.spells.map((spell, idx) => {
+                                          const spellObj: any =
+                                            typeof spell === "string"
+                                              ? { name: spell }
+                                              : spell;
+                                          return (
+                                            <div key={idx}>
+                                              <LoreSpellCard
+                                                name={spellObj.name || ""}
+                                                castingNumber={
+                                                  spellObj.castingNumber ||
+                                                  spellObj.cn ||
+                                                  0
+                                                }
+                                                keywords={
+                                                  spellObj.keywords || []
+                                                }
+                                                effect={spellObj.effect || ""}
+                                                footer={undefined}
+                                              />
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  )}
+
+                                {/* Special Abilities */}
+                                {fig.role !== "Soldado" &&
+                                  fig.role !== "Lenda" &&
+                                  [
+                                    ...(Array.isArray(fig.nurgleBlessings)
+                                      ? fig.nurgleBlessings
+                                      : []),
+                                    ...(Array.isArray(fig.mutations)
+                                      ? fig.mutations
+                                      : []),
+                                    ...(Array.isArray(fig.sacredMarks)
+                                      ? fig.sacredMarks
+                                      : []),
+                                  ].length > 0 && (
+                                    <div className="mb-6">
+                                      <h4
+                                        className="text-lg font-bold mb-3"
+                                        style={{ color: "#8fbc8f" }}
+                                      >
+                                        HABILIDADES ESPECIAIS
+                                      </h4>
+                                      <div className="space-y-4">
+                                        {[
+                                          {
+                                            key: "nurgleBlessings",
+                                            label: "Bênçãos de Nurgle",
+                                          },
+                                          {
+                                            key: "mutations",
+                                            label: "Mutações",
+                                          },
+                                          {
+                                            key: "sacredMarks",
+                                            label: "Marcas Sagradas",
+                                          },
+                                        ].map(({ key, label }) => {
+                                          const list = (fig as any)[key] || [];
+                                          if (!list.length) return null;
+                                          return (
+                                            <div key={key}>
+                                              <div className="text-sm text-gray-300 mb-2">
+                                                {label}
+                                              </div>
+                                              <div className="space-y-3">
+                                                {list.map(
+                                                  (it: any, idx: number) => {
+                                                    const abName =
+                                                      typeof it === "string"
+                                                        ? it
+                                                        : it?.name || "";
+                                                    const abDesc =
+                                                      typeof it === "string"
+                                                        ? ""
+                                                        : it?.description || "";
+                                                    return (
+                                                      <div
+                                                        key={idx}
+                                                        className="bg-[#2a2a2a] rounded p-3 border border-gray-700"
+                                                      >
+                                                        <div className="text-white font-semibold">
+                                                          {abName}
+                                                        </div>
+                                                        {abDesc && (
+                                                          <div className="text-sm text-gray-300 mt-1">
+                                                            {abDesc}
+                                                          </div>
+                                                        )}
+                                                      </div>
+                                                    );
+                                                  }
+                                                )}
+                                              </div>
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  )}
+
+                                {/* Equipment */}
+                                {(fig.equipmentSlots ?? 0) > 0 &&
+                                  fig.equiped &&
+                                  Array.isArray(fig.equiped) &&
+                                  fig.equiped.length > 0 && (
+                                    <div className="mb-6">
+                                      <h4
+                                        className="text-lg font-bold mb-3"
+                                        style={{ color: "#8fbc8f" }}
+                                      >
+                                        EQUIPAMENTOS
+                                      </h4>
+                                      <div className="bg-[#2a2a2a] p-4 rounded">
+                                        <div className="space-y-2">
+                                          {fig.equiped.map((eq, idx) => {
+                                            const eqObj =
+                                              typeof eq === "string"
+                                                ? { name: eq }
+                                                : eq;
+                                            const eqName = eqObj?.name || "";
+                                            const eqMod =
+                                              typeof eq === "object" &&
+                                              eq?.modifier?.name
+                                                ? ` ${eq.modifier.name}`
+                                                : "";
+                                            return (
+                                              <div
+                                                key={idx}
+                                                className="flex items-center justify-between py-2 border-b border-gray-600 last:border-b-0"
+                                              >
+                                                <button
+                                                  type="button"
+                                                  onClick={() =>
+                                                    openPreview(eqObj)
+                                                  }
+                                                  className="text-white hover:text-green-300 transition-colors cursor-pointer"
+                                                >
+                                                  {eqName}
+                                                  {eqMod}
+                                                </button>
+                                              </div>
+                                            );
+                                          })}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+
+                                {/* Special Rules */}
+                                {(u.abilities?.length > 0 ||
+                                  (Array.isArray((fig as any)?.specialRules) &&
+                                    (fig as any).specialRules.length > 0)) && (
+                                  <div className="mb-6">
+                                    <h4
+                                      className="text-lg font-bold mb-3"
+                                      style={{ color: "#8fbc8f" }}
+                                    >
+                                      REGRAS ESPECIAIS
+                                    </h4>
+                                    <div className="bg-[#2a2a2a] p-4 rounded space-y-3">
+                                      {u.abilities && u.abilities.length > 0
+                                        ? u.abilities.map((ability, index) => (
+                                            <div
+                                              key={index}
+                                              className="border-b border-gray-600 pb-3 last:border-b-0"
+                                            >
+                                              <h5
+                                                className="font-bold mb-1"
+                                                style={{ color: "#8fbc8f" }}
+                                              >
+                                                {ability.name}
+                                              </h5>
+                                              {ability.description && (
+                                                <GameText
+                                                  component="p"
+                                                  className="text-gray-300 text-sm leading-relaxed"
+                                                >
+                                                  {ability.description}
+                                                </GameText>
+                                              )}
+                                            </div>
+                                          ))
+                                        : (
+                                            (fig as any).specialRules as any[]
+                                          ).map((r, idx) => (
+                                            <div
+                                              key={idx}
+                                              className="border-b border-gray-600 pb-3 last:border-b-0"
+                                            >
+                                              <h5
+                                                className="font-bold mb-1"
+                                                style={{ color: "#8fbc8f" }}
+                                              >
+                                                {r?.name}
+                                              </h5>
+                                              {r?.description && (
+                                                <GameText
+                                                  component="p"
+                                                  className="text-gray-300 text-sm leading-relaxed"
+                                                >
+                                                  {r.description}
+                                                </GameText>
+                                              )}
+                                            </div>
+                                          ))}
                                     </div>
                                   </div>
                                 )}
                               </div>
-                            )}
-
-                            {/* Stats */}
-                            <div className="mb-6">
-                              <h4
-                                className="text-lg font-bold mb-3"
-                                style={{ color: "#8fbc8f" }}
-                              >
-                                ATRIBUTOS
-                              </h4>
-                              <div className="bg-[#2a2a2a] p-4 rounded space-y-2">
-                                {[
-                                  { key: "move", label: "Movimento" },
-                                  { key: "fight", label: "Ímpeto" },
-                                  { key: "shoot", label: "Precisão" },
-                                  { key: "armour", label: "Armadura" },
-                                  { key: "Vontade", label: "Vontade" },
-                                  { key: "health", label: "Vigor" },
-                                  { key: "strength", label: "Força" },
-                                ].map(({ key, label }) => {
-                                  if (
-                                    key === "strength" &&
-                                    (fig.baseStats?.strength === undefined ||
-                                      fig.baseStats?.strength === null)
-                                  )
-                                    return null;
-                                  const total = getTotalStat(
-                                    u,
-                                    key as keyof Figure["baseStats"]
-                                  );
-                                  const showPlus =
-                                    key === "fight" ||
-                                    key === "shoot" ||
-                                    key === "Vontade";
-                                  return (
-                                    <div
-                                      key={key}
-                                      className="flex items-center justify-between py-2 border-b border-gray-600 last:border-b-0"
-                                    >
-                                      <span className="text-gray-300 font-semibold">
-                                        {label}
-                                      </span>
-                                      <span className="text-lg font-bold">
-                                        {showPlus && total >= 0
-                                          ? `+${total}`
-                                          : `${total}`}
-                                      </span>
-                                    </div>
-                                  );
-                                })}
-                              </div>
                             </div>
-
-                            {/* Skills */}
-                            {fig.role !== "Soldado" &&
-                              fig.skills &&
-                              Array.isArray(fig.skills) &&
-                              fig.skills.length > 0 && (
-                                <div className="mb-6">
-                                  <h4
-                                    className="text-lg font-bold mb-3"
-                                    style={{ color: "#8fbc8f" }}
-                                  >
-                                    HABILIDADES
-                                  </h4>
-                                  <div className="space-y-3">
-                                    {fig.skills.map((skill, idx) => {
-                                      const skillObj: any =
-                                        typeof skill === "string"
-                                          ? { name: skill }
-                                          : skill;
-                                      return (
-                                        <div key={idx}>
-                                          <SkillCard
-                                            name={skillObj.name || ""}
-                                            description={
-                                              skillObj.description || ""
-                                            }
-                                            footer={undefined}
-                                          />
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
-                                </div>
-                              )}
-
-                            {/* Spells */}
-                            {fig.role !== "Soldado" &&
-                              fig.spells &&
-                              Array.isArray(fig.spells) &&
-                              fig.spells.length > 0 && (
-                                <div className="mb-6">
-                                  <h4
-                                    className="text-lg font-bold mb-3"
-                                    style={{ color: "#8fbc8f" }}
-                                  >
-                                    MAGIAS
-                                  </h4>
-                                  <div className="space-y-3">
-                                    {fig.spells.map((spell, idx) => {
-                                      const spellObj: any =
-                                        typeof spell === "string"
-                                          ? { name: spell }
-                                          : spell;
-                                      return (
-                                        <div key={idx}>
-                                          <LoreSpellCard
-                                            name={spellObj.name || ""}
-                                            castingNumber={
-                                              spellObj.castingNumber ||
-                                              spellObj.cn ||
-                                              0
-                                            }
-                                            keywords={spellObj.keywords || []}
-                                            effect={spellObj.effect || ""}
-                                            footer={undefined}
-                                          />
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
-                                </div>
-                              )}
-
-                            {/* Special Abilities */}
-                            {fig.role !== "Soldado" &&
-                              fig.role !== "Lenda" &&
-                              [
-                                ...(Array.isArray(fig.nurgleBlessings)
-                                  ? fig.nurgleBlessings
-                                  : []),
-                                ...(Array.isArray(fig.mutations)
-                                  ? fig.mutations
-                                  : []),
-                                ...(Array.isArray(fig.sacredMarks)
-                                  ? fig.sacredMarks
-                                  : []),
-                              ].length > 0 && (
-                                <div className="mb-6">
-                                  <h4
-                                    className="text-lg font-bold mb-3"
-                                    style={{ color: "#8fbc8f" }}
-                                  >
-                                    HABILIDADES ESPECIAIS
-                                  </h4>
-                                  <div className="space-y-4">
-                                    {[
-                                      {
-                                        key: "nurgleBlessings",
-                                        label: "Bênçãos de Nurgle",
-                                      },
-                                      { key: "mutations", label: "Mutações" },
-                                      {
-                                        key: "sacredMarks",
-                                        label: "Marcas Sagradas",
-                                      },
-                                    ].map(({ key, label }) => {
-                                      const list = (fig as any)[key] || [];
-                                      if (!list.length) return null;
-                                      return (
-                                        <div key={key}>
-                                          <div className="text-sm text-gray-300 mb-2">
-                                            {label}
-                                          </div>
-                                          <div className="space-y-3">
-                                            {list.map(
-                                              (it: any, idx: number) => {
-                                                const abName =
-                                                  typeof it === "string"
-                                                    ? it
-                                                    : it?.name || "";
-                                                const abDesc =
-                                                  typeof it === "string"
-                                                    ? ""
-                                                    : it?.description || "";
-                                                return (
-                                                  <div
-                                                    key={idx}
-                                                    className="bg-[#2a2a2a] rounded p-3 border border-gray-700"
-                                                  >
-                                                    <div className="text-white font-semibold">
-                                                      {abName}
-                                                    </div>
-                                                    {abDesc && (
-                                                      <div className="text-sm text-gray-300 mt-1">
-                                                        {abDesc}
-                                                      </div>
-                                                    )}
-                                                  </div>
-                                                );
-                                              }
-                                            )}
-                                          </div>
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
-                                </div>
-                              )}
-
-                            {/* Equipment */}
-                            {(fig.equipmentSlots ?? 0) > 0 &&
-                              fig.equiped &&
-                              Array.isArray(fig.equiped) &&
-                              fig.equiped.length > 0 && (
-                                <div className="mb-6">
-                                  <h4
-                                    className="text-lg font-bold mb-3"
-                                    style={{ color: "#8fbc8f" }}
-                                  >
-                                    EQUIPAMENTOS
-                                  </h4>
-                                  <div className="bg-[#2a2a2a] p-4 rounded">
-                                    <div className="space-y-2">
-                                      {fig.equiped.map((eq, idx) => {
-                                        const eqName =
-                                          typeof eq === "string"
-                                            ? eq
-                                            : eq?.name || "";
-                                        const eqMod =
-                                          typeof eq === "object" &&
-                                          eq?.modifier?.name
-                                            ? ` ${eq.modifier.name}`
-                                            : "";
-                                        return (
-                                          <div
-                                            key={idx}
-                                            className="flex items-center justify-between py-2 border-b border-gray-600 last:border-b-0"
-                                          >
-                                            <span className="text-white">
-                                              {eqName}
-                                              {eqMod}
-                                            </span>
-                                          </div>
-                                        );
-                                      })}
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-
-                            {/* Special Rules */}
-                            {(u.abilities?.length > 0 ||
-                              (Array.isArray((fig as any)?.specialRules) &&
-                                (fig as any).specialRules.length > 0)) && (
-                              <div className="mb-6">
-                                <h4
-                                  className="text-lg font-bold mb-3"
-                                  style={{ color: "#8fbc8f" }}
-                                >
-                                  REGRAS ESPECIAIS
-                                </h4>
-                                <div className="bg-[#2a2a2a] p-4 rounded space-y-3">
-                                  {u.abilities && u.abilities.length > 0
-                                    ? u.abilities.map((ability, index) => (
-                                        <div
-                                          key={index}
-                                          className="border-b border-gray-600 pb-3 last:border-b-0"
-                                        >
-                                          <h5
-                                            className="font-bold mb-1"
-                                            style={{ color: "#8fbc8f" }}
-                                          >
-                                            {ability.name}
-                                          </h5>
-                                          {ability.description && (
-                                            <GameText
-                                              component="p"
-                                              className="text-gray-300 text-sm leading-relaxed"
-                                            >
-                                              {ability.description}
-                                            </GameText>
-                                          )}
-                                        </div>
-                                      ))
-                                    : ((fig as any).specialRules as any[]).map(
-                                        (r, idx) => (
-                                          <div
-                                            key={idx}
-                                            className="border-b border-gray-600 pb-3 last:border-b-0"
-                                          >
-                                            <h5
-                                              className="font-bold mb-1"
-                                              style={{ color: "#8fbc8f" }}
-                                            >
-                                              {r?.name}
-                                            </h5>
-                                            {r?.description && (
-                                              <GameText
-                                                component="p"
-                                                className="text-gray-300 text-sm leading-relaxed"
-                                              >
-                                                {r.description}
-                                              </GameText>
-                                            )}
-                                          </div>
-                                        )
-                                      )}
-                                </div>
-                              </div>
-                            )}
-                          </div>
+                          )}
                         </div>
                       );
                     })}
@@ -1281,6 +1533,23 @@ function SharedWarbandPage() {
           </MobileSection>
         </div>
       </div>
+
+      {/* Modal de preview de equipamento */}
+      {previewOpen && previewData && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
+          <div className="max-w-xl w-full relative">
+            <button
+              type="button"
+              className="absolute -top-2 -right-2 bg-gray-800 text-white rounded-full w-9 h-9 border border-gray-600 hover:bg-gray-700"
+              onClick={() => setPreviewOpen(false)}
+              aria-label="Fechar"
+            >
+              ✕
+            </button>
+            <EquipmentCard {...previewData} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

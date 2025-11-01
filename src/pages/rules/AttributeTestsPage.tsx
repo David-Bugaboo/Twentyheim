@@ -4,6 +4,7 @@ import MobileSection from "../../components/MobileSection";
 import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
 import QuickNavigation from "../../components/QuickNavigation";
+import WarningBox from "../../components/WarningBox";
 
 function AttributeTestsPage() {
   const navigationSections = [
@@ -29,9 +30,9 @@ function AttributeTestsPage() {
 
             <MobileText>
               Os testes de característica são o coração do sistema de resolução
-              de ações em 20Heim. Quando uma figura tenta realizar uma
-              ação que tem chance de falhar, você rola um d20 e compara com o
-              valor relevante da característica da figura.
+              de ações em 20Heim. Quando uma figura tenta realizar uma ação que
+              tem chance de falhar, você rola um d20 e compara com o valor
+              relevante da característica da figura.
             </MobileText>
 
             <div id="como-fazer">
@@ -72,6 +73,13 @@ function AttributeTestsPage() {
               Sempre adicione todos os modificadores relevantes a uma rolagem de
               atributo.
             </MobileText>
+
+            <WarningBox title="Modificador Máximo" type="warning">
+              <MobileText>
+                Uma figura nunca pode alcancar um modificador maior que +10 em
+                um teste de qualquer atributo.
+              </MobileText>
+            </WarningBox>
 
             <div id="teste-contestado">
               <HeaderH1>Testes Contestados</HeaderH1>

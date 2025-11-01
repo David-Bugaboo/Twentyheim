@@ -186,11 +186,34 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
 }) => {
   const navigate = useNavigate();
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isAdvancementsCollapsed, setIsAdvancementsCollapsed] = useState(true);
+  const [isInjuriesCollapsed, setIsInjuriesCollapsed] = useState(true);
 
-  const getTotal = (breakdown: AttributeBreakdown): number => {
-    return (
-      breakdown.base + breakdown.advancement + breakdown.injury + breakdown.misc
-    );
+  const getTotal = (
+    breakdown: AttributeBreakdown,
+    statKey: string = ""
+  ): number => {
+    const baseTotal =
+      breakdown.base +
+      breakdown.advancement +
+      breakdown.injury +
+      breakdown.misc;
+
+    // Para armadura, adiciona bônus de equipamentos
+    if (statKey === "armour" && figure?.equiped) {
+      let equipmentArmorBonus = 0;
+      for (const equip of figure.equiped) {
+        const armorBonus = equip.armorBonus;
+        if (typeof armorBonus === "number") {
+          equipmentArmorBonus += armorBonus;
+        }
+      }
+      const finalTotal = baseTotal + equipmentArmorBonus;
+      // Limita a 17
+      return Math.min(finalTotal, 17);
+    }
+
+    return baseTotal;
   };
 
   // Função para mapear tipos de habilidades para suas rotas com algoritmo de comparação
@@ -542,12 +565,27 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
             if (roleStr.includes("lenda") || (figure as any)?.noXP) return null;
             return (
               <div className="mb-6">
-                <h4
-                  className="text-lg font-bold mb-3"
-                  style={{ color: "#8fbc8f" }}
+                <div
+                  className="flex items-center justify-between cursor-pointer hover:bg-[#252525] transition-colors p-2 rounded"
+                  onClick={() => setIsAdvancementsCollapsed(!isAdvancementsCollapsed)}
                 >
-                  AVANÇOS
-                </h4>
+                  <h4
+                    className="text-lg font-bold"
+                    style={{ color: "#8fbc8f" }}
+                  >
+                    AVANÇOS
+                  </h4>
+                  <button
+                    className="text-white text-lg transition-transform"
+                    style={{
+                      transform: isAdvancementsCollapsed ? "rotate(0deg)" : "rotate(180deg)",
+                    }}
+                  >
+                    ▼
+                  </button>
+                </div>
+                {!isAdvancementsCollapsed && (
+                <>
                 {(() => {
                   const roleStr = (figure?.role || "").toString().toLowerCase();
                   const isHeroLike =
@@ -634,6 +672,8 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                     })}
                   </div>
                 )}
+                </>
+                )}
               </div>
             );
           })()}
@@ -649,12 +689,27 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
             if (!showInjuries) return null;
             return (
               <div className="mb-6">
-                <h4
-                  className="text-lg font-bold mb-3"
-                  style={{ color: "#8fbc8f" }}
+                <div
+                  className="flex items-center justify-between cursor-pointer hover:bg-[#252525] transition-colors p-2 rounded"
+                  onClick={() => setIsInjuriesCollapsed(!isInjuriesCollapsed)}
                 >
-                  FERIMENTOS
-                </h4>
+                  <h4
+                    className="text-lg font-bold"
+                    style={{ color: "#8fbc8f" }}
+                  >
+                    FERIMENTOS
+                  </h4>
+                  <button
+                    className="text-white text-lg transition-transform"
+                    style={{
+                      transform: isInjuriesCollapsed ? "rotate(0deg)" : "rotate(180deg)",
+                    }}
+                  >
+                    ▼
+                  </button>
+                </div>
+                {!isInjuriesCollapsed && (
+                <>
                 <InjuriesPicker
                   selected={selectedInjuries || []}
                   onAdd={(i) => onAddInjury && onAddInjury(i)}
@@ -717,6 +772,8 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                       );
                     })}
                   </div>
+                )}
+                </>
                 )}
               </div>
             );
@@ -801,7 +858,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   )
                     return null;
                   const b = toFigureBreakdown(skey);
-                  const total = getTotal(b);
+                  const total = getTotal(b, skey);
                   const label =
                     skey === "move"
                       ? "Movimento"
@@ -1357,11 +1414,26 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   <span className="text-lg font-bold">
                     {(() => {
                       const b = toFigureBreakdown(editingStat);
-                      const total =
+                      let total =
                         b.base +
                         tempModifiers.advancement +
                         tempModifiers.injury +
                         tempModifiers.misc;
+
+                      // Para armadura, adiciona bônus de equipamentos
+                      if (editingStat === "armour" && figure?.equiped) {
+                        let equipmentArmorBonus = 0;
+                        for (const equip of figure.equiped) {
+                          const armorBonus = equip.armorBonus;
+                          if (typeof armorBonus === "number") {
+                            equipmentArmorBonus += armorBonus;
+                          }
+                        }
+                        total += equipmentArmorBonus;
+                        // Limita a 17
+                        total = Math.min(total, 17);
+                      }
+
                       const showPlus =
                         editingStat === "fight" ||
                         editingStat === "shoot" ||

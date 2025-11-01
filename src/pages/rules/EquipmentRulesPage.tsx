@@ -189,6 +189,13 @@ function EquipmentRulesPage() {
               etcetera.
             </MobileText>
 
+            <WarningBox title="Importante" type="warning">
+              <MobileText>
+                Uma figura nunca pode alcançar um valor de Armadura maior que
+                17, independente de bônus naturais ou de equipamentos.
+              </MobileText>
+            </WarningBox>
+
             <div id="exemplo-armadura">
               <HeaderH2>Exemplo: Armadura Pesada</HeaderH2>
             </div>

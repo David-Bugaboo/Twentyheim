@@ -883,6 +883,37 @@ function WarbandRosterPage() {
     // resolve Equipment completo e move do vault
     const equipmentObj =
       (sheet.vault || [])[idx] || resolveEquipmentByName(itemName);
+
+    // Validação: verifica se já existe armadura ou escudo equipado
+    const isShield = isShieldName(itemName);
+    const isHelmet = isHelmetName(itemName);
+    // Armadura é qualquer item com categoria "armor" que não seja escudo nem elmo
+    const isArmor = item.category === "armor" && !isShield && !isHelmet;
+
+    if (isShield || isArmor) {
+      const hasConflictingEquipment = unit.figure?.equiped?.some((eq: any) => {
+        const eqName = String(eq?.name || "");
+        if (isShield) {
+          return isShieldName(eqName);
+        } else if (isArmor) {
+          // Checa se já tem uma armadura (não escudo, não elmo)
+          const cat = String(eq?.type || eq?.category || "").toLowerCase();
+          return (
+            cat === "armor" && !isShieldName(eqName) && !isHelmetName(eqName)
+          );
+        }
+        return false;
+      });
+
+      if (hasConflictingEquipment) {
+        const itemType = isShield ? "escudo" : "armadura";
+        toast.error(
+          `A figura já possui um ${itemType} equipado. Você só pode ter 1 ${itemType} por vez.`
+        );
+        return;
+      }
+    }
+
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -2447,6 +2478,24 @@ function WarbandRosterPage() {
                       .map((e: any) => e?.name || e)
                       .filter(Boolean);
                     const equipedFull = (fig.equiped || []) as any[];
+
+                    // Calcula armadura total incluindo bônus de equipamentos
+                    let armourTotal = stats?.armour || 0;
+                    if (equipedFull && equipedFull.length > 0) {
+                      let equipmentArmorBonus = 0;
+                      for (const equip of equipedFull) {
+                        const armorBonus = equip.armorBonus;
+                        if (typeof armorBonus === "number") {
+                          equipmentArmorBonus += armorBonus;
+                        }
+                      }
+                      armourTotal = Math.min(
+                        armourTotal + equipmentArmorBonus,
+                        17
+                      );
+                    }
+                    const finalStats = { ...stats, armour: armourTotal };
+
                     const specialAbilities = [
                       ...(Array.isArray(fig.nurgleBlessings)
                         ? fig.nurgleBlessings
@@ -2492,7 +2541,7 @@ function WarbandRosterPage() {
                               sheet.faction
                             )}</div>
                             <div><strong>Custo:</strong> ${safe(
-                              stats?.cost
+                              finalStats?.cost
                             )}</div>
                           </div>
                         </div>
@@ -2501,27 +2550,27 @@ function WarbandRosterPage() {
                             <div class="section-title">Atributos</div>
                             <table class="table">
                               <tr><td>Movimento</td><td>${safe(
-                                stats?.move
+                                finalStats?.move
                               )}</td></tr>
                               <tr><td>Ímpeto</td><td>${safe(
-                                stats?.fight
+                                finalStats?.fight
                               )}</td></tr>
                               <tr><td>Precisão</td><td>${safe(
-                                stats?.shoot
+                                finalStats?.shoot
                               )}</td></tr>
                               <tr><td>Armadura</td><td>${safe(
-                                stats?.armour
+                                finalStats?.armour
                               )}</td></tr>
                               <tr><td>Vontade</td><td>${safe(
-                                stats?.Vontade
+                                finalStats?.Vontade
                               )}</td></tr>
                               <tr><td>Vigor</td><td>${safe(
-                                stats?.health
+                                finalStats?.health
                               )}</td></tr>
                               ${
-                                stats?.strength !== undefined
+                                finalStats?.strength !== undefined
                                   ? `<tr><td>Força</td><td>${safe(
-                                      stats?.strength
+                                      finalStats?.strength
                                     )}</td></tr>`
                                   : ""
                               }
