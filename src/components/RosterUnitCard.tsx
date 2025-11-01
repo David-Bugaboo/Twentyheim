@@ -214,6 +214,78 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
   const [survivalModalOpen, setSurvivalModalOpen] = useState(false);
   const [survivalResult, setSurvivalResult] = useState<string | null>(null);
 
+  // Função para parsear valores numéricos de strings
+  const parseNumeric = (v: any): number => {
+    if (typeof v === "number") return v;
+    const s = v == null ? "" : String(v);
+    const m = s.match(/-?\d+/);
+    return m ? parseInt(m[0], 10) : 0;
+  };
+
+  // Calcular modificadores dinamicamente a partir de advancements e injuries
+  const calculatedModifiers = useMemo(() => {
+    const calcAdv = {
+      move: 0,
+      fight: 0,
+      shoot: 0,
+      armour: 0,
+      Vontade: 0,
+      strength: 0,
+      health: 0,
+    };
+    const calcInj = {
+      move: 0,
+      fight: 0,
+      shoot: 0,
+      armour: 0,
+      Vontade: 0,
+      strength: 0,
+      health: 0,
+    };
+
+    // Calcula modificadores de advancements
+    if (figure?.advancements && Array.isArray(figure.advancements)) {
+      for (const adv of figure.advancements) {
+        const name = String(adv?.name || "").toLowerCase();
+        if (name.includes("ímpeto")) {
+          calcAdv.fight += 1;
+        } else if (name.includes("precis")) {
+          calcAdv.shoot += 1;
+        } else if (name.includes("armadura")) {
+          calcAdv.armour += 1;
+        } else if (name.includes("vida")) {
+          calcAdv.health += 2;
+        } else if (name.includes("movimento")) {
+          calcAdv.move += 2;
+        } else if (name.includes("vontade")) {
+          calcAdv.Vontade += 1;
+        } else if (name.includes("força")) {
+          calcAdv.strength += 1;
+        }
+      }
+    }
+
+    // Calcula modificadores de injuries
+    if (figure?.injuries && Array.isArray(figure.injuries)) {
+      for (const inj of figure.injuries) {
+        const name = String(inj?.name || "");
+        if (name === "Ferimento na Perna") {
+          calcInj.move -= 2;
+        } else if (name === "Costelas Quebradas") {
+          calcInj.health -= 2;
+        } else if (name === "Cego de Um Olho") {
+          calcInj.shoot -= 2;
+        } else if (name === "Trauma") {
+          calcInj.Vontade -= 1;
+        } else if (name === "Mão Esmigalhada") {
+          calcInj.fight -= 1;
+        }
+      }
+    }
+
+    return { advancement: calcAdv, injury: calcInj };
+  }, [figure?.advancements, figure?.injuries]);
+
   const getTotal = (
     breakdown: AttributeBreakdown,
     statKey: string = ""
@@ -232,14 +304,26 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     ) {
       let equipmentArmorBonus = 0;
       for (const equip of figure.equiped) {
-        const armorBonus = equip.armorBonus;
-        if (typeof armorBonus === "number") {
-          equipmentArmorBonus += armorBonus;
-        }
+        equipmentArmorBonus += parseNumeric(equip.armorBonus);
       }
       const finalTotal = baseTotal + equipmentArmorBonus;
       // Limita a 17
       return Math.min(finalTotal, 17);
+    }
+
+    // Para movimento, subtrai penalidade de equipamentos
+    if (
+      statKey === "move" &&
+      figure?.equiped &&
+      Array.isArray(figure.equiped)
+    ) {
+      let equipmentMovementPenalty = 0;
+      for (const equip of figure.equiped) {
+        equipmentMovementPenalty += parseNumeric(equip.movePenalty);
+      }
+      const finalTotal = baseTotal + equipmentMovementPenalty;
+      // Garante que não fique negativo
+      return Math.max(finalTotal, 0);
     }
 
     return baseTotal;
@@ -738,10 +822,15 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     stat: keyof Figure["baseStats"]
   ): AttributeBreakdown => {
     const b = Number((figure?.baseStats as any)?.[stat] || 0);
-    const adv = Number(
-      (figure?.advancementsStatsModifiers as any)?.[stat] || 0
-    );
-    const inj = Number((figure?.injuryStatsModifiers as any)?.[stat] || 0);
+    // Usa os modificadores calculados dinamicamente
+    const adv =
+      calculatedModifiers.advancement[
+        stat as keyof typeof calculatedModifiers.advancement
+      ] || 0;
+    const inj =
+      calculatedModifiers.injury[
+        stat as keyof typeof calculatedModifiers.injury
+      ] || 0;
     const misc = Number((figure?.miscStatsModifiers as any)?.[stat] || 0);
     return { base: b, advancement: adv, injury: inj, misc };
   };
@@ -789,6 +878,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
 
   const closeEditModal = () => {
     if (editingStat && onChangeFigureStatModifier) {
+      // Mantém os valores atualizados nos campos para consulta (mesmo não sendo usados)
       onChangeFigureStatModifier(
         editingStat,
         "advancement",
@@ -1763,13 +1853,11 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   type="number"
                   className="w-full bg-[#1a1a1a] border border-gray-600 rounded px-3 py-2 text-white"
                   value={tempModifiers.advancement}
-                  onChange={(e) =>
-                    setTempModifiers({
-                      ...tempModifiers,
-                      advancement: parseInt(e.target.value) || 0,
-                    })
-                  }
+                  disabled
                 />
+                <p className="text-xs text-gray-400 mt-1">
+                  Calculado automaticamente
+                </p>
               </div>
 
               <div>
@@ -1780,13 +1868,11 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   type="number"
                   className="w-full bg-[#1a1a1a] border border-gray-600 rounded px-3 py-2 text-white"
                   value={tempModifiers.injury}
-                  onChange={(e) =>
-                    setTempModifiers({
-                      ...tempModifiers,
-                      injury: parseInt(e.target.value) || 0,
-                    })
-                  }
+                  disabled
                 />
+                <p className="text-xs text-gray-400 mt-1">
+                  Calculado automaticamente
+                </p>
               </div>
 
               <div>
@@ -1826,14 +1912,28 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                       ) {
                         let equipmentArmorBonus = 0;
                         for (const equip of figure.equiped) {
-                          const armorBonus = equip.armorBonus;
-                          if (typeof armorBonus === "number") {
-                            equipmentArmorBonus += armorBonus;
-                          }
+                          equipmentArmorBonus += parseNumeric(equip.armorBonus);
                         }
                         total += equipmentArmorBonus;
                         // Limita a 17
                         total = Math.min(total, 17);
+                      }
+
+                      // Para movimento, subtrai penalidade de equipamentos
+                      if (
+                        editingStat === "move" &&
+                        figure?.equiped &&
+                        Array.isArray(figure.equiped)
+                      ) {
+                        let equipmentMovementPenalty = 0;
+                        for (const equip of figure.equiped) {
+                          equipmentMovementPenalty += parseNumeric(
+                            equip.movePenalty
+                          );
+                        }
+                        total += equipmentMovementPenalty;
+                        // Garante que não fique negativo
+                        total = Math.max(total, 0);
                       }
 
                       const showPlus =

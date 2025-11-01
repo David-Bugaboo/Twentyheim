@@ -1774,29 +1774,6 @@ function WarbandRosterPage() {
   };
 
   // === AVANÇOS ===
-  const applyAdvancementDelta = (
-    unit: EditableUnit,
-    statKey: keyof import("../types/figure.type").Figure["baseStats"],
-    delta: number
-  ): EditableUnit => {
-    const figure = unit.figure as any;
-    if (!figure) return unit;
-    const currentValue = Number(
-      (figure.advancementsStatsModifiers as any)?.[statKey] || 0
-    );
-    const nextValue = currentValue + delta;
-    return {
-      ...unit,
-      figure: {
-        ...figure,
-        advancementsStatsModifiers: {
-          ...figure.advancementsStatsModifiers,
-          [statKey]: nextValue,
-        },
-      },
-    } as EditableUnit;
-  };
-
   const handleAddAdvancementToUnit = (unitId: string, adv: string) => {
     setHasUnsavedChanges(true);
     setSheet((prev) => ({
@@ -1818,20 +1795,6 @@ function WarbandRosterPage() {
           },
         } as any;
         const norm = adv.toLowerCase();
-        if (norm.includes("ímpeto"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "fight", 1);
-        else if (norm.includes("precis"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "shoot", 1);
-        else if (norm.includes("armadura"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "armour", 1);
-        else if (norm.includes("vida"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "health", 2);
-        else if (norm.includes("movimento"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "move", 2);
-        else if (norm.includes("vontade"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "Vontade", 1);
-        else if (norm.includes("força"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "strength", 1);
         // O Moleque Tem Talento! -> vira Herói (se já não for Líder)
         if (norm.includes("moleque") && norm.includes("talento")) {
           const currentRole = String(
@@ -1847,6 +1810,7 @@ function WarbandRosterPage() {
             };
           }
         }
+        // Modificadores são calculados dinamicamente no RosterUnitCard
         return updatedUnit;
       }),
     }));
@@ -1877,50 +1841,13 @@ function WarbandRosterPage() {
             advancements: list,
           },
         } as any;
-        const norm = adv.toLowerCase();
-        if (norm.includes("ímpeto"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "fight", -1);
-        else if (norm.includes("precis"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "shoot", -1);
-        else if (norm.includes("armadura"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "armour", -1);
-        else if (norm.includes("vida"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "health", -2);
-        else if (norm.includes("movimento"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "move", -2);
-        else if (norm.includes("vontade"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "Vontade", -1);
-        else if (norm.includes("força"))
-          updatedUnit = applyAdvancementDelta(updatedUnit, "strength", -1);
+        // Modificadores são calculados dinamicamente no RosterUnitCard
         return updatedUnit;
       }),
     }));
   };
 
   // === INJURIES ===
-  const applyInjuryDelta = (
-    unit: EditableUnit,
-    statKey: keyof import("../types/figure.type").Figure["baseStats"],
-    delta: number
-  ): EditableUnit => {
-    const figure = unit.figure as any;
-    if (!figure) return unit;
-    const currentValue = Number(
-      (figure.injuryStatsModifiers as any)?.[statKey] || 0
-    );
-    const nextValue = currentValue + delta;
-    return {
-      ...unit,
-      figure: {
-        ...figure,
-        injuryStatsModifiers: {
-          ...figure.injuryStatsModifiers,
-          [statKey]: nextValue,
-        },
-      },
-    } as EditableUnit;
-  };
-
   const handleAddInjuryToUnit = (unitId: string, injury: string) => {
     setHasUnsavedChanges(true);
     setSheet((prev) => ({
@@ -1941,18 +1868,6 @@ function WarbandRosterPage() {
             injuries: [...list, newInjury],
           },
         } as any;
-        // Penalidades numéricas - detecção específica
-        if (injury === "Ferimento na Perna") {
-          updatedUnit = applyInjuryDelta(updatedUnit, "move", -2);
-        } else if (injury === "Costelas Quebradas") {
-          updatedUnit = applyInjuryDelta(updatedUnit, "health", -2);
-        } else if (injury === "Cego de Um Olho") {
-          updatedUnit = applyInjuryDelta(updatedUnit, "shoot", -2);
-        } else if (injury === "Trauma") {
-          updatedUnit = applyInjuryDelta(updatedUnit, "Vontade", -1);
-        } else if (injury === "Mão Esmigalhada") {
-          updatedUnit = applyInjuryDelta(updatedUnit, "fight", -1);
-        }
 
         // Adiciona special rules associadas aos ferimentos
         const figWithInjury = (updatedUnit as any).figure || {};
@@ -2013,18 +1928,6 @@ function WarbandRosterPage() {
             injuries: list,
           },
         } as any;
-        // Penalidades numéricas - detecção específica para reversão
-        if (injury === "Ferimento na Perna") {
-          updatedUnit = applyInjuryDelta(updatedUnit, "move", +2);
-        } else if (injury === "Costelas Quebradas") {
-          updatedUnit = applyInjuryDelta(updatedUnit, "health", +2);
-        } else if (injury === "Cego de Um Olho") {
-          updatedUnit = applyInjuryDelta(updatedUnit, "shoot", +2);
-        } else if (injury === "Trauma") {
-          updatedUnit = applyInjuryDelta(updatedUnit, "Vontade", +1);
-        } else if (injury === "Mão Esmigalhada") {
-          updatedUnit = applyInjuryDelta(updatedUnit, "fight", +1);
-        }
 
         // Remove special rules associadas aos ferimentos
         const fig = (updatedUnit as any).figure || {};
@@ -2493,6 +2396,13 @@ function WarbandRosterPage() {
                   const safe = (v: any): string =>
                     v === null || v === undefined ? "" : String(v);
 
+                  const parseNumeric = (v: any): number => {
+                    if (typeof v === "number") return v;
+                    const s = v == null ? "" : String(v);
+                    const m = s.match(/-?\d+/);
+                    return m ? parseInt(m[0], 10) : 0;
+                  };
+
                   const resolveModifier = (e: any): any => {
                     if (!e?.modifier || !e?.modifier?.name) return null;
                     const modNameLc = String(e.modifier.name).toLowerCase();
@@ -2621,20 +2531,30 @@ function WarbandRosterPage() {
 
                     // Calcula armadura total incluindo bônus de equipamentos
                     let armourTotal = stats?.armour || 0;
+                    let moveTotal = stats?.move || 0;
                     if (equipedFull && equipedFull.length > 0) {
                       let equipmentArmorBonus = 0;
+                      let equipmentMovementPenalty = 0;
                       for (const equip of equipedFull) {
-                        const armorBonus = equip.armorBonus;
-                        if (typeof armorBonus === "number") {
-                          equipmentArmorBonus += armorBonus;
-                        }
+                        equipmentArmorBonus += parseNumeric(equip.armorBonus);
+                        equipmentMovementPenalty += parseNumeric(
+                          equip.movePenalty
+                        );
                       }
                       armourTotal = Math.min(
                         armourTotal + equipmentArmorBonus,
                         17
                       );
+                      moveTotal = Math.max(
+                        moveTotal + equipmentMovementPenalty,
+                        0
+                      );
                     }
-                    const finalStats = { ...stats, armour: armourTotal };
+                    const finalStats = {
+                      ...stats,
+                      armour: armourTotal,
+                      move: moveTotal,
+                    };
 
                     const specialAbilities = [
                       ...(Array.isArray(fig.nurgleBlessings)

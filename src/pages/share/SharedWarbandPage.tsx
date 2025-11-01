@@ -136,13 +136,84 @@ function SharedWarbandPage() {
     return map[sheet?.faction || ""] || sheet?.faction || "";
   }, [sheet?.faction]);
 
+  // Função para parsear valores numéricos de strings
+  const parseNumeric = (v: any): number => {
+    if (typeof v === "number") return v;
+    const s = v == null ? "" : String(v);
+    const m = s.match(/-?\d+/);
+    return m ? parseInt(m[0], 10) : 0;
+  };
+
+  // Função para calcular modificadores dinamicamente a partir de advancements e injuries
+  const calculateModifiers = (u: Unit) => {
+    const calcAdv = {
+      move: 0,
+      fight: 0,
+      shoot: 0,
+      armour: 0,
+      Vontade: 0,
+      strength: 0,
+      health: 0,
+    };
+    const calcInj = {
+      move: 0,
+      fight: 0,
+      shoot: 0,
+      armour: 0,
+      Vontade: 0,
+      strength: 0,
+      health: 0,
+    };
+
+    // Calcula modificadores de advancements
+    if (u.figure?.advancements && Array.isArray(u.figure.advancements)) {
+      for (const adv of u.figure.advancements) {
+        const name = String(adv?.name || "").toLowerCase();
+        if (name.includes("ímpeto")) {
+          calcAdv.fight += 1;
+        } else if (name.includes("precis")) {
+          calcAdv.shoot += 1;
+        } else if (name.includes("armadura")) {
+          calcAdv.armour += 1;
+        } else if (name.includes("vida")) {
+          calcAdv.health += 2;
+        } else if (name.includes("movimento")) {
+          calcAdv.move += 2;
+        } else if (name.includes("vontade")) {
+          calcAdv.Vontade += 1;
+        } else if (name.includes("força")) {
+          calcAdv.strength += 1;
+        }
+      }
+    }
+
+    // Calcula modificadores de injuries
+    if (u.figure?.injuries && Array.isArray(u.figure.injuries)) {
+      for (const inj of u.figure.injuries) {
+        const name = String(inj?.name || "");
+        if (name === "Ferimento na Perna") {
+          calcInj.move -= 2;
+        } else if (name === "Costelas Quebradas") {
+          calcInj.health -= 2;
+        } else if (name === "Cego de Um Olho") {
+          calcInj.shoot -= 2;
+        } else if (name === "Trauma") {
+          calcInj.Vontade -= 1;
+        } else if (name === "Mão Esmigalhada") {
+          calcInj.fight -= 1;
+        }
+      }
+    }
+
+    return { advancement: calcAdv, injury: calcInj };
+  };
+
   // Helper para calcular total de stats
   const getTotalStat = (u: Unit, statKey: keyof Figure["baseStats"]) => {
     const base = Number((u.figure?.baseStats as any)?.[statKey] || 0);
-    const adv = Number(
-      (u.figure?.advancementsStatsModifiers as any)?.[statKey] || 0
-    );
-    const inj = Number((u.figure?.injuryStatsModifiers as any)?.[statKey] || 0);
+    const mods = calculateModifiers(u);
+    const adv = mods.advancement[statKey as keyof typeof mods.advancement] || 0;
+    const inj = mods.injury[statKey as keyof typeof mods.injury] || 0;
     const misc = Number((u.figure?.miscStatsModifiers as any)?.[statKey] || 0);
     let total = base + adv + inj + misc;
 
@@ -150,14 +221,22 @@ function SharedWarbandPage() {
     if (statKey === "armour" && u.figure?.equiped) {
       let equipmentArmorBonus = 0;
       for (const equip of u.figure.equiped) {
-        const armorBonus = equip.armorBonus;
-        if (typeof armorBonus === "number") {
-          equipmentArmorBonus += armorBonus;
-        }
+        equipmentArmorBonus += parseNumeric(equip.armorBonus);
       }
       total += equipmentArmorBonus;
       // Limita a 17
       total = Math.min(total, 17);
+    }
+
+    // Para movimento, subtrai penalidade de equipamentos
+    if (statKey === "move" && u.figure?.equiped) {
+      let equipmentMovementPenalty = 0;
+      for (const equip of u.figure.equiped) {
+        equipmentMovementPenalty += parseNumeric(equip.movePenalty);
+      }
+      total += equipmentMovementPenalty;
+      // Garante que não fique negativo
+      total = Math.max(total, 0);
     }
 
     return total;
@@ -322,6 +401,13 @@ function SharedWarbandPage() {
                   const safe = (v: any): string =>
                     v === null || v === undefined ? "" : String(v);
 
+                  const parseNumeric = (v: any): number => {
+                    if (typeof v === "number") return v;
+                    const s = v == null ? "" : String(v);
+                    const m = s.match(/-?\d+/);
+                    return m ? parseInt(m[0], 10) : 0;
+                  };
+
                   const resolveModifier = (e: any): any => {
                     if (!e?.modifier || !e?.modifier?.name) return null;
                     const modNameLc = String(e.modifier.name).toLowerCase();
@@ -450,20 +536,30 @@ function SharedWarbandPage() {
 
                     // Calcula armadura total incluindo bônus de equipamentos
                     let armourTotal = stats?.armour || 0;
+                    let moveTotal = stats?.move || 0;
                     if (equipedFull && equipedFull.length > 0) {
                       let equipmentArmorBonus = 0;
+                      let equipmentMovementPenalty = 0;
                       for (const equip of equipedFull) {
-                        const armorBonus = equip.armorBonus;
-                        if (typeof armorBonus === "number") {
-                          equipmentArmorBonus += armorBonus;
-                        }
+                        equipmentArmorBonus += parseNumeric(equip.armorBonus);
+                        equipmentMovementPenalty += parseNumeric(
+                          equip.movePenalty
+                        );
                       }
                       armourTotal = Math.min(
                         armourTotal + equipmentArmorBonus,
                         17
                       );
+                      moveTotal = Math.max(
+                        moveTotal + equipmentMovementPenalty,
+                        0
+                      );
                     }
-                    const finalStats = { ...stats, armour: armourTotal };
+                    const finalStats = {
+                      ...stats,
+                      armour: armourTotal,
+                      move: moveTotal,
+                    };
 
                     const specialAbilities = [
                       ...(Array.isArray(fig.nurgleBlessings)
