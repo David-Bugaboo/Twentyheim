@@ -37,10 +37,7 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
   const usedSlots = useMemo(() => {
     const list = equippedItems || [];
     let total = 0;
-    let numDaggers = 0;
     for (const it of list) {
-      const n = String(it?.name || "").toLowerCase();
-      if (n.includes("adaga") || n.includes("dagger")) numDaggers += 1;
       // it já é o objeto Equipment completo, não precisa de .data
       const raw = (it as any)?.slots ?? (it as any)?.equipmentSpaces;
       let v: number | undefined;
@@ -49,9 +46,9 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
         const p = parseInt(raw, 10);
         if (Number.isFinite(p)) v = p;
       }
+      // Adiciona os slots (adagas têm slots = 0, então não contam)
       total += v ?? 1;
     }
-    if (numDaggers > 0) total = Math.max(0, total - 1);
     return total;
   }, [equippedItems]);
 
@@ -266,6 +263,15 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
                 }
               }
 
+              // Verifica se é arma a distância e tem alcance
+              const isRanged =
+                cat === "ranged" ||
+                cat.includes("distância") ||
+                cat.includes("distancia") ||
+                cat.includes("fogo") ||
+                cat === "arma de fogo";
+              const maxRange = (it as any)?.maxRange;
+
               return (
                 <div
                   key={`${baseName}-${modifier?.name || ""}-${idx}-${
@@ -284,6 +290,9 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
                     }
                   >
                     {displayLabel}
+                    {isRanged && maxRange && (
+                      <span className="text-gray-400 ml-2">({maxRange})</span>
+                    )}
                   </button>
                   {!equipmentLocked && (
                     <button

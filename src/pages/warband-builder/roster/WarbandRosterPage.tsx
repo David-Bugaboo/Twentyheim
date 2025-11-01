@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import SaveIcon from "@mui/icons-material/Save";
+import CheckIcon from "@mui/icons-material/Check";
 import PageTitle from "../../../components/PageTitle";
 import MobileSection from "../../../components/MobileSection";
 import MobileText from "../../../components/MobileText";
@@ -207,7 +209,8 @@ function WarbandRosterPage() {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [notFound, setNotFound] = useState<boolean>(false);
-  const dirtyRef = useRef<boolean>(false);
+  const [isSaving, setIsSaving] = useState<boolean>(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState<boolean>(false);
 
   const [sheet, setSheet] = useState<WarbandSheet>({
     name: "",
@@ -219,9 +222,6 @@ function WarbandRosterPage() {
     units: [],
   });
   const hasLoadedRef = useRef<boolean>(false);
-  const markDirty = () => {
-    dirtyRef.current = true;
-  };
 
   // Modal de seleção de equipamentos
   const [equipmentModal, setEquipmentModal] = useState<{
@@ -363,7 +363,7 @@ function WarbandRosterPage() {
 
   const addFigureFromBase = (base: any, shouldChargeCost: boolean = true) => {
     if (!base) return;
-    markDirty();
+    setHasUnsavedChanges(true);
     const id = crypto.randomUUID();
     const fig = buildFigureFromBase(base);
 
@@ -432,6 +432,23 @@ function WarbandRosterPage() {
       (fig as any).equiped = equippedFromMerc;
       (fig as any).equipmentLocked = true; // trava gerenciamento de equipamento
     }
+
+    // Sempre adiciona adaga grátis (0 slots) para todas as figuras
+    // Verifica se já não tem uma adaga equipada
+    const hasDagger = (fig as any).equiped?.some((e: any) =>
+      String(e.name || "")
+        .toLowerCase()
+        .includes("adaga")
+    );
+    if (!hasDagger) {
+      const dagger = resolveEquipmentByName("Adaga");
+      if (dagger) {
+        // Garante que a adaga não conta slots
+        (dagger as any).slots = 0;
+        // Adiciona a adaga ao início do array de equipamentos
+        (fig as any).equiped = [dagger, ...((fig as any).equiped || [])];
+      }
+    }
     const newUnit: EditableUnit = {
       id,
       name: fig.name,
@@ -464,7 +481,7 @@ function WarbandRosterPage() {
   };
 
   const handleToggleInactive = (unitId: string) => {
-    markDirty();
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -516,15 +533,6 @@ function WarbandRosterPage() {
 
         // Sempre monta units a partir de figures (fonte de verdade)
         if (Array.isArray(source.figures) && source.figures.length > 0) {
-          // Função para garantir IDs únicos em arrays de objetos (skills, spells, equipment, etc)
-          const ensureIds = (arr: any[], generateId: () => string): any[] => {
-            if (!Array.isArray(arr)) return arr;
-            return arr.map((item) => {
-              if (!item || typeof item !== "object") return item;
-              return { ...item, id: item.id || generateId() };
-            });
-          };
-
           const rebuilt = (source.figures as any[]).map((fig) => {
             const id = String(fig?.id || crypto.randomUUID());
             const role = fig?.role;
@@ -534,27 +542,7 @@ function WarbandRosterPage() {
             // Corrige narrativeName para lendas: sempre vazio (não têm narrative name)
             const correctedFigure = {
               ...fig,
-              id, // Garante que a figure tenha ID único
               narrativeName: role === "Lenda" ? "" : fig?.narrativeName || "",
-              // Garante IDs únicos em todos os arrays de objetos
-              skills: ensureIds(fig?.skills || [], () => crypto.randomUUID()),
-              spells: ensureIds(fig?.spells || [], () => crypto.randomUUID()),
-              mutations: ensureIds(fig?.mutations || [], () =>
-                crypto.randomUUID()
-              ),
-              nurgleBlessings: ensureIds(fig?.nurgleBlessings || [], () =>
-                crypto.randomUUID()
-              ),
-              sacredMarks: ensureIds(fig?.sacredMarks || [], () =>
-                crypto.randomUUID()
-              ),
-              advancements: ensureIds(fig?.advancements || [], () =>
-                crypto.randomUUID()
-              ),
-              injuries: ensureIds(fig?.injuries || [], () =>
-                crypto.randomUUID()
-              ),
-              equiped: ensureIds(fig?.equiped || [], () => crypto.randomUUID()),
             };
             return {
               id,
@@ -593,7 +581,7 @@ function WarbandRosterPage() {
         first = false;
         // Sinaliza que já carregamos do Firestore para evitar overwrite inicial
         (hasLoadedRef as any).current = true;
-        dirtyRef.current = false;
+        setHasUnsavedChanges(false); // Reseta o estado ao carregar dados externos
         setIsLoading(false);
         try {
           // eslint-disable-next-line no-console
@@ -604,71 +592,43 @@ function WarbandRosterPage() {
     return () => unsub();
   }, [warbandId, userId, loading, isAuthorized]);
 
-  // Ativa escrita apenas após alguma interação do usuário
-  useEffect(() => {
-    const markDirty = () => {
-      dirtyRef.current = true;
-    };
-    window.addEventListener("input", markDirty, {
-      once: true,
-      capture: true,
-    } as any);
-    window.addEventListener("change", markDirty, {
-      once: true,
-      capture: true,
-    } as any);
-    window.addEventListener("click", markDirty, {
-      once: true,
-      capture: true,
-    } as any);
-    return () => {
-      window.removeEventListener("input", markDirty, { capture: true } as any);
-      window.removeEventListener("change", markDirty, { capture: true } as any);
-      window.removeEventListener("click", markDirty, { capture: true } as any);
-    };
-  }, []);
+  // Função manual para salvar alterações
+  const handleSaveChanges = async () => {
+    if (!warbandId || !userId || isSaving) return;
 
-  // Persiste alterações no Firestore (debounce simples)
-  useEffect(() => {
-    if (!warbandId || !userId || !hasLoadedRef.current || !dirtyRef.current)
-      return;
+    setIsSaving(true);
     const ref = doc(db, "users", userId, "warbands", warbandId);
-    // Marca como não dirty ANTES de fazer o update para evitar loops
-    dirtyRef.current = false;
-    const h = setTimeout(() => {
-      const payloadRaw: any = {
-        // Persistimos flatten para facilitar consultas
-        name: sheet.name,
-        faction: sheet.faction,
-        notes: sheet.notes ?? "",
-        gold: sheet.gold ?? "0",
-        crowns: (() => {
-          const m = String(sheet.gold || "0").match(/(\d+)/);
-          return m ? parseInt(m[1], 10) : 0;
-        })(),
-        wyrdstone: sheet.wyrdstone ?? "0",
-        vault: (sheet.vault || []).map((e: any) => stripUndefinedDeep(e)),
-        // Apenas figures (sem units) - os campos já estão dentro do figure
-        figures: (sheet.units || [])
-          .map((u: any) => u?.figure)
-          .filter(Boolean)
-          .map((f: any) => stripUndefinedDeep(f)),
-      };
-      const payload = stripUndefinedDeep(payloadRaw);
-      try {
-        // eslint-disable-next-line no-console
-        console.log("[Firestore Persist]", { warbandId, payload });
-        updateDoc(ref, payload).catch((e) => {
-          // eslint-disable-next-line no-console
-          console.error("[Firestore Persist][Error]", e);
-        });
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error("[Firestore Persist][Exception]", e);
-      }
-    }, 500);
-    return () => clearTimeout(h);
-  }, [warbandId, userId, sheet]);
+
+    const payloadRaw: any = {
+      name: sheet.name,
+      faction: sheet.faction,
+      notes: sheet.notes ?? "",
+      gold: sheet.gold ?? "0",
+      crowns: (() => {
+        const m = String(sheet.gold || "0").match(/(\d+)/);
+        return m ? parseInt(m[1], 10) : 0;
+      })(),
+      wyrdstone: sheet.wyrdstone ?? "0",
+      vault: (sheet.vault || []).map((e: any) => stripUndefinedDeep(e)),
+      figures: (sheet.units || [])
+        .map((u: any) => u?.figure)
+        .filter(Boolean)
+        .map((f: any) => stripUndefinedDeep(f)),
+    };
+
+    const payload = stripUndefinedDeep(payloadRaw);
+
+    try {
+      await updateDoc(ref, payload);
+      setHasUnsavedChanges(false);
+      toast.success("Alterações salvas com sucesso!");
+    } catch (e) {
+      console.error("[Firestore Persist][Error]", e);
+      toast.error("Erro ao salvar alterações");
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   // Fecha menus ao clicar fora
   useEffect(() => {
@@ -741,7 +701,7 @@ function WarbandRosterPage() {
 
   // Adicionar item ao cofre (vault) — agora suporta comprar (desconta) ou lootear (não desconta)
   const handlePurchaseItem = (item: StashItem, isPurchase: boolean = false) => {
-    markDirty();
+    setHasUnsavedChanges(true);
 
     // Calcula custo final
     const finalCost = calculateItemCost(item.cost, item.modifier);
@@ -882,7 +842,7 @@ function WarbandRosterPage() {
   }; */
 
   const handleEquipFromStashFlat = (unitId: string, itemName: string) => {
-    markDirty();
+    setHasUnsavedChanges(true);
     const unit = sheet.units.find((u) => u.id === unitId);
     if (!unit) return;
     const idx = (sheet.vault || []).findIndex((i: any) => i.name === itemName);
@@ -946,7 +906,7 @@ function WarbandRosterPage() {
   };
 
   const handleUnequipToStashFlat = (unitId: string, itemName: string) => {
-    markDirty();
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -999,7 +959,7 @@ function WarbandRosterPage() {
     unitId: string,
     skill: { id?: string; name: string; description: string; type?: string }
   ) => {
-    markDirty();
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -1028,7 +988,7 @@ function WarbandRosterPage() {
   };
 
   const handleRemoveSkillFromUnit = (unitId: string, skillId: string) => {
-    markDirty();
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) =>
@@ -1091,6 +1051,7 @@ function WarbandRosterPage() {
       effect: string;
     }
   ) => {
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -1112,6 +1073,7 @@ function WarbandRosterPage() {
   };
 
   const handleRemoveSpellFromUnit = (unitId: string, spellId: string) => {
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) =>
@@ -1135,6 +1097,7 @@ function WarbandRosterPage() {
     spellId: string,
     newCastingNumber: number
   ) => {
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -1158,6 +1121,7 @@ function WarbandRosterPage() {
   // === EXPERIÊNCIA (XP) DA FIGURA ===
   const handleUpdateFigureXp = (unitId: string, newXp: number) => {
     // Limite depende do papel: Líder/Herói = 90, demais = 30
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -1187,6 +1151,7 @@ function WarbandRosterPage() {
   };
 
   const handleUpdateNarrativeName = (unitId: string, newName: string) => {
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -1216,6 +1181,7 @@ function WarbandRosterPage() {
       cost?: string;
     }
   ) => {
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -1254,6 +1220,7 @@ function WarbandRosterPage() {
     category: "nurgleBlessing" | "mutation" | "sacredMark",
     id: string
   ) => {
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -1320,6 +1287,7 @@ function WarbandRosterPage() {
     category: "injury" | "advancement" | "misc",
     value: number
   ) => {
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -1357,7 +1325,7 @@ function WarbandRosterPage() {
 
   const removeUnit = (id: string) => {
     // Remove a figura retornando seus equipamentos para o cofre (vault) e devolve ouro
-    markDirty();
+    setHasUnsavedChanges(true);
     setSheet((s) => {
       const unit = s.units.find((u) => u.id === id) as any;
       const figEquip: any[] = (unit?.figure?.equiped || []) as any[];
@@ -1393,11 +1361,13 @@ function WarbandRosterPage() {
 
   const killUnit = (id: string) => {
     // Remove a figura e descarta os equipamentos
+    setHasUnsavedChanges(true);
     setSheet((s) => ({ ...s, units: s.units.filter((u) => u.id !== id) }));
   };
 
   const promoteUnitToHero = (id: string) => {
     // Transforma uma unidade sem role em Herói (atualiza unit.role e figure.role)
+    setHasUnsavedChanges(true);
     setSheet((s) => ({
       ...s,
       units: s.units.map((u) => {
@@ -1410,7 +1380,7 @@ function WarbandRosterPage() {
 
   const promoteHeroToLeader = (id: string) => {
     // Promove um Herói para Líder: muda role e adiciona a habilidade Líder
-    markDirty();
+    setHasUnsavedChanges(true);
     setSheet((s) => {
       return {
         ...s,
@@ -1685,6 +1655,10 @@ function WarbandRosterPage() {
         effect: String(found.effect || found.modifier?.effect || ""),
       },
     };
+    // Adiciona maxRange se existir
+    if (found.maxRange) {
+      (eq as any).maxRange = found.maxRange;
+    }
     // Preserva id do catálogo (quando existir) para referência futura
     (eq as any).templateId = found.id || null;
     return eq;
@@ -1715,6 +1689,7 @@ function WarbandRosterPage() {
   };
 
   const handleAddAdvancementToUnit = (unitId: string, adv: string) => {
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -1773,6 +1748,7 @@ function WarbandRosterPage() {
     adv: string,
     index?: number
   ) => {
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -1837,6 +1813,7 @@ function WarbandRosterPage() {
   };
 
   const handleAddInjuryToUnit = (unitId: string, injury: string) => {
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -1877,6 +1854,7 @@ function WarbandRosterPage() {
     injury: string,
     index?: number
   ) => {
+    setHasUnsavedChanges(true);
     setSheet((prev) => ({
       ...prev,
       units: prev.units.map((u) => {
@@ -2858,7 +2836,10 @@ function WarbandRosterPage() {
                 <input
                   className="bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2 text-white"
                   value={sheet.name}
-                  onChange={(e) => setSheet({ ...sheet, name: e.target.value })}
+                  onChange={(e) => {
+                    setHasUnsavedChanges(true);
+                    setSheet({ ...sheet, name: e.target.value });
+                  }}
                   placeholder="Ex.: Circo do Caos"
                 />
               </label>
@@ -2874,9 +2855,10 @@ function WarbandRosterPage() {
                   <input
                     className="bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2 text-white"
                     value={sheet.gold}
-                    onChange={(e) =>
-                      setSheet({ ...sheet, gold: e.target.value })
-                    }
+                    onChange={(e) => {
+                      setHasUnsavedChanges(true);
+                      setSheet({ ...sheet, gold: e.target.value });
+                    }}
                   />
                 </label>
                 <label className="flex flex-col gap-2">
@@ -2884,9 +2866,10 @@ function WarbandRosterPage() {
                   <input
                     className="bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2 text-white"
                     value={sheet.wyrdstone}
-                    onChange={(e) =>
-                      setSheet({ ...sheet, wyrdstone: e.target.value })
-                    }
+                    onChange={(e) => {
+                      setHasUnsavedChanges(true);
+                      setSheet({ ...sheet, wyrdstone: e.target.value });
+                    }}
                   />
                 </label>
               </div>
@@ -2908,7 +2891,10 @@ function WarbandRosterPage() {
               <textarea
                 className="bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2 text-white min-h-[100px]"
                 value={sheet.notes}
-                onChange={(e) => setSheet({ ...sheet, notes: e.target.value })}
+                onChange={(e) => {
+                  setHasUnsavedChanges(true);
+                  setSheet({ ...sheet, notes: e.target.value });
+                }}
                 placeholder="Notas gerais do bando, progresso da campanha etc."
               />
             </label>
@@ -3037,7 +3023,7 @@ function WarbandRosterPage() {
               gold={sheet.gold || "0"}
               onPurchase={handlePurchaseItem}
               onSell={(index) => {
-                markDirty();
+                setHasUnsavedChanges(true);
                 const vault = (sheet.vault || []) as any[];
                 const item = vault[index];
                 if (!item) return;
@@ -3086,14 +3072,14 @@ function WarbandRosterPage() {
                 );
               }}
               onUndo={(index) => {
-                markDirty();
+                setHasUnsavedChanges(true);
                 const newVault = (sheet.vault || []).filter(
                   (_, i) => i !== index
                 );
                 setSheet({ ...sheet, vault: newVault });
               }}
               onRemoveVaultItemById={(id) => {
-                markDirty();
+                setHasUnsavedChanges(true);
                 setSheet({
                   ...sheet,
                   vault: (sheet.vault || []).filter((e: any) => e.id !== id),
@@ -3490,6 +3476,36 @@ function WarbandRosterPage() {
         </div>
       </div>
       {equipmentModalEl}
+
+      {/* Botão flutuante de salvar */}
+      <button
+        onClick={handleSaveChanges}
+        disabled={isSaving || !hasUnsavedChanges || !warbandId || !userId}
+        className="fixed bottom-6 right-24 md:right-32 z-50 bg-green-800 text-white p-4 md:p-8 rounded-full shadow-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        title={hasUnsavedChanges ? "Salvar alterações" : "Tudo salvo"}
+      >
+        {isSaving ? (
+          <div className="animate-spin">
+            <svg
+              className="w-6 h-6 md:w-12 md:h-12"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              />
+            </svg>
+          </div>
+        ) : hasUnsavedChanges ? (
+          <SaveIcon sx={{ fontSize: "2.5rem" }} />
+        ) : (
+          <CheckIcon sx={{ fontSize: "2.5rem" }} />
+        )}
+      </button>
     </div>
   );
 }

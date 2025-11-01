@@ -10,4 +10,5 @@ export interface Equipment {
   requirements: string | null;
   specialRules: { label: string; value: string }[];
   modifier: { name: string; effect: string };
+  maxRange?: string;
 }
