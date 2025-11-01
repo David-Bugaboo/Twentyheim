@@ -197,7 +197,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
   maxSlots,
   onChangeFigureStatModifier,
   onAddSpecialRule,
-  onRemoveSpecialRule,
+  onRemoveSpecialRule: _onRemoveSpecialRule,
 }) => {
   const navigate = useNavigate();
   const [isCollapsed, setIsCollapsed] = useState(true);

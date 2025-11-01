@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from 'react';
+import React, { Component, type ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
@@ -20,7 +20,7 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    console.error("ErrorBoundary caught an error:", error, errorInfo);
   }
 
   render() {
@@ -32,7 +32,7 @@ class ErrorBoundary extends Component<Props, State> {
               Algo deu errado
             </h2>
             <p className="text-white mb-4">
-              {this.state.error?.message || 'Erro desconhecido'}
+              {this.state.error?.message || "Erro desconhecido"}
             </p>
             <button
               onClick={() => {
@@ -53,4 +53,3 @@ class ErrorBoundary extends Component<Props, State> {
 }
 
 export default ErrorBoundary;
-
