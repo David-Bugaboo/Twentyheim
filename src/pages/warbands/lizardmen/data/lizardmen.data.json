@@ -11,7 +11,7 @@
       "shoot": "+3",
       "armour": 11,
       "Vontade": "+1",
-      "health": 16,
+      "health": 12,
       "cost": "60 coroas",
       "skills": ["Acadêmico", "Agilidade", "Habilidades de Gecko"],
       "startingXp": 20,

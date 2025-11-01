@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
         { label: "Irmãs de Sigmar", path: "/warbands/sisters-of-sigmar" },
         { label: "Skaven", path: "/warbands/skaven" },
         {
-          label: "Saqueadores Homem-Besta",
+          label: "Saqueadores Homem-Fera",
           path: "/warbands/beastman-raiders",
         },
         {
