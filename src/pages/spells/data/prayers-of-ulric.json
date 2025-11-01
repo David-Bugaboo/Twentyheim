@@ -3,7 +3,7 @@
     "name": "Nevasca",
     "castingNumber": 8,
     "keywords": ["Área de Efeito(Zona Pequena)", "Concentração"],
-    "effect": "Centralize a Zona no Sacerdote e mova-a junto com ele. Figuras na área de efeito tem =2 de Ímpeto."
+    "effect": "Centralize a Zona no Sacerdote e mova-a junto com ele. Figuras na área de efeito tem -2 de Ímpeto."
   },
   {
     "name": "Impacto Estrondoso",

@@ -37,7 +37,7 @@
   },
   {
     "term": "Concentração",
-    "description": "Essa magia requer que a figura se mantenha concentrando sobre ela. Uma figura pode concentrar qualquer número de magias ao mesmo tempo, mas apenas uma de cada tipo por vez. Uma figura deve rolar um teste de Vontade com CD igual classe de dificuldade da magia que está concentrando (chamado de Teste de Concentração) no começo de cada uma de suas ativações, sempre que sofre dano, adicionando o dano sofrido a CD, sempre que recebe um marcador de atordoamento (com a penalidade de -2 em rolagens de dado causado pelo marcador de atordoamento) e sempre que é movido por uma força externa, adicionando a quantidade de centímetros que foi movido a CD. A figura faz esse teste nessas condições para cada magia que esteja concentrando, e o efeito de magias para qual ele falha o Teste de Concentração é cancelado."
+    "description": "Essa magia requer que a figura se mantenha concentrando sobre ela. Uma figura pode concentrar qualquer número de magias ao mesmo tempo, mas apenas uma de cada tipo por vez. Uma figura deve rolar um teste de Vontade com CD igual classe de dificuldade da magia que está concentrando (chamado de Teste de Concentração) no começo de cada uma de suas ativações, sempre que sofre dano, sempre que recebe um marcador de atordoamento e sempre que é movido por uma força externa. A figura faz esse teste nessas condições para cada magia que esteja concentrando, e o efeito de magias para qual ele falha o Teste de Concentração é cancelado."
   },
   {
     "term": "Explosão Pequena",
