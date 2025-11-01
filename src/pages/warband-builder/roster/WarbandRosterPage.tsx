@@ -3183,10 +3183,52 @@ function WarbandRosterPage() {
                 }}
                 onUndo={(index) => {
                   setHasUnsavedChanges(true);
-                  const newVault = (sheet.vault || []).filter(
-                    (_, i) => i !== index
+                  const vault = (sheet.vault || []) as any[];
+                  const item = vault[index];
+                  if (!item) return;
+
+                  // Calcula custo original usando a mesma lógica de compra
+                  const baseCostStr = String(
+                    item.cost || item.purchaseCost || item.sellCost || "0"
                   );
-                  setSheet({ ...sheet, vault: newVault });
+                  const baseCostMatch = baseCostStr.match(/(\d+(?:\.\d+)?)/);
+                  const baseCost = baseCostMatch
+                    ? parseFloat(baseCostMatch[1])
+                    : 0;
+                  const multiplier = item.modifier?.multiplier ?? 1;
+                  const modifierAddend = item.modifierAddend ?? 0;
+                  const modifierFixedCost = item.modifierFixedCost;
+
+                  let originalCost = baseCost;
+                  if (modifierFixedCost != null) {
+                    originalCost = modifierFixedCost;
+                  } else {
+                    originalCost = baseCost * multiplier + modifierAddend;
+                  }
+
+                  // Desfazer devolve o valor INTEGRAL do item
+                  const refundAmount = Math.floor(originalCost);
+
+                  // Adiciona ouro ao cofre
+                  const currentGoldMatch = String(sheet.gold || "0").match(
+                    /(\d+)/
+                  );
+                  const currentGold = currentGoldMatch
+                    ? parseInt(currentGoldMatch[1], 10)
+                    : 0;
+                  const newGold = currentGold + refundAmount;
+
+                  // Remove item do cofre
+                  const newVault = vault.filter((_, i) => i !== index);
+                  setSheet({
+                    ...sheet,
+                    vault: newVault,
+                    gold: String(newGold),
+                  });
+
+                  toast.success(
+                    `Item desfeito! ${refundAmount} coroas adicionadas ao cofre.`
+                  );
                 }}
                 onRemoveVaultItemById={(id) => {
                   setHasUnsavedChanges(true);
