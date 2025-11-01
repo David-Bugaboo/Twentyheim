@@ -188,6 +188,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
   const [previewOpen, setPreviewOpen] = useState<boolean>(false);
   const [previewData, setPreviewData] = useState<any | null>(null);
   const [selectedModifier, setSelectedModifier] = useState<string>("");
+  const [quantity, setQuantity] = useState<number>(1);
 
   // (sem orçamento)
 
@@ -436,18 +437,22 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
       | { key: string; label: string; effect?: string }
       | undefined;
 
-    onPurchase(
-      {
-        ...item,
-        data: raw || undefined,
-        cost: item.cost || "-",
-        modifier:
-          mod && mod.key ? { name: mod.key, effect: mod.effect } : undefined,
-      },
-      isPurchase
-    );
+    const itemData = {
+      ...item,
+      data: raw || undefined,
+      cost: item.cost || "-",
+      modifier:
+        mod && mod.key ? { name: mod.key, effect: mod.effect } : undefined,
+    };
+
+    // Adiciona a quantidade especificada
+    for (let i = 0; i < quantity; i++) {
+      onPurchase(itemData, isPurchase);
+    }
+
     setSelectedItem("");
     setSelectedModifier("");
+    setQuantity(1);
   };
 
   return (
@@ -529,6 +534,21 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
               </option>
             ))}
           </select>
+          {/* Campo de Quantidade */}
+          <input
+            type="number"
+            min="1"
+            max="99"
+            value={quantity}
+            onChange={(e) =>
+              setQuantity(
+                Math.max(1, Math.min(99, parseInt(e.target.value) || 1))
+              )
+            }
+            className="bg-[#161616] border border-gray-600 rounded px-3 py-2 text-white w-24 text-center"
+            placeholder="Qtd"
+            title="Quantidade a comprar/lootear"
+          />
           {/* Botões de Comprar e Loot */}
           {(() => {
             const items = purchaseCategory
@@ -549,7 +569,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
             const mod =
               selectedModifier &&
               modifierOptions.find((m) => m.key === selectedModifier);
-            const finalCost = selectedItemObj
+            const unitCost = selectedItemObj
               ? calculateItemCost(
                   selectedItemObj.cost || "0",
                   mod && mod.key
@@ -557,11 +577,12 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
                     : undefined
                 )
               : 0;
+            const totalCost = unitCost * (quantity || 1);
             const currentGoldMatch = String(_gold || "0").match(/(\d+)/);
             const currentGold = currentGoldMatch
               ? parseInt(currentGoldMatch[1], 10)
               : 0;
-            const canAfford = currentGold >= finalCost;
+            const canAfford = currentGold >= totalCost;
 
             return (
               <>
@@ -578,19 +599,27 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
                     !isAvailable
                       ? "Item não disponível para compra nesta facção"
                       : !canAfford
-                      ? `Você não tem coroas suficientes (Necessário: ${finalCost})`
-                      : `Comprar por ${finalCost} coroas`
+                      ? `Você não tem coroas suficientes (Necessário: ${totalCost})`
+                      : quantity > 1
+                      ? `Comprar ${quantity}x por ${totalCost} coroas (${unitCost} cada)`
+                      : `Comprar por ${totalCost} coroas`
                   }
                 >
-                  Comprar ({finalCost} coroas)
+                  Comprar ({totalCost} coroas)
+                  {quantity > 1 && ` - ${quantity}x`}
                 </button>
                 <button
                   className="px-3 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!selectedItem || !purchaseCategory}
                   onClick={() => handlePurchase(false)}
-                  title="Adicionar ao cofre sem custo (loot)"
+                  title={
+                    quantity > 1
+                      ? `Adicionar ${quantity}x ao cofre sem custo (loot)`
+                      : "Adicionar ao cofre sem custo (loot)"
+                  }
                 >
                   Loot
+                  {quantity > 1 && ` (${quantity}x)`}
                 </button>
               </>
             );

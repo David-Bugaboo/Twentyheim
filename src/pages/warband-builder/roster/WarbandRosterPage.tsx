@@ -938,51 +938,78 @@ function WarbandRosterPage() {
 
   const handleUnequipToStashFlat = (unitId: string, itemName: string) => {
     setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        // NOVA ARQUITETURA: trabalha diretamente com figure.equiped
-        const prevFig = (u as any).figure;
-        if (!prevFig) return u;
+    setSheet((prev) => {
+      // Primeiro, busca o item que será removido para calcular o reembolso
+      const unit = prev.units.find((x) => x.id === unitId) as any;
+      const equippedList: any[] = (unit?.figure?.equiped || []) as any[];
+      const removedEquipment = equippedList.find(
+        (e: any) =>
+          String(e?.name || "").toLowerCase() === itemName.toLowerCase()
+      );
 
-        const equippedList: any[] = (prevFig.equiped || []) as any[];
-        // Busca pelo nome base (sem modificador)
-        const removedEquipment = equippedList.find(
-          (e: any) =>
-            String(e?.name || "").toLowerCase() === itemName.toLowerCase()
+      let newGold = prev.gold;
+
+      // Se encontrou o equipamento, calcula o reembolso
+      if (removedEquipment) {
+        // Calcula custo original usando a mesma lógica de compra
+        const baseCostStr = String(
+          removedEquipment.cost ||
+            removedEquipment.purchaseCost ||
+            removedEquipment.sellCost ||
+            "0"
         );
+        const baseCostMatch = baseCostStr.match(/(\d+(?:\.\d+)?)/);
+        const baseCost = baseCostMatch ? parseFloat(baseCostMatch[1]) : 0;
+        const multiplier = removedEquipment.modifier?.multiplier ?? 1;
+        const modifierAddend = removedEquipment.modifierAddend ?? 0;
+        const modifierFixedCost = removedEquipment.modifierFixedCost;
 
-        if (!removedEquipment) return u;
+        let originalCost = baseCost;
+        if (modifierFixedCost != null) {
+          originalCost = modifierFixedCost;
+        } else {
+          originalCost = baseCost * multiplier + modifierAddend;
+        }
 
-        const nextUnit: any = {
-          ...u,
-          figure: {
-            ...prevFig,
-            equiped: equippedList.filter((e: any) =>
-              removedEquipment.id
-                ? e.id !== removedEquipment.id
-                : String(e.name).toLowerCase() !== itemName.toLowerCase()
-            ),
-          },
-        };
-        return nextUnit as EditableUnit;
-      }),
-      // Volta o objeto ao vault (agora que foi removido de figure.equiped)
-      vault: ((prev as any).vault || []).concat(
-        (() => {
-          // removedEquipment já foi capturado antes do filtro
-          // Mas como já foi filtrado, precisamos buscar na lista original
-          const u = prev.units.find((x) => x.id === unitId) as any;
-          const equippedList: any[] = (u?.figure?.equiped || []) as any[];
-          const found = equippedList.find(
-            (e: any) =>
-              String(e?.name || "").toLowerCase() === itemName.toLowerCase()
-          );
-          return found ? [found] : [];
-        })()
-      ),
-    }));
+        // Vende por metade do custo original
+        const sellPrice = Math.floor(originalCost / 2);
+
+        // Adiciona ouro ao cofre
+        const currentGoldMatch = String(prev.gold || "0").match(/(\d+)/);
+        const currentGold = currentGoldMatch
+          ? parseInt(currentGoldMatch[1], 10)
+          : 0;
+        newGold = String(currentGold + sellPrice);
+      }
+
+      return {
+        ...prev,
+        gold: newGold,
+        units: prev.units.map((u) => {
+          if (u.id !== unitId) return u;
+          // NOVA ARQUITETURA: trabalha diretamente com figure.equiped
+          const prevFig = (u as any).figure;
+          if (!prevFig) return u;
+
+          const equippedList: any[] = (prevFig.equiped || []) as any[];
+
+          const nextUnit: any = {
+            ...u,
+            figure: {
+              ...prevFig,
+              equiped: equippedList.filter((e: any) =>
+                removedEquipment?.id
+                  ? e.id !== removedEquipment.id
+                  : String(e.name).toLowerCase() !== itemName.toLowerCase()
+              ),
+            },
+          };
+          return nextUnit as EditableUnit;
+        }),
+        // Remove o objeto - foi vendido, não volta ao vault
+        vault: (prev as any).vault || [],
+      };
+    });
   };
 
   // === HABILIDADES (skills) DA FIGURA ===
