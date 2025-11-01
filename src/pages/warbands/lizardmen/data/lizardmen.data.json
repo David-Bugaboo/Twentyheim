@@ -7,8 +7,8 @@
     "quantity": "1",
     "stats": {
       "move": 16,
-      "fight": "+3",
-      "shoot": "+3",
+      "fight": "+1",
+      "shoot": "+2",
       "armour": 11,
       "Vontade": "+1",
       "health": 12,
