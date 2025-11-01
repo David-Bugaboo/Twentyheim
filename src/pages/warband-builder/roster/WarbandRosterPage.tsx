@@ -352,6 +352,7 @@ function WarbandRosterPage() {
     [flattenAllUnits, factionLabelAlt]
   );
 
+  const [selectedFactionUnitId, setSelectedFactionUnitId] = useState<string>("");
   const [selectedMercId, setSelectedMercId] = useState<string>("");
   const [selectedLegendId, setSelectedLegendId] = useState<string>("");
 
@@ -602,6 +603,8 @@ function WarbandRosterPage() {
     if (!warbandId || !userId || !hasLoadedRef.current || !dirtyRef.current)
       return;
     const ref = doc(db, "users", userId, "warbands", warbandId);
+    // Marca como não dirty ANTES de fazer o update para evitar loops
+    dirtyRef.current = false;
     const h = setTimeout(() => {
       const payloadRaw: any = {
         // Persistimos flatten para facilitar consultas
@@ -2890,8 +2893,8 @@ function WarbandRosterPage() {
               <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
                 <select
                   className="bg-[#161616] border border-gray-600 rounded px-3 py-2 text-white flex-1 w-full sm:w-auto"
-                  value={selectedMercId}
-                  onChange={(e) => setSelectedMercId(e.target.value)}
+                  value={selectedFactionUnitId}
+                  onChange={(e) => setSelectedFactionUnitId(e.target.value)}
                 >
                   <option value="">Selecionar figura do bando...</option>
                   {selectedFaction?.data?.map((u: any) => (
@@ -2902,10 +2905,10 @@ function WarbandRosterPage() {
                 </select>
                 <button
                   className="px-3 py-2 rounded bg-green-600 hover:bg-green-700 text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto whitespace-nowrap"
-                  disabled={!selectedMercId}
+                  disabled={!selectedFactionUnitId}
                   onClick={() => {
                     const base = selectedFaction?.data?.find(
-                      (u: any) => u.id === selectedMercId
+                      (u: any) => u.id === selectedFactionUnitId
                     );
                     addFigureFromBase(base);
                   }}
@@ -2944,7 +2947,6 @@ function WarbandRosterPage() {
                       (u: any) => u.id === selectedMercId
                     );
                     addFigureFromBase(base);
-                    setSelectedMercId("");
                   }}
                 >
                   Adicionar
@@ -2981,7 +2983,6 @@ function WarbandRosterPage() {
                       (u: any) => u.id === selectedLegendId
                     );
                     addFigureFromBase(base);
-                    setSelectedLegendId("");
                   }}
                 >
                   Adicionar

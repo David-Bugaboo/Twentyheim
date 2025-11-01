@@ -235,7 +235,8 @@ export interface Figure {
 // Constrói uma Figure a partir de um JSON base (datasheet) da unidade
 export function buildFigureFromBase(base: any): Figure {
   const stats = base?.stats || {};
-  const id: string = base?.id || crypto?.randomUUID?.() || String(Date.now());
+  // SEMPRE gera um UUID único - NUNCA usa base.id que é compartilhado entre unidades do mesmo tipo
+  const id: string = crypto?.randomUUID?.() || String(Date.now());
   const name: string = base?.name || "Figura";
   const role = (base?.role || undefined) as Figure["role"] | undefined;
   // Lendas não têm narrative name (já são lendas); outras figuras começam com vazio
