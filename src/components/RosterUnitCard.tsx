@@ -317,13 +317,24 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       figure?.equiped &&
       Array.isArray(figure.equiped)
     ) {
-      let equipmentMovementPenalty = 0;
-      for (const equip of figure.equiped) {
-        equipmentMovementPenalty += parseNumeric(equip.movePenalty);
+      // Verifica se a figura tem a regra especial "Devagar e Sempre" ou "Crueldade Paciente"
+      const specialRules = (figure as any)?.specialRules || [];
+      const hasIgnoreMovementPenalty = specialRules.some(
+        (rule: any) =>
+          rule?.name === "Devagar e Sempre" ||
+          rule?.name === "Crueldade Paciente"
+      );
+
+      // Apenas aplica penalidade se não tiver a regra especial
+      if (!hasIgnoreMovementPenalty) {
+        let equipmentMovementPenalty = 0;
+        for (const equip of figure.equiped) {
+          equipmentMovementPenalty += parseNumeric(equip.movePenalty);
+        }
+        const finalTotal = baseTotal + equipmentMovementPenalty;
+        // Garante que não fique negativo
+        return Math.max(finalTotal, 0);
       }
-      const finalTotal = baseTotal + equipmentMovementPenalty;
-      // Garante que não fique negativo
-      return Math.max(finalTotal, 0);
     }
 
     return baseTotal;
@@ -1925,13 +1936,25 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                         figure?.equiped &&
                         Array.isArray(figure.equiped)
                       ) {
-                        let equipmentMovementPenalty = 0;
-                        for (const equip of figure.equiped) {
-                          equipmentMovementPenalty += parseNumeric(
-                            equip.movePenalty
-                          );
+                        // Verifica se a figura tem a regra especial "Devagar e Sempre" ou "Crueldade Paciente"
+                        const specialRules =
+                          (figure as any)?.specialRules || [];
+                        const hasIgnoreMovementPenalty = specialRules.some(
+                          (rule: any) =>
+                            rule?.name === "Devagar e Sempre" ||
+                            rule?.name === "Crueldade Paciente"
+                        );
+
+                        // Apenas aplica penalidade se não tiver a regra especial
+                        if (!hasIgnoreMovementPenalty) {
+                          let equipmentMovementPenalty = 0;
+                          for (const equip of figure.equiped) {
+                            equipmentMovementPenalty += parseNumeric(
+                              equip.movePenalty
+                            );
+                          }
+                          total += equipmentMovementPenalty;
                         }
-                        total += equipmentMovementPenalty;
                         // Garante que não fique negativo
                         total = Math.max(total, 0);
                       }

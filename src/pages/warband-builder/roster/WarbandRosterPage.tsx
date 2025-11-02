@@ -2529,17 +2529,45 @@ function WarbandRosterPage() {
                       .filter(Boolean);
                     const equipedFull = (fig.equiped || []) as any[];
 
+                    // Extrai special rules antes para poder usar no cálculo de movimento
+                    const specialRules = Array.isArray(u?.abilities)
+                      ? (u.abilities as any[])
+                          .map((r: any) => ({
+                            name: r?.name || "",
+                            description: r?.description || "",
+                          }))
+                          .filter((r) => r.name)
+                      : Array.isArray((fig as any).specialRules)
+                      ? ((fig as any).specialRules as any[])
+                          .map((r: any) => ({
+                            name: r?.name || "",
+                            description: r?.description || "",
+                          }))
+                          .filter((r) => r.name)
+                      : [];
+
                     // Calcula armadura total incluindo bônus de equipamentos
                     let armourTotal = stats?.armour || 0;
                     let moveTotal = stats?.move || 0;
                     if (equipedFull && equipedFull.length > 0) {
                       let equipmentArmorBonus = 0;
                       let equipmentMovementPenalty = 0;
+
+                      // Verifica se a figura tem a regra especial "Devagar e Sempre" ou "Crueldade Paciente"
+                      const hasIgnoreMovementPenalty = specialRules.some(
+                        (rule: any) =>
+                          rule?.name === "Devagar e Sempre" ||
+                          rule?.name === "Crueldade Paciente"
+                      );
+
                       for (const equip of equipedFull) {
                         equipmentArmorBonus += parseNumeric(equip.armorBonus);
-                        equipmentMovementPenalty += parseNumeric(
-                          equip.movePenalty
-                        );
+                        // Apenas aplica penalidade se não tiver a regra especial
+                        if (!hasIgnoreMovementPenalty) {
+                          equipmentMovementPenalty += parseNumeric(
+                            equip.movePenalty
+                          );
+                        }
                       }
                       armourTotal = Math.min(
                         armourTotal + equipmentArmorBonus,
@@ -2567,21 +2595,6 @@ function WarbandRosterPage() {
                     ]
                       .map((a: any) => a?.name || a)
                       .filter(Boolean);
-                    const specialRules = Array.isArray(u?.abilities)
-                      ? (u.abilities as any[])
-                          .map((r: any) => ({
-                            name: r?.name || "",
-                            description: r?.description || "",
-                          }))
-                          .filter((r) => r.name)
-                      : Array.isArray((fig as any).specialRules)
-                      ? ((fig as any).specialRules as any[])
-                          .map((r: any) => ({
-                            name: r?.name || "",
-                            description: r?.description || "",
-                          }))
-                          .filter((r) => r.name)
-                      : [];
 
                     return `
                       <div class="card">

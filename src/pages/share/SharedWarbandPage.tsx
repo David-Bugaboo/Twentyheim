@@ -230,11 +230,22 @@ function SharedWarbandPage() {
 
     // Para movimento, subtrai penalidade de equipamentos
     if (statKey === "move" && u.figure?.equiped) {
-      let equipmentMovementPenalty = 0;
-      for (const equip of u.figure.equiped) {
-        equipmentMovementPenalty += parseNumeric(equip.movePenalty);
+      // Verifica se a figura tem a regra especial "Devagar e Sempre" ou "Crueldade Paciente"
+      const specialRules = (u.figure as any)?.specialRules || [];
+      const hasIgnoreMovementPenalty = specialRules.some(
+        (rule: any) =>
+          rule?.name === "Devagar e Sempre" ||
+          rule?.name === "Crueldade Paciente"
+      );
+
+      // Apenas aplica penalidade se não tiver a regra especial
+      if (!hasIgnoreMovementPenalty) {
+        let equipmentMovementPenalty = 0;
+        for (const equip of u.figure.equiped) {
+          equipmentMovementPenalty += parseNumeric(equip.movePenalty);
+        }
+        total += equipmentMovementPenalty;
       }
-      total += equipmentMovementPenalty;
       // Garante que não fique negativo
       total = Math.max(total, 0);
     }
@@ -534,17 +545,40 @@ function SharedWarbandPage() {
                       .filter(Boolean);
                     const equipedFull = (fig.equiped || []) as any[];
 
+                    // Extrai special rules antes para poder usar no cálculo de movimento
+                    const specialRules = Array.isArray(
+                      (fig as any).specialRules
+                    )
+                      ? ((fig as any).specialRules as any[])
+                          .map((r: any) => ({
+                            name: r?.name || "",
+                            description: r?.description || "",
+                          }))
+                          .filter((r) => r.name)
+                      : [];
+
                     // Calcula armadura total incluindo bônus de equipamentos
                     let armourTotal = stats?.armour || 0;
                     let moveTotal = stats?.move || 0;
                     if (equipedFull && equipedFull.length > 0) {
                       let equipmentArmorBonus = 0;
                       let equipmentMovementPenalty = 0;
+
+                      // Verifica se a figura tem a regra especial "Devagar e Sempre" ou "Crueldade Paciente"
+                      const hasIgnoreMovementPenalty = specialRules.some(
+                        (rule: any) =>
+                          rule?.name === "Devagar e Sempre" ||
+                          rule?.name === "Crueldade Paciente"
+                      );
+
                       for (const equip of equipedFull) {
                         equipmentArmorBonus += parseNumeric(equip.armorBonus);
-                        equipmentMovementPenalty += parseNumeric(
-                          equip.movePenalty
-                        );
+                        // Apenas aplica penalidade se não tiver a regra especial
+                        if (!hasIgnoreMovementPenalty) {
+                          equipmentMovementPenalty += parseNumeric(
+                            equip.movePenalty
+                          );
+                        }
                       }
                       armourTotal = Math.min(
                         armourTotal + equipmentArmorBonus,
@@ -572,16 +606,6 @@ function SharedWarbandPage() {
                     ]
                       .map((a: any) => a?.name || a)
                       .filter(Boolean);
-                    const specialRules = Array.isArray(
-                      (fig as any).specialRules
-                    )
-                      ? ((fig as any).specialRules as any[])
-                          .map((r: any) => ({
-                            name: r?.name || "",
-                            description: r?.description || "",
-                          }))
-                          .filter((r) => r.name)
-                      : [];
 
                     return `
                       <div class="card">
