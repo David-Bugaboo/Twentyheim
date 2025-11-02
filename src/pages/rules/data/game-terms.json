@@ -17,7 +17,7 @@
   {
     "term": "Marcador de Sangramento",
     "type": "markers and conditions",
-    "description": "Uma figura com um Marcador de Sangramento recebe 3 de dano no ínicio da sua ativação para cada marcador de sangramento que tiver."
+    "description": "Uma figura com um Marcador de Sangramento recebe 3 de dano no ínicio da sua ativação para cada marcador de sangramento que tiver. Qualquer efeito que recupere pontos de vida perdidos remove um Marcador de Sangramento."
   },
   {
     "term": "Incendiária(X)",
