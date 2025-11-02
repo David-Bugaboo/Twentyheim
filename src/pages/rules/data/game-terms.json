@@ -35,10 +35,6 @@
     "description": "Essa figura causa dano do tipo Venenoso."
   },
   {
-    "term": "Marcador de Ferida",
-    "description": "Uma figura recebe esse marcador sempre que sua vida atual é menos que metade da sua vida máxima. O marcador é imediatamente removido se sua vida for restaurada acima de metade da vida. Figuras com Marcadores de Ferida só podem tomar uma ação no turno (não acumula com o efeito de marcadores similares)."
-  },
-  {
     "term": "Ódio(X)",
     "description": "Uma figura com essa característica tem +1 de Ímpeto e +1 de Dano contra figuras (X)."
   },

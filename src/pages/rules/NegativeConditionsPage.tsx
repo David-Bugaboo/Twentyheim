@@ -21,7 +21,6 @@ function NegativeConditionsPage() {
     .filter(
       (term) =>
         term.term.includes("Veneno") ||
-        term.term.includes("Ferida") ||
         term.term.includes("Congelamento") ||
         term.term.includes("Chamas") ||
         term.term.includes("Atordoamento") ||
