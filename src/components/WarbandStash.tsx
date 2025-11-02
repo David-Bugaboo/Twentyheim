@@ -24,6 +24,7 @@ export interface StashItem {
   modifier?: { name: string; effect?: string };
   availability?: string[];
   exclusions?: string[];
+  rarity?: number;
 }
 
 interface WarbandStashProps {
@@ -84,6 +85,7 @@ const getGlobalItemsByTypeForPurchase = (
         category: "hand-to-hand",
         availability: toStringArray((w as any).availability),
         exclusions: toStringArray((w as any).exclusions),
+        rarity: undefined,
       }));
     const items2 = (meleeRefactor as any[])
       .filter((w) => String(w.type || "").includes("Corpo"))
@@ -93,6 +95,7 @@ const getGlobalItemsByTypeForPurchase = (
         category: "hand-to-hand",
         availability: toStringArray((w as any).availability),
         exclusions: toStringArray((w as any).exclusions),
+        rarity: w.rarity,
       }));
     const allItems = [...items1, ...items2];
     const unique = Array.from(
@@ -109,6 +112,7 @@ const getGlobalItemsByTypeForPurchase = (
         category: "ranged",
         availability: toStringArray((w as any).availability),
         exclusions: toStringArray((w as any).exclusions),
+        rarity: undefined,
       }));
     const items2 = (rangedRefactor as any[])
       .filter((w) => String(w.type || "").includes("Distância"))
@@ -118,6 +122,7 @@ const getGlobalItemsByTypeForPurchase = (
         category: "ranged",
         availability: toStringArray((w as any).availability),
         exclusions: toStringArray((w as any).exclusions),
+        rarity: w.rarity,
       }));
     const allItems = [...items1, ...items2];
     const unique = Array.from(
@@ -132,6 +137,7 @@ const getGlobalItemsByTypeForPurchase = (
       category: "ranged",
       availability: toStringArray((w as any).availability),
       exclusions: toStringArray((w as any).exclusions),
+      rarity: w.rarity,
     }));
   }
   if (type === "Armadura") {
@@ -141,6 +147,7 @@ const getGlobalItemsByTypeForPurchase = (
       category: "armor",
       availability: toStringArray((w as any).availability),
       exclusions: toStringArray((w as any).exclusions),
+      rarity: w.rarity,
     }));
   }
   if (type === "Acessórios") {
@@ -150,6 +157,7 @@ const getGlobalItemsByTypeForPurchase = (
       category: "miscellaneous",
       availability: toStringArray((w as any).availability),
       exclusions: toStringArray((w as any).exclusions),
+      rarity: w.rarity,
     }));
     const allItems = [...items1];
     const unique = Array.from(
@@ -164,6 +172,7 @@ const getGlobalItemsByTypeForPurchase = (
       category: "miscellaneous",
       availability: toStringArray((w as any).availability),
       exclusions: toStringArray((w as any).exclusions),
+      rarity: w.rarity,
     }));
     const unique = Array.from(
       new Map(items.map((item) => [item.name, item])).values()
@@ -501,13 +510,14 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
                   item.exclusions,
                   factionLabel
                 );
+                const rarityDisplay = item.rarity ? ` (Rrd: ${item.rarity === 1 ? 'Comum' : item.rarity})` : '';
                 return (
                   <option
                     key={item.name}
                     value={item.name}
                     style={{ color: allowed ? undefined : "#ef4444" }}
                   >
-                    {item.name} — {item.cost}
+                    {item.name} — {item.cost}{rarityDisplay}
                     {!allowed ? " (não disponível)" : ""}
                   </option>
                 );
