@@ -299,7 +299,7 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
                       onClick={() => onUnequipToStashFlat(unitId, baseName)}
                       className="px-2 py-1 rounded bg-red-600 hover:bg-red-700 text-white text-xs"
                     >
-                      Remover
+                      Desequipar
                     </button>
                   )}
                 </div>

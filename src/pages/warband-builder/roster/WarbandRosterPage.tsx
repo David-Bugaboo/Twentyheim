@@ -457,15 +457,8 @@ function WarbandRosterPage() {
       lore: "",
       figure: fig,
       stats: {
-        move: fig.baseStats.move,
-        fight: fig.baseStats.fight,
-        shoot: fig.baseStats.shoot,
-        armour: fig.baseStats.armour,
-        Vontade: fig.baseStats.Vontade,
-        health: fig.baseStats.health,
         cost: fig.baseStats.cost,
         startingXp: fig.xp,
-        strength: fig.baseStats.strength,
         skills: fig.avaiableSkills || [],
         equipmentSlots: fig.equipmentSlots,
       } as any,
@@ -940,7 +933,7 @@ function WarbandRosterPage() {
   const handleUnequipToStashFlat = (unitId: string, itemName: string) => {
     setHasUnsavedChanges(true);
     setSheet((prev) => {
-      // Primeiro, busca o item que será removido para calcular o reembolso
+      // Primeiro, busca o item que será removido
       const unit = prev.units.find((x) => x.id === unitId) as any;
       const equippedList: any[] = (unit?.figure?.equiped || []) as any[];
       const removedEquipment = equippedList.find(
@@ -948,44 +941,8 @@ function WarbandRosterPage() {
           String(e?.name || "").toLowerCase() === itemName.toLowerCase()
       );
 
-      let newGold = prev.gold;
-
-      // Se encontrou o equipamento, calcula o reembolso
-      if (removedEquipment) {
-        // Calcula custo original usando a mesma lógica de compra
-        const baseCostStr = String(
-          removedEquipment.cost ||
-            removedEquipment.purchaseCost ||
-            removedEquipment.sellCost ||
-            "0"
-        );
-        const baseCostMatch = baseCostStr.match(/(\d+(?:\.\d+)?)/);
-        const baseCost = baseCostMatch ? parseFloat(baseCostMatch[1]) : 0;
-        const multiplier = removedEquipment.modifier?.multiplier ?? 1;
-        const modifierAddend = removedEquipment.modifierAddend ?? 0;
-        const modifierFixedCost = removedEquipment.modifierFixedCost;
-
-        let originalCost = baseCost;
-        if (modifierFixedCost != null) {
-          originalCost = modifierFixedCost;
-        } else {
-          originalCost = baseCost * multiplier + modifierAddend;
-        }
-
-        // Vende por metade do custo original
-        const sellPrice = Math.floor(originalCost / 2);
-
-        // Adiciona ouro ao cofre
-        const currentGoldMatch = String(prev.gold || "0").match(/(\d+)/);
-        const currentGold = currentGoldMatch
-          ? parseInt(currentGoldMatch[1], 10)
-          : 0;
-        newGold = String(currentGold + sellPrice);
-      }
-
       return {
         ...prev,
-        gold: newGold,
         units: prev.units.map((u) => {
           if (u.id !== unitId) return u;
           // NOVA ARQUITETURA: trabalha diretamente com figure.equiped
@@ -1007,8 +964,10 @@ function WarbandRosterPage() {
           };
           return nextUnit as EditableUnit;
         }),
-        // Remove o objeto - foi vendido, não volta ao vault
-        vault: (prev as any).vault || [],
+        // Adiciona o equipamento de volta ao vault (cofre)
+        vault: removedEquipment
+          ? [...(prev.vault || []), removedEquipment]
+          : prev.vault || [],
       };
     });
   };
@@ -1437,13 +1396,41 @@ function WarbandRosterPage() {
     setHasUnsavedChanges(true);
     setSheet((s) => {
       const unit = s.units.find((u) => u.id === id) as any;
-      const figEquip: any[] = (unit?.figure?.equiped || []) as any[];
-      const nextVault = [...((s.vault || []) as any[]), ...figEquip];
+      const figure = unit?.figure as any;
+      const role = (figure?.role || unit?.role || "").toString().toLowerCase();
+      const isMercenaryOrLegend =
+        role.includes("merc") || role.includes("lenda");
+
+      // Para mercenários e lendas: equipamentos são descartados (não voltam ao cofre)
+      // Para outros tipos: equipamentos voltam ao cofre (exceto adaga grátis)
+      let nextVault = [...((s.vault || []) as any[])];
+
+      if (!isMercenaryOrLegend) {
+        // Apenas para não-mercenários/não-lendas: devolve equipamentos ao cofre
+        const figEquip: any[] = (figure?.equiped || []) as any[];
+
+        // Filtra apenas a adaga grátis (nome contém "adaga" E slots === 0) para não adicionar ao cofre
+        const equipmentToReturn = figEquip.filter((eq: any) => {
+          const name = String(eq?.name || "").toLowerCase();
+          const slots = eq?.slots;
+          const isFreeDagger =
+            name.includes("adaga") &&
+            (slots === 0 ||
+              slots === "0" ||
+              slots === null ||
+              slots === undefined);
+          return !isFreeDagger; // Retorna todos EXCETO a adaga grátis
+        });
+
+        nextVault = [...nextVault, ...equipmentToReturn];
+      }
+      // Se for mercenário ou lenda, simplesmente não adiciona os equipamentos ao vault (eles são descartados)
 
       // Calcula e devolve ouro da figura
       let refund = 0;
-      if (unit?.stats?.cost) {
-        const costMatch = String(unit.stats.cost).match(/(\d+)/);
+      if (unit?.stats?.cost || unit?.figure?.baseStats?.cost) {
+        const costValue = unit?.stats?.cost || unit?.figure?.baseStats?.cost;
+        const costMatch = String(costValue).match(/(\d+)/);
         refund = costMatch ? parseInt(costMatch[1], 10) : 0;
       }
 
@@ -3364,8 +3351,14 @@ function WarbandRosterPage() {
                       const equipped = u.equippedItems || {
                         acessorios: [],
                       };
+                      // Combina u.stats com figure.baseStats para criar baseStats completo
+                      const figure = u.figure as any;
+                      const combinedStats = {
+                        ...(figure?.baseStats || {}),
+                        ...u.stats,
+                      } as UnitStats;
                       const rosterStats = createRosterStats(
-                        u.stats,
+                        combinedStats,
                         u.statBreakdown
                       );
 
@@ -3510,7 +3503,7 @@ function WarbandRosterPage() {
                             name={u.name}
                             role={u.role}
                             quantity={u.quantity}
-                            baseStats={u.stats}
+                            baseStats={combinedStats}
                             rosterStats={rosterStats}
                             lore={u.lore}
                             availability={u.availability}

@@ -935,6 +935,35 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
             ▼
           </button>
         </div>
+        {(role === "Herói" ||
+          role === "Líder" ||
+          quantity ||
+          costDisplay ||
+          baseStats.upkeep ||
+          figure?.baseStats?.upkeep) && (
+          <div className="flex justify-center items-center gap-3 mt-3 flex-wrap px-2">
+            {role && (role === "Herói" || role === "Líder") && (
+              <span className="bg-gray-600 text-white px-2 py-1 rounded text-sm">
+                {role}
+              </span>
+            )}
+            {quantity && quantity !== "0" && String(quantity).trim() !== "" && (
+              <span className="bg-gray-500 text-white px-2 py-1 rounded text-xs">
+                {quantity}
+              </span>
+            )}
+            {costDisplay && (
+              <span className="bg-green-600 text-white px-2 py-1 rounded text-xs">
+                {costDisplay}
+              </span>
+            )}
+            {(baseStats.upkeep || figure?.baseStats?.upkeep) && (
+              <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">
+                Manutenção: {baseStats.upkeep || figure?.baseStats?.upkeep}
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Conteúdo colapsável */}
@@ -952,36 +981,6 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   onChangeNarrativeName && onChangeNarrativeName(e.target.value)
                 }
               />
-            </div>
-          )}
-          {(role === "Herói" ||
-            role === "Líder" ||
-            quantity ||
-            costDisplay ||
-            baseStats.upkeep) && (
-            <div className="flex justify-center items-center gap-3 mt-3 flex-wrap">
-              {role && (role === "Herói" || role === "Líder") && (
-                <span className="bg-gray-600 text-white px-2 py-1 rounded text-sm">
-                  {role}
-                </span>
-              )}
-              {quantity &&
-                quantity !== "0" &&
-                String(quantity).trim() !== "" && (
-                  <span className="bg-gray-500 text-white px-2 py-1 rounded text-xs">
-                    {quantity}
-                  </span>
-                )}
-              {costDisplay && (
-                <span className="bg-green-600 text-white px-2 py-1 rounded text-xs">
-                  {costDisplay}
-                </span>
-              )}
-              {baseStats.upkeep && (
-                <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">
-                  Manutenção: {baseStats.upkeep}
-                </span>
-              )}
             </div>
           )}
 

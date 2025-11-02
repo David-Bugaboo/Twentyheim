@@ -184,6 +184,7 @@ export interface Figure {
     strength: number;
     health: number;
     cost: string;
+    upkeep?: string;
   };
   injuryStatsModifiers: {
     move: number;
@@ -270,6 +271,7 @@ export function buildFigureFromBase(base: any): Figure {
     strength: toNum(stats.strength ?? stats.força ?? stats.For, 0),
     health: toNum(stats.health, 10),
     cost: String(stats.cost ?? "-"),
+    upkeep: stats.upkeep ? String(stats.upkeep) : undefined,
   };
 
   // Modificadores começam zerados
