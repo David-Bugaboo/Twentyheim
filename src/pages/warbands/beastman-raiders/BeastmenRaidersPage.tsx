@@ -18,6 +18,7 @@ const HomemFerasRaidersPage: React.FC = () => {
   const navigationSections = [
     { id: "introducao", title: "Introdução", level: 0 },
     { id: "estrutura-bando", title: "Estrutura do Bando", level: 0 },
+    { id: "regras-especiais", title: "Regras Especiais", level: 0 },
     {
       id: "lider",
       title: "Líder",
@@ -160,6 +161,17 @@ const HomemFerasRaidersPage: React.FC = () => {
               único Minotauro (0-1).
               <br />• <strong>Cães de Guerra do Caos:</strong> Seu bando pode
               incluir até cinco Cães de Guerra do Caos (0-5).
+            </MobileText>
+          </MobileSection>
+
+          <MobileSection id="regras-especiais">
+            <HeaderH1>Regras Especiais</HeaderH1>
+            <MobileText>
+              <strong>Animalescos:</strong> Homens-Fera são criaturas temíveis
+              do Caos que não interagem com outras raças, exceto para matá-las.
+              Um bando de Homens-Fera nunca pode contratar Mercenários a menos
+              que isso seja especificamente declarado na descrição do
+              Mercenário.
             </MobileText>
           </MobileSection>
 

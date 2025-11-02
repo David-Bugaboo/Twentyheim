@@ -70,7 +70,6 @@ const Navbar: React.FC = () => {
           label: "Caçadores de Tesouro Anões",
           path: "/warbands/dwarf-treasure-hunters",
         },
-        { label: "Mata-Trolls Anão", path: "/warbands/dwarf-troll-slayers" },
         {
           label: "Culto dos Possuídos",
           path: "/warbands/cult-of-the-possessed",

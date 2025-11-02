@@ -79,8 +79,9 @@ const GoblinsPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
-      <div className="px-4 py-8 max-w-4xl mx-auto">
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
         <QuickNavigation sections={navigationSections} />
 
         <MobileSection id="introducao">
@@ -233,6 +234,7 @@ const GoblinsPage: React.FC = () => {
           ))}
         </MobileSection>
       </div>
+    </div>
     </div>
   );
 };

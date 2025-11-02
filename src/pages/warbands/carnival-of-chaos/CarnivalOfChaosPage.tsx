@@ -2,10 +2,10 @@ import carnivalData from "./data/carnival-of-chaos.data.json";
 import QuickNavigation from "../../../components/QuickNavigation";
 import MobileSection from "../../../components/MobileSection";
 import HeaderH1 from "../../../components/HeaderH1";
+import HeaderH2 from "../../../components/HeaderH2";
 import MobileText from "../../../components/MobileText";
 import UnitCard from "../../../components/UnitCard";
 import PageTitle from "../../../components/PageTitle";
-import GenericTable from "../../../components/GenericTable";
 import blessingsOfNurgle from "./data/blessings-of-nurgle.json";
 
 interface Unit {
@@ -44,16 +44,33 @@ interface Unit {
   };
 }
 
+interface Blessing {
+  id: string;
+  name: string;
+  cost: string;
+  description: string;
+}
+
 const CarnivalOfChaosPage: React.FC = () => {
   const leader = carnivalData.find((unit) => unit.role === "Líder") as Unit;
   const heroes = carnivalData.filter((unit) => unit.role === "Herói") as Unit[];
   const soldiers = carnivalData.filter((unit) => !unit.role) as Unit[];
+  const blessings = blessingsOfNurgle as Blessing[];
 
   const navigationSections = [
     { id: "introducao", title: "Introdução", level: 0 },
-    { id: "bencaos-de-nurgle", title: "Bençãos de Nurgle", level: 0 },
-    { id: "regras-especiais", title: "Regras Especiais", level: 0 },
     { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
+    {
+      id: "bencaos-de-nurgle",
+      title: "Bençãos de Nurgle",
+      level: 0,
+      children: blessings.map((blessing, index) => ({
+        id: `blessing-${index}`,
+        title: blessing.name,
+        level: 1,
+      })),
+    },
+    { id: "regras-especiais", title: "Regras Especiais", level: 0 },
     {
       id: "lider",
       title: "Líder",
@@ -117,6 +134,24 @@ const CarnivalOfChaosPage: React.FC = () => {
             </MobileText>
           </MobileSection>
 
+          <MobileSection id="estrutura-do-bando">
+            <HeaderH1>Estrutura do Bando</HeaderH1>
+            <MobileText>
+              Um bando do Circo do Caos deve incluir ao menos 3 modelos e pode
+              ter até 15. Você tem 500 coroas de ouro para recrutar seu bando
+              inicial.
+            </MobileText>
+            <MobileText>
+              - <strong>Mestre de Cerimônias:</strong> um bando deve ter apenas
+              1 Mestre de Cerimônias, nem mais nem menos.
+              <br />- <strong>Brutamontes:</strong> até 2.
+              <br />- <strong>Apodrecidos:</strong> até 2.
+              <br />- <strong>Enfermos:</strong> até 2.
+              <br />- <strong>Cultistas:</strong> qualquer número.
+              <br />- <strong>Nurguinhos:</strong> qualquer número.
+            </MobileText>
+          </MobileSection>
+
           <MobileSection id="bencaos-de-nurgle">
             <HeaderH1>Bençãos de Nurgle</HeaderH1>
             <MobileText className="mb-3">
@@ -145,42 +180,46 @@ const CarnivalOfChaosPage: React.FC = () => {
               <strong> segunda</strong> e as <strong>subsequentes</strong>
               custam <strong>o dobro</strong> do valor listado.
             </MobileText>
-            <GenericTable
-              data={(blessingsOfNurgle as any[]).map((b) => ({
-                Benção: b.name,
-                Custo: b.cost,
-                Efeito: b.description,
-              }))}
-            />
+
+            <div className="space-y-6">
+              {blessings.map((blessing, index) => (
+                <div
+                  key={blessing.id}
+                  id={`blessing-${index}`}
+                  className="bg-green-900/20 border border-green-500/40 rounded-lg p-4"
+                >
+                  <HeaderH2 className="text-green-300 mb-2">
+                    {blessing.name}
+                  </HeaderH2>
+                  <div className="mb-3">
+                    <div className="text-green-400 font-bold text-sm mb-1">
+                      Custo: {blessing.cost}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-green-400 font-bold text-sm mb-1">
+                      Descrição:
+                    </div>
+                    <div className="text-white text-sm">
+                      {blessing.description}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </MobileSection>
 
           <MobileSection id="regras-especiais">
             <HeaderH1>Regras Especiais</HeaderH1>
             <MobileText>
-              <strong>Perigoso de Conhecer:</strong> devido à sua natureza
+              <strong>Reputação Miserável:</strong> devido à sua natureza
               pestilenta, um bando do Circo do Caos nunca pode contratar
               mercenários.
             </MobileText>
             <MobileText>
-              <strong>Maculados:</strong> o Circo do Caos conta como um bando
-              dos Possuídos para propósitos de exploração e ferimentos graves.
-            </MobileText>
-          </MobileSection>
-
-          <MobileSection id="estrutura-do-bando">
-            <HeaderH1>Estrutura do Bando</HeaderH1>
-            <MobileText>
-              Um bando do Circo do Caos deve incluir ao menos 3 modelos e pode
-              ter até 15. Você tem 500 coroas de ouro para recrutar seu bando
-              inicial.
-            </MobileText>
-            <MobileText>
-              - <strong>Mestre de Cerimônias:</strong> exatamente 1.
-              <br />- <strong>Brutamontes:</strong> até 2.
-              <br />- <strong>Apodrecidos:</strong> até 2.
-              <br />- <strong>Enfermos:</strong> até 2.
-              <br />- <strong>Cultistas:</strong> qualquer número.
-              <br />- <strong>Nurguinhos:</strong> qualquer número.
+              <strong>Maculados:</strong> o Circo do Caos conta como um bando de
+              Culto dos Possuídos para propósitos de exploração e ferimentos
+              graves.
             </MobileText>
           </MobileSection>
 

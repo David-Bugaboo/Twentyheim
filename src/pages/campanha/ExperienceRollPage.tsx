@@ -194,7 +194,7 @@ function ExperienceRollPage() {
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <MobileSection>
-            <PageTitle>Experiência e Nível</PageTitle>
+            <PageTitle>Experiência e Avanços</PageTitle>
 
             <MobileText>
               Após cada batalha, os membros do bando ganham experiência baseada
@@ -283,7 +283,7 @@ function ExperienceRollPage() {
               data={[
                 {
                   "Rolagem de Dado": "1-4",
-                  Resultado: "Aprender nova Habilidade",
+                  Resultado: "Aprender nova Habilidade, Aprender Nova Magia, Fortalecer Magia",
                 },
                 {
                   "Rolagem de Dado": "5-8",

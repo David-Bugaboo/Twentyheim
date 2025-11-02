@@ -12,7 +12,7 @@ function CampaignPage() {
   // Botões de navegação para cada passo
   const navigationButtons = [
     { label: "1. Ferimentos e Morte", path: "/campaign/survival-test" },
-    { label: "2. Experiência e Níveis", path: "/campaign/skills" },
+    { label: "2. Experiência e Avanços", path: "/campaign/experience-roll" },
     { label: "3. Atividades de Campanha", path: "/campaign/exploration" },
     { label: "4. Venda Pedra-Bruxa", path: "/campaign/wyrdstone-selling" },
     { label: "5. Gastar Coroas", path: "/campaign/rewards" },
@@ -43,9 +43,9 @@ function CampaignPage() {
             <MobileText>
               Teste de sobrevivência para heróis e soldados feridos
             </MobileText>
-            <HeaderH3>2. Alocar experiência e subir níveis</HeaderH3>
+            <HeaderH3>2. Alocar experiência e ganhar avanços</HeaderH3>
             <MobileText>
-              Distribuir pontos de experiência e subir níveis
+              Distribuir pontos de experiência e ganhar avanços
             </MobileText>
             <HeaderH3>3. Atividades de campanha</HeaderH3>
             <MobileText>Exploração, eventos e atividades do bando</MobileText>

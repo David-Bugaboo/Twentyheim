@@ -49,6 +49,7 @@ const OrcMobPage: React.FC = () => {
   const navigationSections = [
     { id: "introducao", title: "Introdução", level: 0 },
     { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
+    { id: "regras-especiais", title: "Regras Especiais", level: 0 },
     { id: "animosidade", title: "Animosidade", level: 0 },
     {
       id: "lider",
@@ -79,8 +80,9 @@ const OrcMobPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
-      <div className="px-4 py-8 max-w-4xl mx-auto">
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
+      <div className="py-4">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
         <QuickNavigation sections={navigationSections} />
 
         <MobileSection id="introducao">
@@ -132,15 +134,23 @@ const OrcMobPage: React.FC = () => {
           </MobileText>
         </MobileSection>
 
-        <MobileSection id="animosidade">
-          <HeaderH1 id="animosidade">Animosidade</HeaderH1>
+        <MobileSection id="regras-especiais">
+          <HeaderH1>Regras Especiais</HeaderH1>
           <MobileText>
-            Orcs e Goblins não gostam de nada mais que uma boa briga, a ponto de
-            não ligar muito pra quem caem na porrada! No início de cada turno,
-            role um dado para cada figura com a regra Animosidade. Um resultado
-            de 1-5 significa que o guerreiro se ofendeu com algo que um de seus
-            colegas de bando fez ou disse. Não role para modelos que estão em
-            combate corpo a corpo (eles já estão brigando!).
+            <strong>Companhia Desagradável:</strong> Muitos Mercenários se
+            recusam a trabalhar para Orcs, pois sabem que eles são tão propensos
+            a comê-los quanto a lutar ao seu lado. Orcs só podem contratar os
+            seguintes Mercenários: Gladiador, Guarda-Costas Ogros ,Bruxos ou
+            Capatazes Orcs Negros.
+          </MobileText>
+          <MobileText>
+            <strong>Animosidade:</strong>Orcs e Goblins não gostam de nada mais
+            que uma boa briga, a ponto de não ligar muito pra quem caem na
+            porrada! No início de cada turno, role um dado para cada figura com
+            a regra Animosidade. Um resultado de 1-5 significa que o guerreiro
+            se ofendeu com algo que um de seus colegas de bando fez ou disse.
+            Não role para modelos que estão em combate corpo a corpo (eles já
+            estão brigando!).
           </MobileText>
           <MobileText>
             Para descobrir o quão ofendido o modelo está, role outro dado e
@@ -227,6 +237,7 @@ const OrcMobPage: React.FC = () => {
           ))}
         </MobileSection>
       </div>
+    </div>
     </div>
   );
 };
