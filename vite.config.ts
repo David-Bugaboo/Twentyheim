@@ -11,6 +11,10 @@ export default defineConfig({
     }),
     VitePWA({
       registerType: "autoUpdate",
+      devOptions: {
+        // Habilita SW no dev apenas em desenvolvimento; produção usa build/preview
+        enabled: process.env.NODE_ENV === "development",
+      },
       includeAssets: ["favicon.svg", "robots.txt", "apple-touch-icon.png"],
       manifest: {
         name: "Twentyheim",
