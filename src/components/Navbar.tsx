@@ -25,6 +25,28 @@ import logoImage from "../assets/20heim.png";
 import { useAuth } from "../context/AuthContext";
 import { loginWithGoogle, logout } from "../firebase.ts";
 
+const ADMIN_EMAILS = [
+  "david.faco@gmail.com",
+  "davidfaco@gmail.com",
+  "davidfaco.ufc@gmail.com",
+];
+
+const isAdmin = (user: any) => {
+  if (!user) return false;
+  
+  const userEmail = user.email?.toLowerCase();
+  if (userEmail && ADMIN_EMAILS.some(admin => admin.toLowerCase() === userEmail)) {
+    return true;
+  }
+  
+  const userName = user.displayName?.toLowerCase();
+  if (userName && userName.includes("david") && userName.includes("faco")) {
+    return true;
+  }
+  
+  return false;
+};
+
 const Navbar: React.FC = () => {
   const location = useLocation();
   const { currentUser } = useAuth();
@@ -37,8 +59,10 @@ const Navbar: React.FC = () => {
     null
   );
 
+  // Adiciona link Admin apenas para admins
+  const shouldShowAdmin = currentUser && isAdmin(currentUser);
+
   const navItems = [
-    { label: "Gestor de Bando (Beta)", path: "/warband-builder" },
     { label: "Início", path: "/" },
     {
       label: "Regras",
@@ -217,7 +241,7 @@ const Navbar: React.FC = () => {
       ],
     },
     {
-      label: "Cenários 1v1",
+      label: "Cenários",
       path: "/scenarios",
       children: [
         { label: "Todos os Cenários", path: "/scenarios" },
@@ -230,13 +254,6 @@ const Navbar: React.FC = () => {
         { label: "Tesouro Escondido", path: "/scenarios/hidden-treasure" },
         { label: "Ocupar", path: "/scenarios/occupy" },
         { label: "Ataque Surpresa", path: "/scenarios/surprise-attack" },
-      ],
-    },
-    {
-      label: "Cenários Multijogador",
-      path: "/scenarios",
-      children: [
-        { label: "Todos os Cenários", path: "/scenarios" },
         { label: "Mansão do Bruxo", path: "/scenarios/wizard-mansion" },
         { label: "Caça ao Tesouro", path: "/scenarios/treasure-hunt" },
         { label: "Briga de Rua", path: "/scenarios/street-brawl" },
@@ -245,7 +262,21 @@ const Navbar: React.FC = () => {
         { label: "O Herdeiro Perdido", path: "/scenarios/lost-prince" },
       ],
     },
+    {
+      label: "Ferramentas",
+      path: "/tools",
+      children: (() => {
+        const tools = [
+          { label: "Gestor de Bando (Beta)", path: "/warband-builder" },
     { label: "Changelog", path: "/changelog" },
+        ];
+        // Adiciona Admin apenas para admins
+        if (shouldShowAdmin) {
+          tools.push({ label: "Admin", path: "/admin" });
+        }
+        return tools;
+      })(),
+    },
   ];
 
   const handleCloseMobileMenu = () => {

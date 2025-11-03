@@ -1,6 +1,4 @@
 export interface SacredMark {
   id: string;
-  name: string;
-  cost: string;
-  description: string;
+  base_sacred_mark_id: string;
 }

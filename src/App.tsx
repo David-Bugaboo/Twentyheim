@@ -90,6 +90,8 @@ import LegendsPage from "./pages/campanha/LegendsPage";
 import HiredSwordsPage from "./pages/campanha/MercenariesPage";
 import DarkGodsInvocationPage from "./pages/campanha/DarkGodsInvocationPage";
 import ChangelogPage from "./pages/ChangelogPage";
+import AdminPage from "./pages/admin/AdminPage";
+import MigrateDataPage from "./pages/admin/MigrateDataPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -342,6 +344,8 @@ function AppContent() {
         />
         <Route path="/share/warband/:id" element={<SharedWarbandPage />} />
         <Route path="/changelog" element={<ChangelogPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/migrate" element={<MigrateDataPage />} />
       </Routes>
     </>
   );

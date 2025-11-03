@@ -7,14 +7,26 @@ type Props = {
     name: string;
     faction: string;
     initialCrowns: number;
-  }) => Promise<void> | void;
+  }, saveLocation?: "local" | "user") => Promise<void> | void;
   factions: { slug: string; label: string }[];
+  allowLocationChoice?: boolean;
+  hasUser?: boolean;
 };
 
-function CreateWarbandModal({ open, onClose, onCreate, factions }: Props) {
+function CreateWarbandModal({ 
+  open, 
+  onClose, 
+  onCreate, 
+  factions,
+  allowLocationChoice = false,
+  hasUser = false,
+}: Props) {
   const [name, setName] = useState("");
   const [faction, setFaction] = useState("");
   const [initialCrowns, setInitialCrowns] = useState<number>(500);
+  const [saveLocation, setSaveLocation] = useState<"local" | "user">(
+    hasUser ? "user" : "local"
+  );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,6 +34,7 @@ function CreateWarbandModal({ open, onClose, onCreate, factions }: Props) {
     setName("");
     setFaction("");
     setInitialCrowns(500);
+    setSaveLocation(hasUser ? "user" : "local");
     setError(null);
   };
 
@@ -31,11 +44,14 @@ function CreateWarbandModal({ open, onClose, onCreate, factions }: Props) {
     try {
       setLoading(true);
       setError(null);
-      await onCreate({
+      await onCreate(
+        {
         name: name.trim(),
         faction: faction.trim(),
         initialCrowns: Number.isFinite(initialCrowns) ? initialCrowns : 0,
-      });
+        },
+        allowLocationChoice ? saveLocation : undefined
+      );
       reset();
       onClose();
     } catch (e: any) {
@@ -108,6 +124,25 @@ function CreateWarbandModal({ open, onClose, onCreate, factions }: Props) {
               min={0}
             />
           </label>
+
+          {allowLocationChoice && hasUser ? (
+            <label className="flex flex-col gap-2 md:col-span-2">
+              <span className="text-sm text-gray-300">Onde salvar?</span>
+              <select
+                className="bg-[#121212] border border-gray-600 rounded px-3 py-2 text-white"
+                value={saveLocation}
+                onChange={(e) => setSaveLocation(e.target.value as "local" | "user")}
+              >
+                <option value="local">📱 Local (navegador)</option>
+                <option value="user">☁️ Nuvem (sincronizado)</option>
+              </select>
+              <p className="text-xs text-gray-400 mt-1">
+                {saveLocation === "local"
+                  ? "Salvo apenas neste navegador. Não precisa de login."
+                  : "Salvo na nuvem. Sincronizado entre dispositivos."}
+              </p>
+            </label>
+          ) : null}
 
           {error ? (
             <div className="md:col-span-2 rounded border border-red-700 bg-red-950/50 p-2 text-sm text-red-300">

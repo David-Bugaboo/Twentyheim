@@ -1,4 +1,7 @@
-import carnivalData from "./data/carnival-of-chaos.data.json";
+import React, { useMemo } from "react";
+import { useJsonData } from "../../../hooks/useJsonData";
+import { getStaticImport } from "../../../data/jsonFileMap";
+import { createWarbandNavigationSections } from "../../../utils/navigationSections";
 import QuickNavigation from "../../../components/QuickNavigation";
 import MobileSection from "../../../components/MobileSection";
 import HeaderH1 from "../../../components/HeaderH1";
@@ -6,7 +9,6 @@ import HeaderH2 from "../../../components/HeaderH2";
 import MobileText from "../../../components/MobileText";
 import UnitCard from "../../../components/UnitCard";
 import PageTitle from "../../../components/PageTitle";
-import blessingsOfNurgle from "./data/blessings-of-nurgle.json";
 
 interface Unit {
   id: string;
@@ -52,58 +54,95 @@ interface Blessing {
 }
 
 const CarnivalOfChaosPage: React.FC = () => {
-  const leader = carnivalData.find((unit) => unit.role === "Líder") as Unit;
-  const heroes = carnivalData.filter((unit) => unit.role === "Herói") as Unit[];
-  const soldiers = carnivalData.filter((unit) => !unit.role) as Unit[];
-  const blessings = blessingsOfNurgle as Blessing[];
+  // Carrega dados via hook (Firestore -> IndexedDB -> Static)
+  const staticImportFn = React.useMemo(
+    () => () => getStaticImport("carnival-of-chaos")(),
+    []
+  );
 
-  const navigationSections = [
+  const { data: carnivalData, loading: loadingUnits } = useJsonData({
+    fileId: "carnival-of-chaos",
+    staticImport: staticImportFn,
+  });
+
+  // Carrega bênçãos de Nurgle via hook (Firestore -> IndexedDB -> Static)
+  const blessingsStaticImportFn = React.useMemo(
+    () => () => getStaticImport("carnival-blessings")(),
+    []
+  );
+
+  const { data: blessingsOfNurgle, loading: loadingBlessings } = useJsonData({
+    fileId: "carnival-blessings",
+    staticImport: blessingsStaticImportFn,
+  });
+
+  const loading = loadingUnits || loadingBlessings;
+
+  const blessings = (blessingsOfNurgle || []) as Blessing[];
+
+  // Cria as seções de navegação de forma segura
+  const navigationSections = useMemo(() => {
+    const baseSections = [
     { id: "introducao", title: "Introdução", level: 0 },
     { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
-    {
+      { id: "regras-especiais", title: "Regras Especiais", level: 0 },
+    ];
+    
+    const warbandSections = createWarbandNavigationSections(
+      carnivalData as Unit[] | null | undefined,
+      baseSections
+    );
+
+    // Adiciona seção de bênçãos
+    const blessingsSection = {
       id: "bencaos-de-nurgle",
       title: "Bençãos de Nurgle",
       level: 0,
       children: blessings.map((blessing, index) => ({
-        id: `blessing-${index}`,
+        id: blessing.id || `blessing-${index}`,
         title: blessing.name,
         level: 1,
       })),
-    },
-    { id: "regras-especiais", title: "Regras Especiais", level: 0 },
-    {
-      id: "lider",
-      title: "Líder",
-      level: 0,
-      children: leader ? [{ id: leader.id, title: leader.name, level: 1 }] : [],
-    },
-    {
-      id: "herois",
-      title: "Heróis",
-      level: 0,
-      children: heroes.map((hero) => ({
-        id: hero.id,
-        title: hero.name,
-        level: 1,
-      })),
-    },
-    {
-      id: "soldados",
-      title: "Soldados & Entidades",
-      level: 0,
-      children: soldiers.map((soldier) => ({
-        id: soldier.id,
-        title: soldier.name,
-        level: 1,
-      })),
-    },
-  ];
+    };
+
+    // Atualiza título de soldados
+    const soldiersSection = warbandSections.find(s => s.id === "soldados");
+    if (soldiersSection) {
+      soldiersSection.title = "Soldados & Entidades";
+    }
+
+    // Insere bênçãos antes de "lider" ou no final
+    const leaderIndex = warbandSections.findIndex(s => s.id === "lider");
+    if (leaderIndex >= 0) {
+      warbandSections.splice(leaderIndex, 0, blessingsSection);
+    } else {
+      warbandSections.push(blessingsSection);
+    }
+
+    return warbandSections;
+  }, [carnivalData, blessings]);
+
+  // Extrai unidades de forma segura (com fallback para array vazio)
+  const leader = useMemo(() => {
+    if (!carnivalData || !Array.isArray(carnivalData)) return undefined;
+    return carnivalData.find((unit) => unit.role === "Líder") as Unit | undefined;
+  }, [carnivalData]);
+
+  const heroes = useMemo(() => {
+    if (!carnivalData || !Array.isArray(carnivalData)) return [];
+    return carnivalData.filter((unit) => unit.role === "Herói") as Unit[];
+  }, [carnivalData]);
+
+  const soldiers = useMemo(() => {
+    if (!carnivalData || !Array.isArray(carnivalData)) return [];
+    return carnivalData.filter((unit) => !unit.role) as Unit[];
+  }, [carnivalData]);
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
-          <QuickNavigation sections={navigationSections} />
+          <QuickNavigation sections={navigationSections} loading={loading} />
 
           <MobileSection id="introducao">
             <PageTitle>Circo do Caos</PageTitle>
@@ -182,7 +221,10 @@ const CarnivalOfChaosPage: React.FC = () => {
             </MobileText>
 
             <div className="space-y-6">
-              {blessings.map((blessing, index) => (
+              {loading ? (
+                <MobileText>Carregando bênçãos...</MobileText>
+              ) : blessings.length > 0 ? (
+                blessings.map((blessing, index) => (
                 <div
                   key={blessing.id}
                   id={`blessing-${index}`}
@@ -205,7 +247,10 @@ const CarnivalOfChaosPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              ))}
+              ))
+              ) : (
+                <MobileText>Nenhuma bênção encontrada</MobileText>
+              )}
             </div>
           </MobileSection>
 
@@ -225,7 +270,9 @@ const CarnivalOfChaosPage: React.FC = () => {
 
           <MobileSection id="lider">
             <HeaderH1>Líder</HeaderH1>
-            {leader && (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : leader ? (
               <UnitCard
                 id={leader.id}
                 name={leader.name}
@@ -237,12 +284,17 @@ const CarnivalOfChaosPage: React.FC = () => {
                 equipment={leader.equipment}
                 spellAffinity={leader.spellAffinity}
               />
+            ) : (
+              <MobileText>Nenhum líder encontrado</MobileText>
             )}
           </MobileSection>
 
           <MobileSection id="herois">
             <HeaderH1>Heróis</HeaderH1>
-            {heroes.map((hero) => (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : heroes.length > 0 ? (
+              heroes.map((hero) => (
               <UnitCard
                 key={hero.id}
                 id={hero.id}
@@ -255,12 +307,18 @@ const CarnivalOfChaosPage: React.FC = () => {
                 equipment={hero.equipment}
                 spellAffinity={hero.spellAffinity}
               />
-            ))}
+              ))
+            ) : (
+              <MobileText>Nenhum herói encontrado</MobileText>
+            )}
           </MobileSection>
 
           <MobileSection id="soldados">
             <HeaderH1>Soldados & Entidades</HeaderH1>
-            {soldiers.map((unit) => (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : soldiers.length > 0 ? (
+              soldiers.map((unit) => (
               <UnitCard
                 key={unit.id}
                 id={unit.id}
@@ -272,7 +330,10 @@ const CarnivalOfChaosPage: React.FC = () => {
                 equipment={unit.equipment}
                 spellAffinity={unit.spellAffinity}
               />
-            ))}
+              ))
+            ) : (
+              <MobileText>Nenhum soldado encontrado</MobileText>
+            )}
           </MobileSection>
         </div>
       </div>

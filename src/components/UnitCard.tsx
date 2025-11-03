@@ -13,6 +13,7 @@ export interface UnitStats {
   cost: string;
   lore?: string;
   skills?: string[];
+  spells?: string[];
   startingXp?: number;
   strength?: number | string;
   força?: number | string;

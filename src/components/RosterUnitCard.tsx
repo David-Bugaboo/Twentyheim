@@ -19,10 +19,12 @@ import AdvancementsPicker from "./AdvancementsPicker";
 import InjuriesPicker from "./InjuriesPicker";
 import EquipmentManager from "./EquipmentManager";
 import { type UnitStats, type UnitAbility } from "./UnitCard";
-import { type Figure } from "../pages/warband-builder/types/figure.type";
+import type { figure } from "../pages/warband-builder/types/figure.type";
 import SpecialAbilitiesCard from "./SpecialAbilitiesCard";
 import ExperienceTrackerHero from "./ExperienceTrackerHero";
 import ExperienceTrackerSoldier from "./ExperienceTrackerSoldier";
+import { useResolvedFigure } from "../hooks/useWarbandData";
+import { useMultipleBaseData } from "../hooks/useBaseData";
 
 export interface AttributeBreakdown {
   base: number;
@@ -56,7 +58,9 @@ interface RosterUnitCardProps {
     aligned2?: string[];
   };
   abilities: UnitAbility[];
-  figure?: Figure; // Nova estrutura fonte da unidade
+  figure?: figure; // Nova estrutura obrigatória
+  factionId?: string; // ID da facção para buscar dados na coleção correta
+  factionFallbackData?: any; // Dados estáticos da facção para fallback
   equipment?: {
     "hand-to-hand"?: Array<{ name: string; cost: string }>;
     ranged?: Array<{ name: string; cost: string }>;
@@ -139,7 +143,7 @@ interface RosterUnitCardProps {
   maxSlots?: number;
   // Novo: editar modificadores direto do Figure
   onChangeFigureStatModifier?: (
-    stat: keyof Figure["baseStats"],
+    stat: keyof UnitStats,
     category: "injury" | "advancement" | "misc",
     value: number
   ) => void;
@@ -167,6 +171,8 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
   spellAffinity,
   abilities,
   figure,
+  factionId,
+  factionFallbackData,
   equipment,
   // equippedItems não é mais usado na UI
   // onStatMiscChange,
@@ -201,6 +207,99 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
 }) => {
   const navigate = useNavigate();
   const [isCollapsed, setIsCollapsed] = useState(true);
+
+  // Busca dados base usando hooks com facção e fallback
+  const resolvedData = useResolvedFigure(
+    figure,
+    factionId,
+    factionFallbackData
+  );
+  
+  // Busca dados base de equipamentos, skills, spells e mutações
+  const equipmentBaseIds = figure?.equipment || [];
+  const skillBaseIds = figure?.availableSkills || [];
+  const spellBaseIds = figure?.availableSpells || [];
+  const mutationBaseIds = figure?.mutations || [];
+  const sacredMarkBaseIds = figure?.sacredMarks || [];
+  const blessingBaseIds = figure?.nurgleBlessings || [];
+
+  const equipmentBases = useMultipleBaseData("base-equipment", equipmentBaseIds, equipmentBaseIds.length > 0);
+  const skillBases = useMultipleBaseData("base-skills", skillBaseIds, skillBaseIds.length > 0);
+  const spellBases = useMultipleBaseData("base-spells", spellBaseIds, spellBaseIds.length > 0);
+  const mutationBases = useMultipleBaseData("base-mutations", mutationBaseIds, mutationBaseIds.length > 0);
+  const sacredMarkBases = useMultipleBaseData("base-sacred-marks", sacredMarkBaseIds, sacredMarkBaseIds.length > 0);
+  const blessingBases = useMultipleBaseData("base-nurgle-blessings", blessingBaseIds, blessingBaseIds.length > 0);
+
+  // Dados resolvidos do Firestore
+  const resolvedFigureBase = resolvedData.figureBase;
+  const actualBaseStats = useMemo(() => {
+    if (resolvedFigureBase?.baseStats) {
+      return resolvedFigureBase.baseStats;
+    }
+    return baseStats;
+  }, [resolvedFigureBase, baseStats]);
+
+  const actualName = useMemo(() => {
+    if (resolvedFigureBase?.name) {
+      return resolvedFigureBase.name;
+    }
+    return name;
+  }, [resolvedFigureBase, name]);
+
+  const actualRole = useMemo(() => {
+    if (resolvedFigureBase?.role) {
+      return resolvedFigureBase.role;
+    }
+    return role;
+  }, [resolvedFigureBase, role]);
+
+  const actualLore = useMemo(() => {
+    if (resolvedFigureBase?.lore) {
+      return resolvedFigureBase.lore;
+    }
+    return lore;
+  }, [resolvedFigureBase, lore]);
+
+  const actualAbilities = useMemo(() => {
+    if (resolvedFigureBase?.abilities) {
+      return resolvedFigureBase.abilities.map((a: any) => ({
+        name: a.name || a,
+        description: a.description || "",
+      }));
+    }
+    return abilities;
+  }, [resolvedFigureBase, abilities]);
+
+  const actualAvailableSkills = useMemo(() => {
+    if (resolvedFigureBase?.availableSkills) {
+      return resolvedFigureBase.availableSkills;
+    }
+    return figure?.availableSkills || availableSkills || [];
+  }, [resolvedFigureBase, figure, availableSkills]);
+
+  const actualAvailableSpells = useMemo(() => {
+    if (resolvedFigureBase?.availableSpells) {
+      return resolvedFigureBase.availableSpells;
+    }
+    return figure?.availableSpells || [];
+  }, [resolvedFigureBase, figure]);
+
+  const isLoadingBaseData = resolvedData.loading ||
+    equipmentBases.loading ||
+    skillBases.loading ||
+    spellBases.loading ||
+    mutationBases.loading ||
+    sacredMarkBases.loading ||
+    blessingBases.loading;
+
+  // Converte IDs de equipamentos em objetos usando dados resolvidos
+  const equippedItemsArray = useMemo(() => {
+    if (!figure?.equipment || figure.equipment.length === 0) return [];
+    
+    return figure.equipment
+      .map((equipId: string) => equipmentBases.data[equipId])
+      .filter(Boolean); // Remove equipamentos não encontrados
+  }, [figure?.equipment, equipmentBases.data]);
   const [isAdvancementsCollapsed, setIsAdvancementsCollapsed] = useState(true);
   const [isInjuriesCollapsed, setIsInjuriesCollapsed] = useState(true);
 
@@ -222,9 +321,10 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     return m ? parseInt(m[0], 10) : 0;
   };
 
-  // Calcular modificadores dinamicamente a partir de advancements e injuries
+  // Calcular modificadores - na nova estrutura, já vêm nos campos específicos
   const calculatedModifiers = useMemo(() => {
-    const calcAdv = {
+    // Na nova estrutura, os modificadores já estão calculados
+    const calcAdv = figure?.advancementsModifiers || {
       move: 0,
       fight: 0,
       shoot: 0,
@@ -233,7 +333,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       strength: 0,
       health: 0,
     };
-    const calcInj = {
+    const calcInj = figure?.injuriesModifiers || {
       move: 0,
       fight: 0,
       shoot: 0,
@@ -242,49 +342,9 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       strength: 0,
       health: 0,
     };
-
-    // Calcula modificadores de advancements
-    if (figure?.advancements && Array.isArray(figure.advancements)) {
-      for (const adv of figure.advancements) {
-        const name = String(adv?.name || "").toLowerCase();
-        if (name.includes("ímpeto")) {
-          calcAdv.fight += 1;
-        } else if (name.includes("precis")) {
-          calcAdv.shoot += 1;
-        } else if (name.includes("armadura")) {
-          calcAdv.armour += 1;
-        } else if (name.includes("vida")) {
-          calcAdv.health += 2;
-        } else if (name.includes("movimento")) {
-          calcAdv.move += 2;
-        } else if (name.includes("vontade")) {
-          calcAdv.Vontade += 1;
-        } else if (name.includes("força")) {
-          calcAdv.strength += 1;
-        }
-      }
-    }
-
-    // Calcula modificadores de injuries
-    if (figure?.injuries && Array.isArray(figure.injuries)) {
-      for (const inj of figure.injuries) {
-        const name = String(inj?.name || "");
-        if (name === "Ferimento na Perna") {
-          calcInj.move -= 2;
-        } else if (name === "Costelas Quebradas") {
-          calcInj.health -= 2;
-        } else if (name === "Cego de Um Olho") {
-          calcInj.shoot -= 2;
-        } else if (name === "Trauma") {
-          calcInj.Vontade -= 1;
-        } else if (name === "Mão Esmigalhada") {
-          calcInj.fight -= 1;
-        }
-      }
-    }
 
     return { advancement: calcAdv, injury: calcInj };
-  }, [figure?.advancements, figure?.injuries]);
+  }, [figure?.advancementsModifiers, figure?.injuriesModifiers]);
 
   const getTotal = (
     breakdown: AttributeBreakdown,
@@ -297,14 +357,10 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       breakdown.misc;
 
     // Para armadura, adiciona bônus de equipamentos
-    if (
-      statKey === "armour" &&
-      figure?.equiped &&
-      Array.isArray(figure.equiped)
-    ) {
+    if (statKey === "armour" && equippedItemsArray.length > 0) {
       let equipmentArmorBonus = 0;
-      for (const equip of figure.equiped) {
-        equipmentArmorBonus += parseNumeric(equip.armorBonus);
+      for (const equip of equippedItemsArray) {
+        equipmentArmorBonus += parseNumeric(equip?.armorBonus);
       }
       const finalTotal = baseTotal + equipmentArmorBonus;
       // Limita a 17
@@ -312,13 +368,9 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     }
 
     // Para movimento, subtrai penalidade de equipamentos
-    if (
-      statKey === "move" &&
-      figure?.equiped &&
-      Array.isArray(figure.equiped)
-    ) {
+    if (statKey === "move" && equippedItemsArray.length > 0) {
       // Verifica se a figura tem a regra especial "Devagar e Sempre" ou "Crueldade Paciente"
-      const specialRules = (figure as any)?.specialRules || [];
+      const specialRules = resolvedFigureBase?.specialRules || figure?.extraSpecialRules || [];
       const hasIgnoreMovementPenalty = specialRules.some(
         (rule: any) =>
           rule?.name === "Devagar e Sempre" ||
@@ -328,8 +380,8 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       // Apenas aplica penalidade se não tiver a regra especial
       if (!hasIgnoreMovementPenalty) {
         let equipmentMovementPenalty = 0;
-        for (const equip of figure.equiped) {
-          equipmentMovementPenalty += parseNumeric(equip.movePenalty);
+        for (const equip of equippedItemsArray) {
+          equipmentMovementPenalty += parseNumeric(equip?.movePenalty);
         }
         const finalTotal = baseTotal + equipmentMovementPenalty;
         // Garante que não fique negativo
@@ -342,7 +394,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
 
   // Calcular opções de avanços baseadas no role da figura
   const advancementOptions = useMemo(() => {
-    const roleStr = (figure?.role || "").toString().toLowerCase();
+    const roleStr = (actualRole || "").toString().toLowerCase();
     const isHeroLike =
       roleStr.includes("líder") ||
       roleStr.includes("lider") ||
@@ -363,7 +415,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     return isHeroLike
       ? ["Nova Habilidade", "Nova Magia", "Fortalecer Magia", ...statIncreases]
       : ["O Moleque Tem Talento!", ...statIncreases];
-  }, [figure?.role]);
+  }, [actualRole]);
 
   // Função para escolher opção no modal
   const chooseOption = useCallback(
@@ -401,7 +453,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
   // Função para rolar avanço
   const rollAdvancement = useCallback(
     (count: number = 1) => {
-      const roleStr = (figure?.role || "").toString().toLowerCase();
+      const roleStr = (actualRole || "").toString().toLowerCase();
       const isHeroLike =
         roleStr.includes("líder") ||
         roleStr.includes("lider") ||
@@ -459,12 +511,12 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
         setRollModalOpen(true);
       }
     },
-    [figure?.role]
+    [actualRole]
   );
 
   // Função para rolar sobrevivência
   const rollSurvival = useCallback(() => {
-    const roleStr = (figure?.role || "").toString().toLowerCase();
+    const roleStr = (actualRole || "").toString().toLowerCase();
     const isHeroLike =
       roleStr.includes("líder") ||
       roleStr.includes("lider") ||
@@ -634,7 +686,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
         setSurvivalModalOpen(true);
       }
     }
-  }, [figure?.role, onAddInjury, onAddSpecialRule]);
+  }, [actualRole, onAddInjury, onAddSpecialRule]);
 
   // Função para mapear tipos de habilidades para suas rotas com algoritmo de comparação
   const getSkillRoute = (skillType: string): string => {
@@ -809,7 +861,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
   // sem navegação de magia aqui
 
   const costDisplay = (() => {
-    const raw = (baseStats?.cost ?? figure?.baseStats?.cost) as
+    const raw = (actualBaseStats?.cost ?? baseStats?.cost) as
       | string
       | number
       | undefined;
@@ -819,7 +871,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     return str;
   })();
 
-  const figStatOrder: Array<keyof Figure["baseStats"]> = [
+  const figStatOrder: Array<keyof UnitStats> = [
     "move",
     "fight",
     "shoot",
@@ -830,9 +882,9 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
   ];
 
   const toFigureBreakdown = (
-    stat: keyof Figure["baseStats"]
+    stat: keyof UnitStats
   ): AttributeBreakdown => {
-    const b = Number((figure?.baseStats as any)?.[stat] || 0);
+    const b = Number((actualBaseStats as any)?.[stat] || 0);
     // Usa os modificadores calculados dinamicamente
     const adv =
       calculatedModifiers.advancement[
@@ -842,15 +894,15 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       calculatedModifiers.injury[
         stat as keyof typeof calculatedModifiers.injury
       ] || 0;
-    const misc = Number((figure?.miscStatsModifiers as any)?.[stat] || 0);
+    const misc = Number((figure?.miscModifiers as any)?.[stat] || 0);
     return { base: b, advancement: adv, injury: inj, misc };
   };
 
-  const isInactive = Boolean((figure as any)?.inactive);
+  const isInactive = false; // Nova estrutura não tem campo inactive
 
   // Estado para modal de edição de atributos
   const [editingStat, setEditingStat] = useState<
-    keyof Figure["baseStats"] | null
+    keyof UnitStats | null
   >(null);
   const [tempModifiers, setTempModifiers] = useState<{
     advancement: number;
@@ -877,7 +929,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     };
   }, [isMenuOpen]);
 
-  const openEditModal = (stat: keyof Figure["baseStats"]) => {
+  const openEditModal = (stat: keyof UnitStats) => {
     const b = toFigureBreakdown(stat);
     setTempModifiers({
       advancement: b.advancement,
@@ -915,17 +967,33 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
           className="flex items-center justify-between cursor-pointer hover:bg-[#252525] transition-colors p-2 rounded"
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
-          <h3
-            className="text-2xl font-bold text-center mt-4 flex-1"
-            style={{ fontFamily: '"Cinzel", serif', color: "#8fbc8f" }}
-          >
-            {/* Lendas não têm narrative name - sempre mostra só o name */}
-            {figure?.role === "Lenda"
-              ? name
-              : figure?.narrativeName
-              ? `${figure.narrativeName}, ${name}`
-              : name}
-          </h3>
+          <div className="flex flex-col items-center gap-2 flex-1 mt-4">
+            <h3
+              className="text-2xl font-bold text-center"
+              style={{ fontFamily: '"Cinzel", serif', color: "#8fbc8f" }}
+            >
+              {/* Lendas não têm narrative name - sempre mostra só o name */}
+              {(() => {
+                const displayName = actualName;
+                const displayRole = actualRole || role;
+                const displayNarrativeName = figure?.campaignName;
+                
+                if (displayRole === "Lenda") {
+                  return displayName;
+                }
+                if (displayNarrativeName) {
+                  return `${displayNarrativeName}, ${displayName}`;
+                }
+                return displayName;
+              })()}
+            </h3>
+            {/* Badge com a role da figura */}
+            {actualRole && (
+              <span className="bg-gray-700 text-white px-3 py-1 rounded text-sm font-semibold">
+                {actualRole}
+              </span>
+            )}
+          </div>
           <button
             className="text-white text-2xl transition-transform"
             style={{
@@ -940,7 +1008,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
           quantity ||
           costDisplay ||
           baseStats.upkeep ||
-          figure?.baseStats?.upkeep) && (
+          actualBaseStats?.upkeep) && (
           <div className="flex justify-center items-center gap-3 mt-3 flex-wrap px-2">
             {role && (role === "Herói" || role === "Líder") && (
               <span className="bg-gray-600 text-white px-2 py-1 rounded text-sm">
@@ -957,9 +1025,9 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                 {costDisplay}
               </span>
             )}
-            {(baseStats.upkeep || figure?.baseStats?.upkeep) && (
+            {(actualBaseStats?.upkeep || baseStats.upkeep) && (
               <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">
-                Manutenção: {baseStats.upkeep || figure?.baseStats?.upkeep}
+                Manutenção: {actualBaseStats?.upkeep || baseStats.upkeep}
               </span>
             )}
           </div>
@@ -969,24 +1037,38 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       {/* Conteúdo colapsável */}
       {!isCollapsed && (
         <div className="px-6 pb-6">
+          {/* Indicador de carregamento quando buscando dados base */}
+          {isLoadingBaseData && (
+            <div className="mb-4 p-4 bg-blue-900/20 border border-blue-500/40 rounded text-center">
+              <p className="text-blue-300">Carregando dados da figura...</p>
+            </div>
+          )}
           {/* Campo de nome narrativo */}
-          {figure?.role !== "Lenda" && (
+          {(() => {
+            const displayRole = actualRole || role;
+            const displayNarrativeName = figure?.campaignName || "";
+            
+            if (displayRole === "Lenda") return null;
+            
+            return (
             <div className="mt-3 flex justify-center">
               <input
                 type="text"
                 placeholder="Nome narrativo"
                 className="bg-[#1f1f1f] border border-gray-600 rounded px-3 py-1 text-white text-sm w-full max-w-sm text-center"
-                value={figure?.narrativeName || ""}
+                  value={displayNarrativeName}
                 onChange={(e) =>
                   onChangeNarrativeName && onChangeNarrativeName(e.target.value)
                 }
               />
             </div>
-          )}
+            );
+          })()}
 
           {/* Avanços (Lendas não ganham avanços) */}
           {(() => {
-            const roleStr = (figure?.role || "").toString().toLowerCase();
+            const displayRole = actualRole || role;
+            const roleStr = (displayRole || "").toString().toLowerCase();
             if (roleStr.includes("lenda") || (figure as any)?.noXP) return null;
             return (
               <div className="mb-6">
@@ -1116,7 +1198,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
 
           {/* Teste de Sobrevivência para Soldados e Mercenários */}
           {(() => {
-            const roleStr = (figure?.role || "").toString().toLowerCase();
+            const roleStr = (actualRole || role || "").toString().toLowerCase();
             const isSoldierOrMercenary =
               roleStr.includes("soldado") || roleStr.includes("merc");
             if (!isSoldierOrMercenary) return null;
@@ -1150,7 +1232,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
 
           {/* Ferimentos (somente Heróis / Líderes / Lendas) */}
           {(() => {
-            const roleStr = (figure?.role || "").toString().toLowerCase();
+            const roleStr = (actualRole || role || "").toString().toLowerCase();
             const showInjuries =
               roleStr.includes("líder") ||
               roleStr.includes("lider") ||
@@ -1276,10 +1358,10 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
           {/* Content */}
           <div className="pt-6 pb-6 border-t border-gray-600 mt-4">
             {/* Lore */}
-            {(lore || baseStats.lore) && (
+            {(actualLore || actualBaseStats?.lore) && (
               <div className="mb-6">
                 <p className="text-gray-300 leading-relaxed italic">
-                  {lore || baseStats.lore}
+                  {actualLore || actualBaseStats?.lore}
                 </p>
               </div>
             )}
@@ -1306,26 +1388,28 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
 
             {/* Experiência (Lendas não ganham XP) */}
             {(() => {
-              const role = (figure?.role || "").toString().toLowerCase();
-              if (role.includes("lenda") || (figure as any)?.noXP) return null;
+              const displayRole = actualRole || role;
+              const roleStr = (displayRole || "").toString().toLowerCase();
+              const figureXp = figure?.xp ?? 0;
+              
+              if (roleStr.includes("lenda") || (figure as any)?.noXP) return null;
               return (
                 <div className="mb-6">
                   {(() => {
-                    const role = (figure?.role || "").toString().toLowerCase();
                     const isHero =
-                      role.includes("líder") ||
-                      role.includes("lider") ||
-                      role.includes("her");
+                      roleStr.includes("líder") ||
+                      roleStr.includes("lider") ||
+                      roleStr.includes("her");
                     return isHero ? (
                       <ExperienceTrackerHero
-                        xp={figure?.xp ?? 0}
+                        xp={figureXp}
                         onChange={(v) =>
                           onChangeFigureXp && onChangeFigureXp(v)
                         }
                       />
                     ) : (
                       <ExperienceTrackerSoldier
-                        xp={figure?.xp ?? 0}
+                        xp={figureXp}
                         onChange={(v) =>
                           onChangeFigureXp && onChangeFigureXp(v)
                         }
@@ -1348,7 +1432,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                 {figStatOrder.map((skey) => {
                   if (
                     skey === "strength" &&
-                    figure?.baseStats?.strength === undefined
+                    actualBaseStats?.strength === undefined
                   )
                     return null;
                   const b = toFigureBreakdown(skey);
@@ -1402,8 +1486,10 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
             </div>
 
             {/* Habilidades - Oculto para Soldados; Para Lendas, só mostra se tiver skills */}
-            {figure?.role !== "Soldado" &&
-              (figure?.role !== "Lenda" ||
+            {(() => {
+              const displayRole = actualRole || role;
+              return displayRole !== "Soldado" &&
+              (displayRole !== "Lenda" ||
                 (selectedSkills && selectedSkills.length > 0)) && (
                 <div className="mb-6">
                   <h4
@@ -1414,9 +1500,11 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   </h4>
                   {/* Removido: botões para adicionar lista de habilidades (acesso total via picker) */}
                   <div className="bg-[#2a2a2a] p-4 rounded">
-                    {baseStats.skills && baseStats.skills.length > 0 && (
+                {(() => {
+                  const displaySkills = actualBaseStats?.skills || baseStats.skills || [];
+                  return displaySkills.length > 0 ? (
                       <div className="flex flex-wrap gap-2">
-                        {baseStats.skills.map((skill, index) => (
+                      {displaySkills.map((skill: any, index: number) => (
                           <button
                             key={index}
                             onClick={() => handleSkillClick(skill)}
@@ -1426,22 +1514,25 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                           </button>
                         ))}
                       </div>
-                    )}
+                  ) : null;
+                })()}
                     {/* SkillPicker só aparece se não for Lenda */}
-                    {figure?.role !== "Lenda" && onAddSkill && (
+                {(() => {
+                  const displayRole = actualRole || role;
+                  if (displayRole === "Lenda" || !onAddSkill) return null;
+                  
+                  const allowedSkillsList = actualAvailableSkills.length > 0
+                    ? actualAvailableSkills
+                    : (actualBaseStats?.skills || []);
+                  
+                  return (
                       <SkillPicker
-                        allowedSkills={
-                          (availableSkills && availableSkills.length
-                            ? availableSkills
-                            : baseStats.skills && baseStats.skills.length
-                            ? (baseStats.skills as string[])
-                            : (figure?.avaiableSkills as string[]) ||
-                              []) as string[]
-                        }
+                      allowedSkills={allowedSkillsList as string[]}
                         selectedSkills={selectedSkills || []}
                         onAdd={(s) => onAddSkill && onAddSkill(s)}
                       />
-                    )}
+                  );
+                })()}
 
                     {/* Exibe as habilidades selecionadas como SkillCards */}
                     {selectedSkills && selectedSkills.length > 0 && (
@@ -1476,10 +1567,14 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                     )}
                   </div>
                 </div>
-              )}
+              );
+            })()}
+
             {/* Magias - Oculto para Soldados; Para Lendas, só mostra se tiver spells */}
-            {figure?.role !== "Soldado" &&
-              (figure?.role !== "Lenda" ||
+            {(() => {
+              const displayRole = actualRole || role;
+              return displayRole !== "Soldado" &&
+              (displayRole !== "Lenda" ||
                 (selectedSpells && selectedSpells.length > 0)) && (
                 <div className="mb-6">
                   <h4
@@ -1490,15 +1585,14 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   </h4>
                   <div className="bg-[#2a2a2a] p-4 rounded">
                     {/* Removido: botão para adicionar tradição (acesso total via picker) */}
-                    {Array.isArray((figure as any)?.avaiableSpells) &&
-                    (figure as any).avaiableSpells.length > 0 ? (
+                    {actualAvailableSpells && actualAvailableSpells.length > 0 ? (
                       <div className="mb-3">
                         <div className="text-sm text-gray-300 mb-1">
                           Escolas Disponíveis
                         </div>
                         <div className="flex flex-wrap gap-2">
-                          {((figure as any).avaiableSpells as string[]).map(
-                            (t, idx) => (
+                          {actualAvailableSpells.map(
+                            (t: any, idx: number) => (
                               <span
                                 key={`as-${idx}`}
                                 className="bg-gray-600 text-white px-3 py-1 rounded text-sm"
@@ -1547,7 +1641,10 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                       return null;
                     })()}
                     {/* SpellPicker só aparece se não for Lenda */}
-                    {figure?.role !== "Lenda" && onAddSpell && (
+                    {(() => {
+                      const displayRole = actualRole || role;
+                      if (displayRole === "Lenda" || !onAddSpell) return null;
+                      return (
                       <SpellPicker
                         aligned0={
                           spellAffinity ? spellAffinity.aligned0 : undefined
@@ -1558,7 +1655,8 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                         selectedSpells={selectedSpells || []}
                         onAdd={(spell) => onAddSpell(spell)}
                       />
-                    )}
+                      );
+                    })()}
                     {selectedSpells && selectedSpells.length > 0 && (
                       <div className="mt-4">
                         <h5
@@ -1612,9 +1710,13 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                     )}
                   </div>
                 </div>
-              )}
+              );
+            })()}
+
             {/* Habilidades Especiais - Oculto para Soldados e Lendas */}
-            {figure?.role !== "Soldado" && figure?.role !== "Lenda" && (
+            {(() => {
+              const displayRole = actualRole || role;
+              return displayRole !== "Soldado" && displayRole !== "Lenda" && (
               <div className="mb-6">
                 <h4
                   className="text-lg font-bold mb-3"
@@ -1682,13 +1784,14 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   )}
                 </div>
               </div>
-            )}
+            );
+            })()}
 
             {/* Seção de Equipamento - Oculto se equipmentSlots === 0 */}
-            {(figure?.equipmentSlots ?? maxSlots ?? 5) > 0 && (
+            {(maxSlots ?? 5) > 0 && (
               <>
-                {figure?.avaiableEquipment &&
-                  figure.avaiableEquipment.length > 0 && (
+                {resolvedFigureBase?.availableEquipment &&
+                  resolvedFigureBase.availableEquipment.length > 0 && (
                     <div className="mb-6">
                       <h4
                         className="text-lg font-bold mb-3"
@@ -1698,7 +1801,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                       </h4>
                       <div className="bg-[#2a2a2a] p-4 rounded">
                         <div className="flex flex-wrap gap-2">
-                          {figure.avaiableEquipment.map((name, idx) => (
+                          {resolvedFigureBase.availableEquipment.map((name: any, idx: number) => (
                             <span
                               key={`${name}-${idx}`}
                               className="inline-flex items-center gap-2 bg-[#1a1a1a] border border-gray-600 text-white text-xs rounded px-2 py-1"
@@ -1715,12 +1818,8 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   unitId={id}
                   unitName={name}
                   equipment={equipment}
-                  abilities={abilities}
-                  equippedItems={
-                    Array.isArray(figure?.equiped)
-                      ? (figure.equiped as any[])
-                      : []
-                  }
+                  abilities={actualAbilities}
+                  equippedItems={equippedItemsArray}
                   stashItems={stashItems as any}
                   onEquipFromStashFlat={(_uid, item) =>
                     onEquipFromStashFlat && onEquipFromStashFlat(item)
@@ -1730,18 +1829,20 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   }
                   maxSlots={maxSlots}
                   availableEquipmentNames={
-                    (figure?.avaiableEquipment as string[]) || []
+                    (resolvedFigureBase?.availableEquipment as string[]) || []
                   }
                   equipmentLocked={Boolean((figure as any)?.equipmentLocked)}
-                  figureSkills={(figure?.skills || []) as any}
+                  figureSkills={((figure as any)?.skills || []) as any}
                 />
               </>
             )}
 
             {/* Abilities / Regras Especiais */}
-            {(abilities && abilities.length > 0) ||
+            {(actualAbilities && actualAbilities.length > 0) ||
             (Array.isArray((figure as any)?.specialRules) &&
-              (figure as any).specialRules.length > 0) ? (
+              (figure as any).specialRules.length > 0) ||
+            (Array.isArray(figure?.extraSpecialRules) &&
+              figure.extraSpecialRules.length > 0) ? (
               <div className="mb-6">
                 <h4
                   className="text-lg font-bold mb-3"
@@ -1750,10 +1851,11 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   Regras Especiais
                 </h4>
                 <div className="bg-[#2a2a2a] p-4 rounded space-y-3">
-                  {abilities && abilities.length > 0
-                    ? abilities.map((ability, index) => (
+                  {/* Habilidades base da figura */}
+                  {actualAbilities && actualAbilities.length > 0 &&
+                    actualAbilities.map((ability: any, index: number) => (
                         <div
-                          key={index}
+                        key={`ability-${index}`}
                           className="border-b border-gray-600 pb-3 last:border-b-0"
                         >
                           <h5
@@ -1771,28 +1873,71 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                             </GameText>
                           )}
                         </div>
-                      ))
-                    : ((figure as any).specialRules as any[]).map((r, idx) => (
+                    ))}
+                  
+                  {/* Regras especiais adicionais do bando (specialRules) */}
+                  {Array.isArray((figure as any)?.specialRules) &&
+                    (figure as any).specialRules.length > 0 &&
+                    ((figure as any).specialRules as any[]).map((r: any, idx: number) => (
                         <div
-                          key={idx}
+                        key={`special-rule-${idx}`}
                           className="border-b border-gray-600 pb-3 last:border-b-0"
                         >
                           <h5
                             className="font-bold mb-1"
                             style={{ color: "#8fbc8f" }}
                           >
-                            {r?.name}
+                          {r?.name || r}
                           </h5>
                           {r?.description && (
                             <GameText
                               component="p"
                               className="text-gray-300 text-sm leading-relaxed"
                             >
-                              {r.description}
+                            {r?.description}
                             </GameText>
                           )}
                         </div>
                       ))}
+                  
+                  {/* Regras extras de ferimentos/avanços (extraSpecialRules) */}
+                  {Array.isArray(figure?.extraSpecialRules) &&
+                    figure.extraSpecialRules.length > 0 &&
+                    figure.extraSpecialRules.map((rule: string, idx: number) => {
+                      // Busca descrições conhecidas para as regras
+                      const ruleDescriptions: Record<string, string> = {
+                        "Retardado": "A figura ganha a característica Estupidez",
+                        "Louco Espumante": "A figura ganha a característica Fúria",
+                        "Caleijado": "A figura é Imune a Aterrorizante",
+                        "Deformado": "A figura ganha a característica Aterrorizante, mas tem -3 para buscar no mercado negro",
+                        "Rancor": "Ódio contra um tipo específico de figura",
+                      };
+                      
+                      const description = ruleDescriptions[rule] || 
+                        (rule.startsWith("Rancor") ? "Ódio contra um tipo específico de figura" : "");
+                      
+                      return (
+                        <div
+                          key={`extra-rule-${idx}`}
+                          className="border-b border-gray-600 pb-3 last:border-b-0"
+                        >
+                          <h5
+                            className="font-bold mb-1"
+                            style={{ color: "#8fbc8f" }}
+                          >
+                            {rule}
+                          </h5>
+                          {description && (
+                            <GameText
+                              component="p"
+                              className="text-gray-300 text-sm leading-relaxed"
+                            >
+                              {description}
+                            </GameText>
+                          )}
+                        </div>
+                      );
+                    })}
                 </div>
               </div>
             ) : null}
@@ -1915,14 +2060,10 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                         tempModifiers.misc;
 
                       // Para armadura, adiciona bônus de equipamentos
-                      if (
-                        editingStat === "armour" &&
-                        figure?.equiped &&
-                        Array.isArray(figure.equiped)
-                      ) {
+                      if (editingStat === "armour" && equippedItemsArray.length > 0) {
                         let equipmentArmorBonus = 0;
-                        for (const equip of figure.equiped) {
-                          equipmentArmorBonus += parseNumeric(equip.armorBonus);
+                        for (const equip of equippedItemsArray) {
+                          equipmentArmorBonus += parseNumeric(equip?.armorBonus);
                         }
                         total += equipmentArmorBonus;
                         // Limita a 17
@@ -1930,14 +2071,9 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                       }
 
                       // Para movimento, subtrai penalidade de equipamentos
-                      if (
-                        editingStat === "move" &&
-                        figure?.equiped &&
-                        Array.isArray(figure.equiped)
-                      ) {
+                      if (editingStat === "move" && equippedItemsArray.length > 0) {
                         // Verifica se a figura tem a regra especial "Devagar e Sempre" ou "Crueldade Paciente"
-                        const specialRules =
-                          (figure as any)?.specialRules || [];
+                        const specialRules = resolvedFigureBase?.specialRules || figure?.extraSpecialRules || [];
                         const hasIgnoreMovementPenalty = specialRules.some(
                           (rule: any) =>
                             rule?.name === "Devagar e Sempre" ||
@@ -1947,9 +2083,9 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                         // Apenas aplica penalidade se não tiver a regra especial
                         if (!hasIgnoreMovementPenalty) {
                           let equipmentMovementPenalty = 0;
-                          for (const equip of figure.equiped) {
+                          for (const equip of equippedItemsArray) {
                             equipmentMovementPenalty += parseNumeric(
-                              equip.movePenalty
+                              equip?.movePenalty
                             );
                           }
                           total += equipmentMovementPenalty;

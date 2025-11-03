@@ -1,5 +1,7 @@
-import lizardmenData from "./data/lizardmen.data.json";
-import sacredMarksData from "./data/sacred-marks.data.json";
+import React, { useMemo } from "react";
+import { useJsonData } from "../../../hooks/useJsonData";
+import { getStaticImport } from "../../../data/jsonFileMap";
+import { createWarbandNavigationSections } from "../../../utils/navigationSections";
 import QuickNavigation from "../../../components/QuickNavigation";
 import MobileSection from "../../../components/MobileSection";
 import HeaderH1 from "../../../components/HeaderH1";
@@ -50,58 +52,86 @@ interface SacredMark {
 }
 
 const LizardmenPage: React.FC = () => {
-  const leader = lizardmenData.find((unit) => unit.role === "Líder") as Unit;
-  const heroes = lizardmenData.filter(
-    (unit) => unit.role === "Herói"
-  ) as Unit[];
-  const soldiers = lizardmenData.filter((unit) => !unit.role) as Unit[];
+  // Carrega dados via hook (Firestore -> IndexedDB -> Static)
+  const staticImportFn = React.useMemo(
+    () => () => getStaticImport("lizardmen")(),
+    []
+  );
 
-  const navigationSections = [
+  const { data: lizardmenData, loading: loadingUnits } = useJsonData({
+    fileId: "lizardmen",
+    staticImport: staticImportFn,
+  });
+
+  // Carrega marcas sagradas via hook (Firestore -> IndexedDB -> Static)
+  const sacredMarksStaticImportFn = React.useMemo(
+    () => () => getStaticImport("lizardmen-sacred-marks")(),
+    []
+  );
+
+  const { data: sacredMarksData, loading: loadingMarks } = useJsonData({
+    fileId: "lizardmen-sacred-marks",
+    staticImport: sacredMarksStaticImportFn,
+  });
+
+  const loading = loadingUnits || loadingMarks;
+
+  // Cria as seções de navegação de forma segura
+  const navigationSections = useMemo(() => {
+    const baseSections = [
     { id: "introducao", title: "Introdução", level: 0 },
     { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
-    {
+    ];
+    
+    const warbandSections = createWarbandNavigationSections(
+      lizardmenData as Unit[] | null | undefined,
+      baseSections
+    );
+
+    // Adiciona seção de marcas sagradas
+    const marksSection = {
       id: "marcas-sagradas",
       title: "Marcas Sagradas",
       level: 0,
-      children: sacredMarksData.map((mark, index) => ({
-        id: `mark-${index}`,
+      children: (sacredMarksData || []).map((mark: any, index: number) => ({
+        id: mark.id || `mark-${index}`,
         title: mark.name,
         level: 1,
       })),
-    },
-    {
-      id: "lider",
-      title: "Líder",
-      level: 0,
-      children: leader ? [{ id: leader.id, title: leader.name, level: 1 }] : [],
-    },
-    {
-      id: "herois",
-      title: "Heróis",
-      level: 0,
-      children: heroes.map((hero) => ({
-        id: hero.id,
-        title: hero.name,
-        level: 1,
-      })),
-    },
-    {
-      id: "soldados",
-      title: "Soldados",
-      level: 0,
-      children: soldiers.map((soldier) => ({
-        id: soldier.id,
-        title: soldier.name,
-        level: 1,
-      })),
-    },
-  ];
+    };
+
+    // Insere antes de "lider" ou no final
+    const leaderIndex = warbandSections.findIndex(s => s.id === "lider");
+    if (leaderIndex >= 0) {
+      warbandSections.splice(leaderIndex, 0, marksSection);
+    } else {
+      warbandSections.push(marksSection);
+    }
+
+    return warbandSections;
+  }, [lizardmenData, sacredMarksData]);
+
+  // Extrai unidades de forma segura (com fallback para array vazio)
+  const leader = useMemo(() => {
+    if (!lizardmenData || !Array.isArray(lizardmenData)) return undefined;
+    return lizardmenData.find((unit) => unit.role === "Líder") as Unit | undefined;
+  }, [lizardmenData]);
+
+  const heroes = useMemo(() => {
+    if (!lizardmenData || !Array.isArray(lizardmenData)) return [];
+    return lizardmenData.filter((unit) => unit.role === "Herói") as Unit[];
+  }, [lizardmenData]);
+
+  const soldiers = useMemo(() => {
+    if (!lizardmenData || !Array.isArray(lizardmenData)) return [];
+    return lizardmenData.filter((unit) => !unit.role) as Unit[];
+  }, [lizardmenData]);
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
-          <QuickNavigation sections={navigationSections} />
+          <QuickNavigation sections={navigationSections} loading={loading} />
           <PageTitle>Reptilianos</PageTitle>
           <MobileSection id="introducao">
             <MobileText>
@@ -168,7 +198,10 @@ const LizardmenPage: React.FC = () => {
             </MobileText>
 
             <div className="space-y-6">
-              {sacredMarksData.map((mark: SacredMark, index) => (
+              {loading ? (
+                <MobileText>Carregando marcas sagradas...</MobileText>
+              ) : (sacredMarksData || []).length > 0 ? (
+                (sacredMarksData || []).map((mark: SacredMark, index: number) => (
                 <div
                   key={mark.id}
                   id={`mark-${index}`}
@@ -194,13 +227,18 @@ const LizardmenPage: React.FC = () => {
                     <div className="text-white text-sm">{mark.description}</div>
                   </div>
                 </div>
-              ))}
+              ))
+              ) : (
+                <MobileText>Nenhuma marca sagrada encontrada</MobileText>
+              )}
             </div>
           </MobileSection>
 
           <MobileSection id="lider">
             <HeaderH1 id="lider">Líder</HeaderH1>
-            {leader && (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : leader ? (
               <UnitCard
                 id={leader.id}
                 name={leader.name}
@@ -213,12 +251,17 @@ const LizardmenPage: React.FC = () => {
                 abilities={leader.abilities}
                 equipment={leader.equipment}
               />
+            ) : (
+              <MobileText>Nenhum líder encontrado</MobileText>
             )}
           </MobileSection>
 
           <MobileSection id="herois">
             <HeaderH1 id="herois">Heróis</HeaderH1>
-            {heroes.map((hero) => (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : heroes.length > 0 ? (
+              heroes.map((hero) => (
               <UnitCard
                 key={hero.id}
                 id={hero.id}
@@ -232,12 +275,18 @@ const LizardmenPage: React.FC = () => {
                 abilities={hero.abilities}
                 equipment={hero.equipment}
               />
-            ))}
+              ))
+            ) : (
+              <MobileText>Nenhum herói encontrado</MobileText>
+            )}
           </MobileSection>
 
           <MobileSection id="soldados">
             <HeaderH1 id="soldados">Soldados</HeaderH1>
-            {soldiers.map((soldier) => (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : soldiers.length > 0 ? (
+              soldiers.map((soldier) => (
               <UnitCard
                 key={soldier.id}
                 id={soldier.id}
@@ -249,7 +298,10 @@ const LizardmenPage: React.FC = () => {
                 abilities={soldier.abilities}
                 equipment={soldier.equipment}
               />
-            ))}
+              ))
+            ) : (
+              <MobileText>Nenhum soldado encontrado</MobileText>
+            )}
           </MobileSection>
         </div>
       </div>

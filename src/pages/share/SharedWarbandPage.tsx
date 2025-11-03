@@ -10,19 +10,18 @@ import GameText from "../../components/GameText";
 import EquipmentCard from "../../components/EquipmentCard";
 import { db } from "../../firebase.ts";
 import { doc, onSnapshot } from "firebase/firestore";
-import { type Figure } from "../warband-builder/types/figure.type";
-
 // Modificadores para o PDF
 import meleeMods from "../weapons and equipments/data/modificadores-de-arma-refactor.json";
 import rangedMods from "../weapons and equipments/data/modificadores-de-arma-refactor.json";
 import firearmsMods from "../weapons and equipments/data/modificadores-de-armas-de-fogo-refactor.json";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Unit {
   id: string;
   name: string;
   role?: string;
   stats: any;
-  figure: Figure;
+  figure: any; // Usa any temporariamente - SharedWarbandPage usa estrutura antiga
   abilities: any[];
 }
 
@@ -81,7 +80,7 @@ function SharedWarbandPage() {
               equipmentSlots: fig?.equipmentSlots ?? 5,
             },
             abilities: [],
-            figure: fig as Figure,
+            figure: fig as any,
           };
           units.push(unit);
         });
@@ -209,7 +208,7 @@ function SharedWarbandPage() {
   };
 
   // Helper para calcular total de stats
-  const getTotalStat = (u: Unit, statKey: keyof Figure["baseStats"]) => {
+  const getTotalStat = (u: Unit, statKey: keyof any) => {
     const base = Number((u.figure?.baseStats as any)?.[statKey] || 0);
     const mods = calculateModifiers(u);
     const adv = mods.advancement[statKey as keyof typeof mods.advancement] || 0;
@@ -1140,7 +1139,7 @@ function SharedWarbandPage() {
                                       </div>
                                       {!isAdvCollapsed && (
                                         <div className="mt-3 space-y-3">
-                                          {fig.advancements.map((a, idx) => {
+                                          {fig.advancements.map((a: any, idx: number) => {
                                             const advDesc: Record<
                                               string,
                                               string
@@ -1234,7 +1233,7 @@ function SharedWarbandPage() {
                                       {!isInjCollapsed && (
                                         <div className="mt-3 space-y-3">
                                           {fig.injuries.map(
-                                            (injuryName, idx) => {
+                                            (injuryName: any, idx: number) => {
                                               const descMap: Record<
                                                 string,
                                                 string
@@ -1354,7 +1353,7 @@ function SharedWarbandPage() {
                                         return null;
                                       const total = getTotalStat(
                                         u,
-                                        key as keyof Figure["baseStats"]
+                                        key as keyof any
                                       );
                                       const showPlus =
                                         key === "fight" ||
@@ -1392,7 +1391,7 @@ function SharedWarbandPage() {
                                         HABILIDADES
                                       </h4>
                                       <div className="space-y-3">
-                                        {fig.skills.map((skill, idx) => {
+                                        {fig.skills.map((skill: any, idx: number) => {
                                           const skillObj: any =
                                             typeof skill === "string"
                                               ? { name: skill }
@@ -1426,7 +1425,7 @@ function SharedWarbandPage() {
                                         MAGIAS
                                       </h4>
                                       <div className="space-y-3">
-                                        {fig.spells.map((spell, idx) => {
+                                        {fig.spells.map((spell: any, idx: number) => {
                                           const spellObj: any =
                                             typeof spell === "string"
                                               ? { name: spell }
@@ -1546,7 +1545,7 @@ function SharedWarbandPage() {
                                       </h4>
                                       <div className="bg-[#2a2a2a] p-4 rounded">
                                         <div className="space-y-2">
-                                          {fig.equiped.map((eq, idx) => {
+                                          {fig.equiped.map((eq: any, idx: number) => {
                                             const eqObj =
                                               typeof eq === "string"
                                                 ? { name: eq }

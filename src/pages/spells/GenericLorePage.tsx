@@ -1,38 +1,12 @@
+import { useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import PageTitle from "../../components/PageTitle";
 import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
 import QuickNavigation from "../../components/QuickNavigation";
 import LoreSpellCard from "../../components/LoreSpellCard";
-
-// Imports estáticos das tradições de magia
-import loreHornedRat from "./data/lore-of-horned-rat.json";
-import loreNecromancy from "./data/lore-of-necromancy.json";
-import druchiiMagic from "./data/druchii-magic.json";
-import magicOldOnes from "./data/magic-of-the-old-ones.json";
-import magicGoblins from "./data/magic-of-the-goblins.json";
-import magicWaaaaagh from "./data/magic-of-the-waaaaagh.json";
-import prayersSigmar from "./data/prayers-of-sigmar.json";
-import prayersUlric from "./data/prayers-of-ulric.json";
-import ritualsChaos from "./data/rituals-of-chaos.json";
-import ritualsHashut from "./data/rituals-of-hashut.json";
-import lesserMagic from "./data/lesser-magic.json";
-
-// Mapeamento de tradições para imports estáticos
-const loreData: Record<string, Spell[]> = {
-  "lore-of-horned-rat": loreHornedRat,
-  "lore-of-necromancy": loreNecromancy,
-  "druchii-magic": druchiiMagic,
-  "magic-of-the-old-ones": magicOldOnes,
-  "magic-of-the-goblins": magicGoblins,
-  "magic-of-the-waaaaagh": magicWaaaaagh,
-  "prayers-of-sigmar": prayersSigmar,
-  "prayers-of-ulric": prayersUlric,
-  "rituals-of-chaos": ritualsChaos,
-  "rituals-of-hashut": ritualsHashut,
-  "lesser-magic": lesserMagic,
-};
+import { useJsonData } from "../../hooks/useJsonData";
+import { getStaticImport } from "../../data/jsonFileMap";
 
 interface Spell {
   name: string;
@@ -41,88 +15,75 @@ interface Spell {
   effect: string;
 }
 
-// Mapeamento de slugs para nomes amigáveis e arquivos JSON
-const loreConfig: Record<string, { name: string; file: string }> = {
+// Mapeamento de slugs para fileIds e nomes
+const loreConfig: Record<string, { name: string; fileId: string }> = {
   "lore-of-horned-rat": {
     name: "Tradição do Rato Chifrudo",
-    file: "lore-of-horned-rat.json",
+    fileId: "lore-of-horned-rat",
   },
   "lore-of-necromancy": {
     name: "Tradição da Necromancia",
-    file: "lore-of-necromancy.json",
+    fileId: "lore-of-necromancy",
   },
-  "druchii-magic": { name: "Magia Druchii", file: "druchii-magic.json" },
+  "druchii-magic": { 
+    name: "Magia Druchii", 
+    fileId: "druchii-magic" 
+  },
   "magic-of-the-old-ones": {
     name: "Magia dos Antigos",
-    file: "magic-of-the-old-ones.json",
+    fileId: "magic-of-the-old-ones",
   },
   "rituals-of-chaos": {
     name: "Rituais do Caos",
-    file: "rituals-of-chaos.json",
+    fileId: "rituals-of-chaos",
   },
   "rituals-of-hashut": {
     name: "Rituais de Hashut",
-    file: "rituals-of-hashut.json",
+    fileId: "rituals-of-hashut",
   },
   "magic-of-the-goblins": {
     name: "Magia dos Goblins",
-    file: "magic-of-the-goblins.json",
+    fileId: "magic-of-the-goblins",
   },
   "magic-of-the-waaaaagh": {
     name: "Magia da WAAAAAAAGH!",
-    file: "magic-of-the-waaaaagh.json",
+    fileId: "magic-of-the-waaaaagh",
   },
   "lesser-magic": {
     name: "Magia Inferior",
-    file: "lesser-magic.json",
+    fileId: "lesser-magic",
   },
   "prayers-of-sigmar": {
     name: "Orações de Sigmar",
-    file: "prayers-of-sigmar.json",
+    fileId: "prayers-of-sigmar",
   },
   "prayers-of-ulric": {
     name: "Orações de Ulric",
-    file: "prayers-of-ulric.json",
+    fileId: "prayers-of-ulric",
   },
 };
 
 function GenericLorePage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const [spells, setSpells] = useState<Spell[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  
+  // Obtém a configuração baseada no slug
+  const config = slug ? loreConfig[slug] : null;
+  
+  // Cria o staticImport apenas se o slug for válido
+  const staticImportFn = useMemo(() => {
+    if (!config) return () => Promise.resolve({ default: [] });
+    return () => getStaticImport(config.fileId)();
+  }, [config]);
+  
+  // Carrega dados via hook (Firestore -> IndexedDB -> Static)
+  const { data: spells, loading, error: loadError } = useJsonData<Spell[]>({
+    fileId: config?.fileId || "",
+    staticImport: staticImportFn,
+    enabled: !!config,
+  });
 
-  useEffect(() => {
-    const loadLoreData = () => {
-      if (!slug || !loreConfig[slug]) {
-        setError(`Tradição "${slug}" não encontrada`);
-        setLoading(false);
-        return;
-      }
-
-      setLoading(true);
-      setError(null);
-
-      try {
-        const data = loreData[slug];
-        if (data) {
-          setSpells(data);
-        } else {
-          setError("Magias não encontradas para esta tradição");
-        }
-      } catch (err) {
-        console.error("Erro ao carregar dados:", err);
-        setError("Erro ao carregar as magias dessa tradição");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadLoreData();
-  }, [slug]);
-
-  const loreInfo = slug ? loreConfig[slug] : null;
+  const error = config ? null : `Tradição "${slug}" não encontrada`;
 
   if (loading) {
     return (
@@ -141,14 +102,14 @@ function GenericLorePage() {
     );
   }
 
-  if (error || !loreInfo) {
+  if (error || loadError || !config) {
     return (
       <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
         <div className="py-4">
           <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
             <MobileSection>
               <PageTitle>Erro</PageTitle>
-              <MobileText>{error || "Tradição não encontrada"}</MobileText>
+              <MobileText>{error || loadError?.message || "Tradição não encontrada"}</MobileText>
               <button
                 onClick={() => navigate("/magic")}
                 className="mt-4 px-4 py-2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white rounded-lg transition-colors duration-200"
@@ -162,9 +123,10 @@ function GenericLorePage() {
     );
   }
 
+  const spellsArray = (spells || []) as Spell[];
   const navigationSections = [
-    { id: "intro", title: loreInfo.name, level: 0 },
-    ...spells.map((spell, index) => ({
+    { id: "intro", title: config.name, level: 0 },
+    ...spellsArray.map((spell, index) => ({
       id: `spell-${index}`,
       title: spell.name,
       level: 1,
@@ -175,14 +137,19 @@ function GenericLorePage() {
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
-          <QuickNavigation sections={navigationSections} />
+          <QuickNavigation sections={navigationSections} loading={loading} />
           <MobileSection>
             <div id="intro">
-              <PageTitle>{loreInfo.name}</PageTitle>
+              <PageTitle>{config.name}</PageTitle>
             </div>
 
+            {loading ? (
+              <MobileText>Carregando magias...</MobileText>
+            ) : spellsArray.length === 0 ? (
+              <MobileText>Nenhuma magia encontrada para esta tradição.</MobileText>
+            ) : (
             <div className="space-y-6 mt-6">
-              {spells.map((spell, index) => (
+                {spellsArray.map((spell, index) => (
                 <div key={index} id={`spell-${index}`}>
                   <LoreSpellCard
                     name={spell.name}
@@ -193,6 +160,7 @@ function GenericLorePage() {
                 </div>
               ))}
             </div>
+            )}
           </MobileSection>
         </div>
       </div>

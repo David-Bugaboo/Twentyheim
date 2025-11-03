@@ -1,11 +1,13 @@
+import React, { useMemo } from "react";
+import { useJsonData } from "../../../hooks/useJsonData";
+import { getStaticImport } from "../../../data/jsonFileMap";
+import { createWarbandNavigationSections } from "../../../utils/navigationSections";
 import MobileSection from "../../../components/MobileSection";
 import HeaderH1 from "../../../components/HeaderH1";
 import HeaderH2 from "../../../components/HeaderH2";
 import MobileText from "../../../components/MobileText";
 import UnitCard from "../../../components/UnitCard";
 import QuickNavigation from "../../../components/QuickNavigation";
-import cultData from "./data/cult-of-the-possessed-page.json";
-import mutationsData from "./data/mutations.data.json";
 import PageTitle from "../../../components/PageTitle";
 
 interface Unit {
@@ -46,65 +48,76 @@ interface Mutation {
 }
 
 export default function CultOfThePossessedPage() {
-  const units = cultData as Unit[];
-  const mutations = mutationsData as Mutation[];
-
-  // Separate units by role
-  const leader = units.find((unit) => unit.role === "Líder");
-  const heroes = units.filter((unit) => unit.role === "Herói");
-  const soldiers = units.filter(
-    (unit) => !unit.role || unit.role === "Soldado"
+  // Carrega dados via hook (Firestore -> IndexedDB -> Static)
+  const staticImportFn = React.useMemo(
+    () => () => getStaticImport("cult-of-the-possessed")(),
+    []
   );
 
+  const { data: cultData, loading: loadingUnits } = useJsonData({
+    fileId: "cult-of-the-possessed",
+    staticImport: staticImportFn,
+  });
+
+  // Carrega mutações via hook (Firestore -> IndexedDB -> Static)
+  const mutationsStaticImportFn = React.useMemo(
+    () => () => getStaticImport("cult-mutations")(),
+    []
+  );
+
+  const { data: mutationsData, loading: loadingMutations } = useJsonData({
+    fileId: "cult-mutations",
+    staticImport: mutationsStaticImportFn,
+  });
+
+  const loading = loadingUnits || loadingMutations;
+
+  const units = (cultData || []) as Unit[];
+  const mutations = (mutationsData || []) as Mutation[];
+
+  // Separate units by role
+  const leader = useMemo(() => {
+    if (!units || !Array.isArray(units)) return undefined;
+    return units.find((unit) => unit.role === "Líder");
+  }, [units]);
+
+  const heroes = useMemo(() => {
+    if (!units || !Array.isArray(units)) return [];
+    return units.filter((unit) => unit.role === "Herói");
+  }, [units]);
+
+  const soldiers = useMemo(() => {
+    if (!units || !Array.isArray(units)) return [];
+    return units.filter((unit) => !unit.role || unit.role === "Soldado");
+  }, [units]);
+
   // Navigation sections
-  const navigationSections = [
+  const navigationSections = useMemo(() => {
+    const baseSections = [
     { id: "introducao", title: "Introdução", level: 0 },
     { id: "estrutura-bando", title: "Estrutura do Bando", level: 0 },
-    {
-      id: "lider",
-      title: "Líder",
-      level: 0,
-      children: leader
-        ? [
-            {
-              id: leader.id,
-              title: leader.name,
-              level: 1,
-            },
-          ]
-        : [],
-    },
-    {
-      id: "herois",
-      title: "Heróis",
-      level: 0,
-      children: heroes.map((hero) => ({
-        id: hero.id,
-        title: hero.name,
-        level: 1,
-      })),
-    },
-    {
-      id: "soldados",
-      title: "Soldados",
-      level: 0,
-      children: soldiers.map((soldier) => ({
-        id: soldier.id,
-        title: soldier.name,
-        level: 1,
-      })),
-    },
+    ];
+    
+    const warbandSections = createWarbandNavigationSections(
+      units,
+      baseSections
+    );
+
+    // Adiciona seção de mutações
+    return [
+      ...warbandSections,
     {
       id: "mutacoes",
       title: "Mutações",
       level: 0,
       children: mutations.map((mutation, index) => ({
-        id: `mutation-${index}`,
+          id: mutation.id || `mutation-${index}`,
         title: mutation.name,
         level: 1,
       })),
     },
   ];
+  }, [units, mutations]);
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
@@ -195,7 +208,10 @@ export default function CultOfThePossessedPage() {
             </MobileText>
 
             <div className="space-y-6">
-              {mutations.map((mutation, index) => (
+              {loading ? (
+                <MobileText>Carregando mutações...</MobileText>
+              ) : mutations.length > 0 ? (
+                mutations.map((mutation, index) => (
                 <div
                   key={mutation.id}
                   id={`mutation-${index}`}
@@ -218,13 +234,18 @@ export default function CultOfThePossessedPage() {
                     </div>
                   </div>
                 </div>
-              ))}
+              ))
+              ) : (
+                <MobileText>Nenhuma mutação encontrada</MobileText>
+              )}
             </div>
           </MobileSection>
 
           <MobileSection id="lider">
             <HeaderH1 id="lider">Líder</HeaderH1>
-            {leader && (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : leader ? (
               <UnitCard
                 id={leader.id}
                 name={leader.name}
@@ -237,12 +258,17 @@ export default function CultOfThePossessedPage() {
                 abilities={leader.abilities}
                 equipment={leader.equipment}
               />
+            ) : (
+              <MobileText>Nenhum líder encontrado</MobileText>
             )}
           </MobileSection>
 
           <MobileSection id="herois">
             <HeaderH1 id="herois">Heróis</HeaderH1>
-            {heroes.map((hero) => (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : heroes.length > 0 ? (
+              heroes.map((hero) => (
               <div key={hero.id} id={hero.id}>
                 <UnitCard
                   id={hero.id}
@@ -256,12 +282,18 @@ export default function CultOfThePossessedPage() {
                   equipment={hero.equipment}
                 />
               </div>
-            ))}
+              ))
+            ) : (
+              <MobileText>Nenhum herói encontrado</MobileText>
+            )}
           </MobileSection>
 
           <MobileSection id="soldados">
             <HeaderH1 id="soldados">Soldados</HeaderH1>
-            {soldiers.map((soldier) => (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : soldiers.length > 0 ? (
+              soldiers.map((soldier) => (
               <div key={soldier.id} id={soldier.id}>
                 <UnitCard
                   id={soldier.id}
@@ -274,7 +306,10 @@ export default function CultOfThePossessedPage() {
                   equipment={soldier.equipment}
                 />
               </div>
-            ))}
+              ))
+            ) : (
+              <MobileText>Nenhum soldado encontrado</MobileText>
+            )}
           </MobileSection>
 
           <MobileText
@@ -289,7 +324,7 @@ export default function CultOfThePossessedPage() {
         </div>
       </div>
 
-      <QuickNavigation sections={navigationSections} />
+      <QuickNavigation sections={navigationSections} loading={loading} />
     </div>
   );
 }

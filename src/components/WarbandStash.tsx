@@ -2,17 +2,8 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import HeaderH1 from "./HeaderH1";
 import MobileText from "./MobileText";
-import meleeDb from "../database/items/melee-weapons.data.json";
-import rangedDb from "../database/items/ranged-weapons.data.json";
-import firearmsDb from "../pages/weapons and equipments/data/armas-de-fogo-refactor.json";
-import meleeRefactor from "../pages/weapons and equipments/data/armas-corpo-a-corpo-refactor.json";
-import rangedRefactor from "../pages/weapons and equipments/data/armas-a-distancia-refactor.json";
-import armorDb from "../pages/weapons and equipments/data/armaduras-e-escudos-refactor.json";
-import accessoriesDb from "../pages/weapons and equipments/data/acessorios-refactor.json";
-import remediesPoisonsDb from "../pages/weapons and equipments/data/remedios-e-venenos.json";
-import rangedMods from "../pages/weapons and equipments/data/modificadores-de-arma-a-distancia-refactor.json";
-import meleeMods from "../pages/weapons and equipments/data/modificadores-de-arma-refactor.json";
-import firearmsMods from "../pages/weapons and equipments/data/modificadores-de-armas-de-fogo-refactor.json";
+import { useJsonData } from "../hooks/useJsonData";
+import { getStaticImport } from "../data/jsonFileMap";
 import EquipmentCard from "./EquipmentCard";
 
 export interface StashItem {
@@ -71,11 +62,33 @@ const isPurchasableForFaction = (
 };
 
 // Função para buscar itens de todos os catálogos globais (para comprar)
+// Agora recebe os dados carregados via hooks como parâmetro
 const getGlobalItemsByTypeForPurchase = (
   type: string,
+  dataSources: {
+    meleeDb?: any[];
+    meleeRefactor?: any[];
+    rangedDb?: any[];
+    rangedRefactor?: any[];
+    firearmsDb?: any[];
+    armorDb?: any[];
+    accessoriesDb?: any[];
+    remediesPoisonsDb?: any[];
+  },
   _factionKey?: string,
   _factionLabel?: string
 ): StashItem[] => {
+  const {
+    meleeDb = [],
+    meleeRefactor = [],
+    rangedDb = [],
+    rangedRefactor = [],
+    firearmsDb = [],
+    armorDb = [],
+    accessoriesDb = [],
+    remediesPoisonsDb = [],
+  } = dataSources;
+
   if (type === "Arma Corpo a Corpo") {
     const items1 = (meleeDb as any[])
       .filter((w) => String(w.type || "").includes("Corpo"))
@@ -131,7 +144,7 @@ const getGlobalItemsByTypeForPurchase = (
     return unique;
   }
   if (type === "Arma de Fogo") {
-    return (firearmsDb as any[]).map((w) => ({
+    return ((firearmsDb || []) as any[]).map((w) => ({
       name: w.name,
       cost: w.purchaseCost || w.sellCost || "-",
       category: "ranged",
@@ -141,7 +154,7 @@ const getGlobalItemsByTypeForPurchase = (
     }));
   }
   if (type === "Armadura") {
-    return (armorDb as any[]).map((w) => ({
+    return ((armorDb || []) as any[]).map((w) => ({
       name: w.name,
       cost: w.purchaseCost || w.sellCost || "-",
       category: "armor",
@@ -151,7 +164,7 @@ const getGlobalItemsByTypeForPurchase = (
     }));
   }
   if (type === "Acessórios") {
-    const items1 = (accessoriesDb as any[]).map((w) => ({
+    const items1 = ((accessoriesDb || []) as any[]).map((w) => ({
       name: w.name,
       cost: w.purchaseCost || w.sellCost || "-",
       category: "miscellaneous",
@@ -166,7 +179,7 @@ const getGlobalItemsByTypeForPurchase = (
     return unique;
   }
   if (type === "Remédios e Venenos") {
-    const items = (remediesPoisonsDb as any[]).map((w) => ({
+    const items = ((remediesPoisonsDb || []) as any[]).map((w) => ({
       name: w.name,
       cost: w.purchaseCost || w.sellCost || "-",
       category: "miscellaneous",
@@ -192,6 +205,54 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
   factionKey,
   factionLabel,
 }) => {
+  // Carrega dados via hooks (Firestore -> IndexedDB -> Static)
+  const { data: meleeDb } = useJsonData({
+    fileId: "melee-weapons-old", // arquivo antigo, pode não estar no mapeamento
+    staticImport: () => import("../database/items/melee-weapons.data.json"),
+    enabled: false, // Desabilitado por enquanto - usa apenas refactor
+  });
+  const { data: rangedDb } = useJsonData({
+    fileId: "ranged-weapons-old",
+    staticImport: () => import("../database/items/ranged-weapons.data.json"),
+    enabled: false, // Desabilitado por enquanto
+  });
+  const { data: meleeRefactor } = useJsonData({
+    fileId: "armas-corpo-a-corpo",
+    staticImport: () => getStaticImport("armas-corpo-a-corpo")(),
+  });
+  const { data: rangedRefactor } = useJsonData({
+    fileId: "armas-a-distancia",
+    staticImport: () => getStaticImport("armas-a-distancia")(),
+  });
+  const { data: firearmsDb } = useJsonData({
+    fileId: "armas-de-fogo",
+    staticImport: () => getStaticImport("armas-de-fogo")(),
+  });
+  const { data: armorDb } = useJsonData({
+    fileId: "armaduras-e-escudos",
+    staticImport: () => getStaticImport("armaduras-e-escudos")(),
+  });
+  const { data: accessoriesDb } = useJsonData({
+    fileId: "acessorios",
+    staticImport: () => getStaticImport("acessorios")(),
+  });
+  const { data: remediesPoisonsDb } = useJsonData({
+    fileId: "remedios-e-venenos",
+    staticImport: () => getStaticImport("remedios-e-venenos")(),
+  });
+  const { data: meleeMods } = useJsonData({
+    fileId: "modificadores-de-arma",
+    staticImport: () => getStaticImport("modificadores-de-arma")(),
+  });
+  const { data: rangedMods } = useJsonData({
+    fileId: "modificadores-de-arma-a-distancia",
+    staticImport: () => getStaticImport("modificadores-de-arma-a-distancia")(),
+  });
+  const { data: firearmsMods } = useJsonData({
+    fileId: "modificadores-de-armas-de-fogo",
+    staticImport: () => getStaticImport("modificadores-de-armas-de-fogo")(),
+  });
+
   const [purchaseCategory, setPurchaseCategory] = useState<string>("");
   const [selectedItem, setSelectedItem] = useState<string>("");
   const [previewOpen, setPreviewOpen] = useState<boolean>(false);
@@ -199,20 +260,33 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
   const [selectedModifier, setSelectedModifier] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
 
+  // Prepara dados para passar para a função
+  const dataSources = {
+    meleeDb: (meleeDb || []) as any[],
+    meleeRefactor: (meleeRefactor || []) as any[],
+    rangedDb: (rangedDb || []) as any[],
+    rangedRefactor: (rangedRefactor || []) as any[],
+    firearmsDb: (firearmsDb || []) as any[],
+    armorDb: (armorDb || []) as any[],
+    accessoriesDb: (accessoriesDb || []) as any[],
+    remediesPoisonsDb: (remediesPoisonsDb || []) as any[],
+  };
+
   // (sem orçamento)
 
   // Sem restrição, botão sempre habilitado quando há seleção
 
   const findItemInCatalogs = (name: string): any | null => {
+    // Usa os dados carregados via hooks
     const allLists: any[][] = [
-      meleeDb as any[],
-      meleeRefactor as any[],
-      rangedDb as any[],
-      rangedRefactor as any[],
-      firearmsDb as any[],
-      armorDb as any[],
-      accessoriesDb as any[],
-      remediesPoisonsDb as any[],
+      (meleeDb || []) as any[],
+      (meleeRefactor || []) as any[],
+      (rangedDb || []) as any[],
+      (rangedRefactor || []) as any[],
+      (firearmsDb || []) as any[],
+      (armorDb || []) as any[],
+      (accessoriesDb || []) as any[],
+      (remediesPoisonsDb || []) as any[],
     ];
     for (const list of allLists) {
       const found = list.find(
@@ -267,9 +341,9 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
   // Modificadores por categoria (via JSONs)
   const modifierOptions = React.useMemo(() => {
     let src: any[] = [];
-    if (purchaseCategory === "Arma Corpo a Corpo") src = meleeMods as any[];
-    else if (purchaseCategory === "Arma a Distância") src = rangedMods as any[];
-    else if (purchaseCategory === "Arma de Fogo") src = firearmsMods as any[];
+    if (purchaseCategory === "Arma Corpo a Corpo") src = (meleeMods || []) as any[];
+    else if (purchaseCategory === "Arma a Distância") src = (rangedMods || []) as any[];
+    else if (purchaseCategory === "Arma de Fogo") src = (firearmsMods || []) as any[];
     else src = [];
     const opts = src.map((m) => ({
       key: String(m.name),
@@ -277,7 +351,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
       effect: String(m.effect || ""),
     }));
     return [{ key: "", label: "Sem modificador" }, ...opts];
-  }, [purchaseCategory]);
+  }, [purchaseCategory, meleeMods, rangedMods, firearmsMods]);
 
   const normalizeFromEquipmentObject = (eq: any) => {
     if (!eq) return null;
@@ -423,7 +497,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
 
   const handlePurchase = (isPurchase: boolean) => {
     if (!selectedItem || !purchaseCategory) return;
-    const items = getGlobalItemsByTypeForPurchase(purchaseCategory);
+    const items = getGlobalItemsByTypeForPurchase(purchaseCategory, dataSources);
     const item = items.find((i) => i.name === selectedItem);
     if (!item) return;
 
@@ -502,6 +576,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
             {purchaseCategory &&
               getGlobalItemsByTypeForPurchase(
                 purchaseCategory,
+                dataSources,
                 factionKey,
                 factionLabel
               ).map((item: any) => {
@@ -564,6 +639,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
             const items = purchaseCategory
               ? getGlobalItemsByTypeForPurchase(
                   purchaseCategory,
+                  dataSources,
                   factionKey,
                   factionLabel
                 )

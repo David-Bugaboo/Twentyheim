@@ -34,10 +34,10 @@ interface Modifier {
 }
 
 export default function ModifiersPage() {
-  const meleeModifiers = meleeModifiersData as Modifier[];
-  const rangedModifiers = rangedModifiersData as Modifier[];
+  const meleeModifiers = meleeModifiersData as unknown as Modifier[];
+  const rangedModifiers = rangedModifiersData as unknown as Modifier[];
 
-  const firearmModifiers = firearmModifiersData as Modifier[];
+  const firearmModifiers = firearmModifiersData as unknown as Modifier[];
 
 
 

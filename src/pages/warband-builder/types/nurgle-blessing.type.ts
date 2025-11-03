@@ -1,6 +1,4 @@
 export interface NurgleBlessing {
   id: string;
-  name: string;
-  description: string;
-  cost: string;
+  base_nurgle_blessing_id: string;
 }

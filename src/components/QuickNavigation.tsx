@@ -26,9 +26,13 @@ interface QuickNavigationProps {
       level: number;
     }>;
   }>;
+  loading?: boolean; // Novo prop para indicar se os dados estão carregando
 }
 
-const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
+const QuickNavigation: React.FC<QuickNavigationProps> = ({ 
+  sections, 
+  loading = false 
+}) => {
   const [activeSection, setActiveSection] = useState<string>("");
   const [isIndexOpen, setIsIndexOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -38,8 +42,8 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
 
   // Process sections: use existing children if defined, otherwise auto-group
   const groupedSections = React.useMemo(() => {
-    // Early return if no sections
-    if (!sections || sections.length === 0) {
+    // Early return if no sections or still loading
+    if (!sections || sections.length === 0 || loading) {
       return [];
     }
 
@@ -111,48 +115,74 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
   }, [sections]);
 
   useEffect(() => {
-    if (!sections || sections.length === 0) {
+    // Não tenta processar seções enquanto está carregando ou se não há seções
+    if (loading || !sections || sections.length === 0) {
       return;
     }
 
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      setShowBackToTop(scrollTop > 300);
+    // Aguarda um pouco para garantir que o DOM foi renderizado
+    const timeoutId = setTimeout(() => {
+      const handleScroll = () => {
+        const scrollTop = window.pageYOffset;
+        setShowBackToTop(scrollTop > 300);
 
-      // Find active section based on scroll position
-      const sectionElements = sections
-        .map((section) => document.getElementById(section.id))
-        .filter(Boolean);
+        // Find active section based on scroll position
+        // Usa groupedSections para ter certeza que temos a estrutura correta
+        const allSectionIds = [
+          ...sections.map((s) => s.id),
+          ...sections.flatMap((s) => s.children?.map((c) => c.id) || []),
+        ];
 
-      let current = "";
-      for (const element of sectionElements) {
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100) {
-            current = element.id;
+        const sectionElements = allSectionIds
+          .map((id) => document.getElementById(id))
+          .filter(Boolean);
+
+        let current = "";
+        for (const element of sectionElements) {
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= 100) {
+              current = element.id;
+            }
           }
         }
-      }
-      setActiveSection(current);
-    };
+        setActiveSection(current);
+      };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [sections]);
+      // Executa uma vez imediatamente para detectar seção inicial
+      handleScroll();
+
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, 100); // Pequeno delay para garantir que o DOM está pronto
+
+    return () => clearTimeout(timeoutId);
+  }, [sections, loading]);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const elementTop = element.offsetTop;
-      const headerHeight = 100; // Altura aproximada do header
-      const offset = elementTop - headerHeight;
+    // Aguarda um pouco para garantir que o elemento existe no DOM
+    const attemptScroll = (retries = 3) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const elementTop = element.offsetTop;
+        const headerHeight = 100; // Altura aproximada do header
+        const offset = elementTop - headerHeight;
 
-      window.scrollTo({
-        top: offset,
-        behavior: "smooth",
-      });
-    }
-    setIsIndexOpen(false);
+        window.scrollTo({
+          top: offset,
+          behavior: "smooth",
+        });
+        setIsIndexOpen(false);
+      } else if (retries > 0) {
+        // Se o elemento não existe ainda, tenta novamente após um delay
+        setTimeout(() => attemptScroll(retries - 1), 100);
+      } else {
+        // Se ainda não encontrou após várias tentativas, apenas fecha o modal
+        setIsIndexOpen(false);
+      }
+    };
+    
+    attemptScroll();
   };
 
   const scrollToTop = () => {
@@ -262,7 +292,35 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
               },
             }}
           >
-            {groupedSections.map((section, index) => {
+            {loading && (
+              <ListItem>
+                <ListItemText
+                  primary="Carregando..."
+                  sx={{
+                    color: "#8fbc8f",
+                    textAlign: "center",
+                    "& .MuiListItemText-primary": {
+                      fontFamily: '"Crimson Text", serif',
+                    },
+                  }}
+                />
+              </ListItem>
+            )}
+            {!loading && groupedSections.length === 0 && (
+              <ListItem>
+                <ListItemText
+                  primary="Nenhuma seção encontrada"
+                  sx={{
+                    color: "#666",
+                    textAlign: "center",
+                    "& .MuiListItemText-primary": {
+                      fontFamily: '"Crimson Text", serif',
+                    },
+                  }}
+                />
+              </ListItem>
+            )}
+            {!loading && groupedSections.map((section, index) => {
               const hasChildren =
                 section.children && section.children.length > 0;
               const isExpanded = expandedSections.has(section.id);
@@ -354,7 +412,7 @@ const QuickNavigation: React.FC<QuickNavigationProps> = ({ sections }) => {
                     </Collapse>
                   )}
 
-                  {index < sections.length - 1 && (
+                  {index < groupedSections.length - 1 && (
                     <Divider sx={{ backgroundColor: "#333" }} />
                   )}
                 </React.Fragment>

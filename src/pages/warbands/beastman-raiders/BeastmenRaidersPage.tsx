@@ -1,64 +1,61 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { useJsonData } from "../../../hooks/useJsonData";
+import { getStaticImport } from "../../../data/jsonFileMap";
+import { createWarbandNavigationSections } from "../../../utils/navigationSections";
 import MobileSection from "../../../components/MobileSection";
 import MobileText from "../../../components/MobileText";
 import HeaderH1 from "../../../components/HeaderH1";
 import HeaderH2 from "../../../components/HeaderH2";
 import UnitCard from "../../../components/UnitCard";
 import QuickNavigation from "../../../components/QuickNavigation";
-import homemFerasData from "./beastmen-raiders.data.json";
 import PageTitle from "../../../components/PageTitle";
 
 const HomemFerasRaidersPage: React.FC = () => {
-  // Separar unidades por categoria
-  const leader = homemFerasData.find((unit) => unit.role === "Líder");
-  const heroes = homemFerasData.filter((unit) => unit.role === "Herói");
-  const soldiers = homemFerasData.filter((unit) => !unit.role);
+  // Carrega dados via hook (Firestore -> IndexedDB -> Static)
+  const staticImportFn = React.useMemo(
+    () => () => getStaticImport("beastman-raiders")(),
+    []
+  );
 
-  // Seções para navegação rápida
-  const navigationSections = [
+  const { data: homemFerasData, loading } = useJsonData({
+    fileId: "beastman-raiders",
+    staticImport: staticImportFn,
+  });
+
+  // Cria as seções de navegação de forma segura
+  const navigationSections = useMemo(() => {
+    const baseSections = [
     { id: "introducao", title: "Introdução", level: 0 },
     { id: "estrutura-bando", title: "Estrutura do Bando", level: 0 },
     { id: "regras-especiais", title: "Regras Especiais", level: 0 },
-    {
-      id: "lider",
-      title: "Líder",
-      level: 0,
-      children: leader
-        ? [
-            {
-              id: leader.id,
-              title: leader.name,
-              level: 1,
-            },
-          ]
-        : [],
-    },
-    {
-      id: "herois",
-      title: "Heróis",
-      level: 0,
-      children: heroes.map((hero) => ({
-        id: hero.id,
-        title: hero.name,
-        level: 1,
-      })),
-    },
-    {
-      id: "soldados",
-      title: "Soldados",
-      level: 0,
-      children: soldiers.map((soldier) => ({
-        id: soldier.id,
-        title: soldier.name,
-        level: 1,
-      })),
-    },
     { id: "tradicoes-magicas", title: "Tradições Mágicas", level: 0 },
   ];
+    
+    return createWarbandNavigationSections(
+      homemFerasData as any[] | null | undefined,
+      baseSections
+    );
+  }, [homemFerasData]);
+
+  // Separar unidades por categoria
+  const leader = useMemo(() => {
+    if (!homemFerasData || !Array.isArray(homemFerasData)) return undefined;
+    return homemFerasData.find((unit) => unit.role === "Líder");
+  }, [homemFerasData]);
+
+  const heroes = useMemo(() => {
+    if (!homemFerasData || !Array.isArray(homemFerasData)) return [];
+    return homemFerasData.filter((unit) => unit.role === "Herói");
+  }, [homemFerasData]);
+
+  const soldiers = useMemo(() => {
+    if (!homemFerasData || !Array.isArray(homemFerasData)) return [];
+    return homemFerasData.filter((unit) => !unit.role);
+  }, [homemFerasData]);
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <QuickNavigation sections={navigationSections} />
+      <QuickNavigation sections={navigationSections} loading={loading} />
 
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">

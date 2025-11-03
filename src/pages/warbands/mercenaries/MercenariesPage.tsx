@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import mercenariesData from "./data/mercenaries.data.json";
+import React, { useState, useMemo } from "react";
+import { useJsonData } from "../../../hooks/useJsonData";
+import { getStaticImport } from "../../../data/jsonFileMap";
+import { createWarbandNavigationSections } from "../../../utils/navigationSections";
 import QuickNavigation from "../../../components/QuickNavigation";
 import MobileSection from "../../../components/MobileSection";
 import HeaderH1 from "../../../components/HeaderH1";
@@ -54,11 +56,32 @@ const MercenariesPage: React.FC = () => {
     "reikland"
   );
 
-  const leader = mercenariesData.find((unit) => unit.role === "Líder") as Unit;
-  const heroes = mercenariesData.filter(
-    (unit) => unit.role === "Herói"
-  ) as Unit[];
-  const soldiers = mercenariesData.filter((unit) => !unit.role) as Unit[];
+  // Carrega dados via hook (Firestore -> IndexedDB -> Static)
+  const staticImportFn = React.useMemo(
+    () => () => getStaticImport("mercenaries")(),
+    []
+  );
+
+  const { data: mercenariesData, loading } = useJsonData({
+    fileId: "mercenaries",
+    staticImport: staticImportFn,
+  });
+
+  // Extrai unidades de forma segura (com fallback para array vazio)
+  const leader = useMemo(() => {
+    if (!mercenariesData || !Array.isArray(mercenariesData)) return undefined;
+    return mercenariesData.find((unit) => unit.role === "Líder") as Unit | undefined;
+  }, [mercenariesData]);
+
+  const heroes = useMemo(() => {
+    if (!mercenariesData || !Array.isArray(mercenariesData)) return [];
+    return mercenariesData.filter((unit) => unit.role === "Herói") as Unit[];
+  }, [mercenariesData]);
+
+  const soldiers = useMemo(() => {
+    if (!mercenariesData || !Array.isArray(mercenariesData)) return [];
+    return mercenariesData.filter((unit) => !unit.role) as Unit[];
+  }, [mercenariesData]);
 
   // Filtrar unidades baseado na região selecionada
   const getFilteredUnits = () => {
@@ -88,11 +111,13 @@ const MercenariesPage: React.FC = () => {
       filteredHeroes = heroes.filter(
         (hero) => hero.name !== "Sacerdote Lupino de Ulric"
       );
+      if (mercenariesData && Array.isArray(mercenariesData)) {
       const caesDeGuerra = mercenariesData.find(
         (unit) => unit.name === "Cão de Guerra"
-      ) as Unit;
+        ) as Unit | undefined;
       if (caesDeGuerra) {
-        filteredSoldiers.push(caesDeGuerra);
+          filteredSoldiers = [...filteredSoldiers, caesDeGuerra];
+        }
       }
     } else {
       // Outras regiões: remove unidades especiais
@@ -111,7 +136,7 @@ const MercenariesPage: React.FC = () => {
     leader: filteredLeader,
     heroes: filteredHeroes,
     soldiers: filteredSoldiers,
-  } = getFilteredUnits();
+  } = useMemo(() => getFilteredUnits(), [selectedRegion, leader, heroes, soldiers, mercenariesData]);
 
   // Placeholder para as regiões - será preenchido com as regras específicas
   const regions: Region[] = [
@@ -153,45 +178,55 @@ const MercenariesPage: React.FC = () => {
     },
   ];
 
-  const navigationSections = [
+  // Cria as seções de navegação de forma segura
+  const navigationSections = useMemo(() => {
+    const baseSections = [
     { id: "introducao", title: "Introdução", level: 0 },
     { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
     { id: "regioes", title: "Regiões e Regras Especiais", level: 0 },
-    {
-      id: "lider",
-      title: "Líder",
-      level: 0,
-      children: filteredLeader
-        ? [{ id: filteredLeader.id, title: filteredLeader.name, level: 1 }]
-        : [],
-    },
-    {
-      id: "herois",
-      title: "Heróis",
-      level: 0,
-      children: filteredHeroes.map((hero) => ({
+    ];
+    
+    const warbandSections = createWarbandNavigationSections(
+      mercenariesData as Unit[] | null | undefined,
+      baseSections
+    );
+
+    // Atualiza com unidades filtradas
+    const leaderSection = warbandSections.find(s => s.id === "lider");
+    if (leaderSection && filteredLeader) {
+      leaderSection.children = [{
+        id: filteredLeader.id,
+        title: filteredLeader.name,
+        level: 1,
+      }];
+    }
+
+    const heroesSection = warbandSections.find(s => s.id === "herois");
+    if (heroesSection) {
+      heroesSection.children = filteredHeroes.map((hero) => ({
         id: hero.id,
         title: hero.name,
         level: 1,
-      })),
-    },
-    {
-      id: "soldados",
-      title: "Soldados",
-      level: 0,
-      children: filteredSoldiers.map((soldier) => ({
+      }));
+    }
+
+    const soldiersSection = warbandSections.find(s => s.id === "soldados");
+    if (soldiersSection) {
+      soldiersSection.children = filteredSoldiers.map((soldier) => ({
         id: soldier.id,
         title: soldier.name,
         level: 1,
-      })),
-    },
-  ];
+      }));
+    }
+
+    return warbandSections;
+  }, [mercenariesData, filteredLeader, filteredHeroes, filteredSoldiers]);
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
-          <QuickNavigation sections={navigationSections} />
+          <QuickNavigation sections={navigationSections} loading={loading} />
 
           <MobileSection id="introducao">
             <PageTitle>Mercenários</PageTitle>
@@ -356,7 +391,9 @@ const MercenariesPage: React.FC = () => {
 
           <MobileSection id="lider">
             <HeaderH1 id="lider">Líder</HeaderH1>
-            {filteredLeader && (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : filteredLeader ? (
               <UnitCard
                 id={filteredLeader.id}
                 name={filteredLeader.name}
@@ -369,12 +406,17 @@ const MercenariesPage: React.FC = () => {
                 abilities={filteredLeader.abilities}
                 equipment={filteredLeader.equipment}
               />
+            ) : (
+              <MobileText>Nenhum líder encontrado</MobileText>
             )}
           </MobileSection>
 
           <MobileSection id="herois">
             <HeaderH1 id="herois">Heróis</HeaderH1>
-            {filteredHeroes.map((hero) => (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : filteredHeroes.length > 0 ? (
+              filteredHeroes.map((hero) => (
               <UnitCard
                 key={hero.id}
                 id={hero.id}
@@ -388,12 +430,18 @@ const MercenariesPage: React.FC = () => {
                 abilities={hero.abilities}
                 equipment={hero.equipment}
               />
-            ))}
+              ))
+            ) : (
+              <MobileText>Nenhum herói encontrado</MobileText>
+            )}
           </MobileSection>
 
           <MobileSection id="soldados">
             <HeaderH1 id="soldados">Soldados</HeaderH1>
-            {filteredSoldiers.map((soldier) => (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : filteredSoldiers.length > 0 ? (
+              filteredSoldiers.map((soldier) => (
               <UnitCard
                 key={soldier.id}
                 id={soldier.id}
@@ -405,7 +453,10 @@ const MercenariesPage: React.FC = () => {
                 abilities={soldier.abilities}
                 equipment={soldier.equipment}
               />
-            ))}
+              ))
+            ) : (
+              <MobileText>Nenhum soldado encontrado</MobileText>
+            )}
           </MobileSection>
         </div>
       </div>

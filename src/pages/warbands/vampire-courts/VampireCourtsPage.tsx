@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import vampireCourtsData from "./data/vampire-courts.data.json";
+import React, { useState, useMemo } from "react";
+import { useJsonData } from "../../../hooks/useJsonData";
+import { getStaticImport } from "../../../data/jsonFileMap";
+import { createWarbandNavigationSections } from "../../../utils/navigationSections";
 import QuickNavigation from "../../../components/QuickNavigation";
 import MobileSection from "../../../components/MobileSection";
 import MobileText from "../../../components/MobileText";
@@ -54,13 +56,36 @@ const VampireCourtsPage: React.FC = () => {
     "von-carstein"
   );
 
-  const leader = vampireCourtsData.find(
+  // Carrega dados via hook (Firestore -> IndexedDB -> Static)
+  const staticImportFn = React.useMemo(
+    () => () => getStaticImport("vampire-courts")(),
+    []
+  );
+
+  const { data: vampireCourtsData, loading } = useJsonData({
+    fileId: "vampire-courts",
+    staticImport: staticImportFn,
+  });
+
+  // Extrai unidades de forma segura (com fallback para array vazio)
+  const leader = useMemo(() => {
+    if (!vampireCourtsData || !Array.isArray(vampireCourtsData)) return undefined;
+    return vampireCourtsData.find(
     (unit) => unit.role === "Herói" && unit.name === "Conde Vampiro"
-  ) as Unit;
-  const heroes = vampireCourtsData.filter(
+    ) as Unit | undefined;
+  }, [vampireCourtsData]);
+
+  const heroes = useMemo(() => {
+    if (!vampireCourtsData || !Array.isArray(vampireCourtsData)) return [];
+    return vampireCourtsData.filter(
     (unit) => unit.role === "Herói" && unit.name !== "Conde Vampiro"
   ) as Unit[];
-  const soldiers = vampireCourtsData.filter((unit) => !unit.role) as Unit[];
+  }, [vampireCourtsData]);
+
+  const soldiers = useMemo(() => {
+    if (!vampireCourtsData || !Array.isArray(vampireCourtsData)) return [];
+    return vampireCourtsData.filter((unit) => !unit.role) as Unit[];
+  }, [vampireCourtsData]);
 
   // Filtrar unidades baseado na linhagem selecionada
   const getFilteredUnits = () => {
@@ -85,13 +110,14 @@ const VampireCourtsPage: React.FC = () => {
     return { leader, heroes: filteredHeroes, soldiers: filteredSoldiers };
   };
 
+  // Filtrar unidades baseado na linhagem selecionada
   const {
     leader: filteredLeader,
     heroes: filteredHeroes,
     soldiers: filteredSoldiers,
-  } = getFilteredUnits();
+  } = useMemo(() => getFilteredUnits(), [selectedLineage, leader, heroes, soldiers]);
 
-  // Linhagens vampíricas
+  // Linhagens vampíricas (estáticas)
   const lineages: Lineage[] = [
     {
       id: "von-carstein",
@@ -151,51 +177,55 @@ const VampireCourtsPage: React.FC = () => {
     },
   ];
 
-  const navigationSections = [
+  // Cria as seções de navegação de forma segura
+  const navigationSections = useMemo(() => {
+    const baseSections = [
     { id: "introducao", title: "Introdução", level: 0 },
     { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
     { id: "linhagens", title: "Linhagens Vampíricas", level: 0 },
-    {
-      id: "lider",
-      title: "Líder",
-      level: 0,
-      children: filteredLeader
-        ? [
-            {
-              id: filteredLeader.name.toLowerCase().replace(/\s+/g, "-"),
+    ];
+    
+    const warbandSections = createWarbandNavigationSections(
+      vampireCourtsData as Unit[] | null | undefined,
+      baseSections
+    );
+
+    // Atualiza com unidades filtradas
+    const leaderSection = warbandSections.find(s => s.id === "lider");
+    if (leaderSection && filteredLeader) {
+      leaderSection.children = [{
+        id: filteredLeader.id || filteredLeader.name.toLowerCase().replace(/\s+/g, "-"),
               title: filteredLeader.name,
               level: 1,
-            },
-          ]
-        : [],
-    },
-    {
-      id: "herois",
-      title: "Heróis",
-      level: 0,
-      children: filteredHeroes.map((hero) => ({
-        id: hero.name.toLowerCase().replace(/\s+/g, "-"),
+      }];
+    }
+
+    const heroesSection = warbandSections.find(s => s.id === "herois");
+    if (heroesSection) {
+      heroesSection.children = filteredHeroes.map((hero) => ({
+        id: hero.id || hero.name.toLowerCase().replace(/\s+/g, "-"),
         title: hero.name,
         level: 1,
-      })),
-    },
-    {
-      id: "soldados",
-      title: "Soldados",
-      level: 0,
-      children: filteredSoldiers.map((soldier) => ({
-        id: soldier.name.toLowerCase().replace(/\s+/g, "-"),
+      }));
+    }
+
+    const soldiersSection = warbandSections.find(s => s.id === "soldados");
+    if (soldiersSection) {
+      soldiersSection.children = filteredSoldiers.map((soldier) => ({
+        id: soldier.id || soldier.name.toLowerCase().replace(/\s+/g, "-"),
         title: soldier.name,
         level: 1,
-      })),
-    },
-  ];
+      }));
+    }
+
+    return warbandSections;
+  }, [vampireCourtsData, filteredLeader, filteredHeroes, filteredSoldiers]);
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
-          <QuickNavigation sections={navigationSections} />
+          <QuickNavigation sections={navigationSections} loading={loading} />
 
           <MobileSection id="introducao">
             <PageTitle>Cortes Vampíricas</PageTitle>
@@ -339,9 +369,11 @@ const VampireCourtsPage: React.FC = () => {
 
           <MobileSection id="lider">
             <HeaderH1 id="lider">Líder</HeaderH1>
-            {filteredLeader && (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : filteredLeader ? (
               <UnitCard
-                id={filteredLeader.name.toLowerCase().replace(/\s+/g, "-")}
+                id={filteredLeader.id || filteredLeader.name.toLowerCase().replace(/\s+/g, "-")}
                 name={filteredLeader.name}
                 role={filteredLeader.role}
                 quantity={filteredLeader.quantity}
@@ -352,15 +384,20 @@ const VampireCourtsPage: React.FC = () => {
                 abilities={filteredLeader.abilities}
                 equipment={filteredLeader.equipment}
               />
+            ) : (
+              <MobileText>Nenhum líder encontrado</MobileText>
             )}
           </MobileSection>
 
           <MobileSection id="herois">
             <HeaderH1 id="herois">Heróis</HeaderH1>
-            {filteredHeroes.map((hero) => (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : filteredHeroes.length > 0 ? (
+              filteredHeroes.map((hero) => (
               <UnitCard
                 key={hero.name}
-                id={hero.name.toLowerCase().replace(/\s+/g, "-")}
+                  id={hero.id || hero.name.toLowerCase().replace(/\s+/g, "-")}
                 name={hero.name}
                 role={hero.role}
                 quantity={hero.quantity}
@@ -371,15 +408,21 @@ const VampireCourtsPage: React.FC = () => {
                 abilities={hero.abilities}
                 equipment={hero.equipment}
               />
-            ))}
+              ))
+            ) : (
+              <MobileText>Nenhum herói encontrado</MobileText>
+            )}
           </MobileSection>
 
           <MobileSection id="soldados">
             <HeaderH1 id="soldados">Soldados</HeaderH1>
-            {filteredSoldiers.map((soldier) => (
+            {loading ? (
+              <MobileText>Carregando...</MobileText>
+            ) : filteredSoldiers.length > 0 ? (
+              filteredSoldiers.map((soldier) => (
               <UnitCard
                 key={soldier.name}
-                id={soldier.name.toLowerCase().replace(/\s+/g, "-")}
+                  id={soldier.id || soldier.name.toLowerCase().replace(/\s+/g, "-")}
                 name={soldier.name}
                 quantity={soldier.quantity}
                 lore={soldier.lore}
@@ -388,7 +431,10 @@ const VampireCourtsPage: React.FC = () => {
                 abilities={soldier.abilities}
                 equipment={soldier.equipment}
               />
-            ))}
+              ))
+            ) : (
+              <MobileText>Nenhum soldado encontrado</MobileText>
+            )}
           </MobileSection>
         </div>
       </div>

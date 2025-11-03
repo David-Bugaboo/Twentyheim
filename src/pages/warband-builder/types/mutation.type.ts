@@ -1,6 +1,4 @@
 export interface Mutation {
   id: string;
-  name: string;
-  description: string;
-  cost: string;
+  base_mutation_id: string;
 }

@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import SaveIcon from "@mui/icons-material/Save";
-import CheckIcon from "@mui/icons-material/Check";
+import { getLocalWarband } from "./helpers/indexedDb.helpers";
 import PageTitle from "../../../components/PageTitle";
 import MobileSection from "../../../components/MobileSection";
 import MobileText from "../../../components/MobileText";
@@ -8,221 +7,203 @@ import EquipmentCard from "../../../components/EquipmentCard";
 import HeaderH1 from "../../../components/HeaderH1";
 import WarbandStash, { type StashItem } from "../../../components/WarbandStash";
 import RosterUnitCard, {
-  type AttributeBreakdown,
   type RosterUnitStats,
 } from "../../../components/RosterUnitCard";
-import { type UnitAbility, type UnitStats } from "../../../components/UnitCard";
+import { type UnitStats } from "../../../components/UnitCard";
 import QuickNavigation from "../../../components/QuickNavigation";
 
-// Datasheets por facção
-import sistersData from "../../warbands/sisters-of-sigmar/data/sisters-of-sigmar.data.json";
-import skavenData from "../../warbands/skaven/data/skaven.data.json";
-import beastmenData from "../../warbands/beastman-raiders/beastmen-raiders.data.json";
-import dwarfTreasureHuntersData from "../../warbands/dwarf-treasure-hunters/data/dwarf-treasure-hunters.data.json";
-import cultPossessedData from "../../warbands/cult-of-the-possessed/data/cult-of-the-possessed-page.json";
-import vampireCourtsData from "../../warbands/vampire-courts/data/vampire-courts.data.json";
-import witchHuntersData from "../../warbands/witch-hunters/data/witch-hunters.data.json";
-import lizardmenData from "../../warbands/lizardmen/data/lizardmen.data.json";
-import orcMobData from "../../warbands/orc-mob/data/orc-mob.data.json";
-import goblinsData from "../../warbands/goblins/data/goblins.data.json";
-import sonsOfHashutData from "../../warbands/sons-of-hashut/data/sons-of-hashut.data.json";
-import mercenariesData from "../../warbands/mercenaries/data/mercenaries.data.json";
-import carnivalChaosData from "../../warbands/carnival-of-chaos/data/carnival-of-chaos.data.json";
-import darkElfCorsairsData from "../../warbands/dark-elf-corsairs/data/dark-elf-corsairs.data.json";
-// Mercenários e Lendas (campanha)
-import hiredSwords from "../../campanha/data/hired-swords.data.json";
-import legendsData from "../../campanha/data/lendas.data.json";
-// Catálogos globais de equipamentos
-import meleeDb from "../../../pages/weapons and equipments/data/armas-corpo-a-corpo-refactor.json";
-import rangedDb from "../../../pages/weapons and equipments/data/armas-a-distancia-refactor.json";
-import firearmsDb from "../../../pages/weapons and equipments/data/armas-de-fogo-refactor.json";
-import armorDb from "../../../pages/weapons and equipments/data/armaduras-e-escudos-refactor.json";
-import accessoriesDb from "../../../pages/weapons and equipments/data/acessorios-refactor.json";
-import remediesPoisonsDb from "../../../pages/weapons and equipments/data/remedios-e-venenos.json";
-import meleeMods from "../../../pages/weapons and equipments/data/modificadores-de-arma-refactor.json";
-import rangedMods from "../../../pages/weapons and equipments/data/modificadores-de-arma-a-distancia-refactor.json";
-import firearmsMods from "../../../pages/weapons and equipments/data/modificadores-de-armas-de-fogo-refactor.json";
-import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../../firebase.ts";
-import {
-  collection,
-  doc,
-  addDoc,
-  onSnapshot,
-  updateDoc,
-} from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { useAuth } from "../../../context/AuthContext";
-import type { Equipment as FullEquipment } from "../types/equipment.type";
-import { buildFigureFromBase } from "../types/figure.type";
+import type { EditableUnit } from "./types/editableUnit.type";
 import WarbandNotFoundPage from "./WarbandNotFoundPage";
 import { toast } from "react-toastify";
+import { stripUndefinedDeep } from "./helpers/firestore.helpers";
+import {
+  figuresToEditableUnits,
+  createRosterStats,
+} from "./helpers/unitTransformations.helpers";
+import { calculateWarbandRating } from "./helpers/warbandCalculations.helpers";
+import {
+  getFactionLabel,
+  normalizeList,
+  isEligibleForFaction,
+} from "./helpers/faction.helpers";
+import { isHelmetName, isShieldName } from "./helpers/equipment.helpers";
 
-type EditableUnit = {
-  id: string;
-  name: string;
-  role?: string;
-  quantity?: string;
-  lore?: string;
-  availability?: string | string[];
-  qualidade?: string;
-  stats: UnitStats;
-  abilities: UnitAbility[];
-  figure?: import("../types/figure.type").Figure;
-  equipment?: {
-    "hand-to-hand"?: Array<{ name: string; cost: string }>;
-    ranged?: Array<{ name: string; cost: string }>;
-    armor?: Array<{ name: string; cost: string }>;
-    miscellaneous?: Array<{ name: string; cost: string }>;
-    modifiers?: Array<{ name: string; cost: string }>;
-  };
-  // Seleções do usuário - agora estão diretamente no figure (skills, spells, advancements, injuries)
-  chosenAbilities?: UnitAbility[];
-  chosenEquipment?: Array<{
-    name: string;
-    category: string;
-    cost?: string;
-    data?: any;
-  }>;
-  chosenMagic?: string[]; // tradições/escolas selecionadas (deprecated)
-  spellAffinity?: {
-    aligned0?: string[];
-    aligned2?: string[];
-  };
-  specialRules?: string[];
-  injuries?: string;
-  xpTrack?: boolean[]; // 30 casas
-  totalXp?: number;
-  // Breakdown de atributos para o RosterUnitCard
-  statBreakdown?: {
-    move?: AttributeBreakdown;
-    fight?: AttributeBreakdown;
-    shoot?: AttributeBreakdown;
-    armour?: AttributeBreakdown;
-    vontade?: AttributeBreakdown;
-    health?: AttributeBreakdown;
-    strength?: AttributeBreakdown;
-  };
-  // Equipamentos equipados nos slots específicos
-  equippedItems?: {
-    elmo?: string;
-    escudo?: string;
-    armadura?: string;
-    "arma-corpo-a-corpo-1"?: string;
-    "arma-corpo-a-corpo-2"?: string;
-    "arma-distancia-1"?: string;
-    "arma-distancia-2"?: string;
-    "adaga-gratis"?: string;
-    acessorios?: string[];
-  };
-};
+// Custom hooks
+import { useWarbandData } from "./hooks/useWarbandData";
+import { useWarbandState } from "./hooks/useWarbandState";
+import { useWarbandOperations } from "./hooks/useWarbandOperations";
+import { useEquipmentManagement } from "./hooks/useEquipmentManagement";
+import { useUnitManagement } from "./hooks/useUnitManagement";
+import { useAutoSave } from "./hooks/useAutoSave";
 
-// Remove recursivamente qualquer campo com valor undefined (Firestore não aceita)
-const stripUndefinedDeep = (value: any): any => {
-  if (Array.isArray(value)) {
-    return value
-      .map((v) => stripUndefinedDeep(v))
-      .filter((v) => v !== undefined);
-  }
-  if (value && typeof value === "object") {
-    const out: any = {};
-    for (const [k, v] of Object.entries(value)) {
-      if (v === undefined) continue;
-      const cleaned = stripUndefinedDeep(v);
-      if (cleaned !== undefined) out[k] = cleaned;
-    }
-    return out;
-  }
-  return value;
-};
-
-type WarbandSheet = {
-  name: string;
-  faction?: string;
-  notes?: string;
-  gold?: string;
-  wyrdstone?: string;
-  // Unificado: usamos somente vault com objetos Equipment completos
-  vault?: FullEquipment[];
-  units: EditableUnit[];
-};
-
-// Persistência via Firestore (sem localStorage)
-
-// Helper para extrair número de uma string (ex: "+1" -> 1, "10" -> 10)
-const extractNumber = (value: number | string | undefined): number => {
-  if (typeof value === "number") return value;
-  if (!value) return 0;
-  const str = String(value).trim();
-  const match = str.match(/([+-]?\d+)/);
-  return match ? parseInt(match[1], 10) : 0;
-};
-
-// Converte UnitStats para RosterUnitStats com breakdown
-const createRosterStats = (
-  baseStats: UnitStats,
-  statBreakdown?: EditableUnit["statBreakdown"]
-): RosterUnitStats => {
-  const createBreakdown = (
-    key: keyof RosterUnitStats,
-    baseValue: number | string
-  ): AttributeBreakdown => {
-    const existing = statBreakdown?.[key];
-    return {
-      base: extractNumber(baseValue),
-      advancement: existing?.advancement || 0,
-      injury: existing?.injury || 0,
-      misc: existing?.misc || 0,
-    };
-  };
-
-  return {
-    move: createBreakdown("move", baseStats.move),
-    fight: createBreakdown("fight", baseStats.fight),
-    shoot: createBreakdown("shoot", baseStats.shoot),
-    armour: createBreakdown("armour", baseStats.armour),
-    vontade: createBreakdown("vontade", baseStats.Vontade),
-    health: createBreakdown("health", baseStats.health),
-    strength:
-      baseStats.strength !== undefined ||
-      baseStats.força !== undefined ||
-      baseStats.For !== undefined
-        ? createBreakdown(
-            "strength",
-            baseStats.strength ?? baseStats.força ?? baseStats.For ?? 0
-          )
-        : undefined,
-  };
-};
-
-// Mapeia chosenEquipment para equippedItems (slots específicos)
+// Nota: createRosterStats foi movido para helpers/unitTransformations.helpers.ts
 
 function WarbandRosterPage() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const params = new URLSearchParams(location.search);
-  const fixedFaction = params.get("faction") || "";
-  const warbandId = params.get("id") || "";
-  const userId = params.get("userId") || "";
-  const { currentUser, loading } = useAuth();
+  // Carrega todos os dados usando hook centralizado
+  const warbandData = useWarbandData();
+  const {
+    data: { factions, modifiers },
+    dataSources,
+  } = warbandData;
 
-  // Verifica se o usuário logado é o dono do warband
-  const isAuthorized = currentUser && currentUser.uid === userId;
+  // Desestrutura dados para compatibilidade com código existente
+  const {
+    sisters: sistersData,
+    skaven: skavenData,
+    beastmen: beastmenData,
+    dwarfs: dwarfTreasureHuntersData,
+    cult: cultPossessedData,
+    vampires: vampireCourtsData,
+    witchHunters: witchHuntersData,
+    lizardmen: lizardmenData,
+    orcs: orcMobData,
+    goblins: goblinsData,
+    hashut: sonsOfHashutData,
+    mercenaries: mercenariesData,
+    carnival: carnivalChaosData,
+    darkElves: darkElfCorsairsData,
+    hiredSwords,
+    legends: legendsData,
+  } = factions;
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [notFound, setNotFound] = useState<boolean>(false);
+  const { currentUser } = useAuth();
   const [isSaving, setIsSaving] = useState<boolean>(false);
-  const [hasUnsavedChanges, setHasUnsavedChanges] = useState<boolean>(false);
 
-  const [sheet, setSheet] = useState<WarbandSheet>({
-    name: "",
-    faction: fixedFaction || "",
-    notes: "",
-    gold: "500",
-    wyrdstone: "0",
-    vault: [],
-    units: [],
+  // Gerencia estado do warband (carregar, salvar, atualizar)
+  const {
+    warband,
+    setWarband,
+    hasUnsavedChanges,
+    setHasUnsavedChanges,
+    isLoading,
+    notFound,
+    warbandId,
+    warbandSource,
+    fixedFaction,
+    isLocal,
+    hasNewerVersionInFirestore,
+    updateFromFirestore,
+    userId,
+  } = useWarbandState();
+
+  // Estado para armazenar a data da última atualização
+  const [lastUpdatedAt, setLastUpdatedAt] = useState<string | null>(null);
+
+  // Converte figures para EditableUnits quando necessário para renderização
+  const editableUnits = useMemo(() => {
+    return figuresToEditableUnits(warband.figures || []);
+  }, [warband.figures]);
+
+  // Catálogos de equipamentos e modificadores
+  const equipmentCatalogs = useMemo(
+    () => ({
+      meleeDb: dataSources.meleeDb || [],
+      rangedDb: dataSources.rangedDb || [],
+      firearmsDb: dataSources.firearmsDb || [],
+      armorDb: dataSources.armorDb || [],
+      accessoriesDb: dataSources.accessoriesDb || [],
+      remediesPoisonsDb: dataSources.remediesPoisonsDb || [],
+    }),
+    [dataSources]
+  );
+
+  const modifierCatalogs = useMemo(
+    () => ({
+      meleeMods: modifiers.melee || [],
+      rangedMods: modifiers.ranged || [],
+      firearmsMods: modifiers.firearms || [],
+    }),
+    [modifiers]
+  );
+
+  // Hook de operações do warband (usa fila internamente)
+  const {
+    updateWarbandProperty,
+    updateWarbandFigure,
+    removeWarbandFigure,
+    updateWarbandVault,
+    addFigureFromBase,
+    removeUnit,
+  } = useWarbandOperations({
+    warband,
+    setWarband,
+    setHasUnsavedChanges,
+    equipmentCatalogs,
   });
-  const hasLoadedRef = useRef<boolean>(false);
+
+  // Hook de gerenciamento de equipamentos
+  const {
+    handlePurchaseItem,
+    handleEquipFromStashFlat,
+    handleUnequipToStashFlat,
+  } = useEquipmentManagement({
+    warband,
+    updateWarbandFigure,
+    updateWarbandVault,
+    updateWarbandProperty,
+    setHasUnsavedChanges,
+    equipmentCatalogs,
+    modifierCatalogs,
+  });
+
+  // Hook de gerenciamento de unidades
+  const unitManagement = useUnitManagement({
+    updateWarbandFigure,
+    setHasUnsavedChanges,
+  });
+
+  // Auto-save com debounce - salva no IndexedDB e Firestore (se logado)
+  useAutoSave({
+    hasUnsavedChanges,
+    warbandId,
+    warband,
+    warbandSource,
+    setHasUnsavedChanges,
+    setIsSaving,
+    userId: !isLocal && userId ? userId : null, // Passa userId apenas se não for local e tiver userId
+  });
+
+  // Busca e atualiza a data da última atualização
+  useEffect(() => {
+    if (!warbandId) return;
+
+    const fetchLastUpdated = async () => {
+      try {
+        const localData = await getLocalWarband(warbandId);
+        if (localData?.updatedAt) {
+          const date = new Date(localData.updatedAt);
+          // Formata em português: "DD/MM/YYYY HH:mm"
+          const formatted = date.toLocaleString("pt-BR", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+          setLastUpdatedAt(formatted);
+        }
+      } catch (error) {
+        console.warn("Erro ao buscar data de atualização:", error);
+      }
+    };
+
+    fetchLastUpdated();
+
+    // Atualiza a cada 5 segundos para mostrar a data mais recente
+    const interval = setInterval(fetchLastUpdated, 5000);
+    return () => clearInterval(interval);
+  }, [
+    warbandId,
+    warband.figures,
+    warband.vault,
+    warband.name,
+    warband.notes,
+    warband.gold,
+    warband.wyrdstone,
+  ]);
 
   // Modal de seleção de equipamentos
   const [equipmentModal, setEquipmentModal] = useState<{
@@ -243,22 +224,28 @@ function WarbandRosterPage() {
 
   // Warband Rating = (nº membros * 5) + soma(xp + qualidade de cada figura)
   const warbandRating = useMemo(() => {
-    const activeUnits = (sheet.units || []).filter(
-      (u: any) => !Boolean(u?.figure?.inactive)
-    );
-    const members = activeUnits.length;
-    const sum = activeUnits.reduce((acc, u: any) => {
-      const fig = u?.figure || {};
-      const xp = Number(fig?.xp || 0);
-      const quality = Number(fig?.qualidade || 0);
-      return acc + xp + quality;
-    }, 0);
-    return members * 5 + sum;
-  }, [sheet.units]);
+    return calculateWarbandRating(warband.figures || []);
+  }, [warband.figures]);
 
   // ==== Mercenários e Lendas (dropdowns globais) ====
   const allFactionDatas: any[] = useMemo(
     () => [
+      sistersData || [],
+      skavenData || [],
+      beastmenData || [],
+      dwarfTreasureHuntersData || [],
+      cultPossessedData || [],
+      vampireCourtsData || [],
+      witchHuntersData || [],
+      lizardmenData || [],
+      orcMobData || [],
+      goblinsData || [],
+      sonsOfHashutData || [],
+      mercenariesData || [],
+      carnivalChaosData || [],
+      darkElfCorsairsData || [],
+    ],
+    [
       sistersData,
       skavenData,
       beastmenData,
@@ -273,82 +260,47 @@ function WarbandRosterPage() {
       mercenariesData,
       carnivalChaosData,
       darkElfCorsairsData,
-    ],
-    []
+    ]
   );
 
   const factionLabelAlt = useMemo(() => {
-    const map: Record<string, string> = {
-      "sisters-of-sigmar": "Irmãs de Sigmar",
-      skaven: "Skaven",
-      "beastman-raiders": "Saqueadores Homem-Fera",
-      "dwarf-treasure-hunters": "Caçadores de Tesouro Anões",
-      "cult-of-the-possessed": "Culto dos Possuídos",
-      "vampire-courts": "Cortes Vampíricas",
-      "witch-hunters": "Caçadores de Bruxas",
-      lizardmen: "Reptilianos",
-      "orc-mob": "Horda Orc",
-      goblins: "Goblins",
-      "sons-of-hashut": "Filhos de Hashut",
-      mercenaries: "Mercenários",
-      "carnival-of-chaos": "Circo do Caos",
-      "dark-elf-corsairs": "Corsários Druchii",
-    };
-    return (
-      map[String(sheet.faction || fixedFaction)] ||
-      String(sheet.faction || fixedFaction)
-    );
-  }, [sheet.faction, fixedFaction]);
+    return getFactionLabel(warband.faction || fixedFaction);
+  }, [warband.faction, fixedFaction]);
 
-  const normalizeList = (data: any) =>
-    Array.isArray(data) ? data : Array.isArray(data?.data) ? data.data : [];
   const extraPools = useMemo(
-    () => [hiredSwords as any, legendsData as any],
-    []
+    () => [(hiredSwords || []) as any, (legendsData || []) as any],
+    [hiredSwords, legendsData]
   );
   const flattenAllUnits = useMemo(
     () =>
       [
-        ...allFactionDatas.flatMap((d) => normalizeList(d)),
-        ...extraPools.flatMap((d) => normalizeList(d)),
+        ...allFactionDatas.flatMap(d => normalizeList(d)),
+        ...extraPools.flatMap(d => normalizeList(d)),
       ].filter(Boolean),
     [allFactionDatas, extraPools]
   );
 
-  const isEligibleForFaction = (unit: any, label: string) => {
-    const av = unit?.availability;
-    const ex = unit?.exclusions;
-    const hasAll =
-      Array.isArray(av) &&
-      av.some((x: any) => String(x).toLowerCase() === "todos");
-    const hasFaction =
-      Array.isArray(av) && av.some((x: any) => String(x) === label);
-    const excluded =
-      Array.isArray(ex) && ex.some((x: any) => String(x) === label);
-    return (hasFaction || hasAll) && !excluded;
-  };
-
   const globalMercenaries = useMemo(
     () =>
       flattenAllUnits
-        .filter((u) =>
+        .filter(u =>
           String(u?.role || "")
             .toLowerCase()
             .includes("merc")
         )
-        .filter((u) => isEligibleForFaction(u, factionLabelAlt))
+        .filter(u => isEligibleForFaction(u, factionLabelAlt))
         .sort((a, b) => String(a.name).localeCompare(String(b.name), "pt-BR")),
     [flattenAllUnits, factionLabelAlt]
   );
   const globalLegends = useMemo(
     () =>
       flattenAllUnits
-        .filter((u) =>
+        .filter(u =>
           String(u?.role || "")
             .toLowerCase()
             .includes("lenda")
         )
-        .filter((u) => isEligibleForFaction(u, factionLabelAlt))
+        .filter(u => isEligibleForFaction(u, factionLabelAlt))
         .sort((a, b) => String(a.name).localeCompare(String(b.name), "pt-BR")),
     [flattenAllUnits, factionLabelAlt]
   );
@@ -358,270 +310,15 @@ function WarbandRosterPage() {
   const [selectedMercId, setSelectedMercId] = useState<string>("");
   const [selectedLegendId, setSelectedLegendId] = useState<string>("");
 
-  // Hooks para menu dropdown de unidades (movidos da IIFE)
+  // Hooks para menu dropdown de unidades
   const [openMenus, setOpenMenus] = useState<Set<string>>(new Set());
   const menuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  const addFigureFromBase = (base: any, shouldChargeCost: boolean = true) => {
-    if (!base) return;
-    setHasUnsavedChanges(true);
-    const id = crypto.randomUUID();
-    const fig = buildFigureFromBase(base);
-
-    // Calcula e desconta o custo se necessário
-    if (shouldChargeCost) {
-      const costMatch = String(fig.baseStats.cost || "0").match(/(\d+)/);
-      const unitCost = costMatch ? parseInt(costMatch[1], 10) : 0;
-
-      if (unitCost > 0) {
-        const currentGoldMatch = String(sheet.gold || "0").match(/(\d+)/);
-        const currentGold = currentGoldMatch
-          ? parseInt(currentGoldMatch[1], 10)
-          : 0;
-
-        if (currentGold < unitCost) {
-          toast.error(
-            `Você não tem coroas suficientes! (Necessário: ${unitCost}, Disponível: ${currentGold})`
-          );
-          return;
-        }
-
-        const newGold = Math.max(0, currentGold - unitCost);
-        setSheet((prev) => ({
-          ...prev,
-          gold: String(newGold),
-        }));
-
-        toast.success(`Modelo adicionado! ${unitCost} coroas descontadas.`);
-      }
-    }
-
-    // Se for mercenário/lenda com itens fixos (stats.mercEquipment/mercItems), resolve e equipa
-    const mercItemsRaw: any[] = (() => {
-      if (Array.isArray(base?.stats?.mercEquipment))
-        return base.stats.mercEquipment as any[];
-      if (Array.isArray(base?.stats?.mercItems))
-        return base.stats.mercItems as any[];
-      if (typeof base?.stats?.mercEquipment === "string")
-        return [base.stats.mercEquipment];
-      if (typeof base?.stats?.mercItems === "string")
-        return [base.stats.mercItems];
-      return [];
-    })();
-    const splitter = /,|\||\/|\be\b|\bou\b/gi;
-    const mercItems: string[] = (mercItemsRaw || [])
-      .flatMap((x) => String(x).split(splitter))
-      .map((s) => s.trim())
-      .filter((s) => s.length > 0);
-    let equippedFromMerc: any[] = [];
-    if (mercItems.length > 0) {
-      equippedFromMerc = mercItems
-        .map((n) => resolveEquipmentByName(String(n)))
-        .filter(Boolean) as any[];
-      // Log nomes não resolvidos para depuração
-      mercItems.forEach((n) => {
-        const ok = equippedFromMerc.find(
-          (e) => String(e.name).toLowerCase() === String(n).toLowerCase()
-        );
-        if (!ok) {
-          try {
-            // eslint-disable-next-line no-console
-            console.warn("[Merc Equip] não resolvido:", n);
-          } catch {}
-        }
-      });
-      (fig as any).equiped = equippedFromMerc;
-      (fig as any).equipmentLocked = true; // trava gerenciamento de equipamento
-    }
-
-    // Sempre adiciona adaga grátis (0 slots) para todas as figuras
-    // Verifica se já não tem uma adaga equipada
-    const hasDagger = (fig as any).equiped?.some((e: any) =>
-      String(e.name || "")
-        .toLowerCase()
-        .includes("adaga")
-    );
-    if (!hasDagger) {
-      const dagger = resolveEquipmentByName("Adaga");
-      if (dagger) {
-        // Garante que a adaga não conta slots
-        (dagger as any).slots = 0;
-        // Adiciona a adaga ao início do array de equipamentos
-        (fig as any).equiped = [dagger, ...((fig as any).equiped || [])];
-      }
-    }
-    const newUnit: EditableUnit = {
-      id,
-      name: fig.name,
-      role: fig.role,
-      lore: "",
-      figure: fig,
-      stats: {
-        cost: fig.baseStats.cost,
-        startingXp: fig.xp,
-        skills: fig.avaiableSkills || [],
-        equipmentSlots: fig.equipmentSlots,
-      } as any,
-      abilities: [],
-      equipment: base.equipment,
-      chosenAbilities: [],
-      chosenEquipment: [], // Não é mais usado - figure.equiped é a fonte de verdade
-      chosenMagic: [],
-      specialRules: (base.abilities || [])
-        .map((a: any) => a?.name)
-        .filter(Boolean),
-    };
-    setSheet((s) => ({ ...s, units: [...s.units, newUnit] }));
-  };
-
   const handleToggleInactive = (unitId: string) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const fig = (u as any).figure || {};
-        return {
-          ...u,
-          figure: { ...fig, inactive: !Boolean(fig.inactive) },
-        } as any;
-      }),
+    updateWarbandFigure(unitId, (fig: any) => ({
+      ...fig,
+      inactive: !Boolean(fig.inactive),
     }));
-  };
-
-  // Redireciona se não autorizado após o loading
-  useEffect(() => {
-    if (loading) return; // Ainda carregando auth
-    // Se não tem usuário logado OU userId na URL é diferente do usuário logado, redireciona
-    if (!currentUser || !isAuthorized) {
-      navigate("/warband-builder");
-    }
-  }, [loading, currentUser, isAuthorized, navigate]);
-
-  // Carrega warband do Firestore (se id presente)
-  useEffect(() => {
-    // Se ainda está carregando a autenticação ou não tem IDs ou não está autorizado, não carrega
-    if (loading || !warbandId || !userId || !isAuthorized) return;
-    let first = true;
-    setIsLoading(true);
-    const ref = doc(db, "users", userId, "warbands", warbandId);
-    const unsub = onSnapshot(ref, (snap) => {
-      if (!snap.exists()) {
-        setNotFound(true);
-        setIsLoading(false);
-        return;
-      }
-      const data: any = snap.data() || {};
-      // Usamos somente o root do documento (ignoramos legado em data.sheet)
-      const source = data;
-      setSheet((prev) => {
-        const nextBase = {
-          ...prev,
-          name: source.name ?? prev.name,
-          faction: source.faction ?? prev.faction ?? fixedFaction,
-          notes: source.notes ?? prev.notes,
-          gold: source.gold ?? prev.gold,
-          wyrdstone: source.wyrdstone ?? prev.wyrdstone,
-          vault: Array.isArray(source.vault) ? source.vault : prev.vault,
-        } as typeof prev;
-
-        // Sempre monta units a partir de figures (fonte de verdade)
-        if (Array.isArray(source.figures) && source.figures.length > 0) {
-          const rebuilt = (source.figures as any[]).map((fig) => {
-            const id = String(fig?.id || crypto.randomUUID());
-            const role = fig?.role;
-            // NOVA ARQUITETURA: não precisa mais de chosenEquipment ou chosen*
-            // Todos os dados já estão dentro do figure (skills, spells, advancements, injuries)
-            // figure.equiped já contém todos os objetos Equipment completos
-            // Corrige narrativeName para lendas: sempre vazio (não têm narrative name)
-            const correctedFigure = {
-              ...fig,
-              narrativeName: role === "Lenda" ? "" : fig?.narrativeName || "",
-            };
-            return {
-              id,
-              name: String(fig?.name || "Figura"),
-              role: role,
-              lore: "",
-              figure: correctedFigure, // O figure já contém tudo (skills, spells, advancements, injuries)
-              stats: {
-                move: fig?.baseStats?.move ?? 10,
-                fight: fig?.baseStats?.fight ?? 0,
-                shoot: fig?.baseStats?.shoot ?? 0,
-                armour: fig?.baseStats?.armour ?? 10,
-                Vontade: fig?.baseStats?.Vontade ?? 0,
-                health: fig?.baseStats?.health ?? 10,
-                cost: fig?.baseStats?.cost ?? "-",
-                startingXp: fig?.xp ?? 0,
-                strength: fig?.baseStats?.strength ?? 0,
-                skills: fig?.avaiableSkills || [],
-                equipmentSlots: fig?.equipmentSlots ?? 5,
-              },
-              abilities: [],
-              equipment: undefined,
-              chosenAbilities: [],
-              chosenEquipment: [], // Mantido vazio - não é mais usado
-              chosenMagic: [],
-              specialRules: [],
-            } as any;
-          });
-          return { ...nextBase, units: rebuilt } as typeof prev;
-        }
-
-        return nextBase;
-      });
-      // Marca como hidratado após a primeira carga
-      if (first) {
-        first = false;
-        // Sinaliza que já carregamos do Firestore para evitar overwrite inicial
-        (hasLoadedRef as any).current = true;
-        setHasUnsavedChanges(false); // Reseta o estado ao carregar dados externos
-        setIsLoading(false);
-        try {
-          // eslint-disable-next-line no-console
-          console.log("[Firestore Hydrated]");
-        } catch {}
-      }
-    });
-    return () => unsub();
-  }, [warbandId, userId, loading, isAuthorized]);
-
-  // Função manual para salvar alterações
-  const handleSaveChanges = async () => {
-    if (!warbandId || !userId || isSaving) return;
-
-    setIsSaving(true);
-    const ref = doc(db, "users", userId, "warbands", warbandId);
-
-    const payloadRaw: any = {
-      name: sheet.name,
-      faction: sheet.faction,
-      notes: sheet.notes ?? "",
-      gold: sheet.gold ?? "0",
-      crowns: (() => {
-        const m = String(sheet.gold || "0").match(/(\d+)/);
-        return m ? parseInt(m[1], 10) : 0;
-      })(),
-      wyrdstone: sheet.wyrdstone ?? "0",
-      vault: (sheet.vault || []).map((e: any) => stripUndefinedDeep(e)),
-      figures: (sheet.units || [])
-        .map((u: any) => u?.figure)
-        .filter(Boolean)
-        .map((f: any) => stripUndefinedDeep(f)),
-    };
-
-    const payload = stripUndefinedDeep(payloadRaw);
-
-    try {
-      await updateDoc(ref, payload);
-      setHasUnsavedChanges(false);
-      toast.success("Alterações salvas com sucesso!");
-    } catch (e) {
-      console.error("[Firestore Persist][Error]", e);
-      toast.error("Erro ao salvar alterações");
-    } finally {
-      setIsSaving(false);
-    }
   };
 
   // Fecha menus ao clicar fora
@@ -629,7 +326,7 @@ function WarbandRosterPage() {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
       const shouldClose = Object.values(menuRefs.current).every(
-        (ref) => ref && !ref.contains(target)
+        ref => ref && !ref.contains(target)
       );
       if (shouldClose) {
         setOpenMenus(new Set());
@@ -645,690 +342,164 @@ function WarbandRosterPage() {
     };
   }, [openMenus]);
 
-  // Função para calcular custo final de um item (considerando modificadores)
-  const calculateItemCost = (
-    baseCost: string,
-    modifier?: { name: string; effect?: string }
-  ): number => {
-    // Extrai número do custo base
-    const baseCostMatch = String(baseCost || "0").match(/(\d+(?:\.\d+)?)/);
-    const baseCostNum = baseCostMatch ? parseFloat(baseCostMatch[1]) : 0;
+  // Objeto com catálogos para usar nas funções helpers
+  // Nota: Não buscamos equipamentos do Firestore porque eles estão nos arquivos JSON
+  // (armas-corpo-a-corpo, armas-de-fogo, etc.) que já estão carregados via useJsonData
+  // O resolvedVault faz fallback para esses dados estáticos
 
-    // Se não tem modificador, retorna o custo base
-    if (!modifier || !modifier.name) return baseCostNum;
+  // Converte vault para formato StashItem usando dados resolvidos
+  const resolvedVault = useMemo(() => {
+    const vault = (warband.vault || []) as any[];
 
-    // Busca modificador nos catálogos
-    const modNameLc = String(modifier.name).toLowerCase();
-    const allMods: any[] = [
-      ...(meleeMods as any[]),
-      ...(rangedMods as any[]),
-      ...(firearmsMods as any[]),
-    ];
-    const mod =
-      allMods.find((m) => String(m.name).toLowerCase() === modNameLc) ||
-      (modifier as any);
-
-    // Calcula multiplicador a partir da expressão do modificador
-    const exprRaw = String(mod.purchaseCost || "");
-    const expr = exprRaw.toLowerCase().replace(/\s+/g, "");
-    let multiplier = 1;
-    let addend = 0;
-    let fixedCost: number | null = null;
-
-    const mult = expr.match(/base\*(\d+(?:\.\d+)?)/);
-    const add = expr.match(/base\+(\d+(?:\.\d+)?)/);
-    if (mult) {
-      multiplier = parseFloat(mult[1]);
-    } else if (add) {
-      addend = parseFloat(add[1]);
-    } else if (!expr && typeof (mod as any).purchaseCost === "number") {
-      fixedCost = Number((mod as any).purchaseCost);
-    }
-
-    // Calcula custo final
-    if (fixedCost != null) {
-      return fixedCost;
-    } else {
-      return baseCostNum * multiplier + addend;
-    }
-  };
-
-  // Adicionar item ao cofre (vault) — agora suporta comprar (desconta) ou lootear (não desconta)
-  const handlePurchaseItem = (item: StashItem, isPurchase: boolean = false) => {
-    setHasUnsavedChanges(true);
-
-    // Calcula custo final
-    const finalCost = calculateItemCost(item.cost, item.modifier);
-
-    // Se for compra, verifica se tem ouro suficiente
-    if (isPurchase) {
-      const currentGoldMatch = String(sheet.gold || "0").match(/(\d+)/);
-      const currentGold = currentGoldMatch
-        ? parseInt(currentGoldMatch[1], 10)
-        : 0;
-
-      if (currentGold < finalCost) {
-        toast.error(
-          `Você não tem coroas suficientes! (Necessário: ${finalCost}, Disponível: ${currentGold})`
-        );
-        return;
-      }
-
-      toast.success(`Item comprado! ${finalCost} coroas descontadas.`);
-    } else {
-      toast.success("Item adicionado ao cofre (loot).");
-    }
-
-    // popula vault com Equipment completo
-    const eqObj = resolveEquipmentByName(item.name);
-    if (!eqObj) return;
-    // Aplica modificador (se fornecido): mantém objeto base intacto e adiciona campo modifier
-    if (item.modifier && item.modifier.name) {
-      // Resolve modificador completo a partir dos catálogos
-      const modNameLc = String(item.modifier.name).toLowerCase();
-      const allMods: any[] = [
-        ...(meleeMods as any[]),
-        ...(rangedMods as any[]),
-        ...(firearmsMods as any[]),
-      ];
-      const mod =
-        allMods.find((m) => String(m.name).toLowerCase() === modNameLc) ||
-        (item.modifier as any);
-
-      // Calcula multiplicador a partir da expressão do modificador
-      const exprRaw = String(mod.purchaseCost || "");
-      const expr = exprRaw.toLowerCase().replace(/\s+/g, "");
-      let multiplier = 1;
-
-      const mult = expr.match(/base\*(\d+(?:\.\d+)?)/);
-      const add = expr.match(/base\+(\d+(?:\.\d+)?)/);
-      if (mult) {
-        multiplier = parseFloat(mult[1]);
-      } else if (add) {
-        // Para "base + X", calculamos um multiplicador equivalente
-        // Mas na verdade isso é uma adição, não multiplicação
-        // Vamos armazenar tanto o multiplicador quanto o addend
-        const addend = parseFloat(add[1]);
-        multiplier = 1; // Base sempre multiplicada por 1
-        (eqObj as any).modifierAddend = addend; // Valor adicional
-      } else if (!expr && typeof (mod as any).purchaseCost === "number") {
-        // Custo fixo - não é multiplicador, é substituição
-        multiplier = 1;
-        (eqObj as any).modifierFixedCost = Number((mod as any).purchaseCost);
-      }
-
-      // NÃO modifica o nome original - apenas adiciona o modificador como metadata
-      // O nome completo será montado na renderização: name + modifier.name
-      (eqObj as any).modifier = {
-        name: String(mod.name),
-        effect: String(mod.effect || (item as any).modifier?.effect || ""),
-        purchaseCost: exprRaw, // Mantém a expressão original do modificador
-        multiplier: multiplier, // Multiplicador de custo
-        rarity: mod.rarity ?? null, // Raridade do modificador
-      };
-
-      // NÃO adiciona special rule aqui - será adicionada na renderização do modal
-    }
-    try {
-      // eslint-disable-next-line no-console
-      console.log(
-        "[Vault Add] Equipment object:",
-        JSON.parse(JSON.stringify(eqObj))
-      );
-    } catch {
-      // eslint-disable-next-line no-console
-      console.log("[Vault Add] Equipment object:", eqObj);
-    }
-    const cleaned = stripUndefinedDeep(eqObj);
-
-    // Atualiza tudo de uma vez (ouro + vault)
-    setSheet((prev) => {
-      let newGold = prev.gold;
-
-      // Se for compra, desconta ouro
-      if (isPurchase) {
-        const currentGoldMatch = String(prev.gold || "0").match(/(\d+)/);
-        const currentGold = currentGoldMatch
-          ? parseInt(currentGoldMatch[1], 10)
-          : 0;
-        const finalGold = Math.max(0, currentGold - finalCost);
-        newGold = String(finalGold);
-      }
-
-      return {
-        ...prev,
-        gold: newGold,
-        vault: [...((prev.vault || []) as any[]), cleaned],
-      };
-    });
-  };
-
-  // Handler para remover item do cofre (vender/devolver) — usa vault
-
-  // === EQUIPAR/DES equipar A PARTIR DO COFRE ===
-  // handleEquipFromStash (com slots) descontinuado após unificação
-
-  // handleUnequipToStash (com slots) descontinuado
-
-  // === FLAT EQUIPMENT FLOW (sem slots) ===
-  /* const canEquipByRules = (
-    unit: EditableUnit,
-    item: { name: string; category: string }
-  ) => {
-    const hasArsenal = ((unit.figure as any)?.skills || []).some(
-      (s: any) => s.name === "Mestre do Arsenal"
-    );
-    const hasSharpshooter = ((unit.figure as any)?.skills || []).some(
-      (s: any) => s.name === "Mestre Atirador"
-    );
-    const eqList = (unit.equipment || {}) as any;
-    const allowedMelee = (eqList["hand-to-hand"] || []).map((e: any) => e.name);
-    const allowedRanged = (eqList.ranged || []).map((e: any) => e.name);
-    const allowedArmor = (eqList.armor || []).map((e: any) => e.name);
-    const cat = (item.category || "").toLowerCase();
-    if (cat === "miscellaneous") return true;
-    if (cat === "hand-to-hand")
-      return hasArsenal || allowedMelee.includes(item.name);
-    if (cat === "ranged")
-      return hasSharpshooter || allowedRanged.includes(item.name);
-    if (cat === "armor") return allowedArmor.includes(item.name);
-    return false;
-  }; */
-
-  const handleEquipFromStashFlat = (unitId: string, itemName: string) => {
-    setHasUnsavedChanges(true);
-    const unit = sheet.units.find((u) => u.id === unitId);
-    if (!unit) return;
-    const idx = (sheet.vault || []).findIndex((i: any) => i.name === itemName);
-    if (idx === -1) return;
-    let item:
-      | { name: string; category: string; cost?: string; data?: any }
-      | undefined;
-    // monta item mínimo a partir dos catálogos
-    item = {
-      name: itemName,
-      category: (() => {
-        if ((meleeDb as any[]).some((w) => w.name === itemName))
-          return "hand-to-hand";
-        if ((rangedDb as any[]).some((w) => w.name === itemName))
-          return "ranged";
-        if ((firearmsDb as any[]).some((w) => w.name === itemName))
-          return "ranged";
-        if ((armorDb as any[]).some((w) => w.name === itemName)) return "armor";
-        return "miscellaneous";
-      })(),
-      cost: "-",
-    } as any;
-    if (!item) {
-      if ((meleeDb as any[]).some((w) => w.name === itemName))
-        item = { name: itemName, category: "hand-to-hand" } as any;
-      else if ((rangedDb as any[]).some((w) => w.name === itemName))
-        item = { name: itemName, category: "ranged" } as any;
-      else if ((firearmsDb as any[]).some((w) => w.name === itemName))
-        item = { name: itemName, category: "ranged" } as any;
-      else if ((armorDb as any[]).some((w) => w.name === itemName))
-        item = { name: itemName, category: "armor" } as any;
-      else item = { name: itemName, category: "miscellaneous" } as any;
-    }
-    if (!item) return;
-    // Se já está equipado (mesmo nome), não adiciona nem remove do cofre
-
-    // Não bloqueia mais quando excede os espaços; apenas indica no UI
-    // resolve Equipment completo e move do vault
-    const equipmentObj =
-      (sheet.vault || [])[idx] || resolveEquipmentByName(itemName);
-
-    // Validação: verifica se já existe armadura ou escudo equipado
-    const isShield = isShieldName(itemName);
-    const isHelmet = isHelmetName(itemName);
-    // Armadura é qualquer item com categoria "armor" que não seja escudo nem elmo
-    const isArmor = item.category === "armor" && !isShield && !isHelmet;
-
-    if (isShield || isArmor) {
-      const hasConflictingEquipment = unit.figure?.equiped?.some((eq: any) => {
-        const eqName = String(eq?.name || "");
-        if (isShield) {
-          return isShieldName(eqName);
-        } else if (isArmor) {
-          // Checa se já tem uma armadura (não escudo, não elmo)
-          const cat = String(eq?.type || eq?.category || "").toLowerCase();
-          return (
-            cat === "armor" && !isShieldName(eqName) && !isHelmetName(eqName)
-          );
+    return vault
+      .map((equipment: any) => {
+        // Se é formato antigo (tem name diretamente), retorna como está
+        if (equipment.name && !equipment.base_equipment_id) {
+          return {
+            id: equipment.id || crypto.randomUUID(),
+            name: equipment.name,
+            category: equipment.type || equipment.category || "",
+            cost: String(equipment.purchaseCost || equipment.sellCost || "-"),
+            data: equipment,
+            modifier: equipment.modifier
+              ? {
+                  name: equipment.modifier.name,
+                  effect: equipment.modifier.effect,
+                }
+              : undefined,
+          } as StashItem;
         }
-        return false;
-      });
 
-      if (hasConflictingEquipment) {
-        const itemType = isShield ? "escudo" : "armadura";
-        toast.error(
-          `A figura já possui um ${itemType} equipado. Você só pode ter 1 ${itemType} por vez.`
-        );
-        return;
-      }
-    }
+        // Novo formato: resolve usando base_id dos dados estáticos
+        if (equipment.base_equipment_id) {
+          const allEquipment: any[] = [
+            ...(equipmentCatalogs.meleeDb || []),
+            ...(equipmentCatalogs.rangedDb || []),
+            ...(equipmentCatalogs.firearmsDb || []),
+            ...(equipmentCatalogs.armorDb || []),
+            ...(equipmentCatalogs.accessoriesDb || []),
+            ...(equipmentCatalogs.remediesPoisonsDb || []),
+          ];
 
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        // NOVA ARQUITETURA: trabalha diretamente com figure.equiped
-        // Não precisa mais de chosenEquipment - usa apenas figure.equiped
-        const prevFig = (u as any).figure;
-        if (!prevFig || !equipmentObj) return u;
+          const baseEquipment = allEquipment.find(
+            (e: any) => e.id === equipment.base_equipment_id
+          );
 
-        const nextUnit: any = {
-          ...u,
-          figure: {
-            ...prevFig,
-            equiped: [...((prevFig.equiped || []) as any[]), equipmentObj],
-          },
-        };
-        return nextUnit as EditableUnit;
-      }),
-      vault: (prev.vault || []).filter((_, i) => i !== idx),
-    }));
-  };
+          if (!baseEquipment) {
+            console.warn(
+              `[ResolvedVault] Equipamento ${equipment.base_equipment_id} não encontrado nos dados estáticos`
+            );
+            return null;
+          }
 
-  const handleUnequipToStashFlat = (unitId: string, itemName: string) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => {
-      // Primeiro, busca o item que será removido
-      const unit = prev.units.find((x) => x.id === unitId) as any;
-      const equippedList: any[] = (unit?.figure?.equiped || []) as any[];
-      const removedEquipment = equippedList.find(
-        (e: any) =>
-          String(e?.name || "").toLowerCase() === itemName.toLowerCase()
-      );
+          // Resolve modificador (se houver)
+          let baseModifier: any = undefined;
+          if (equipment.base_modifier_id) {
+            const allMods: any[] = [
+              ...(modifierCatalogs.meleeMods || []),
+              ...(modifierCatalogs.rangedMods || []),
+              ...(modifierCatalogs.firearmsMods || []),
+            ];
+            baseModifier = allMods.find(
+              (m: any) => m.id === equipment.base_modifier_id
+            );
+          }
 
-      return {
-        ...prev,
-        units: prev.units.map((u) => {
-          if (u.id !== unitId) return u;
-          // NOVA ARQUITETURA: trabalha diretamente com figure.equiped
-          const prevFig = (u as any).figure;
-          if (!prevFig) return u;
-
-          const equippedList: any[] = (prevFig.equiped || []) as any[];
-
-          const nextUnit: any = {
-            ...u,
-            figure: {
-              ...prevFig,
-              equiped: equippedList.filter((e: any) =>
-                removedEquipment?.id
-                  ? e.id !== removedEquipment.id
-                  : String(e.name).toLowerCase() !== itemName.toLowerCase()
-              ),
+          // Monta objeto completo para o StashItem
+          const stashItem: StashItem = {
+            id: equipment.id,
+            name: baseEquipment.name || "",
+            category: baseEquipment.type || "",
+            cost: String(baseEquipment.purchaseCost || "-"),
+            data: {
+              ...baseEquipment,
+              modifier: baseModifier,
             },
+            modifier: baseModifier
+              ? { name: baseModifier.name, effect: baseModifier.effect || "" }
+              : undefined,
           };
-          return nextUnit as EditableUnit;
-        }),
-        // Adiciona o equipamento de volta ao vault (cofre)
-        vault: removedEquipment
-          ? [...(prev.vault || []), removedEquipment]
-          : prev.vault || [],
-      };
-    });
-  };
 
-  // === HABILIDADES (skills) DA FIGURA ===
-  const handleAddSkillToUnit = (
-    unitId: string,
-    skill: { id?: string; name: string; description: string; type?: string }
-  ) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const figure = (u as any).figure;
-        if (!figure) return u;
-        const existing = figure.skills || [];
-        // Evita adicionar habilidades duplicadas
-        if (existing.some((s: any) => s.name === skill.name)) return u;
-        // Adiciona a skill diretamente ao figure.skills
-        const newSkill = {
-          name: skill.name,
-          description: skill.description,
-          id: skill.id || crypto.randomUUID(), // Mantém id para remoção
-          type: skill.type, // Mantém type se houver
-        } as any;
-        return {
-          ...u,
-          figure: {
-            ...figure,
-            skills: [...existing, newSkill],
-          },
-        } as any;
-      }),
-    }));
-  };
+          return stashItem;
+        }
 
-  const handleRemoveSkillFromUnit = (unitId: string, skillId: string) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) =>
-        u.id === unitId
-          ? {
-              ...u,
-              figure: {
-                ...(u as any).figure,
-                skills: (((u as any).figure?.skills || []) as any[]).filter(
-                  (s: any) => s.id !== skillId
-                ),
-              },
-            }
-          : u
-      ),
-    }));
-  };
+        return null;
+      })
+      .filter(Boolean) as StashItem[];
+  }, [warband.vault, equipmentCatalogs, modifierCatalogs]);
+
+  // Usa handlers do hook de gerenciamento de unidades (já usa fila internamente)
+  const handleAddSkillToUnit = unitManagement.handleAddSkillToUnit;
+  const handleRemoveSkillFromUnit = unitManagement.handleRemoveSkillFromUnit;
+  const handleAddSpellToUnit = unitManagement.handleAddSpellToUnit;
+  const handleRemoveSpellFromUnit = unitManagement.handleRemoveSpellFromUnit;
+  const handleUpdateSpellCastingNumber =
+    unitManagement.handleUpdateSpellCastingNumber;
+  const handleUpdateFigureXp = unitManagement.handleUpdateFigureXp;
+  const handleUpdateNarrativeName = unitManagement.handleUpdateNarrativeName;
+  const handleAddSpecialAbilityToUnit =
+    unitManagement.handleAddSpecialAbilityToUnit;
+  const handleRemoveSpecialAbilityFromUnit =
+    unitManagement.handleRemoveSpecialAbilityFromUnit;
+  const handleAddSpecialRuleToUnit = unitManagement.handleAddSpecialRuleToUnit;
+  const handleRemoveSpecialRuleFromUnit =
+    unitManagement.handleRemoveSpecialRuleFromUnit;
+  const handleAddAdvancementToUnit = unitManagement.handleAddAdvancementToUnit;
+  const handleRemoveAdvancementFromUnit =
+    unitManagement.handleRemoveAdvancementFromUnit;
+  const handleAddInjuryToUnit = unitManagement.handleAddInjuryToUnit;
+  const handleRemoveInjuryFromUnit = unitManagement.handleRemoveInjuryFromUnit;
+  const handleFigureStatModifierChange =
+    unitManagement.handleFigureStatModifierChange;
 
   // Adiciona uma tradição (em aligned0) à unidade
   const handleAddTraditionToUnit = (unitId: string, traditionName: string) => {
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const current = u.spellAffinity?.aligned0 || [];
-        if (current.includes(traditionName)) return u;
-        const updated = {
-          ...(u.spellAffinity || {}),
-          aligned0: [...current, traditionName],
-        };
-        return { ...u, spellAffinity: updated };
-      }),
-    }));
+    const unit = editableUnits.find(u => u.id === unitId);
+    if (!unit) return;
+    const current = unit.spellAffinity?.aligned0 || [];
+    if (current.includes(traditionName)) return;
+    const figure = unit.figure as any;
+    if (!figure) return;
+
+    updateWarbandFigure(unitId, (fig: any) => {
+      // Nota: spellAffinity não está diretamente na figure, mas pode estar no EditableUnit
+      // Por enquanto, apenas atualiza a figure
+      return fig;
+    });
   };
 
   // Adiciona uma lista de habilidades ao stats.skills da unidade
   const handleAddSkillCategoryToUnit = (unitId: string, category: string) => {
     const value = category.trim();
     if (!value) return;
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const skillsArr = Array.isArray(u.stats.skills)
-          ? [...(u.stats.skills as string[])]
-          : [];
-        if (skillsArr.includes(value)) return u;
-        return { ...u, stats: { ...u.stats, skills: [...skillsArr, value] } };
-      }),
-    }));
-  };
+    const unit = editableUnits.find(u => u.id === unitId);
+    if (!unit) return;
 
-  // === MAGIAS (spells) DA FIGURA ===
-  const handleAddSpellToUnit = (
-    unitId: string,
-    spell: {
-      name: string;
-      castingNumber: number;
-      keywords: string[];
-      effect: string;
-    }
-  ) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const figure = (u as any).figure;
-        if (!figure) return u;
-        const existing = figure.spells || [];
-        if (existing.some((s: any) => s.name === spell.name)) return u;
-        const instance = { id: crypto.randomUUID(), ...spell } as any;
-        return {
-          ...u,
-          figure: {
-            ...figure,
-            spells: [...existing, instance],
-          },
-        } as any;
-      }),
-    }));
-  };
-
-  const handleRemoveSpellFromUnit = (unitId: string, spellId: string) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) =>
-        u.id === unitId
-          ? {
-              ...u,
-              figure: {
-                ...(u as any).figure,
-                spells: (((u as any).figure?.spells || []) as any[]).filter(
-                  (s: any) => s.id !== spellId
-                ),
-              },
-            }
-          : u
-      ),
-    }));
-  };
-
-  const handleUpdateSpellCastingNumber = (
-    unitId: string,
-    spellId: string,
-    newCastingNumber: number
-  ) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const figure = (u as any).figure;
-        if (!figure) return u;
-        const updated = (figure.spells || []).map((s: any) =>
-          s.id === spellId ? { ...s, castingNumber: newCastingNumber } : s
-        );
-        return {
-          ...u,
-          figure: {
-            ...figure,
-            spells: updated,
-          },
-        } as any;
-      }),
-    }));
-  };
-
-  // === EXPERIÊNCIA (XP) DA FIGURA ===
-  const handleUpdateFigureXp = (unitId: string, newXp: number) => {
-    // Limite depende do papel: Líder/Herói = 90, demais = 30
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const fig = (u as any).figure || {};
-        const roleStr = (fig?.role || "").toString().toLowerCase();
-        const isHero =
-          roleStr.includes("líder") ||
-          roleStr.includes("lider") ||
-          roleStr.includes("her");
-        const limit = isHero ? 90 : 30;
-        const xpVal = Math.max(
-          0,
-          Math.min(limit, Number.isFinite(newXp) ? newXp : 0)
-        );
-        const nextFigure = { ...fig, xp: xpVal };
-        try {
-          // eslint-disable-next-line no-console
-          console.log(
-            "[Figure Updated]",
-            JSON.parse(JSON.stringify(nextFigure))
-          );
-        } catch {}
-        return { ...u, figure: nextFigure } as any;
-      }),
-    }));
-  };
-
-  const handleUpdateNarrativeName = (unitId: string, newName: string) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const fig = (u as any).figure || {};
-        const nextFigure = { ...fig, narrativeName: newName };
-        try {
-          // eslint-disable-next-line no-console
-          console.log(
-            "[Figure Updated]",
-            JSON.parse(JSON.stringify(nextFigure))
-          );
-        } catch {}
-        return { ...u, figure: nextFigure } as any;
-      }),
-    }));
-  };
-
-  // === HABILIDADES ESPECIAIS (bênçãos/mutações/marcas) ===
-  const handleAddSpecialAbilityToUnit = (
-    unitId: string,
-    ability: {
-      id: string;
-      category: "nurgleBlessing" | "mutation" | "sacredMark";
-      name: string;
-      description?: string;
-      cost?: string;
-    }
-  ) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const fig = (u as any).figure || {};
-        const key =
-          ability.category === "nurgleBlessing"
-            ? "nurgleBlessings"
-            : ability.category === "mutation"
-            ? "mutations"
-            : "sacredMarks";
-        const nextList = [
-          ...(((fig as any)[key] || []) as any[]),
-          {
-            id: ability.id,
-            name: ability.name,
-            description: ability.description,
-            cost: ability.cost,
-          },
-        ];
-        const nextFigure = { ...fig, [key]: nextList };
-        try {
-          // eslint-disable-next-line no-console
-          console.log(
-            "[Figure Updated]",
-            JSON.parse(JSON.stringify(nextFigure))
-          );
-        } catch {}
-        return { ...u, figure: nextFigure } as any;
-      }),
-    }));
-  };
-
-  const handleRemoveSpecialAbilityFromUnit = (
-    unitId: string,
-    category: "nurgleBlessing" | "mutation" | "sacredMark",
-    id: string
-  ) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const fig = (u as any).figure || {};
-        const key =
-          category === "nurgleBlessing"
-            ? "nurgleBlessings"
-            : category === "mutation"
-            ? "mutations"
-            : "sacredMarks";
-        const filtered = (((fig as any)[key] || []) as any[]).filter(
-          (x: any) => x.id !== id
-        );
-        const nextFigure = { ...fig, [key]: filtered };
-        try {
-          // eslint-disable-next-line no-console
-          console.log(
-            "[Figure Updated]",
-            JSON.parse(JSON.stringify(nextFigure))
-          );
-        } catch {}
-        return { ...u, figure: nextFigure } as any;
-      }),
-    }));
-  };
-
-  // === ADICIONAR SPECIAL RULE ===
-  const handleAddSpecialRuleToUnit = (
-    unitId: string,
-    specialRule: { name: string; description: string }
-  ) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const fig = (u as any).figure || {};
-        const specialRules = fig.specialRules || [];
-        // Verifica se já existe a regra
-        const exists = specialRules.some(
-          (r: any) => r?.name === specialRule.name
-        );
-        if (exists) return u;
-        const nextFigure = {
-          ...fig,
-          specialRules: [...specialRules, specialRule],
-        };
-        return { ...u, figure: nextFigure } as any;
-      }),
-    }));
-  };
-
-  // === REMOVER SPECIAL RULE ===
-  const handleRemoveSpecialRuleFromUnit = (
-    unitId: string,
-    specialRuleName: string
-  ) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const fig = (u as any).figure || {};
-        const specialRules = fig.specialRules || [];
-        const filtered = specialRules.filter(
-          (r: any) => r?.name !== specialRuleName
-        );
-        const nextFigure = {
-          ...fig,
-          specialRules: filtered,
-        };
-        return { ...u, figure: nextFigure } as any;
-      }),
-    }));
+    updateWarbandFigure(unitId, (fig: any) => {
+      const availableSkills = Array.isArray(fig?.availableSkills)
+        ? [...fig.availableSkills]
+        : [];
+      if (availableSkills.includes(value)) return fig;
+      return {
+        ...fig,
+        availableSkills: [...availableSkills, value],
+      };
+    });
   };
 
   const getGlobalItemsByType = (type: string, unit?: EditableUnit) => {
     if (type === "Arma Corpo a Corpo") {
-      return (meleeDb as any[])
-        .filter((w) => String(w.type || "").includes("Corpo"))
-        .map((w) => ({ name: w.name, cost: w.cost || "-" }));
+      return (equipmentCatalogs.meleeDb || [])
+        .filter((w: any) => String(w.type || "").includes("Corpo"))
+        .map((w: any) => ({ name: w.name, cost: w.cost || "-" }));
     }
     if (type === "Arma a Distância") {
-      return (rangedDb as any[])
-        .filter((w) => String(w.type || "").includes("Distância"))
-        .map((w) => ({ name: w.name, cost: w.cost || "-" }));
+      return (equipmentCatalogs.rangedDb || [])
+        .filter((w: any) => String(w.type || "").includes("Distância"))
+        .map((w: any) => ({ name: w.name, cost: w.cost || "-" }));
     }
     if (type === "Arma de Fogo") {
-      return (firearmsDb as any[]).map((w) => ({
+      return (equipmentCatalogs.firearmsDb || []).map((w: any) => ({
         name: w.name,
         cost: w.purchaseCost || w.sellCost || "-",
       }));
@@ -1349,210 +520,77 @@ function WarbandRosterPage() {
     return [];
   };
 
-  const handleFigureStatModifierChange = (
-    unitId: string,
-    stat: keyof NonNullable<EditableUnit["figure"]>["baseStats"],
-    category: "injury" | "advancement" | "misc",
-    value: number
-  ) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const fig = u.figure as any;
-        if (!fig) return u;
-        const targetKey =
-          category === "injury"
-            ? "injuryStatsModifiers"
-            : category === "advancement"
-            ? "advancementsStatsModifiers"
-            : "miscStatsModifiers";
-        const nextFigure = {
-          ...fig,
-          [targetKey]: {
-            ...fig[targetKey],
-            [stat]: value,
-          },
-        };
-        try {
-          // Loga a figura completa após a alteração
-          // eslint-disable-next-line no-console
-          console.log(
-            "[Figure Updated]",
-            JSON.parse(JSON.stringify(nextFigure))
-          );
-        } catch (e) {
-          // eslint-disable-next-line no-console
-          console.log("[Figure Updated]", nextFigure);
-        }
-        return { ...u, figure: nextFigure } as EditableUnit;
-      }),
-    }));
-  };
-
-  const removeUnit = (id: string) => {
-    // Remove a figura retornando seus equipamentos para o cofre (vault) e devolve ouro
-    setHasUnsavedChanges(true);
-    setSheet((s) => {
-      const unit = s.units.find((u) => u.id === id) as any;
-      const figure = unit?.figure as any;
-      const role = (figure?.role || unit?.role || "").toString().toLowerCase();
-      const isMercenaryOrLegend =
-        role.includes("merc") || role.includes("lenda");
-
-      // Para mercenários e lendas: equipamentos são descartados (não voltam ao cofre)
-      // Para outros tipos: equipamentos voltam ao cofre (exceto adaga grátis)
-      let nextVault = [...((s.vault || []) as any[])];
-
-      if (!isMercenaryOrLegend) {
-        // Apenas para não-mercenários/não-lendas: devolve equipamentos ao cofre
-        const figEquip: any[] = (figure?.equiped || []) as any[];
-
-        // Filtra apenas a adaga grátis (nome contém "adaga" E slots === 0) para não adicionar ao cofre
-        const equipmentToReturn = figEquip.filter((eq: any) => {
-          const name = String(eq?.name || "").toLowerCase();
-          const slots = eq?.slots;
-          const isFreeDagger =
-            name.includes("adaga") &&
-            (slots === 0 ||
-              slots === "0" ||
-              slots === null ||
-              slots === undefined);
-          return !isFreeDagger; // Retorna todos EXCETO a adaga grátis
-        });
-
-        nextVault = [...nextVault, ...equipmentToReturn];
-      }
-      // Se for mercenário ou lenda, simplesmente não adiciona os equipamentos ao vault (eles são descartados)
-
-      // Calcula e devolve ouro da figura
-      let refund = 0;
-      if (unit?.stats?.cost || unit?.figure?.baseStats?.cost) {
-        const costValue = unit?.stats?.cost || unit?.figure?.baseStats?.cost;
-        const costMatch = String(costValue).match(/(\d+)/);
-        refund = costMatch ? parseInt(costMatch[1], 10) : 0;
-      }
-
-      const currentGoldMatch = String(s.gold || "0").match(/(\d+)/);
-      const currentGold = currentGoldMatch
-        ? parseInt(currentGoldMatch[1], 10)
-        : 0;
-      const newGold = currentGold + refund;
-
-      if (refund > 0) {
-        toast.success(`Figura removida! ${refund} coroas devolvidas ao cofre.`);
-      } else {
-        toast.success("Figura removida!");
-      }
-
-      return {
-        ...s,
-        vault: nextVault,
-        units: s.units.filter((u) => u.id !== id),
-        gold: String(newGold),
-      } as any;
-    });
-  };
-
   const killUnit = (id: string) => {
     // Remove a figura e descarta os equipamentos
-    setHasUnsavedChanges(true);
-    setSheet((s) => ({ ...s, units: s.units.filter((u) => u.id !== id) }));
+    removeWarbandFigure(id);
   };
 
   const promoteUnitToHero = (id: string) => {
-    // Transforma uma unidade sem role em Herói (atualiza unit.role e figure.role)
-    setHasUnsavedChanges(true);
-    setSheet((s) => ({
-      ...s,
-      units: s.units.map((u) => {
-        if (u.id !== id) return u;
-        const nextFig = { ...(u as any).figure, role: "Herói" } as any;
-        return { ...u, role: "Herói", figure: nextFig } as any;
-      }),
+    updateWarbandFigure(id, (fig: any) => ({
+      ...fig,
+      role: "Herói",
     }));
   };
 
   const promoteHeroToLeader = (id: string) => {
-    // Promove um Herói para Líder: muda role e adiciona a habilidade Líder
-    setHasUnsavedChanges(true);
-    setSheet((s) => {
+    updateWarbandFigure(id, (fig: any) => {
+      if (!fig) return fig;
+
+      const leaderSkill = {
+        id: "líder",
+        name: "Líder",
+        description:
+          "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem.",
+        type: "Especial",
+      };
+
+      const hasLeaderSkill =
+        (fig.skills || []).some(
+          (s: any) => s?.name === "Líder" || s?.id === "líder"
+        ) || false;
+
+      const updatedSkills = hasLeaderSkill
+        ? fig.skills || []
+        : [...(fig.skills || []), leaderSkill];
+
+      const leaderSpecialRule = {
+        name: "Líder",
+        description:
+          "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem.",
+      };
+
+      const hasLeaderInSpecialRules =
+        (fig.specialRules || []).some((r: any) => r?.name === "Líder") || false;
+
+      const updatedSpecialRules = hasLeaderInSpecialRules
+        ? fig.specialRules || []
+        : [...(fig.specialRules || []), leaderSpecialRule];
+
       return {
-        ...s,
-        units: s.units.map((u) => {
-          if (u.id !== id) return u;
-          const figure = (u as any).figure;
-          if (!figure) return u;
-
-          // Cria a habilidade Líder
-          const leaderSkill = {
-            id: "líder",
-            name: "Líder",
-            description:
-              "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem.",
-            type: "Especial",
-          };
-
-          // Verifica se já tem a habilidade Líder nas skills
-          const hasLeaderSkill =
-            (figure.skills || []).some(
-              (s: any) => s?.name === "Líder" || s?.id === "líder"
-            ) || false;
-
-          // Atualiza o figure: muda role e adiciona skill se necessário
-          const updatedSkills = hasLeaderSkill
-            ? figure.skills || []
-            : [...(figure.skills || []), leaderSkill];
-
-          // Adiciona a habilidade Líder em specialRules
-          const leaderSpecialRule = {
-            name: "Líder",
-            description:
-              "Essa figura pode ativar até 3 outras figuras a 8cm de distância dela. As figuras agem imediatamente após essa figura em qualquer ordem.",
-          };
-
-          // Verifica se já tem a regra especial Líder
-          const hasLeaderInSpecialRules =
-            (figure.specialRules || []).some((r: any) => r?.name === "Líder") ||
-            false;
-
-          // Atualiza specialRules adicionando Líder se não tiver
-          const updatedSpecialRules = hasLeaderInSpecialRules
-            ? figure.specialRules || []
-            : [...(figure.specialRules || []), leaderSpecialRule];
-
-          const nextFig = {
-            ...figure,
-            role: "Líder",
-            skills: updatedSkills,
-            specialRules: updatedSpecialRules,
-          } as any;
-
-          return {
-            ...u,
-            role: "Líder",
-            figure: nextFig,
-          } as any;
-        }),
+        ...fig,
+        role: "Líder",
+        skills: updatedSkills,
+        specialRules: updatedSpecialRules,
       };
     });
   };
 
-  const updateUnit = (id: string, patch: Partial<EditableUnit>) => {
-    setSheet((s) => ({
-      ...s,
-      units: s.units.map((u) => (u.id === id ? { ...u, ...patch } : u)),
-    }));
-  };
-
   const exportJson = () => {
+    const exportData = {
+      name: warband.name,
+      faction: warband.faction,
+      notes: warband.notes,
+      gold: warband.gold,
+      wyrdstone: warband.wyrdstone,
+      vault: warband.vault,
+      units: editableUnits,
+    };
     const dataStr =
       "data:text/json;charset=utf-8," +
-      encodeURIComponent(JSON.stringify(sheet, null, 2));
+      encodeURIComponent(JSON.stringify(exportData, null, 2));
     const a = document.createElement("a");
     a.href = dataStr;
-    a.download = `${sheet.name || "bando"}.json`;
+    a.download = `${warband.name || "bando"}.json`;
     a.click();
   };
 
@@ -1561,71 +599,82 @@ function WarbandRosterPage() {
     reader.onload = () => {
       try {
         const parsed = JSON.parse(String(reader.result));
-        setSheet(parsed);
+        if (parsed.units && Array.isArray(parsed.units)) {
+          // Converte units de volta para figures
+          const figures = parsed.units
+            .map((u: EditableUnit) => u.figure)
+            .filter(Boolean);
+          setWarband({
+            name: parsed.name || "",
+            faction: parsed.faction,
+            notes: parsed.notes || "",
+            gold: parsed.gold || "500",
+            wyrdstone: parsed.wyrdstone || "0",
+            vault: parsed.vault || [],
+            figures: figures,
+          });
+        } else {
+          // Formato antigo - assume que já são figures
+          setWarband({
+            name: parsed.name || "",
+            faction: parsed.faction,
+            notes: parsed.notes || "",
+            gold: parsed.gold || "500",
+            wyrdstone: parsed.wyrdstone || "0",
+            vault: parsed.vault || [],
+            figures: parsed.figures || [],
+          });
+        }
       } catch {}
     };
     reader.readAsText(file);
   };
 
   // Filtros disponíveis para futuras seções (não usados no layout atual)
-  // const leader = useMemo(() => sheet.units.find((u) => u.role === "Líder"), [sheet.units]);
-  // const heroes = useMemo(() => sheet.units.filter((u) => u.role === "Herói"), [sheet.units]);
-  // const others = useMemo(() => sheet.units.filter((u) => !u.role), [sheet.units]);
 
-  // Helpers para adicionar/remover escolhas
-
-  const listAllEquipmentOptions = (unit: EditableUnit) => {
-    const eq = unit.equipment || {};
-    const entries: Array<{ name: string; category: string; cost?: string }> =
-      [];
-    (
-      Object.keys(eq) as Array<keyof NonNullable<EditableUnit["equipment"]>>
-    ).forEach((cat) => {
-      const arr = (eq as any)[cat] as
-        | Array<{ name: string; cost: string }>
-        | undefined;
-      if (arr && Array.isArray(arr)) {
-        arr.forEach((item) =>
-          entries.push({
-            name: item.name,
-            category: String(cat),
-            cost: item.cost,
-          })
-        );
-      }
-    });
-    return entries;
-  };
-
-  const addEquipmentToUnit = (
-    unit: EditableUnit,
-    itemName: string,
-    targetSubsection?: string
-  ) => {
-    const all = listAllEquipmentOptions(unit);
-    const item = all.find((i) => i.name === itemName);
-    if (!item) return;
-    const current = unit.chosenEquipment || [];
-    // Verifica duplicata exata
-    if (
-      current.some((i) => i.name === item.name && i.category === item.category)
-    )
+  const addEquipmentToUnit = (unit: EditableUnit, itemName: string) => {
+    // Se o item está no vault, apenas equipa
+    const vaultItem = resolvedVault.find((v: StashItem) => v.name === itemName);
+    if (vaultItem) {
+      handleEquipFromStashFlat(unit.id, itemName);
       return;
-    // Se targetSubsection foi especificado, verifica se já existe item nessa subseção (exceto Acessórios)
-    if (targetSubsection && targetSubsection !== "Acessórios") {
-      const existingInSubsection = current.find(
-        (i) => classifyEquipmentSubsection(i) === targetSubsection
-      );
-      if (existingInSubsection) {
-        // Substitui o item existente na subseção
-        const filtered = current.filter(
-          (i) => classifyEquipmentSubsection(i) !== targetSubsection
-        );
-        updateUnit(unit.id, { chosenEquipment: [...filtered, item] });
-        return;
-      }
     }
-    updateUnit(unit.id, { chosenEquipment: [...current, item] });
+
+    // Se não está no vault, precisa comprar primeiro
+    // Busca o item nos catálogos para criar um StashItem válido
+    const allEquipment: any[] = [
+      ...(equipmentCatalogs.meleeDb || []),
+      ...(equipmentCatalogs.rangedDb || []),
+      ...(equipmentCatalogs.firearmsDb || []),
+      ...(equipmentCatalogs.armorDb || []),
+      ...(equipmentCatalogs.accessoriesDb || []),
+      ...(equipmentCatalogs.remediesPoisonsDb || []),
+    ];
+
+    const baseEquipment = allEquipment.find(
+      (e: any) => String(e.name || "").toLowerCase() === itemName.toLowerCase()
+    );
+
+    if (!baseEquipment) {
+      toast.error(`Item "${itemName}" não encontrado nos catálogos.`);
+      return;
+    }
+
+    // Cria StashItem mínimo para compra
+    const purchaseItem: StashItem = {
+      name: baseEquipment.name || itemName,
+      category: baseEquipment.type || "",
+      cost: String(baseEquipment.purchaseCost || baseEquipment.cost || "0"),
+      data: baseEquipment,
+    };
+
+    // Compra o item
+    handlePurchaseItem(purchaseItem, true);
+
+    // Depois equipa (com delay para garantir que foi adicionado ao vault)
+    setTimeout(() => {
+      handleEquipFromStashFlat(unit.id, itemName);
+    }, 100);
   };
 
   // Handlers para RosterUnitCard
@@ -1634,355 +683,11 @@ function WarbandRosterPage() {
     attribute: keyof RosterUnitStats,
     value: number
   ) => {
-    const unit = sheet.units.find((u) => u.id === unitId);
+    const unit = editableUnits.find(u => u.id === unitId);
     if (!unit) return;
-    const currentBreakdown = unit.statBreakdown || {};
-    updateUnit(unitId, {
-      statBreakdown: {
-        ...currentBreakdown,
-        [attribute]: {
-          ...(currentBreakdown[attribute] || {
-            base: 0,
-            advancement: 0,
-            injury: 0,
-            misc: 0,
-          }),
-          misc: value,
-        },
-      },
-    });
-  };
-
-  const isShieldName = (name: string) => {
-    const n = name.toLowerCase();
-    return (
-      n.includes("escudo") ||
-      n.includes("shield") ||
-      n.includes("bróquel") ||
-      n.includes("broquel") ||
-      n.includes("pavise") ||
-      n.includes("paves")
-    );
-  };
-
-  const isHelmetName = (name: string) => {
-    const n = name.toLowerCase();
-    return n.includes("elmo") || n.includes("helmet") || n.includes("capacete");
-  };
-
-  // Resolve um item pelo nome nos catálogos e retorna um Equipment completo
-  const resolveEquipmentByName = (name: string): FullEquipment | null => {
-    const normalize = (s: any) =>
-      String(s || "")
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/\p{Diacritic}+/gu, "")
-        .trim();
-    const target = normalize(name);
-    const catalogs: any[][] = [
-      meleeDb as any[],
-      rangedDb as any[],
-      firearmsDb as any[],
-      armorDb as any[],
-      accessoriesDb as any[],
-      remediesPoisonsDb as any[],
-    ];
-    let found: any | null = null;
-    let typeStr = "";
-    for (const list of catalogs) {
-      const f = list.find((x: any) => normalize(x?.name) === target);
-      if (f) {
-        found = f;
-        // tenta inferir tipo
-        if (list === (meleeDb as any)) typeStr = String(f.type || "Melee");
-        else if (list === (rangedDb as any) || list === (firearmsDb as any))
-          typeStr = String(f.type || "Ranged");
-        else if (list === (armorDb as any)) typeStr = String(f.type || "Armor");
-        else typeStr = String(f.type || "Misc");
-        break;
-      }
-    }
-    if (!found) return null;
-    try {
-      // eslint-disable-next-line no-console
-      console.log("[Catalog Equipment]", JSON.parse(JSON.stringify(found)));
-    } catch {
-      // eslint-disable-next-line no-console
-      console.log("[Catalog Equipment]", found);
-    }
-    const toNumber = (v: any): number | undefined => {
-      if (typeof v === "number") return v;
-      const p = parseInt(String(v), 10);
-      return Number.isFinite(p) ? p : undefined;
-    };
-    const toRules = (arr: any): { label: string; value: string }[] => {
-      if (!Array.isArray(arr)) return [];
-      return arr
-        .map((r) => {
-          if (r && typeof r === "object" && (r.label || r.value))
-            return {
-              label: String(r.label || r.name || ""),
-              value: String(r.value || r.effect || ""),
-            };
-          return null;
-        })
-        .filter(Boolean) as any[];
-    };
-    const eq: FullEquipment = {
-      // Sempre cria um id único por instância
-      id: crypto.randomUUID(),
-      name: String(found.name),
-      type: String(typeStr || found.type || "Item"),
-      damageModifier: toNumber(found.damageModifier),
-      purchaseCost: String(
-        found.purchaseCost || found.sellCost || found.cost || "-"
-      ),
-      armorBonus: toNumber(found.armorBonus) || 0,
-      movePenalty: toNumber(found.movePenalty),
-      slots:
-        toNumber(found.slots) ||
-        toNumber(found.spaces) ||
-        toNumber(found.equipmentSpaces) ||
-        1,
-      requirements: found.requirements ?? null,
-      specialRules: toRules(found.specialRules),
-      modifier: {
-        name: String(found.strength ? "Força" : found.modifier?.name || ""),
-        effect: String(found.effect || found.modifier?.effect || ""),
-      },
-    };
-    // Adiciona maxRange se existir
-    if (found.maxRange) {
-      (eq as any).maxRange = found.maxRange;
-    }
-    // Preserva id do catálogo (quando existir) para referência futura
-    (eq as any).templateId = found.id || null;
-    return eq;
-  };
-
-  // === AVANÇOS ===
-  const handleAddAdvancementToUnit = (unitId: string, adv: string) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const figure = (u as any).figure;
-        if (!figure) return u;
-        const list = figure.advancements || [];
-        const newAdvancement = {
-          name: adv,
-          effect: "", // Pode ser preenchido depois se necessário
-        } as any;
-        let updatedUnit = {
-          ...u,
-          figure: {
-            ...figure,
-            advancements: [...list, newAdvancement],
-          },
-        } as any;
-        const norm = adv.toLowerCase();
-        // O Moleque Tem Talento! -> vira Herói (se já não for Líder)
-        if (norm.includes("moleque") && norm.includes("talento")) {
-          const currentRole = String(
-            (updatedUnit.figure as any)?.role || ""
-          ).toLowerCase();
-          if (currentRole !== "líder" && currentRole !== "lider") {
-            updatedUnit = {
-              ...updatedUnit,
-              figure: {
-                ...updatedUnit.figure,
-                role: "Herói" as any,
-              },
-            };
-          }
-        }
-        // Modificadores são calculados dinamicamente no RosterUnitCard
-        return updatedUnit;
-      }),
-    }));
-  };
-
-  const handleRemoveAdvancementFromUnit = (
-    unitId: string,
-    adv: string,
-    index?: number
-  ) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const figure = (u as any).figure;
-        if (!figure) return u;
-        const list = [...(figure.advancements || [])];
-        const idx =
-          index !== undefined
-            ? index
-            : list.findIndex((x: any) => x.name === adv || x === adv);
-        if (idx >= 0) list.splice(idx, 1);
-        let updatedUnit = {
-          ...u,
-          figure: {
-            ...figure,
-            advancements: list,
-          },
-        } as any;
-        // Modificadores são calculados dinamicamente no RosterUnitCard
-        return updatedUnit;
-      }),
-    }));
-  };
-
-  // === INJURIES ===
-  const handleAddInjuryToUnit = (unitId: string, injury: string) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const figure = (u as any).figure;
-        if (!figure) return u;
-        const list = figure.injuries || [];
-        const newInjury = {
-          name: injury,
-          description: "", // Pode ser preenchido depois se necessário
-        } as any;
-        let updatedUnit = {
-          ...u,
-          figure: {
-            ...figure,
-            injuries: [...list, newInjury],
-          },
-        } as any;
-
-        // Adiciona special rules associadas aos ferimentos
-        const figWithInjury = (updatedUnit as any).figure || {};
-        const specialRulesWithInjury = figWithInjury.specialRules || [];
-        let rulesToAdd: Array<{ name: string; description: string }> = [];
-        if (injury === "Insanidade(Estupidez)") {
-          rulesToAdd.push({
-            name: "Retardado",
-            description: "A figura ganha a característica Estupidez",
-          });
-        } else if (injury === "Insanidade(Fúria)") {
-          rulesToAdd.push({
-            name: "Louco Espumante",
-            description: "A figura ganha a característica Fúria",
-          });
-        }
-        const newSpecialRules = [...specialRulesWithInjury];
-        rulesToAdd.forEach((rule) => {
-          if (!newSpecialRules.some((r: any) => r?.name === rule.name)) {
-            newSpecialRules.push(rule);
-          }
-        });
-        updatedUnit = {
-          ...updatedUnit,
-          figure: {
-            ...figWithInjury,
-            specialRules: newSpecialRules,
-          },
-        } as any;
-
-        return updatedUnit;
-      }),
-    }));
-  };
-
-  const handleRemoveInjuryFromUnit = (
-    unitId: string,
-    injury: string,
-    index?: number
-  ) => {
-    setHasUnsavedChanges(true);
-    setSheet((prev) => ({
-      ...prev,
-      units: prev.units.map((u) => {
-        if (u.id !== unitId) return u;
-        const figure = (u as any).figure;
-        if (!figure) return u;
-        const list = [...(figure.injuries || [])];
-        const idx =
-          index !== undefined
-            ? index
-            : list.findIndex((x: any) => x.name === injury || x === injury);
-        if (idx >= 0) list.splice(idx, 1);
-        let updatedUnit = {
-          ...u,
-          figure: {
-            ...figure,
-            injuries: list,
-          },
-        } as any;
-
-        // Remove special rules associadas aos ferimentos
-        const fig = (updatedUnit as any).figure || {};
-        const specialRules = fig.specialRules || [];
-        let rulesToRemove: string[] = [];
-        if (injury === "Insanidade(Estupidez)") {
-          rulesToRemove.push("Retardado");
-        } else if (injury === "Insanidade(Fúria)") {
-          rulesToRemove.push("Louco Espumante");
-        }
-        // Outros ferimentos com special rules (Caleijado, Deformado, Rancor) serão tratados em outro lugar
-        const filteredSpecialRules = specialRules.filter(
-          (r: any) => !rulesToRemove.includes(r?.name)
-        );
-        updatedUnit = {
-          ...updatedUnit,
-          figure: {
-            ...fig,
-            specialRules: filteredSpecialRules,
-          },
-        } as any;
-
-        return updatedUnit;
-      }),
-    }));
-  };
-
-  // Classificação em sub-seções solicitadas
-  const classifyEquipmentSubsection = (item: {
-    name: string;
-    category: string;
-    cost?: string;
-  }) => {
-    const n = (item.name || "").toLowerCase();
-    const c = (item.category || "").toLowerCase();
-    // Escudo
-    if (c === "armor" && (n.includes("escudo") || n.includes("shield")))
-      return "Escudo";
-    // Elmo
-    if (
-      c === "armor" &&
-      (n.includes("elmo") || n.includes("helmet") || n.includes("capacete"))
-    )
-      return "Elmo";
-    // Adaga grátis
-    if (
-      n.includes("adaga") &&
-      (item.cost || "").toLowerCase().includes("grátis")
-    )
-      return "Adaga grátis";
-    // Armadura (exclui escudos e elmos)
-    if (c === "armor") return "Armadura";
-    // Acessórios
-    if (c === "miscellaneous") return "Acessórios";
-    // Armas à distância
-    if (c === "ranged") {
-      // distribuir entre 1 e 2 de forma estável pelo nome
-      return n.charCodeAt(0) % 2 === 0
-        ? "Arma a Distância 1"
-        : "Arma a Distância 2";
-    }
-    // Armas corpo a corpo
-    if (c === "hand-to-hand") {
-      return n.charCodeAt(0) % 2 === 0
-        ? "Arma Corpo a Corpo 1"
-        : "Arma Corpo a Corpo 2";
-    }
-    return "Acessórios";
+    // Nota: statBreakdown está em EditableUnit mas não na figure diretamente
+    // Por enquanto, usamos handleFigureStatModifierChange do hook
+    handleFigureStatModifierChange(unitId, attribute as string, "misc", value);
   };
 
   // Mapa facções e seleção
@@ -1991,40 +696,44 @@ function WarbandRosterPage() {
       {
         key: "mercenaries",
         label: "Mercenários",
-        data: mercenariesData as any[],
+        data: (mercenariesData || []) as any[],
       },
       {
         key: "sisters-of-sigmar",
         label: "Irmãs de Sigmar",
-        data: sistersData as any[],
+        data: (sistersData || []) as any[],
       },
-      { key: "skaven", label: "Skaven", data: skavenData as any[] },
+      { key: "skaven", label: "Skaven", data: (skavenData || []) as any[] },
       {
         key: "beastman-raiders",
         label: "Saqueadores Homem-Fera",
-        data: beastmenData as any[],
+        data: (beastmenData || []) as any[],
       },
       {
         key: "dwarf-treasure-hunters",
         label: "Caçadores de Tesouro Anões",
-        data: dwarfTreasureHuntersData as any[],
+        data: (dwarfTreasureHuntersData || []) as any[],
       },
       {
         key: "cult-of-the-possessed",
         label: "Culto dos Possuídos",
-        data: cultPossessedData as any[],
+        data: (cultPossessedData || []) as any[],
       },
       {
         key: "vampire-courts",
         label: "Cortes Vampíricas",
-        data: vampireCourtsData as any[],
+        data: (vampireCourtsData || []) as any[],
       },
       {
         key: "witch-hunters",
         label: "Caçadores de Bruxas",
-        data: witchHuntersData as any[],
+        data: (witchHuntersData || []) as any[],
       },
-      { key: "lizardmen", label: "Reptilianos", data: lizardmenData as any[] },
+      {
+        key: "lizardmen",
+        label: "Reptilianos",
+        data: (lizardmenData || []) as any[],
+      },
       { key: "orc-mob", label: "Horda Orc", data: orcMobData as any[] },
       { key: "goblins", label: "Goblins", data: goblinsData as any[] },
       {
@@ -2043,24 +752,39 @@ function WarbandRosterPage() {
         data: darkElfCorsairsData as any[],
       },
     ],
-    []
+    [
+      mercenariesData,
+      sistersData,
+      skavenData,
+      beastmenData,
+      dwarfTreasureHuntersData,
+      cultPossessedData,
+      vampireCourtsData,
+      witchHuntersData,
+      lizardmenData,
+      orcMobData,
+      goblinsData,
+      sonsOfHashutData,
+      carnivalChaosData,
+      darkElfCorsairsData,
+    ]
   );
 
   const selectedFaction = useMemo(
-    () => allFactions.find((f) => f.key === (sheet.faction || "")),
-    [allFactions, sheet.faction]
+    () => allFactions.find(f => f.key === (warband.faction || "")),
+    [allFactions, warband.faction]
   );
 
   // Rótulo extenso da facção na ficha
   const factionLabel = useMemo(() => {
-    const found = allFactions.find((f) => f.key === (sheet.faction || ""));
-    return found?.label || sheet.faction || "";
-  }, [allFactions, sheet.faction]);
+    const found = allFactions.find(f => f.key === (warband.faction || ""));
+    return found?.label || warband.faction || "";
+  }, [allFactions, warband.faction]);
 
   // Elemento do modal de adicionar equipamento (evita IIFE dentro do JSX)
   const equipmentModalEl = (() => {
     if (!equipmentModal.open || !equipmentModal.unitId) return null;
-    const unit = sheet.units.find((x) => x.id === equipmentModal.unitId);
+    const unit = editableUnits.find(x => x.id === equipmentModal.unitId);
     if (!unit) return null;
     const eq = (unit.equipment || {}) as any;
     const eqNormalized: any = { ...eq };
@@ -2108,10 +832,10 @@ function WarbandRosterPage() {
                       isMelee
                         ? "Arma Corpo a Corpo"
                         : isRanged
-                        ? "Arma a Distância / Fogo"
-                        : isAcc
-                        ? "Acessórios / Remédios e Venenos"
-                        : "Armadura"
+                          ? "Arma a Distância / Fogo"
+                          : isAcc
+                            ? "Acessórios / Remédios e Venenos"
+                            : "Armadura"
                     }
                     readOnly
                   />
@@ -2121,12 +845,12 @@ function WarbandRosterPage() {
                 <select
                   className="bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2 text-white w-full"
                   value={equipmentCategory || EQUIP_TYPES[0]}
-                  onChange={(e) => {
+                  onChange={e => {
                     setEquipmentCategory(e.target.value);
                     setSelectedEquipmentName("");
                   }}
                 >
-                  {EQUIP_TYPES.map((t) => (
+                  {EQUIP_TYPES.map(t => (
                     <option key={t} value={t}>
                       {t}
                     </option>
@@ -2148,7 +872,7 @@ function WarbandRosterPage() {
                 items = (
                   getGlobalItemsByType("Arma Corpo a Corpo", unit) as any[]
                 ).filter(
-                  (i) =>
+                  i =>
                     String(i.name).toLowerCase().includes("adaga") ||
                     String(i.name).toLowerCase().includes("dagger")
                 );
@@ -2173,12 +897,12 @@ function WarbandRosterPage() {
                   unit
                 ) as any[];
                 if (slot === "elmo") {
-                  items = armorItems.filter((i) => isHelmetName(i.name));
+                  items = armorItems.filter(i => isHelmetName(i.name));
                 } else if (slot === "escudo") {
-                  items = armorItems.filter((i) => isShieldName(i.name));
+                  items = armorItems.filter(i => isShieldName(i.name));
                 } else {
                   items = armorItems.filter(
-                    (i) => !isShieldName(i.name) && !isHelmetName(i.name)
+                    i => !isShieldName(i.name) && !isHelmetName(i.name)
                   );
                 }
               } else {
@@ -2191,11 +915,11 @@ function WarbandRosterPage() {
                 <select
                   className="bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2 text-white w-full"
                   value={selectedEquipmentName}
-                  onChange={(e) => setSelectedEquipmentName(e.target.value)}
+                  onChange={e => setSelectedEquipmentName(e.target.value)}
                   disabled={items.length === 0}
                 >
                   <option value="">Selecionar item…</option>
-                  {items.map((item) => (
+                  {items.map(item => (
                     <option key={item.name} value={item.name}>
                       {item.name}
                     </option>
@@ -2211,9 +935,7 @@ function WarbandRosterPage() {
                 name: string;
                 cost?: string;
               }>;
-              const selected = list.find(
-                (i) => i.name === selectedEquipmentName
-              );
+              const selected = list.find(i => i.name === selectedEquipmentName);
               if (!selected) {
                 return (
                   <div className="text-xs text-gray-400 text-center">
@@ -2224,14 +946,16 @@ function WarbandRosterPage() {
 
               let data: any = null;
               if (type === "Arma de Fogo") {
-                data = (firearmsDb as any[]).find(
-                  (w) => w.name === selected.name
+                data = (equipmentCatalogs.firearmsDb || []).find(
+                  (w: any) => w.name === selected.name
                 );
               } else if (type === "Arma Corpo a Corpo") {
-                data = (meleeDb as any[]).find((w) => w.name === selected.name);
+                data = (equipmentCatalogs.meleeDb || []).find(
+                  (w: any) => w.name === selected.name
+                );
               } else if (type === "Arma a Distância") {
-                data = (rangedDb as any[]).find(
-                  (w) => w.name === selected.name
+                data = (equipmentCatalogs.rangedDb || []).find(
+                  (w: any) => w.name === selected.name
                 );
               }
 
@@ -2253,11 +977,7 @@ function WarbandRosterPage() {
                       disabled={!selectedEquipmentName}
                       onClick={() => {
                         if (selectedEquipmentName) {
-                          addEquipmentToUnit(
-                            unit,
-                            selectedEquipmentName,
-                            equipmentModal.targetSubsection
-                          );
+                          addEquipmentToUnit(unit, selectedEquipmentName);
                           setEquipmentModal({ open: false, unitId: undefined });
                         }
                       }}
@@ -2299,11 +1019,7 @@ function WarbandRosterPage() {
                       disabled={!selectedEquipmentName}
                       onClick={() => {
                         if (selectedEquipmentName) {
-                          addEquipmentToUnit(
-                            unit,
-                            selectedEquipmentName,
-                            equipmentModal.targetSubsection
-                          );
+                          addEquipmentToUnit(unit, selectedEquipmentName);
                           setEquipmentModal({ open: false, unitId: undefined });
                         }
                       }}
@@ -2320,8 +1036,9 @@ function WarbandRosterPage() {
     );
   })();
 
-  // Mostra loading enquanto authContext está carregando
-  if (loading) {
+  // Mostra loading enquanto authContext está carregando (exceto para bandos locais)
+  const { loading: authLoading } = useAuth();
+  if (authLoading && !isLocal) {
     return (
       <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
         <div className="py-4">
@@ -2369,6 +1086,31 @@ function WarbandRosterPage() {
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <QuickNavigation sections={navigationSections} />
+      {/* Aviso quando há versão mais recente no Firestore */}
+      {hasNewerVersionInFirestore && !isLocal && (
+        <div className="w-full bg-yellow-900/30 border-b border-yellow-600/50 px-4 py-3">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap">
+            <div className="flex items-center gap-2">
+              <span className="text-yellow-400 text-lg">⚠️</span>
+              <div>
+                <div className="text-white font-semibold">
+                  Versão mais recente disponível no Firestore
+                </div>
+                <div className="text-yellow-300 text-sm">
+                  Há uma versão mais atual na nuvem. Deseja atualizar?
+                </div>
+              </div>
+            </div>
+            <button
+              onClick={updateFromFirestore}
+              disabled={isLoading}
+              className="px-4 py-2 rounded bg-yellow-600 hover:bg-yellow-700 disabled:bg-yellow-600/50 disabled:cursor-not-allowed text-white font-semibold transition-colors duration-200 whitespace-nowrap"
+            >
+              {isLoading ? "Atualizando..." : "Atualizar"}
+            </button>
+          </div>
+        </div>
+      )}
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <MobileSection>
@@ -2394,13 +1136,13 @@ function WarbandRosterPage() {
                     if (!e?.modifier || !e?.modifier?.name) return null;
                     const modNameLc = String(e.modifier.name).toLowerCase();
                     const allMods: any[] = [
-                      ...(meleeMods as any[]),
-                      ...(rangedMods as any[]),
-                      ...(firearmsMods as any[]),
+                      ...(modifierCatalogs.meleeMods || []),
+                      ...(modifierCatalogs.rangedMods || []),
+                      ...(modifierCatalogs.firearmsMods || []),
                     ];
                     return (
                       allMods.find(
-                        (m) => String(m.name).toLowerCase() === modNameLc
+                        m => String(m.name).toLowerCase() === modNameLc
                       ) || e.modifier
                     );
                   };
@@ -2523,15 +1265,15 @@ function WarbandRosterPage() {
                             name: r?.name || "",
                             description: r?.description || "",
                           }))
-                          .filter((r) => r.name)
+                          .filter(r => r.name)
                       : Array.isArray((fig as any).specialRules)
-                      ? ((fig as any).specialRules as any[])
-                          .map((r: any) => ({
-                            name: r?.name || "",
-                            description: r?.description || "",
-                          }))
-                          .filter((r) => r.name)
-                      : [];
+                        ? ((fig as any).specialRules as any[])
+                            .map((r: any) => ({
+                              name: r?.name || "",
+                              description: r?.description || "",
+                            }))
+                            .filter(r => r.name)
+                        : [];
 
                     // Calcula armadura total incluindo bônus de equipamentos
                     let armourTotal = stats?.armour || 0;
@@ -2598,7 +1340,7 @@ function WarbandRosterPage() {
                           </div>
                           <div class="right-info">
                             <div><strong>Facção:</strong> ${safe(
-                              sheet.faction
+                              warband.faction || ""
                             )}</div>
                             <div><strong>Custo:</strong> ${safe(
                               finalStats?.cost
@@ -2688,7 +1430,7 @@ function WarbandRosterPage() {
                         <div class="rules-block">
                           ${specialRules
                             .map(
-                              (r) =>
+                              r =>
                                 `<div class="rule-item"><strong>${safe(
                                   r.name
                                 )}:</strong> ${safe(r.description)}</div>`
@@ -2704,7 +1446,7 @@ function WarbandRosterPage() {
 
                   const buildAllDetailPages = (): string => {
                     const blocks: string[] = [];
-                    (sheet.units || []).forEach((u: any) => {
+                    editableUnits.forEach((u: any) => {
                       const fig = u?.figure || {};
                       const unitName = safe(u?.name);
                       const unitRole = safe(u?.role || fig?.role || "");
@@ -2772,7 +1514,7 @@ function WarbandRosterPage() {
                       const specHtml = specialAbilities.length
                         ? specialAbilities
                             .map(
-                              (a) => `
+                              a => `
                               <div class="equip-card">
                                 <div class="equip-title">${safe(a.name)}</div>
                                 <div>${safe(a.description)}</div>
@@ -2801,7 +1543,7 @@ function WarbandRosterPage() {
                   };
 
                   // Todos os cards de figura juntos primeiro
-                  const unitsHtml = (sheet.units || [])
+                  const unitsHtml = editableUnits
                     .map((u: any) => buildUnitHtml(u))
                     .join("");
 
@@ -2813,7 +1555,7 @@ function WarbandRosterPage() {
                       <head>
                         <meta charset="utf-8" />
                         <meta name="viewport" content="width=device-width, initial-scale=1" />
-                        <title>${safe(sheet?.name || "Bando")}</title>
+                        <title>${safe(warband.name || "Bando")}</title>
                         <style>
                           @media print {
                             .page-break { page-break-before: always; }
@@ -2845,17 +1587,17 @@ function WarbandRosterPage() {
                       </head>
                       <body>
                         <div class="header">
-                          <div class="h1">${safe(sheet?.name || "Bando")}</div>
+                          <div class="h1">${safe(warband.name || "Bando")}</div>
                           <div><strong>Facção:</strong> ${safe(
-                            sheet.faction
+                            warband.faction || ""
                           )} &nbsp; | &nbsp; <strong>Warband Rating:</strong> ${safe(
-                    String(warbandRating)
-                  )}</div>
+                            String(warbandRating)
+                          )}</div>
                           <div><strong>Coroas:</strong> ${safe(
-                            sheet.gold
+                            warband.gold || "0"
                           )} &nbsp; | &nbsp; <strong>Pedra-Bruxa:</strong> ${safe(
-                    sheet.wyrdstone
-                  )}</div>
+                            warband.wyrdstone || "0"
+                          )}</div>
                         </div>
                         ${unitsHtml}
                         <div class="page-break"></div>
@@ -2886,18 +1628,17 @@ function WarbandRosterPage() {
                 try {
                   // Cria snapshot do warband
                   const payloadRaw: any = {
-                    name: sheet.name,
-                    faction: sheet.faction,
-                    notes: sheet.notes ?? "",
-                    gold: sheet.gold ?? "0",
-                    wyrdstone: sheet.wyrdstone ?? "0",
-                    vault: (sheet.vault || []).map((e: any) =>
+                    name: warband.name,
+                    faction: warband.faction,
+                    notes: warband.notes ?? "",
+                    gold: warband.gold ?? "0",
+                    wyrdstone: warband.wyrdstone ?? "0",
+                    vault: (warband.vault || []).map((e: any) =>
                       stripUndefinedDeep(e)
                     ),
-                    figures: (sheet.units || [])
-                      .map((u: any) => u?.figure)
-                      .filter(Boolean)
-                      .map((f: any) => stripUndefinedDeep(f)),
+                    figures: (warband.figures || []).map((f: any) =>
+                      stripUndefinedDeep(f)
+                    ),
                     ownerName:
                       currentUser?.displayName ||
                       currentUser?.email ||
@@ -2944,10 +1685,9 @@ function WarbandRosterPage() {
                 <span className="text-sm text-gray-300">Nome do Bando</span>
                 <input
                   className="bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2 text-white"
-                  value={sheet.name}
-                  onChange={(e) => {
-                    setHasUnsavedChanges(true);
-                    setSheet({ ...sheet, name: e.target.value });
+                  value={warband.name}
+                  onChange={e => {
+                    updateWarbandProperty("name", e.target.value);
                   }}
                   placeholder="Ex.: Circo do Caos"
                 />
@@ -2963,10 +1703,9 @@ function WarbandRosterPage() {
                   <span className="text-sm text-gray-300">Coroas</span>
                   <input
                     className="bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2 text-white"
-                    value={sheet.gold}
-                    onChange={(e) => {
-                      setHasUnsavedChanges(true);
-                      setSheet({ ...sheet, gold: e.target.value });
+                    value={warband.gold || "0"}
+                    onChange={e => {
+                      updateWarbandProperty("gold", e.target.value);
                     }}
                   />
                 </label>
@@ -2974,16 +1713,15 @@ function WarbandRosterPage() {
                   <span className="text-sm text-gray-300">Pedra-Bruxa</span>
                   <input
                     className="bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2 text-white"
-                    value={sheet.wyrdstone}
-                    onChange={(e) => {
-                      setHasUnsavedChanges(true);
-                      setSheet({ ...sheet, wyrdstone: e.target.value });
+                    value={warband.wyrdstone || "0"}
+                    onChange={e => {
+                      updateWarbandProperty("wyrdstone", e.target.value);
                     }}
                   />
                 </label>
               </div>
             </div>
-            <div className="mt-3 flex items-center gap-3">
+            <div className="mt-3 flex items-center gap-3 flex-wrap">
               <div className="inline-flex items-center gap-2 bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2">
                 <span className="text-sm text-gray-300">Warband Rating:</span>
                 <span
@@ -2993,16 +1731,23 @@ function WarbandRosterPage() {
                   {warbandRating}
                 </span>
               </div>
+              {lastUpdatedAt && (
+                <div className="inline-flex items-center gap-2 bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2">
+                  <span className="text-sm text-gray-300">
+                    Última atualização:
+                  </span>
+                  <span className="text-sm text-gray-400">{lastUpdatedAt}</span>
+                </div>
+              )}
             </div>
 
             <label className="flex flex-col gap-2 mt-4">
               <span className="text-sm text-gray-300">Anotações</span>
               <textarea
                 className="bg-[#1f1f1f] border border-gray-600 rounded px-3 py-2 text-white min-h-[100px]"
-                value={sheet.notes}
-                onChange={(e) => {
-                  setHasUnsavedChanges(true);
-                  setSheet({ ...sheet, notes: e.target.value });
+                value={warband.notes || ""}
+                onChange={e => {
+                  updateWarbandProperty("notes", e.target.value);
                 }}
                 placeholder="Notas gerais do bando, progresso da campanha etc."
               />
@@ -3019,7 +1764,7 @@ function WarbandRosterPage() {
                 <select
                   className="bg-[#161616] border border-gray-600 rounded px-3 py-2 text-white flex-1 w-full sm:w-auto"
                   value={selectedFactionUnitId}
-                  onChange={(e) => setSelectedFactionUnitId(e.target.value)}
+                  onChange={e => setSelectedFactionUnitId(e.target.value)}
                 >
                   <option value="">Selecionar figura do bando...</option>
                   {selectedFaction?.data?.map((u: any) => (
@@ -3055,7 +1800,7 @@ function WarbandRosterPage() {
                 <select
                   className="bg-[#161616] border border-gray-600 rounded px-3 py-2 text-white flex-1 w-full sm:w-auto"
                   value={selectedMercId}
-                  onChange={(e) => setSelectedMercId(e.target.value)}
+                  onChange={e => setSelectedMercId(e.target.value)}
                 >
                   <option value="">Selecionar mercenário...</option>
                   {globalMercenaries.map((u: any) => (
@@ -3091,7 +1836,7 @@ function WarbandRosterPage() {
                 <select
                   className="bg-[#161616] border border-gray-600 rounded px-3 py-2 text-white flex-1 w-full sm:w-auto"
                   value={selectedLegendId}
-                  onChange={(e) => setSelectedLegendId(e.target.value)}
+                  onChange={e => setSelectedLegendId(e.target.value)}
                 >
                   <option value="">Selecionar lenda...</option>
                   {globalLegends.map((u: any) => (
@@ -3118,50 +1863,47 @@ function WarbandRosterPage() {
             {/* Cofre do Bando (unificado com vault) */}
             <div id="estoque-bando">
               <WarbandStash
-                stash={
-                  (sheet.vault || []).map((e: any) => ({
-                    id: e.id,
-                    name: e.name,
-                    category: e.type || e.category || "",
-                    cost: String(e.purchaseCost || e.sellCost || "-"),
-                    data: e,
-                    modifier: e.modifier
-                      ? { name: e.modifier.name, effect: e.modifier.effect }
-                      : undefined,
-                  })) as any
-                }
-                gold={sheet.gold || "0"}
+                stash={resolvedVault}
+                gold={warband.gold || "0"}
                 onPurchase={handlePurchaseItem}
-                onSell={(index) => {
-                  setHasUnsavedChanges(true);
-                  const vault = (sheet.vault || []) as any[];
-                  const item = vault[index];
-                  if (!item) return;
+                onSell={index => {
+                  const vaultItem = resolvedVault[index];
+                  const vault = (warband.vault || []) as any[];
+                  const equipment = vault[index];
+                  if (!equipment || !vaultItem) return;
 
-                  // Calcula custo original usando a mesma lógica de compra
-                  const baseCostStr = String(
-                    item.cost || item.purchaseCost || item.sellCost || "0"
-                  );
+                  // Calcula custo usando dados resolvidos
+                  const baseCostStr = String(vaultItem.cost || "0");
                   const baseCostMatch = baseCostStr.match(/(\d+(?:\.\d+)?)/);
                   const baseCost = baseCostMatch
                     ? parseFloat(baseCostMatch[1])
                     : 0;
-                  const multiplier = item.modifier?.multiplier ?? 1;
-                  const modifierAddend = item.modifierAddend ?? 0;
-                  const modifierFixedCost = item.modifierFixedCost;
+
+                  const modifier = vaultItem.data?.modifier;
+                  const modifierFixedCost = vaultItem.data?.modifierFixedCost;
 
                   let originalCost = baseCost;
                   if (modifierFixedCost != null) {
                     originalCost = modifierFixedCost;
-                  } else {
-                    originalCost = baseCost * multiplier + modifierAddend;
+                  } else if (modifier?.purchaseCost) {
+                    // Resolve expressão do modificador
+                    const expr = String(modifier.purchaseCost)
+                      .toLowerCase()
+                      .replace(/\s+/g, "");
+                    const mult = expr.match(/base\*(\d+(?:\.\d+)?)/);
+                    const add = expr.match(/base\+(\d+(?:\.\d+)?)/);
+                    if (mult) {
+                      originalCost = baseCost * parseFloat(mult[1]);
+                    } else if (add) {
+                      originalCost = baseCost + parseFloat(add[1]);
+                    }
                   }
 
                   // Vende por metade do custo original
                   const sellPrice = Math.floor(originalCost / 2);
 
                   // Adiciona ouro ao cofre
-                  const currentGoldMatch = String(sheet.gold || "0").match(
+                  const currentGoldMatch = String(warband.gold || "0").match(
                     /(\d+)/
                   );
                   const currentGold = currentGoldMatch
@@ -3169,48 +1911,54 @@ function WarbandRosterPage() {
                     : 0;
                   const newGold = currentGold + sellPrice;
 
-                  // Remove item do cofre
-                  const newVault = vault.filter((_, i) => i !== index);
-                  setSheet({
-                    ...sheet,
-                    vault: newVault,
-                    gold: String(newGold),
-                  });
+                  // Remove item do cofre e atualiza ouro usando hooks (fila interna)
+                  updateWarbandVault(v =>
+                    v.filter((e: any) => e.id !== equipment.id)
+                  );
+                  updateWarbandProperty("gold", String(newGold));
 
                   toast.success(
                     `Item vendido! ${sellPrice} coroas adicionadas ao cofre.`
                   );
                 }}
-                onUndo={(index) => {
-                  setHasUnsavedChanges(true);
-                  const vault = (sheet.vault || []) as any[];
-                  const item = vault[index];
-                  if (!item) return;
+                onUndo={index => {
+                  const vaultItem = resolvedVault[index];
+                  const vault = (warband.vault || []) as any[];
+                  const equipment = vault[index];
+                  if (!equipment || !vaultItem) return;
 
-                  // Calcula custo original usando a mesma lógica de compra
-                  const baseCostStr = String(
-                    item.cost || item.purchaseCost || item.sellCost || "0"
-                  );
+                  // Calcula custo usando dados resolvidos
+                  const baseCostStr = String(vaultItem.cost || "0");
                   const baseCostMatch = baseCostStr.match(/(\d+(?:\.\d+)?)/);
                   const baseCost = baseCostMatch
                     ? parseFloat(baseCostMatch[1])
                     : 0;
-                  const multiplier = item.modifier?.multiplier ?? 1;
-                  const modifierAddend = item.modifierAddend ?? 0;
-                  const modifierFixedCost = item.modifierFixedCost;
+
+                  const modifier = vaultItem.data?.modifier;
+                  const modifierFixedCost = vaultItem.data?.modifierFixedCost;
 
                   let originalCost = baseCost;
                   if (modifierFixedCost != null) {
                     originalCost = modifierFixedCost;
-                  } else {
-                    originalCost = baseCost * multiplier + modifierAddend;
+                  } else if (modifier?.purchaseCost) {
+                    // Resolve expressão do modificador
+                    const expr = String(modifier.purchaseCost)
+                      .toLowerCase()
+                      .replace(/\s+/g, "");
+                    const mult = expr.match(/base\*(\d+(?:\.\d+)?)/);
+                    const add = expr.match(/base\+(\d+(?:\.\d+)?)/);
+                    if (mult) {
+                      originalCost = baseCost * parseFloat(mult[1]);
+                    } else if (add) {
+                      originalCost = baseCost + parseFloat(add[1]);
+                    }
                   }
 
                   // Desfazer devolve o valor INTEGRAL do item
                   const refundAmount = Math.floor(originalCost);
 
                   // Adiciona ouro ao cofre
-                  const currentGoldMatch = String(sheet.gold || "0").match(
+                  const currentGoldMatch = String(warband.gold || "0").match(
                     /(\d+)/
                   );
                   const currentGold = currentGoldMatch
@@ -3218,26 +1966,20 @@ function WarbandRosterPage() {
                     : 0;
                   const newGold = currentGold + refundAmount;
 
-                  // Remove item do cofre
-                  const newVault = vault.filter((_, i) => i !== index);
-                  setSheet({
-                    ...sheet,
-                    vault: newVault,
-                    gold: String(newGold),
-                  });
+                  // Remove item do cofre e atualiza ouro usando hooks (fila interna)
+                  updateWarbandVault(v =>
+                    v.filter((e: any) => e.id !== equipment.id)
+                  );
+                  updateWarbandProperty("gold", String(newGold));
 
                   toast.success(
                     `Item desfeito! ${refundAmount} coroas adicionadas ao cofre.`
                   );
                 }}
-                onRemoveVaultItemById={(id) => {
-                  setHasUnsavedChanges(true);
-                  setSheet({
-                    ...sheet,
-                    vault: (sheet.vault || []).filter((e: any) => e.id !== id),
-                  });
+                onRemoveVaultItemById={id => {
+                  updateWarbandVault(v => v.filter((e: any) => e.id !== id));
                 }}
-                factionKey={sheet.faction || ""}
+                factionKey={warband.faction || ""}
                 factionLabel={factionLabel}
               />
             </div>
@@ -3249,7 +1991,7 @@ function WarbandRosterPage() {
                   type="file"
                   accept="application/json"
                   className="hidden"
-                  onChange={(e) => {
+                  onChange={e => {
                     const file = e.target.files?.[0];
                     if (file) importFromFile(file);
                   }}
@@ -3262,16 +2004,18 @@ function WarbandRosterPage() {
                 Exportar JSON
               </button>
               <button
-                onClick={() =>
-                  setSheet({
+                onClick={() => {
+                  setWarband({
                     name: "",
-                    faction: "",
+                    faction: fixedFaction || "",
                     notes: "",
                     gold: "500",
                     wyrdstone: "0",
-                    units: [],
-                  })
-                }
+                    vault: [],
+                    figures: [],
+                  });
+                  setHasUnsavedChanges(true);
+                }}
                 className="px-4 py-2 rounded bg-red-900/40 border border-red-500/40 text-white hover:bg-red-900/60"
               >
                 Limpar
@@ -3295,58 +2039,105 @@ function WarbandRosterPage() {
 
               {(() => {
                 // Função para ordenar unidades na ordem: Líder, Lendas, Heróis, Mercenários, Soldados
-                const getRoleOrder = (role: string | undefined): number => {
+                const getRoleOrder = (
+                  role: string | undefined,
+                  name: string | undefined
+                ): number => {
                   const roleLower = (role || "").toString().toLowerCase();
+                  const nameLower = (name || "").toString().toLowerCase();
+
+                  // 1. Líder
                   if (roleLower === "líder" || roleLower === "lider") return 1;
-                  if (roleLower === "lenda") return 2;
+
+                  // 2. Lendas
+                  if (roleLower === "lenda" || roleLower.includes("lenda")) {
+                    return 2;
+                  }
+
+                  // 3. Heróis
                   if (
                     roleLower === "héroi" ||
                     roleLower === "heroi" ||
-                    roleLower === "herói"
-                  )
+                    roleLower === "herói" ||
+                    roleLower.includes("héroi") ||
+                    roleLower.includes("heroi")
+                  ) {
                     return 3;
+                  }
+
+                  // 4. Mercenários (verifica role e nome)
                   if (
                     roleLower.includes("mercen") ||
-                    roleLower.includes("mercenário")
-                  )
+                    roleLower.includes("mercenário") ||
+                    nameLower.includes("mercen")
+                  ) {
                     return 4;
-                  if (roleLower === "soldado" || roleLower === "") return 5;
-                  return 6; // Outros roles vão para o final
+                  }
+
+                  // 5. Soldados (padrão)
+                  if (
+                    roleLower === "soldado" ||
+                    roleLower === "" ||
+                    !roleLower
+                  ) {
+                    return 5;
+                  }
+
+                  // 6. Outros roles vão para o final
+                  return 6;
                 };
 
-                const sortUnits = (units: typeof sheet.units) => {
+                const sortUnits = (units: EditableUnit[]) => {
                   return [...units].sort((a, b) => {
                     const roleA = a.role || (a as any)?.figure?.role || "";
                     const roleB = b.role || (b as any)?.figure?.role || "";
-                    const orderA = getRoleOrder(roleA);
-                    const orderB = getRoleOrder(roleB);
+                    const nameA = a.name || "";
+                    const nameB = b.name || "";
+
+                    const orderA = getRoleOrder(roleA, nameA);
+                    const orderB = getRoleOrder(roleB, nameB);
 
                     // Se a ordem for diferente, ordena pela ordem
                     if (orderA !== orderB) {
                       return orderA - orderB;
                     }
 
-                    // Se a ordem for a mesma, mantém ordem original (ou ordena por nome)
-                    const nameA = (a.name || "").toString();
-                    const nameB = (b.name || "").toString();
-                    return nameA.localeCompare(nameB);
+                    // Se ambas são Heróis (order 3), ordena por starting XP (decrescente - maior primeiro)
+                    if (orderA === 3 && orderB === 3) {
+                      const startingXpA =
+                        a.stats?.startingXp ??
+                        (a as any)?.figure?.xp ??
+                        (a as any)?.figure?.baseStats?.startingXp ??
+                        0;
+                      const startingXpB =
+                        b.stats?.startingXp ??
+                        (b as any)?.figure?.xp ??
+                        (b as any)?.figure?.baseStats?.startingXp ??
+                        0;
+
+                      // Ordena por XP decrescente (maior primeiro)
+                      if (startingXpB !== startingXpA) {
+                        return startingXpB - startingXpA;
+                      }
+                    }
+
+                    // Para outras categorias ou se o XP for igual, ordena por nome
+                    return nameA.localeCompare(nameB, "pt-BR");
                   });
                 };
 
                 const active = sortUnits(
-                  sheet.units.filter(
-                    (u) => !Boolean((u as any)?.figure?.inactive)
+                  editableUnits.filter(
+                    (u: any) => !Boolean(u?.figure?.inactive)
                   )
                 );
                 const inactive = sortUnits(
-                  sheet.units.filter((u) =>
-                    Boolean((u as any)?.figure?.inactive)
-                  )
+                  editableUnits.filter((u: any) => Boolean(u?.figure?.inactive))
                 );
 
-                const renderList = (list: typeof sheet.units) => (
+                const renderList = (list: EditableUnit[]) => (
                   <div className="space-y-6">
-                    {list.map((u) => {
+                    {list.map(u => {
                       // equippedItems não é mais usado - mantido apenas para compatibilidade
                       const equipped = u.equippedItems || {
                         acessorios: [],
@@ -3386,7 +2177,7 @@ function WarbandRosterPage() {
                           <div className="absolute top-2 right-2 z-10">
                             <div
                               className="relative"
-                              ref={(el) => {
+                              ref={el => {
                                 menuRefs.current[u.id] = el;
                               }}
                             >
@@ -3509,6 +2300,33 @@ function WarbandRosterPage() {
                             availability={u.availability}
                             qualidade={u.qualidade}
                             figure={u.figure as any}
+                            factionId={warband.faction || fixedFaction}
+                            factionFallbackData={(() => {
+                              // Busca dados da facção nos dados carregados
+                              const factionKey =
+                                warband.faction || fixedFaction;
+                              if (!factionKey) return undefined;
+
+                              const factionDataMap: Record<string, any> = {
+                                "sisters-of-sigmar": sistersData,
+                                skaven: skavenData,
+                                "beastman-raiders": beastmenData,
+                                "dwarf-treasure-hunters":
+                                  dwarfTreasureHuntersData,
+                                "cult-of-the-possessed": cultPossessedData,
+                                "vampire-courts": vampireCourtsData,
+                                "witch-hunters": witchHuntersData,
+                                lizardmen: lizardmenData,
+                                "orc-mob": orcMobData,
+                                goblins: goblinsData,
+                                "sons-of-hashut": sonsOfHashutData,
+                                mercenaries: mercenariesData,
+                                "carnival-of-chaos": carnivalChaosData,
+                                "dark-elf-corsairs": darkElfCorsairsData,
+                              };
+
+                              return factionDataMap[factionKey];
+                            })()}
                             spellAffinity={u.spellAffinity}
                             abilities={u.abilities || []}
                             equipment={u.equipment}
@@ -3520,7 +2338,7 @@ function WarbandRosterPage() {
                                 : undefined
                             }
                             stashItems={
-                              (sheet.vault || []).map((e: any) => ({
+                              (warband.vault || []).map((e: any) => ({
                                 name: e.name,
                                 category: String(e.type || e.category || ""),
                                 data: e,
@@ -3540,14 +2358,14 @@ function WarbandRosterPage() {
                                 (a: any) => (typeof a === "string" ? a : a.name)
                               ) as string[]
                             }
-                            onAddSkillCategory={(cat) =>
+                            onAddSkillCategory={cat =>
                               handleAddSkillCategoryToUnit(u.id, cat)
                             }
                             selectedSpells={(u.figure as any)?.spells || []}
-                            onAddTradition={(t) =>
+                            onAddTradition={t =>
                               handleAddTraditionToUnit(u.id, t)
                             }
-                            onAddSkill={(skill) =>
+                            onAddSkill={skill =>
                               handleAddSkillToUnit(u.id, skill)
                             }
                             selectedInjuries={
@@ -3555,17 +2373,17 @@ function WarbandRosterPage() {
                                 (i: any) => (typeof i === "string" ? i : i.name)
                               ) as string[]
                             }
-                            onAddInjury={(i) => handleAddInjuryToUnit(u.id, i)}
+                            onAddInjury={i => handleAddInjuryToUnit(u.id, i)}
                             onRemoveInjury={(injuryName, idx) =>
                               handleRemoveInjuryFromUnit(u.id, injuryName, idx)
                             }
-                            onRemoveSkill={(skill) =>
+                            onRemoveSkill={skill =>
                               handleRemoveSkillFromUnit(u.id, skill)
                             }
-                            onAddSpell={(spell) =>
+                            onAddSpell={spell =>
                               handleAddSpellToUnit(u.id, spell)
                             }
-                            onRemoveSpell={(spellId) =>
+                            onRemoveSpell={spellId =>
                               handleRemoveSpellFromUnit(u.id, spellId)
                             }
                             onChangeSpellCastingNumber={(spellId, newCN) =>
@@ -3575,13 +2393,13 @@ function WarbandRosterPage() {
                                 newCN
                               )
                             }
-                            onChangeNarrativeName={(nv) =>
+                            onChangeNarrativeName={nv =>
                               handleUpdateNarrativeName(u.id, nv)
                             }
-                            onChangeFigureXp={(xp) =>
+                            onChangeFigureXp={xp =>
                               handleUpdateFigureXp(u.id, xp)
                             }
-                            onAddSpecialAbility={(a) =>
+                            onAddSpecialAbility={a =>
                               handleAddSpecialAbilityToUnit(u.id, a as any)
                             }
                             onRemoveSpecialAbility={(category, id) =>
@@ -3594,13 +2412,13 @@ function WarbandRosterPage() {
                             onStatMiscChange={(attribute, value) =>
                               handleStatMiscChange(u.id, attribute, value)
                             }
-                            onEquipFromStashFlat={(item) =>
+                            onEquipFromStashFlat={item =>
                               handleEquipFromStashFlat(u.id, item)
                             }
-                            onUnequipToStashFlat={(item) =>
+                            onUnequipToStashFlat={item =>
                               handleUnequipToStashFlat(u.id, item)
                             }
-                            onAddAdvancement={(a) =>
+                            onAddAdvancement={a =>
                               handleAddAdvancementToUnit(u.id, a)
                             }
                             onRemoveAdvancement={(a, idx) =>
@@ -3619,10 +2437,10 @@ function WarbandRosterPage() {
                               )
                             }
                             onToggleInactive={() => handleToggleInactive(u.id)}
-                            onAddSpecialRule={(specialRule) =>
+                            onAddSpecialRule={specialRule =>
                               handleAddSpecialRuleToUnit(u.id, specialRule)
                             }
-                            onRemoveSpecialRule={(specialRuleName) =>
+                            onRemoveSpecialRule={specialRuleName =>
                               handleRemoveSpecialRuleFromUnit(
                                 u.id,
                                 specialRuleName
@@ -3653,41 +2471,31 @@ function WarbandRosterPage() {
       </div>
       {equipmentModalEl}
 
-      {/* Botão flutuante de salvar */}
-      <button
-        onClick={handleSaveChanges}
-        disabled={isSaving || !hasUnsavedChanges || !warbandId || !userId}
-        className="fixed bottom-22 md:bottom-36 right-6 z-50 bg-green-800 text-white p-[19.36px] md:p-[38.72px] rounded-full shadow-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        title={hasUnsavedChanges ? "Salvar alterações" : "Tudo salvo"}
-      >
-        {isSaving ? (
-          <div className="animate-spin">
-            <svg
-              className="w-[29.04px] h-[29.04px] md:w-[58.08px] md:h-[58.08px]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-              />
-            </svg>
+      {/* Banner de aviso durante salvamento */}
+      {isSaving && (
+        <div className="fixed top-0 left-0 right-0 z-50 bg-yellow-600 text-white px-4 py-2 text-center text-sm md:text-base shadow-lg">
+          <div className="flex items-center justify-center gap-2">
+            <div className="animate-spin">
+              <svg
+                className="w-4 h-4 md:w-5 md:h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+            </div>
+            <span>
+              Salvando alterações... Não feche ou recarregue a página.
+            </span>
           </div>
-        ) : hasUnsavedChanges ? (
-          <SaveIcon
-            sx={{ fontSize: "1.815rem" }}
-            className="md:!text-[2.42rem]"
-          />
-        ) : (
-          <CheckIcon
-            sx={{ fontSize: "1.815rem" }}
-            className="md:!text-[2.42rem]"
-          />
-        )}
-      </button>
+        </div>
+      )}
     </div>
   );
 }
