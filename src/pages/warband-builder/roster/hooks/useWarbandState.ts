@@ -3,7 +3,7 @@
  */
 
 import { useState, useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { doc, onSnapshot, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { db } from "../../../../firebase.ts";
@@ -27,7 +27,6 @@ export interface Warband {
 
 export function useWarbandState() {
   const location = useLocation();
-  const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const fixedFaction = params.get("faction") || "";
   const warbandId = params.get("id") || "";

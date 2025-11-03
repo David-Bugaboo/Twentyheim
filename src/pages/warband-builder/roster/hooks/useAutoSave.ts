@@ -18,7 +18,7 @@ interface UseAutoSaveParams {
 }
 
 export function useAutoSave({
-  hasUnsavedChanges,
+  hasUnsavedChanges: _hasUnsavedChanges,
   warbandId,
   warband,
   warbandSource,

@@ -2,7 +2,6 @@
  * Hook para gerenciar equipamentos (equipar, desequipar, comprar, vender)
  */
 
-import { useMemo } from "react";
 import { toast } from "react-toastify";
 import { calculateItemCost, isShieldName, isHelmetName } from "../helpers/equipment.helpers";
 import { resolveEquipmentByName } from "../helpers/equipment.helpers";

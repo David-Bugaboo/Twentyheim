@@ -6,7 +6,6 @@ import { useRef } from "react";
 import { toast } from "react-toastify";
 import { createFigureFromBase, createEquipmentFromBase } from "../../utils/createFigureFromBase";
 import { resolveEquipmentByName } from "../helpers/equipment.helpers";
-import { extractNumber } from "../helpers/stats.helpers";
 import type { Warband } from "./useWarbandState";
 
 interface UseWarbandOperationsParams {
@@ -101,7 +100,7 @@ export function useWarbandOperations({
   const addFigureFromBase = (base: any, shouldChargeCost: boolean = true) => {
     if (!base) return;
     setHasUnsavedChanges(true);
-    const id = crypto.randomUUID();
+    // id gerado no createFigureFromBase
 
     // Obtém o custo ANTES de criar a figura
     let unitCost = 0;
@@ -172,9 +171,7 @@ export function useWarbandOperations({
       }
     }
 
-    // Obtém o custo da figura base para armazenar
-    const figureCost =
-      base?.stats?.cost || base?.baseStats?.cost || base?.cost || "-";
+    // custo não utilizado diretamente aqui; cálculo feito ao comprar
 
     // Adiciona a figure diretamente ao warband
     addWarbandFigure(fig);
