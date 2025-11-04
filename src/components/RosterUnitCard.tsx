@@ -3035,7 +3035,11 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                                 <LoreSpellCard
                                   name={spell.name || ""}
                                   castingNumber={spell.castingNumber ?? 0}
-                                  keywords={Array.isArray(spell.keywords) ? spell.keywords : []}
+                                  keywords={
+                                    Array.isArray(spell.keywords)
+                                      ? spell.keywords
+                                      : []
+                                  }
                                   effect={spell.effect || ""}
                                   footer={
                                     <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
@@ -3097,7 +3101,15 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
               const displayRole = actualRole || role;
               return (
                 displayRole !== "Soldado" &&
-                displayRole !== "Lenda" && (
+                displayRole !== "Lenda" &&
+                (canHaveSacredMarks ||
+                  canHaveMutations ||
+                  canHaveBlessingsOfNurgle ||
+                  Boolean(
+                    (figure as any)?.nurgleBlessings?.length ||
+                      (figure as any)?.mutations?.length ||
+                      (figure as any)?.sacredMarks?.length
+                  )) && (
                   <div className="mb-6">
                     <h4
                       className="text-lg font-bold mb-3"

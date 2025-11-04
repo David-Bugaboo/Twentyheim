@@ -288,6 +288,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
   const [previewData, setPreviewData] = useState<any | null>(null);
   const [selectedModifier, setSelectedModifier] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
+  const [purchaseOpen, setPurchaseOpen] = useState<boolean>(true);
 
   // Também resolve modificador selecionado para compra (se houver) - DEPOIS de modifierOptions estar criado
   // Nota: selectedModifier é o key (nome do modificador), não o ID
@@ -675,10 +676,21 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
 
       {/* Compra de Equipamentos */}
       <div className="bg-[#1f1f1f] border border-gray-600 rounded p-4 mb-4">
-        <h3 className="text-lg font-bold mb-3" style={{ color: "#8fbc8f" }}>
-          Adicionar Equipamento
-        </h3>
-        <div className="flex flex-col md:flex-row gap-3">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-lg font-bold" style={{ color: "#8fbc8f" }}>
+            Adicionar Equipamento
+          </h3>
+          <button
+            type="button"
+            onClick={() => setPurchaseOpen(o => !o)}
+            className="px-3 py-1 rounded bg-gray-700 hover:bg-gray-800 text-white text-xs"
+            title={purchaseOpen ? "Esconder tabela de compra" : "Mostrar tabela de compra"}
+          >
+            {purchaseOpen ? "Esconder" : "Mostrar"}
+          </button>
+        </div>
+        {purchaseOpen && (
+          <div className="flex flex-col md:flex-row gap-3">
           <select
             className="bg-[#161616] border border-gray-600 rounded px-3 py-2 text-white flex-1"
             value={purchaseCategory}
@@ -883,7 +895,8 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
               </>
             );
           })()}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Itens no Cofre */}
