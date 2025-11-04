@@ -104,11 +104,10 @@ function main() {
     }
     if (changed) {
       writeJson(file, data);
-      console.log("Atualizado:", path.relative(ROOT, file));
+
       touched++;
     }
   }
-  console.log(`Concluído. Arquivos modificados: ${touched}`);
 }
 
 main();

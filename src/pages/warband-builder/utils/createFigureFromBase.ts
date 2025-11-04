@@ -26,53 +26,45 @@ export function createFigureFromBase(
     baseFigure?.baseStats?.startingXp ?? 
     0;
 
+  // Pega availableSkills de várias fontes
+  const availableSkillsFromBase =
+    baseFigure?.availableSkills ||
+    baseFigure?.stats?.skills ||
+    baseFigure?.baseStats?.skills ||
+    [];
+
   return {
     id,
     baseFigureId,
     campaignName: initialData?.campaignName || "",
-    injuriesModifiers: initialData?.injuriesModifiers || {
-      move: 0,
-      fight: 0,
-      shoot: 0,
-      armour: 0,
-      Vontade: 0,
-      health: 0,
-    },
-    advancementsModifiers: initialData?.advancementsModifiers || {
-      move: 0,
-      fight: 0,
-      shoot: 0,
-      armour: 0,
-      Vontade: 0,
-      health: 0,
-    },
-    miscModifiers: initialData?.miscModifiers || {
-      move: 0,
-      fight: 0,
-      shoot: 0,
-      armour: 0,
-      Vontade: 0,
-      health: 0,
-    },
-    equipmentModifiers: initialData?.equipmentModifiers || {
-      move: 0,
-      fight: 0,
-      shoot: 0,
-      armour: 0,
-      Vontade: 0,
-      health: 0,
-    },
-    availableSkills: initialData?.availableSkills || [],
+    // Equipamentos equipados
+    equiped: initialData?.equiped || [],
+    // Skills aprendidas (referências)
+    skills: initialData?.skills || [],
+    // Skills disponíveis para escolha (IDs base)
+    availableSkills: initialData?.availableSkills || availableSkillsFromBase,
+    // Spells aprendidas (referências)
+    spells: initialData?.spells || [],
+    // Spells disponíveis para escolha (IDs base)
     availableSpells: initialData?.availableSpells || [],
+    // Mutações (referências)
     mutations: initialData?.mutations || [],
+    // Marcas sagradas (referências)
     sacredMarks: initialData?.sacredMarks || [],
+    // Bênçãos de Nurgle (referências)
     nurgleBlessings: initialData?.nurgleBlessings || [],
+    // Avanços
     advancements: initialData?.advancements || [],
+    // Ferimentos
     injuries: initialData?.injuries || [],
-    equipment: initialData?.equipment || [],
+    // Magias
     magic: initialData?.magic || [],
+    // Regras especiais extras
     extraSpecialRules: initialData?.extraSpecialRules || [],
+    // XP
     xp: startingXp,
+    // Modificadores misc (opcional, para edição manual)
+    miscModifiers: initialData?.miscModifiers,
   };
 }
 
@@ -88,14 +80,6 @@ export function createEquipmentFromBase(
   
   // Para modificadores, usa o ID direto (que já vem dos JSONs como "pesado", etc.)
   const baseModifierId = baseModifier?.id || baseModifier?.base_modifier_id || undefined;
-  
-  console.log(`[createEquipmentFromBase] Criando Equipment:`, {
-    templateId: baseEquipment.templateId,
-    id: baseEquipment.id,
-    base_equipment_id: baseEquipmentId,
-    base_modifier_id: baseModifierId,
-    name: baseEquipment.name,
-  });
   
   return {
     id: generateUUID(),
@@ -135,6 +119,26 @@ export function createMutationFromBase(baseMutation: any): { id: string; base_mu
   return {
     id: generateUUID(),
     base_mutation_id: baseMutation.id || baseMutation.base_mutation_id || "",
+  };
+}
+
+/**
+ * Cria um objeto SacredMark no novo formato (UUID + base_id)
+ */
+export function createSacredMarkFromBase(baseSacredMark: any): { id: string; base_sacred_mark_id: string } {
+  return {
+    id: generateUUID(),
+    base_sacred_mark_id: baseSacredMark.id || baseSacredMark.base_sacred_mark_id || "",
+  };
+}
+
+/**
+ * Cria um objeto NurgleBlessing no novo formato (UUID + base_id)
+ */
+export function createNurgleBlessingFromBase(baseBlessing: any): { id: string; base_nurgle_blessing_id: string } {
+  return {
+    id: generateUUID(),
+    base_nurgle_blessing_id: baseBlessing.id || baseBlessing.base_nurgle_blessing_id || "",
   };
 }
 

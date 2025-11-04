@@ -27,8 +27,8 @@ export default function GenericTable({
   }
   // Extrair todas as chaves únicas dos objetos para criar as colunas, excluindo url e ref
   const allKeys = Array.from(
-    new Set(data.flatMap((item) => Object.keys(item)))
-  ).filter((key) => key !== "url" && key !== "ref");
+    new Set(data.flatMap(item => Object.keys(item)))
+  ).filter(key => key !== "url" && key !== "ref");
 
   return (
     <TableContainer
@@ -59,7 +59,7 @@ export default function GenericTable({
               borderBottom: "1px solid #10B981",
             }}
           >
-            {allKeys.map((key) => (
+            {allKeys.map(key => (
               <TableCell
                 key={key}
                 align="center"
@@ -76,8 +76,8 @@ export default function GenericTable({
                       ? "100px"
                       : "150px"
                     : key === "roll" || key === "D20"
-                    ? "100px"
-                    : "auto",
+                      ? "100px"
+                      : "auto",
                 }}
               >
                 {key === "roll"
@@ -112,12 +112,11 @@ export default function GenericTable({
                   if (hasUrl) {
                     navigate(row.url);
                   } else if (hasRef) {
-                    console.log("ref da coluna >>>>", row.ref);
                     row.ref.current?.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
               >
-                {allKeys.map((key) => (
+                {allKeys.map(key => (
                   <TableCell
                     key={key}
                     align={key === "roll" || key === "D20" ? "center" : "left"}
@@ -135,8 +134,8 @@ export default function GenericTable({
                           ? "100px"
                           : "150px"
                         : key === "roll" || key === "D20"
-                        ? "100px"
-                        : "auto",
+                          ? "100px"
+                          : "auto",
                     }}
                   >
                     {row[key] || "—"}

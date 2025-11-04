@@ -1,34 +1,40 @@
 [{
+    "id": "martelo-de-sigmar",
     "name": "Martelo de Sigmar",
     "castingNumber": 10,
     "keywords": ["Conjurador Apenas", "Concentração"],
     "effect": "O sacerdote transforma sua arma em um fragmento do lendário Ghal Marhaz, transformando-o em uma arma mágica com bônus de +2 de Ímpeto e dano sagrado.. "
 },
 {
+    "id": "coracoes-de-aco",
     "name": "Corações de Aço",
     "castingNumber": 12,
     "keywords": ["Área de Efeito(Explosão Média)"],
     "effect": "Centralize a Área de Efeito no Sacerdote. Todas as figuras aliadas dentro da área de efeito ganham Imunidade a Aterrorizante e +2 de Vontade. Adicionalmente, qualquer teste de debandada feito pelo bando, é feito a +3. Os efeitos dessa oração não se acumulam."
 },
 {
+    "id": "fogo-espiritual",
     "name": "Fogo Espiritual",
     "castingNumber": 14,
     "keywords": ["Área de Efeito(Explosão Pequena)"],
     "effect": "Centralize a área de efeito no Sacerdote. Todas as figuras inimigas na área de efeito sofrem um ataque sagrado +2 que ignora quaisquer bonus de armadura de uma figura atingida. Figuras com as características Daemônio e Morto-Vivo sofrem um ataque sagrado +5 com modificador de dano +2 e que ignora quaisquer bonus de armadura de uma figura atingida."
 },
 {
+    "id": "escudo-da-fe",
     "name": "Escudo da Fé",
     "castingNumber": 8,
     "keywords": ["Conjurador Apenas", "Concentração"],
     "effect": "O sacerdote é imune a todas as magias e seus efeitos, incluindo Áreas de Efeito."
 },
 {
+    "id": "imposicao-de-maos",
     "name": "Imposição de Mãos",
     "castingNumber": 6,
     "keywords": ["Toque"],
     "effect": "A figura alvo recebe 5 pontos de vida e todos os marcadores negativos são removidos daquela figura."
 },
 {
+    "id": "couraca-da-justica",
     "name": "Couraça da Justiça",
     "castingNumber": 14,
     "keywords": ["Conjurador Apenas", "Concentração"],

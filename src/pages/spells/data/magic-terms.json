@@ -1,113 +1,141 @@
 [
   {
+    "id": "missil-magico",
     "term": "Míssil Mágico",
     "description": "Um míssil mágico funciona exatamente como um ataque a distância, mas usando a Rolagem de Conjuração + (X) ao invés de d20 + Precisão. O Míssil Mágico causa dano (TIPO). Apesar do nome, alguns mísseis mágicos causam dano normal."
   },
   {
+    "id": "area-de-efeito",
     "term": "Área de Efeito(X)",
     "description": "Posicione o tipo de área de efeito em algum ponto no alcance da magia. Todas as figuras sob a área de efeito são afetadas pela magia."
   },
   {
+    "id": "linha-de-visao",
     "term": "Linha de Visão",
     "description": "Pode afetar qualquer figura para qual o conjurador pode traçar de visão."
   },
   {
+    "id": "alcance",
     "term": "Alcance",
     "description": "A Magia afeta uma figura a até (X)cm do conjurador."
   },
   {
+    "id": "psicologica",
     "term": "Psicológica",
     "description": "Essa magia é um efeito que mexe com a mente da figura alvo. Palavra-chave relevante para interagir com efeitos de outras magias e habilidades."
   },
   {
+    "id": "sagrada",
     "term": "Sagrada",
     "description": "Essa magia é um efeito ganho através de fé e dedicação. Magias com essa palavra chave não são afetadas por habilidades e características que anulam, defletem ou oferecem resistência a magia."
   },
   {
+    "id": "conjurador-apenas",
     "term": "Conjurador Apenas",
     "description": "Essa magia só pode ter o próprio conjurador como alvo."
   },
   {
+    "id": "toque",
     "term": "Toque",
     "description": "A magia pode afetar o próprio conjurador ou qualquer figura que ele esteja em contato de base."
   },
   {
+    "id": "ilusao",
     "term": "Ilusão",
     "description": "Magias que manipulam a percepção das figuras inimigas. Palavra-chave relevante para interagir com efeitos de outras magias e habilidades."
   },
   {
+    "id": "concentracao",
     "term": "Concentração",
     "description": "Essa magia requer que a figura se mantenha concentrando sobre ela. Uma figura pode concentrar qualquer número de magias ao mesmo tempo, mas apenas uma de cada tipo por vez. Uma figura deve rolar um teste de Vontade com CD igual classe de dificuldade da magia que está concentrando (chamado de Teste de Concentração) no começo de cada uma de suas ativações, sempre que sofre dano, sempre que recebe um marcador de atordoamento e sempre que é movido por uma força externa. A figura faz esse teste nessas condições para cada magia que esteja concentrando, e o efeito de magias para qual ele falha o Teste de Concentração é cancelado."
   },
   {
+    "id": "explosao-pequena",
     "term": "Explosão Pequena",
     "description": "Explosão instantânea em formato circular. Diâmetro: 6cm. A área de efeito é posicionada, as figuras afetadas e então desaparece."
   },
   {
+    "id": "explosao-media",
     "term": "Explosão Média",
     "description": "Explosão instantânea em formato circular. Diâmetro: 12cm. A área de efeito é posicionada, as figuras afetadas e então desaparece."
   },
   {
+    "id": "explosao-grande",
     "term": "Explosão Grande",
     "description": "Explosão instantânea em formato circular. Diâmetro: 18cm. A área de efeito é posicionada, as figuras afetadas e então desaparece."
   },
   {
+    "id": "zona-pequena",
     "term": "Zona Pequena",
     "description": "Zona permanente em formato quadrado. Lado: 6cm. Fica no tabuleiro até o efeito ser cancelado."
   },
   {
+    "id": "zona-media",
     "term": "Zona Média",
     "description": "Zona permanente em formato quadrado. Lado: 12cm. Fica no tabuleiro até o efeito ser cancelado."
   },
   {
+    "id": "zona-grande",
     "term": "Zona Grande",
     "description": "Zona permanente em formato quadrado. Lado: 18cm. Fica no tabuleiro até o efeito ser cancelado."
   },
   {
+    "id": "cone",
     "term": "Cone",
     "description": "Cones são efeitos instantâneos: A área de efeito é posicionada, as figuras afetadas e então a área de efeito desaparece. Áreas de efeito de cone não tem alcance e devem sempre ser posicionadas com a ponta menor do cone adjacente a qualquer ponto da base de uma figura."
   },
   {
+    "id": "muro",
     "term": "Muro",
     "description": "Muros são Áreas de Efeito permanentes, permanecendo no tabuleiro até o efeito ser cancelado. A área de efeito é tratada como uma peça de terreno para todos os efeitos. Dimensões padrão: 14cm comprimento × 8cm altura × 2.5cm largura."
   },
   {
+    "id": "pilar-pequeno",
     "term": "Pilar Pequeno",
     "description": "Pilar permanente em formato de cilindro. Diâmetro: 6cm. Altura: 8cm. Permanece no campo de batalha até o efeito ser cancelado."
   },
   {
+    "id": "pilar-medio",
     "term": "Pilar Médio",
     "description": "Pilar permanente em formato de cilindro. Diâmetro: 12cm. Altura: 8cm. Permanece no campo de batalha até o efeito ser cancelado."
   },
   {
+    "id": "pilar-grande",
     "term": "Pilar Grande",
     "description": "Pilar permanente em formato de cilindro. Diâmetro: 18cm. Altura: 8cm. Permanece no campo de batalha até o efeito ser cancelado."
   },
   {
+    "id": "armadilhas",
     "term": "Armadilhas",
     "description": "Armadilhas são efeitos permanentes, permanecendo do campo de batalha até o efeito ser cancelado. Armadilhas são círculos de 3cm de diâmetro."
   },
   {
+    "id": "flamejante",
     "term": "Flamejante",
     "description": "Um dano crítico desse tipo de dano dá ao alvo um Marcador de Chamas."
   },
   {
+    "id": "gelido",
     "term": "Gélido",
     "description": "Um dano crítico desse tipo de dano dá ao alvo um Marcador de Congelamento."
   },
   {
+    "id": "eletrico",
     "term": "Elétrico",
     "description": "Um dano crítico desse tipo de dano ignora qualquer bônus por usar Armaduras do alvo."
   },
   {
+    "id": "venenoso",
     "term": "Venenoso",
     "description": "Qualquer dano desse tipo tomado dá ao alvo um Marcador de Veneno."
   },
   {
+    "id": "magico",
     "term": "Mágico",
     "description": "Tipo de dano especial que tem resistências e vulnerabilidades próprias, ignorando resitência e imunidade a dano normal."
   },
   {
+    "id": "sagrado",
     "term": "Sagrado",
     "description": "Atravessa toda e qualquer resistência e ignora regras anti magia se usado contra Daemônios e Mortos-Vivos. Contra outras figuras é dano mágico normal."
   }

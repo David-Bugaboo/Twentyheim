@@ -104,14 +104,16 @@ function GameText({
 
   const processText = (text: string): ReactNode[] => {
     const elements: ReactNode[] = [];
-    let remainingText = text;
+    // Garante que text seja uma string válida
+    const safeText = text != null ? String(text) : "";
+    let remainingText = safeText;
     let keyCounter = 0;
 
     const sortedTerms = [...gameTerms].sort(
       (a, b) => b.term.length - a.term.length
     );
 
-    while (remainingText.length > 0) {
+    while (remainingText && remainingText.length > 0) {
       let foundMatch = false;
       let earliestMatch: {
         index: number;
@@ -193,7 +195,9 @@ function GameText({
     return elements;
   };
 
-  return <Component {...props}>{processText(children)}</Component>;
+  // Garante que children seja uma string antes de processar
+  const textToProcess = children != null ? String(children) : "";
+  return <Component {...props}>{processText(textToProcess)}</Component>;
 }
 
 // Advanced weapon data with detailed stats

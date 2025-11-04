@@ -27,11 +27,13 @@ const spellLoreMap: Record<string, any[]> = {
   "Magia dos Goblins": magicGoblins as any[],
   "Magia Druchii": druchiiMagic as any[],
   "Magia dos Antigos": magicOldOnes as any[],
+  "Magia dos Anciões": magicOldOnes as any[], // Variante do nome
   "Magia Inferior": lesserMagic as any[],
   "Magias dos Deuses do Caos": darkGodInvocations as any[],
 };
 
 type SpellData = {
+  id?: string; // base_spell_id do JSON original
   name: string;
   castingNumber: number;
   keywords: string[];
@@ -46,22 +48,23 @@ type SpellPickerProps = {
 };
 
 const SpellPicker: React.FC<SpellPickerProps> = ({
-
+  aligned0,
+  aligned2: _aligned2,
   selectedSpells,
   onAdd,
 }) => {
   const [tradition, setTradition] = useState<string>("");
   const [spell, setSpell] = useState<string>("");
 
-  // Todas as tradições disponíveis (dropdown completo; alinhamentos ficam ilustrativos)
+  // Apenas tradições em aligned0 (tradições primárias)
   const allowedTraditions = useMemo(() => {
-    return Object.keys(spellLoreMap);
-  }, []);
+    return (aligned0 || []) as string[];
+  }, [aligned0]);
 
   const traditions = useMemo(() => {
     const list: Array<{ key: string; label: string; spells: SpellData[] }> = [];
 
-    // Itera pelas tradições permitidas
+    // Itera apenas pelas tradições em aligned0
     for (const traditionName of allowedTraditions) {
       // Busca os dados dessa tradição no mapa
       const traditionData = spellLoreMap[traditionName];
@@ -87,6 +90,7 @@ const SpellPicker: React.FC<SpellPickerProps> = ({
 
       const spellsList = (Array.isArray(traditionData) ? traditionData : [])
         .map((item: any) => ({
+          id: item?.id, // Preserva o id do JSON original (base_spell_id)
           name: item?.name,
           castingNumber: item?.castingNumber || 0,
           keywords: normalizeKeywords(item?.keywords),

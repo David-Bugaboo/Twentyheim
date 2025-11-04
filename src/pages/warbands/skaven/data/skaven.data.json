@@ -37,62 +37,76 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "1ª grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "mangual",
           "name": "Mangual",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "lamentadoras",
           "name": "Lamentadoras",
           "cost": "50 coroas pelo par"
         },
         {
-          "name": "Garras de Combat Skaven",
+          "id": "garras-de-combate-skaven",
+          "name": "Garras de Combate Skaven",
           "cost": "35 coroas pelo par"
         }
       ],
       "ranged": [
         {
+          "id": "funda",
           "name": "Funda",
           "cost": "2 coroas"
         },
         {
+          "id": "faca-de-arremesso",
           "name": "Faca de Arremesso",
           "cost": "5 coroas"
         },
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "25 coroas"
         },
         {
+          "id": "pistola-de-gatilho-bruxo",
           "name": "Pistola de Gatilho-Bruxo",
-          "cost": "17 coroas (35 para cinto)"
+          "cost": "17 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "broquel",
           "name": "Bróquel",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -129,50 +143,78 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "1ª grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "mangual",
           "name": "Mangual",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "lamentadoras",
           "name": "Lamentadoras",
           "cost": "50 coroas pelo par"
         },
         {
-          "name": "Garras de Combat Skaven",
+          "id": "garras-de-combate-skaven",
+          "name": "Garras de Combate Skaven",
           "cost": "35 coroas pelo par"
         }
       ],
       "ranged": [
         {
+          "id": "funda",
           "name": "Funda",
           "cost": "2 coroas"
         },
         {
+          "id": "facas-de-arremesso",
           "name": "Facas de Arremesso",
           "cost": "15 coroas"
         },
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "25 coroas"
         },
         {
+          "id": "pistola-de-gatilho-bruxo",
           "name": "Pistola de Gatilho-Bruxo",
-          "cost": "17 coroas (35 para cinto)"
+          "cost": "17 coroas"
+        }
+      ],
+      "armor": [
+        {
+          "id": "armadura-leve",
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "id": "broquel",
+          "name": "Bróquel",
+          "cost": "5 coroas"
+        },
+        {
+          "id": "elmo",
+          "name": "Elmo",
+          "cost": "10 coroas"
         }
       ]
     }
@@ -196,71 +238,80 @@
       "equipmentSlots": 4
     },
     "quantity": "0-2",
-    "abilities": [
-      {
-        "name": "Treinado para matar",
-        "description": "O Skaven Sombrio tem a característica Forte."
-      }
-    ],
+    "abilities": [],
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "1ª grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "mangual",
           "name": "Mangual",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "lamentadoras",
           "name": "Lamentadoras",
           "cost": "50 coroas pelo par"
         },
         {
-          "name": "Garras de Combat Skaven",
+          "id": "garras-de-combate-skaven",
+          "name": "Garras de Combate Skaven",
           "cost": "35 coroas pelo par"
         }
       ],
       "ranged": [
         {
+          "id": "funda",
           "name": "Funda",
           "cost": "2 coroas"
         },
         {
+          "id": "faca-de-arremesso",
           "name": "Faca de Arremesso",
           "cost": "5 coroas"
         },
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "25 coroas"
         },
         {
+          "id": "pistola-de-gatilho-bruxo",
           "name": "Pistola de Gatilho-Bruxo",
-          "cost": "17 coroas (35 para cinto)"
+          "cost": "17 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         },
         {
+          "id": "broquel",
           "name": "Bróquel",
           "cost": "5 coroas"
         }
@@ -289,62 +340,76 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "1ª grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "mangual",
           "name": "Mangual",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "lamentadoras",
           "name": "Lamentadoras",
           "cost": "50 coroas pelo par"
         },
         {
-          "name": "Garras de Combat Skaven",
+          "id": "garras-de-combate-skaven",
+          "name": "Garras de Combate Skaven",
           "cost": "35 coroas pelo par"
         }
       ],
       "ranged": [
         {
+          "id": "funda",
           "name": "Funda",
           "cost": "2 coroas"
         },
         {
+          "id": "faca-de-arremesso",
           "name": "Faca de Arremesso",
           "cost": "5 coroas"
         },
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "25 coroas"
         },
         {
+          "id": "pistola-de-gatilho-bruxo",
           "name": "Pistola de Gatilho-Bruxo",
-          "cost": "17 coroas (35 para cinto)"
+          "cost": "17 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "broquel",
           "name": "Bróquel",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -370,38 +435,46 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "1ª grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "funda",
           "name": "Funda",
           "cost": "2 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -423,6 +496,14 @@
       "equipmentSlots": 0
     },
     "quantity": "ilimitado",
+    "naturalAttacks": [
+      {
+        "name": "Presas Imundas",
+        "damage": "-1",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": []
+      }
+    ],
     "abilities": [
       {
         "name": "Rato Gigante",
@@ -446,12 +527,20 @@
       "equipmentSlots": 0
     },
     "quantity": "0-1",
+    "naturalAttacks": [
+      {
+        "name": "Espancamento",
+        "damage": "+2",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": []
+      }
+    ],
     "noXP": true,
     "qualidade": 20,
     "abilities": [
       {
         "name": "Monstruosidade do Clã Moulder",
-        "description": "Ratos Ogróides têm as características Grande, Voraz, Animal e Aterrorizante."
+        "description": "Ratos Ogróides têm as características Grande, Animal e Aterrorizante."
       },
       {
         "name": "Mente Limitada",

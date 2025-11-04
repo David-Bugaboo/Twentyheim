@@ -14,19 +14,19 @@ import MobileSection from "../../components/MobileSection";
  */
 function addUpdatedAtToContent(content: any): any {
   const updatedAt = new Date().toISOString();
-  
+
   if (Array.isArray(content)) {
     return {
       data: content,
       updatedAt,
     };
-  } else if (content && typeof content === 'object') {
+  } else if (content && typeof content === "object") {
     return {
       ...content,
       updatedAt,
     };
   }
-  
+
   // Para outros tipos (string, number, etc), mantém como está
   return content;
 }
@@ -36,21 +36,25 @@ function addUpdatedAtToContent(content: any): any {
  * Para manter compatibilidade com código que espera o formato original
  */
 function removeUpdatedAtFromContent(content: any): any {
-  if (!content || typeof content !== 'object') {
+  if (!content || typeof content !== "object") {
     return content;
   }
-  
+
   // Se tiver estrutura { data: [...], updatedAt: ... }, retorna apenas o array
-  if ('data' in content && Array.isArray(content.data) && 'updatedAt' in content) {
+  if (
+    "data" in content &&
+    Array.isArray(content.data) &&
+    "updatedAt" in content
+  ) {
     return content.data;
   }
-  
+
   // Se for objeto com updatedAt, remove a propriedade
-  if ('updatedAt' in content) {
+  if ("updatedAt" in content) {
     const { updatedAt, ...rest } = content;
     return rest;
   }
-  
+
   return content;
 }
 
@@ -68,7 +72,7 @@ async function saveToIndexedDB(id: string, content: any): Promise<void> {
       request.onupgradeneeded = event => {
         const db = (event.target as IDBOpenDBRequest).result;
         const oldVersion = event.oldVersion;
-        
+
         // Se está migrando da versão 1, preserva stores existentes e cria novas
         if (oldVersion < 2) {
           // Cria store json-data se não existir
@@ -165,9 +169,7 @@ const JSON_FILES = {
       path: "warbands/cult-of-the-possessed/data/mutations.data.json",
       name: "Mutações do Culto dos Possuídos",
       import: () =>
-        import(
-          "../warbands/cult-of-the-possessed/data/mutations.data.json"
-        ),
+        import("../warbands/cult-of-the-possessed/data/mutations.data.json"),
     },
     {
       id: "vampire-courts",
@@ -199,7 +201,8 @@ const JSON_FILES = {
       id: "mercenaries",
       path: "warbands/mercenaries/data/mercenaries.data.json",
       name: "Mercenários",
-      import: () => import("../warbands/mercenaries/data/mercenaries.data.json"),
+      import: () =>
+        import("../warbands/mercenaries/data/mercenaries.data.json"),
     },
     {
       id: "orc-mob",
@@ -234,9 +237,7 @@ const JSON_FILES = {
       path: "warbands/carnival-of-chaos/data/blessings-of-nurgle.json",
       name: "Bênçãos de Nurgle",
       import: () =>
-        import(
-          "../warbands/carnival-of-chaos/data/blessings-of-nurgle.json"
-        ),
+        import("../warbands/carnival-of-chaos/data/blessings-of-nurgle.json"),
     },
     {
       id: "dark-elf-corsairs",
@@ -458,7 +459,8 @@ const JSON_FILES = {
       id: "cacadores-de-tesouro-anoes",
       path: "skills/data/cacadores-de-tesouro-anoes.skills.json",
       name: "Habilidades dos Caçadores de Tesouro Anões",
-      import: () => import("../skills/data/cacadores-de-tesouro-anoes.skills.json"),
+      import: () =>
+        import("../skills/data/cacadores-de-tesouro-anoes.skills.json"),
     },
     {
       id: "mata-trolls-anao",
@@ -470,19 +472,22 @@ const JSON_FILES = {
       id: "habilidades-von-carstein",
       path: "skills/data/habilidades-von-carstein.skills.json",
       name: "Habilidades Von Carstein",
-      import: () => import("../skills/data/habilidades-von-carstein.skills.json"),
+      import: () =>
+        import("../skills/data/habilidades-von-carstein.skills.json"),
     },
     {
       id: "habilidades-de-dragao-carmesim",
       path: "skills/data/habilidades-de-dragao-carmesim.skills.json",
       name: "Habilidades de Dragão Carmesim",
-      import: () => import("../skills/data/habilidades-de-dragao-carmesim.skills.json"),
+      import: () =>
+        import("../skills/data/habilidades-de-dragao-carmesim.skills.json"),
     },
     {
       id: "habilidades-dos-necrarcas",
       path: "skills/data/habilidades-dos-necrarcas.skills.json",
       name: "Habilidades dos Necrarcas",
-      import: () => import("../skills/data/habilidades-dos-necrarcas.skills.json"),
+      import: () =>
+        import("../skills/data/habilidades-dos-necrarcas.skills.json"),
     },
     {
       id: "habilidades-de-lahmia",
@@ -616,8 +621,6 @@ function AdminPage() {
       }
 
       if (!isAdmin()) {
-        console.log("Email logado:", currentUser.email);
-        console.log("Display name:", currentUser.displayName);
         toast.error(
           `Acesso negado. Email logado: ${currentUser.email || "N/A"}. Se você é o David Facó, verifique o email ou entre em contato com o desenvolvedor.`
         );

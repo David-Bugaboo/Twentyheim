@@ -1,17 +1,20 @@
 [
   {
+    "id": "vigor-daemonico",
     "name": "Vigor Daemônico",
     "castingNumber": 14,
     "keywords": ["Área de Efeito(Explosão Grande)"],
     "effect": "Todos os Nurguinhos e Enfermos na área de efeito recuperam 3 de vida e ganham +1 de Armadura até o fim do turno."
   },
   {
+    "id": "torrente-de-pus",
     "name": "Torrente de Pus",
     "castingNumber": 10,
     "keywords": ["Míssil Mágico(Venenoso)(+6)", "Alcance(20cm)"],
     "effect": "Ataque a figura alvo com o míssil mágico."
   },
   {
+    "id": "fedor-de-nurgle",
     "name": "Fedor de Nurgle",
     "castingNumber": 14,
     "keywords": ["Área de Efeito(Explosão Média)"],
@@ -19,12 +22,14 @@
   },
 
   {
+    "id": "pestilencia",
     "name": "Pestilência",
     "castingNumber": 18,
     "keywords": ["Área de Efeito(Explosão Grande)"],
     "effect": "Centralize a Área de Efeito no conjurador. Todas as figuras inimigas na Área de Efeito recebem um ataque mágico venenoso +3."
   },
   {
+    "id": "cicatrizacao-acelerada",
     "name": "Cicatrização Acelerada",
     "castingNumber": 8,
     "keywords": ["Conjurador Apenas", "Concentração"],
@@ -32,6 +37,7 @@
   },
 
   {
+    "id": "explosao-da-necrose",
     "name": "Explosão da Necrose",
     "castingNumber": 16,
     "keywords": ["Área de Efeito (Explosão Pequena)"],

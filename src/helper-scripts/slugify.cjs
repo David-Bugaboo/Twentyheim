@@ -38,7 +38,7 @@ function slugify(text, options = {}) {
       .replace(/[ìíîï]/g, "i")
       .replace(/[òóôõö]/g, "o")
       .replace(/[ùúûü]/g, "u")
-      .replace(/[ç]/g, "c")
+      .replace(/[ç]/g, "")
       .replace(/[ñ]/g, "n")
       .replace(/[^a-z0-9\s-]/g, "") // Remove caracteres especiais
       .replace(/\s+/g, "-") // Substitui espaços por hífens

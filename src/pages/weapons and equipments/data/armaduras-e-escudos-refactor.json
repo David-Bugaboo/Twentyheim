@@ -2,7 +2,7 @@
   {
     "id": "escudo",
     "name": "Escudo",
-    "type": "Armadura",
+    "type": "Escudo",
     "damageModifier": null,
     "purchaseCost": "10 coroas",
     "availability": ["Todos"],
@@ -224,7 +224,7 @@
   {
     "id": "broquel",
     "name": "Bróquel",
-    "type": "Armadura",
+    "type": "Escudo",
     "damageModifier": null,
     "purchaseCost": "5 coroas",
     "rarity": 1,

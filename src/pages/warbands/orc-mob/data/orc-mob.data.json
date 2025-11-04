@@ -35,58 +35,71 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "estrela-da-manha",
           "name": "Estrela da Manhã",
           "cost": "15 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "arco",
           "name": "Arco",
           "cost": "10 coroas"
         },
         {
+          "id": "besta",
           "name": "Besta",
           "cost": "25 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -125,58 +138,71 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "estrela-da-manha",
           "name": "Estrela da Manhã",
           "cost": "15 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "arco",
           "name": "Arco",
           "cost": "10 coroas"
         },
         {
+          "id": "besta",
           "name": "Besta",
           "cost": "25 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -207,58 +233,71 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "estrela-da-manha",
           "name": "Estrela da Manhã",
           "cost": "15 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "arco",
           "name": "Arco",
           "cost": "10 coroas"
         },
         {
+          "id": "besta",
           "name": "Besta",
           "cost": "25 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -291,58 +330,71 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "estrela-da-manha",
           "name": "Estrela da Manhã",
           "cost": "15 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "arco",
           "name": "Arco",
           "cost": "10 coroas"
         },
         {
+          "id": "besta",
           "name": "Besta",
           "cost": "25 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -383,38 +435,46 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "bola-e-corrente",
           "name": "Bola e Corrente",
           "cost": "15 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "arco-curto",
           "name": "Arco Curto",
           "cost": "5 coroas"
         }
       ],
       "armor": [
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -439,6 +499,14 @@
       "cost": "15 coroas",
       "equipmentSlots": 0
     },
+    "naturalAttacks": [
+      {
+        "name": "Dentada de Pé-Duro",
+        "damage": "+2",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": []
+      }
+    ],
     "abilities": [
       {
         "name": "Frenéticos",
@@ -446,7 +514,7 @@
       },
       {
         "name": "Habitante das Cavernas",
-        "description": "Pé-Duros das Cavernas têm as características Animal e Voraz."
+        "description": "Pé-Duros das Cavernas têm as características Animal."
       },
       {
         "name": "Pastores Goblin",
@@ -472,10 +540,35 @@
       "cost": "200 coroas",
       "equipmentSlots": 0
     },
+    "naturalAttacks": [
+      {
+        "name": "Porrete de Tronco",
+        "damage": "+2",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": [
+          {
+            "label": "Concussiva(4)",
+            "value": "Um ataque natural com essa palavra chave dá um marcador de Atordoamento a qualquer alvo que receber mais de (X) de dano."
+          }
+        ]
+      },
+      {
+        "name": "Vomito Ácido",
+        "damage": "0",
+        "type": "Ataque a Distância",
+        "range": "15cm",
+        "specialRules": [
+          {
+            "label": "Penetração de Armadura(2)",
+            "value": "Um ataque natural com essa palavra chave trata a armadura do alvo como (X) pontos menor."
+          }
+        ]
+      }
+    ],
     "abilities": [
       {
         "name": "Besta Fedorenta",
-        "description": "Trolls têm as características Grande, Aterrorizante e Voraz."
+        "description": "Trolls têm as características Grande e Aterrorizante."
       },
       {
         "name": "Regeneração Rápida",
@@ -484,10 +577,6 @@
       {
         "name": "Estúpido",
         "description": "Essa figura tem a característica Estupidez. Adicionalmente ele é muito burro para aprender novas coisas e não ganha experiência."
-      },
-      {
-        "name": "Vomito Ácido",
-        "description": "Um troll pode fazer um ataque a distância vomitando no seu inimigo. Como uma ação de ataque a distância, o troll vomita em um alvo a até 15cm de distância, fazendo um ataque a distância contra o alvo em questão, com modificador de dano +2 e Penetração de Armadura(2)."
       },
       {
         "name": "Sempre Faminto",

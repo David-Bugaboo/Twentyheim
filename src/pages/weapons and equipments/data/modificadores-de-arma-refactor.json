@@ -14,6 +14,9 @@
     "movePenalty": null,
     "slots": "1",
     "effect": "+1 dano",
+    "statModifiers":{
+      "damage": 1
+    },
     "requirements": null,
     "specialRules": []
   },
@@ -31,12 +34,15 @@
     "armorBonus": null,
     "movePenalty": null,
     "slots": "1",
+    "statModifiers":{
+      "fight": 1
+    },
     "effect": "+1 ímpeto",
     "requirements": null,
     "specialRules": []
   },
   {
-    "id": "de-aço-negro",
+    "id": "de-aco-negro",
     "name": "De Aço Negro",
     "type": "Modificador de Arma Corpo a Corpo",
     "availability": ["Elfo Negro"],
@@ -71,7 +77,11 @@
     "armorBonus": null,
     "movePenalty": null,
     "slots": "1",
-    "effect": "+2 de dano, mas apenas na primeira luta de cada turno.",
+    "effect": "+2 de dano, mas -1 de ímpeto.",
+    "statModifiers":{
+      "damage": 2,
+      "fight": -1
+    },
     "requirements": null,
     "specialRules": []
   },

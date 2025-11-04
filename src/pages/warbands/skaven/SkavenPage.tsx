@@ -50,7 +50,11 @@ const SkavenPage: React.FC = () => {
     []
   );
 
-  const { data: skavenData, loading, source } = useJsonData({
+  const {
+    data: skavenData,
+    loading,
+    source,
+  } = useJsonData({
     fileId: "skaven",
     staticImport: staticImportFn,
   });
@@ -58,12 +62,7 @@ const SkavenPage: React.FC = () => {
   // Log para debug: mostra de onde os dados estão vindo
   React.useEffect(() => {
     if (source) {
-      console.log(`[SkavenPage] Dados carregados de: ${source.toUpperCase()}`);
-      console.log(`[SkavenPage] FileId: skaven`);
-      console.log(`[SkavenPage] Loading: ${loading}`);
-      console.log(`[SkavenPage] Tem dados: ${skavenData ? 'Sim' : 'Não'}`);
       if (skavenData && Array.isArray(skavenData)) {
-        console.log(`[SkavenPage] Quantidade de unidades: ${skavenData.length}`);
       }
     }
   }, [source, loading, skavenData]);
@@ -74,7 +73,7 @@ const SkavenPage: React.FC = () => {
       { id: "introducao", title: "Introdução", level: 0 },
       { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
     ];
-    
+
     return createWarbandNavigationSections(
       skavenData as Unit[] | null | undefined,
       baseSections
@@ -84,17 +83,17 @@ const SkavenPage: React.FC = () => {
   // Extrai unidades de forma segura (com fallback para array vazio)
   const leader = useMemo(() => {
     if (!skavenData || !Array.isArray(skavenData)) return undefined;
-    return skavenData.find((unit) => unit.role === "Líder") as Unit | undefined;
+    return skavenData.find(unit => unit.role === "Líder") as Unit | undefined;
   }, [skavenData]);
 
   const heroes = useMemo(() => {
     if (!skavenData || !Array.isArray(skavenData)) return [];
-    return skavenData.filter((unit) => unit.role === "Herói") as Unit[];
+    return skavenData.filter(unit => unit.role === "Herói") as Unit[];
   }, [skavenData]);
 
   const soldiers = useMemo(() => {
     if (!skavenData || !Array.isArray(skavenData)) return [];
-    return skavenData.filter((unit) => !unit.role) as Unit[];
+    return skavenData.filter(unit => !unit.role) as Unit[];
   }, [skavenData]);
 
   return (
@@ -183,39 +182,41 @@ const SkavenPage: React.FC = () => {
           <MobileSection id="herois">
             <HeaderH1 id="herois">Heróis</HeaderH1>
             {loading && <MobileText>Carregando...</MobileText>}
-            {!loading && heroes.map((hero) => (
-              <UnitCard
-                key={hero.name}
-                id={hero.name.toLowerCase().replace(/\s+/g, "-")}
-                name={hero.name}
-                role={hero.role}
-                quantity={hero.quantity}
-                lore={hero.lore}
-                qualidade={(hero as any).qualidade || 0}
-                stats={hero.stats}
-                spellAffinity={hero.spellAffinity}
-                abilities={hero.abilities}
-                equipment={hero.equipment}
-              />
-            ))}
+            {!loading &&
+              heroes.map(hero => (
+                <UnitCard
+                  key={hero.name}
+                  id={hero.name.toLowerCase().replace(/\s+/g, "-")}
+                  name={hero.name}
+                  role={hero.role}
+                  quantity={hero.quantity}
+                  lore={hero.lore}
+                  qualidade={(hero as any).qualidade || 0}
+                  stats={hero.stats}
+                  spellAffinity={hero.spellAffinity}
+                  abilities={hero.abilities}
+                  equipment={hero.equipment}
+                />
+              ))}
           </MobileSection>
 
           <MobileSection id="soldados">
             <HeaderH1 id="soldados">Soldados</HeaderH1>
             {loading && <MobileText>Carregando...</MobileText>}
-            {!loading && soldiers.map((soldier) => (
-              <UnitCard
-                key={soldier.name}
-                id={soldier.name.toLowerCase().replace(/\s+/g, "-")}
-                name={soldier.name}
-                quantity={soldier.quantity}
-                lore={soldier.lore}
-                qualidade={(soldier as any).qualidade || 0}
-                stats={soldier.stats}
-                abilities={soldier.abilities}
-                equipment={soldier.equipment}
-              />
-            ))}
+            {!loading &&
+              soldiers.map(soldier => (
+                <UnitCard
+                  key={soldier.name}
+                  id={soldier.name.toLowerCase().replace(/\s+/g, "-")}
+                  name={soldier.name}
+                  quantity={soldier.quantity}
+                  lore={soldier.lore}
+                  qualidade={(soldier as any).qualidade || 0}
+                  stats={soldier.stats}
+                  abilities={soldier.abilities}
+                  equipment={soldier.equipment}
+                />
+              ))}
           </MobileSection>
         </div>
       </div>

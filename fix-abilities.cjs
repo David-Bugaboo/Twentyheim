@@ -1,16 +1,20 @@
-const fs = require('fs');
+const fs = require("fs");
 
 // Read the App.tsx file
-let content = fs.readFileSync('src/App.tsx', 'utf8');
+let content = fs.readFileSync("src/App.tsx", "utf8");
 
 // Function to convert string abilities to object abilities
 function convertAbilities(match, abilitiesArray) {
   try {
     const abilities = JSON.parse(abilitiesArray);
-    if (Array.isArray(abilities) && abilities.length > 0 && typeof abilities[0] === 'string') {
+    if (
+      Array.isArray(abilities) &&
+      abilities.length > 0 &&
+      typeof abilities[0] === "string"
+    ) {
       const convertedAbilities = abilities.map(ability => ({
         name: ability,
-        description: `Special ability: ${ability}`
+        description: `Special ability: ${ability}`,
       }));
       return `abilities: ${JSON.stringify(convertedAbilities, null, 10)}`;
     }
@@ -21,10 +25,12 @@ function convertAbilities(match, abilitiesArray) {
 }
 
 // Replace all abilities arrays
-content = content.replace(/abilities: \[([^\]]+)\]/g, (match, abilitiesArray) => {
-  return convertAbilities(match, `[${abilitiesArray}]`);
-});
+content = content.replace(
+  /abilities: \[([^\]]+)\]/g,
+  (match, abilitiesArray) => {
+    return convertAbilities(match, `[${abilitiesArray}]`);
+  }
+);
 
 // Write back to file
-fs.writeFileSync('src/App.tsx', content);
-console.log('Fixed all abilities arrays');
+fs.writeFileSync("src/App.tsx", content);

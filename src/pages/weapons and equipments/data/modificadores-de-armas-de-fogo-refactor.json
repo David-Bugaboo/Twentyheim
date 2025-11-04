@@ -31,6 +31,9 @@
     "armorBonus": null,
     "movePenalty": null,
     "slots": "1",
+    "statModifiers":{
+      "shoot": 1
+    },
     "effect": "Uma figura equipada com essa arma ganha +1 de Precisão e pode usar a reação Aparar.",
     "requirements": null,
     "specialRules": []

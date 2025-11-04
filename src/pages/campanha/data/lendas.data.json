@@ -76,19 +76,22 @@
       "upkeep": "0 coroas",
       "mercEquipment": [
         "Martelo de Guerra Sigmarita",
-        "Martelo de Guerra Sigmarita",
+        "Escudo",
         "Água Benta",
         "Relíquia Sagrada",
         "Armadura de Gromril"
       ],
-      "legendSpells": [
-        "Martelo de Sigmar",
-        "Água Corações de Aço",
-        "Fogo Espiritual",
-        "Escudo da Fé",
-        "Imposição de Mãos",
-        "Couraça da Justiça"
-      ],
+      "legendSpells": {
+        "lore": "prayers-of-sigmar",
+        "spells": [
+          "martelo-de-sigmar",
+          "coracoes-de-aco",
+          "fogo-espiritual",
+          "escudo-da-fe",
+          "imposicao-de-maos",
+          "couraça-da-justica"
+        ]
+      },
       "legendSkills": [
         "Esmaga Crânio",
         "Evasão Rápida",
@@ -267,14 +270,17 @@
       "cost": "0 coroas",
       "upkeep": "1 Pedra-bruxa por partida",
       "mercEquipment": ["Alabarda"],
-      "legendsSpells": [
-        "Chamas de Uzhul",
-        "Revoada de Zimmeran",
-        "Terror de Aramar",
-        "Flecha Prateada de Arha",
-        "Sorte de Shemtek",
-        "Espada de Rhezebel"
-      ]
+      "legendSpells": {
+        "lore": "lesser-magic",
+        "spells": [
+          "chamas-de-uzhul",
+          "revoada-de-zimmeran",
+          "terror-de-aramar",
+          "flecha-prateada-de-arha",
+          "sorte-de-shemtek",
+          "espada-de-rhezebel"
+        ]
+      }
     },
     "abilities": [
       {

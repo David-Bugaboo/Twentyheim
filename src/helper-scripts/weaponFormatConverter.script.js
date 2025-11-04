@@ -28,7 +28,7 @@ function slugify(text, options = {}) {
     .replace(/[ìíîï]/g, "i")
     .replace(/[òóôõö]/g, "o")
     .replace(/[ùúûü]/g, "u")
-    .replace(/[ç]/g, "c")
+    .replace(/[ç]/g, "")
     .replace(/[ñ]/g, "n")
     .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-")
@@ -2397,7 +2397,7 @@ class convertItemDataToEquipmentCard {
   ];
 
   convertItemType(item) {
-    const type = item.properties.find((property) =>
+    const type = item.properties.find(property =>
       property.label.toLowerCase().includes("tipo")
     );
     if (type) {
@@ -2407,7 +2407,7 @@ class convertItemDataToEquipmentCard {
   }
 
   getUser(item) {
-    const usage = item.properties.find((property) =>
+    const usage = item.properties.find(property =>
       property.label.toLowerCase().includes("uso")
     );
     if (usage) {
@@ -2417,7 +2417,7 @@ class convertItemDataToEquipmentCard {
   }
 
   getSlots(item) {
-    const slots = item.properties.find((property) =>
+    const slots = item.properties.find(property =>
       property.label.toLowerCase().includes("slots")
     );
     if (slots) {
@@ -2431,7 +2431,7 @@ class convertItemDataToEquipmentCard {
   }
 
   getItemDamageModifier(item) {
-    const damageModifier = item.properties.find((property) =>
+    const damageModifier = item.properties.find(property =>
       property.label.toLowerCase().includes("modificador de dano")
     );
     if (damageModifier) {
@@ -2441,7 +2441,7 @@ class convertItemDataToEquipmentCard {
   }
 
   getItemPurchaseCost(item) {
-    const purchaseCost = item.properties.find((property) =>
+    const purchaseCost = item.properties.find(property =>
       property.label.toLowerCase().includes("valor de compra")
     );
     if (purchaseCost) {
@@ -2452,7 +2452,7 @@ class convertItemDataToEquipmentCard {
 
   getItemSellValue(item) {
     const sellValue = item.properties.find(
-      (property) =>
+      property =>
         property.label.toLowerCase().includes("valor de venda") ||
         property.label.toLowerCase().includes("preço de valor de compra")
     );
@@ -2463,7 +2463,7 @@ class convertItemDataToEquipmentCard {
   }
 
   getItemMaxRange(item) {
-    const maxRange = item.properties.find((property) =>
+    const maxRange = item.properties.find(property =>
       property.label.toLowerCase().includes("alcance máximo")
     );
     if (maxRange) {
@@ -2472,7 +2472,7 @@ class convertItemDataToEquipmentCard {
   }
 
   getItemExclusive(item) {
-    const exclusive = item.properties.find((property) =>
+    const exclusive = item.properties.find(property =>
       property.label.toLowerCase().includes("exclusivo")
     );
     if (exclusive) {
@@ -2486,7 +2486,7 @@ class convertItemDataToEquipmentCard {
   }
 
   getItemEffect(item) {
-    const effect = item.properties.find((property) =>
+    const effect = item.properties.find(property =>
       property.label.toLowerCase().includes("bonus")
     );
     if (effect) {
@@ -2496,7 +2496,7 @@ class convertItemDataToEquipmentCard {
   }
 
   getItemArmorBonus(item) {
-    const armorBonus = item.properties.find((property) =>
+    const armorBonus = item.properties.find(property =>
       property.label.toLowerCase().includes("bônus de armadura")
     );
     if (armorBonus) {
@@ -2506,7 +2506,7 @@ class convertItemDataToEquipmentCard {
   }
 
   getMovePenalty(item) {
-    const movePenalty = item.properties.find((property) =>
+    const movePenalty = item.properties.find(property =>
       property.label.toLowerCase().includes("Penalidade de Agilidadee")
     );
     if (movePenalty) {
@@ -2516,7 +2516,7 @@ class convertItemDataToEquipmentCard {
   }
 
   getItemRequirements(item) {
-    const requirements = item.properties.find((property) =>
+    const requirements = item.properties.find(property =>
       property.label.toLowerCase().includes("requer")
     );
     if (requirements) {
@@ -2577,14 +2577,12 @@ async function writeJSON(jsonData, categoryName) {
       path.join(`${_dirName}/data`, `${fileName}-refactor.json`),
       JSON.stringify(jsonData)
     );
-    console.log(`Arquivo ${fileName}-refactor.json escrito com sucesso!`);
   } catch (error) {
     console.error("Erro ao escrever arquivo:", error);
   }
 }
 
 for (const data of commonItemsData) {
-  console.log(data);
   const converterInstance = new convertItemDataToEquipmentCard();
 
   const conversionResult = converterInstance.returnConversionResult(data);

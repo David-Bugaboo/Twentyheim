@@ -62,8 +62,7 @@ files.forEach(filePath => {
     );
     
     fs.writeFileSync(filePath, content);
-    console.log(`Updated ${filePath}`);
+   
   }
 });
 
-console.log('All files updated!');

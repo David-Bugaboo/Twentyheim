@@ -63,19 +63,11 @@ export function useAutoSave({
 
       const payload = stripUndefinedDeep(payloadRaw);
 
-      console.log("[AutoSave] Salvando no IndexedDB:", {
-        warbandId,
-        source: warbandSource,
-        vaultCount: payload.vault?.length || 0,
-        figuresCount: payload.figures?.length || 0,
-      });
-
       setIsSaving(true);
       componentSaveQueueRef.current = componentSaveQueueRef.current.then(async () => {
         try {
           // Salva no IndexedDB e no Firestore (se userId fornecido)
           await saveLocalWarband(warbandId, payload, warbandSource, userId);
-          console.log("[AutoSave] ✅ Salvamento concluído no IndexedDB" + (userId ? " e Firestore" : "") + "!");
           setHasUnsavedChanges(false);
         } catch (e) {
           console.error("[AutoSave][Error] Erro ao salvar:", e);

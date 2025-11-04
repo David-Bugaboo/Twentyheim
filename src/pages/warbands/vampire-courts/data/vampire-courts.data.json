@@ -32,62 +32,76 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "1ª grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "5 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "arco",
           "name": "Arco",
           "cost": "10 coroas"
         },
         {
+          "id": "arco-curto",
           "name": "Arco Curto",
           "cost": "5 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "armadura-pesada",
           "name": "Armadura Pesada",
           "cost": "50 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -126,46 +140,78 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "1ª grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "5 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "arco",
           "name": "Arco",
           "cost": "10 coroas"
         },
         {
+          "id": "arco-curto",
           "name": "Arco Curto",
           "cost": "5 coroas"
+        }
+      ],
+      "armor": [
+        {
+          "id": "armadura-leve",
+          "name": "Armadura Leve",
+          "cost": "20 coroas"
+        },
+        {
+          "id": "armadura-pesada",
+          "name": "Armadura Pesada",
+          "cost": "50 coroas"
+        },
+        {
+          "id": "escudo",
+          "name": "Escudo",
+          "cost": "5 coroas"
+        },
+        {
+          "id": "elmo",
+          "name": "Elmo",
+          "cost": "10 coroas"
         }
       ],
       "miscellaneous": [],
@@ -193,62 +239,76 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "1ª grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "5 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "arco",
           "name": "Arco",
           "cost": "10 coroas"
         },
         {
+          "id": "arco-curto",
           "name": "Arco Curto",
           "cost": "5 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "armadura-pesada",
           "name": "Armadura Pesada",
           "cost": "50 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -272,6 +332,14 @@
       "equipmentSlots": 0
     },
     "quantity": "ilimitado",
+    "naturalAttacks": [
+      {
+        "name": "Dentes Podres",
+        "damage": "0",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": []
+      }
+    ],
     "noXP": true,
     "abilities": [
       {
@@ -303,6 +371,14 @@
       "cost": "40 coroas",
       "equipmentSlots": 0
     },
+    "naturalAttacks": [
+      {
+        "name": "Armas Primitivas",
+        "damage": "0",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": []
+      }
+    ],
     "quantity": "ilimitado",
     "abilities": [
       {
@@ -326,16 +402,20 @@
       "cost": "50 coroas",
       "equipmentSlots": 0
     },
+    "naturalAttacks": [
+      {
+        "name": "Mandíbulas do Túmulo",
+        "damage": "+2",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": []
+      }
+    ],
     "quantity": "0-5",
     "noXP": true,
     "abilities": [
       {
         "name": "Besta Reanimada",
         "description": "Lobos Atrozes têm as características Animal, Morto-Vivo e Aterrorizante."
-      },
-      {
-        "name": "Mandíbulas do Túmulo",
-        "description": "Lobos Atrozes têm a característica Agarrar e Voraz."
       }
     ]
   }

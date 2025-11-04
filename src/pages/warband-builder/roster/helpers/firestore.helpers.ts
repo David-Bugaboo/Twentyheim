@@ -10,9 +10,7 @@ import { db } from "../../../../firebase";
  */
 export function stripUndefinedDeep(value: any): any {
   if (Array.isArray(value)) {
-    return value
-      .map((v) => stripUndefinedDeep(v))
-      .filter((v) => v !== undefined);
+    return value.map(v => stripUndefinedDeep(v)).filter(v => v !== undefined);
   }
   if (value && typeof value === "object") {
     const out: any = {};
@@ -37,28 +35,28 @@ export async function saveWarbandToFirestore(
 ): Promise<void> {
   try {
     const ref = doc(db, "users", userId, "warbands", warbandId);
-    
+
     // Busca dados existentes para comparar
     const existingSnap = await getDoc(ref);
     const existing = existingSnap.exists() ? existingSnap.data() : null;
-    
+
     // Prepara dados para salvar (sem updatedAt ainda)
     const cleaned = stripUndefinedDeep(data);
     const { updatedAt: _removedUpdatedAt, ...dataWithoutUpdatedAt } = cleaned;
-    
+
     // Verifica se há mudanças reais
     if (existing) {
-      const hasChanges = 
-        JSON.stringify(dataWithoutUpdatedAt) !== JSON.stringify({
+      const hasChanges =
+        JSON.stringify(dataWithoutUpdatedAt) !==
+        JSON.stringify({
           ...existing,
           updatedAt: undefined,
         });
-      
+
       if (!hasChanges) {
-        console.log("[saveWarbandToFirestore] ⚠️ Nenhuma mudança detectada - não atualizando Firestore");
         return; // Não atualiza se não houver mudanças
       }
-      
+
       // Há mudanças - atualiza documento existente
       await updateDoc(ref, {
         ...cleaned,
@@ -107,7 +105,7 @@ export async function syncWarband(
 ): Promise<{ success: boolean; message: string }> {
   try {
     const firestoreData = await getWarbandFromFirestore(userId, warband.id);
-    
+
     if (!firestoreData) {
       // Não existe no Firestore, cria novo
       const { setDoc } = await import("firebase/firestore");
@@ -120,20 +118,25 @@ export async function syncWarband(
     }
 
     // Compara timestamps
-    const localUpdatedAt = localData.updatedAt ? new Date(localData.updatedAt).getTime() : 0;
-    const firestoreUpdatedAt = firestoreData.updatedAt 
-      ? new Date(firestoreData.updatedAt).getTime() 
+    const localUpdatedAt = localData.updatedAt
+      ? new Date(localData.updatedAt).getTime()
+      : 0;
+    const firestoreUpdatedAt = firestoreData.updatedAt
+      ? new Date(firestoreData.updatedAt).getTime()
       : 0;
 
     if (localUpdatedAt > firestoreUpdatedAt) {
       // Local é mais recente, sobrescreve Firestore
       await saveWarbandToFirestore(userId, warband.id, warband);
-      return { success: true, message: "Bando local sincronizado (local era mais recente)" };
+      return {
+        success: true,
+        message: "Bando local sincronizado (local era mais recente)",
+      };
     } else if (firestoreUpdatedAt > localUpdatedAt) {
       // Firestore é mais recente, precisa fazer merge ou avisar usuário
-      return { 
-        success: false, 
-        message: "Versão na nuvem é mais recente. Faça download primeiro." 
+      return {
+        success: false,
+        message: "Versão na nuvem é mais recente. Faça download primeiro.",
       };
     } else {
       // Mesma versão - verifica se há mudanças antes de salvar
@@ -143,10 +146,9 @@ export async function syncWarband(
     }
   } catch (error: any) {
     console.error("Erro ao sincronizar:", error);
-    return { 
-      success: false, 
-      message: `Erro ao sincronizar: ${error.message || "Erro desconhecido"}` 
+    return {
+      success: false,
+      message: `Erro ao sincronizar: ${error.message || "Erro desconhecido"}`,
     };
   }
 }
-

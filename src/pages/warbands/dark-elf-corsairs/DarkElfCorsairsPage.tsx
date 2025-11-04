@@ -158,6 +158,7 @@ const DarkElfCorsairsPage: React.FC = () => {
                 spellAffinity={leader.spellAffinity}
                 abilities={leader.abilities}
                 equipment={leader.equipment}
+                naturalAttacks={(leader as any).naturalAttacks}
               />
             ) : (
               <MobileText>Nenhum líder encontrado</MobileText>
@@ -182,6 +183,7 @@ const DarkElfCorsairsPage: React.FC = () => {
                 spellAffinity={hero.spellAffinity}
                 abilities={hero.abilities}
                 equipment={hero.equipment}
+                naturalAttacks={(hero as any).naturalAttacks}
               />
               ))
             ) : (
@@ -205,6 +207,7 @@ const DarkElfCorsairsPage: React.FC = () => {
                 stats={soldier.stats}
                 abilities={soldier.abilities}
                 equipment={soldier.equipment}
+                naturalAttacks={(soldier as any).naturalAttacks}
               />
               ))
             ) : (

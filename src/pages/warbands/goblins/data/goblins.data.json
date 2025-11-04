@@ -30,55 +30,73 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "5 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "estandarte-do-chefim",
           "name": "Estandarte do Chefim",
           "cost": "20 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "25 coroas"
         },
         {
+          "id": "arco-curto",
           "name": "Arco Curto",
           "cost": "5 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         }
       ],
-      "miscellaneous": [],
+      "miscellaneous": [
+        
+        {
+          "id": "cogumelos-chapeu-da-morte",
+          "name": "Cogumelos Chapéu da Morte",
+          "cost": "35 coroas"
+        }
+      ],
       "modifiers": []
     }
   },
@@ -112,55 +130,73 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "5 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "estandarte-do-chefim",
           "name": "Estandarte do Chefim",
           "cost": "20 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "25 coroas"
         },
         {
+          "id": "arco-curto",
           "name": "Arco Curto",
           "cost": "5 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         }
       ],
-      "miscellaneous": [],
+      "miscellaneous": [
+        
+        {
+          "id": "cogumelos-chapeu-da-morte",
+          "name": "Cogumelos Chapéu da Morte",
+          "cost": "35 coroas"
+        }
+      ],
       "modifiers": []
     }
   },
@@ -195,50 +231,61 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "5 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "boss-pole",
           "name": "Boss Pole",
           "cost": "20 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "25 coroas"
         },
         {
+          "id": "arco-curto",
           "name": "Arco Curto",
           "cost": "5 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         }
@@ -271,34 +318,41 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "5 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "25 coroas"
         },
         {
+          "id": "facas-de-arremesso",
           "name": "Facas de Arremesso",
           "cost": "5 coroas"
         },
         {
+          "id": "arco",
           "name": "Arco",
           "cost": "10 coroas"
         }
       ],
       "armor": [
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         }
@@ -335,34 +389,41 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "5 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "25 coroas"
         },
         {
+          "id": "facas-de-arremesso",
           "name": "Facas de Arremesso",
           "cost": "5 coroas"
         },
         {
+          "id": "arco",
           "name": "Arco",
           "cost": "10 coroas"
         }
       ],
       "armor": [
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         }
@@ -399,34 +460,41 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "5 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "25 coroas"
         },
         {
+          "id": "facas-de-arremesso",
           "name": "Facas de Arremesso",
           "cost": "5 coroas"
         },
         {
+          "id": "arco",
           "name": "Arco",
           "cost": "10 coroas"
         }
       ],
       "armor": [
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         }
@@ -453,10 +521,23 @@
       "cost": "200 coroas",
       "equipmentSlots": 0
     },
+    "naturalAttacks": [
+      {
+        "name": "Quelíceras",
+        "damage": "0",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": [
+          {
+            "label": "Tóxico",
+            "value": "Esse ataque natural causa dano Venenoso."
+          }
+        ]
+      }
+    ],
     "abilities": [
       {
         "name": "Inseto Colossal",
-        "description": "Caranguejeira Gigantes têm as características Grande, Voraz, Peçonhento, Aterrorizante e Estupidez."
+        "description": "Caranguejeira Gigantes têm as características Grande, Aterrorizante e Estupidez."
       },
       {
         "name": "Nativo das Matas",

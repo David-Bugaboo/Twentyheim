@@ -13,6 +13,9 @@
     "armorBonus": null,
     "movePenalty": null,
     "slots": "1",
+    "statModifiers": {
+      "damageModifier": 1
+    },
     "effect": "Ganha a característica Penetração de Armadura(1) e +1 de dano.",
     "requirements": null,
     "specialRules": []
@@ -50,6 +53,9 @@
     "movePenalty": null,
     "slots": "1",
     "effect": "Uma arma com esse modificador ganha 15cm de alcance adicional.",
+    "statModifiers": {
+      "maxRange": 15
+    },
     "requirements": null,
     "specialRules": []
   }

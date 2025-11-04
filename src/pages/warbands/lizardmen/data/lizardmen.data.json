@@ -37,38 +37,46 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "arco-curto",
           "name": "Arco Curto",
           "cost": "15 coroas"
         },
         {
+          "id": "javelin",
           "name": "Javelin",
           "cost": "5 coroas"
         },
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "10 coroas"
         }
       ],
       "armor": [
         {
+          "id": "elmo-de-osso",
           "name": "Elmo de Osso",
           "cost": "5 coroas"
         }
@@ -96,6 +104,14 @@
       "startingXp": 11,
       "equipmentSlots": 6
     },
+    "naturalAttacks": [
+      {
+        "name": "Mandíbulas",
+        "damage": "0",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": []
+      }
+    ],
     "abilities": [
       {
         "name": "Fúria Totêmica",
@@ -104,35 +120,37 @@
       {
         "name": "Ancestralidade Sáuria",
         "description": "O Guerreiro Totêmico Sáurio tem a característica Anfíbio. Um bando não pode rolar debandada usando a vontade de um Sáurio."
-      },
-      {
-        "name": "Mordida Poderosa",
-        "description": "Um Guerreiro Totêmico Sáurio nunca conta como desarmado."
       }
     ],
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         }
@@ -140,10 +158,12 @@
       "ranged": [],
       "armor": [
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "10 coroas"
         }
@@ -174,42 +194,51 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "arco-curto",
           "name": "Arco Curto",
           "cost": "15 coroas"
         },
         {
+          "id": "javelin",
           "name": "Javelin",
           "cost": "5 coroas"
         },
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "10 coroas"
         }
       ],
       "armor": [
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         }
@@ -242,34 +271,41 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "arco-curto",
           "name": "Arco Curto",
           "cost": "15 coroas"
         },
         {
+          "id": "javelin",
           "name": "Javelin",
           "cost": "5 coroas"
         },
         {
+          "id": "zarabatana",
           "name": "Zarabatana",
           "cost": "10 coroas"
         }
       ],
       "armor": [
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         }
@@ -294,6 +330,14 @@
       "cost": "40 coroas",
       "equipmentSlots": 5
     },
+    "naturalAttacks": [
+      {
+        "name": "Mandíbulas",
+        "damage": "0",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": []
+      }
+    ],
     "abilities": [
       {
         "name": "Ancestralidade Sáuria",
@@ -307,22 +351,27 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         }
@@ -330,10 +379,12 @@
       "ranged": [],
       "armor": [
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "10 coroas"
         }
@@ -360,6 +411,19 @@
       "cost": "200 coroas",
       "equipmentSlots": 6
     },
+    "naturalAttacks": [
+      {
+        "name": "Mandibula Crocodiliana",
+        "damage": "0",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": [
+          {
+            "label": "Penetração de Armadura(1)",
+            "value": "Um ataque natural com essa palavra chave trata a armadura do alvo como (X) pontos menor."
+          }
+        ]
+      }
+    ],
     "abilities": [
       {
         "name": "Besta Primeval",
@@ -373,6 +437,7 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         }

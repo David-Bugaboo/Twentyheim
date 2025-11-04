@@ -36,16 +36,15 @@ export function useAutoMigrate(enabled: boolean = true) {
           setMigrationStatus("needed");
           setMigrating(true);
 
-          console.log("🔄 Migração automática iniciada...");
+          
           
           // Migra todos os arquivos
           const results = await migrateStaticDataToFirestore(ALL_FILES);
 
           const successCount = results.filter((r) => r.success).length;
-          const failCount = results.length - successCount;
 
           if (successCount > 0) {
-            console.log(`✅ Migração concluída! ${successCount} sucessos, ${failCount} falhas.`);
+          
             setMigrationStatus("done");
             sessionStorage.setItem(MIGRATION_CHECK_KEY, "true");
           } else {

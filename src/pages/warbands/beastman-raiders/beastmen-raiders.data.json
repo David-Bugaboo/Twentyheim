@@ -28,50 +28,61 @@
       "hand-to-hand": [
         {
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas",
+          "id": "adaga"
         },
         {
           "name": "Maça",
-          "cost": "3 coroas"
+          "cost": "3 coroas",
+          "id": "maca"
         },
         {
           "name": "Martelo",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "martelo"
         },
         {
           "name": "Machado",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "machado"
         },
         {
           "name": "Espada",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "espada"
         },
         {
           "name": "Alabarda",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "alabarda"
         },
         {
           "name": "Arma de Duas Mãos",
-          "cost": "15 coroas"
+          "cost": "15 coroas",
+          "id": "arma-de-duas-maos"
         }
       ],
       "ranged": [],
       "armor": [
         {
           "name": "Armadura Leve",
-          "cost": "20 coroas"
+          "cost": "20 coroas",
+          "id": "armadura-leve"
         },
         {
           "name": "Armadura Pesada",
-          "cost": "50 coroas"
+          "cost": "50 coroas",
+          "id": "armadura-pesada"
         },
         {
           "name": "Escudo",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "escudo"
         },
         {
           "name": "Elmo",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "elmo"
         }
       ],
       "accessories": [],
@@ -109,37 +120,65 @@
       "hand-to-hand": [
         {
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas",
+          "id": "adaga"
         },
         {
           "name": "Maça",
-          "cost": "3 coroas"
+          "cost": "3 coroas",
+          "id": "maca"
         },
         {
           "name": "Martelo",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "martelo"
         },
         {
           "name": "Machado de Batalha",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "machado-de-batalha"
         },
         {
           "name": "Espada",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "espada"
         },
         {
           "name": "Alabarda",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "alabarda"
         },
         {
           "name": "Arma de Duas Mãos",
-          "cost": "15 coroas"
+          "cost": "15 coroas",
+          "id": "arma-de-duas-maos"
         }
       ],
       "armor": [
         {
           "name": "Elmo de Osso",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "elmo-de-osso"
+        },
+        {
+          "name": "Armadura Leve",
+          "cost": "20 coroas",
+          "id": "armadura-leve"
+        },
+        {
+          "name": "Armadura Pesada",
+          "cost": "50 coroas",
+          "id": "armadura-pesada"
+        },
+        {
+          "name": "Escudo",
+          "cost": "5 coroas",
+          "id": "escudo"
+        },
+        {
+          "name": "Elmo",
+          "cost": "10 coroas",
+          "id": "elmo"
         }
       ],
       "ranged": [],
@@ -171,50 +210,61 @@
       "hand-to-hand": [
         {
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas",
+          "id": "adaga"
         },
         {
           "name": "Maça",
-          "cost": "3 coroas"
+          "cost": "3 coroas",
+          "id": "maca"
         },
         {
           "name": "Martelo",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "martelo"
         },
         {
           "name": "Machado de Batalha",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "machado-de-batalha"
         },
         {
           "name": "Espada",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "espada"
         },
         {
           "name": "Alabarda",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "alabarda"
         },
         {
           "name": "Arma de Duas Mãos",
-          "cost": "15 coroas"
+          "cost": "15 coroas",
+          "id": "arma-de-duas-maos"
         }
       ],
       "ranged": [],
       "armor": [
         {
           "name": "Armadura Leve",
-          "cost": "20 coroas"
+          "cost": "20 coroas",
+          "id": "armadura-leve"
         },
         {
           "name": "Armadura Pesada",
-          "cost": "50 coroas"
+          "cost": "50 coroas",
+          "id": "armadura-pesada"
         },
         {
           "name": "Escudo",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "escudo"
         },
         {
           "name": "Elmo",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "elmo"
         }
       ],
       "accessories": [],
@@ -258,50 +308,61 @@
       "hand-to-hand": [
         {
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas",
+          "id": "adaga"
         },
         {
           "name": "Maça",
-          "cost": "3 coroas"
+          "cost": "3 coroas",
+          "id": "maca"
         },
         {
           "name": "Martelo",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "martelo"
         },
         {
           "name": "Machado de Batalha",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "machado-de-batalha"
         },
         {
           "name": "Espada",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "espada"
         },
         {
           "name": "Alabarda",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "alabarda"
         },
         {
           "name": "Arma de Duas Mãos",
-          "cost": "15 coroas"
+          "cost": "15 coroas",
+          "id": "arma-de-duas-maos"
         }
       ],
       "ranged": [],
       "armor": [
         {
           "name": "Armadura Leve",
-          "cost": "20 coroas"
+          "cost": "20 coroas",
+          "id": "armadura-leve"
         },
         {
           "name": "Armadura Pesada",
-          "cost": "50 coroas"
+          "cost": "50 coroas",
+          "id": "armadura-pesada"
         },
         {
           "name": "Escudo",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "escudo"
         },
         {
           "name": "Elmo",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "elmo"
         }
       ],
       "accessories": [],
@@ -333,30 +394,36 @@
       "hand-to-hand": [
         {
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas",
+          "id": "adaga"
         },
         {
           "name": "Maça",
-          "cost": "3 coroas"
+          "cost": "3 coroas",
+          "id": "maca"
         },
         {
           "name": "Martelo",
-          "cost": "3 coroas"
+          "cost": "3 coroas",
+          "id": "martelo"
         },
         {
           "name": "Machado de Batalha",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "machado-de-batalha"
         },
         {
           "name": "Lança",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "lanca"
         }
       ],
       "ranged": [],
       "armor": [
         {
           "name": "Escudo",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "escudo"
         }
       ],
       "accessories": [],
@@ -383,50 +450,61 @@
       "hand-to-hand": [
         {
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas",
+          "id": "adaga"
         },
         {
           "name": "Maça",
-          "cost": "3 coroas"
+          "cost": "3 coroas",
+          "id": "maca"
         },
         {
           "name": "Martelo",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "martelo"
         },
         {
           "name": "Machado de Batalha",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "machado-de-batalha"
         },
         {
           "name": "Espada",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "espada"
         },
         {
           "name": "Alabarda",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "alabarda"
         },
         {
           "name": "Arma de Duas Mãos",
-          "cost": "15 coroas"
+          "cost": "15 coroas",
+          "id": "arma-de-duas-maos"
         }
       ],
       "ranged": [],
       "armor": [
         {
           "name": "Armadura Leve",
-          "cost": "20 coroas"
+          "cost": "20 coroas",
+          "id": "armadura-leve"
         },
         {
           "name": "Armadura Pesada",
-          "cost": "50 coroas"
+          "cost": "50 coroas",
+          "id": "armadura-pesada"
         },
         {
           "name": "Escudo",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "escudo"
         },
         {
           "name": "Elmo",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "elmo"
         }
       ],
       "accessories": [],
@@ -450,10 +528,12 @@
       "cost": "15 coroas",
       "equipmentSlots": 0
     },
-    "abilities": [
+    "naturalAttacks": [
       {
-        "name": "Bestialidade",
-        "description": "Cães de Guerra do Caos têm a característica Animal."
+        "name": "Mandíbulas",
+        "damage": "0",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": []
       }
     ]
   },
@@ -489,50 +569,61 @@
       "hand-to-hand": [
         {
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas",
+          "id": "adaga"
         },
         {
           "name": "Maça",
-          "cost": "3 coroas"
+          "cost": "3 coroas",
+          "id": "maca"
         },
         {
           "name": "Martelo",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "martelo"
         },
         {
           "name": "Machado de Batalha",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "machado-de-batalha"
         },
         {
           "name": "Espada",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "espada"
         },
         {
           "name": "Alabarda",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "alabarda"
         },
         {
           "name": "Arma de Duas Mãos",
-          "cost": "15 coroas"
+          "cost": "15 coroas",
+          "id": "arma-de-duas-maos"
         }
       ],
       "ranged": [],
       "armor": [
         {
           "name": "Armadura Leve",
-          "cost": "20 coroas"
+          "cost": "20 coroas",
+          "id": "armadura-leve"
         },
         {
           "name": "Armadura Pesada",
-          "cost": "50 coroas"
+          "cost": "50 coroas",
+          "id": "armadura-pesada"
         },
         {
           "name": "Escudo",
-          "cost": "5 coroas"
+          "cost": "5 coroas",
+          "id": "escudo"
         },
         {
           "name": "Elmo",
-          "cost": "10 coroas"
+          "cost": "10 coroas",
+          "id": "elmo"
         }
       ],
       "accessories": [],

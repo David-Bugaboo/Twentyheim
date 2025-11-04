@@ -33,7 +33,7 @@ function resolveCategoryId(category: EquipCategory) {
 // Gera sub-tabela baseada nos campos "roll" dos itens de uma categoria
 export function generateEquipSupSubtable(category: EquipCategory) {
   const categoryId = resolveCategoryId(category);
-  const cat = commonItemsData.find((c) => c.id === categoryId);
+  const cat = commonItemsData.find((item) => item.id === categoryId);
   const rows: { roll: string; item: string }[] = [];
 
   // Primeiro, coletar todos os itens válidos (sem "Exclusivo")

@@ -1,23 +1,27 @@
 [
   {
+    "id": "ritual-da-ponte-daemonica",
     "name": "Ritual da Ponte Daemônica",
     "castingNumber": 14,
     "keywords": ["Área de Efeito(Zona Pequena)"],
     "effect": "O Conjurador posiciona a Área de Efeito em qualquer ponto em contato de base com ele mesmo. Caso o Conjurador saiba alguns dos Rituais dos Deuses Sombrios, o daemônio correspondendo surge dentro da área de efeito, ficando em jogo uma quantidade de turnos igual a por quanto o teste de conjuração superou a classe de dificuldade da magia. O daemônio é um membro temporário do bando e segue todas as regras normais, inclusive poder ser ativado com a regra líder."
   },
   {
+    "id": "seducao-de-slaneesh",
     "name": "Sedução de Slaneesh",
     "castingNumber": 14,
     "keywords": ["Alcance(25cm)", "Psicológica"],
     "effect": "A figura alvo rola um teste de Vontade contra o teste de conjuração da magia. Se o alvo falhar, ele age imediatamente após o magistrado, e tem sua ações controladas por ele. Quando sua ativaçã terminar, ganha dois marcadores de atordoamento.."
   },
   {
+    "id": "raio-da-perdicao",
     "name": "Raio da Perdição",
     "castingNumber": 14,
     "keywords": ["Alcance(30cm)", "Míssil Mágico(Mágico Flamejante)(+6)"],
     "effect": "Ataque a figura Alvo com o míssil mágico. O Míssil ignora quaisquer bônus de armaduras equipadas pelo alvo. Um alvo reduzido a zero de vida por essa magia rola na tabela Dádivas de Tzeentch e ganha aquela mutação permanentemente. "
   },
   {
+    "id": "pestilencia-do-pai-nurgle",
     "name": "Pestilência do Pai Nurgle",
     "castingNumber": 14,
     "keywords": ["Área de Efeito(Zona Pequena)"],

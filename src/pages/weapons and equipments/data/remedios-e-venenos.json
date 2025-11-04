@@ -98,7 +98,7 @@
     "name": "Cogumelos Chapéu da Morte",
     "type": "Remédio",
     "damageModifier": null,
-    "purchaseCost": "35 coroas",
+    "purchaseCost": "25 coroas",
     "rarity": 1,
     "availability": ["Horda Orc", "Goblins"],
     "exclusive": null,

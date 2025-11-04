@@ -9,8 +9,6 @@ import WarbandStash, { type StashItem } from "../../../components/WarbandStash";
 import RosterUnitCard, {
   type RosterUnitStats,
 } from "../../../components/RosterUnitCard";
-import { type UnitStats } from "../../../components/UnitCard";
-import QuickNavigation from "../../../components/QuickNavigation";
 
 import { db } from "../../../firebase.ts";
 import { collection, addDoc } from "firebase/firestore";
@@ -19,9 +17,11 @@ import type { EditableUnit } from "./types/editableUnit.type";
 import WarbandNotFoundPage from "./WarbandNotFoundPage";
 import { toast } from "react-toastify";
 import { stripUndefinedDeep } from "./helpers/firestore.helpers";
+// import { createEquipmentFromBase } from "../utils/createFigureFromBase";
 import {
   figuresToEditableUnits,
   createRosterStats,
+  getCombinedStats,
 } from "./helpers/unitTransformations.helpers";
 import { calculateWarbandRating } from "./helpers/warbandCalculations.helpers";
 import {
@@ -38,8 +38,9 @@ import { useWarbandOperations } from "./hooks/useWarbandOperations";
 import { useEquipmentManagement } from "./hooks/useEquipmentManagement";
 import { useUnitManagement } from "./hooks/useUnitManagement";
 import { useAutoSave } from "./hooks/useAutoSave";
-
-// Nota: createRosterStats foi movido para helpers/unitTransformations.helpers.ts
+import { useMultipleBaseData } from "../../../hooks/useBaseData";
+import { useMultipleJsonData } from "../../../hooks/useMultipleJsonData";
+import React from "react";
 
 function WarbandRosterPage() {
   // Carrega todos os dados usando hook centralizado
@@ -84,8 +85,6 @@ function WarbandRosterPage() {
     warbandSource,
     fixedFaction,
     isLocal,
-    hasNewerVersionInFirestore,
-    updateFromFirestore,
     userId,
   } = useWarbandState();
 
@@ -139,6 +138,13 @@ function WarbandRosterPage() {
     handlePurchaseItem,
     handleEquipFromStashFlat,
     handleUnequipToStashFlat,
+    handleEquipToSecondaryHand,
+    handleUnequipFromSecondaryHand,
+    handleEquipToPrimaryHand,
+    handleUnequipFromPrimaryHand,
+    handleEquipAsArmor,
+    handleUnequipFromArmor,
+    handleEquipAsPair,
   } = useEquipmentManagement({
     warband,
     updateWarbandFigure,
@@ -149,10 +155,18 @@ function WarbandRosterPage() {
     modifierCatalogs,
   });
 
+  // Função para devolver coroas (refund)
+  const handleRefundCrowns = (amount: number) => {
+    const currentCrowns = extractCrowns(warband.gold);
+    const newCrowns = currentCrowns + amount;
+    updateWarbandProperty("gold", String(newCrowns));
+  };
+
   // Hook de gerenciamento de unidades
   const unitManagement = useUnitManagement({
     updateWarbandFigure,
     setHasUnsavedChanges,
+    onRefundCrowns: handleRefundCrowns, // Passa função para devolver coroas
   });
 
   // Auto-save com debounce - salva no IndexedDB e Firestore (se logado)
@@ -428,6 +442,157 @@ function WarbandRosterPage() {
       .filter(Boolean) as StashItem[];
   }, [warband.vault, equipmentCatalogs, modifierCatalogs]);
 
+  // Resolve modificadores do vault para cálculo de preço na venda
+  const vaultModifierIds = useMemo(() => {
+    const vault = (warband.vault || []) as any[];
+    return vault
+      .map((eq: any) => eq?.base_modifier_id)
+      .filter(Boolean) as string[];
+  }, [warband.vault]);
+
+  const vaultModifierBases = useMultipleBaseData(
+    "base-modifiers",
+    vaultModifierIds,
+    vaultModifierIds.length > 0
+  );
+
+  // Resolve todas as skills e spells de todas as figuras
+  const allSkillIds = useMemo(() => {
+    const ids: string[] = [];
+    (warband.figures || []).forEach((fig: any) => {
+      const skills = (fig?.skills || []) as any[];
+      skills.forEach((s: any) => {
+        if (s?.base_skill_id) ids.push(s.base_skill_id);
+      });
+    });
+    return [...new Set(ids)];
+  }, [warband.figures]);
+
+  const allSpellIds = useMemo(() => {
+    const ids: string[] = [];
+    (warband.figures || []).forEach((fig: any) => {
+      const spells = (fig?.spells || []) as any[];
+      spells.forEach((s: any) => {
+        if (s?.base_spell_id) ids.push(s.base_spell_id);
+      });
+    });
+    return [...new Set(ids)];
+  }, [warband.figures]);
+
+  // Lista de todos os fileIds de skills para buscar do Firestore/IndexedDB
+  const allSkillFileIds = React.useMemo(
+    () => [
+      "combate",
+      "atirador",
+      "academica",
+      "forca",
+      "velocidade",
+      "irmas-de-sigmar",
+      "skaven-do-cla-enshin",
+      "saqueadores-homem-fera",
+      "cacadores-de-tesouro-anoes",
+      "mata-trolls-anao",
+      "habilidades-von-carstein",
+      "habilidades-de-dragao-carmesim",
+      "habilidades-dos-necrarcas",
+      "habilidades-de-lahmia",
+      "habilidades-de-strigoi",
+      "corsarios-druchii",
+      "habilidades-de-geckos",
+      "habilidades-de-saurio",
+      "hordas-orc",
+      "filhos-de-hashut",
+      "patrulheiro-elfo",
+    ],
+    []
+  );
+
+  const { data: allSkillsFiles } = useMultipleJsonData(allSkillFileIds);
+  const allSkillsMap = useMemo(() => {
+    const map: Record<string, any> = {};
+    Object.values(allSkillsFiles || {}).forEach((skillArray: any) => {
+      if (Array.isArray(skillArray)) {
+        skillArray.forEach((skill: any) => {
+          if (skill?.id) {
+            map[skill.id] = skill;
+          }
+        });
+      }
+    });
+    return map;
+  }, [allSkillsFiles]);
+
+  // Busca skills individuais na coleção base-skills
+  const skillBases = useMultipleBaseData(
+    "base-skills",
+    allSkillIds,
+    allSkillIds.length > 0
+  );
+
+  // Combina resultados de base-skills com fallback do mapa de skills dos arquivos JSON
+  const skillBaseMap = React.useMemo(() => {
+    const map: Record<string, any> = { ...skillBases.data };
+
+    // Para cada skillId que não foi encontrado em base-skills, busca no mapa de arquivos JSON
+    allSkillIds.forEach(skillId => {
+      if (!map[skillId] && allSkillsMap[skillId]) {
+        map[skillId] = allSkillsMap[skillId];
+      }
+    });
+
+    return map;
+  }, [skillBases.data, allSkillsMap, allSkillIds]);
+  const spellBases = useMultipleBaseData(
+    "base-spells",
+    allSpellIds,
+    allSpellIds.length > 0
+  );
+
+  // Fallback: carrega todas as tradições de magias dos arquivos JSON e cria um mapa por id
+  const allSpellFileIds = React.useMemo(
+    () => [
+      "prayers-of-sigmar",
+      "prayers-of-ulric",
+      "lore-of-necromancy",
+      "lore-of-horned-rat",
+      "rituals-of-chaos",
+      "rituals-of-nurgle",
+      "rituals-of-hashut",
+      "magic-of-the-old-ones",
+      "magic-of-the-goblins",
+      "magic-of-the-waaaaagh",
+      "druchii-magic",
+      "lesser-magic",
+      "dark-god-invocations",
+    ],
+    []
+  );
+  const { data: allSpellsFiles } = useMultipleJsonData(allSpellFileIds);
+  const allSpellsMap = useMemo(() => {
+    const map: Record<string, any> = {};
+    Object.values(allSpellsFiles || {}).forEach((spellArray: any) => {
+      if (Array.isArray(spellArray)) {
+        spellArray.forEach((spell: any) => {
+          if (spell?.id) {
+            map[spell.id] = spell;
+          }
+        });
+      }
+    });
+    return map;
+  }, [allSpellsFiles]);
+
+  // Cria mapa para acesso rápido de spells com fallback aos arquivos JSON
+  const spellBaseMap = useMemo(() => {
+    const map: Record<string, any> = { ...(spellBases.data || {}) };
+    allSpellIds.forEach(spellId => {
+      if (!map[spellId] && allSpellsMap[spellId]) {
+        map[spellId] = allSpellsMap[spellId];
+      }
+    });
+    return map;
+  }, [spellBases.data, allSpellsMap, allSpellIds]);
+
   // Usa handlers do hook de gerenciamento de unidades (já usa fila internamente)
   const handleAddSkillToUnit = unitManagement.handleAddSkillToUnit;
   const handleRemoveSkillFromUnit = unitManagement.handleRemoveSkillFromUnit;
@@ -437,10 +602,32 @@ function WarbandRosterPage() {
     unitManagement.handleUpdateSpellCastingNumber;
   const handleUpdateFigureXp = unitManagement.handleUpdateFigureXp;
   const handleUpdateNarrativeName = unitManagement.handleUpdateNarrativeName;
+  const handleUpdateFigureNotes = unitManagement.handleUpdateFigureNotes;
   const handleAddSpecialAbilityToUnit =
     unitManagement.handleAddSpecialAbilityToUnit;
   const handleRemoveSpecialAbilityFromUnit =
     unitManagement.handleRemoveSpecialAbilityFromUnit;
+
+  // Helper para extrair número de coroas de uma string como "500" ou "500 coroas"
+  const extractCrowns = (goldStr?: string): number => {
+    if (!goldStr) return 0;
+    const match = String(goldStr).match(/(\d+)/);
+    return match ? parseInt(match[1], 10) : 0;
+  };
+
+  // Função para debitar coroas
+  const handleSpendCrowns = (amount: number): boolean => {
+    const currentCrowns = extractCrowns(warband.gold);
+    if (currentCrowns < amount) {
+      return false; // Não tem coroas suficientes
+    }
+    const newCrowns = Math.max(0, currentCrowns - amount);
+    updateWarbandProperty("gold", String(newCrowns));
+    return true;
+  };
+
+  // Coroas disponíveis no warband
+  const availableCrowns = extractCrowns(warband.gold);
   const handleAddSpecialRuleToUnit = unitManagement.handleAddSpecialRuleToUnit;
   const handleRemoveSpecialRuleFromUnit =
     unitManagement.handleRemoveSpecialRuleFromUnit;
@@ -675,6 +862,101 @@ function WarbandRosterPage() {
     setTimeout(() => {
       handleEquipFromStashFlat(unit.id, itemName);
     }, 100);
+  };
+
+  // Handler para comprar equipamento pelo ID e equipar automaticamente na figura
+  const handlePurchaseEquipment = (
+    unitId: string,
+    itemId: string,
+    cost: string,
+    itemName: string,
+    modifierId?: string
+  ) => {
+    console.log("[handlePurchaseEquipment] modifierId recebido:", modifierId);
+    // Busca o equipamento nos catálogos pelo ID
+    const allEquipment: any[] = [
+      ...(equipmentCatalogs.meleeDb || []),
+      ...(equipmentCatalogs.rangedDb || []),
+      ...(equipmentCatalogs.firearmsDb || []),
+      ...(equipmentCatalogs.armorDb || []),
+      ...(equipmentCatalogs.accessoriesDb || []),
+      ...(equipmentCatalogs.remediesPoisonsDb || []),
+    ];
+
+    const baseEquipment = allEquipment.find(
+      (e: any) =>
+        String(e?.id || "") === String(itemId) ||
+        String(e?.templateId || "") === String(itemId)
+    );
+
+    if (!baseEquipment) {
+      toast.error(
+        `Item "${itemName}" (ID: ${itemId}) não encontrado nos catálogos.`
+      );
+      return;
+    }
+
+    // Calcula o custo final
+    const parseCost = (v: any): number => {
+      const s = v == null ? "" : String(v);
+      const m = s.match(/(\d+(?:\.\d+)?)/);
+      return m ? parseFloat(m[1]) : 0;
+    };
+
+    let finalCost = parseCost(
+      cost || baseEquipment.purchaseCost || baseEquipment.cost || "0"
+    );
+
+    // Verifica se tem ouro suficiente
+    const currentGoldMatch = String(warband.gold || "0").match(/(\d+)/);
+    const currentGold = currentGoldMatch
+      ? parseInt(currentGoldMatch[1], 10)
+      : 0;
+
+    if (currentGold < finalCost) {
+      toast.error(
+        `Você não tem coroas suficientes! (Necessário: ${finalCost}, Disponível: ${currentGold})`
+      );
+      return;
+    }
+
+    // Desconta o ouro
+    const finalGold = Math.max(0, currentGold - finalCost);
+    updateWarbandProperty("gold", String(finalGold));
+
+    // Busca a figura para verificar se existe
+    const figure = (warband.figures || []).find((f: any) => f?.id === unitId);
+    if (!figure) {
+      toast.error("Figura não encontrada");
+      return;
+    }
+
+    // Cria o objeto Equipment no formato final, simples e direto
+    const newEquipment = {
+      id:
+        typeof crypto !== "undefined" && (crypto as any).randomUUID
+          ? (crypto as any).randomUUID()
+          : `${Date.now()}-${Math.random()}`,
+      base_equipment_id: String(itemId),
+      ...(modifierId && modifierId.trim() !== ""
+        ? { base_modifier_id: String(modifierId).trim() }
+        : {}),
+    } as any;
+
+    const cleaned = stripUndefinedDeep(newEquipment);
+
+    // Adiciona diretamente ao equiped da figura (não ao vault)
+    updateWarbandFigure(unitId, (fig: any) => {
+      const currentEquiped = (fig?.equiped || []) as any[];
+      return {
+        ...fig,
+        equiped: [...currentEquiped, cleaned],
+      };
+    });
+
+    toast.success(
+      `Item comprado e adicionado ao inventário! ${finalCost} coroas descontadas.`
+    );
   };
 
   // Handlers para RosterUnitCard
@@ -1076,41 +1358,10 @@ function WarbandRosterPage() {
     return <WarbandNotFoundPage />;
   }
 
-  // Seções estáticas de navegação
-  const navigationSections = [
-    { id: "informacoes-bando", title: "Informações do Bando", level: 0 },
-    { id: "estoque-bando", title: "Estoque do Bando", level: 0 },
-    { id: "figuras-ativas", title: "Figuras", level: 0 },
-  ];
+  // Removido QuickNavigation
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
-      <QuickNavigation sections={navigationSections} />
-      {/* Aviso quando há versão mais recente no Firestore */}
-      {hasNewerVersionInFirestore && !isLocal && (
-        <div className="w-full bg-yellow-900/30 border-b border-yellow-600/50 px-4 py-3">
-          <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap">
-            <div className="flex items-center gap-2">
-              <span className="text-yellow-400 text-lg">⚠️</span>
-              <div>
-                <div className="text-white font-semibold">
-                  Versão mais recente disponível no Firestore
-                </div>
-                <div className="text-yellow-300 text-sm">
-                  Há uma versão mais atual na nuvem. Deseja atualizar?
-                </div>
-              </div>
-            </div>
-            <button
-              onClick={updateFromFirestore}
-              disabled={isLoading}
-              className="px-4 py-2 rounded bg-yellow-600 hover:bg-yellow-700 disabled:bg-yellow-600/50 disabled:cursor-not-allowed text-white font-semibold transition-colors duration-200 whitespace-nowrap"
-            >
-              {isLoading ? "Atualizando..." : "Atualizar"}
-            </button>
-          </div>
-        </div>
-      )}
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <MobileSection>
@@ -1866,36 +2117,77 @@ function WarbandRosterPage() {
                 stash={resolvedVault}
                 gold={warband.gold || "0"}
                 onPurchase={handlePurchaseItem}
-                onSell={index => {
+                onSell={async index => {
                   const vaultItem = resolvedVault[index];
                   const vault = (warband.vault || []) as any[];
                   const equipment = vault[index];
                   if (!equipment || !vaultItem) return;
 
-                  // Calcula custo usando dados resolvidos
-                  const baseCostStr = String(vaultItem.cost || "0");
-                  const baseCostMatch = baseCostStr.match(/(\d+(?:\.\d+)?)/);
-                  const baseCost = baseCostMatch
-                    ? parseFloat(baseCostMatch[1])
-                    : 0;
+                  // Calcula custo original usando novo formato (base_modifier_id)
+                  const parseCost = (v: any): number => {
+                    const s = v == null ? "" : String(v);
+                    const m = s.match(/(\d+(?:\.\d+)?)/);
+                    return m ? parseFloat(m[1]) : 0;
+                  };
 
-                  const modifier = vaultItem.data?.modifier;
-                  const modifierFixedCost = vaultItem.data?.modifierFixedCost;
+                  // Busca custo base do equipamento
+                  let baseCost = parseCost(vaultItem.cost || "0");
 
+                  // Se o custo veio como string "-" ou 0, tenta buscar do equipamento base
+                  if (baseCost === 0 || vaultItem.cost === "-") {
+                    const allEquipment: any[] = [
+                      ...(equipmentCatalogs.meleeDb || []),
+                      ...(equipmentCatalogs.rangedDb || []),
+                      ...(equipmentCatalogs.firearmsDb || []),
+                      ...(equipmentCatalogs.armorDb || []),
+                      ...(equipmentCatalogs.accessoriesDb || []),
+                      ...(equipmentCatalogs.remediesPoisonsDb || []),
+                    ];
+                    const baseEquipment = equipment.base_equipment_id
+                      ? allEquipment.find(
+                          (e: any) => e.id === equipment.base_equipment_id
+                        )
+                      : null;
+                    if (baseEquipment?.purchaseCost) {
+                      baseCost = parseCost(baseEquipment.purchaseCost);
+                    }
+                  }
+
+                  // Resolve modificador do Firestore pelo base_modifier_id
                   let originalCost = baseCost;
-                  if (modifierFixedCost != null) {
-                    originalCost = modifierFixedCost;
-                  } else if (modifier?.purchaseCost) {
-                    // Resolve expressão do modificador
-                    const expr = String(modifier.purchaseCost)
-                      .toLowerCase()
-                      .replace(/\s+/g, "");
-                    const mult = expr.match(/base\*(\d+(?:\.\d+)?)/);
-                    const add = expr.match(/base\+(\d+(?:\.\d+)?)/);
-                    if (mult) {
-                      originalCost = baseCost * parseFloat(mult[1]);
-                    } else if (add) {
-                      originalCost = baseCost + parseFloat(add[1]);
+                  if (equipment.base_modifier_id) {
+                    const modResolved = (vaultModifierBases.data as any)[
+                      equipment.base_modifier_id
+                    ];
+                    if (modResolved?.multiplier) {
+                      const multiplier =
+                        typeof modResolved.multiplier === "string"
+                          ? parseFloat(modResolved.multiplier)
+                          : Number(modResolved.multiplier || 1);
+                      originalCost = Math.max(
+                        0,
+                        Math.round(baseCost * multiplier)
+                      );
+                    } else {
+                      // Fallback: busca nos catálogos locais
+                      const allMods: any[] = [
+                        ...(modifierCatalogs.meleeMods || []),
+                        ...(modifierCatalogs.rangedMods || []),
+                        ...(modifierCatalogs.firearmsMods || []),
+                      ];
+                      const modFromCatalog = allMods.find(
+                        (m: any) => m.id === equipment.base_modifier_id
+                      );
+                      if (modFromCatalog?.multiplier) {
+                        const multiplier =
+                          typeof modFromCatalog.multiplier === "string"
+                            ? parseFloat(modFromCatalog.multiplier)
+                            : Number(modFromCatalog.multiplier || 1);
+                        originalCost = Math.max(
+                          0,
+                          Math.round(baseCost * multiplier)
+                        );
+                      }
                     }
                   }
 
@@ -2137,319 +2429,610 @@ function WarbandRosterPage() {
 
                 const renderList = (list: EditableUnit[]) => (
                   <div className="space-y-6">
-                    {list.map(u => {
-                      // equippedItems não é mais usado - mantido apenas para compatibilidade
-                      const equipped = u.equippedItems || {
-                        acessorios: [],
-                      };
-                      // Combina u.stats com figure.baseStats para criar baseStats completo
-                      const figure = u.figure as any;
-                      const combinedStats = {
-                        ...(figure?.baseStats || {}),
-                        ...u.stats,
-                      } as UnitStats;
-                      const rosterStats = createRosterStats(
-                        combinedStats,
-                        u.statBreakdown
-                      );
-
-                      const isMenuOpen = openMenus.has(u.id);
-                      const toggleMenu = () => {
-                        const newSet = new Set(openMenus);
-                        if (isMenuOpen) {
-                          newSet.delete(u.id);
-                        } else {
-                          newSet.add(u.id);
-                        }
-                        setOpenMenus(newSet);
-                      };
-
-                      return (
-                        <div
-                          key={u.id}
-                          id={
-                            !Boolean((u as any)?.figure?.inactive)
-                              ? `figura-ativa-${u.id}`
-                              : `figura-inativa-${u.id}`
+                    {(() => {
+                      const roleOf = (u: any) => {
+                        // 1) Tenta pela base (mais confiável)
+                        const baseId = (u?.figure as any)?.baseFigureId;
+                        if (baseId) {
+                          // Busca primeiro em allFactionDatas
+                          for (const dataSet of allFactionDatas) {
+                            const arr = Array.isArray(dataSet) ? dataSet : [];
+                            const base = arr.find(
+                              (it: any) => it?.id === baseId
+                            );
+                            if (base && base.role) {
+                              return String(base.role).toLowerCase();
+                            }
                           }
-                          className="relative"
-                        >
-                          <div className="absolute top-2 right-2 z-10">
-                            <div
-                              className="relative"
-                              ref={el => {
-                                menuRefs.current[u.id] = el;
-                              }}
-                            >
-                              <button
-                                onClick={toggleMenu}
-                                className="px-3 py-1 rounded bg-gray-700 border border-gray-500 text-white hover:bg-gray-600 text-xs flex items-center gap-1"
-                                title="Menu de ações"
-                              >
-                                <span>⚙</span>
-                                <span>Ações</span>
-                              </button>
-                              {isMenuOpen && (
-                                <div className="absolute right-0 mt-2 w-48 bg-[#2a2a2a] border border-gray-600 rounded shadow-lg z-50">
-                                  <div className="py-1">
-                                    {(() => {
-                                      const roleValue =
-                                        u.role ||
-                                        (u as any)?.figure?.role ||
-                                        "";
-                                      const roleStr = roleValue
-                                        .toString()
-                                        .toLowerCase();
-                                      const nameStr = (u.name || "")
-                                        .toString()
-                                        .toLowerCase();
-                                      const isMerc =
-                                        roleStr.includes("mercen") ||
-                                        nameStr.includes("mercen");
-                                      const isSoldier = roleStr === "soldado";
-                                      const isPromotable =
-                                        (!roleStr || isSoldier) && !isMerc;
-                                      // Verifica se é Herói de múltiplas formas
-                                      const isHero =
-                                        roleValue === "Héroi" ||
-                                        roleValue === "Herói" ||
-                                        roleStr === "héroi" ||
-                                        roleStr === "heroi" ||
-                                        roleStr.includes("héroi") ||
-                                        roleStr.includes("heroi");
-                                      return (
-                                        <>
-                                          {isPromotable ? (
-                                            <button
-                                              onClick={() => {
-                                                promoteUnitToHero(u.id);
-                                                toggleMenu();
-                                              }}
-                                              className="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center gap-2"
-                                            >
-                                              <span>⭐</span>
-                                              <span>Promover a Herói</span>
-                                            </button>
-                                          ) : null}
-                                          {isHero ? (
-                                            <button
-                                              onClick={() => {
-                                                promoteHeroToLeader(u.id);
-                                                toggleMenu();
-                                              }}
-                                              className="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center gap-2"
-                                            >
-                                              <span>👑</span>
-                                              <span>Promover a Líder</span>
-                                            </button>
-                                          ) : null}
-                                        </>
-                                      );
-                                    })()}
-                                    <button
-                                      onClick={() => {
-                                        handleToggleInactive(u.id);
-                                        toggleMenu();
-                                      }}
-                                      className="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center gap-2"
-                                    >
-                                      <span>
-                                        {Boolean((u as any)?.figure?.inactive)
-                                          ? "✓"
-                                          : "✗"}
-                                      </span>
-                                      <span>
-                                        {Boolean((u as any)?.figure?.inactive)
-                                          ? "Ativar"
-                                          : "Inativar"}
-                                      </span>
-                                    </button>
-                                    <button
-                                      onClick={() => {
-                                        removeUnit(u.id);
-                                        toggleMenu();
-                                      }}
-                                      className="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center gap-2"
-                                    >
-                                      <span>↩️</span>
-                                      <span>Desfazer</span>
-                                    </button>
-                                    <button
-                                      onClick={() => {
-                                        killUnit(u.id);
-                                        toggleMenu();
-                                      }}
-                                      className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-900/30 flex items-center gap-2"
-                                    >
-                                      <span>💀</span>
-                                      <span>Matar</span>
-                                    </button>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                          <RosterUnitCard
-                            id={u.id}
-                            name={u.name}
-                            role={u.role}
-                            quantity={u.quantity}
-                            baseStats={combinedStats}
-                            rosterStats={rosterStats}
-                            lore={u.lore}
-                            availability={u.availability}
-                            qualidade={u.qualidade}
-                            figure={u.figure as any}
-                            factionId={warband.faction || fixedFaction}
-                            factionFallbackData={(() => {
-                              // Busca dados da facção nos dados carregados
-                              const factionKey =
-                                warband.faction || fixedFaction;
-                              if (!factionKey) return undefined;
+                          // Se não encontrou, busca em extraPools (hiredSwords e legends)
+                          for (const dataSet of extraPools) {
+                            const arr = Array.isArray(dataSet) ? dataSet : [];
+                            const base = arr.find(
+                              (it: any) => it?.id === baseId
+                            );
+                            if (base && base.role) {
+                              return String(base.role).toLowerCase();
+                            }
+                          }
+                        }
+                        // 2) Fallbacks: figure.role, unit.role
+                        const figRole = (u?.figure as any)?.role;
+                        const uiRole = (u as any)?.role;
+                        return String(figRole || uiRole || "").toLowerCase();
+                      };
+                      const byXpDesc = (a: any, b: any) => {
+                        const ax = Number((a.figure as any)?.xp ?? 0);
+                        const bx = Number((b.figure as any)?.xp ?? 0);
+                        return bx - ax;
+                      };
+                      const groups: Array<{
+                        title: string;
+                        items: EditableUnit[];
+                      }> = [
+                        { title: "Líder", items: [] },
+                        { title: "Herói", items: [] },
+                        { title: "Soldado", items: [] },
+                        { title: "Lenda", items: [] },
+                        { title: "Mercenário", items: [] },
+                      ];
+                      for (const u of list) {
+                        const r = roleOf(u);
+                        if (
+                          r.includes("líder") ||
+                          r.includes("lider") ||
+                          r === "leader"
+                        )
+                          groups[0].items.push(u);
+                        else if (
+                          r.includes("herói") ||
+                          r.includes("heroi") ||
+                          r === "hero"
+                        )
+                          groups[1].items.push(u);
+                        else if (r.includes("soldado") || r === "soldier")
+                          groups[2].items.push(u);
+                        else if (r.includes("lenda") || r === "legend")
+                          groups[3].items.push(u);
+                        else if (r.includes("mercen") || r === "mercenary")
+                          groups[4].items.push(u);
+                        else groups[2].items.push(u);
+                      }
+                      groups.forEach(g => g.items.sort(byXpDesc));
+                      return groups
+                        .filter(g => g.items.length > 0)
+                        .map(group => (
+                          <div
+                            key={`group-${group.title}`}
+                            className="space-y-4"
+                          >
+                            <h3 className="text-white font-semibold text-lg mt-2">
+                              {group.title}
+                            </h3>
+                            {group.items.map(u => {
+                              // equippedItems não é mais usado - mantido apenas para compatibilidade
+                              const equipped = u.equippedItems || {
+                                acessorios: [],
+                              };
+                              // Usa getCombinedStats para aplicar todos os modificadores (incluindo skills)
+                              const figure = u.figure as any;
+                              const combinedStats =
+                                getCombinedStats(figure) || u.stats || {};
+                              const rosterStats = createRosterStats(
+                                combinedStats,
+                                u.statBreakdown
+                              );
 
-                              const factionDataMap: Record<string, any> = {
-                                "sisters-of-sigmar": sistersData,
-                                skaven: skavenData,
-                                "beastman-raiders": beastmenData,
-                                "dwarf-treasure-hunters":
-                                  dwarfTreasureHuntersData,
-                                "cult-of-the-possessed": cultPossessedData,
-                                "vampire-courts": vampireCourtsData,
-                                "witch-hunters": witchHuntersData,
-                                lizardmen: lizardmenData,
-                                "orc-mob": orcMobData,
-                                goblins: goblinsData,
-                                "sons-of-hashut": sonsOfHashutData,
-                                mercenaries: mercenariesData,
-                                "carnival-of-chaos": carnivalChaosData,
-                                "dark-elf-corsairs": darkElfCorsairsData,
+                              const isMenuOpen = openMenus.has(u.id);
+                              const toggleMenu = () => {
+                                const newSet = new Set(openMenus);
+                                if (isMenuOpen) {
+                                  newSet.delete(u.id);
+                                } else {
+                                  newSet.add(u.id);
+                                }
+                                setOpenMenus(newSet);
                               };
 
-                              return factionDataMap[factionKey];
-                            })()}
-                            spellAffinity={u.spellAffinity}
-                            abilities={u.abilities || []}
-                            equipment={u.equipment}
-                            equippedItems={equipped}
-                            onPromoteHeroToLeader={
-                              u.role === "Herói" ||
-                              (u as any)?.figure?.role === "Herói"
-                                ? () => promoteHeroToLeader(u.id)
-                                : undefined
-                            }
-                            stashItems={
-                              (warband.vault || []).map((e: any) => ({
-                                name: e.name,
-                                category: String(e.type || e.category || ""),
-                                data: e,
-                              })) as any
-                            }
-                            maxSlots={
-                              Number(
-                                (u.stats as any)?.equipmentSlots ??
-                                  (u.stats as any)?.equipmentSpaces ??
-                                  5
-                              ) || 5
-                            }
-                            availableSkills={(u.stats.skills || []) as string[]}
-                            selectedSkills={(u.figure as any)?.skills || []}
-                            selectedAdvancements={
-                              ((u.figure as any)?.advancements || []).map(
-                                (a: any) => (typeof a === "string" ? a : a.name)
-                              ) as string[]
-                            }
-                            onAddSkillCategory={cat =>
-                              handleAddSkillCategoryToUnit(u.id, cat)
-                            }
-                            selectedSpells={(u.figure as any)?.spells || []}
-                            onAddTradition={t =>
-                              handleAddTraditionToUnit(u.id, t)
-                            }
-                            onAddSkill={skill =>
-                              handleAddSkillToUnit(u.id, skill)
-                            }
-                            selectedInjuries={
-                              ((u.figure as any)?.injuries || []).map(
-                                (i: any) => (typeof i === "string" ? i : i.name)
-                              ) as string[]
-                            }
-                            onAddInjury={i => handleAddInjuryToUnit(u.id, i)}
-                            onRemoveInjury={(injuryName, idx) =>
-                              handleRemoveInjuryFromUnit(u.id, injuryName, idx)
-                            }
-                            onRemoveSkill={skill =>
-                              handleRemoveSkillFromUnit(u.id, skill)
-                            }
-                            onAddSpell={spell =>
-                              handleAddSpellToUnit(u.id, spell)
-                            }
-                            onRemoveSpell={spellId =>
-                              handleRemoveSpellFromUnit(u.id, spellId)
-                            }
-                            onChangeSpellCastingNumber={(spellId, newCN) =>
-                              handleUpdateSpellCastingNumber(
-                                u.id,
-                                spellId,
-                                newCN
-                              )
-                            }
-                            onChangeNarrativeName={nv =>
-                              handleUpdateNarrativeName(u.id, nv)
-                            }
-                            onChangeFigureXp={xp =>
-                              handleUpdateFigureXp(u.id, xp)
-                            }
-                            onAddSpecialAbility={a =>
-                              handleAddSpecialAbilityToUnit(u.id, a as any)
-                            }
-                            onRemoveSpecialAbility={(category, id) =>
-                              handleRemoveSpecialAbilityFromUnit(
-                                u.id,
-                                category as any,
-                                id
-                              )
-                            }
-                            onStatMiscChange={(attribute, value) =>
-                              handleStatMiscChange(u.id, attribute, value)
-                            }
-                            onEquipFromStashFlat={item =>
-                              handleEquipFromStashFlat(u.id, item)
-                            }
-                            onUnequipToStashFlat={item =>
-                              handleUnequipToStashFlat(u.id, item)
-                            }
-                            onAddAdvancement={a =>
-                              handleAddAdvancementToUnit(u.id, a)
-                            }
-                            onRemoveAdvancement={(a, idx) =>
-                              handleRemoveAdvancementFromUnit(u.id, a, idx)
-                            }
-                            onChangeFigureStatModifier={(
-                              stat,
-                              category,
-                              value
-                            ) =>
-                              handleFigureStatModifierChange(
-                                u.id,
-                                stat as any,
-                                category,
-                                value
-                              )
-                            }
-                            onToggleInactive={() => handleToggleInactive(u.id)}
-                            onAddSpecialRule={specialRule =>
-                              handleAddSpecialRuleToUnit(u.id, specialRule)
-                            }
-                            onRemoveSpecialRule={specialRuleName =>
-                              handleRemoveSpecialRuleFromUnit(
-                                u.id,
-                                specialRuleName
-                              )
-                            }
-                          />
-                        </div>
-                      );
-                    })}
+                              return (
+                                <div
+                                  key={u.id}
+                                  id={
+                                    !Boolean((u as any)?.figure?.inactive)
+                                      ? `figura-ativa-${u.id}`
+                                      : `figura-inativa-${u.id}`
+                                  }
+                                  className="relative"
+                                >
+                                  <div className="absolute top-2 right-2 z-10">
+                                    <div
+                                      className="relative"
+                                      ref={el => {
+                                        menuRefs.current[u.id] = el;
+                                      }}
+                                    >
+                                      <button
+                                        onClick={toggleMenu}
+                                        className="px-3 py-1 rounded bg-gray-700 border border-gray-500 text-white hover:bg-gray-600 text-xs flex items-center gap-1"
+                                        title="Menu de ações"
+                                      >
+                                        <span>⚙</span>
+                                        <span>Ações</span>
+                                      </button>
+                                      {isMenuOpen && (
+                                        <div className="absolute right-0 mt-2 w-48 bg-[#2a2a2a] border border-gray-600 rounded shadow-lg z-50">
+                                          <div className="py-1">
+                                            {(() => {
+                                              const roleValue =
+                                                u.role ||
+                                                (u as any)?.figure?.role ||
+                                                "";
+                                              const roleStr = roleValue
+                                                .toString()
+                                                .toLowerCase();
+                                              const nameStr = (u.name || "")
+                                                .toString()
+                                                .toLowerCase();
+                                              const isMerc =
+                                                roleStr.includes("mercen") ||
+                                                nameStr.includes("mercen");
+                                              const isSoldier =
+                                                roleStr === "soldado";
+                                              const isPromotable =
+                                                (!roleStr || isSoldier) &&
+                                                !isMerc;
+                                              // Verifica se é Herói de múltiplas formas
+                                              const isHero =
+                                                roleValue === "Héroi" ||
+                                                roleValue === "Herói" ||
+                                                roleStr === "héroi" ||
+                                                roleStr === "heroi" ||
+                                                roleStr.includes("héroi") ||
+                                                roleStr.includes("heroi");
+                                              return (
+                                                <>
+                                                  {isPromotable ? (
+                                                    <button
+                                                      onClick={() => {
+                                                        promoteUnitToHero(u.id);
+                                                        toggleMenu();
+                                                      }}
+                                                      className="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center gap-2"
+                                                    >
+                                                      <span>⭐</span>
+                                                      <span>
+                                                        Promover a Herói
+                                                      </span>
+                                                    </button>
+                                                  ) : null}
+                                                  {isHero ? (
+                                                    <button
+                                                      onClick={() => {
+                                                        promoteHeroToLeader(
+                                                          u.id
+                                                        );
+                                                        toggleMenu();
+                                                      }}
+                                                      className="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center gap-2"
+                                                    >
+                                                      <span>👑</span>
+                                                      <span>
+                                                        Promover a Líder
+                                                      </span>
+                                                    </button>
+                                                  ) : null}
+                                                </>
+                                              );
+                                            })()}
+                                            <button
+                                              onClick={() => {
+                                                handleToggleInactive(u.id);
+                                                toggleMenu();
+                                              }}
+                                              className="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center gap-2"
+                                            >
+                                              <span>
+                                                {Boolean(
+                                                  (u as any)?.figure?.inactive
+                                                )
+                                                  ? "✓"
+                                                  : "✗"}
+                                              </span>
+                                              <span>
+                                                {Boolean(
+                                                  (u as any)?.figure?.inactive
+                                                )
+                                                  ? "Ativar"
+                                                  : "Inativar"}
+                                              </span>
+                                            </button>
+                                            <button
+                                              onClick={() => {
+                                                removeUnit(u.id);
+                                                toggleMenu();
+                                              }}
+                                              className="w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center gap-2"
+                                            >
+                                              <span>↩️</span>
+                                              <span>Desfazer</span>
+                                            </button>
+                                            <button
+                                              onClick={() => {
+                                                killUnit(u.id);
+                                                toggleMenu();
+                                              }}
+                                              className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-900/30 flex items-center gap-2"
+                                            >
+                                              <span>💀</span>
+                                              <span>Matar</span>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                  <RosterUnitCard
+                                    id={u.id}
+                                    name={u.name}
+                                    role={u.role}
+                                    quantity={u.quantity}
+                                    baseStats={combinedStats}
+                                    rosterStats={rosterStats}
+                                    lore={u.lore}
+                                    availability={u.availability}
+                                    qualidade={u.qualidade}
+                                    figure={u.figure as any}
+                                    factionId={warband.faction || fixedFaction}
+                                    factionFallbackData={(() => {
+                                      // Primeiro, verifica se a figura pode ser um mercenário ou lenda
+                                      // Busca nos extraPools primeiro
+                                      const baseFigureId = (u.figure as any)
+                                        ?.baseFigureId;
+                                      if (baseFigureId) {
+                                        for (const dataSet of extraPools) {
+                                          const arr = Array.isArray(dataSet)
+                                            ? dataSet
+                                            : [];
+                                          const found = arr.find(
+                                            (it: any) => it?.id === baseFigureId
+                                          );
+                                          if (found) {
+                                            return dataSet; // Retorna o dataset completo como fallback
+                                          }
+                                        }
+                                      }
+
+                                      // Se não encontrou nos extraPools, busca dados da facção
+                                      const factionKey =
+                                        warband.faction || fixedFaction;
+                                      if (!factionKey) return undefined;
+
+                                      const factionDataMap: Record<
+                                        string,
+                                        any
+                                      > = {
+                                        "sisters-of-sigmar": sistersData,
+                                        skaven: skavenData,
+                                        "beastman-raiders": beastmenData,
+                                        "dwarf-treasure-hunters":
+                                          dwarfTreasureHuntersData,
+                                        "cult-of-the-possessed":
+                                          cultPossessedData,
+                                        "vampire-courts": vampireCourtsData,
+                                        "witch-hunters": witchHuntersData,
+                                        lizardmen: lizardmenData,
+                                        "orc-mob": orcMobData,
+                                        goblins: goblinsData,
+                                        "sons-of-hashut": sonsOfHashutData,
+                                        mercenaries: mercenariesData,
+                                        "carnival-of-chaos": carnivalChaosData,
+                                        "dark-elf-corsairs":
+                                          darkElfCorsairsData,
+                                      };
+
+                                      return factionDataMap[factionKey];
+                                    })()}
+                                    spellAffinity={
+                                      (u.figure as any)?.spellAffinity ||
+                                      u.spellAffinity
+                                    }
+                                    abilities={u.abilities || []}
+                                    equipment={u.equipment}
+                                    equippedItems={equipped}
+                                    onPromoteHeroToLeader={
+                                      u.role === "Herói" ||
+                                      (u as any)?.figure?.role === "Herói"
+                                        ? () => promoteHeroToLeader(u.id)
+                                        : undefined
+                                    }
+                                    stashItems={
+                                      (warband.vault || []).map((e: any) => ({
+                                        name: e.name,
+                                        category: String(
+                                          e.type || e.category || ""
+                                        ),
+                                        data: e,
+                                      })) as any
+                                    }
+                                    maxSlots={
+                                      Number(
+                                        (u.stats as any)?.equipmentSlots ??
+                                          (u.stats as any)?.equipmentSpaces ??
+                                          5
+                                      ) || 5
+                                    }
+                                    availableSkills={
+                                      (u.stats.skills || []) as string[]
+                                    }
+                                    selectedSkills={(() => {
+                                      const figureSkills =
+                                        (u.figure as any)?.skills || [];
+                                      // Se for array de referências (com base_skill_id), resolve os dados
+                                      if (
+                                        figureSkills.length > 0 &&
+                                        figureSkills[0]?.base_skill_id
+                                      ) {
+                                        const resolvedSkills = figureSkills
+                                          .map((skillRef: any) => {
+                                            const baseSkillId =
+                                              skillRef.base_skill_id;
+                                            const baseData =
+                                              skillBaseMap[baseSkillId];
+
+                                            if (!baseData) {
+                                              return null;
+                                            }
+
+                                            return {
+                                              id: skillRef.id,
+                                              name: baseData.name || "",
+                                              description:
+                                                baseData.description || "",
+                                              type:
+                                                baseData.type ||
+                                                skillRef.type ||
+                                                "",
+                                            };
+                                          })
+                                          .filter(Boolean); // Remove nulls
+
+                                        return resolvedSkills;
+                                      }
+                                      // Se for array antigo (objetos completos), retorna como está
+                                      return figureSkills;
+                                    })()}
+                                    selectedAdvancements={
+                                      (
+                                        (u.figure as any)?.advancements || []
+                                      ).map((a: any) =>
+                                        typeof a === "string" ? a : a.name
+                                      ) as string[]
+                                    }
+                                    onAddSkillCategory={cat =>
+                                      handleAddSkillCategoryToUnit(u.id, cat)
+                                    }
+                                    selectedSpells={(() => {
+                                      const figureSpells =
+                                        (u.figure as any)?.spells || [];
+                                      // Se for array de referências (com base_spell_id), resolve os dados
+                                      if (
+                                        figureSpells.length > 0 &&
+                                        figureSpells[0]?.base_spell_id
+                                      ) {
+                                        return figureSpells.map(
+                                          (spellRef: any) => {
+                                            const baseData =
+                                              spellBaseMap[
+                                                spellRef.base_spell_id
+                                              ];
+                                            if (baseData) {
+                                              // Calcula castingNumber final: base - modifier (modifier sempre subtraído)
+                                              const baseCastingNumber =
+                                                baseData.castingNumber || 0;
+                                              const modifier =
+                                                spellRef.casting_number_modifier ||
+                                                0;
+                                              return {
+                                                id: spellRef.id,
+                                                name: baseData.name || "",
+                                                castingNumber:
+                                                  baseCastingNumber - modifier,
+                                                casting_number_modifier:
+                                                  modifier, // Preserva o modifier para edição
+                                                keywords:
+                                                  baseData.keywords || [],
+                                                effect: baseData.effect || "",
+                                              };
+                                            }
+                                            // Fallback: se não encontrar base, retorna o que tinha antes
+                                            return spellRef;
+                                          }
+                                        );
+                                      }
+                                      // Se for array antigo (objetos completos), retorna como está
+                                      return figureSpells;
+                                    })()}
+                                    onAddTradition={
+                                      (u.figure as any)?.spellsLocked
+                                        ? undefined
+                                        : t => handleAddTraditionToUnit(u.id, t)
+                                    }
+                                    onAddSkill={
+                                      (u.figure as any)?.skillsLocked
+                                        ? undefined
+                                        : skill =>
+                                            handleAddSkillToUnit(u.id, skill)
+                                    }
+                                    selectedInjuries={
+                                      ((u.figure as any)?.injuries || []).map(
+                                        (i: any) =>
+                                          typeof i === "string" ? i : i.name
+                                      ) as string[]
+                                    }
+                                    onAddInjury={i =>
+                                      handleAddInjuryToUnit(u.id, i)
+                                    }
+                                    onRemoveInjury={(injuryName, idx) =>
+                                      handleRemoveInjuryFromUnit(
+                                        u.id,
+                                        injuryName,
+                                        idx
+                                      )
+                                    }
+                                    onRemoveSkill={
+                                      (u.figure as any)?.skillsLocked
+                                        ? undefined
+                                        : skill =>
+                                            handleRemoveSkillFromUnit(
+                                              u.id,
+                                              skill
+                                            )
+                                    }
+                                    onAddSpell={
+                                      (u.figure as any)?.spellsLocked
+                                        ? undefined
+                                        : spell =>
+                                            handleAddSpellToUnit(u.id, spell)
+                                    }
+                                    onRemoveSpell={
+                                      (u.figure as any)?.spellsLocked
+                                        ? undefined
+                                        : spellId =>
+                                            handleRemoveSpellFromUnit(
+                                              u.id,
+                                              spellId
+                                            )
+                                    }
+                                    onChangeSpellCastingNumber={
+                                      (u.figure as any)?.spellsLocked
+                                        ? undefined
+                                        : (spellId, newCN) =>
+                                            handleUpdateSpellCastingNumber(
+                                              u.id,
+                                              spellId,
+                                              newCN
+                                            )
+                                    }
+                                    onChangeNarrativeName={nv =>
+                                      handleUpdateNarrativeName(u.id, nv)
+                                    }
+                                    onChangeNotes={notes =>
+                                      handleUpdateFigureNotes(u.id, notes)
+                                    }
+                                    onChangeFigureXp={xp =>
+                                      handleUpdateFigureXp(u.id, xp)
+                                    }
+                                    onAddSpecialAbility={a =>
+                                      handleAddSpecialAbilityToUnit(
+                                        u.id,
+                                        a as any
+                                      )
+                                    }
+                                    availableCrowns={availableCrowns}
+                                    onSpendCrowns={handleSpendCrowns}
+                                    onRemoveSpecialAbility={(category, id) =>
+                                      handleRemoveSpecialAbilityFromUnit(
+                                        u.id,
+                                        category as any,
+                                        id
+                                      )
+                                    }
+                                    onStatMiscChange={(attribute, value) =>
+                                      handleStatMiscChange(
+                                        u.id,
+                                        attribute,
+                                        value
+                                      )
+                                    }
+                                    onEquipFromStashFlat={item =>
+                                      handleEquipFromStashFlat(u.id, item)
+                                    }
+                                    onUnequipToStashFlat={item =>
+                                      handleUnequipToStashFlat(u.id, item)
+                                    }
+                                    onEquipToSecondaryHand={item =>
+                                      handleEquipToSecondaryHand(u.id, item)
+                                    }
+                                    onUnequipFromSecondaryHand={item =>
+                                      handleUnequipFromSecondaryHand(u.id, item)
+                                    }
+                                    onEquipToPrimaryHand={(item, asTwoHanded) =>
+                                      handleEquipToPrimaryHand(
+                                        u.id,
+                                        item,
+                                        asTwoHanded
+                                      )
+                                    }
+                                    onUnequipFromPrimaryHand={item =>
+                                      handleUnequipFromPrimaryHand(u.id, item)
+                                    }
+                                    onEquipAsArmor={item =>
+                                      handleEquipAsArmor(u.id, item)
+                                    }
+                                    onUnequipFromArmor={item =>
+                                      handleUnequipFromArmor(u.id, item)
+                                    }
+                                    onEquipAsPair={item =>
+                                      handleEquipAsPair(u.id, item)
+                                    }
+                                    onAddAdvancement={a =>
+                                      handleAddAdvancementToUnit(u.id, a)
+                                    }
+                                    onRemoveAdvancement={(a, idx) =>
+                                      handleRemoveAdvancementFromUnit(
+                                        u.id,
+                                        a,
+                                        idx
+                                      )
+                                    }
+                                    onChangeFigureStatModifier={(
+                                      stat,
+                                      category,
+                                      value
+                                    ) =>
+                                      handleFigureStatModifierChange(
+                                        u.id,
+                                        stat as any,
+                                        category,
+                                        value
+                                      )
+                                    }
+                                    onToggleInactive={() =>
+                                      handleToggleInactive(u.id)
+                                    }
+                                    onAddSpecialRule={specialRule =>
+                                      handleAddSpecialRuleToUnit(
+                                        u.id,
+                                        specialRule
+                                      )
+                                    }
+                                    onRemoveSpecialRule={specialRuleName =>
+                                      handleRemoveSpecialRuleFromUnit(
+                                        u.id,
+                                        specialRuleName
+                                      )
+                                    }
+                                    onPurchaseEquipment={(
+                                      unitId,
+                                      itemId,
+                                      cost,
+                                      itemName,
+                                      modifierId
+                                    ) =>
+                                      handlePurchaseEquipment(
+                                        unitId,
+                                        itemId,
+                                        cost,
+                                        itemName,
+                                        modifierId
+                                      )
+                                    }
+                                  />
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ));
+                    })()}
                   </div>
                 );
 

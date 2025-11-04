@@ -8,12 +8,7 @@ import { doc, onSnapshot, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { db } from "../../../../firebase.ts";
 import { useAuth } from "../../../../context/AuthContext";
-import {
-  getLocalWarband,
-  saveLocalWarband,
-  openWarbandDB,
-  LOCAL_WARBANDS_STORE,
-} from "../helpers/indexedDb.helpers";
+import { getLocalWarband } from "../helpers/indexedDb.helpers";
 
 export interface Warband {
   name: string;
@@ -86,19 +81,9 @@ export function useWarbandState() {
     if (loading || !warbandId) return;
 
     const shouldLoadLocal = isLocal || !userId; // Sem userId, trata como local puro
-    console.log("[useWarbandState] Params:", {
-      isLocal,
-      userId,
-      warbandId,
-      fixedFaction,
-      shouldLoadLocal,
-    });
     // Se é local (ou sem userId), carrega do IndexedDB
     if (shouldLoadLocal) {
       setIsLoading(true);
-      console.log("[useWarbandState] Tentando carregar do IndexedDB…", {
-        warbandId,
-      });
       // Pequeno helper de re-tentativa para casos de navegação logo após salvamento
       const tryLoadLocal = async (attempt: number): Promise<any | null> => {
         const result = await getLocalWarband(warbandId);
@@ -120,11 +105,6 @@ export function useWarbandState() {
           }
 
           setWarbandSource(data.source || "local");
-          console.log("[useWarbandState] Carregado local:", {
-            id: warbandId,
-            source: data.source,
-            name: data.name,
-          });
 
           // Proteções de rota desativadas - permite carregar bandos "user" mesmo sem login
           setWarband({
@@ -185,11 +165,6 @@ export function useWarbandState() {
 
     // Se não é local, carrega do Firestore
     // Proteções de rota desativadas - removida checagem de isAuthorized
-
-    console.log("[useWarbandState] Tentando carregar do Firestore…", {
-      warbandId,
-      userId,
-    });
     setIsLoading(true);
     const ref = doc(db, "users", userId, "warbands", warbandId);
     const unsub = onSnapshot(ref, async snap => {
@@ -255,36 +230,7 @@ export function useWarbandState() {
             }
           }
 
-          console.log("[useWarbandState] Comparação de datas updatedAt:", {
-            firestoreUpdatedAt: firestoreDate
-              ? firestoreDate.toISOString()
-              : "n/a",
-            lastKnownFirestoreUpdatedAt: lastKnownFirestoreDate
-              ? lastKnownFirestoreDate.toISOString()
-              : "n/a",
-            localUpdatedAt: localData?.updatedAt || "n/a",
-            firestoreTimestamp: firestoreDate ? firestoreDate.getTime() : 0,
-            lastKnownFirestoreTimestamp: lastKnownFirestoreDate
-              ? lastKnownFirestoreDate.getTime()
-              : 0,
-            firestoreIsNewer,
-            differenceMs:
-              firestoreDate && lastKnownFirestoreDate
-                ? firestoreDate.getTime() - lastKnownFirestoreDate.getTime()
-                : 0,
-          });
-
           setHasNewerVersionInFirestore(firestoreIsNewer);
-
-          if (firestoreIsNewer) {
-            console.log(
-              "[useWarbandState] ⚠️ Firestore é mais recente que IndexedDB!"
-            );
-          } else {
-            console.log(
-              "[useWarbandState] ✅ IndexedDB está atualizado ou é igual ao Firestore"
-            );
-          }
 
           if (localData) {
             // Usa dados do IndexedDB se existirem
@@ -378,32 +324,7 @@ export function useWarbandState() {
               }
             }
 
-            console.log("[useWarbandState] Verificação contínua:", {
-              firestoreUpdatedAt: firestoreDate
-                ? firestoreDate.toISOString()
-                : "n/a",
-              lastKnownFirestoreUpdatedAt: lastKnownFirestoreDate
-                ? lastKnownFirestoreDate.toISOString()
-                : "n/a",
-              localUpdatedAt: localData?.updatedAt || "n/a",
-              firestoreTimestamp: firestoreDate ? firestoreDate.getTime() : 0,
-              lastKnownFirestoreTimestamp: lastKnownFirestoreDate
-                ? lastKnownFirestoreDate.getTime()
-                : 0,
-              firestoreIsNewer,
-              differenceMs:
-                firestoreDate && lastKnownFirestoreDate
-                  ? firestoreDate.getTime() - lastKnownFirestoreDate.getTime()
-                  : 0,
-            });
-
             setHasNewerVersionInFirestore(firestoreIsNewer);
-
-            if (firestoreIsNewer) {
-              console.log(
-                "[useWarbandState] ⚠️ Firestore é mais recente (verificação contínua)!"
-              );
-            }
           }
         } catch (e) {
           console.warn("Erro ao verificar versão mais recente:", e);
@@ -430,12 +351,6 @@ export function useWarbandState() {
       }
 
       const firestoreData = firestoreSnap.data();
-      const fsUpdatedAt = firestoreData.updatedAt
-        ? typeof firestoreData.updatedAt === "string"
-          ? firestoreData.updatedAt
-          : firestoreData.updatedAt?.toDate?.()?.toISOString() ||
-            new Date().toISOString()
-        : new Date().toISOString();
 
       // Atualiza o warband com dados do Firestore
       setWarband({
@@ -450,44 +365,7 @@ export function useWarbandState() {
           : [],
       });
 
-      // Salva no IndexedDB e Firestore (isso atualiza o updatedAt do IndexedDB e Firestore)
-      await saveLocalWarband(
-        warbandId,
-        {
-          name: firestoreData.name ?? "",
-          faction: firestoreData.faction ?? "",
-          notes: firestoreData.notes ?? "",
-          gold: firestoreData.gold ?? "500",
-          wyrdstone: firestoreData.wyrdstone ?? "0",
-          vault: Array.isArray(firestoreData.vault) ? firestoreData.vault : [],
-          figures: Array.isArray(firestoreData.figures)
-            ? firestoreData.figures
-            : [],
-        },
-        warbandSource,
-        userId
-      );
-
-      // Atualiza firestoreUpdatedAt no IndexedDB para indicar que está sincronizado
-      const dbInstance = await openWarbandDB();
-      await new Promise<void>((resolve, reject) => {
-        const transaction = dbInstance.transaction(
-          [LOCAL_WARBANDS_STORE],
-          "readwrite"
-        );
-        const store = transaction.objectStore(LOCAL_WARBANDS_STORE);
-        const getRequest = store.get(warbandId);
-
-        getRequest.onsuccess = () => {
-          const existing = getRequest.result || {};
-          store.put({
-            ...existing,
-            firestoreUpdatedAt: fsUpdatedAt,
-          });
-          resolve();
-        };
-        getRequest.onerror = () => reject(getRequest.error);
-      });
+      // NÃO escrevemos bandos do usuário no IndexedDB
 
       setHasNewerVersionInFirestore(false);
       setHasUnsavedChanges(false);

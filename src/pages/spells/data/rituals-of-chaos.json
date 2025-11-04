@@ -1,17 +1,20 @@
 [
   {
+    "id": "visao-do-tormento",
     "name": "Visão do Tormento",
     "castingNumber": 14,
     "keywords": ["Linha de Visão", "Psicológica"],
     "effect": "A figura alvo faz um teste de Vontade contra a rolagem de conjuração dessa magia. Caso falhe, A figura recebe dois marcadores de Atordoamento."
   },
   {
+    "id": "sangue-corrompido",
     "name": "Sangue Corrompido",
     "castingNumber": 12,
     "keywords": ["Míssil Mágico(Mágico)(+7)", "Alcance(40cm)"],
     "effect": "Ataque a figura alvo com o míssil mágico. Se forçou a magia com pelo menos 3 pontos de vida, o míssil mágico ganha +2 de modificador de dano."
   },
   {
+    "id": "tentacao-do-caos",
     "name": "Tentação do Caos",
     "castingNumber": 14,
     "keywords": ["Alcance(30cm)", "Psicológica"],
@@ -19,12 +22,14 @@
   },
 
   {
+    "id": "dadiva-do-caos",
     "name": "Dádiva do Caos",
     "castingNumber": 10,
     "keywords": ["Linha de Visão", "Concentração"],
     "effect": "A figura alvo que não seja um conjurador ou uma figura com a característica Daemônio é possuída por uma entidade do reino do caos e ganha +2 Ímpeto, +1 Armadura e -2 Vontade enquanto a magia estiver sendo concentrada e conta como um daemônio (ou seja, será afetada por Banir, Subjugar Daemônio, Círculo de Proteção, etc.). Esta figura não pode ser parte de uma ativação em grupo. Se removida do jogo por uma magia com a palavra-chave Exorcismo, o daemônio é expulso e a sobrevivência da figura é verificada normalmente após o jogo. Um conjurador só pode ter uma magia Dádiva do Caos ativa por vez."
   },
   {
+    "id": "asas-de-tzeench",
     "name": "Asas de Tzeench",
     "castingNumber": 8,
     "keywords": ["Conjurador Apenas"],
@@ -32,6 +37,7 @@
   },
 
   {
+    "id": "palavra-da-dor-caos",
     "name": "Palavra da Dor",
     "castingNumber": 10,
     "keywords": ["Área de Efeito (Explosão Grande)"],

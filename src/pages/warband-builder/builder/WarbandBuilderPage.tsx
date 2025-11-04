@@ -57,9 +57,7 @@ function WarbandBuilderPage() {
   const [localWarbands, setLocalWarbands] = useState<SavedWarband[]>([]);
   const [authOpen, setAuthOpen] = useState(false);
   const [createOpen, setCreateOpen] = useState(false);
-  const [remoteUpdateLogLens, setRemoteUpdateLogLens] = useState<
-    Map<string, number>
-  >(new Map());
+  // Sem badge de sincronização
   // sincronização manual desativada
   const [promoting, setPromoting] = useState<string | null>(null);
   // display de usuário não utilizado
@@ -92,12 +90,7 @@ function WarbandBuilderPage() {
   // Carrega bandos locais do IndexedDB (sem precisar de login)
   useEffect(() => {
     const loadLocalWarbands = async () => {
-      console.log("[WarbandBuilderPage] Carregando bandos locais...");
       const local = await getAllLocalWarbands();
-      console.log(
-        "[WarbandBuilderPage] Bandos locais carregados:",
-        local.length
-      );
       setLocalWarbands(local as SavedWarband[]);
     };
     loadLocalWarbands();
@@ -107,15 +100,8 @@ function WarbandBuilderPage() {
   useEffect(() => {
     // Só recarrega se a rota atual é a página de seleção de bandos
     if (location.pathname === "/warband-builder") {
-      console.log(
-        "[WarbandBuilderPage] Detectou navegação para página de seleção, recarregando bandos..."
-      );
       const loadLocalWarbands = async () => {
         const local = await getAllLocalWarbands();
-        console.log(
-          "[WarbandBuilderPage] Bandos recarregados após navegação:",
-          local.length
-        );
         setLocalWarbands(local as SavedWarband[]);
       };
       loadLocalWarbands();
@@ -125,15 +111,8 @@ function WarbandBuilderPage() {
   // Recarrega bandos locais quando volta da página de roster (para atualizar updatedAt)
   useEffect(() => {
     const handleFocus = () => {
-      console.log(
-        "[WarbandBuilderPage] Página recebeu foco, recarregando bandos..."
-      );
       const loadLocalWarbands = async () => {
         const local = await getAllLocalWarbands();
-        console.log(
-          "[WarbandBuilderPage] Bandos recarregados após foco:",
-          local.length
-        );
         setLocalWarbands(local as SavedWarband[]);
       };
       loadLocalWarbands();
@@ -142,15 +121,8 @@ function WarbandBuilderPage() {
     // Também recarrega quando a página fica visível (usando Visibility API)
     const handleVisibilityChange = () => {
       if (!document.hidden) {
-        console.log(
-          "[WarbandBuilderPage] Página ficou visível, recarregando bandos..."
-        );
         const loadLocalWarbands = async () => {
           const local = await getAllLocalWarbands();
-          console.log(
-            "[WarbandBuilderPage] Bandos recarregados após visibilidade:",
-            local.length
-          );
           setLocalWarbands(local as SavedWarband[]);
         };
         loadLocalWarbands();
@@ -201,97 +173,8 @@ function WarbandBuilderPage() {
       });
       setUserWarbands(items);
 
-      // Cache offline (PWA): persiste snapshots do Firestore no IndexedDB
-      // Atualiza/insere apenas se o registro não for um bando local explícito
-      // Também registra o comprimento do updateLog por id para comparação visual
-      const logsMap = new Map<string, number>();
-      snap.docs.forEach(d => {
-        const dd = d.data();
-        const len = Array.isArray(dd.updateLog) ? dd.updateLog.length : 0;
-        logsMap.set(d.id, len);
-      });
-      setRemoteUpdateLogLens(logsMap);
-      (async () => {
-        try {
-          const dbi = await openWarbandDB();
-          const tx = dbi.transaction([LOCAL_WARBANDS_STORE], "readwrite");
-          const store = tx.objectStore(LOCAL_WARBANDS_STORE);
-
-          for (const docSnap of snap.docs) {
-            const data = docSnap.data();
-            const id = docSnap.id;
-            await new Promise<void>((resolve, reject) => {
-              const getReq = store.get(id);
-              getReq.onsuccess = () => {
-                const existing = getReq.result || {};
-                // Se for explicitamente local, não sobrescreve (evita conflito de IDs improvável)
-                if (existing && existing.source === "local") {
-                  return resolve();
-                }
-                // Converte updatedAt do Firestore para ISO string, se possível
-                let fsUpdatedAt: string | undefined = undefined;
-                const rawUpdated = data.updatedAt;
-                if (typeof rawUpdated === "string") {
-                  fsUpdatedAt = new Date(rawUpdated).toISOString();
-                } else if (
-                  rawUpdated?.toDate &&
-                  typeof rawUpdated.toDate === "function"
-                ) {
-                  fsUpdatedAt = rawUpdated.toDate().toISOString();
-                } else if (rawUpdated?.seconds) {
-                  fsUpdatedAt = new Date(
-                    rawUpdated.seconds * 1000
-                  ).toISOString();
-                }
-
-                const record = {
-                  ...existing,
-                  id,
-                  name: data.name || existing.name || "",
-                  faction: data.faction || existing.faction || "",
-                  notes: data.notes ?? existing.notes ?? "",
-                  gold: data.gold ?? existing.gold ?? "0",
-                  wyrdstone: data.wyrdstone ?? existing.wyrdstone ?? "0",
-                  vault: Array.isArray(data.vault)
-                    ? data.vault
-                    : existing.vault || [],
-                  figures: Array.isArray(data.figures)
-                    ? data.figures
-                    : existing.figures || [],
-                  initialCrowns:
-                    data.initialCrowns ?? existing.initialCrowns ?? 0,
-                  createdAt:
-                    existing.createdAt ||
-                    data.createdAt ||
-                    new Date().toISOString(),
-                  updateLog: Array.isArray(data.updateLog)
-                    ? data.updateLog
-                    : existing.updateLog || [],
-                  // updatedAt local igual ao do Firestore para não gerar falso "local-newer"
-                  updatedAt:
-                    fsUpdatedAt ||
-                    existing.updatedAt ||
-                    new Date().toISOString(),
-                  source: "user" as const,
-                  firestoreUpdatedAt:
-                    fsUpdatedAt || existing.firestoreUpdatedAt,
-                  userId: currentUser?.uid || existing.userId || null,
-                };
-
-                const putReq = store.put(record);
-                putReq.onsuccess = () => resolve();
-                putReq.onerror = () => reject(putReq.error);
-              };
-              getReq.onerror = () => reject(getReq.error);
-            });
-          }
-        } catch (e) {
-          console.warn(
-            "[WarbandBuilderPage] Falha ao cachear bandos do usuário no IndexedDB:",
-            e
-          );
-        }
-      })();
+      // Não cacheamos mais bandos do usuário no IndexedDB
+      // Sem mapeamento de updateLog para badge
     });
     return () => off();
   }, [currentUser, loading]);
@@ -466,7 +349,7 @@ function WarbandBuilderPage() {
       const url = `/warband-builder/roster?faction=${encodeURIComponent(
         wb.faction
       )}&id=${wb.id}&local=true`;
-      console.log("[goToWarband] Navegando (LOCAL):", { url, id: wb.id });
+
       navigate(url);
     } else {
       // Bando do usuário: precisa de userId, mas permite abrir se tiver login
@@ -475,21 +358,13 @@ function WarbandBuilderPage() {
         const fallbackUrl = `/warband-builder/roster?faction=${encodeURIComponent(
           wb.faction
         )}&id=${wb.id}&local=true`;
-        console.log("[goToWarband] Sem login, fallback LOCAL:", {
-          url: fallbackUrl,
-          id: wb.id,
-        });
         navigate(fallbackUrl);
         return;
       }
       const userUrl = `/warband-builder/roster?faction=${encodeURIComponent(
         wb.faction
       )}&id=${wb.id}&userId=${currentUser.uid}`;
-      console.log("[goToWarband] Navegando (USER):", {
-        url: userUrl,
-        id: wb.id,
-        userId: currentUser.uid,
-      });
+
       navigate(userUrl);
     }
   };
@@ -632,15 +507,8 @@ function WarbandBuilderPage() {
                   ☁️ Bandos do Usuário
                 </h2>
                 {(() => {
-                  // Mescla lista online com cache local (somente do usuário atual) e remove duplicados
-                  const cachedUser = localWarbands.filter(
-                    w => w.source === "user" && w.userId === currentUser?.uid
-                  );
-                  const mergedMap = new Map<string, SavedWarband>();
-                  [...userWarbands, ...cachedUser].forEach(w =>
-                    mergedMap.set(w.id, w)
-                  );
-                  const merged = Array.from(mergedMap.values());
+                  // NÃO cacheamos mais bandos do usuário no IndexedDB
+                  const merged = userWarbands;
                   if (merged.length === 0) {
                     return (
                       <MobileText className="text-gray-500">
@@ -675,38 +543,7 @@ function WarbandBuilderPage() {
                               </div>
                             </div>
                             <div className="mt-3 flex flex-wrap items-center justify-end gap-2">
-                              {(() => {
-                                const cached = localWarbands.find(
-                                  w =>
-                                    w.id === wb.id &&
-                                    w.source === "user" &&
-                                    w.userId === currentUser?.uid
-                                ) as any;
-                                const localLogLen = Array.isArray(
-                                  cached?.updateLog
-                                )
-                                  ? cached.updateLog.length
-                                  : undefined;
-                                const remoteLogLen = remoteUpdateLogLens.get(
-                                  wb.id
-                                );
-                                if (
-                                  typeof localLogLen === "number" &&
-                                  typeof remoteLogLen === "number" &&
-                                  localLogLen === remoteLogLen &&
-                                  remoteLogLen > 0
-                                ) {
-                                  return (
-                                    <span
-                                      className="px-2 py-0.5 rounded bg-green-700/70 text-green-100 text-xs cursor-default select-none"
-                                      title="Sincronizado com a nuvem"
-                                    >
-                                      ✓ Sincronizado
-                                    </span>
-                                  );
-                                }
-                                return null;
-                              })()}
+                              {/* Sem badge de sincronização (Firestore-only) */}
                               <button
                                 onClick={() => goToWarband(wb)}
                                 className="px-3 py-1 rounded bg-blue-700 hover:bg-blue-600 text-white text-sm"

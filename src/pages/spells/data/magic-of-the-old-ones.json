@@ -1,35 +1,41 @@
 [
   {
+    "id": "ira-de-chotec",
     "name": "Ira de Chotec",
     "castingNumber": 12,
     "keywords": ["Alcance(30)", "Míssil Mágico(Mágico)(+5)"],
     "effect": "Ataque a figura inimiga alvo com o Míssil Mágico. Caso a figura esteja utilizando armadura, o Míssil Mágico ganha um modificador de +2 de dano e Penetração de Armadura(1). "
   },
   {
+    "id": "bencao-do-sotek",
     "name": "Benção do Sotek",
     "castingNumber": 10,
     "keywords": ["Linha de Visão", "Concentração"],
     "effect": "A figura aliada alvo ganha +2 em dois atributos a sua escolha enquanto a magia estiver sendo concentrada."
   },
   {
+    "id": "sombras-de-huanchi",
     "name": "Sombras de Huanchi",
     "castingNumber": 10,
     "keywords": ["Área de Efeito(Explosão Média)"],
     "effect": "Todos os Geckos aliadas na Área de Efeito podem imediatamente se mover até 10cm, desde que terminem esse movimento em cobertura e a mais de 20cm de figuras inimigas. Eles um Marcador de Sombras que é removido no começo da sua próxima ativação. Uma figura com um Marcador de Sombras tem a característica Furtividade(30) caso já tenha furtividade(X), X diminui em 10."
   },
   {
+    "id": "protecao-dos-ancioes",
     "name": "Proteção dos Anciões",
     "castingNumber": 8,
     "keywords": ["Área de Efeito(Zona Pequena)", "Concentração"],
     "effect": "Centralize a Área de Efeito no Conjurador e mova-a junto com ele. Todas as figuras aliadas na Área de Efeito ganham +5 em qualquer teste para resistir ao efeito de Magias."
   },
   {
+    "id": "furia-de-tinci",
     "name": "Fúria de Tinci",
     "castingNumber": 12,
     "keywords": ["Alcance(40cm)", "Concentração"],
     "effect": "A figura aliada alvo ganha a característica Fúria enquanto a magia estiver sendo concentrada."
   },
   {
+    "id": "celeridade-de-itzli",
     "name": "Celeridade de Itzli",
     "castingNumber": 10,
     "keywords": ["Linha de Visão"],

@@ -1,38 +1,44 @@
 [
   {
+    "id": "sugar-vida",
     "name": "Sugar Vida",
     "castingNumber": 16,
     "keywords": ["Linha de Visão"],
     "effect": "A figura inimiga algo faz um teste de Vontade contra o teste de conjuração dessa magia. Caso falhe, recebe 3 de dano mágico e o conjurador ganha 3 pontos de vida. O conjurador sempre recupera 3 pontos de vida, independente de quanto dano tenha sido efetivamente causado. Essa vida ganha não pode levar o conjurador a mais que sua vida máxima. Não tem efeito em Mortos-Vivos e Daemônios."
   },
   {
+    "id": "reanimar-cadaver",
     "name": "Reanimar Cadáver",
     "castingNumber": 6,
     "keywords": ["Invocação"],
-    "effect": "Um Zumbi que tenha sido reduzido a 0 de vida durante esse turno ou turno anterior imediatamente é invocado ao tabuleiro com a vida máxima."
+    "effect": "Um Zumbi que tenha sido reduzido a 0 de vida durante esse turno ou turno anterior imediatamente é trazido de volta ao tabuleiro com a vida máxima."
   },
   {
+    "id": "visao-cadaverica",
     "name": "Visão Cadavérica",
     "castingNumber": 8,
     "keywords": ["Linha de Visão", "Concentração"],
     "effect": "O conjurador ganha a característica Aterrorizante enquanto a magia estiver sendo concentrada."
   },
   {
+    "id": "feitico-da-perdicao",
     "name": "Feitiço da Perdição",
     "castingNumber": 16,
     "keywords": ["Conjurador Apenas", "Concentração"],
     "effect": "A figura alvo deve fazer um teste de Vontade contra a rolagem de conjuração dessa magia. A figura alvo pode gastar vida para aumentar esse teste de vontade em uma proporção de 1:1. Caso falhe no teste, a figura é imediatamente reduzida a 0 de vida."
   },
   {
+    "id": "chamado-de-vanhel",
     "name": "Chamado de Vanhel",
     "castingNumber": 8,
     "keywords": ["Alcance(40cm)"],
     "effect": "O Zumbi ou Lobo-Atroz alvo pode ativar imediatamente após o conjurador, como se tivesse ativado junto a ele."
   },
   {
+    "id": "feitico-do-despertar",
     "name": "Feitiço do Despertar",
     "castingNumber": 6,
     "keywords": ["Ritual"],
-    "effect": "Se um héroi inimigo rola um resultado de Morto na tabela de sobrevivência em uma partida em que jogou contra o bando do conjurador, caso essa magia seja conjurada como ritual com sucesso, aquele héroi é reanimado como um Regressado para o bando do conjurador. Um regressado mantém seu equipamento e atributos, mas não pode usar mais nenhum equipamento além daqueles, perde suas habilidades, se torna um soldado e ganha a característica Morto-Vivo. Ele também ganha as características Arrastar-se e Acéfalo do Zumbi. Ele ocupa o lugar de um Zumbi no bando."
+    "effect": "Se um héroi inimigo rola um resultado de Morto na tabela de sobrevivência em uma partida em que jogou contra o bando do conjurador, caso essa magia seja conjurada como ritual com sucesso, aquele héroi é reanimado como um Regresso para o bando do conjurador. Um Regressoo mantém seu equipamento e atributos, mas não pode usar mais nenhum equipamento além daqueles, perde suas habilidades, se torna um soldado e ganha a característica Morto-Vivo. Ele também ganha as características Arrastar-se e Acéfalo do Zumbi. Ele ocupa o lugar de um Zumbi no bando."
   }
 ]

@@ -35,21 +35,11 @@ function updateArmourInFile(filePath) {
         if (typeof oldValue === "number") {
           obj.stats.armour = oldValue + 1;
           updated = true;
-          console.log(
-            `  Updated ${obj.name || "unit"}: ${oldValue} -> ${
-              obj.stats.armour
-            }`
-          );
         } else if (typeof oldValue === "string") {
           const numValue = parseInt(oldValue, 10);
           if (!isNaN(numValue)) {
             obj.stats.armour = String(numValue + 1);
             updated = true;
-            console.log(
-              `  Updated ${obj.name || "unit"}: "${oldValue}" -> "${
-                obj.stats.armour
-              }"`
-            );
           }
         }
       }
@@ -63,18 +53,9 @@ function updateArmourInFile(filePath) {
       }
     }
 
-    console.log(`Processing: ${filePath}`);
-    if (Array.isArray(data)) {
-      data.forEach(updateArmour);
-    } else {
-      updateArmour(data);
-    }
-
     if (updated) {
       fs.writeFileSync(fullPath, JSON.stringify(data, null, 2) + "\n", "utf8");
-      console.log(`  ✓ File updated\n`);
     } else {
-      console.log(`  - No updates needed\n`);
     }
   } catch (error) {
     console.error(`  ✗ Error processing ${filePath}:`, error.message);
@@ -83,5 +64,3 @@ function updateArmourInFile(filePath) {
 
 // Processar todos os arquivos
 filesToUpdate.forEach(updateArmourInFile);
-console.log("Done!");
-

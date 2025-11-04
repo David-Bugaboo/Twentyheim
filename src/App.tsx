@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Navbar from "./components/Navbar";
@@ -135,11 +136,50 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  const [deferredInstallPrompt, setDeferredInstallPrompt] = useState<any>(null);
+  const [showInstallHint, setShowInstallHint] = useState<boolean>(false);
+
+  useEffect(() => {
+    const isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || (window.navigator as any).standalone;
+    const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+    const handler = (e: any) => {
+      // Intercepta o prompt automático para mostrar nosso botão
+      e.preventDefault();
+      setDeferredInstallPrompt(e);
+      // Mostra botão apenas se não estiver instalado e não for iOS (iOS usa Share > Add)
+      setShowInstallHint(!isStandalone && !isIOS);
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const handleInstallClick = async () => {
+    try {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      const { outcome } = await deferredInstallPrompt.userChoice;
+      if (outcome === 'accepted') {
+        setShowInstallHint(false);
+        setDeferredInstallPrompt(null);
+      }
+    } catch {}
+  };
   return (
     <AuthProvider>
       <TOCProvider>
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
+          {showInstallHint && (
+            <div className="fixed bottom-4 right-4 z-50">
+              <button
+                onClick={handleInstallClick}
+                className="px-3 py-2 rounded bg-green-700 hover:bg-green-600 text-white text-sm shadow-lg"
+                title="Instalar o app"
+              >
+                Instalar app
+              </button>
+            </div>
+          )}
           <Router>
             <AppContent />
           </Router>

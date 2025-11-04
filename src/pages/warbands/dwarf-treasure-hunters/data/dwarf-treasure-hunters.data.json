@@ -13,12 +13,7 @@
       "Vontade": "+2",
       "health": 12,
       "cost": "85 coroas",
-      "skills": [
-        "Combate",
-        "Atirador",
-        "Força",
-        "Caçadores de Tesouro Anões"
-      ],
+      "skills": ["Combate", "Atirador", "Força", "Caçadores de Tesouro Anões"],
       "startingXp": 20,
       "equipmentSlots": 6
     },
@@ -43,72 +38,91 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "3 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "machado-anao",
           "name": "Machado Anão",
           "cost": "15 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
-        },
-        {
-          "name": "Armadura de Gromril",
-          "cost": "75 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "pistola",
           "name": "Pistola",
-          "cost": "7 coroas (15 para cinto)"
+          "cost": "7 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "armadura-pesada",
           "name": "Armadura Pesada",
           "cost": "50 coroas"
         },
         {
+          "id": "armadura-de-gromril",
           "name": "Armadura de Gromril",
           "cost": "75 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
+        }
+      ],
+      "modifiers": [
+        {
+          "name": "De Gromril",
+          "multiplier": 3,
+          "type": "Modificador Corpo a Corpo",
+          "id": "de-gromril"
         }
       ]
     }
@@ -158,62 +172,72 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "5 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "pistola",
           "name": "Pistola",
-          "cost": "15 coroas (30 para cinto)"
+          "cost": "15 coroas"
         },
         {
+          "id": "besta",
           "name": "Besta",
           "cost": "25 coroas"
         },
         {
+          "id": "arcabuz",
           "name": "Arcabuz",
           "cost": "17 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "armadura-pesada",
           "name": "Armadura Pesada",
           "cost": "50 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
       ],
       "miscellaneous": [],
-      "modifiers": [
-       
-      ]
+      "modifiers": []
     }
   },
   {
@@ -260,44 +284,54 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "3 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "machado-anao",
           "name": "Machado Anão",
           "cost": "15 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "javelin",
           "name": "Javelin",
           "cost": "5 coroas"
         }
@@ -305,7 +339,12 @@
       "armor": [],
       "miscellaneous": [],
       "modifiers": [
-        
+        {
+          "name": "De Gromril",
+          "multiplier": 3,
+          "type": "Modificador Corpo a Corpo",
+          "id": "de-gromril"
+        }
       ]
     }
   },
@@ -341,73 +380,93 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "3 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "machado-anao",
           "name": "Machado Anão",
           "cost": "15 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "pistola",
           "name": "Pistola",
-          "cost": "7 coroas (15 para cinto)"
+          "cost": "7 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "armadura-pesada",
           "name": "Armadura Pesada",
           "cost": "50 coroas"
         },
         {
+          "id": "armadura-de-gromril",
           "name": "Armadura de Gromril",
           "cost": "75 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
       ],
       "miscellaneous": [],
       "modifiers": [
-        
+        {
+          "name": "De Gromril",
+          "multiplier": 3,
+          "type": "Modificador Corpo a Corpo",
+          "id": "de-gromril"
+        }
       ]
     }
   },
@@ -443,62 +502,72 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "5 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "pistola",
           "name": "Pistola",
-          "cost": "15 coroas (30 para cinto)"
+          "cost": "15 coroas"
         },
         {
+          "id": "besta",
           "name": "Besta",
           "cost": "25 coroas"
         },
         {
+          "id": "arcabuz",
           "name": "Arcabuz",
           "cost": "17 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "armadura-pesada",
           "name": "Armadura Pesada",
           "cost": "50 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
       ],
       "miscellaneous": [],
-      "modifiers": [
-        
-      ]
+      "modifiers": []
     }
   },
   {
@@ -533,73 +602,93 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "3 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "machado-anao",
           "name": "Machado Anão",
           "cost": "15 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         },
         {
+          "id": "alabarda",
           "name": "Alabarda",
           "cost": "10 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "pistola",
           "name": "Pistola",
-          "cost": "7 coroas (15 para cinto)"
+          "cost": "7 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "armadura-pesada",
           "name": "Armadura Pesada",
           "cost": "50 coroas"
         },
         {
+          "id": "armadura-de-gromril",
           "name": "Armadura de Gromril",
           "cost": "75 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
       ],
       "miscellaneous": [],
       "modifiers": [
-        
+        {
+          "name": "De Gromril",
+          "multiplier": 3,
+          "type": "Modificador Corpo a Corpo",
+          "id": "de-gromril"
+        }
       ]
     }
   }

@@ -61,6 +61,10 @@ const loreConfig: Record<string, { name: string; fileId: string }> = {
     name: "Orações de Ulric",
     fileId: "prayers-of-ulric",
   },
+  "rituals-of-nurgle": {
+    name: "Rituais de Nurgle",
+    fileId: "rituals-of-nurgle",
+  },
 };
 
 function GenericLorePage() {

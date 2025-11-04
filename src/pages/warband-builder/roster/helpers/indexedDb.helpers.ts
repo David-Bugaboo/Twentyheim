@@ -13,8 +13,6 @@ let operationQueue: Promise<void> = Promise.resolve();
  * Adiciona uma operação à fila, garantindo execução sequencial
  */
 function queueOperation<T>(operation: () => Promise<T>): Promise<T> {
-  console.log("[queueOperation] Adicionando operação à fila");
-
   // Cria uma nova Promise que será resolvida/rejeitada após a operação
   let resolveOperation: (value: T) => void;
   let rejectOperation: (error: any) => void;
@@ -27,9 +25,7 @@ function queueOperation<T>(operation: () => Promise<T>): Promise<T> {
   operationQueue = operationQueue
     .then(async () => {
       try {
-        console.log("[queueOperation] Executando operação");
         const result = await operation();
-        console.log("[queueOperation] Operação concluída com sucesso");
         resolveOperation!(result);
       } catch (error) {
         console.error("[queueOperation] Erro na operação:", error);
@@ -173,7 +169,6 @@ export async function getAllLocalWarbands(): Promise<LocalWarbandData[]> {
               createdAt: w.createdAt,
             }) as LocalWarbandData
         );
-        console.log("[getAllLocalWarbands] Total de bandos:", warbands.length);
         resolve(warbands);
       };
       request.onerror = () => reject(request.error);
@@ -197,6 +192,32 @@ export async function saveLocalWarband(
 ): Promise<void> {
   return queueOperation(async () => {
     try {
+      // Se for bando do usuário, NÃO salva no IndexedDB: apenas tenta salvar no Firestore
+      if (source === "user" && userId) {
+        try {
+          const { saveWarbandToFirestore, stripUndefinedDeep } = await import(
+            "./firestore.helpers"
+          );
+          const payload = stripUndefinedDeep({
+            name: data.name,
+            faction: data.faction,
+            notes: data.notes,
+            gold: data.gold,
+            wyrdstone: data.wyrdstone,
+            vault: data.vault,
+            figures: data.figures,
+          });
+          await saveWarbandToFirestore(userId, id, payload);
+          return;
+        } catch (e) {
+          console.warn(
+            "[saveLocalWarband] Usuário offline/erro Firestore. User warbands não são persistidos no IndexedDB.",
+            e
+          );
+          return;
+        }
+      }
+
       const db = await openWarbandDB();
       return new Promise((resolve, reject) => {
         const transaction = db.transaction([LOCAL_WARBANDS_STORE], "readwrite");
@@ -211,16 +232,10 @@ export async function saveLocalWarband(
           // IMPORTANTE: Mantém o source existente se não for especificado
           const finalSource = source || existing.source || "local";
 
-          console.log("[saveLocalWarband] Dados recebidos:", {
-            dataVault: data.vault?.length || 0,
-            dataFigures: data.figures?.length || 0,
-            existingVault: existing.vault?.length || 0,
-            existingFigures: existing.figures?.length || 0,
-          });
 
           // Constrói o objeto raiz completo (FULL OBJECT) a ser salvo
           // Garante que os dados principais vêm do parâmetro data, não de existing
-          // Atualiza updateLog: adiciona timestamp desta escrita para apoiar PWA/sync
+          // Atualiza updateLog: adiciona timestamp desta escrita
           const prevLog: string[] = Array.isArray(existing.updateLog)
             ? existing.updateLog
             : [];
@@ -261,22 +276,8 @@ export async function saveLocalWarband(
                 : (existing.userId ?? null),
           };
 
-          console.log("[saveLocalWarband] Salvando no IndexedDB:", {
-            id,
-            source,
-            updatedAt: toSave.updatedAt,
-            figuresCount: (toSave.figures || []).length,
-            vaultCount: (toSave.vault || []).length,
-            hasVault: !!toSave.vault,
-            hasFigures: !!toSave.figures,
-          });
-
           const putRequest = store.put(toSave);
           putRequest.onsuccess = async () => {
-            console.log(
-              "[saveLocalWarband] ✅ Salvamento concluído no IndexedDB!"
-            );
-
             // Se userId foi fornecido, também salva no Firestore
             if (userId && source === "user") {
               try {
@@ -301,7 +302,6 @@ export async function saveLocalWarband(
                 });
 
                 await saveWarbandToFirestore(userId, id, firestorePayload);
-                console.log("[saveLocalWarband] ✅ Também salvo no Firestore!");
               } catch (firestoreError) {
                 console.error(
                   "[saveLocalWarband] ⚠️ Erro ao salvar no Firestore (continua mesmo assim):",
@@ -327,20 +327,7 @@ export async function saveLocalWarband(
                 const verifyRequest = verifyStore.get(id);
 
                 verifyRequest.onsuccess = () => {
-                  const savedData = verifyRequest.result;
-
-                  // FULL OBJECT - Este é o objeto raiz completo EXATAMENTE como está no IndexedDB
-                  // Sem transformações, sem deep clone - o objeto direto do banco
-                  console.log(
-                    "[saveLocalWarband] 📦 FULL OBJECT (OBJETO EXATO DO INDEXEDDB):",
-                    savedData
-                  );
-
-                  // Também mostra como JSON string para ver a estrutura completa
-                  console.log(
-                    "[saveLocalWarband] 📦 FULL OBJECT (JSON):",
-                    JSON.stringify(savedData, null, 2)
-                  );
+                  // Verificação concluída (logs removidos)
                 };
 
                 verifyRequest.onerror = () => {

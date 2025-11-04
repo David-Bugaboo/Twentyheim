@@ -74,9 +74,17 @@ const SkillPicker: React.FC<SkillPickerProps> = ({
   const categories = useMemo(() => {
     const list: Array<{ key: string; label: string; skills: SkillData[] }> = [];
     const names: string[] = Object.keys(skillCategoryMap);
+    
+    // Cria um Set para verificação rápida de categorias permitidas
+    const allowedSet = new Set((allowedSkills || []).map((s: string) => s.trim()));
 
-    // Itera por todas as categorias disponíveis
+    // Itera por todas as categorias disponíveis, mas filtra apenas as permitidas
     for (const categoryName of names) {
+      // Verifica se a categoria está na lista de habilidades permitidas
+      if (!allowedSet.has(categoryName)) {
+        continue; // Se não estiver permitida, pula
+      }
+      
       // Busca os dados dessa categoria no mapa
       const categoryData = skillCategoryMap[categoryName];
 

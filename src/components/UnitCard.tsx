@@ -38,6 +38,18 @@ export interface UnitAbility {
   spellAffinity?: string;
 }
 
+export interface NaturalAttack {
+  name: string;
+  damage: string | number;
+  type: string;
+  range?: string;
+  specialRules?: Array<{
+    label: string;
+    value?: string;
+    title?: string;
+  }>;
+}
+
 interface UnitCardProps {
   id?: string;
   name: string;
@@ -52,6 +64,7 @@ interface UnitCardProps {
     aligned2?: string[];
   };
   abilities: UnitAbility[];
+  naturalAttacks?: NaturalAttack[];
   equipment?: {
     "hand-to-hand"?: Array<{ name: string; cost: string }>;
     ranged?: Array<{ name: string; cost: string }>;
@@ -72,6 +85,7 @@ const UnitCard: React.FC<UnitCardProps> = ({
   qualidade,
   spellAffinity,
   abilities,
+  naturalAttacks,
   equipment,
 }) => {
   const navigate = useNavigate();
@@ -810,6 +824,51 @@ const UnitCard: React.FC<UnitCardProps> = ({
               </div>
             );
           })()}
+
+        {/* Natural Attacks */}
+        {naturalAttacks && naturalAttacks.length > 0 && (
+          <div className="mb-6">
+            <h4 className="text-lg font-bold mb-3" style={{ color: "#8fbc8f" }}>
+              ATAQUES NATURAIS
+            </h4>
+            <div className="bg-[#2a2a2a] p-4 rounded space-y-3">
+              {naturalAttacks.map((attack, index) => (
+                <div
+                  key={index}
+                  className="border-b border-gray-600 pb-3 last:border-b-0"
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <h5 className="font-bold" style={{ color: "#8fbc8f" }}>
+                      {attack.name}
+                    </h5>
+                    <span className="text-sm text-gray-400">
+                      {attack.type} - Dano: {attack.damage}
+                    </span>
+                  </div>
+                  {attack.specialRules && attack.specialRules.length > 0 && (
+                    <div className="mt-2 space-y-1">
+                      {attack.specialRules.map((rule, ruleIndex) => (
+                        <div key={ruleIndex} className="text-sm text-gray-300">
+                          <span className="font-semibold">
+                            {rule.label || rule.title}:
+                          </span>{" "}
+                          {rule.value && (
+                            <GameText
+                              component="span"
+                              className="text-gray-300 text-sm"
+                            >
+                              {rule.value}
+                            </GameText>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Abilities */}
         {abilities && abilities.length > 0 && (

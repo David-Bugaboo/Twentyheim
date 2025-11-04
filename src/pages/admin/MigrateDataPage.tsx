@@ -438,6 +438,7 @@ function MigrateDataPage() {
   const { currentUser } = useAuth();
   const [migrating, setMigrating] = useState(false);
   const [progress, setProgress] = useState({ current: 0, total: 0, currentName: "" });
+  const [forceUpdate, setForceUpdate] = useState(false);
 
   if (!currentUser || !isAdmin(currentUser)) {
     return (
@@ -452,14 +453,19 @@ function MigrateDataPage() {
     setProgress({ current: 0, total: ALL_FILES.length, currentName: "" });
 
     try {
-      const results = await migrateStaticDataToFirestore(ALL_FILES, (current, total, name) => {
-        setProgress({ current, total, currentName: name });
-      });
+      const results = await migrateStaticDataToFirestore(
+        ALL_FILES,
+        (current, total, name) => {
+          setProgress({ current, total, currentName: name });
+        },
+        forceUpdate
+      );
 
       const successCount = results.filter((r) => r.success).length;
       const failCount = results.filter((r) => !r.success).length;
       const skippedCount = results.filter((r) => (r as any).skipped).length;
-      const newCount = successCount - skippedCount;
+      const updatedCount = results.filter((r) => (r as any).updated).length;
+      const newCount = successCount - skippedCount - updatedCount;
 
       // Log detalhado dos resultados
       const failed = results.filter((r) => !r.success);
@@ -470,9 +476,10 @@ function MigrateDataPage() {
         });
       }
 
-      toast.success(
-        `Migração concluída! ${successCount} sucessos (${newCount} novos, ${skippedCount} já existiam), ${failCount} falhas.`
-      );
+      const message = forceUpdate
+        ? `Migração concluída! ${successCount} sucessos (${newCount} novos, ${updatedCount} atualizados, ${skippedCount} ignorados), ${failCount} falhas.`
+        : `Migração concluída! ${successCount} sucessos (${newCount} novos, ${skippedCount} já existiam), ${failCount} falhas.`;
+      toast.success(message);
     } catch (error) {
       console.error("Erro na migração:", error);
       toast.error("Erro durante a migração");
@@ -490,6 +497,19 @@ function MigrateDataPage() {
             Esta página migra todos os arquivos JSON estáticos para o Firestore e IndexedDB.
             Isso permite gerenciar os dados via painel admin e funciona offline.
           </p>
+
+          <div className="mb-4 flex items-center gap-2">
+            <input
+              type="checkbox"
+              id="forceUpdate"
+              checked={forceUpdate}
+              onChange={(e) => setForceUpdate(e.target.checked)}
+              className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
+            />
+            <label htmlFor="forceUpdate" className="text-gray-300 cursor-pointer">
+              Forçar atualização (sobrescreve arquivos existentes)
+            </label>
+          </div>
 
           {migrating && (
             <div className="bg-[#2a2a2a] rounded-lg p-4 mb-4">

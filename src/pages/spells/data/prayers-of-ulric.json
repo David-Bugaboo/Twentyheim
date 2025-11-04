@@ -1,35 +1,41 @@
 [
   {
+    "id": "nevasca",
     "name": "Nevasca",
     "castingNumber": 8,
     "keywords": ["Área de Efeito(Zona Pequena)", "Concentração"],
     "effect": "Centralize a Zona no Sacerdote e mova-a junto com ele. Figuras na área de efeito tem -2 de Ímpeto."
   },
   {
+    "id": "impacto-estrondoso",
     "name": "Impacto Estrondoso",
     "castingNumber": 16,
     "keywords": ["Alcance(30cm)"],
     "effect": "A figura alvo imediatamente sofre um Ataque Gélido +5 com a palavra chave Concussiva(4)"
   },
   {
+    "id": "furia-lupina",
     "name": "Fúria Lupina",
     "castingNumber": 12,
     "keywords": ["Conjurador Apenas", "Concentração"],
     "effect": "O Sacerdote ganha a característica Forte, e causa um dano crítico em uma rolagem de 18, 19 ou 20."
   },
   {
+    "id": "voracidade-do-predador",
     "name": "Voracidade do Predador",
     "castingNumber": 10,
     "keywords": ["Linha de Visão", "Concentração"],
     "effect": "A figura aliada alvo ganha a característica Fúria enquanto a magia estiver sendo concentrada."
   },
   {
+    "id": "uivo-de-ulric",
     "name": "Uivo de Ulric",
     "castingNumber": 16,
     "keywords": ["Conjurador Apenas"],
     "effect": "Durante a duração da batalha, todas as figuras do bando do sacerdote são Imunes a Aterrorizante. Adicionalmente, o bando ganha +3 em testes de debandada."
   },
   {
+    "id": "chamado-de-ulric",
     "name": "Chamado de Ulric",
     "castingNumber": 16,
     "keywords": ["Conjurador Apenas"],

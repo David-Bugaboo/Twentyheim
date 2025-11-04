@@ -30,58 +30,71 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "5 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "besta",
           "name": "Besta",
           "cost": "25 coroas"
         },
         {
+          "id": "pistola",
           "name": "Pistola",
-          "cost": "7 coroas (15 coroas por par)"
+          "cost": "7 coroas"
         },
         {
+          "id": "besta-de-mao",
           "name": "Besta de Mão",
           "cost": "35 coroas(70 coroas por par)"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "armadura-pesada",
           "name": "Armadura Pesada",
           "cost": "50 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -120,58 +133,71 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "5 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "besta",
           "name": "Besta",
           "cost": "25 coroas"
         },
         {
+          "id": "pistola",
           "name": "Pistola",
-          "cost": "7 coroas (15 coroas por par)"
+          "cost": "7 coroas"
         },
         {
+          "id": "besta-de-mao",
           "name": "Besta de Mão",
           "cost": "35 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "armadura-pesada",
           "name": "Armadura Pesada",
           "cost": "50 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -207,58 +233,71 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "5 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "besta",
           "name": "Besta",
           "cost": "25 coroas"
         },
         {
+          "id": "pistola",
           "name": "Pistola",
-          "cost": "7 coroas (15 coroas por par)"
+          "cost": "7 coroas"
         },
         {
+          "id": "besta-de-mao",
           "name": "Besta de Mão",
           "cost": "35 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "armadura-pesada",
           "name": "Armadura Pesada",
           "cost": "50 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -286,54 +325,66 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "adaga",
           "name": "Adaga",
-          "cost": "primeira grátis/2 coroas"
+          "cost": "2 coroas"
         },
         {
+          "id": "maca",
           "name": "Maça",
           "cost": "3 coroas"
         },
         {
+          "id": "martelo",
           "name": "Martelo",
           "cost": "5 coroas"
         },
         {
+          "id": "machado",
           "name": "Machado",
           "cost": "5 coroas"
         },
         {
+          "id": "espada",
           "name": "Espada",
           "cost": "10 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         },
         {
+          "id": "lanca",
           "name": "Lança",
           "cost": "10 coroas"
         }
       ],
       "ranged": [
         {
+          "id": "arco",
           "name": "Arco",
           "cost": "10 coroas"
         },
         {
+          "id": "arco-curto",
           "name": "Arco Curto",
           "cost": "5 coroas"
         }
       ],
       "armor": [
         {
+          "id": "armadura-leve",
           "name": "Armadura Leve",
           "cost": "20 coroas"
         },
         {
+          "id": "escudo",
           "name": "Escudo",
           "cost": "5 coroas"
         },
         {
+          "id": "elmo",
           "name": "Elmo",
           "cost": "10 coroas"
         }
@@ -367,14 +418,17 @@
     "equipment": {
       "hand-to-hand": [
         {
+          "id": "mangual",
           "name": "Mangual",
           "cost": "15 coroas"
         },
         {
+          "id": "estrela-da-manha",
           "name": "Estrela da Manhã",
           "cost": "15 coroas"
         },
         {
+          "id": "arma-de-duas-maos",
           "name": "Arma de Duas Mãos",
           "cost": "15 coroas"
         }
@@ -399,11 +453,19 @@
       "cost": "15 coroas",
       "equipmentSlots": 5
     },
+    "naturalAttacks": [
+      {
+        "name": "Dilacerar",
+        "damage": "+2",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": []
+      }
+    ],
     "quantity": "0-5",
     "abilities": [
       {
         "name": "Cão de Guerra Treinado",
-        "description": "O cão de guerra tem as características Animal e Voraz."
+        "description": "O cão de guerra tem as características Animal."
       }
     ]
   }

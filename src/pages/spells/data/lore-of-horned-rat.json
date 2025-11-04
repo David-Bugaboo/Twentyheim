@@ -1,41 +1,48 @@
 [
   {
+    "id": "maldicao-do-rato-bruxo",
     "name": "Maldição do Rato-Bruxo",
     "castingNumber": 10,
     "keywords": ["Linha de Visão"],
     "effect": "A figura inimiga alvo recebe -2 nos seus atributos Armadura, Ímpeto e Precisão. Durante o começo de cada uma de suas ativações, a figura deve fazer um teste de Vontade contra a rolagem de conjuração dessa magia. Caso tenha sucesso, a magia é cancelada."
   },
   {
+    "id": "olhar-do-deus-distorcido",
     "name": "Olhar do Deus Distorcido",
     "castingNumber": 12,
     "keywords": ["Área de Efeito(Explosão Pequena)", "Ilusão"],
     "effect": "Centralize a Área de Efeito no conjurador. Todas as figuras na área de efeito sofrem um ataque mágico +5. Figuras atingidas por esse ataque são então movidas a quantidade de dano que tomaram em centímetros diretamente para trás em linha reta, atravessando peças de terreno e outras figuras. Uma figura não pode sair do tabuleiro através desse movimento."
   },
   {
+    "id": "furia-sombria",
     "name": "Fúria Sombria",
     "castingNumber": 12,
     "keywords": ["Linha de Visão"],
     "effect": "A figura aliada alvo ativa imediatamente após o conjurador e ganha a característica Fúria durante sua ativação apenas."
   },
   {
+    "id": "roer-alma",
     "name": "Roer Alma",
     "castingNumber": 10,
     "keywords": ["Alcance(40)", "Missil Mágico(Mágico)(+7)"],
     "effect": "Ataque a figura alvo com o Míssil Mágico. O Míssil Mágico tem um modificador de dano +2."
   },
   {
+    "id": "prole-do-rato-chifrudo",
     "name": "Prole do Rato Chifrudo",
     "castingNumber": 8,
     "keywords": ["Ritual"],
     "effect": "O conjurador adiciona 3 ratos gigantes ao bando durante o próximo jogo, que não contam contra o limite de figuras no bando. Os ratos gigantes invocados dessa forma somem após cada jogo."
   },
   {
+    "id": "chamas-da-distorcao",
     "name": "Chamas da Distorção",
     "castingNumber": 10,
     "keywords": ["Área de Efeito (Cone)"],
     "effect": "Todas as figuras em contato com a área de efeito sofrem um ataque à distância mágico flamejante +5."
   },
   {
+    "id": "chamas-da-distorcao-2",
     "name": "Chamas da Distorção",
     "castingNumber": 10,
     "keywords": ["Área de Efeito (Cone)"],

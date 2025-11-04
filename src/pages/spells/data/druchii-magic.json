@@ -1,35 +1,41 @@
 [
   {
+    "id": "raio-da-perdicao-druchii",
     "name": "Raio da Perdição",
     "castingNumber": 14,
     "keywords": ["Alcance(30)", "Míssil Mágico(Mágico)(+5)"],
     "effect": "Ataque a figura inimiga alvo com o Míssil Mágico. Caso o ataque acerte e exista outra figura inimiga alvo a até 15cm, ataque-a com o Míssil Mágico, mas com +4. O raio continuará pulando entre alvos até que o conjurador erre o míssil mágico ou o bonus se torne +0. "
   },
   {
+    "id": "palavra-da-dor",
     "name": "Palavra da Dor",
     "castingNumber": 12,
     "keywords": ["Linha de Visão"],
     "effect": "A figura inimiga alvo recebe -3 no seu atributo Ímpeto (para um mínimo de 0) e deve passar em um teste de Vontade contra o número de conjuração dessa magia para declarar cargas. Durante o começo de cada uma de suas ativações, a figura deve fazer um teste de Vontade contra a rolagem de conjuração dessa magia. Caso tenha sucesso, a magia é cancelada."
   },
   {
+    "id": "roubar-alma",
     "name": "Roubar Alma",
     "castingNumber": 14,
     "keywords": ["Linha de Visão", "Concentração"],
     "effect": "Uma figura inimiga alvo faz um teste de Vontade contra o teste de Conjuração dessa magia. Caso falhe, perde -2 em um atributo a escolha do Conjurador enquanto a magia estiver sendo concentrada. O conjurador ganha +2 naquele mesmo atributo enquanto a magia estiver sendo concentrada. Não tem efeito em Mortos-Vivos e Daemônios."
   },
   {
+    "id": "lamina-incandescente",
     "name": "Lâmina Incandescente",
     "castingNumber": 12,
     "keywords": ["Conjurador Apenas", "Concentração"],
     "effect": "uela arma causa dano flamejante,tem um bônus de dano de +2 e Penetração de Armadura(2)."
   },
   {
+    "id": "espasmos-cadavericos",
     "name": "Espasmos Cadavéricos",
     "castingNumber": 18,
     "keywords": ["Alcance(40cm)"],
     "effect": "A figura alvo deve fazer um teste de Vontade contra a rolagem de conjuração dessa magia. A figura alvo pode gastar vida para aumentar esse teste de vontade em uma proporção de 1:1. Caso falhe no teste, a figura é imediatamente reduzida a 0 de vida."
   },
   {
+    "id": "voo-da-bruxa",
     "name": "Vôo da Bruxa",
     "castingNumber": 10,
     "keywords": ["Conjurador Apenas"],

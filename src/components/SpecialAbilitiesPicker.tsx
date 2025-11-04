@@ -12,6 +12,7 @@ export interface SpecialAbilityInstance {
   name: string;
   description?: string;
   cost?: string;
+  baseId?: string; // ID base para criar base_mutation_id, base_sacred_mark_id ou base_nurgle_blessing_id
 }
 
 interface SpecialAbilitiesPickerProps {
@@ -31,7 +32,7 @@ const SpecialAbilitiesPicker: React.FC<SpecialAbilitiesPickerProps> = ({
     >();
     map.set(
       "nurgleBlessing",
-      (blessingsOfNurgle as any[]).map((b) => ({
+      (blessingsOfNurgle as any[]).map(b => ({
         key: String(b.name),
         label: String(b.name),
         desc: String(b.description || ""),
@@ -40,7 +41,7 @@ const SpecialAbilitiesPicker: React.FC<SpecialAbilitiesPickerProps> = ({
     );
     map.set(
       "mutation",
-      (mutationsData as any[]).map((m) => ({
+      (mutationsData as any[]).map(m => ({
         key: String(m.name),
         label: String(m.name),
         desc: String(m.description || ""),
@@ -49,7 +50,7 @@ const SpecialAbilitiesPicker: React.FC<SpecialAbilitiesPickerProps> = ({
     );
     map.set(
       "sacredMark",
-      (sacredMarksData as any[]).map((s) => ({
+      (sacredMarksData as any[]).map(s => ({
         key: String(s.name),
         label: String(s.name),
         desc: String(s.description || ""),
@@ -62,7 +63,7 @@ const SpecialAbilitiesPicker: React.FC<SpecialAbilitiesPickerProps> = ({
   const handleAdd = () => {
     if (!cat || !sel) return;
     const list = options.get(cat) || [];
-    const found = list.find((x) => x.key === sel);
+    const found = list.find(x => x.key === sel);
     const instance: SpecialAbilityInstance = {
       id: crypto.randomUUID(),
       category: cat,
@@ -81,7 +82,7 @@ const SpecialAbilitiesPicker: React.FC<SpecialAbilitiesPickerProps> = ({
           <select
             className="bg-[#161616] border border-gray-600 rounded px-3 py-2 text-white flex-1"
             value={cat}
-            onChange={(e) => {
+            onChange={e => {
               setCat(e.target.value as SpecialCategory | "");
               setSel("");
             }}
@@ -94,12 +95,12 @@ const SpecialAbilitiesPicker: React.FC<SpecialAbilitiesPickerProps> = ({
           <select
             className="bg-[#161616] border border-gray-600 rounded px-3 py-2 text-white flex-1"
             value={sel}
-            onChange={(e) => setSel(e.target.value)}
+            onChange={e => setSel(e.target.value)}
             disabled={!cat}
           >
             <option value="">Selecionar habilidade…</option>
             {cat &&
-              (options.get(cat) || []).map((o) => (
+              (options.get(cat) || []).map(o => (
                 <option key={o.key} value={o.key}>
                   {o.label}
                 </option>

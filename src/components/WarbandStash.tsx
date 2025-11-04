@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { toast } from "react-toastify";
 import HeaderH1 from "./HeaderH1";
 import MobileText from "./MobileText";
 import { useJsonData } from "../hooks/useJsonData";
 import { getStaticImport } from "../data/jsonFileMap";
 import EquipmentCard from "./EquipmentCard";
+import { useMultipleBaseData } from "../hooks/useBaseData";
 
 export interface StashItem {
   id?: string; // id da instância no cofre (quando disponível)
@@ -43,7 +44,7 @@ const EQUIP_TYPES: string[] = [
 
 // Normaliza arrays de strings
 const toStringArray = (v: any): string[] =>
-  Array.isArray(v) ? v.map((x) => String(x)) : v ? [String(v)] : [];
+  Array.isArray(v) ? v.map(x => String(x)) : v ? [String(v)] : [];
 
 // Disponibilidade para compra (pode sempre ganhar)
 const isPurchasableForFaction = (
@@ -52,8 +53,8 @@ const isPurchasableForFaction = (
   factionLabel?: string
 ): boolean => {
   const f = (factionLabel || "").toLowerCase();
-  const av = (availability || []).map((s) => s.toLowerCase());
-  const ex = (exclusions || []).map((s) => s.toLowerCase());
+  const av = (availability || []).map(s => s.toLowerCase());
+  const ex = (exclusions || []).map(s => s.toLowerCase());
   if (ex.includes(f)) return false;
   if (av.length === 0) return true;
   if (av.includes(f)) return true;
@@ -91,8 +92,8 @@ const getGlobalItemsByTypeForPurchase = (
 
   if (type === "Arma Corpo a Corpo") {
     const items1 = (meleeDb as any[])
-      .filter((w) => String(w.type || "").includes("Corpo"))
-      .map((w) => ({
+      .filter(w => String(w.type || "").includes("Corpo"))
+      .map(w => ({
         name: w.name,
         cost: w.cost || "-",
         category: "hand-to-hand",
@@ -101,8 +102,8 @@ const getGlobalItemsByTypeForPurchase = (
         rarity: undefined,
       }));
     const items2 = (meleeRefactor as any[])
-      .filter((w) => String(w.type || "").includes("Corpo"))
-      .map((w) => ({
+      .filter(w => String(w.type || "").includes("Corpo"))
+      .map(w => ({
         name: w.name,
         cost: w.purchaseCost || w.sellCost || "-",
         category: "hand-to-hand",
@@ -112,14 +113,14 @@ const getGlobalItemsByTypeForPurchase = (
       }));
     const allItems = [...items1, ...items2];
     const unique = Array.from(
-      new Map(allItems.map((item) => [item.name, item])).values()
+      new Map(allItems.map(item => [item.name, item])).values()
     );
     return unique;
   }
   if (type === "Arma a Distância") {
     const items1 = (rangedDb as any[])
-      .filter((w) => String(w.type || "").includes("Distância"))
-      .map((w) => ({
+      .filter(w => String(w.type || "").includes("Distância"))
+      .map(w => ({
         name: w.name,
         cost: w.cost || "-",
         category: "ranged",
@@ -128,8 +129,8 @@ const getGlobalItemsByTypeForPurchase = (
         rarity: undefined,
       }));
     const items2 = (rangedRefactor as any[])
-      .filter((w) => String(w.type || "").includes("Distância"))
-      .map((w) => ({
+      .filter(w => String(w.type || "").includes("Distância"))
+      .map(w => ({
         name: w.name,
         cost: w.purchaseCost || w.sellCost || "-",
         category: "ranged",
@@ -139,12 +140,12 @@ const getGlobalItemsByTypeForPurchase = (
       }));
     const allItems = [...items1, ...items2];
     const unique = Array.from(
-      new Map(allItems.map((item) => [item.name, item])).values()
+      new Map(allItems.map(item => [item.name, item])).values()
     );
     return unique;
   }
   if (type === "Arma de Fogo") {
-    return ((firearmsDb || []) as any[]).map((w) => ({
+    return ((firearmsDb || []) as any[]).map(w => ({
       name: w.name,
       cost: w.purchaseCost || w.sellCost || "-",
       category: "ranged",
@@ -154,7 +155,7 @@ const getGlobalItemsByTypeForPurchase = (
     }));
   }
   if (type === "Armadura") {
-    return ((armorDb || []) as any[]).map((w) => ({
+    return ((armorDb || []) as any[]).map(w => ({
       name: w.name,
       cost: w.purchaseCost || w.sellCost || "-",
       category: "armor",
@@ -164,7 +165,7 @@ const getGlobalItemsByTypeForPurchase = (
     }));
   }
   if (type === "Acessórios") {
-    const items1 = ((accessoriesDb || []) as any[]).map((w) => ({
+    const items1 = ((accessoriesDb || []) as any[]).map(w => ({
       name: w.name,
       cost: w.purchaseCost || w.sellCost || "-",
       category: "miscellaneous",
@@ -174,12 +175,12 @@ const getGlobalItemsByTypeForPurchase = (
     }));
     const allItems = [...items1];
     const unique = Array.from(
-      new Map(allItems.map((item) => [item.name, item])).values()
+      new Map(allItems.map(item => [item.name, item])).values()
     );
     return unique;
   }
   if (type === "Remédios e Venenos") {
-    const items = ((remediesPoisonsDb || []) as any[]).map((w) => ({
+    const items = ((remediesPoisonsDb || []) as any[]).map(w => ({
       name: w.name,
       cost: w.purchaseCost || w.sellCost || "-",
       category: "miscellaneous",
@@ -188,7 +189,7 @@ const getGlobalItemsByTypeForPurchase = (
       rarity: w.rarity,
     }));
     const unique = Array.from(
-      new Map(items.map((item) => [item.name, item])).values()
+      new Map(items.map(item => [item.name, item])).values()
     );
     return unique;
   }
@@ -240,6 +241,34 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
     fileId: "remedios-e-venenos",
     staticImport: () => getStaticImport("remedios-e-venenos")(),
   });
+  // Resolve bases para itens do cofre no novo formato (com base_equipment_id / base_modifier_id)
+  const stashEquipmentIds = useMemo(
+    () =>
+      (stash || [])
+        .map((item: any) => {
+          const itemData = item?.data || item;
+          return itemData?.base_equipment_id;
+        })
+        .filter(Boolean),
+    [stash]
+  );
+  const stashModifierIds = useMemo(
+    () =>
+      (stash || [])
+        .map((item: any) => {
+          const itemData = item?.data || item;
+          return itemData?.base_modifier_id;
+        })
+        .filter(Boolean),
+    [stash]
+  );
+
+  const stashEquipmentBases = useMultipleBaseData(
+    "base-equipment",
+    stashEquipmentIds,
+    stashEquipmentIds.length > 0
+  );
+
   const { data: meleeMods } = useJsonData({
     fileId: "modificadores-de-arma",
     staticImport: () => getStaticImport("modificadores-de-arma")(),
@@ -259,6 +288,38 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
   const [previewData, setPreviewData] = useState<any | null>(null);
   const [selectedModifier, setSelectedModifier] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
+
+  // Também resolve modificador selecionado para compra (se houver) - DEPOIS de modifierOptions estar criado
+  // Nota: selectedModifier é o key (nome do modificador), não o ID
+  const selectedModifierId = useMemo(() => {
+    if (!selectedModifier) return undefined;
+    // Busca diretamente nos catálogos pelo nome do modificador selecionado (que é o key)
+    const allMods: any[] = [
+      ...(meleeMods || []),
+      ...(rangedMods || []),
+      ...(firearmsMods || []),
+    ];
+    const modFromCatalog = allMods.find(
+      m =>
+        String(m.name).toLowerCase() === String(selectedModifier).toLowerCase()
+    );
+    return modFromCatalog?.id;
+  }, [selectedModifier, meleeMods, rangedMods, firearmsMods]);
+
+  // Adiciona o modificador selecionado aos IDs para resolver
+  const allModifierIds = useMemo(() => {
+    const ids = [...stashModifierIds];
+    if (selectedModifierId && !ids.includes(selectedModifierId)) {
+      ids.push(selectedModifierId);
+    }
+    return ids;
+  }, [stashModifierIds, selectedModifierId]);
+
+  const stashModifierBases = useMultipleBaseData(
+    "base-modifiers",
+    allModifierIds,
+    allModifierIds.length > 0
+  );
 
   // Prepara dados para passar para a função
   const dataSources = {
@@ -290,7 +351,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
     ];
     for (const list of allLists) {
       const found = list.find(
-        (x) => String(x.name).toLowerCase() === name.toLowerCase()
+        x => String(x.name).toLowerCase() === name.toLowerCase()
       );
       if (found) return found;
     }
@@ -341,16 +402,20 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
   // Modificadores por categoria (via JSONs)
   const modifierOptions = React.useMemo(() => {
     let src: any[] = [];
-    if (purchaseCategory === "Arma Corpo a Corpo") src = (meleeMods || []) as any[];
-    else if (purchaseCategory === "Arma a Distância") src = (rangedMods || []) as any[];
-    else if (purchaseCategory === "Arma de Fogo") src = (firearmsMods || []) as any[];
+    if (purchaseCategory === "Arma Corpo a Corpo")
+      src = (meleeMods || []) as any[];
+    else if (purchaseCategory === "Arma a Distância")
+      src = (rangedMods || []) as any[];
+    else if (purchaseCategory === "Arma de Fogo")
+      src = (firearmsMods || []) as any[];
     else src = [];
-    const opts = src.map((m) => ({
+    const opts = src.map(m => ({
       key: String(m.name),
       label: String(m.name),
       effect: String(m.effect || ""),
+      id: String(m.id || ""), // Inclui o ID do modificador
     }));
-    return [{ key: "", label: "Sem modificador" }, ...opts];
+    return [{ key: "", label: "Sem modificador", id: "" }, ...opts];
   }, [purchaseCategory, meleeMods, rangedMods, firearmsMods]);
 
   const normalizeFromEquipmentObject = (eq: any) => {
@@ -375,7 +440,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
           });
         }
       }
-      return out.filter((r) => r.value);
+      return out.filter(r => r.value);
     };
 
     const baseSpecialRules = toSpecialRules((eq as any).specialRules);
@@ -469,7 +534,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
       ...(firearmsMods as any[]),
     ];
     const mod =
-      allMods.find((m) => String(m.name).toLowerCase() === modNameLc) ||
+      allMods.find(m => String(m.name).toLowerCase() === modNameLc) ||
       (modifier as any);
 
     const exprRaw = String(mod.purchaseCost || "");
@@ -497,8 +562,11 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
 
   const handlePurchase = (isPurchase: boolean) => {
     if (!selectedItem || !purchaseCategory) return;
-    const items = getGlobalItemsByTypeForPurchase(purchaseCategory, dataSources);
-    const item = items.find((i) => i.name === selectedItem);
+    const items = getGlobalItemsByTypeForPurchase(
+      purchaseCategory,
+      dataSources
+    );
+    const item = items.find(i => i.name === selectedItem);
     if (!item) return;
 
     // Verifica disponibilidade para compra
@@ -516,14 +584,74 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
     }
 
     const raw = findItemInCatalogs(item.name);
-    const mod = modifierOptions.find((m) => m.key === selectedModifier) as
+    const mod = modifierOptions.find(m => m.key === selectedModifier) as
       | { key: string; label: string; effect?: string }
       | undefined;
 
+    // Resolve modificador para obter ID e calcular custo correto
+    let baseModifierId: string | undefined = undefined;
+    const parseCost = (v: any): number => {
+      const s = v == null ? "" : String(v);
+      const m = s.match(/(\d+(?:\.\d+)?)/);
+      return m ? parseFloat(m[1]) : 0;
+    };
+    let calculatedCost: number = parseCost(item.cost || "0");
+
+    if (mod && mod.key) {
+      const modId = (mod as any).id;
+      if (modId) {
+        baseModifierId = modId;
+        // Busca modificador resolvido do Firestore
+        const modResolved = (stashModifierBases.data as any)[modId];
+        if (modResolved?.multiplier) {
+          const multiplier =
+            typeof modResolved.multiplier === "string"
+              ? parseFloat(modResolved.multiplier)
+              : Number(modResolved.multiplier || 1);
+          calculatedCost = Math.max(0, Math.round(calculatedCost * multiplier));
+        } else {
+          // Fallback: busca nos catálogos locais
+          const allMods: any[] = [
+            ...(meleeMods as any[]),
+            ...(rangedMods as any[]),
+            ...(firearmsMods as any[]),
+          ];
+          const modFromCatalog = allMods.find(m => m.id === modId);
+          if (modFromCatalog?.multiplier) {
+            const multiplier =
+              typeof modFromCatalog.multiplier === "string"
+                ? parseFloat(modFromCatalog.multiplier)
+                : Number(modFromCatalog.multiplier || 1);
+            calculatedCost = Math.max(
+              0,
+              Math.round(calculatedCost * multiplier)
+            );
+          } else {
+            // Último fallback: calcula usando função antiga
+            calculatedCost = calculateItemCost(item.cost || "0", {
+              name: mod.key,
+              effect: mod.effect,
+            });
+          }
+        }
+      } else {
+        // Se não tem ID, busca por nome e usa função antiga
+        calculatedCost = calculateItemCost(item.cost || "0", {
+          name: mod.key,
+          effect: mod.effect,
+        });
+      }
+    }
+
     const itemData = {
       ...item,
-      data: raw || undefined,
-      cost: item.cost || "-",
+      data: {
+        ...raw,
+        base_modifier_id: baseModifierId,
+        modifier:
+          mod && mod.key ? { name: mod.key, effect: mod.effect } : undefined,
+      },
+      cost: String(calculatedCost), // Usa custo já calculado
       modifier:
         mod && mod.key ? { name: mod.key, effect: mod.effect } : undefined,
     };
@@ -554,13 +682,13 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
           <select
             className="bg-[#161616] border border-gray-600 rounded px-3 py-2 text-white flex-1"
             value={purchaseCategory}
-            onChange={(e) => {
+            onChange={e => {
               setPurchaseCategory(e.target.value);
               setSelectedItem("");
             }}
           >
             <option value="">Selecionar tipo...</option>
-            {EQUIP_TYPES.map((type) => (
+            {EQUIP_TYPES.map(type => (
               <option key={type} value={type}>
                 {type}
               </option>
@@ -569,7 +697,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
           <select
             className="bg-[#161616] border border-gray-600 rounded px-3 py-2 text-white flex-1"
             value={selectedItem}
-            onChange={(e) => setSelectedItem(e.target.value)}
+            onChange={e => setSelectedItem(e.target.value)}
             disabled={!purchaseCategory}
           >
             <option value="">Selecionar item...</option>
@@ -585,14 +713,17 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
                   item.exclusions,
                   factionLabel
                 );
-                const rarityDisplay = item.rarity ? ` (Rrd: ${item.rarity === 1 ? 'Comum' : item.rarity})` : '';
+                const rarityDisplay = item.rarity
+                  ? ` (Rrd: ${item.rarity === 1 ? "Comum" : item.rarity})`
+                  : "";
                 return (
                   <option
                     key={item.name}
                     value={item.name}
                     style={{ color: allowed ? undefined : "#ef4444" }}
                   >
-                    {item.name} — {item.cost}{rarityDisplay}
+                    {item.name} — {item.cost}
+                    {rarityDisplay}
                     {!allowed ? " (não disponível)" : ""}
                   </option>
                 );
@@ -602,7 +733,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
           <select
             className="bg-[#161616] border border-gray-600 rounded px-3 py-2 text-white flex-1"
             value={selectedModifier}
-            onChange={(e) => setSelectedModifier(e.target.value)}
+            onChange={e => setSelectedModifier(e.target.value)}
             disabled={
               !purchaseCategory ||
               !(
@@ -613,7 +744,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
             }
             title="Modificador do equipamento"
           >
-            {modifierOptions.map((opt) => (
+            {modifierOptions.map(opt => (
               <option key={opt.key} value={opt.key}>
                 {opt.label}
               </option>
@@ -625,7 +756,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
             min="1"
             max="99"
             value={quantity}
-            onChange={(e) =>
+            onChange={e =>
               setQuantity(
                 Math.max(1, Math.min(99, parseInt(e.target.value) || 1))
               )
@@ -644,7 +775,7 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
                   factionLabel
                 )
               : [];
-            const selectedItemObj = items.find((i) => i.name === selectedItem);
+            const selectedItemObj = items.find(i => i.name === selectedItem);
             const isAvailable =
               selectedItemObj &&
               isPurchasableForFaction(
@@ -654,15 +785,57 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
               );
             const mod =
               selectedModifier &&
-              modifierOptions.find((m) => m.key === selectedModifier);
-            const unitCost = selectedItemObj
-              ? calculateItemCost(
-                  selectedItemObj.cost || "0",
-                  mod && mod.key
-                    ? { name: mod.key, effect: (mod as any).effect || "" }
-                    : undefined
-                )
-              : 0;
+              modifierOptions.find(m => m.key === selectedModifier);
+
+            // Resolve modificador pelo ID (já está resolvido no stashModifierBases)
+            let modResolved: any = undefined;
+            const modId = mod && (mod as any).id ? (mod as any).id : undefined;
+            if (modId) {
+              // Busca modificador resolvido do Firestore pelo ID
+              modResolved = (stashModifierBases.data as any)[modId];
+            }
+
+            // Calcula custo: prioriza modificador resolvido do Firestore
+            const parseCost = (v: any): number => {
+              const s = v == null ? "" : String(v);
+              const m = s.match(/(\d+(?:\.\d+)?)/);
+              return m ? parseFloat(m[1]) : 0;
+            };
+            const baseCost = parseCost(selectedItemObj?.cost || "0");
+
+            let unitCost = baseCost;
+            if (modResolved?.multiplier) {
+              // Usa multiplicador do modificador resolvido do Firestore
+              const multiplier =
+                typeof modResolved.multiplier === "string"
+                  ? parseFloat(modResolved.multiplier)
+                  : Number(modResolved.multiplier || 1);
+              unitCost = Math.max(0, Math.round(baseCost * multiplier));
+            } else if (mod && mod.key) {
+              // Fallback: busca nos catálogos locais primeiro
+              const allMods: any[] = [
+                ...(meleeMods || []),
+                ...(rangedMods || []),
+                ...(firearmsMods || []),
+              ];
+              const modFromCatalog = allMods.find(
+                m =>
+                  String(m.name).toLowerCase() === String(mod.key).toLowerCase()
+              );
+              if (modFromCatalog?.multiplier) {
+                const multiplier =
+                  typeof modFromCatalog.multiplier === "string"
+                    ? parseFloat(modFromCatalog.multiplier)
+                    : Number(modFromCatalog.multiplier || 1);
+                unitCost = Math.max(0, Math.round(baseCost * multiplier));
+              } else {
+                // Último fallback: usa função antiga para calcular
+                unitCost = calculateItemCost(selectedItemObj?.cost || "0", {
+                  name: mod.key,
+                  effect: (mod as any).effect || "",
+                });
+              }
+            }
             const totalCost = unitCost * (quantity || 1);
             const currentGoldMatch = String(_gold || "0").match(/(\d+)/);
             const currentGold = currentGoldMatch
@@ -685,10 +858,10 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
                     !isAvailable
                       ? "Item não disponível para compra nesta facção"
                       : !canAfford
-                      ? `Você não tem coroas suficientes (Necessário: ${totalCost})`
-                      : quantity > 1
-                      ? `Comprar ${quantity}x por ${totalCost} coroas (${unitCost} cada)`
-                      : `Comprar por ${totalCost} coroas`
+                        ? `Você não tem coroas suficientes (Necessário: ${totalCost})`
+                        : quantity > 1
+                          ? `Comprar ${quantity}x por ${totalCost} coroas (${unitCost} cada)`
+                          : `Comprar por ${totalCost} coroas`
                   }
                 >
                   Comprar ({totalCost} coroas)
@@ -721,29 +894,68 @@ const WarbandStash: React.FC<WarbandStashProps> = ({
         {stash.length > 0 ? (
           <div className="space-y-2">
             {stash.map((item, index) => {
-              // Monta nome completo: base + modificador (se houver)
-              const itemData = (item as any)?.data;
-              const baseName = item.name || String(itemData?.name || "");
-              const modifier = itemData?.modifier;
-              const displayName = modifier?.name
-                ? `${baseName} ${modifier.name}`
-                : baseName;
+              const itemData = (item as any)?.data || item;
 
-              // Calcula custo final: base * multiplier (se houver modificador)
-              const baseCostStr = String(
-                item.cost || itemData?.purchaseCost || itemData?.sellCost || "0"
+              // Novo formato: resolve por IDs
+              const baseId = itemData?.base_equipment_id;
+              const modId = itemData?.base_modifier_id;
+              const baseResolved = baseId
+                ? (stashEquipmentBases.data as any)[baseId]
+                : undefined;
+              const modResolved = modId
+                ? (stashModifierBases.data as any)[modId]
+                : undefined;
+
+              // Monta nome completo: base + modificador (se houver)
+              const baseName =
+                item.name ||
+                String(itemData?.name || baseResolved?.name || baseId || "");
+              const modifier = modResolved || itemData?.modifier;
+              const modName = modifier?.name;
+              const displayName = modName ? `${baseName} ${modName}` : baseName;
+
+              // Calcula custo final: base * multiplier (se houver modificador resolvido)
+              // Prioriza dados resolvidos do Firestore
+              const parseCost = (v: any): number => {
+                const s = v == null ? "" : String(v);
+                const m = s.match(/(\d+(?:\.\d+)?)/);
+                return m ? parseFloat(m[1]) : 0;
+              };
+
+              const baseCost = parseCost(
+                baseResolved?.purchaseCost ||
+                  baseResolved?.cost ||
+                  item.cost ||
+                  itemData?.purchaseCost ||
+                  itemData?.sellCost ||
+                  "0"
               );
-              const baseCostMatch = baseCostStr.match(/(\d+(?:\.\d+)?)/);
-              const baseCost = baseCostMatch ? parseFloat(baseCostMatch[1]) : 0;
-              const multiplier = modifier?.multiplier ?? 1;
+
+              // Multiplicador do modificador resolvido primeiro
+              const multiplierRaw = modResolved?.multiplier;
+              const multiplier =
+                multiplierRaw != null
+                  ? typeof multiplierRaw === "string"
+                    ? parseFloat(multiplierRaw)
+                    : Number(multiplierRaw || 1)
+                  : (itemData?.modifier?.multiplier ?? 1);
               const modifierAddend = itemData?.modifierAddend ?? 0;
               const modifierFixedCost = itemData?.modifierFixedCost;
 
               let finalCost = baseCost;
               if (modifierFixedCost != null) {
                 finalCost = modifierFixedCost; // Substituição de custo
+              } else if (
+                modResolved &&
+                Number.isFinite(multiplier) &&
+                multiplier > 0
+              ) {
+                // Só multiplica se tiver modificador resolvido válido
+                finalCost =
+                  Math.max(0, Math.round(baseCost * multiplier)) +
+                  modifierAddend;
               } else {
-                finalCost = baseCost * multiplier + modifierAddend; // Multiplicador + adição
+                finalCost = baseCost * multiplier + modifierAddend; // Fallback para formato antigo
               }
 
               const costDisplay =

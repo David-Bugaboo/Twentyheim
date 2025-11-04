@@ -1,35 +1,41 @@
 [
   {
+    "id": "ventos-de-gork",
     "name": "Ventos de Gork",
     "castingNumber": 8,
     "keywords": ["Alcance(30cm)"],
     "effect": "A figura alvo deve fazer um teste de Vontade contra o teste de conjuração dessa magia. Caso falhe, recebe um ataque a distância mágico +2 e ganha um marcador de Atordoamento."
   },
   {
+    "id": "olhar-de-mork",
     "name": "Olhar de Mork",
     "castingNumber": 14,
     "keywords": ["Alcance(30cm)", "Míssil Mágico(Elétrico)(+3)"],
     "effect": "Ataquer a figura inimiga alvo com o Míssil Mágico."
   },
   {
+    "id": "balancar-o-cabecao",
     "name": "Balançar o Cabeção!",
     "castingNumber": 14,
     "keywords": ["Área de Efeito(Cone)"],
     "effect": "Todas as figuras na área de efeito sofrem um ataque a distância mágico +4."
   },
   {
+    "id": "investida-da-waaaaagh",
     "name": "Investida da Waaaaaagh!",
     "castingNumber": 10,
     "keywords": ["Alcance(20cm)"],
     "effect": "O conjurador ou uma figura aliada alvo é imediatamente movida 30cm em qualquer direção, inclusive vertical, ignorando terreno. Se a figura terminar esse movimento no ar, ela imediatamente cai e sofre dano de queda como normal. A figura que foi movida pode ser movida em combate com uma figura inimiga, contando como tendo completado uma carga se o fizer."
   },
   {
+    "id": "idolo-da-waaaaagh",
     "name": "Ídolo da Waaaaaagh!",
     "castingNumber": 14,
     "keywords": ["Conjurador Apenas", "Concentrador"],
     "effect": "O conjurador ganha +3 de Ímpeto e +2 de dano em ataques corpo a corpo enquanto a magia estiver sendo concentrada."
   },
   {
+    "id": "boraaaaaaaaaaaaaaa",
     "name": "Boraaaaaaaaaaaaaaa",
     "castingNumber": 14,
     "keywords": ["Área de Efeito(Zona Pequena)", "Concentração"],
