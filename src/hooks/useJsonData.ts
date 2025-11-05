@@ -97,7 +97,7 @@ interface UseJsonDataOptions {
  */
 export function useJsonData<T = any>({
   fileId,
-  staticImport: _staticImport, // Mantido para compatibilidade, mas não será usado
+  staticImport: _staticImport,
   enabled = true,
 }: UseJsonDataOptions) {
   const [data, setData] = useState<T | null>(null);
@@ -118,7 +118,7 @@ export function useJsonData<T = any>({
         setLoading(true);
         setError(null);
 
-        // Apenas Firestore - sem fallbacks
+        // Primeiro tenta Firestore
         const firestoreData = await getFromFirestore(fileId);
         if (firestoreData) {
           if (!cancelled) {

@@ -19,8 +19,6 @@ export const JSON_FILE_MAP = {
     import("../pages/warbands/cult-of-the-possessed/data/cult-of-the-possessed-page.json"),
   "cult-mutations": () =>
     import("../pages/warbands/cult-of-the-possessed/data/mutations.data.json"),
-  "vampire-courts": () =>
-    import("../pages/warbands/vampire-courts/data/vampire-courts.data.json"),
   "witch-hunters": () =>
     import("../pages/warbands/witch-hunters/data/witch-hunters.data.json"),
   lizardmen: () =>
@@ -33,8 +31,23 @@ export const JSON_FILE_MAP = {
     import("../pages/warbands/goblins/data/goblins.data.json"),
   "sons-of-hashut": () =>
     import("../pages/warbands/sons-of-hashut/data/sons-of-hashut.data.json"),
-  mercenaries: () =>
-    import("../pages/warbands/mercenaries/data/mercenaries.data.json"),
+  // Mercenaries por região
+  "mercenaries-marienburg": () =>
+    import(
+      "../pages/warbands/mercenaries/data/mercenaries-marienburg.data.json"
+    ),
+  "mercenaries-middenheim": () =>
+    import(
+      "../pages/warbands/mercenaries/data/mercenaries-middenheim.data.json"
+    ),
+  "mercenaries-ostermark": () =>
+    import(
+      "../pages/warbands/mercenaries/data/mercenaries-ostermaker.data.json"
+    ),
+  "mercenaries-reikland": () =>
+    import(
+      "../pages/warbands/mercenaries/data/mercenaries-reikland.data.json"
+    ),
   "carnival-of-chaos": () =>
     import("../pages/warbands/carnival-of-chaos/data/carnival-of-chaos.data.json"),
   "carnival-blessings": () =>
@@ -89,8 +102,6 @@ export const JSON_FILE_MAP = {
     import("../pages/spells/data/rituals-of-nurgle.json"),
   "dark-god-invocations": () =>
     import("../pages/spells/data/dark-god-invocations.json"),
-  "gifts-of-tzeench": () =>
-    import("../pages/spells/data/gifts-of-tzeench.json"),
 
   // Skills
   combate: () =>
@@ -143,6 +154,28 @@ export const JSON_FILE_MAP = {
     import("../pages/campanha/data/lendas.data.json"),
   daemons: () =>
     import("../pages/campanha/data/daemons.data.json"),
+
+  // Warbands - Vampire Courts por linhagem
+  "vampire-courts-blood-dragon": () =>
+    import(
+      "../pages/warbands/vampire-courts/data/vampire-courts-blood-dragon.data.json"
+    ),
+  "vampire-courts-lahmia": () =>
+    import(
+      "../pages/warbands/vampire-courts/data/vampire-courts-lahmia.data.json"
+    ),
+  "vampire-courts-necrarch": () =>
+    import(
+      "../pages/warbands/vampire-courts/data/vampire-courts-necrarch.data.json"
+    ),
+  "vampire-courts-strigoi": () =>
+    import(
+      "../pages/warbands/vampire-courts/data/vampire-courts-strigoi.data.json"
+    ),
+  "vampire-courts-von-carstein": () =>
+    import(
+      "../pages/warbands/vampire-courts/data/vampire-courts-von-carstein.data.json"
+    ),
 
   // Rules
   "game-terms": () =>

@@ -13,11 +13,11 @@ import { useNavigate } from "react-router-dom";
 
 function EquipmentRulesPage() {
   // Buscar a adaga real dos dados
-  const daggerData = meleeWeapons.find((item) => item.id === "adaga");
+  const daggerData = meleeWeapons.find(item => item.id === "adaga");
 
-  const armorData = armor.find((item) => item.id === "armadura-pesada");
+  const armorData = armor.find(item => item.id === "armadura-pesada");
 
-  const torchData = accessories.find((item) => item.id === "tocha");
+  const torchData = accessories.find(item => item.id === "tocha");
 
   const navigate = useNavigate();
 
@@ -144,8 +144,9 @@ function EquipmentRulesPage() {
 
             <WarningBox title="Importante" type="warning">
               <MobileText>
-                É importante armar as suas figuras! Uma figura sem armas tem -2
-                Ímpeto e -2 Dano.
+                É importante armar as suas figuras! Uma figura sem ataques
+                naturais e sem armas equipadas tem -2 em testes de luta e causa
+                -2 de Dano.
               </MobileText>
             </WarningBox>
 

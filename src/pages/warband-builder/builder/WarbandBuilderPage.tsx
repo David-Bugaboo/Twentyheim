@@ -65,7 +65,10 @@ function WarbandBuilderPage() {
   // Facções disponíveis no jogo (slug + rótulo)
   const factionOptions = useMemo(
     () => [
-      { slug: "mercenaries", label: "Mercenários" },
+      { slug: "mercenaries-reikland", label: "Mercenários [Reikland]" },
+      { slug: "mercenaries-middenheim", label: "Mercenários [Middenheim]" },
+      { slug: "mercenaries-marienburg", label: "Mercenários [Marienburg]" },
+      { slug: "mercenaries-ostermark", label: "Mercenários [Ostermark]" },
       { slug: "sisters-of-sigmar", label: "Irmãs de Sigmar" },
       { slug: "skaven", label: "Skaven" },
       { slug: "beastman-raiders", label: "Saqueadores Homem-Fera" },
@@ -74,7 +77,11 @@ function WarbandBuilderPage() {
       { slug: "orc-mob", label: "Horda Orc" },
       { slug: "goblins", label: "Goblins" },
       { slug: "sons-of-hashut", label: "Filhos de Hashut" },
-      { slug: "vampire-courts", label: "Cortes Vampíricas" },
+      { slug: "vampire-courts-von-carstein", label: "Cortes Vampíricas [Von Carstein]" },
+      { slug: "vampire-courts-blood-dragon", label: "Cortes Vampíricas [Dragão Carmesim]" },
+      { slug: "vampire-courts-necrarch", label: "Cortes Vampíricas [Necrarca]" },
+      { slug: "vampire-courts-lahmia", label: "Cortes Vampíricas [Lâmia]" },
+      { slug: "vampire-courts-strigoi", label: "Cortes Vampíricas [Strigoi]" },
       { slug: "cult-of-the-possessed", label: "Culto dos Possuídos" },
       { slug: "carnival-of-chaos", label: "Circo do Caos" },
       { slug: "dark-elf-corsairs", label: "Corsários Druchii" },

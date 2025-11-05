@@ -57,13 +57,20 @@ function WarbandRosterPage() {
     beastmen: beastmenData,
     dwarfs: dwarfTreasureHuntersData,
     cult: cultPossessedData,
-    vampires: vampireCourtsData,
+    vampires_von_carstein: vampiresVonData,
+    vampires_blood_dragon: vampiresBloodDragonData,
+    vampires_necrarch: vampiresNecrarchData,
+    vampires_lahmia: vampiresLahmiaData,
+    vampires_strigoi: vampiresStrigoiData,
     witchHunters: witchHuntersData,
     lizardmen: lizardmenData,
     orcs: orcMobData,
     goblins: goblinsData,
     hashut: sonsOfHashutData,
-    mercenaries: mercenariesData,
+    mercenaries_reikland: mercReiklandData,
+    mercenaries_middenheim: mercMiddenheimData,
+    mercenaries_marienburg: mercMarienburgData,
+    mercenaries_ostermark: mercOstermarkData,
     carnival: carnivalChaosData,
     darkElves: darkElfCorsairsData,
     hiredSwords,
@@ -249,13 +256,20 @@ function WarbandRosterPage() {
       beastmenData || [],
       dwarfTreasureHuntersData || [],
       cultPossessedData || [],
-      vampireCourtsData || [],
+      vampiresVonData || [],
+      vampiresBloodDragonData || [],
+      vampiresNecrarchData || [],
+      vampiresLahmiaData || [],
+      vampiresStrigoiData || [],
       witchHuntersData || [],
       lizardmenData || [],
       orcMobData || [],
       goblinsData || [],
       sonsOfHashutData || [],
-      mercenariesData || [],
+      mercReiklandData || [],
+      mercMiddenheimData || [],
+      mercMarienburgData || [],
+      mercOstermarkData || [],
       carnivalChaosData || [],
       darkElfCorsairsData || [],
     ],
@@ -265,13 +279,20 @@ function WarbandRosterPage() {
       beastmenData,
       dwarfTreasureHuntersData,
       cultPossessedData,
-      vampireCourtsData,
+      vampiresVonData,
+      vampiresBloodDragonData,
+      vampiresNecrarchData,
+      vampiresLahmiaData,
+      vampiresStrigoiData,
       witchHuntersData,
       lizardmenData,
       orcMobData,
       goblinsData,
       sonsOfHashutData,
-      mercenariesData,
+      mercReiklandData,
+      mercMiddenheimData,
+      mercMarienburgData,
+      mercOstermarkData,
       carnivalChaosData,
       darkElfCorsairsData,
     ]
@@ -976,9 +997,24 @@ function WarbandRosterPage() {
   const allFactions = useMemo(
     () => [
       {
-        key: "mercenaries",
-        label: "Mercenários",
-        data: (mercenariesData || []) as any[],
+        key: "mercenaries-reikland",
+        label: "Mercenários [Reikland]",
+        data: (mercReiklandData || []) as any[],
+      },
+      {
+        key: "mercenaries-middenheim",
+        label: "Mercenários [Middenheim]",
+        data: (mercMiddenheimData || []) as any[],
+      },
+      {
+        key: "mercenaries-marienburg",
+        label: "Mercenários [Marienburg]",
+        data: (mercMarienburgData || []) as any[],
+      },
+      {
+        key: "mercenaries-ostermark",
+        label: "Mercenários [Ostermark]",
+        data: (mercOstermarkData || []) as any[],
       },
       {
         key: "sisters-of-sigmar",
@@ -1002,9 +1038,29 @@ function WarbandRosterPage() {
         data: (cultPossessedData || []) as any[],
       },
       {
-        key: "vampire-courts",
-        label: "Cortes Vampíricas",
-        data: (vampireCourtsData || []) as any[],
+        key: "vampire-courts-von-carstein",
+        label: "Cortes Vampíricas [Von Carstein]",
+        data: (vampiresVonData || []) as any[],
+      },
+      {
+        key: "vampire-courts-blood-dragon",
+        label: "Cortes Vampíricas [Dragão Carmesim]",
+        data: (vampiresBloodDragonData || []) as any[],
+      },
+      {
+        key: "vampire-courts-necrarch",
+        label: "Cortes Vampíricas [Necrarca]",
+        data: (vampiresNecrarchData || []) as any[],
+      },
+      {
+        key: "vampire-courts-lahmia",
+        label: "Cortes Vampíricas [Lâmia]",
+        data: (vampiresLahmiaData || []) as any[],
+      },
+      {
+        key: "vampire-courts-strigoi",
+        label: "Cortes Vampíricas [Strigoi]",
+        data: (vampiresStrigoiData || []) as any[],
       },
       {
         key: "witch-hunters",
@@ -1035,13 +1091,20 @@ function WarbandRosterPage() {
       },
     ],
     [
-      mercenariesData,
+      mercReiklandData,
+      mercMiddenheimData,
+      mercMarienburgData,
+      mercOstermarkData,
       sistersData,
       skavenData,
       beastmenData,
       dwarfTreasureHuntersData,
       cultPossessedData,
-      vampireCourtsData,
+      vampiresVonData,
+      vampiresBloodDragonData,
+      vampiresNecrarchData,
+      vampiresLahmiaData,
+      vampiresStrigoiData,
       witchHuntersData,
       lizardmenData,
       orcMobData,
@@ -2717,13 +2780,68 @@ function WarbandRosterPage() {
                                           dwarfTreasureHuntersData,
                                         "cult-of-the-possessed":
                                           cultPossessedData,
-                                        "vampire-courts": vampireCourtsData,
+                                        // Cortes Vampíricas
+                                        "vampire-courts-von-carstein":
+                                          vampiresVonData,
+                                        "vampire-courts-blood-dragon":
+                                          vampiresBloodDragonData,
+                                        "vampire-courts-necrarch":
+                                          vampiresNecrarchData,
+                                        "vampire-courts-lahmia":
+                                          vampiresLahmiaData,
+                                        "vampire-courts-strigoi":
+                                          vampiresStrigoiData,
+                                        // Genérico (compatibilidade): concatena todas as linhagens
+                                        "vampire-courts": [
+                                          ...(Array.isArray(vampiresVonData)
+                                            ? vampiresVonData
+                                            : []),
+                                          ...(Array.isArray(
+                                            vampiresBloodDragonData
+                                          )
+                                            ? vampiresBloodDragonData
+                                            : []),
+                                          ...(Array.isArray(
+                                            vampiresNecrarchData
+                                          )
+                                            ? vampiresNecrarchData
+                                            : []),
+                                          ...(Array.isArray(vampiresLahmiaData)
+                                            ? vampiresLahmiaData
+                                            : []),
+                                          ...(Array.isArray(vampiresStrigoiData)
+                                            ? vampiresStrigoiData
+                                            : []),
+                                        ],
                                         "witch-hunters": witchHuntersData,
                                         lizardmen: lizardmenData,
                                         "orc-mob": orcMobData,
                                         goblins: goblinsData,
                                         "sons-of-hashut": sonsOfHashutData,
-                                        mercenaries: mercenariesData,
+                                        // Mercenários por região
+                                        "mercenaries-reikland":
+                                          mercReiklandData,
+                                        "mercenaries-middenheim":
+                                          mercMiddenheimData,
+                                        "mercenaries-marienburg":
+                                          mercMarienburgData,
+                                        "mercenaries-ostermark":
+                                          mercOstermarkData,
+                                        // Genérico (compatibilidade): concatena todas as regiões
+                                        mercenaries: [
+                                          ...(Array.isArray(mercReiklandData)
+                                            ? mercReiklandData
+                                            : []),
+                                          ...(Array.isArray(mercMiddenheimData)
+                                            ? mercMiddenheimData
+                                            : []),
+                                          ...(Array.isArray(mercMarienburgData)
+                                            ? mercMarienburgData
+                                            : []),
+                                          ...(Array.isArray(mercOstermarkData)
+                                            ? mercOstermarkData
+                                            : []),
+                                        ],
                                         "carnival-of-chaos": carnivalChaosData,
                                         "dark-elf-corsairs":
                                           darkElfCorsairsData,

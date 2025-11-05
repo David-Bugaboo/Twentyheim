@@ -4,21 +4,21 @@
     "name": "Marca de Chotec",
     "restrictions": "Apenas saurídeos",
     "cost": "40 coroas",
-    "description": "O guerreiro tem mandíbulas comparáveis a de um Kroxigor. Ele ganha a característica Voraz quando desarmado. Adicionalmente, se estiver lutando com uma arma, a combinação de suas mandíbulas e armas concedem a ele a característica Penetração de Armadura(1)"
+    "description": "O guerreiro tem mandíbulas comparáveis a de um Kroxigor. Ele ganha um ataque natural com modificador de dano +2. Adicionalmente, se estiver lutando com uma arma, a combinação de suas mandíbulas e armas concedem a ele a característica Penetração de Armadura(1)"
   },
   {
     "id": "marca-de-sotek",
     "name": "Marca de Sotek",
     "restrictions": "Apenas Skinks",
     "cost": "40 coroas",
-    "description": "O guerreiro tem dentes pequenos, mas carregados de veneno. Ele sempre conta como armado com uma arma com a característica Tóxica e modificador de dano -1. Adicionalmente, como uma ação (que pode substituir ação de movimento), pode envenenar uma arma ou projétil, dando ao próximo ataque com a arma a característica Tóxica."
+    "description": "O guerreiro tem dentes pequenos, mas carregados de veneno. Ele ganha um ataque natural com a palavra-chave Tóxica e modificador de dano -1. Adicionalmente, como uma ação (que pode substituir ação de movimento), pode envenenar uma arma ou projétil, dando ao próximo ataque com a arma a característica Tóxica."
   },
   {
     "id": "marca-de-huanchi",
     "name": "Marca de Huanchi",
     "restrictions": "Apenas Skinks",
     "cost": "40 coroas",
-    "description": "O guerreiro tem escamas refrativas, que refletem a luz. Ganha a característica Furtividade(16). Adicionalmente ganha a possibilidade de usar uma ação de mirar como uma ação (que pode substituir a ação de movimento). O próximo ataque à distância ignora terreno interposto entre a figura e o alvo (mas não cobertura)."
+    "description": "O guerreiro tem escamas refrativas, que refletem a luz. Ganha a característica Furtividade(16). Adicionalmente ganha a possibilidade de usar uma ação de mirar como uma ação (que pode substituir a ação de movimento). O próximo ataque à distância ignora o primeiro terreno interposto entre a figura e o alvo (mas não cobertura)."
   },
   {
     "id": "marca-de-tepok",
@@ -33,5 +33,4 @@
     "cost": "40 coroas",
     "description": "Esse é a maior dádiva dos ancestrais. Uma vez por jogo o guerreiro pode ganhar +5 em qualquer rolagem de dado."
   }
-
 ]

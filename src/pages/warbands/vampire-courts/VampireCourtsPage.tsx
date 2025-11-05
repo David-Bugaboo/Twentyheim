@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from "react";
 import { useJsonData } from "../../../hooks/useJsonData";
-import { getStaticImport } from "../../../data/jsonFileMap";
 import { createWarbandNavigationSections } from "../../../utils/navigationSections";
 import QuickNavigation from "../../../components/QuickNavigation";
 import MobileSection from "../../../components/MobileSection";
@@ -56,66 +55,79 @@ const VampireCourtsPage: React.FC = () => {
     "von-carstein"
   );
 
-  // Carrega dados via hook (Firestore -> IndexedDB -> Static)
-  const staticImportFn = React.useMemo(
-    () => () => getStaticImport("vampire-courts")(),
-    []
-  );
+  // Mapeia linhagem -> fileId de dados
+  const lineageToFileId: Record<string, string> = {
+    "von-carstein": "vampire-courts-von-carstein",
+    "blood-dragon": "vampire-courts-blood-dragon",
+    necrarch: "vampire-courts-necrarch",
+    lahmian: "vampire-courts-lahmia",
+    strigoi: "vampire-courts-strigoi",
+  };
 
-  const { data: vampireCourtsData, loading } = useJsonData({
-    fileId: "vampire-courts",
-    staticImport: staticImportFn,
+  const currentFileId = useMemo(() => {
+    return selectedLineage ? lineageToFileId[selectedLineage] : undefined;
+  }, [selectedLineage]);
+
+  // staticImport não é usado (carregamento apenas do Firestore)
+
+  const {
+    data: vampireCourtsData,
+    loading,
+    source,
+  } = useJsonData({
+    fileId: (currentFileId || "") as any,
+    enabled: Boolean(currentFileId),
   });
+
+  // Debug: qual fileId/source está carregando
+  React.useEffect(() => {
+    if ((import.meta as any)?.env?.DEV) {
+      // eslint-disable-next-line no-console
+      console.debug(
+        "[VampireCourtsPage] fileId:",
+        currentFileId,
+        "source:",
+        source,
+        "items:",
+        Array.isArray(vampireCourtsData) ? vampireCourtsData.length : 0
+      );
+    }
+  }, [currentFileId, source, vampireCourtsData]);
 
   // Extrai unidades de forma segura (com fallback para array vazio)
   const leader = useMemo(() => {
-    if (!vampireCourtsData || !Array.isArray(vampireCourtsData)) return undefined;
-    return vampireCourtsData.find(
-    (unit) => unit.role === "Herói" && unit.name === "Conde Vampiro"
-    ) as Unit | undefined;
+    if (!vampireCourtsData || !Array.isArray(vampireCourtsData))
+      return undefined;
+    // Cada arquivo de linhagem define o líder com role "Líder"
+    return vampireCourtsData.find(unit => unit.role === "Líder") as
+      | Unit
+      | undefined;
   }, [vampireCourtsData]);
 
   const heroes = useMemo(() => {
     if (!vampireCourtsData || !Array.isArray(vampireCourtsData)) return [];
     return vampireCourtsData.filter(
-    (unit) => unit.role === "Herói" && unit.name !== "Conde Vampiro"
-  ) as Unit[];
+      unit => unit.role === "Herói" && unit.name !== "Conde Vampiro"
+    ) as Unit[];
   }, [vampireCourtsData]);
 
   const soldiers = useMemo(() => {
     if (!vampireCourtsData || !Array.isArray(vampireCourtsData)) return [];
-    return vampireCourtsData.filter((unit) => !unit.role) as Unit[];
+    return vampireCourtsData.filter(unit => !unit.role) as Unit[];
   }, [vampireCourtsData]);
 
-  // Filtrar unidades baseado na linhagem selecionada
-  const getFilteredUnits = () => {
-    if (!selectedLineage) {
-      return { leader, heroes, soldiers };
-    }
-
-    let filteredHeroes = heroes;
-    let filteredSoldiers = soldiers;
-
-    // Regras especiais por linhagem
-    if (selectedLineage === "von-carstein") {
-      // Von Carstein: Mantém todas as unidades básicas
-    } else if (selectedLineage === "blood-dragon") {
-      // Blood Dragon: Foco em combate corpo a corpo
-    } else if (selectedLineage === "necromancer") {
-      // Necromancer: Foco em magia e figuras mortas-vivas
-    } else if (selectedLineage === "stirland") {
-      // Stirland: Vampiros rurais e figuras da floresta
-    }
-
-    return { leader, heroes: filteredHeroes, soldiers: filteredSoldiers };
-  };
+  // Com dados já específicos da linhagem, apenas expõe leader/heroes/soldiers
+  const getFilteredUnits = () => ({ leader, heroes, soldiers });
 
   // Filtrar unidades baseado na linhagem selecionada
   const {
     leader: filteredLeader,
     heroes: filteredHeroes,
     soldiers: filteredSoldiers,
-  } = useMemo(() => getFilteredUnits(), [selectedLineage, leader, heroes, soldiers]);
+  } = useMemo(
+    () => getFilteredUnits(),
+    [selectedLineage, leader, heroes, soldiers]
+  );
 
   // Linhagens vampíricas (estáticas)
   const lineages: Lineage[] = [
@@ -137,7 +149,7 @@ const VampireCourtsPage: React.FC = () => {
         "Descendentes de Abhorash: Condes Dragão Carmesim começam com +1 em Ímpeto.",
         "Estandarte Carmesim: Condes Dragão Carmesim ganham +5 no primeiro teste de debandada falho no jogo.",
         "Duelista Honrado: Condes Dragão Carmesim devem sempre escolher permanencer em combate ao vencerem uma luta. Adicionalmente, não podem falhar voluntariamente no teste de debandada.",
-        "Escudeiros Vampíricos: Escórias do bando de um Conde Dragão Carmesim começam com +1 de Ímpeto e +2 de vida máxima.",
+        "Escudeiros Vampíricos: Escórias do bando de um Conde Dragão Carmesim são escudeiros vampíricos e começam com +1 de Ímpeto e +2 de vida máxima.",
         "Linhagem Marcial: Ganha acesso a lista de habilidades Dragão Carmesim.",
       ],
     },
@@ -147,7 +159,7 @@ const VampireCourtsPage: React.FC = () => {
       lore: "Os temidos Necrarcas são maliciosos e deformados, e mais do que qualquer outro vampiro, eles se assemelham aos mortos com uma aparência emaciada e cadavérica. Os Necrarcas são incompreensíveis até mesmo para seus próprios irmãos mortos-vivos e a maioria parece completamente insana. Sua loucura é temperada por seu gênio inegável e domínio da magia necromântica. Enquanto os vampiros de outras linhagens buscam domínio sobre os reinos dos homens, os Necrarcas aspiram ver o fim de todas as coisas vivas, tal é seu ódio por tudo. Os Necrarcas são por natureza solitários e frequentemente vivem profundamente no subsolo ou em torres isoladas onde podem praticar suas magias nefastas sem interrupção. Ocasionalmente, no entanto, eles emergem de seus lugares sombrios no mundo para reunir novas vítimas, conhecimento e, é claro, Pedra-Bruxa para seus experimentos. Os vampiros Necrarch têm uma antipatia mal contida por seus parentes de outros clãs, mas lidarão com eles ocasionalmente quando for do seu benefício fazê-lo.",
       specialRules: [
         "Constituição Fraca: Não pode usar habilidades, perdendo acesso a todas as listas, e seu Ímpeto é reduzido em 2. Só pode ser equipado com adagas, espadas, machados e maças. ",
-        "Gênio Mágico: Se torna um conjurador, começando com 5 magias dentre as mesmas tradições que o Necromante do bando.",
+        "Gênio Mágico: Se torna um conjurador da tradição da Necromancia, começando com uma magia dessa tradição.",
         "Ódio aos vivos: Não pode contratar nenhum mercenário, mesmo os que normalmente poderiam ser contratados por Cortes Vampíricas.",
         "Linhagem Arcana: Ganha acesso a lista de habilidades Necrarch.",
       ],
@@ -157,7 +169,7 @@ const VampireCourtsPage: React.FC = () => {
       name: "Lâmia",
       lore: "De todos os vampiros, a irmandade Lâmia Delfina segue a cultura e prática dos dias antigos mais de perto. A linhagem Lâmia  difere dos outros clãs vampíricos por ser composta quase exclusivamente por fêmeas. Esta irmandade é renomada por escolher apenas as mais belas dos mortais para se juntar às suas fileiras. Elas são lideradas pela própria rainha original das trevas, Neferata, do Culto do Sangue, que habita em algum lugar nas regiões setentrionais das Montanhas da Borda do Mundo em um lugar chamado Pico de Prata. Histórias do palácio da Rainha da Noite são contadas há séculos e podem ser encontradas nas baladas de Bretonnia, nos escritos do Império e nos poemas de Tilea. As Lâmias Delfinas competem com os Von Carsteins em sua trama para arrancar o controle do mundo dos homens, embora sejam muito mais sutis em seus métodos, preferindo infiltrar-se nos escalões superiores da sociedade do que usar força das armas. Elas têm grande talento para arte e estadismo, e suas personalidades poderosas mantêm um charme irresistível para mortais. A irmandade Lâmia Delfina sempre tentará manipular vampiros de outras famílias para seus próprios fins.",
       specialRules: [
-        "Sem Treino Marcial: Condessas Lâmias tem seu Ímpeto reduzido em 1. Só podem ser equipadas com adagas, espadas, machados e maças, perdendo acesso a todas as outras armas.",
+        "Sem Treino Marcial: Condessas Lâmias tem seu Ímpeto reduzido em 1. Só podem ser equipadas com adagas, espadas, machados e maças, perdendo acesso a todas as outras armas e a armaduras pesadas e escudos.",
         "Charme Irresistível: Figuras a 8cm da Condessa Lâmia tem seu atributo Vontade reduzida em 2.",
         "Velocidade Sobrenatural: Condessas Lâmia tem 20 no atributo Movimento.",
         "Linhagem Sedutora: Ganha acesso a lista de habilidades Lâmia.",
@@ -168,10 +180,10 @@ const VampireCourtsPage: React.FC = () => {
       name: "Strigoi",
       lore: "Os vampiros Strigoi são conhecidos como os Amaldiçoados e são geralmente desprezados entre sua própria espécie. Há muito tempo na história desta linhagem, o pai desses vampiros foi amaldiçoado pelos outros vampiros e desde então existe um ódio sem fim entre eles. Os vampiros Strigoi são pouco mais que bestas - monstruosidades enormes, desajeitadas e cheias de ódio. Frequentemente, essas figuras solitárias fazem de cemitérios e necrotérios suas casas, onde matilhas de Carniçais devoradores de carne formam cortes grotescas ao redor deles. A maioria deles perdeu a mente em algum grau, mas ainda possuem os poderes inatos do vampiro e podem comandar os mortos-vivos. Os Strigoi constantemente são achados contemplando um tempo em que derrubarão o mundo dos homens e destruirão completamente seus parentes dos outros clãs.",
       specialRules: [
-        "Bestas Selvagens: Ganha a característica Voraz e Ataques Mágicos, mas não pode usar nenhum equipamento.",
+        "Bestas Selvagens: Condes Strigoi tem +1 de Ímpeto e um ataque natural que causa dano mágico e tem um modificador de dano de +2, mas perde o acesso a qualquer equipamento.",
         "Ódio absoluto: Um Conde Strigoi ganha a característica Ódio(Vivos).",
         "Corte dos Carniçais: Pode contratar um Atormentador por 50 coroas, que usa as estatísticas de um Carniçal, mas é um héroi, com acesso as listas de Força e Agilidade. Ele começa com 2 poderes dentre essas listas, com Classe de Dificuldade 5. O bando pode ter até 3 atormentadores. ",
-        "Temido: Gasta 10 coroas a mais para contratar Necromantes. Não pode contratar mercenários, mesmo os que normalmente poderiam ser contratados por Cortes Vampíricas.",
+        "Temido: Gasta 10 coroas a mais para contratar Necromantes e Escória. Não pode contratar mercenários, mesmo os que normalmente poderiam ser contratados por Cortes Vampíricas.",
         "Linhagem Bestial: Ganha acesso a lista de habilidades Strigoi.",
       ],
     },
@@ -180,11 +192,11 @@ const VampireCourtsPage: React.FC = () => {
   // Cria as seções de navegação de forma segura
   const navigationSections = useMemo(() => {
     const baseSections = [
-    { id: "introducao", title: "Introdução", level: 0 },
-    { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
-    { id: "linhagens", title: "Linhagens Vampíricas", level: 0 },
+      { id: "introducao", title: "Introdução", level: 0 },
+      { id: "estrutura-do-bando", title: "Estrutura do Bando", level: 0 },
+      { id: "linhagens", title: "Linhagens Vampíricas", level: 0 },
     ];
-    
+
     const warbandSections = createWarbandNavigationSections(
       vampireCourtsData as Unit[] | null | undefined,
       baseSections
@@ -193,16 +205,20 @@ const VampireCourtsPage: React.FC = () => {
     // Atualiza com unidades filtradas
     const leaderSection = warbandSections.find(s => s.id === "lider");
     if (leaderSection && filteredLeader) {
-      leaderSection.children = [{
-        id: filteredLeader.id || filteredLeader.name.toLowerCase().replace(/\s+/g, "-"),
-              title: filteredLeader.name,
-              level: 1,
-      }];
+      leaderSection.children = [
+        {
+          id:
+            filteredLeader.id ||
+            filteredLeader.name.toLowerCase().replace(/\s+/g, "-"),
+          title: filteredLeader.name,
+          level: 1,
+        },
+      ];
     }
 
     const heroesSection = warbandSections.find(s => s.id === "herois");
     if (heroesSection) {
-      heroesSection.children = filteredHeroes.map((hero) => ({
+      heroesSection.children = filteredHeroes.map(hero => ({
         id: hero.id || hero.name.toLowerCase().replace(/\s+/g, "-"),
         title: hero.name,
         level: 1,
@@ -211,7 +227,7 @@ const VampireCourtsPage: React.FC = () => {
 
     const soldiersSection = warbandSections.find(s => s.id === "soldados");
     if (soldiersSection) {
-      soldiersSection.children = filteredSoldiers.map((soldier) => ({
+      soldiersSection.children = filteredSoldiers.map(soldier => ({
         id: soldier.id || soldier.name.toLowerCase().replace(/\s+/g, "-"),
         title: soldier.name,
         level: 1,
@@ -293,7 +309,7 @@ const VampireCourtsPage: React.FC = () => {
             {/* Botões de seleção de linhagem */}
             <div className="mb-6">
               <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                {lineages.map((lineage) => (
+                {lineages.map(lineage => (
                   <button
                     key={lineage.id}
                     onClick={() => setSelectedLineage(lineage.id)}
@@ -311,7 +327,7 @@ const VampireCourtsPage: React.FC = () => {
                 <div className="bg-green-900/20 border border-green-600 rounded-lg p-4 mb-4">
                   <MobileText className="text-green-200">
                     <strong>Linhagem Selecionada:</strong>{" "}
-                    {lineages.find((l) => l.id === selectedLineage)?.name}
+                    {lineages.find(l => l.id === selectedLineage)?.name}
                   </MobileText>
                 </div>
               )}
@@ -319,9 +335,7 @@ const VampireCourtsPage: React.FC = () => {
 
             {selectedLineage
               ? (() => {
-                  const lineage = lineages.find(
-                    (l) => l.id === selectedLineage
-                  );
+                  const lineage = lineages.find(l => l.id === selectedLineage);
                   return lineage ? (
                     <div className="mb-8">
                       <HeaderH2>{lineage.name}</HeaderH2>
@@ -346,7 +360,7 @@ const VampireCourtsPage: React.FC = () => {
                 })()
               : (() => (
                   <div className="grid gap-6 md:grid-cols-2">
-                    {lineages.map((lineage) => (
+                    {lineages.map(lineage => (
                       <div
                         key={lineage.id}
                         className="bg-[#1a1a1a] p-6 rounded-lg border border-gray-700 hover:border-green-500 transition-colors cursor-pointer"
@@ -373,7 +387,10 @@ const VampireCourtsPage: React.FC = () => {
               <MobileText>Carregando...</MobileText>
             ) : filteredLeader ? (
               <UnitCard
-                id={filteredLeader.id || filteredLeader.name.toLowerCase().replace(/\s+/g, "-")}
+                id={
+                  filteredLeader.id ||
+                  filteredLeader.name.toLowerCase().replace(/\s+/g, "-")
+                }
                 name={filteredLeader.name}
                 role={filteredLeader.role}
                 quantity={filteredLeader.quantity}
@@ -394,20 +411,20 @@ const VampireCourtsPage: React.FC = () => {
             {loading ? (
               <MobileText>Carregando...</MobileText>
             ) : filteredHeroes.length > 0 ? (
-              filteredHeroes.map((hero) => (
-              <UnitCard
-                key={hero.name}
+              filteredHeroes.map(hero => (
+                <UnitCard
+                  key={hero.name}
                   id={hero.id || hero.name.toLowerCase().replace(/\s+/g, "-")}
-                name={hero.name}
-                role={hero.role}
-                quantity={hero.quantity}
-                lore={hero.lore}
-                qualidade={(hero as any).qualidade || 0}
-                stats={hero.stats}
-                spellAffinity={hero.spellAffinity}
-                abilities={hero.abilities}
-                equipment={hero.equipment}
-              />
+                  name={hero.name}
+                  role={hero.role}
+                  quantity={hero.quantity}
+                  lore={hero.lore}
+                  qualidade={(hero as any).qualidade || 0}
+                  stats={hero.stats}
+                  spellAffinity={hero.spellAffinity}
+                  abilities={hero.abilities}
+                  equipment={hero.equipment}
+                />
               ))
             ) : (
               <MobileText>Nenhum herói encontrado</MobileText>
@@ -419,18 +436,21 @@ const VampireCourtsPage: React.FC = () => {
             {loading ? (
               <MobileText>Carregando...</MobileText>
             ) : filteredSoldiers.length > 0 ? (
-              filteredSoldiers.map((soldier) => (
-              <UnitCard
-                key={soldier.name}
-                  id={soldier.id || soldier.name.toLowerCase().replace(/\s+/g, "-")}
-                name={soldier.name}
-                quantity={soldier.quantity}
-                lore={soldier.lore}
-                qualidade={(soldier as any).qualidade || 0}
-                stats={soldier.stats}
-                abilities={soldier.abilities}
-                equipment={soldier.equipment}
-              />
+              filteredSoldiers.map(soldier => (
+                <UnitCard
+                  key={soldier.name}
+                  id={
+                    soldier.id ||
+                    soldier.name.toLowerCase().replace(/\s+/g, "-")
+                  }
+                  name={soldier.name}
+                  quantity={soldier.quantity}
+                  lore={soldier.lore}
+                  qualidade={(soldier as any).qualidade || 0}
+                  stats={soldier.stats}
+                  abilities={soldier.abilities}
+                  equipment={soldier.equipment}
+                />
               ))
             ) : (
               <MobileText>Nenhum soldado encontrado</MobileText>

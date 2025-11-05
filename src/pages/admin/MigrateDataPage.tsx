@@ -51,10 +51,49 @@ export const ALL_FILES = [
     import: () => import("../warbands/cult-of-the-possessed/data/mutations.data.json"),
   },
   {
-    id: "vampire-courts",
-    path: "warbands/vampire-courts/data/vampire-courts.data.json",
-    name: "Cortes Vampíricas",
-    import: () => import("../warbands/vampire-courts/data/vampire-courts.data.json"),
+    id: "vampire-courts-von-carstein",
+    path: "warbands/vampire-courts/data/vampire-courts-von-carstein.data.json",
+    name: "Cortes Vampíricas — Von Carstein",
+    import: () =>
+      import(
+        "../warbands/vampire-courts/data/vampire-courts-von-carstein.data.json"
+      ),
+  },
+  {
+    id: "vampire-courts-blood-dragon",
+    path: "warbands/vampire-courts/data/vampire-courts-blood-dragon.data.json",
+    name: "Cortes Vampíricas — Dragões Carmesim",
+    import: () =>
+      import(
+        "../warbands/vampire-courts/data/vampire-courts-blood-dragon.data.json"
+      ),
+  },
+  {
+    id: "vampire-courts-necrarch",
+    path: "warbands/vampire-courts/data/vampire-courts-necrarch.data.json",
+    name: "Cortes Vampíricas — Necrarca",
+    import: () =>
+      import(
+        "../warbands/vampire-courts/data/vampire-courts-necrarch.data.json"
+      ),
+  },
+  {
+    id: "vampire-courts-lahmia",
+    path: "warbands/vampire-courts/data/vampire-courts-lahmia.data.json",
+    name: "Cortes Vampíricas — Lâmia",
+    import: () =>
+      import(
+        "../warbands/vampire-courts/data/vampire-courts-lahmia.data.json"
+      ),
+  },
+  {
+    id: "vampire-courts-strigoi",
+    path: "warbands/vampire-courts/data/vampire-courts-strigoi.data.json",
+    name: "Cortes Vampíricas — Strigoi",
+    import: () =>
+      import(
+        "../warbands/vampire-courts/data/vampire-courts-strigoi.data.json"
+      ),
   },
   {
     id: "witch-hunters",
@@ -75,10 +114,40 @@ export const ALL_FILES = [
     import: () => import("../warbands/lizardmen/data/sacred-marks.data.json"),
   },
   {
-    id: "mercenaries",
-    path: "warbands/mercenaries/data/mercenaries.data.json",
-    name: "Mercenários",
-    import: () => import("../warbands/mercenaries/data/mercenaries.data.json"),
+    id: "mercenaries-reikland",
+    path: "warbands/mercenaries/data/mercenaries-reikland.data.json",
+    name: "Mercenários — Reikland",
+    import: () =>
+      import(
+        "../warbands/mercenaries/data/mercenaries-reikland.data.json"
+      ),
+  },
+  {
+    id: "mercenaries-middenheim",
+    path: "warbands/mercenaries/data/mercenaries-middenheim.data.json",
+    name: "Mercenários — Middenheim",
+    import: () =>
+      import(
+        "../warbands/mercenaries/data/mercenaries-middenheim.data.json"
+      ),
+  },
+  {
+    id: "mercenaries-marienburg",
+    path: "warbands/mercenaries/data/mercenaries-marienburg.data.json",
+    name: "Mercenários — Marienburg",
+    import: () =>
+      import(
+        "../warbands/mercenaries/data/mercenaries-marienburg.data.json"
+      ),
+  },
+  {
+    id: "mercenaries-ostermark",
+    path: "warbands/mercenaries/data/mercenaries-ostermaker.data.json",
+    name: "Mercenários — Ostermark",
+    import: () =>
+      import(
+        "../warbands/mercenaries/data/mercenaries-ostermaker.data.json"
+      ),
   },
   {
     id: "orc-mob",

@@ -30,9 +30,26 @@ export function useWarbandData() {
     fileId: "cult-of-the-possessed",
     staticImport: () => getStaticImport("cult-of-the-possessed")(),
   });
-  const vampireCourtsData = useJsonData({
-    fileId: "vampire-courts",
-    staticImport: () => getStaticImport("vampire-courts")(),
+  // Cortes Vampíricas por linhagem
+  const vampiresVonData = useJsonData({
+    fileId: "vampire-courts-von-carstein",
+    staticImport: () => getStaticImport("vampire-courts-von-carstein")(),
+  });
+  const vampiresBloodDragonData = useJsonData({
+    fileId: "vampire-courts-blood-dragon",
+    staticImport: () => getStaticImport("vampire-courts-blood-dragon")(),
+  });
+  const vampiresNecrarchData = useJsonData({
+    fileId: "vampire-courts-necrarch",
+    staticImport: () => getStaticImport("vampire-courts-necrarch")(),
+  });
+  const vampiresLahmiaData = useJsonData({
+    fileId: "vampire-courts-lahmia",
+    staticImport: () => getStaticImport("vampire-courts-lahmia")(),
+  });
+  const vampiresStrigoiData = useJsonData({
+    fileId: "vampire-courts-strigoi",
+    staticImport: () => getStaticImport("vampire-courts-strigoi")(),
   });
   const witchHuntersData = useJsonData({
     fileId: "witch-hunters",
@@ -54,9 +71,22 @@ export function useWarbandData() {
     fileId: "sons-of-hashut",
     staticImport: () => getStaticImport("sons-of-hashut")(),
   });
-  const mercenariesData = useJsonData({
-    fileId: "mercenaries",
-    staticImport: () => getStaticImport("mercenaries")(),
+  // Mercenários por região
+  const mercReiklandData = useJsonData({
+    fileId: "mercenaries-reikland",
+    staticImport: () => getStaticImport("mercenaries-reikland")(),
+  });
+  const mercMiddenheimData = useJsonData({
+    fileId: "mercenaries-middenheim",
+    staticImport: () => getStaticImport("mercenaries-middenheim")(),
+  });
+  const mercMarienburgData = useJsonData({
+    fileId: "mercenaries-marienburg",
+    staticImport: () => getStaticImport("mercenaries-marienburg")(),
+  });
+  const mercOstermarkData = useJsonData({
+    fileId: "mercenaries-ostermark",
+    staticImport: () => getStaticImport("mercenaries-ostermark")(),
   });
   const carnivalChaosData = useJsonData({
     fileId: "carnival-of-chaos",
@@ -122,13 +152,20 @@ export function useWarbandData() {
       beastmen: beastmenData.data,
       dwarfs: dwarfTreasureHuntersData.data,
       cult: cultPossessedData.data,
-      vampires: vampireCourtsData.data,
+      vampires_von_carstein: vampiresVonData.data,
+      vampires_blood_dragon: vampiresBloodDragonData.data,
+      vampires_necrarch: vampiresNecrarchData.data,
+      vampires_lahmia: vampiresLahmiaData.data,
+      vampires_strigoi: vampiresStrigoiData.data,
       witchHunters: witchHuntersData.data,
       lizardmen: lizardmenData.data,
       orcs: orcMobData.data,
       goblins: goblinsData.data,
       hashut: sonsOfHashutData.data,
-      mercenaries: mercenariesData.data,
+      mercenaries_reikland: mercReiklandData.data,
+      mercenaries_middenheim: mercMiddenheimData.data,
+      mercenaries_marienburg: mercMarienburgData.data,
+      mercenaries_ostermark: mercOstermarkData.data,
       carnival: carnivalChaosData.data,
       darkElves: darkElfCorsairsData.data,
       hiredSwords: hiredSwords.data,
@@ -155,13 +192,20 @@ export function useWarbandData() {
     beastmenData.loading ||
     dwarfTreasureHuntersData.loading ||
     cultPossessedData.loading ||
-    vampireCourtsData.loading ||
+    vampiresVonData.loading ||
+    vampiresBloodDragonData.loading ||
+    vampiresNecrarchData.loading ||
+    vampiresLahmiaData.loading ||
+    vampiresStrigoiData.loading ||
     witchHuntersData.loading ||
     lizardmenData.loading ||
     orcMobData.loading ||
     goblinsData.loading ||
     sonsOfHashutData.loading ||
-    mercenariesData.loading ||
+    mercReiklandData.loading ||
+    mercMiddenheimData.loading ||
+    mercMarienburgData.loading ||
+    mercOstermarkData.loading ||
     carnivalChaosData.loading ||
     darkElfCorsairsData.loading ||
     hiredSwords.loading ||
