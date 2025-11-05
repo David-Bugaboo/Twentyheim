@@ -77,7 +77,7 @@ function AttributeTestsPage() {
             <WarningBox title="Modificador Máximo" type="warning">
               <MobileText>
                 Uma figura nunca pode alcancar um modificador maior que +10 em
-                um teste de qualquer atributo.
+                um teste de qualquer atributo ou situação.
               </MobileText>
             </WarningBox>
 

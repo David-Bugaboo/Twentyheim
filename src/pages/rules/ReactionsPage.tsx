@@ -72,6 +72,22 @@ function ReactionsPage() {
               especificadas na descrição da habilidade.
             </MobileText>
 
+            <HeaderH1 className="mt-6">
+              Reações Extras por diferença de modelos
+            </HeaderH1>
+            <MobileText>
+              Em partidas <strong>1v1</strong>, quando um bando termina todas as
+              suas ativações antes do oponente, a partir desse momento, para
+              cada ativação que o <strong>oponente realizar</strong>, o bando
+              que já terminou suas ativações ganha{" "}
+              <strong>1 reação extra</strong> que pode ser usada{" "}
+              <strong>apenas durante aquela ativação</strong> do oponente.
+            </MobileText>
+            <MobileText>
+              Uma mesma figura só pode usar <strong>uma</strong> dessas reações
+              extras por turno.
+            </MobileText>
+
             <div id="interceptacao">
               <HeaderH1>Interceptação, Vigília e Aparar</HeaderH1>
             </div>
@@ -142,42 +158,15 @@ function ReactionsPage() {
                 Como Funciona a Vigília
               </HeaderH2>
 
-              <MobileText className="mb-3">
-                <strong>Ganhar Marcadores de Vigília:</strong>
-              </MobileText>
-
               <MobileText className="mb-2 ml-4">
-                • Uma figura pode gastar suas{" "}
-                <strong>
-                  duas ações no turno (incluindo uma ação de movimento)
-                </strong>{" "}
-                para ganhar um <strong>Marcador de Vigília</strong>
+                Se uma figura inimiga entra dentro de metade do alcance de uma
+                arma a distância equipada por uma figura, ela pode usar uma
+                reação de vigília.
               </MobileText>
 
               <MobileText className="mb-4 ml-4">
-                • Os marcadores de vigília são mantidos pela figura até serem
-                usados ou até o fim do turno.
-              </MobileText>
-
-              <MobileText className="mb-3">
-                <strong>Usar Vigília:</strong>
-              </MobileText>
-
-              <MobileText className="mb-2 ml-4">
-                • Uma figura com armas a distância pode consumir um{" "}
-                <strong>marcador de vigília</strong> para usar a seguinte
-                reação:
-              </MobileText>
-
-              <MobileText className="mb-2 ml-4">
-                • Gatilho: quando uma figura inimiga entra em{" "}
-                <strong>metade do alcance</strong> de sua arma a distância
-                equipada
-              </MobileText>
-
-              <MobileText className="mb-4 ml-4">
-                • Efeito: a figura reagindo pode{" "}
-                <strong>atirar na figura alvo</strong> que desencadeou a reação
+                • Efeito: a figura usando a reação de vigília pode{" "}
+                <strong>atirar na figura alvo</strong> que desencadeou a reação.
               </MobileText>
             </div>
 
