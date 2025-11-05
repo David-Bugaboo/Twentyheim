@@ -6,7 +6,7 @@ const giftResults = [
   {
     roll: "1",
     result:
-      "Corpo de Obsidiana. A carne da figura se transforma em obsidiana preta. Ela ganha +2 Armadura, mas seu Vigor é reduzido pela metade, arredondando para cima.",
+      "Corpo de Obsidiana. A carne da figura se transforma em obsidiana preta. Sua armadura base é 14 mas seu Vigor base é reduzido pela metade, arredondando para cima.",
   },
   {
     roll: "2",
@@ -41,7 +41,7 @@ const giftResults = [
   {
     roll: "8",
     result:
-      "Ossos de Obsidiana. O esqueleto da figura se transforma em obsidiana vítrea. Sempre que esta figura rolar 'Gravemente Ferido' na Tabela de Sobrevivência, ela sofre um -1 Vigor permanente.",
+      "Ossos de Obsidiana. O esqueleto da figura se transforma em obsidiana vítrea. Ela perde -4 de Vida.",
   },
   {
     roll: "9",
@@ -75,12 +75,12 @@ const giftResults = [
   {
     roll: "15",
     result:
-      "Arauto de Nurgle. Esta figura se transforma em meio-humano, meio-mosca. Ela sofre -1 Agilidade, -1 Ímpeto, -1 Armadura e -2 Vigor, mas se torna imune a dano de queda.",
+      "Arauto de Nurgle. Esta figura se transforma em meio-humano, meio-mosca. Ela sofre -1 Movimento, -1 Ímpeto, -1 Armadura e -2 Vida, mas se torna imune a dano de queda.",
   },
   {
     roll: "16",
     result:
-      "Dádiva de Nurgle. Esta figura se torna extremamente gorda. Ela sofre -2 Agilidade mas ganha +1 Vigor.",
+      "Dádiva de Nurgle. Esta figura se torna extremamente gorda. Ela sofre -2 Movimento mas ganha +2 Vida.",
   },
   {
     roll: "17",

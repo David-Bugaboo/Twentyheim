@@ -25,7 +25,7 @@
     "name": "Lâmina Incandescente",
     "castingNumber": 12,
     "keywords": ["Conjurador Apenas", "Concentração"],
-    "effect": "uela arma causa dano flamejante,tem um bônus de dano de +2 e Penetração de Armadura(2)."
+    "effect": "A arma alvo causa dano flamejante e tem um bônus de dano de +2 e Penetração de Armadura(2) enquanto a magia estiver sendo concentrada."
   },
   {
     "id": "espasmos-cadavericos",

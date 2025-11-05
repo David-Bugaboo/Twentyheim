@@ -559,6 +559,74 @@ export function calculateNurgleBlessingModifiers(
 }
 
 /**
+ * Calcula modificadores a partir de regras especiais extras (strings livres)
+ * Usado para dádivas/bençãos especiais adicionadas em extraSpecialRules
+ */
+export function calculateExtraSpecialRulesModifiers(
+  extraSpecialRules: string[]
+): {
+  move: number;
+  fight: number;
+  shoot: number;
+  armour: number;
+  Vontade: number;
+  strength: number;
+  health: number;
+} {
+  const modifiers = {
+    move: 0,
+    fight: 0,
+    shoot: 0,
+    armour: 0,
+    Vontade: 0,
+    strength: 0,
+    health: 0,
+  };
+
+  if (!Array.isArray(extraSpecialRules) || extraSpecialRules.length === 0) {
+    return modifiers;
+  }
+
+  for (const rule of extraSpecialRules) {
+    const name = String(rule || "").toLowerCase();
+
+    // Carne de cera: -1 Armadura
+    if (name.includes("carne de cera") || name.includes("carne-de-cera")) {
+      modifiers.armour -= 1;
+    }
+
+    // Definhar: -2 Vida
+    if (name.includes("definhar")) {
+      modifiers.health -= 2;
+    }
+
+    // Arauto de Nurgle: -1 Movimento, -1 Ímpeto, -1 Armadura e -2 Vida
+    if (name.includes("arauto de nurgle")) {
+      modifiers.move -= 1;
+      modifiers.fight -= 1;
+      modifiers.armour -= 1;
+      modifiers.health -= 2;
+    }
+
+    // Dádiva de Nurgle: -2 Movimento, +2 Vida
+    if (
+      name.includes("dádiva de nurgle") ||
+      name.includes("dadiva de nurgle")
+    ) {
+      modifiers.move -= 2;
+      modifiers.health += 2;
+    }
+
+    // Horror sem face: -2 Vontade
+    if (name.includes("horror sem face")) {
+      modifiers.Vontade -= 2;
+    }
+  }
+
+  return modifiers;
+}
+
+/**
  * Verifica se uma figura tem a bênção de Nurgle Torrente de Sujeira
  */
 export function hasFilthTorrentBlessing(nurgleBlessings: any[]): boolean {

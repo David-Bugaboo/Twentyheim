@@ -480,6 +480,23 @@ export function useEquipmentManagement({
     // Verifica se tem Garra Colossal
     const mutations = (figure?.mutations || []) as any[];
     const hasGiantClaw = hasGiantClawMutation(mutations);
+    // Verifica ferimento de antebraço esmagado
+    const hasCrushedForearm = (() => {
+      const injuries = (figure?.injuries || []) as any[];
+      return injuries.some((inj: any) => {
+        const n = String(inj?.name || inj || "").toLowerCase();
+        const forearm =
+          n.includes("antebraço") ||
+          n.includes("antebraco") ||
+          n.includes("ante-braço") ||
+          n.includes("ante-braco") ||
+          n.includes("ante braço") ||
+          n.includes("ante braco");
+        const crush = n.includes("esmag") || n.includes("esmigalh");
+        return forearm && crush;
+      });
+    })();
+    const offhandDisabled = hasGiantClaw || hasCrushedForearm;
 
     // Verifica se é uma arma de "Duas Mãos" ou "Versátil"
     const isTwoHanded = hasSpecialRule(targetItem, ["Duas Mãos", "duas mãos"]);
@@ -487,14 +504,14 @@ export function useEquipmentManagement({
 
     // Determina se deve equipar como duas mãos
     // Se for duas mãos (e NÃO versátil) OU versátil em modo duas mãos EXPLICITO
-    // BLOQUEADO se tiver Garra Colossal
+    // BLOQUEADO se a mão secundária estiver desabilitada
     const shouldEquipAsTwoHanded =
-      !hasGiantClaw && // Bloqueia se tiver Garra Colossal
+      !offhandDisabled && // Bloqueia se offhand estiver desabilitada
       ((isTwoHanded && !isVersatile) || (isVersatile && asTwoHanded === true));
 
-    // Validação adicional: se tentar equipar como duas mãos com Garra Colossal, bloqueia
-    if (hasGiantClaw && ((isTwoHanded && !isVersatile) || (isVersatile && asTwoHanded === true))) {
-      toast.error("Não é possível equipar armas de duas mãos com a mutação Garra Colossal");
+    // Validação adicional: se tentar equipar como duas mãos com offhand desabilitada, bloqueia
+    if (offhandDisabled && ((isTwoHanded && !isVersatile) || (isVersatile && asTwoHanded === true))) {
+      toast.error("Não é possível equipar armas de duas mãos devido às restrições atuais");
       return;
     }
 
@@ -607,6 +624,29 @@ export function useEquipmentManagement({
     setHasUnsavedChanges(true);
     const figure = (warband.figures || []).find((f: any) => f?.id === unitId);
     if (!figure) return;
+    // Regra global: bloqueia mão secundária se mutação Garra Colossal ou ferimento antebraço esmagado
+    const offhandDisabled = (() => {
+      const hasGiant = hasGiantClawMutation((figure?.mutations || []) as any[]);
+      const hasCrushed = ((figure?.injuries || []) as any[]).some((inj: any) => {
+        const n = String(inj?.name || inj || "").toLowerCase();
+        const forearm =
+          n.includes("antebraço") ||
+          n.includes("antebraco") ||
+          n.includes("ante-braço") ||
+          n.includes("ante-braco") ||
+          n.includes("ante braço") ||
+          n.includes("ante braco");
+        const crush = n.includes("esmag") || n.includes("esmigalh");
+        return forearm && crush;
+      });
+      return hasGiant || hasCrushed;
+    })();
+
+    if (offhandDisabled) {
+      toast.error("Mão secundária indisponível devido às restrições atuais");
+      return;
+    }
+
 
     const equippedList: any[] = (figure?.equiped || []) as any[];
     const targetItem = equippedList.find(
@@ -744,6 +784,28 @@ export function useEquipmentManagement({
     setHasUnsavedChanges(true);
     const figure = (warband.figures || []).find((f: any) => f?.id === unitId);
     if (!figure) return;
+
+    // Bloqueia se mão secundária estiver desabilitada
+    const offhandDisabled = (() => {
+      const hasGiant = hasGiantClawMutation((figure?.mutations || []) as any[]);
+      const hasCrushed = ((figure?.injuries || []) as any[]).some((inj: any) => {
+        const n = String(inj?.name || inj || "").toLowerCase();
+        const forearm =
+          n.includes("antebraço") ||
+          n.includes("antebraco") ||
+          n.includes("ante-braço") ||
+          n.includes("ante-braco") ||
+          n.includes("ante braço") ||
+          n.includes("ante braco");
+        const crush = n.includes("esmag") || n.includes("esmigalh");
+        return forearm && crush;
+      });
+      return hasGiant || hasCrushed;
+    })();
+    if (offhandDisabled) {
+      toast.error("Não é possível equipar como Par devido às restrições atuais");
+      return;
+    }
 
     const equippedList: any[] = (figure?.equiped || []) as any[];
     const targetItem = equippedList.find(

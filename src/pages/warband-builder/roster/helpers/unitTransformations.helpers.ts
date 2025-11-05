@@ -35,6 +35,7 @@ const calculateStatValue = (
     mutations: number;
     sacredMarks: number;
     nurgleBlessings: number;
+    extraSpecialRules: number;
   }
 ): number | string => {
   // Se o valor base for "-", retorna "-" sem calcular
@@ -56,7 +57,8 @@ const calculateStatValue = (
     modifiers.skills +
     modifiers.mutations +
     modifiers.sacredMarks +
-    modifiers.nurgleBlessings
+    modifiers.nurgleBlessings +
+    modifiers.extraSpecialRules
   );
 };
 import {
@@ -67,6 +69,7 @@ import {
   calculateAdvancementModifiers,
   calculateInjuryModifiers,
   calculateSkillModifiers,
+  calculateExtraSpecialRulesModifiers,
 } from "./warbandCalculations.helpers";
 
 /**
@@ -146,6 +149,7 @@ export function getCombinedStats(
   const mutations = (figure?.mutations || []) as any[];
   const sacredMarks = (figure?.sacredMarks || []) as any[];
   const nurgleBlessings = (figure?.nurgleBlessings || []) as any[];
+  const extraSpecialRules = (figure?.extraSpecialRules || []) as string[];
   const equipped = (figure?.equiped || []) as any[];
 
   const advancementsModifiers = calculateAdvancementModifiers(advancements);
@@ -194,6 +198,11 @@ export function getCombinedStats(
         strength: 0,
         health: 0,
       };
+
+  // Modificadores de regras especiais extras (strings soltas)
+  const extraSpecialRulesModifiers = calculateExtraSpecialRulesModifiers(
+    extraSpecialRules
+  );
 
   // Calcula modificadores de equipamentos (armorBonus, movePenalty)
   const equipmentModifiers = (() => {
@@ -244,9 +253,37 @@ export function getCombinedStats(
     health: 0,
   };
 
-  // Verifica se tem Marca de Tepok (substitui armadura base por 14)
+  // Overrides de base: Tepok e Regras Especiais
   const hasTepok = hasTepokMark(sacredMarks);
-  const baseArmourValue = hasTepok ? 14 : baseStats.armour;
+  const rulesLower = extraSpecialRules.map(r => String(r || "").toLowerCase());
+  const hasCarneObsidiana = rulesLower.some(
+    r =>
+      r.includes("carne-de-obsidiana") ||
+      r.includes("carne de obsidiana") ||
+      r.includes("corpo de obsidiana") ||
+      r.includes("corpo-de-obsidiana")
+  );
+  const hasOssosObsidiana = rulesLower.some(
+    r => r.includes("ossos de obsidiana") || r.includes("ossos-de-obsidiana")
+  );
+
+  // Precedência: Carne de Obsidiana (14) > Ossos de Obsidiana (8) > Tepok (14) > base
+  const baseArmourValue = hasCarneObsidiana
+    ? 14
+    : hasOssosObsidiana
+    ? 8
+    : hasTepok
+    ? 14
+    : baseStats.armour;
+
+  // Health base override: Carne de Obsidiana reduz vida base à metade (arredonda para cima)
+  const baseHealthValue = hasCarneObsidiana
+    ? Math.ceil(
+        (typeof baseStats.health === "number"
+          ? baseStats.health
+          : parseNumeric(baseStats.health)) / 2
+      )
+    : baseStats.health;
 
   // Prepara modificadores para cada stat
   const moveMods = {
@@ -258,6 +295,7 @@ export function getCombinedStats(
     mutations: mutationsModifiers.move,
     sacredMarks: sacredMarksModifiers.move,
     nurgleBlessings: nurgleBlessingsModifiers.move,
+    extraSpecialRules: extraSpecialRulesModifiers.move,
   };
 
   const fightMods = {
@@ -269,6 +307,7 @@ export function getCombinedStats(
     mutations: mutationsModifiers.fight,
     sacredMarks: sacredMarksModifiers.fight,
     nurgleBlessings: nurgleBlessingsModifiers.fight,
+    extraSpecialRules: extraSpecialRulesModifiers.fight,
   };
 
   const shootMods = {
@@ -280,6 +319,7 @@ export function getCombinedStats(
     mutations: mutationsModifiers.shoot,
     sacredMarks: sacredMarksModifiers.shoot,
     nurgleBlessings: nurgleBlessingsModifiers.shoot,
+    extraSpecialRules: extraSpecialRulesModifiers.shoot,
   };
 
   const armourMods = {
@@ -291,6 +331,7 @@ export function getCombinedStats(
     mutations: mutationsModifiers.armour,
     sacredMarks: sacredMarksModifiers.armour,
     nurgleBlessings: nurgleBlessingsModifiers.armour,
+    extraSpecialRules: extraSpecialRulesModifiers.armour,
   };
 
   const vontadeMods = {
@@ -302,6 +343,7 @@ export function getCombinedStats(
     mutations: mutationsModifiers.Vontade,
     sacredMarks: sacredMarksModifiers.Vontade,
     nurgleBlessings: nurgleBlessingsModifiers.Vontade,
+    extraSpecialRules: extraSpecialRulesModifiers.Vontade,
   };
 
   const healthMods = {
@@ -313,6 +355,7 @@ export function getCombinedStats(
     mutations: mutationsModifiers.health,
     sacredMarks: sacredMarksModifiers.health,
     nurgleBlessings: nurgleBlessingsModifiers.health,
+    extraSpecialRules: extraSpecialRulesModifiers.health,
   };
 
   const strengthBaseValue =
@@ -326,6 +369,7 @@ export function getCombinedStats(
     mutations: mutationsModifiers.strength,
     sacredMarks: sacredMarksModifiers.strength,
     nurgleBlessings: nurgleBlessingsModifiers.strength,
+    extraSpecialRules: extraSpecialRulesModifiers.strength,
   };
 
   // Helper para converter resultado para string se necessário (fight, shoot, Vontade são sempre string)
@@ -340,7 +384,7 @@ export function getCombinedStats(
     shoot: toStatString(calculateStatValue(baseStats.shoot, shootMods)),
     armour: calculateStatValue(baseArmourValue, armourMods) as number | string,
     Vontade: toStatString(calculateStatValue(baseStats.Vontade, vontadeMods)),
-    health: calculateStatValue(baseStats.health, healthMods) as number | string,
+    health: calculateStatValue(baseHealthValue, healthMods) as number | string,
     strength: calculateStatValue(strengthBaseValue, strengthMods) as
       | number
       | string,

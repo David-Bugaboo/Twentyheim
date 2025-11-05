@@ -18,6 +18,7 @@ import BlessingsOfNurglePicker from "./BlessingsOfNurglePicker";
 import type { SpecialAbilityInstance } from "./SpecialAbilitiesPicker";
 import AdvancementsPicker from "./AdvancementsPicker";
 import InjuriesPicker from "./InjuriesPicker";
+import TzeentchGiftsPicker, { TZEENTCH_GIFTS } from "./TzeentchGiftsPicker";
 import EquipmentManager from "./EquipmentManager";
 import {
   type UnitStats,
@@ -43,6 +44,7 @@ import {
   calculateAdvancementModifiers,
   calculateInjuryModifiers,
   calculateSkillModifiers,
+  calculateExtraSpecialRulesModifiers,
 } from "../pages/warband-builder/roster/helpers/warbandCalculations.helpers";
 
 export interface AttributeBreakdown {
@@ -260,6 +262,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
   const navigate = useNavigate();
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [showPurchasables, setShowPurchasables] = useState<boolean>(false);
+  const [isTzeentchCollapsed, setIsTzeentchCollapsed] = useState(true);
 
   // Helper: rota da tradição para a página de magia
   const getLoreRoute = useCallback((traditionName: string): string => {
@@ -1319,6 +1322,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     const mutations = (figure?.mutations || []) as any[];
     const sacredMarks = (figure?.sacredMarks || []) as any[];
     const nurgleBlessings = (figure?.nurgleBlessings || []) as any[];
+    const extraSpecialRules = (figure?.extraSpecialRules || []) as string[];
 
     const advancementModifiers = calculateAdvancementModifiers(advancements);
     const injuryModifiers = calculateInjuryModifiers(injuries);
@@ -1335,6 +1339,8 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       nurgleBlessings,
       blessingBaseMap
     );
+    const extraSpecialRulesModifiers =
+      calculateExtraSpecialRulesModifiers(extraSpecialRules);
 
     // Misc modifiers vêm do campo miscModifiers (ainda existe para edição manual)
     const miscModifiers = (figure?.miscModifiers as any) || {
@@ -1356,6 +1362,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       mutations: mutationsModifiers,
       sacredMarks: sacredMarksModifiers,
       nurgleBlessings: nurgleBlessingsModifiers,
+      extraSpecialRules: extraSpecialRulesModifiers,
     };
   }, [
     figure?.advancements,
@@ -1364,6 +1371,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     figure?.mutations,
     figure?.sacredMarks,
     figure?.nurgleBlessings,
+    figure?.extraSpecialRules,
     figure?.miscModifiers,
     mutationBases.data,
     sacredMarkBases.data,
@@ -2106,11 +2114,43 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       baseValue = (actualBaseStats as any)?.[stat];
     }
 
-    // Marca de Tepok: Se for armour e tiver a marca, substitui base por 14
+    // Overrides de base: Tepok e regras extras
     if (stat === "armour") {
       const sacredMarks = (figure?.sacredMarks || []) as any[];
-      if (hasTepokMark(sacredMarks)) {
-        baseValue = 14;
+      const hasTepok = hasTepokMark(sacredMarks);
+      const rules = ((figure?.extraSpecialRules || []) as string[]).map(r =>
+        String(r || "").toLowerCase()
+      );
+      const hasCarneObsidiana = rules.some(
+        r =>
+          r.includes("carne-de-obsidiana") ||
+          r.includes("carne de obsidiana") ||
+          r.includes("corpo de obsidiana") ||
+          r.includes("corpo-de-obsidiana")
+      );
+      const hasOssosObsidiana = rules.some(
+        r =>
+          r.includes("ossos de obsidiana") || r.includes("ossos-de-obsidiana")
+      );
+      if (hasCarneObsidiana) baseValue = 14;
+      else if (hasOssosObsidiana) baseValue = 8;
+      else if (hasTepok) baseValue = 14;
+    }
+
+    if (stat === "health") {
+      const rules = ((figure?.extraSpecialRules || []) as string[]).map(r =>
+        String(r || "").toLowerCase()
+      );
+      const hasCarneObsidiana = rules.some(
+        r =>
+          r.includes("carne-de-obsidiana") ||
+          r.includes("carne de obsidiana") ||
+          r.includes("corpo de obsidiana") ||
+          r.includes("corpo-de-obsidiana")
+      );
+      if (hasCarneObsidiana && !isDashValue(baseValue)) {
+        const numeric = Number(baseValue || 0);
+        baseValue = Math.ceil(numeric / 2);
       }
     }
 
@@ -2163,6 +2203,11 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
         stat as keyof typeof calculatedModifiers.equipment
       ] || 0
     );
+    const extraRulesMod = Number(
+      (calculatedModifiers as any).extraSpecialRules?.[
+        stat as keyof typeof calculatedModifiers.equipment
+      ] || 0
+    );
 
     // Soma todos os modificadores extras no misc para exibição
     const totalMisc =
@@ -2171,7 +2216,8 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       mutationsMod +
       sacredMarksMod +
       nurgleBlessingsMod +
-      equipmentMod;
+      equipmentMod +
+      extraRulesMod;
 
     // Equipment será calculado dinamicamente na renderização, não aqui
     return { base: b, advancement: adv, injury: inj, misc: totalMisc };
@@ -2347,6 +2393,8 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
             );
           })()}
 
+          {/* Dádivas de Tzeentch - seção própria, logo abaixo de Ferimentos */}
+
           {/* Campo de notas */}
           {(() => {
             const displayRole = actualRole || role;
@@ -2516,7 +2564,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   <div className="flex items-center gap-2 mb-3">
                     <button
                       onClick={() => rollSurvival()}
-                      className="flex items-center gap-2 px-4 py-2 rounded bg-[#4a1a1a] hover:bg-[#5a2a2a] border border-red-600 text-white text-sm font-semibold transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 rounded bg-[#2a1a4a] hover:bg-[#3a2a5a] border border-purple-600 text-white text-sm font-semibold transition-colors"
                     >
                       <svg className="w-5 h-5" viewBox="-16 0 512 512">
                         <path
@@ -2656,6 +2704,110 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
               </div>
             );
           })()}
+
+          <div className="mb-6">
+            <div
+              className="flex items-center justify-between cursor-pointer hover:bg-[#252525] transition-colors p-2 rounded"
+              onClick={() => setIsTzeentchCollapsed(!isTzeentchCollapsed)}
+            >
+              <h4 className="text-lg font-bold" style={{ color: "#8fbc8f" }}>
+                DÁDIVAS DE TZEENTCH
+              </h4>
+              <button
+                className="text-white text-lg transition-transform"
+                style={{
+                  transform: isTzeentchCollapsed
+                    ? "rotate(0deg)"
+                    : "rotate(180deg)",
+                }}
+              >
+                ▼
+              </button>
+            </div>
+            {!isTzeentchCollapsed && (
+              <>
+                <div className="mt-4 bg-[#2a2a2a] p-4 rounded">
+                  {(() => {
+                    const extraRules = ((figure?.extraSpecialRules || []) as string[]).map(r => String(r));
+                    const selectedGifts = TZEENTCH_GIFTS.filter(g =>
+                      extraRules.some(r => r.toLowerCase() === g.name.toLowerCase())
+                    );
+
+                    const selectedGiftIds = selectedGifts.map(g => g.id);
+                    const remainingPool = TZEENTCH_GIFTS.filter(
+                      g => !selectedGiftIds.includes(g.id)
+                    );
+
+                    return (
+                      <>
+                        <div className="flex items-center gap-2 mb-3">
+                          <button
+                            onClick={() => {
+                              if (remainingPool.length === 0) return;
+                              const idx = Math.floor(Math.random() * remainingPool.length);
+                              const choice = remainingPool[idx];
+                              if (onAddSpecialRule) {
+                                onAddSpecialRule({
+                                  name: choice.name,
+                                  description: choice.description,
+                                });
+                              }
+                            }}
+                            className="flex items-center gap-2 px-4 py-2 rounded bg-[#4a1a1a] hover:bg-[#5a2a2a] border border-red-600 text-white text-sm font-semibold transition-colors"
+                          >
+                            <svg className="w-5 h-5" viewBox="-16 0 512 512">
+                              <path
+                                fill="currentColor"
+                                d="M106.75 215.06L1.2 370.95c-3.08 5 .1 11.5 5.93 12.14l208.26 22.07-108.64-190.1zM7.41 315.43L82.7 193.08 6.06 147.1c-2.67-1.6-6.06.32-6.06 3.43v162.81c0 4.03 5.29 5.53 7.41 2.09zM18.25 423.6l194.4 87.66c5.3 2.45 11.35-1.43 11.35-7.26v-65.67l-203.55-22.3c-4.45-.5-6.23 5.59-2.2 7.57zm81.22-257.78L179.4 22.88c4.34-7.06-3.59-15.25-10.78-11.14L17.81 110.35c-2.47 1.62-2.39 5.26.13 6.78l81.53 48.69zM240 176h109.21L253.63 7.62C250.5 2.54 245.25 0 240 0s-10.5 2.54-13.63 7.62L130.79 176H240zm233.94-28.9l-76.64 45.99 75.29 122.35c2.11 3.44 7.41 1.94 7.41-2.1V150.53c0-3.11-3.39-5.03-6.06-3.43zm-93.41 18.72l81.53-48.7c2.53-1.52 2.6-5.16.13-6.78l-150.81-98.6c-7.19-4.11-15.12 4.08-10.78 11.14l79.93 142.94zm79.02 250.21L256 438.32v65.67c0 5.84 6.05 9.71 11.35 7.26l194.4-87.66c-4.03-1.97 2.25-8.06-2.2-7.56zm-86.3-200.97l-108.63 190.1 208.26-22.07c5.83-.65 9.01-7.14 5.93-12.14L373.25 215.06zM240 208H139.57L240 383.75 340.43 208H240z"
+                              />
+                            </svg>
+                            Rolar Dádiva
+                          </button>
+                        </div>
+
+                        {/* Lista de dádivas já adicionadas */}
+                        {selectedGifts.length > 0 && (
+                          <div className="space-y-2 mb-3">
+                            {selectedGifts.map(g => (
+                              <div key={g.id} className="flex items-start justify-between gap-3 border border-gray-700 rounded p-2 bg-[#1a1a1a]">
+                                <div>
+                                  <div className="font-semibold" style={{ color: "#8fbc8f" }}>{g.name}</div>
+                                  {g.description && (
+                                    <div className="text-sm text-gray-300">{g.description}</div>
+                                  )}
+                                </div>
+                                {_onRemoveSpecialRule && (
+                                  <button
+                                    className="px-2 py-1 rounded bg-red-600 hover:bg-red-700 text-white text-xs"
+                                    onClick={() => _onRemoveSpecialRule(g.name)}
+                                  >
+                                    Remover
+                                  </button>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* Picker */}
+                        <TzeentchGiftsPicker
+                          selected={selectedGiftIds}
+                          onAdd={gift => {
+                            if (onAddSpecialRule) {
+                              onAddSpecialRule({
+                                name: gift.name,
+                                description: gift.description || "",
+                              });
+                            }
+                          }}
+                        />
+                      </>
+                    );
+                  })()}
+                </div>
+              </>
+            )}
+          </div>
 
           {/* Content */}
           <div className="pt-6 pb-6 border-t border-gray-600 mt-4">
@@ -3497,6 +3649,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                       })
                       .filter(Boolean);
                   })()}
+                  figureInjuries={((figure as any)?.injuries || []) as any}
                 />
               </>
             )}
@@ -3756,6 +3909,10 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                   calculatedModifiers.equipment[
                     editingStat as keyof typeof calculatedModifiers.equipment
                   ] || 0;
+                const extraRulesMod =
+                  (calculatedModifiers as any).extraSpecialRules?.[
+                    editingStat as keyof typeof calculatedModifiers.equipment
+                  ] || 0;
 
                 // Calcula bônus de "Lutar com duas armas" separadamente para exibir no modal
                 let twoWeaponsBonus = 0;
@@ -3860,6 +4017,10 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                       value={nurgleBlessingsMod}
                     />
                     <ModifierRow label="Equipamentos" value={equipmentMod} />
+                    <ModifierRow
+                      label="Regras Especiais"
+                      value={extraRulesMod}
+                    />
                     {twoWeaponsBonus > 0 && (
                       <ModifierRow
                         label="Lutar com duas armas"
@@ -3875,6 +4036,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                       sacredMarksMod === 0 &&
                       nurgleBlessingsMod === 0 &&
                       equipmentMod === 0 &&
+                      extraRulesMod === 0 &&
                       twoWeaponsBonus === 0 && (
                         <div className="text-xs text-gray-500 text-center py-2">
                           Nenhum modificador calculado
@@ -4024,6 +4186,10 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                         calculatedModifiers.equipment[
                           editingStat as keyof typeof calculatedModifiers.equipment
                         ] || 0;
+                      const extraRulesMod =
+                        (calculatedModifiers as any).extraSpecialRules?.[
+                          editingStat as keyof typeof calculatedModifiers.equipment
+                        ] || 0;
 
                       const totalMods =
                         advMod +
@@ -4033,6 +4199,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                         sacredMarksMod +
                         nurgleBlessingsMod +
                         equipmentMod +
+                        extraRulesMod +
                         twoWeaponsBonusForTotal + // Bônus de lutar com duas armas
                         tempModifiers.misc; // Usa misc do estado temporário
                       return totalMods > 0 ? `+${totalMods}` : `${totalMods}`;

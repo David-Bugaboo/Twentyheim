@@ -89,6 +89,8 @@ export const JSON_FILE_MAP = {
     import("../pages/spells/data/rituals-of-nurgle.json"),
   "dark-god-invocations": () =>
     import("../pages/spells/data/dark-god-invocations.json"),
+  "gifts-of-tzeench": () =>
+    import("../pages/spells/data/gifts-of-tzeench.json"),
 
   // Skills
   combate: () =>

@@ -58,6 +58,7 @@ export interface EquipmentManagerProps {
     base_sacred_mark_id?: string;
     base_id?: string;
   }>; // figure.sacredMarks para verificar marcas sagradas especiais
+  figureInjuries?: Array<{ name?: string }>; // figure.injuries para regras que afetam mãos
 }
 
 const EquipmentManager: React.FC<EquipmentManagerProps> = ({
@@ -83,6 +84,7 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
   figureSkills,
   figureMutations,
   figureSacredMarks,
+  figureInjuries,
 }) => {
   // Regras antigas de permissão foram removidas: qualquer item do cofre pode ser equipado
 
@@ -522,6 +524,23 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
               const handState = getHandState();
               // Verifica se tem Garra Colossal para bloquear equipamentos
               const hasGiantClaw = hasGiantClawMutation(figureMutations || []);
+              // Verifica ferimento de antebraço esmagado para aplicar mesma regra
+              const hasCrushedForearm = (() => {
+                const injuries = figureInjuries || [];
+                return injuries.some((inj: any) => {
+                  const n = String(inj?.name || inj || "").toLowerCase();
+                  const hasForearm =
+                    n.includes("antebraço") ||
+                    n.includes("antebraco") ||
+                    n.includes("ante-braço") ||
+                    n.includes("ante-braco") ||
+                    n.includes("ante braço") ||
+                    n.includes("ante braco");
+                  const hasCrush = n.includes("esmag") || n.includes("esmigalh");
+                  return hasForearm && hasCrush;
+                });
+              })();
+              const offhandDisabled = hasGiantClaw || hasCrushedForearm;
               return (equippedItems || []).map((it, idx) => {
                 // NOVA ARQUITETURA: usa base e modifier resolvidos (vindo do RosterUnitCard)
                 const baseEquipment = (it as any)?.base;
@@ -666,7 +685,7 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
                 let canEquipToSecondaryHand = false;
 
                 // Com Garra Colossal, NADA pode ir na mão secundária (a garra ocupa esse espaço)
-                if (hasGiantClaw) {
+                if (offhandDisabled) {
                   canEquipToSecondaryHand = false;
                 }
                 // ESCUDOS: sempre podem ir na mão secundária (exceto se houver arma de duas mãos)
@@ -953,7 +972,7 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
                         !handState.hasTwoHandedWeapon &&
                         !isInPrimaryHand &&
                         !isInSecondaryHand &&
-                        !hasGiantClaw && // Bloqueia se tiver Garra Colossal (não pode usar duas mãos)
+                        !offhandDisabled && // Bloqueia se offhand estiver desabilitada (não pode usar duas mãos)
                         onEquipToPrimaryHand && (
                           <button
                             onClick={() =>
@@ -983,9 +1002,8 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
                         !isInSecondaryHand &&
                         onEquipToPrimaryHand && (
                           <>
-                            {/* Botão duas mãos só aparece se NÃO tiver Garra Colossal */}
-                            {/* Com Garra Colossal, não pode equipar com duas mãos (a garra ocupa a mão secundária) */}
-                            {!handState.hasTwoHandedWeapon && !hasGiantClaw && (
+                            {/* Botão duas mãos só aparece se NÃO estiver com offhand desabilitada */}
+                            {!handState.hasTwoHandedWeapon && !offhandDisabled && (
                               <button
                                 onClick={() =>
                                   onEquipToPrimaryHand?.(
@@ -1001,9 +1019,9 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
                               </button>
                             )}
                             {/* Botão mão principal */}
-                            {/* Com Garra Colossal: sempre mostra (modo uma mão) */}
+                            {/* Com offhand desabilitada: sempre mostra (modo uma mão) */}
                             {/* Sem Garra Colossal: mostra se não tiver nada na mão primária e não tiver conflito */}
-                            {(hasGiantClaw ||
+                            {(offhandDisabled ||
                               (!handState.hasMainHandItem &&
                                 !(
                                   handState.hasLightWeaponInOffHand &&
@@ -1018,11 +1036,7 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
                                   )
                                 }
                                 className="px-2 py-1 rounded bg-green-600 hover:bg-green-700 text-white text-xs"
-                                title={
-                                  hasGiantClaw
-                                    ? "Equipar na mão principal (Garra Colossal: só pode equipar armas na mão primária)"
-                                    : "Equipar na mão principal (será desequipada se outra arma for equipada na mão secundária)"
-                                }
+                                title={"Equipar na mão principal"}
                               >
                                 Equipar (Mão Principal)
                               </button>
@@ -1040,7 +1054,7 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
                         !handState.hasTwoHandedWeapon &&
                         !handState.hasOffHandItem &&
                         !isInSecondaryHand &&
-                        !hasGiantClaw && // Bloqueia se tiver Garra Colossal
+                        !offhandDisabled && // Bloqueia se offhand estiver desabilitada
                         onEquipToSecondaryHand && (
                           <button
                             onClick={() =>
@@ -1091,7 +1105,7 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
                         // Com Garra Colossal, sempre pode equipar na primária (a garra ocupa a secundária, mas não a primária)
                         // Sem Garra Colossal: todas as armas (normais, leves, pistolas) podem ir na primária
                         // Bloqueia apenas desbalanceadas se tem leve na secundária
-                        (hasGiantClaw
+                        (offhandDisabled
                           ? true // Com Garra Colossal, todas as armas podem ir na primária
                           : !(
                               handState.hasLightWeaponInOffHand &&
@@ -1108,8 +1122,8 @@ const EquipmentManager: React.FC<EquipmentManagerProps> = ({
                             }
                             className="px-2 py-1 rounded bg-green-600 hover:bg-green-700 text-white text-xs"
                             title={
-                              hasGiantClaw
-                                ? "Equipar na mão primária (Garra Colossal: só pode equipar armas na mão primária)"
+                              offhandDisabled
+                                ? "Equipar na mão primária (mão secundária indisponível)"
                                 : "Equipar na mão primária"
                             }
                           >

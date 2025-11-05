@@ -61,10 +61,30 @@
       "upkeep": "1 Pedra-bruxa",
       "skills": ["Força", "Combate"]
     },
+    "naturalAttacks": [
+      {
+        "name": "Espancamento",
+        "damage": "+2",
+        "type": "Ataque Corpo a Corpo",
+        "specialRules": []
+      },
+      {
+        "name": "Lançador de Chamas Corrompidas",
+        "damage": "+2",
+        "range": "especial",
+        "type": "Ataque a Distância",
+        "specialRules": [
+          {
+            "label": "Lança-Chamas",
+            "value": "Posicione uma Área de Efeito(Cone). Todas as figuras na Área de Efeito recebem um ataque flamejante +2 com a característica Incendiária(5) e Penenetração de Armadura(3). Se dois ou mais números iguais forem rolados nas rolagens de ataque, o Rato Ogróide do Clã Skyre também sofre esse ataque e não pode mais disparar a arma até o fim do jogo."
+          }
+        ]
+      }
+    ],
     "abilities": [
       {
         "name": "Grande",
-        "description": "O Rato Ogróide do Clã Skyre tem as características Grande, Voraz, Aterrorizante e Construto."
+        "description": "O Rato Ogróide do Clã Skyre tem as características Grande, Aterrorizante e Construto."
       },
       {
         "name": "Aterrorizante",
@@ -77,10 +97,6 @@
       {
         "name": "Máquina Pesada",
         "description": "Não pode correr."
-      },
-      {
-        "name": "Lançador de Chamas Corrompidas",
-        "description": "O Rato Ogróide do Clã Skyre pode como uma ação de ataque a distância disparar seu lançador de chamas corrompidas montado em seu braço. Posiciona uma Área de Efeito(Cone). Todas as figuras na Área de Efeito recebem um ataque flamejante +2 com a característica Incendiária(5). Se quaisquer dois números iguais foram rolados nesses ataques, a palavra Falha na Ignição é desencadeada."
       },
       {
         "name": "Sem Experiência",
@@ -219,7 +235,7 @@
       },
       {
         "name": "Explorador",
-        "description": "Quando o patrulheiro elfo é escolhido para a atividade de Explorar as Ruínas, ele pode modificar seu dado de exploração em até +3/-3."
+        "description": "O Patrulheiro Elfo pode ser enviado para a atividade de Explorar as Ruínas, como se fosse um héroi. Quando o patrulheiro elfo é escolhido para a atividade de Explorar as Ruínas, ele pode modificar seu dado de exploração em até +3/-3."
       },
       {
         "name": "Visão Excelente",
@@ -238,7 +254,7 @@
       "Mortos-Vivos",
       "Orcs & Goblins",
       "Possuídos",
-      "Carnaval do Caos"
+      "Circo do Caos"
     ],
     "exclusions": ["Skaven"],
     "qualidade": 18,
@@ -475,7 +491,7 @@
       "cost": "30 coroas",
       "upkeep": "15 coroas",
       "skills": ["Acadêmico"],
-      "mercEquipment": ["Cajado"]
+      "mercEquipment": ["Maça"]
     },
     "spellAffinity": {
       "aligned0": ["Magia Inferior"]
@@ -507,7 +523,8 @@
       "health": 10,
       "cost": "20 coroas",
       "upkeep": "10 coroas",
-      "skills": ["Acadêmico", "Agilidade"]
+      "skills": ["Acadêmico", "Agilidade"],
+      "mercEquipment": ["Espada", "Adaga", "Armadura Leve"]
     },
     "abilities": [
       {
@@ -537,7 +554,8 @@
       "strength": "+1",
       "cost": "60 coroas",
       "upkeep": "40 coroas",
-      "skills": ["Combate", "Força"]
+      "skills": ["Combate", "Força"],
+      "mercEquipment": ["Armadura Pesada", "Elmo", "Arma de Duas Mãos"]
     },
     "abilities": [
       {
@@ -550,7 +568,7 @@
       },
       {
         "name": "Equipamento",
-        "description": "O Supervisor Orc Negro usa Armadura Pesada e Elmo. Ele pode escolher entre um Machado e Adaga ou uma Arma de Duas Mãos."
+        "description": "O Supervisor Orc Negro usa Armadura Pesada, Elmo e uma Arma de Duas Mãos."
       }
     ]
   },
@@ -571,7 +589,8 @@
       "strength": "+1",
       "cost": "70 coroas",
       "upkeep": "12 coroas",
-      "skills": ["Atirador", "Agilidade"]
+      "skills": ["Atirador", "Agilidade"],
+      "mercEquipment": ["Adaga", "Zarabatana", "Bróquel"]
     },
     "abilities": [
       {
