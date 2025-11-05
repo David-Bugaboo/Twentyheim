@@ -17,6 +17,7 @@
       "equipmentSlots": 5
     },
     "quantity": "1",
+    "race": "Humanos",
     "abilities": [
       {
         "name": "Líder",
@@ -121,6 +122,7 @@
       "equipmentSlots": 5
     },
     "quantity": "0-1",
+    "race": "Humanos",
     "spellAffinity": {
       "aligned0": ["Orações de Sigmar"]
     },
@@ -224,6 +226,7 @@
       "equipmentSlots": 5
     },
     "quantity": "0-2",
+    "race": "Humanos",
     "abilities": [
       {
         "name": "Queimem a Bruxa!",
@@ -321,6 +324,7 @@
       "equipmentSlots": 5
     },
     "quantity": "ilimitado",
+    "race": "Humanos",
     "abilities": [],
     "equipment": {
       "hand-to-hand": [
@@ -409,6 +413,7 @@
       "equipmentSlots": 5
     },
     "quantity": "0-5",
+    "race": "Humanos",
     "abilities": [
       {
         "name": "Determinação Fanática",

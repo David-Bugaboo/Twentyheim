@@ -27,7 +27,7 @@
     "id": "cascudo",
     "name": "CASCUDO!",
     "type": "Hordas Orc",
-    "description": "A figura com essa habilidade ganha +1 no atributo Armadura, e aumenta seu limite racial de Armadura em 1."
+    "description": "A figura com essa habilidade ganha +1 no atributo Armadura."
   },
   {
     "id": "quebra-cuca",

@@ -8,7 +8,7 @@ import HeaderH3 from "../../components/HeaderH3";
 import GenericTable from "../../components/GenericTable";
 
 function ExperienceRollPage() {
-  const raceLimits = [
+   const raceLimits = [
     {
       Raça: "Humanos",
       Mov: "20",

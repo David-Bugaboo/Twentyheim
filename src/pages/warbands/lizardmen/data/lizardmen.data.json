@@ -5,6 +5,7 @@
     "lore": "O líder de um bando de Reptilianos será um dos Magisacerdotes Gecko selecionados a dedo, renomados por sua confiabilidade. A natureza de sua missão é observar os saqueadores de pele seca e tentar obter fragmentos de pedra-bruxa sem conflito se possível. O Magisacerdote Gecko deve ser capaz de tomar a decisão delicada de quando atacar e quando não atacar. Magisacerdotes Gecko são facilmente reconhecíveis, pois pintam sua pele com símbolos místicos coloridos associados ao seu deus. Sacerdotes de Chotec, por exemplo, têm serpentes aladas desenhadas em seus corpos, enquanto os de Sotek usam tatuagens de víboras verdes.",
     "role": "Líder",
     "quantity": "1",
+    "race": "Gecko",
     "stats": {
       "move": 16,
       "fight": "+1",
@@ -91,6 +92,7 @@
     "lore": "Quando um guerreiro Sáurio matou vinte inimigos, ele é aceito em um dos três Totens de Guerreiro: Águia, Onça ou Jacaré. Ele então deve ir e matar o animal de seu novo Totem para provar seu valor na Ordem dos Guerreiros Totêmicos. Ao atingir o status de Guerreiro Totêmico, ele é recrutado pelos Magisacerdotes Gecko para participar de incursões nas ruínas da cidade dos condenados.",
     "role": "Herói",
     "quantity": "0-1",
+    "race": "Sáurio",
     "stats": {
       "move": 9,
       "fight": "+2",
@@ -178,6 +180,7 @@
     "lore": "Cristas Altas, como são conhecidos, são líderes de muitos grupos de ataque e se tornaram hábeis em reconhecimento, rastreamento, emboscadas e escaramuças. Sua pele é mais variada em cor do que os Geckos normais, então eles se misturam com qualquer ambiente de forma mais eficaz. Eles também usam folhas ou se cobrem de lama para se misturar com entulho e os jardins mortos dos nobres de Mordheim. Eles atuam como líderes e patrulham as ruínas, reportando qualquer movimentação estranha para seu magisacerdote.",
     "role": "Herói",
     "quantity": "0-2",
+    "race": "Gecko",
     "stats": {
       "move": 16,
       "fight": "+1",
@@ -252,6 +255,7 @@
     "name": "Batedor Gecko",
     "lore": "Geckos são rápidos, ágeis e inteligentes. Embora careçam da força bruta e agressão total dos Sáurios, são bons em disparar saraivadas de flechas ou javelins. Eles também dispensar a durabilidade dos seus primos maiores em troca de uma astúcia e agilidade que permite surpreender seus inimigos em posiçòes desvantajosas.",
     "quantity": "ilimitado",
+    "race": "Gecko",
     "stats": {
       "move": 16,
       "fight": "0",
@@ -319,6 +323,7 @@
     "name": "Sáurio Veterano",
     "lore": "Sáurios têm peles grossas, córneas e escamosas que os protegem como armadura natural. Sáurios são suficientemente inteligentes para entender comandos claros e simples. São guerreiros excelentes, mas não são muito bons em mais nada. São criaturas extremamente teimosas e muito difíceis de incapacitar. São criaturas muito ferozes e atacarão um inimigo até a aniquilação total.",
     "quantity": "1-5",
+    "race": "Sáurio",
     "stats": {
       "move": 8,
       "fight": "+2",

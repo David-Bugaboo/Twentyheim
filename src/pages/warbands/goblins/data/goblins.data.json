@@ -5,6 +5,7 @@
     "lore": "Goblins  são geralmente liderados pelo Ghefim Goblin, o mais forte  astuto do bando. Este Chefe rotineiramente encontra maneiras de expulsar outros goblins da sua pilha de saque e coletar ouro para Mork e Gork.",
     "role": "Líder",
     "quantity": "1",
+    "race": "Goblin",
     "stats": {
       "move": 11,
       "fight": "+1",
@@ -106,6 +107,7 @@
     "lore": "Xamãs usam o poder do Waaagh para direcionar a força de Padim Gork e Padim Mork contra seus inimigos. Geralmente encontrados procurando misteriosas partes de animais ao invés de ouro, a maioria dos outros Goblins concorda que 'os cabra são abestado'.",
     "role": "Herói",
     "quantity": "0-1",
+    "race": "Goblin",
     "stats": {
       "move": 11,
       "fight": "0",
@@ -206,6 +208,7 @@
     "lore": "As cavernas onde esses goblins vivem são ricas em várias formas de fungos. Os goblins conseguem fazer uso destes e até cultivar alguns deles. Os mais conhecidos são os cogumelos Chapéu-da-Morte. Estes levam qualquer um que os coma a uma fúria de batalha espumante. Alguns dos Goblins são deliberadamente alimentados com grandes quantidades de cogumelos Chapéu-da-Morte para transformá-los em máquinas de matar enlouquecidas. Frequentemente vistos em campos de batalha abertos empunhando uma enorme bola e corrente, eles optaram por usá-las até mesmo nos corredores apertados de Mordheim.",
     "role": "Herói",
     "quantity": "0-4",
+    "race": "Goblin",
     "stats": {
       "move": 10,
       "fight": "0",
@@ -299,6 +302,7 @@
     "name": "Guerreiro Goblin",
     "lore": "Guerreiros Goblin formam a linha de frente de um bando desses pequenos oele-verde. Eles usam seus talentos naturais para perturbar seus inimigos enquanto se escondem nos entulhos da cidade.",
     "quantity": "ilimitado",
+    "race": "Goblin",
     "stats": {
       "move": 10,
       "fight": "0",
@@ -366,6 +370,7 @@
     "name": "Goblin dos Dente Vermeio",
     "lore": "De todas as várias facções que compõem a não muito complexa civilização Goblin, a infame tribo dos Dente Vermeio é a mais temida. São tropas de choque de elite, valorizadas pelos Chefins por sua fúria cega em batalha.",
     "quantity": "0-5",
+    "race": "Goblin",
     "stats": {
       "move": 10,
       "fight": "0",
@@ -437,6 +442,7 @@
     "name": "Joga-Predas",
     "lore": "Joga-Pedras praticam a arte de arremessar vários objetos até que possam lançar vários projéteis em uma fração de segundo. Isso os torna úteis para distrair inimigos com uma saraivada de armas de arremesso. ",
     "quantity": "0-5",
+    "race": "Goblin",
     "stats": {
       "move": 10,
       "fight": "0",

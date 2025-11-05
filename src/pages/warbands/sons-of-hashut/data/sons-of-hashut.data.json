@@ -4,6 +4,7 @@
     "name": "Feiticeiro Aprendiz",
     "lore": "Tendo servido um dos poderosos senhores feiticeiros de Zharr-Naggrund, os aprendizes estão ansiosos para provar seu valor e conhecimento nas ruas selvagens de Mordheim. Sua única ambição é alcançar o nível de seus mestres.",
     "role": "Líder",
+    "race": "Anão",
     "stats": {
       "move": 8,
       "fight": "+2",
@@ -116,6 +117,7 @@
     "name": "Centouro de Hashut",
     "lore": "Os Centouros são os escolhidos de Hashut e são famosos por serem adversários absolutamente implacáveis. É considerada um grande privilégio ter um Centouro em seu bando.",
     "role": "Herói",
+    "race": "Centouro de Hashut",
     "stats": {
       "move": 18,
       "fight": "+3",
@@ -218,6 +220,7 @@
     "name": "Campeão Anão do Caos",
     "lore": "Estes são os guerreiros favorecidos pelos aprendizes dos feiticeiros e as bençãos de Hashut. Eles são excelentes lutadores e feitores confiáveis para seus escravos.",
     "role": "Herói",
+    "race": "Anão",
     "stats": {
       "move": 7,
       "fight": "+3",
@@ -328,6 +331,7 @@
       "equipmentSlots": 4
     },
     "quantity": "4+",
+    "race": "Goblin",
     "abilities": [
       {
         "name": "Covarde",
@@ -392,6 +396,7 @@
   {
     "id": "guarda-da-forja",
     "name": "Guarda da Forja",
+    "race": "Anão",
     "stats": {
       "move": 7,
       "fight": "+2",
@@ -489,6 +494,7 @@
   {
     "id": "quebra-hordas",
     "name": "Quebra-Hordas",
+    "race": "Anão",
     "stats": {
       "move": 7,
       "fight": "+2",

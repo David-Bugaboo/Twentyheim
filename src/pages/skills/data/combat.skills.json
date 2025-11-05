@@ -267,7 +267,7 @@
     "id": "pelo-emaranhado",
     "name": "Pelo Emaranhado",
     "type": "Saqueadores Homem-Fera",
-    "description": "A figura com essa habilidade ganha +1 no atributo Armadura, e aumenta seu limite racial de Armadura em 1."
+    "description": "A figura com essa habilidade ganha +1 no atributo Armadura."
   },
   {
     "id": "linhagem-corrompida",
@@ -381,7 +381,7 @@
     "id": "furia-carmesim",
     "name": "Fúria Carmesim",
     "type": "Habilidades de Dragão Carmesim",
-    "description": "A figura com essa habilidade ganha +1 no Atributo Ímpeto, e aumenta +1 no seu Limite racial de ímpeto."
+    "description": "A figura com essa habilidade ganha +1 no Atributo Ímpeto."
   },
   {
     "id": "perfurar-coração",
@@ -550,7 +550,7 @@
     "id": "cascudo",
     "name": "CASCUDO!",
     "type": "Hordas Orc",
-    "description": "A figura com essa habilidade ganha +1 no atributo Armadura, e aumenta seu limite racial de Armadura em 1."
+    "description": "A figura com essa habilidade ganha +1 no atributo Armadura."
   },
   {
     "id": "quebra-cuca",

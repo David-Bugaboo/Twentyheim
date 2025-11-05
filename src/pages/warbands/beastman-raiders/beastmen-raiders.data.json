@@ -4,6 +4,7 @@
     "name": "Chefe Tribal Homem-Fera",
     "lore": "O chefe de uma tribo de Homens-Fera ganhou sua posição através de pura brutalidade. Eles lidera os Homens-Fera para Mordheim para reunir energia e alimentar suas Pedra-Pastor.",
     "role": "Líder",
+    "race": "Gors",
     "quantity": "1",
     "stats": {
       "move": 14,
@@ -94,6 +95,7 @@
     "name": "Xamã Homem-Fera",
     "lore": "Xamãs dos Homens-Fera são profetas dos Deuses Sombrios, e os mais respeitados entre o seu tipo.",
     "role": "Herói",
+    "race": "Gors",
     "quantity": "0-1",
     "stats": {
       "move": 13,
@@ -191,6 +193,7 @@
     "name": "Bestigor",
     "lore": "Bestigors são o maior tipo de Homem-Fera, os grandes guerreiros chifrudos de suas tribos. São criaturas massivas com uma resistência inumana à dor.",
     "role": "Herói",
+    "race": "Gors",
     "quantity": "0-2",
     "stats": {
       "move": 13,
@@ -276,6 +279,7 @@
     "name": "Centigor",
     "lore": "Um Centigor é um cruzamento perturbador entre um cavalo ou boi e um Homem-Fera. Ser quadrúpede lhes concede grande força e velocidade, enquanto seus torsos humanoides superiores permitem que empunhem armas de maneira devastadora. Os Centigors são criaturas poderosas, mas são desajeitados ao navegar diferentes tipos de terrenos.",
     "role": "Herói",
+    "race": "Centigor",
     "quantity": "0-1",
     "stats": {
       "move": 19,
@@ -374,6 +378,7 @@
     "name": "Ungor",
     "lore": "Ungors são os mais numerosos dos Homens-Fera. São criaturas pequenas e rancorosas, mas perigosas quando atacam em bando.",
     "quantity": "ilimitado",
+    "race": "Ungor",
     "stats": {
       "move": 13,
       "fight": "+1",
@@ -435,6 +440,7 @@
     "name": "Gor",
     "lore": "Gors são quase tão numerosos quanto os Ungors, mas são maiores e mais brutais.",
     "quantity": "0-5",
+    "race": "Gors",
     "stats": {
       "move": 13,
       "fight": "+2",

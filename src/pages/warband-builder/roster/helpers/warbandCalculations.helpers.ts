@@ -220,9 +220,13 @@ export function calculateSkillModifiers(skills: any[]): {
       modifiers.armour += 1;
     }
 
-    // Fúria Carmesim: +2 de Ímpeto
-    if (name.includes("fúria carmesim") || name.includes("furia carmesim")) {
-      modifiers.fight += 2;
+    
+    if (
+      skillBaseId === "furia-carmesim" ||
+      name.includes("fúria carmesim") ||
+      name.includes("furia carmesim")
+    ) {
+      modifiers.fight += 1;
     }
 
     // Monstruosidade Massiva: +4 de vida
@@ -589,6 +593,10 @@ export function calculateExtraSpecialRulesModifiers(
 
   for (const rule of extraSpecialRules) {
     const name = String(rule || "").toLowerCase();
+    // Fúria Carmesim: +1 Ímpeto (caso venha como regra especial/ habilidade)
+    if (name.includes("fúria carmesim") || name.includes("furia carmesim")) {
+      modifiers.fight += 1;
+    }
 
     // Carne de cera: -1 Armadura
     if (name.includes("carne de cera") || name.includes("carne-de-cera")) {

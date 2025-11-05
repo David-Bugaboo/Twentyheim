@@ -5,6 +5,7 @@
     "lore": "Um Chefaum Orc é um guerreiro duro e brutal, que jogará seus cabras em qualquer luta que ele achar que pode lucrar. Ele é o mais forte, mais duro e mais bárbaro membro do bando e se algum de seus Mininos pensar o contrário, o bando logo pode se encontrar com um abestado a menos!",
     "role": "Líder",
     "quantity": "1",
+    "race": "Orc",
     "stats": {
       "move": 10,
       "fight": "+2",
@@ -114,6 +115,7 @@
     "lore": "Orc Véios são párias da sociedade Orc. Eles são abençoados pelos deuses Orc Gork e Mork com poderes que eles não conseguem nem entender nem controlar completamente. Muitos se juntam a bandos de Orc errantes onde não são mais rejeitados por suas habilidades, mas respeitados por elas.",
     "role": "Herói",
     "quantity": "0-1",
+    "race": "Orc",
     "stats": {
       "move": 9,
       "fight": "+1",
@@ -217,6 +219,7 @@
     "lore": "A sociedade Orc é uma hierarquia selvagem onde apenas os mais fortes sobrevivem e sobem na hierarquia (frequentemente por cima do cadáver de seus rivais). Grandões são estrelas em ascensão, cumprindo as ordens do Chefaum Orc. Se o Chefaum alguma vez cair, cabe a esses decidir sobre um novo líder (geralmente através de combate pessoal).",
     "role": "Herói",
     "quantity": "0-2",
+    "race": "Orc",
     "stats": {
       "move": 9,
       "fight": "+1",
@@ -311,6 +314,7 @@
     "name": "Minino Orc",
     "lore": "Os Mininos Orcs são selvagens e resistentes. Eles não temem nada que possam pegar com as próprias mãos, embora sejam ainda mais ignorantes e supersticiosos do que a maioria dos outros seres no velho-mundo. Eles formam o núcleo de qualquer bando de Orcs.",
     "quantity": "ilimitado",
+    "race": "Orc",
     "stats": {
       "move": 9,
       "fight": "+1",
@@ -408,6 +412,7 @@
     "name": "Goblin",
     "lore": "Goblins são frequentemente usados como bucha de canhão (bem como uma fonte de comida em tempos difíceis!) por seus primos Orcs maiores. Eles geralmente não são tão bem equipados quanto os Mininos Orcs, tendo que se contentar com o que os Orcs não querem ou não conseguem usar.",
     "quantity": "ilimitado",
+    "race": "Goblin",
     "stats": {
       "move": 9,
       "fight": "0",

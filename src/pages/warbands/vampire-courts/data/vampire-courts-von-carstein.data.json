@@ -25,6 +25,7 @@
       "equipmentSlots": 5
     },
     "quantity": "1",
+    "race": "Vampiro",
     "abilities": [
       {
         "name": "Líder",
@@ -138,6 +139,7 @@
       "equipmentSlots": 5
     },
     "quantity": "0-1",
+    "race": "Humanos",
     "spellAffinity": {
       "aligned0": ["Tradição da Necromancia"]
     },
@@ -231,6 +233,7 @@
   {
     "id": "escoria",
     "name": "Escória",
+    "race": "Humanos",
     "lore": "A Escória são os sobreviventes humanos mais miseráveis da destruição de Mordheim. Eles são indivíduos deformados e rejeitados, evitados até mesmo pelos outros homens e mulheres que ainda vivem nas ruínas e catacumbas da cidade. Os Vampiros frequentemente recrutam a Escória como seus servos e os tratam com surpreendente bondade. Como resultado, a Escória é frequentemente fanaticamente leal aos seus senhores Mortos-Vivos e fará qualquer coisa para protegê-los e servi-los. A Escória é muito útil para seus mestres, pois pode ser enviada para comprar equipamentos, armas e suprimentos dos assentamentos ao redor de Mordheim, que muitas vezes não receberiam Necromantes ou onde Vampiros seriam suspeitos dos Caçadores de Bruxas. Eles também podem fazer as vontades de seu mestre vampírico durante o dia, quando os Vampiros devem descansar em seus caixões.",
     "role": "Herói",
     "stats": {

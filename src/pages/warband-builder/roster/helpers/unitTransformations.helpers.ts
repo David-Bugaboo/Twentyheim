@@ -71,6 +71,7 @@ import {
   calculateSkillModifiers,
   calculateExtraSpecialRulesModifiers,
 } from "./warbandCalculations.helpers";
+import racialLimitsData from "../../../campanha/data/racial-limits.data.json";
 
 /**
  * Converte figures do warband para EditableUnit[] para renderização
@@ -149,7 +150,13 @@ export function getCombinedStats(
   const mutations = (figure?.mutations || []) as any[];
   const sacredMarks = (figure?.sacredMarks || []) as any[];
   const nurgleBlessings = (figure?.nurgleBlessings || []) as any[];
-  const extraSpecialRules = (figure?.extraSpecialRules || []) as string[];
+  const extraSpecialRules = (() => {
+    const base = (figure?.extraSpecialRules || []) as string[];
+    const abilityNames = ((figure?.abilities || []) as any[])
+      .map(a => a?.name || a)
+      .filter(Boolean) as string[];
+    return [...base, ...abilityNames];
+  })();
   const equipped = (figure?.equiped || []) as any[];
 
   const advancementsModifiers = calculateAdvancementModifiers(advancements);
@@ -204,7 +211,7 @@ export function getCombinedStats(
     extraSpecialRules
   );
 
-  // Calcula modificadores de equipamentos (armorBonus, movePenalty)
+  // Calcula modificadores de equipamentos (apenas penalidade de movimento de armaduras equipadas)
   const equipmentModifiers = (() => {
     const modifiers = {
       move: 0,
@@ -223,17 +230,21 @@ export function getCombinedStats(
       const baseData = equipmentBasesMap[baseId];
 
       if (baseData) {
-        // Armor bonus
-        const armorBonus = parseNumeric(
-          baseData.armorBonus || baseData.armourBonus || 0
-        );
-        modifiers.armour += armorBonus;
+        const cat = String(
+          baseData?.type || baseData?.category || item?.type || item?.category || ""
+        ).toLowerCase();
+        const isArmor =
+          cat === "armadura" || baseData?.type === "Armadura" || item?.type === "Armadura";
+        const isEquippedAsArmor = Boolean(item?.equippedAsArmor);
 
-        // Move penalty (já é negativo no JSON, então soma)
-        const movePenalty = parseNumeric(
-          baseData.movePenalty || baseData.penalidadeMovimento || 0
-        );
-        modifiers.move += movePenalty;
+        // Só aplica penalidade de movimento se for armadura e estiver equipada no corpo
+        if (isArmor && isEquippedAsArmor) {
+          const movePenalty = parseNumeric(
+            baseData.movePenalty || baseData.penalidadeMovimento || 0
+          );
+          modifiers.move += movePenalty;
+        }
+        // NÃO soma bônus de armadura aqui para evitar contagem dupla.
       }
     }
 
@@ -378,16 +389,69 @@ export function getCombinedStats(
     return String(value);
   };
 
+  // -------- Limites Raciais (cap) --------
+  type RacialLimitEntry = Record<string, string | number> & { [key: string]: any };
+
+  const getFigureRaceLabel = (): string => {
+    const race = (figure?.race || figure?.baseStats?.race || "").toString().trim();
+    if (race) return race;
+    return "Humanos";
+  };
+
+  const limitsEntry: RacialLimitEntry | undefined = (racialLimitsData as any[]).find(
+    (e: any) => e["Raça"] === getFigureRaceLabel()
+  );
+
+  const getLimitFor = (key: "Mov" | "Imp" | "Prec" | "Arm" | "Vont" | "Vida" | "For") => {
+    if (!limitsEntry) return undefined as number | undefined;
+    const v = limitsEntry[key];
+    const s = String(v ?? "").trim();
+    if (s === "-" || s === "—" || s.length === 0) return undefined;
+    return parseNumeric(v as any);
+  };
+
+  // Calcula valores brutos (sem cap ainda)
+  const moveRaw = calculateStatValue(baseStats.move, moveMods) as number | string;
+  const fightRaw = calculateStatValue(baseStats.fight, fightMods) as number | string;
+  const shootRaw = calculateStatValue(baseStats.shoot, shootMods) as number | string;
+  const armourRaw = calculateStatValue(baseArmourValue, armourMods) as number | string;
+  const vontadeRaw = calculateStatValue(baseStats.Vontade, vontadeMods) as number | string;
+  const healthRaw = calculateStatValue(baseHealthValue, healthMods) as number | string;
+  const strengthRaw = calculateStatValue(strengthBaseValue, strengthMods) as
+    | number
+    | string;
+
+  // Aplica cap (min) aos valores NÃO oriundos de equipamento
+  const moveCap = getLimitFor("Mov");
+  const fightCap = getLimitFor("Imp");
+  const shootCap = getLimitFor("Prec");
+  const armourCap = getLimitFor("Arm");
+  const vontadeCap = getLimitFor("Vont");
+  const healthCap = getLimitFor("Vida");
+  const strengthCap = getLimitFor("For");
+
+  const capNumber = (val: number | string, cap?: number): number | string => {
+    if (isDashValue(val) || cap == null) return val;
+    const n = typeof val === "number" ? val : parseNumeric(val);
+    return Math.min(n, cap);
+  };
+
+  const moveFinal = capNumber(moveRaw, moveCap);
+  const fightFinal = capNumber(fightRaw, fightCap);
+  const shootFinal = capNumber(shootRaw, shootCap);
+  const armourFinal = capNumber(armourRaw, armourCap);
+  const vontadeFinal = capNumber(vontadeRaw, vontadeCap);
+  const healthFinal = capNumber(healthRaw, healthCap);
+  const strengthFinal = capNumber(strengthRaw, strengthCap);
+
   return {
-    move: calculateStatValue(baseStats.move, moveMods) as number | string,
-    fight: toStatString(calculateStatValue(baseStats.fight, fightMods)),
-    shoot: toStatString(calculateStatValue(baseStats.shoot, shootMods)),
-    armour: calculateStatValue(baseArmourValue, armourMods) as number | string,
-    Vontade: toStatString(calculateStatValue(baseStats.Vontade, vontadeMods)),
-    health: calculateStatValue(baseHealthValue, healthMods) as number | string,
-    strength: calculateStatValue(strengthBaseValue, strengthMods) as
-      | number
-      | string,
+    move: moveFinal as number | string,
+    fight: toStatString(fightFinal),
+    shoot: toStatString(shootFinal),
+    armour: armourFinal as number | string,
+    Vontade: toStatString(vontadeFinal),
+    health: healthFinal as number | string,
+    strength: strengthFinal as number | string,
     cost: baseStats.cost || "-",
     startingXp: figure?.xp || baseStats.startingXp || 0,
     skills: figure?.availableSkills || baseStats.skills || [],

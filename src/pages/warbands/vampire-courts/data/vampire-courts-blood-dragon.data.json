@@ -25,6 +25,7 @@
       "equipmentSlots": 5
     },
     "quantity": "1",
+    "race": "Vampiro",
     "abilities": [
       {
         "name": "Líder",
@@ -142,6 +143,7 @@
       "equipmentSlots": 5
     },
     "quantity": "0-1",
+    "race": "Humanos",
     "spellAffinity": {
       "aligned0": ["Tradição da Necromancia"]
     },
@@ -249,6 +251,7 @@
       "equipmentSlots": 5
     },
     "quantity": "0-3",
+    "race": "Humanos",
     "abilities": [],
     "equipment": {
       "hand-to-hand": [
@@ -373,6 +376,7 @@
   {
     "id": "carnical",
     "name": "Carniçal",
+    "race": "Carniçal",
     "lore": "Carniçais são os descendentes de homens malignos e insanos que comeram a carne dos mortos. Quando os tempos famintos da fome chegam ao Velho Mundo, os mais depravados e destituídos passaram a se banquetear com cadáveres para sobreviver. Impulsionados por seu desejo indizível pela carne de seus companheiros, essas criaturas desistiram de sua vida humana e habitam perto de cemitérios, criptas e túmulos, desenterrando os cadáveres podres dos recentemente enterrados e consumindo a carne fria com dentes e garras nus. A destruição de Mordheim atraiu muitos clãs carniceiros do norte, e agora eles se estabeleceram permanentemente nas criptas e cemitérios da cidade arruinada.",
     "stats": {
       "move": 10,

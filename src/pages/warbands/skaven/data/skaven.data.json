@@ -24,6 +24,7 @@
       "equipmentSlots": 4
     },
     "quantity": "1",
+    "race": "Skaven",
     "abilities": [
       {
         "name": "Líder",
@@ -131,6 +132,7 @@
       "equipmentSlots": 4
     },
     "quantity": "0-1",
+    "race": "Skaven",
     "spellAffinity": {
       "aligned0": ["Magoa do Rato Chifrudo"]
     },
@@ -238,6 +240,7 @@
       "equipmentSlots": 4
     },
     "quantity": "0-2",
+    "race": "Skaven",
     "abilities": [],
     "equipment": {
       "hand-to-hand": [
@@ -336,6 +339,7 @@
       "equipmentSlots": 4
     },
     "quantity": "0-2",
+    "race": "Skaven",
     "abilities": [],
     "equipment": {
       "hand-to-hand": [
@@ -431,6 +435,7 @@
       "equipmentSlots": 4
     },
     "quantity": "ilimitado",
+    "race": "Skaven",
     "abilities": [],
     "equipment": {
       "hand-to-hand": [

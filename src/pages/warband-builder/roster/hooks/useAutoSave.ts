@@ -44,37 +44,43 @@ export function useAutoSave({
     const performSave = () => {
       // Usa ref para garantir que pegamos o estado mais recente
       const currentWarband = warbandRef.current;
-      
+
       // Verifica se há dados válidos antes de salvar
       if (!currentWarband.name && !currentWarband.figures?.length) {
         // Dados ainda não carregados ou vazios - não salva
         return;
       }
-      
+
       const payloadRaw: any = {
         name: currentWarband.name,
         faction: currentWarband.faction,
         notes: currentWarband.notes ?? "",
         gold: currentWarband.gold ?? "0",
         wyrdstone: currentWarband.wyrdstone ?? "0",
-        vault: (currentWarband.vault || []).map((e: any) => stripUndefinedDeep(e)),
-        figures: (currentWarband.figures || []).map((f: any) => stripUndefinedDeep(f)),
+        vault: (currentWarband.vault || []).map((e: any) =>
+          stripUndefinedDeep(e)
+        ),
+        figures: (currentWarband.figures || []).map((f: any) =>
+          stripUndefinedDeep(f)
+        ),
       };
 
       const payload = stripUndefinedDeep(payloadRaw);
 
       setIsSaving(true);
-      componentSaveQueueRef.current = componentSaveQueueRef.current.then(async () => {
-        try {
-          // Salva no IndexedDB e no Firestore (se userId fornecido)
-          await saveLocalWarband(warbandId, payload, warbandSource, userId);
-          setHasUnsavedChanges(false);
-        } catch (e) {
-          console.error("[AutoSave][Error] Erro ao salvar:", e);
-        } finally {
-          setIsSaving(false);
+      componentSaveQueueRef.current = componentSaveQueueRef.current.then(
+        async () => {
+          try {
+            // Salva no IndexedDB e no Firestore (se userId fornecido)
+            await saveLocalWarband(warbandId, payload, warbandSource, userId);
+            setHasUnsavedChanges(false);
+          } catch (e) {
+            console.error("[AutoSave][Error] Erro ao salvar:", e);
+          } finally {
+            setIsSaving(false);
+          }
         }
-      });
+      );
     };
 
     // NÃO salva na primeira vez - apenas quando houver mudanças
@@ -94,4 +100,3 @@ export function useAutoSave({
     };
   }, [warbandId, warbandSource, setHasUnsavedChanges, setIsSaving, userId]);
 }
-

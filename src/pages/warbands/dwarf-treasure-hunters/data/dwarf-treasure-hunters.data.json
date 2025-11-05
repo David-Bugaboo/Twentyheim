@@ -5,6 +5,7 @@
     "lore": "Nobres Anões são caçadores de tesouro que recrutaram um bando de Anões de pensamento similar e partiram da fortaleza do seu clã em busca de riquezas. Um Nobre Anão é extremamente respeitado por membros do seu bando. Frequentemente ele faz parte de uma das famílias nobres das fortalezas Anãs perdidas, sonhando em coletar ouro suficiente para restaurar a antiga glória dos Reinos Anões.",
     "role": "Líder",
     "quantity": "1",
+    "race": "Anão",
     "stats": {
       "move": 7,
       "fight": "+3",
@@ -133,6 +134,7 @@
     "lore": "Engenheiros Anões são membros respeitados da sociedade Anã. São eles que projetam e constroem as complexas máquinas de guerra e dispositivos que tornaram os Anões famosos.",
     "role": "Herói",
     "quantity": "0-1",
+    "race": "Anão",
     "stats": {
       "move": 7,
       "fight": "+2",
@@ -246,6 +248,7 @@
     "lore": "Mata-Trolls são membros do culto mórbido dos Anões obcecados em buscar uma morte honrosa em combate. Tendo cometido algum crime imperdoável ou sido desonrado de alguma forma, um Anão abandonará seu lar e vagará para morrer lutando contra um inimigo poderosa. Mata-Trolls são indivíduos são desajustadas, psicopatas e violentos. No entanto, há poucos lutadores melhores no Mundo Conhecido, então eles são muito procurados pelos bandos do seu povo.",
     "role": "Herói",
     "quantity": "0-2",
+    "race": "Anão",
     "stats": {
       "move": 7,
       "fight": "+2",
@@ -353,6 +356,7 @@
     "name": "Irmãos de Clã",
     "lore": "Estes são guerreiros Anões no auge: guerreiros resilientes, teimosos e bravos em quem se pode confiar para se manter uma formação contra qualquer inimigo.",
     "quantity": "ilimitado",
+    "race": "Anão",
     "stats": {
       "move": 7,
       "fight": "+2",
@@ -475,6 +479,7 @@
     "name": "Fuzileiro Anão",
     "lore": "Fuzileiros Anões são exímios atiradores, treinados para atirar bem com qualquer arma a distância. Muitos Orcs ou Goblins morreram pela ferroada de um virote de besta ou de uma bala trovejante de arcabuz disparada por um Fuzileiro Anão.",
     "quantity": "0-5",
+    "race": "Anão",
     "stats": {
       "move": 7,
       "fight": "+2",
@@ -575,6 +580,7 @@
     "name": "Barba Curta",
     "lore": "Estes são jovens Anões que se juntaram à comitiva de um caçador de tesouro Anão experiente com a esperança de fazer fortuna.",
     "quantity": "ilimitado",
+    "race": "Anão",
     "stats": {
       "move": 10,
       "fight": "+1",

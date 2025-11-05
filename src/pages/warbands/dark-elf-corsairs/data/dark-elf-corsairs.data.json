@@ -5,6 +5,7 @@
     "lore": "Os Líderes dos Elfos Sombrios são tipicamente recrutados da nobreza e lideram o bando em busca de ouro, escravos e artefatos arcanos para trazer de volta a Naggaroth. São assassinos frios e implacáveis e comandam o respeito de suas tropas através de assassinatos e terror. Alcançaram sua posição de liderança eliminando nobres rivais que estavam em seu caminho e através de sua astúcia notável. Eles são inimigos perigosos que incorporam os traços impiedosos da raça Druchii.",
     "role": "Líder",
     "quantity": "1",
+    "race": "Elfo",
     "stats": {
       "move": 16,
       "fight": "+3",
@@ -112,6 +113,7 @@
     "lore": "Enquanto os Altos Elfos têm grande afinidade com Dragões, Grifos e outras criaturas nobres, seus parentes malignos têm Domadores de Feras, Elfos Sombrios de particular crueldade que criam muitas bestas cruéis e as lideram em combate. Diferente dos Altos Elfos que tratam suas bestas como companheiras, os Domadores de Feras dos Elfos Negros são mestres rancorosos, prontos para punir seus domados com chicotadas dolorosas.",
     "role": "Herói",
     "quantity": "0-1",
+    "race": "Elfo",
     "stats": {
       "move": 16,
       "fight": "+2",
@@ -238,6 +240,7 @@
     "lore": "Os Elfos Sombrios são estranhos no fato de que, além do terrível Rei Bruxo, não há outros feiticeiros do sexo masculino. Todos os outros praticantes de magia na raça dos Elfos Negros são do sexo feminino, pertencentes a famosa ordem das Noivas de Khaine. Existem rumores de que qualquer homem que desenvolva afinidade pela magia entre os Elfos Sombrios é imediatamente condenado a morte para cumprir alguma profecia sombria. As Bruxas dos Elfos Sombrios são mulheres lindas e misteriosas de cabelos negros, respeitadas e demandadas a contragosto até mesmo pelos poderosos Nobres da sua raça.",
     "role": "Herói",
     "quantity": "0-1",
+    "race": "Elfo",
     "stats": {
       "move": 16,
       "fight": "+2",
@@ -362,6 +365,7 @@
     "lore": "As Lâminas do Massacre são guerreiros de elite dos exércitos dos Elfos Sombrios e frequentemente estão ligados à casa de uma família Nobre. As Lâminas do Massacre vivem uma vida de rigoroso treinamento militar, cada guerreiro especializado em uma arma e estilo de luta particular. Matar é um modo de vida para esses guerreiros. Inimigos não devem esperar misericórdia. Os Lâminas do Massacre acompanham grupos de corsários como guarda-costas contratados ou para aprimorar ainda mais suas habilidades na nobre arte do assassinato.",
     "role": "Herói",
     "quantity": "0-2",
+    "race": "Elfo",
     "stats": {
       "move": 16,
       "fight": "+3",
@@ -461,6 +465,7 @@
     "name": "Corsário Druchii",
     "lore": "Os Elfos Negros são lutadores cruéis e ferozes. Isso é especialmente verdade para os Corsários - os tripulantess das Arcas Negras. Estes são habilidosos com espada e machado, bem como com a besta de repetição, uma maravilha da engenhenharia dos Elfos Sombrios. Sempre que uma Arca Negra explora a costa de Mordheim, os Corsários são os primeiros a se lançar na pilhagem.",
     "quantity": "ilimitado",
+    "race": "Elfo",
     "stats": {
       "move": 16,
       "fight": "+2",
@@ -562,6 +567,7 @@
     "name": "Sombra",
     "lore": "Os Batedores furtivos dos Elfos Sombrios dependem de suas bestas de repetição para constantemente incomodar o inimigo com saraivadas de virotes ao invés de enfrentá-los em combate direto, pois emboscadas e táticas de guerrilha são o seu estilo de luta preferido. Os sombras são jovens e inexperientes batedores que veem as expedições para Mordheim como uma valiosa oportunidade de treinamento.",
     "quantity": "0-5",
+    "race": "Elfo",
     "stats": {
       "move": 15,
       "fight": "+1",

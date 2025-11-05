@@ -46,6 +46,8 @@ import {
   calculateSkillModifiers,
   calculateExtraSpecialRulesModifiers,
 } from "../pages/warband-builder/roster/helpers/warbandCalculations.helpers";
+import racialLimitsData from "../pages/campanha/data/racial-limits.data.json";
+import { getCombinedStats } from "../pages/warband-builder/roster/helpers/unitTransformations.helpers";
 
 export interface AttributeBreakdown {
   base: number;
@@ -1289,14 +1291,27 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       const base = (item as any)?.base;
       if (!base) continue;
 
-      // Armor bonus
-      const armorBonus = parseNumeric(base.armorBonus || base.armourBonus || 0);
-      modifiers.armour += armorBonus;
+      const cat = String(
+        base?.type ||
+          base?.category ||
+          (item as any)?.type ||
+          (item as any)?.category ||
+          ""
+      ).toLowerCase();
+      const isArmor =
+        cat === "armadura" ||
+        base?.type === "Armadura" ||
+        (item as any)?.type === "Armadura";
+      const isEquippedAsArmor = Boolean((item as any)?.equippedAsArmor);
 
-      const movePenalty = parseNumeric(
-        base.movePenalty || base.penalidadeMovimento || 0
-      );
-      modifiers.move += movePenalty; // movePenalty já é negativo no JSON
+      // Só aplica penalidade de movimento se for armadura e estiver equipada
+      if (isArmor && isEquippedAsArmor) {
+        const movePenalty = parseNumeric(
+          base.movePenalty || base.penalidadeMovimento || 0
+        );
+        modifiers.move += movePenalty; // movePenalty já é negativo no JSON
+      }
+      // NÃO soma bônus de armadura aqui; armadura/escudo são somados dinamicamente em getTotal(armour)
     }
 
     // Removido: bônus de +1 ímpeto por lutar com Garra Colossal + arma na primária
@@ -1342,16 +1357,18 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     const extraSpecialRulesModifiers =
       calculateExtraSpecialRulesModifiers(extraSpecialRules);
 
-    // Misc modifiers vêm do campo miscModifiers (ainda existe para edição manual)
-    const miscModifiers = (figure?.miscModifiers as any) || {
-      move: 0,
-      fight: 0,
-      shoot: 0,
-      armour: 0,
-      Vontade: 0,
-      strength: 0,
-      health: 0,
-    };
+    // Misc manual: lê de miscStatsModifiers (novo) com fallback para miscModifiers (legado)
+    const miscSource =
+      (figure as any)?.miscStatsModifiers ?? (figure as any)?.miscModifiers;
+    const miscModifiers = {
+      move: Number(miscSource?.move || 0),
+      fight: Number(miscSource?.fight || 0),
+      shoot: Number(miscSource?.shoot || 0),
+      armour: Number(miscSource?.armour || 0),
+      Vontade: Number(miscSource?.Vontade || 0),
+      strength: Number(miscSource?.strength || 0),
+      health: Number(miscSource?.health || 0),
+    } as const;
 
     return {
       advancement: advancementModifiers,
@@ -1383,13 +1400,42 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     breakdown: AttributeBreakdown,
     statKey: string = ""
   ): number => {
-    const baseTotal =
+    // Soma base + avanços + ferimentos + misc MANUAL
+    let baseTotal =
       breakdown.base +
       breakdown.advancement +
       breakdown.injury +
       breakdown.misc;
 
-    // Para Ímpeto, calcula bônus de lutar com duas armas (arma leve/pistola na secundária + arma na primária)
+    // Adiciona modificadores NÃO oriundos de equipamento
+    const addIf = (v: number | undefined) => (typeof v === "number" ? v : 0);
+    const advMod = 0; // já incluso em breakdown.advancement
+    const injMod = 0; // já incluso em breakdown.injury
+    const skillsMod = addIf(
+      (calculatedModifiers.skills as any)[statKey as any]
+    );
+    const mutationsMod = addIf(
+      (calculatedModifiers.mutations as any)[statKey as any]
+    );
+    const sacredMarksMod = addIf(
+      (calculatedModifiers.sacredMarks as any)[statKey as any]
+    );
+    const nurgleBlessingsMod = addIf(
+      (calculatedModifiers.nurgleBlessings as any)[statKey as any]
+    );
+    const extraRulesMod = addIf(
+      (calculatedModifiers as any).extraSpecialRules?.[statKey as any]
+    );
+    baseTotal +=
+      advMod +
+      injMod +
+      skillsMod +
+      mutationsMod +
+      sacredMarksMod +
+      nurgleBlessingsMod +
+      extraRulesMod;
+
+    // Para Ímpeto, calcula bônus de lutar com duas armas (equipamento)
     if (statKey === "fight") {
       let twoWeaponsBonus = 0;
 
@@ -1412,7 +1458,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
           equip?.twoHandedWeapon
       );
 
-      // Se tem a skill "Arte da Morte Silenciosa" E NÃO tem NADA equipado nas mãos, ganha +1 Ímpeto
+      // Se tem a skill "Arte da Morte Silenciosa" E NÃO tem NADA equipado nas mãos, ganha +1 Ímpeto (NÃO é bônus de equipamento)
       if (hasSilentDeathSkill && hasNothingEquippedInHands) {
         twoWeaponsBonus = 1;
       } else if (equippedItemsArray.length > 0) {
@@ -1695,20 +1741,79 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
 
       const table = isHeroLike ? heroAdvancementTable : soldierAdvancementTable;
 
+      const isStatAtCap = (label: string): boolean => {
+        const limits = racialLimitsMap as any;
+        const parse = (v: any) => (typeof v === "number" ? v : parseNumeric(v));
+        const getLimit = (k: string) => {
+          const v = limits?.[k];
+          if (v == null) return undefined;
+          const s = String(v).trim();
+          if (s === "-" || s === "—" || s.length === 0) return undefined;
+          return parse(v);
+        };
+        const stats = nonEquipmentStats as any;
+        if (!stats) return false;
+
+        // Mapeia rótulos para chaves e limites
+        if (label.includes("Ímpeto")) {
+          const cur = parse(stats.fight);
+          const lim = getLimit("Imp");
+          return lim != null && cur >= lim;
+        }
+        if (label.includes("Precis")) {
+          const cur = parse(stats.shoot);
+          const lim = getLimit("Prec");
+          return lim != null && cur >= lim;
+        }
+        if (label.includes("Armadura")) {
+          const cur = parse(stats.armour);
+          const lim = getLimit("Arm");
+          return lim != null && cur >= lim;
+        }
+        if (label.includes("Movimento")) {
+          const cur = parse(stats.move);
+          const lim = getLimit("Mov");
+          return lim != null && cur >= lim;
+        }
+        if (label.includes("Vontade")) {
+          const cur = parse(stats.Vontade);
+          const lim = getLimit("Vont");
+          return lim != null && cur >= lim;
+        }
+        if (label.includes("Vida")) {
+          const cur = parse(stats.health);
+          const lim = getLimit("Vida");
+          return lim != null && cur >= lim;
+        }
+        if (label.includes("Força")) {
+          const cur = parse(stats.strength);
+          const lim = getLimit("For");
+          return lim != null && cur >= lim;
+        }
+        return false;
+      };
+
+      const entryRequiresReroll = (options: string[]) => {
+        // Considera apenas opções de atributo (começam com "+")
+        const statOptions = options.filter(o => o.trim().startsWith("+"));
+        if (statOptions.length < 2) return false; // regra só para entradas com 2 opções de atributo
+        return statOptions.every(isStatAtCap);
+      };
+
       const newRolls: string[][] = [];
       for (let i = 0; i < count; i++) {
-        // Rola 1d20
-        const d20Roll = Math.floor(Math.random() * 20) + 1;
+        let picked: { roll: number[]; options: string[] } | undefined;
+        let safety = 0;
+        do {
+          const d20 = Math.floor(Math.random() * 20) + 1;
+          const res = table.find(
+            entry => d20 >= entry.roll[0] && d20 <= entry.roll[1]
+          );
+          picked = res as any;
+          safety++;
+        } while (picked && entryRequiresReroll(picked.options) && safety < 50);
 
-        // Encontra o resultado na tabela
-        const result = table.find(
-          entry => d20Roll >= entry.roll[0] && d20Roll <= entry.roll[1]
-        );
-
-        if (result) {
-          // Retorna todas as opções disponíveis
-          newRolls.push(result.options);
-        }
+        if (picked) newRolls.push(picked.options);
       }
 
       if (newRolls.length === 1) {
@@ -2171,57 +2276,259 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
       calculatedModifiers.injury[
         stat as keyof typeof calculatedModifiers.injury
       ] || 0;
-    const misc = Number(
-      calculatedModifiers.misc[stat as keyof typeof calculatedModifiers.misc] ||
-        0
-    );
+    const rawMiscOverride = (miscOverrides as any)[stat as any];
+    const rawMiscCalc =
+      calculatedModifiers.misc[stat as keyof typeof calculatedModifiers.misc];
+    const misc = Number((rawMiscOverride ?? rawMiscCalc ?? 0) as number);
 
-    // Inclui modificadores de skills, mutations, sacredMarks, nurgleBlessings e equipment no misc
-    // (para aparecer como bônus no breakdown)
-    const skillsMod = Number(
-      calculatedModifiers.skills[
-        stat as keyof typeof calculatedModifiers.skills
-      ] || 0
-    );
-    const mutationsMod = Number(
-      calculatedModifiers.mutations[
-        stat as keyof typeof calculatedModifiers.mutations
-      ] || 0
-    );
-    const sacredMarksMod = Number(
-      calculatedModifiers.sacredMarks[
-        stat as keyof typeof calculatedModifiers.sacredMarks
-      ] || 0
-    );
-    const nurgleBlessingsMod = Number(
-      calculatedModifiers.nurgleBlessings[
-        stat as keyof typeof calculatedModifiers.nurgleBlessings
-      ] || 0
-    );
-    const equipmentMod = Number(
-      calculatedModifiers.equipment[
-        stat as keyof typeof calculatedModifiers.equipment
-      ] || 0
-    );
-    const extraRulesMod = Number(
-      (calculatedModifiers as any).extraSpecialRules?.[
-        stat as keyof typeof calculatedModifiers.equipment
-      ] || 0
-    );
-
-    // Soma todos os modificadores extras no misc para exibição
-    const totalMisc =
-      misc +
-      skillsMod +
-      mutationsMod +
-      sacredMarksMod +
-      nurgleBlessingsMod +
-      equipmentMod +
-      extraRulesMod;
-
-    // Equipment será calculado dinamicamente na renderização, não aqui
-    return { base: b, advancement: adv, injury: inj, misc: totalMisc };
+    // Retorna apenas o misc MANUAL aqui; demais modificadores entram no getTotal
+    return { base: b, advancement: adv, injury: inj, misc };
   };
+
+  // Resolve raça da figura para buscar limites raciais
+  const resolvedRaceLabel = useMemo(() => {
+    // 1) Se vier `figure.race`, normaliza e usa
+    const raceRaw = String(
+      ((figure as any)?.race ?? (figure as any)?.baseStats?.race) || ""
+    );
+    const raceLc = raceRaw
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+      .toLowerCase();
+
+    const normalizeRace = (r: string): string | null => {
+      if (!r) return null;
+      if (r.includes("humano") || r === "human" || r === "humans")
+        return "Humanos";
+      if (r.includes("elf")) return "Elfo";
+      if (r.includes("anao") || r.includes("anã") || r.includes("dwarf"))
+        return "Anão";
+      if (r.includes("ogre") || r.includes("ogro")) return "Ogro";
+      if (r.includes("nanico") || r.includes("halfling") || r.includes("gnomo"))
+        return "Nanico";
+      if (r.includes("possuido") || r.includes("possesso")) return "Possuído";
+      if (r.includes("vamp")) return "Vampiro";
+      if (r.includes("skaven")) return "Skaven";
+      if (
+        r.includes("carnical") ||
+        r.includes("carnica") ||
+        r.includes("ghoul")
+      )
+        return "Carniçal";
+      if (r.includes("saur") || r.includes("saurideo") || r.includes("saurus"))
+        return "Saurídeo";
+      if (r.includes("gecko") || r.includes("skink")) return "Gecko";
+      if (r.includes("goblin")) return "Goblin";
+      if (r.includes("black orc") || r.includes("orc negro"))
+        return "Black Orc";
+      if (r.includes("orc")) return "Orc";
+      if (r.includes("centauro") && r.includes("hashut"))
+        return "Centouro de Hashut";
+      if (r.includes("ungor")) return "Ungor";
+      if (r.includes("centigor")) return "Centigor";
+      if (r === "gor" || r.includes(" gors") || r.includes("gor"))
+        return "Gors";
+      return null;
+    };
+
+    const byField = normalizeRace(raceLc);
+    if (byField) return byField;
+
+    // 2) Fallback: heurística por facção/nome
+    const nameLc = String(
+      actualName || (figure as any)?.name || ""
+    ).toLowerCase();
+    const factionLc = String(factionId || "").toLowerCase();
+
+    if (factionLc.includes("skaven")) return "Skaven";
+    if (factionLc.includes("lizardmen")) {
+      if (nameLc.includes("gecko")) return "Gecko";
+      return "Saurídeo";
+    }
+    if (factionLc.includes("orc-mob")) {
+      if (nameLc.includes("black orc") || nameLc.includes("orc negro"))
+        return "Black Orc";
+      if (nameLc.includes("goblin")) return "Goblin";
+      return "Orc";
+    }
+    if (factionLc.includes("goblins")) return "Goblin";
+    if (factionLc.includes("dark-elf")) return "Elfo";
+    if (
+      factionLc.includes("dwarf") ||
+      factionLc.includes("anão") ||
+      factionLc.includes("anao")
+    )
+      return "Anão";
+    if (factionLc.includes("sons-of-hashut")) {
+      if (nameLc.includes("centauro")) return "Centouro de Hashut";
+      return "Anão";
+    }
+    if (factionLc.includes("beastman")) {
+      if (nameLc.includes("centigor")) return "Centigor";
+      if (nameLc.includes("ungor")) return "Ungor";
+      if (nameLc.includes("gor")) return "Gors";
+      return "Gors";
+    }
+    if (factionLc.includes("carnival-of-chaos")) return "Possuído";
+    if (factionLc.includes("vampire-courts")) {
+      if (nameLc.includes("vamp")) return "Vampiro";
+      if (nameLc.includes("carniçal") || nameLc.includes("carnical"))
+        return "Carniçal";
+      return "Humanos";
+    }
+    if (
+      factionLc.includes("witch-hunters") ||
+      factionLc.includes("sisters-of-sigmar") ||
+      factionLc.includes("mercenaries") ||
+      factionLc.includes("cult-of-the-possessed")
+    ) {
+      return factionLc.includes("cult-of-the-possessed")
+        ? "Possuído"
+        : "Humanos";
+    }
+
+    return "Humanos";
+  }, [figure, actualName, factionId]);
+
+  // Mapa de limites raciais para os atributos exibidos
+  const racialLimitsMap = useMemo(() => {
+    const entry = (racialLimitsData as any[]).find(
+      e => e["Raça"] === resolvedRaceLabel
+    );
+    if (!entry) return {} as Record<string, string | number>;
+    return entry as Record<string, string | number>;
+  }, [resolvedRaceLabel]);
+
+  // Stats atuais sem bônus de equipamento (já com CAP aplicado via getCombinedStats)
+  const nonEquipmentStats = useMemo(() => {
+    try {
+      return getCombinedStats(
+        figure,
+        mutationBases.data,
+        sacredMarkBases.data,
+        blessingBaseMap,
+        skillBases.data,
+        equipmentBases.data
+      );
+    } catch {
+      return null as any;
+    }
+  }, [
+    figure,
+    mutationBases.data,
+    sacredMarkBases.data,
+    blessingBaseMap,
+    skillBases.data,
+    equipmentBases.data,
+  ]);
+
+  // Apenas modificador advindo de equipamentos por atributo
+  const getEquipmentOnlyModifier = useCallback(
+    (statKey: string): number => {
+      if (statKey === "move") {
+        return Number(equipmentModifiers.move || 0);
+      }
+      if (statKey === "fight") {
+        // Conta APENAS o bônus de lutar com duas armas (origem de equipamento)
+        let equipFightBonus = 0;
+
+        // Caso 1: Arte da Morte Silenciosa sem nada nas mãos (+1 Ímpeto tratado como "equip")
+        const figureSkills = ((figure as any)?.skills || []) as any[];
+        const hasSilentDeathSkill = figureSkills.some((skill: any) => {
+          const skillBaseId = skill?.base_skill_id || skill?.id || "";
+          const name = String(skill?.name || "").toLowerCase();
+          return (
+            skillBaseId === "arte-da-morte-silenciosa" ||
+            name.includes("arte da morte silenciosa")
+          );
+        });
+        const hasNothingEquippedInHands = !equippedItemsArray.some(
+          (equip: any) =>
+            equip?.mainHandWeapon ||
+            equip?.offHandWeapon ||
+            equip?.twoHandedWeapon
+        );
+        if (hasSilentDeathSkill && hasNothingEquippedInHands) {
+          equipFightBonus += 1;
+        }
+
+        // Caso 2: Arma primária + arma leve/pistola na secundária (+1 Ímpeto)
+        if (equippedItemsArray.length > 0) {
+          const primaryWeapon = equippedItemsArray.find((equip: any) =>
+            Boolean(equip?.mainHandWeapon || equip?.twoHandedWeapon)
+          );
+          const secondaryLightWeapon = equippedItemsArray.find((equip: any) => {
+            if (!Boolean(equip?.offHandWeapon)) return false;
+            if (equip?.countAsLight === true) return true;
+            const equipBase = equip?.base;
+            const specialRules = equipBase?.specialRules || [];
+            const rulesText = JSON.stringify(specialRules).toLowerCase();
+            return ["Leve", "Pistola"].some(keyword =>
+              rulesText.includes(keyword.toLowerCase())
+            );
+          });
+          if (primaryWeapon && secondaryLightWeapon) equipFightBonus += 1;
+        }
+        return equipFightBonus;
+      }
+      if (statKey === "armour") {
+        let equipmentArmorBonus = 0;
+        if (equippedItemsArray.length > 0) {
+          for (const equip of equippedItemsArray) {
+            const equipBase = (equip as any)?.base;
+            const cat = String(
+              equipBase?.type ||
+                equipBase?.category ||
+                (equip as any)?.type ||
+                (equip as any)?.category ||
+                ""
+            ).toLowerCase();
+            const isShield =
+              cat === "escudo" ||
+              equipBase?.type === "Escudo" ||
+              (equip as any)?.type === "Escudo";
+            const isArmor =
+              cat === "armadura" ||
+              equipBase?.type === "Armadura" ||
+              (equip as any)?.type === "Armadura";
+            const isEquippedAsArmor = Boolean((equip as any)?.equippedAsArmor);
+            const isInSecondaryHand = Boolean((equip as any)?.offHandWeapon);
+
+            if (isArmor && isEquippedAsArmor) {
+              const bonus = parseNumeric(
+                equipBase?.armorBonus ||
+                  equipBase?.armourBonus ||
+                  equipBase?.armadura ||
+                  equipBase?.bonusArmadura ||
+                  (equip as any)?.armorBonus ||
+                  (equip as any)?.armourBonus ||
+                  (equip as any)?.armadura ||
+                  (equip as any)?.bonusArmadura ||
+                  0
+              );
+              equipmentArmorBonus += bonus;
+            } else if (isShield && isInSecondaryHand) {
+              const bonus = parseNumeric(
+                equipBase?.armorBonus ||
+                  equipBase?.armourBonus ||
+                  equipBase?.armadura ||
+                  equipBase?.bonusArmadura ||
+                  (equip as any)?.armorBonus ||
+                  (equip as any)?.armourBonus ||
+                  (equip as any)?.armadura ||
+                  (equip as any)?.bonusArmadura ||
+                  0
+              );
+              equipmentArmorBonus += bonus;
+            }
+          }
+        }
+        return equipmentArmorBonus;
+      }
+      return 0;
+    },
+    [equippedItemsArray, equipmentModifiers.move]
+  );
 
   const isInactive = false; // Nova estrutura não tem campo inactive
 
@@ -2232,6 +2539,9 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     injury: number;
     misc: number;
   }>({ advancement: 0, injury: 0, misc: 0 });
+  const [miscOverrides, setMiscOverrides] = useState<Record<string, number>>(
+    {}
+  );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -2276,6 +2586,10 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
     if (editingStat && onChangeFigureStatModifier) {
       // Salva apenas o misc (modificador manual), pois os outros são calculados automaticamente
       onChangeFigureStatModifier(editingStat, "misc", tempModifiers.misc);
+      setMiscOverrides(prev => ({
+        ...prev,
+        [editingStat]: tempModifiers.misc,
+      }));
     }
     setEditingStat(null);
   };
@@ -2728,9 +3042,13 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
               <>
                 <div className="mt-4 bg-[#2a2a2a] p-4 rounded">
                   {(() => {
-                    const extraRules = ((figure?.extraSpecialRules || []) as string[]).map(r => String(r));
+                    const extraRules = (
+                      (figure?.extraSpecialRules || []) as string[]
+                    ).map(r => String(r));
                     const selectedGifts = TZEENTCH_GIFTS.filter(g =>
-                      extraRules.some(r => r.toLowerCase() === g.name.toLowerCase())
+                      extraRules.some(
+                        r => r.toLowerCase() === g.name.toLowerCase()
+                      )
                     );
 
                     const selectedGiftIds = selectedGifts.map(g => g.id);
@@ -2744,7 +3062,9 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                           <button
                             onClick={() => {
                               if (remainingPool.length === 0) return;
-                              const idx = Math.floor(Math.random() * remainingPool.length);
+                              const idx = Math.floor(
+                                Math.random() * remainingPool.length
+                              );
                               const choice = remainingPool[idx];
                               if (onAddSpecialRule) {
                                 onAddSpecialRule({
@@ -2769,11 +3089,21 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                         {selectedGifts.length > 0 && (
                           <div className="space-y-2 mb-3">
                             {selectedGifts.map(g => (
-                              <div key={g.id} className="flex items-start justify-between gap-3 border border-gray-700 rounded p-2 bg-[#1a1a1a]">
+                              <div
+                                key={g.id}
+                                className="flex items-start justify-between gap-3 border border-gray-700 rounded p-2 bg-[#1a1a1a]"
+                              >
                                 <div>
-                                  <div className="font-semibold" style={{ color: "#8fbc8f" }}>{g.name}</div>
+                                  <div
+                                    className="font-semibold"
+                                    style={{ color: "#8fbc8f" }}
+                                  >
+                                    {g.name}
+                                  </div>
                                   {g.description && (
-                                    <div className="text-sm text-gray-300">{g.description}</div>
+                                    <div className="text-sm text-gray-300">
+                                      {g.description}
+                                    </div>
                                   )}
                                 </div>
                                 {_onRemoveSpecialRule && (
@@ -2880,11 +3210,81 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                 ATRIBUTOS E MODIFICADORES
               </h4>
               <div className="bg-[#2a2a2a] p-4 rounded space-y-2">
-                {figStatOrder.map(skey => {
-                  const breakdown = toFigureBreakdown(skey);
+                {/* Desktop (md+): tabela com 4 colunas */}
+                <div className="hidden md:block">
+                  {/* Cabeçalho das colunas: Valor / Limite / Bônus de Equip / Total */}
+                  <div className="flex items-center justify-between py-2 border-b border-gray-600">
+                    <div className="flex-1 text-gray-300 font-semibold">
+                      Atributo
+                    </div>
+                    <div className="w-24 text-center text-gray-400 text-xs">
+                      Valor
+                    </div>
+                    <div className="w-24 text-center text-gray-400 text-xs">
+                      Limite
+                    </div>
+                    <div className="w-28 text-center text-gray-400 text-xs">
+                      Bônus Equip
+                    </div>
+                    <div className="w-24 text-center text-gray-400 text-xs">
+                      Total
+                    </div>
+                  </div>
+                </div>
+                <div className="hidden md:block">
+                  {figStatOrder.map(skey => {
+                    const breakdown = toFigureBreakdown(skey);
 
-                  // Se o breakdown for "-", renderiza como "-" sem permitir edição
-                  if (breakdown === "-") {
+                    // Se o breakdown for "-", renderiza como "-" sem permitir edição
+                    if (breakdown === "-") {
+                      const label =
+                        skey === "move"
+                          ? "Movimento"
+                          : skey === "fight"
+                            ? "Ímpeto"
+                            : skey === "shoot"
+                              ? "Precisão"
+                              : skey === "armour"
+                                ? "Armadura"
+                                : skey === "Vontade"
+                                  ? "Vontade"
+                                  : skey === "health"
+                                    ? "Vida"
+                                    : "Força";
+                      return (
+                        <div
+                          key={String(skey)}
+                          className="flex items-center justify-between py-2 border-b border-gray-600 last:border-b-0"
+                        >
+                          <div className="flex-1 flex items-center gap-2">
+                            <span className="text-gray-300 font-semibold">
+                              {label}
+                            </span>
+                            <span className="text-xs text-gray-400">
+                              (Base: -)
+                            </span>
+                          </div>
+                          <div className="w-24 text-center text-lg font-bold">
+                            -
+                          </div>
+                          <div className="w-24 text-center text-sm text-gray-300">
+                            -
+                          </div>
+                          <div className="w-28 text-center text-sm text-gray-300">
+                            -
+                          </div>
+                          <div className="w-24 text-center text-lg font-bold">
+                            -
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Se não for "-", calcula normalmente
+                    const b = breakdown as AttributeBreakdown;
+                    const total = getTotal(b, skey);
+                    const equipOnly = getEquipmentOnlyModifier(skey);
+                    const valueNoEquip = Number(total) - Number(equipOnly || 0);
                     const label =
                       skey === "move"
                         ? "Movimento"
@@ -2899,74 +3299,243 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                                 : skey === "health"
                                   ? "Vida"
                                   : "Força";
+                    const showPlus =
+                      skey === "fight" ||
+                      skey === "shoot" ||
+                      skey === "Vontade";
+                    const limitKey =
+                      skey === "move"
+                        ? "Mov"
+                        : skey === "fight"
+                          ? "Imp"
+                          : skey === "shoot"
+                            ? "Prec"
+                            : skey === "armour"
+                              ? "Arm"
+                              : skey === "Vontade"
+                                ? "Vont"
+                                : skey === "health"
+                                  ? "Vida"
+                                  : skey === "strength"
+                                    ? "For"
+                                    : "";
+                    const limitValue = limitKey
+                      ? (racialLimitsMap as any)?.[limitKey]
+                      : undefined;
+                    const numericLimit =
+                      limitValue != null && String(limitValue).trim() !== "-"
+                        ? parseNumeric(limitValue as any)
+                        : undefined;
+                    const cappedValueNoEquip =
+                      numericLimit != null
+                        ? Math.min(valueNoEquip, numericLimit)
+                        : valueNoEquip;
+                    const totalWithCap =
+                      Number(cappedValueNoEquip) + Number(equipOnly || 0);
                     return (
                       <div
                         key={String(skey)}
                         className="flex items-center justify-between py-2 border-b border-gray-600 last:border-b-0"
                       >
-                        <div className="flex items-center gap-2">
+                        <div className="flex-1 flex items-center gap-2">
                           <span className="text-gray-300 font-semibold">
                             {label}
                           </span>
                           <span className="text-xs text-gray-400">
-                            (Base: -)
+                            (Base: {b.base})
                           </span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-lg font-bold">-</span>
+                        <div className="w-24 text-center text-lg font-bold">
+                          {showPlus && cappedValueNoEquip >= 0
+                            ? `+${cappedValueNoEquip}`
+                            : `${cappedValueNoEquip}`}
+                        </div>
+                        <div className="w-24 text-center text-sm text-gray-300">
+                          {limitValue != null ? String(limitValue) : "-"}
+                        </div>
+                        <div className="w-28 text-center text-sm text-gray-300">
+                          {equipOnly === 0
+                            ? "0"
+                            : equipOnly > 0
+                              ? `+${equipOnly}`
+                              : `${equipOnly}`}
+                        </div>
+                        <div className="w-24 text-center flex items-center gap-2 justify-center">
+                          {(() => {
+                            const baseVal = (breakdown as AttributeBreakdown)
+                              .base;
+                            const color =
+                              Number(totalWithCap) > Number(baseVal)
+                                ? "#4ade80"
+                                : Number(totalWithCap) < Number(baseVal)
+                                  ? "#f87171"
+                                  : undefined;
+                            return (
+                              <span
+                                className="text-lg font-bold"
+                                style={color ? { color } : undefined}
+                              >
+                                {showPlus && totalWithCap >= 0
+                                  ? `+${totalWithCap}`
+                                  : `${totalWithCap}`}
+                              </span>
+                            );
+                          })()}
+                          <button
+                            type="button"
+                            onClick={() => openEditModal(skey)}
+                            className="text-gray-400 hover:text-green-300 transition-colors flex items-center justify-center font-bold text-lg"
+                            title="Editar modificadores"
+                          >
+                            ±
+                          </button>
                         </div>
                       </div>
                     );
-                  }
+                  })}
+                </div>
 
-                  // Se não for "-", calcula normalmente
-                  const b = breakdown as AttributeBreakdown;
-                  const total = getTotal(b, skey);
-                  const label =
-                    skey === "move"
-                      ? "Movimento"
-                      : skey === "fight"
-                        ? "Ímpeto"
-                        : skey === "shoot"
-                          ? "Precisão"
-                          : skey === "armour"
-                            ? "Armadura"
-                            : skey === "Vontade"
-                              ? "Vontade"
-                              : skey === "health"
-                                ? "Vida"
-                                : "Força";
-                  const showPlus =
-                    skey === "fight" || skey === "shoot" || skey === "Vontade";
-                  return (
-                    <div
-                      key={String(skey)}
-                      className="flex items-center justify-between py-2 border-b border-gray-600 last:border-b-0"
-                    >
-                      <div className="flex items-center gap-2">
-                        <span className="text-gray-300 font-semibold">
-                          {label}
-                        </span>
-                        <span className="text-xs text-gray-400">
-                          (Base: {b.base})
-                        </span>
+                {/* Mobile (sm): lista compacta com acesso ao modal */}
+                <div className="md:hidden divide-y divide-gray-600">
+                  {figStatOrder.map(skey => {
+                    const breakdown = toFigureBreakdown(skey);
+                    const label =
+                      skey === "move"
+                        ? "Movimento"
+                        : skey === "fight"
+                          ? "Ímpeto"
+                          : skey === "shoot"
+                            ? "Precisão"
+                            : skey === "armour"
+                              ? "Armadura"
+                              : skey === "Vontade"
+                                ? "Vontade"
+                                : skey === "health"
+                                  ? "Vida"
+                                  : "Força";
+
+                    if (breakdown === "-") {
+                      return (
+                        <div key={String(skey)} className="py-2">
+                          <div className="flex items-center justify-between">
+                            <div className="text-gray-300 font-semibold">
+                              {label}
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => openEditModal(skey)}
+                              className="text-gray-400 hover:text-green-300 transition-colors text-lg"
+                              aria-label="Editar"
+                            >
+                              ±
+                            </button>
+                          </div>
+                          <div className="mt-1 text-sm text-gray-400">
+                            Valor - • Limite - • Equip - • Total -
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    const b = breakdown as AttributeBreakdown;
+                    const total = getTotal(b, skey);
+                    const equipOnly = getEquipmentOnlyModifier(skey);
+                    const valueNoEquip = Number(total) - Number(equipOnly || 0);
+                    const limitKey =
+                      skey === "move"
+                        ? "Mov"
+                        : skey === "fight"
+                          ? "Imp"
+                          : skey === "shoot"
+                            ? "Prec"
+                            : skey === "armour"
+                              ? "Arm"
+                              : skey === "Vontade"
+                                ? "Vont"
+                                : skey === "health"
+                                  ? "Vida"
+                                  : skey === "strength"
+                                    ? "For"
+                                    : "";
+                    const limitValue = limitKey
+                      ? (racialLimitsMap as any)?.[limitKey]
+                      : undefined;
+                    const numericLimit =
+                      limitValue != null && String(limitValue).trim() !== "-"
+                        ? parseNumeric(limitValue as any)
+                        : undefined;
+                    const cappedValueNoEquip =
+                      numericLimit != null
+                        ? Math.min(valueNoEquip, numericLimit)
+                        : valueNoEquip;
+                    const totalWithCap =
+                      Number(cappedValueNoEquip) + Number(equipOnly || 0);
+                    const showPlus =
+                      skey === "fight" ||
+                      skey === "shoot" ||
+                      skey === "Vontade";
+
+                    return (
+                      <div key={String(skey)} className="w-full text-left py-2">
+                        <div className="flex items-center justify-between">
+                          <button
+                            type="button"
+                            onClick={() => openEditModal(skey)}
+                            className="text-left"
+                          >
+                            <div className="text-gray-300 font-semibold">
+                              {label}
+                            </div>
+                          </button>
+                          <div className="flex items-center gap-3">
+                            {(() => {
+                              const baseVal = (b as AttributeBreakdown).base;
+                              const color =
+                                Number(totalWithCap) > Number(baseVal)
+                                  ? "#4ade80"
+                                  : Number(totalWithCap) < Number(baseVal)
+                                    ? "#f87171"
+                                    : undefined;
+                              return (
+                                <div
+                                  className="font-bold"
+                                  style={color ? { color } : undefined}
+                                >
+                                  {showPlus && totalWithCap >= 0
+                                    ? `+${totalWithCap}`
+                                    : `${totalWithCap}`}
+                                </div>
+                              );
+                            })()}
+                            <button
+                              type="button"
+                              onClick={() => openEditModal(skey)}
+                              className="text-gray-400 hover:text-green-300 transition-colors text-lg"
+                              aria-label="Editar"
+                              title="Editar modificadores"
+                            >
+                              ±
+                            </button>
+                          </div>
+                        </div>
+                        <div className="mt-1 text-xs text-gray-400">
+                          Valor{" "}
+                          {showPlus && cappedValueNoEquip >= 0
+                            ? `+${cappedValueNoEquip}`
+                            : `${cappedValueNoEquip}`}{" "}
+                          • Limite{" "}
+                          {limitValue != null ? String(limitValue) : "-"} •
+                          Equip{" "}
+                          {equipOnly === 0
+                            ? "0"
+                            : equipOnly > 0
+                              ? `+${equipOnly}`
+                              : `${equipOnly}`}
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg font-bold">
-                          {showPlus && total >= 0 ? `+${total}` : `${total}`}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => openEditModal(skey)}
-                          className="text-gray-400 hover:text-green-300 transition-colors flex items-center justify-center font-bold text-lg"
-                          title="Editar modificadores"
-                        >
-                          ±
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
@@ -3870,6 +4439,86 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
               </button>
             </div>
 
+            {/* Resumo compacto: Valor / Limite / Bônus Equip / Total */}
+            {(() => {
+              const skey = editingStat;
+              const breakdown = toFigureBreakdown(skey);
+              if (breakdown === "-") return null;
+              const b = breakdown as AttributeBreakdown;
+              const total = getTotal(b, skey);
+              const equipOnly = getEquipmentOnlyModifier(skey as any);
+              const valueNoEquip = Number(total) - Number(equipOnly || 0);
+
+              const limitKey =
+                skey === "move"
+                  ? "Mov"
+                  : skey === "fight"
+                    ? "Imp"
+                    : skey === "shoot"
+                      ? "Prec"
+                      : skey === "armour"
+                        ? "Arm"
+                        : skey === "Vontade"
+                          ? "Vont"
+                          : skey === "health"
+                            ? "Vida"
+                            : skey === "strength"
+                              ? "For"
+                              : "";
+              const limitValue = limitKey
+                ? (racialLimitsMap as any)?.[limitKey]
+                : undefined;
+              const numericLimit =
+                limitValue != null && String(limitValue).trim() !== "-"
+                  ? parseNumeric(limitValue as any)
+                  : undefined;
+              const cappedValueNoEquip =
+                numericLimit != null
+                  ? Math.min(valueNoEquip, numericLimit)
+                  : valueNoEquip;
+              const totalWithCap =
+                Number(cappedValueNoEquip) + Number(equipOnly || 0);
+              const showPlus =
+                skey === "fight" || skey === "shoot" || skey === "Vontade";
+
+              return (
+                <div className="bg-[#1a1a1a] rounded-lg p-4 mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  <div>
+                    <div className="text-xs text-gray-400">Valor</div>
+                    <div className="text-sm font-semibold text-white">
+                      {showPlus && cappedValueNoEquip >= 0
+                        ? `+${cappedValueNoEquip}`
+                        : `${cappedValueNoEquip}`}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-400">Limite</div>
+                    <div className="text-sm font-semibold text-white">
+                      {limitValue != null ? String(limitValue) : "-"}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-400">Bônus Equip</div>
+                    <div className="text-sm font-semibold text-white">
+                      {equipOnly === 0
+                        ? "0"
+                        : equipOnly > 0
+                          ? `+${equipOnly}`
+                          : `${equipOnly}`}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-400">Total</div>
+                    <div className="text-sm font-semibold text-white">
+                      {showPlus && totalWithCap >= 0
+                        ? `+${totalWithCap}`
+                        : `${totalWithCap}`}
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* Breakdown de modificadores */}
             <div className="space-y-3 mb-6">
               <h4 className="text-sm font-semibold text-gray-300 mb-3">
@@ -4021,6 +4670,10 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                       label="Regras Especiais"
                       value={extraRulesMod}
                     />
+                    <ModifierRow
+                      label="Manual (Misc)"
+                      value={tempModifiers.misc}
+                    />
                     {twoWeaponsBonus > 0 && (
                       <ModifierRow
                         label="Lutar com duas armas"
@@ -4037,6 +4690,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                       nurgleBlessingsMod === 0 &&
                       equipmentMod === 0 &&
                       extraRulesMod === 0 &&
+                      tempModifiers.misc === 0 &&
                       twoWeaponsBonus === 0 && (
                         <div className="text-xs text-gray-500 text-center py-2">
                           Nenhum modificador calculado

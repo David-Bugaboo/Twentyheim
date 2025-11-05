@@ -1,0 +1,181 @@
+[
+  {
+    "Raça": "Humanos",
+    "Mov": "20",
+    "Imp": "+5",
+    "For": "1",
+    "Prec": "+5",
+    "Arm": 11,
+    "Vont": "+8",
+    "Vida": "24"
+  },
+  {
+    "Raça": "Elfo",
+    "Mov": "20",
+    "Imp": "+6",
+    "For": "1",
+    "Prec": "+6",
+    "Arm": "11",
+    "Vont": "+9",
+    "Vida": "22"
+  },
+  {
+    "Raça": "Anão",
+    "Mov": "10",
+    "Imp": "6",
+    "For": "1",
+    "Arm": "13",
+    "Prec": "5",
+    "Vont": "+9",
+    "Vida": "24"
+  },
+  {
+    "Raça": "Ogro",
+    "Mov": "24",
+    "Imp": "+6",
+    "For": "+2",
+    "Prec": "+4",
+    "Arm": "14",
+    "Vont": "+8",
+    "Vida": "32"
+  },
+  {
+    "Raça": "Nanico",
+    "Mov": "26",
+    "Imp": "+3",
+    "For": "0",
+    "Prec": "+6",
+    "Arm": "11",
+    "Vont": "+9",
+    "Vida": "24"
+  },
+  {
+    "Raça": "Possuído",
+    "Mov": "26",
+    "Imp": "+8",
+    "For": "3",
+    "Prec": "-",
+    "Arm": "15",
+    "Vont": "+9",
+    "Vida": "28"
+  },
+  {
+    "Raça": "Vampiro",
+    "Mov": "30",
+    "Imp": "+7",
+    "For": "4",
+    "Prec": "+5",
+    "Arm": "15",
+    "Vont": "+9",
+    "Vida": "28"
+  },
+  {
+    "Raça": "Skaven",
+    "Mov": "24",
+    "Imp": "+5",
+    "For": "1",
+    "Prec": "+5",
+    "Arm": "11",
+    "Vont": "+6",
+    "Vida": "24"
+  },
+  {
+    "Raça": "Carniçal",
+    "Mov": "24",
+    "Imp": "+5",
+    "For": "1",
+    "Arm": "13",
+    "Prec": "+1",
+    "Vont": "+6",
+    "Vida": "24"
+  },
+  {
+    "Raça": "Sáurio",
+    "Mov": "20",
+    "Imp": "+6",
+    "For": "2",
+    "Prec": "-",
+    "Arm": "14",
+    "Vont": "+9",
+    "Vida": "24"
+  },
+  {
+    "Raça": "Gecko",
+    "Mov": "30",
+    "Imp": "+4",
+    "For": "1",
+    "Prec": "+5",
+    "Arm": "11",
+    "Vont": "+7",
+    "Vida": "24"
+  },
+  {
+    "Raça": "Goblin",
+    "Mov": "16",
+    "Imp": "+5",
+    "For": "1",
+    "Prec": "+6",
+    "Arm": "11",
+    "Vont": "+7",
+    "Vida": "18"
+  },
+  {
+    "Raça": "Orc",
+    "Mov": "18",
+    "Imp": "+5",
+    "For": "1",
+    "Prec": "+5",
+    "Arm": "13",
+    "Vont": "+8",
+    "Vida": "24"
+  },
+  {
+    "Raça": "Black Orc",
+    "Mov": "18",
+    "Imp": "+6",
+    "Prec": "+5",
+    "Arm": "13",
+    "Vont": "+9",
+    "Vida": "24"
+  },
+  {
+    "Raça": "Centouro de Hashut",
+    "Mov": "36",
+    "Imp": "+7",
+    "For": "2",
+    "Prec": "+2",
+    "Arm": "15",
+    "Vont": "+8",
+    "Vida": "28"
+  },
+  {
+    "Raça": "Ungor",
+    "Mov": "32",
+    "Imp": "+6",
+    "For": "1",
+    "Arm": "13",
+    "Prec": "+5",
+    "Vont": "+6",
+    "Vida": "24"
+  },
+  {
+    "Raça": "Centigor",
+    "Mov": "30",
+    "Imp": "7",
+    "For": "1",
+    "Prec": "6",
+    "Arm": "15",
+    "Vont": "+8",
+    "Vida": "28"
+  },
+  {
+    "Raça": "Gors",
+    "Mov": "28",
+    "Imp": "+6",
+    "For": "1",
+    "Prec": "+4",
+    "Arm": "13",
+    "Vont": "9",
+    "Vida": "28"
+  }
+]

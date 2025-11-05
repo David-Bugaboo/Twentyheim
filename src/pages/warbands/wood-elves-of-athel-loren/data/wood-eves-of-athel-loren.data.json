@@ -24,6 +24,7 @@
       "equipmentSlots": 5
     },
     "quantity": "1",
+    "race": "Elfo",
     "abilities": [
       {
         "name": "Líder",
@@ -99,6 +100,7 @@
       "equipmentSlots": 5
     },
     "quantity": "0-2",
+    "race": "Elfo",
     "abilities": [
       {
         "name": "Guerrilheiro",
@@ -181,6 +183,7 @@
       "aligned0": ["Magias Silvanas"]
     },
     "quantity": "0-1",
+    "race": "Elfo",
     "abilities": [
       {
         "name": "Conjurador",
@@ -250,6 +253,7 @@
       "equipmentSlots": 5
     },
     "quantity": "ilimitado",
+    "race": "Elfo",
     "abilities": [
       {
         "name": "Rajada de Flechas",
@@ -315,6 +319,7 @@
       "equipmentSlots": 5
     },
     "quantity": "ilimitado",
+    "race": "Elfo",
     "abilities": [],
     "equipment": {
       "hand-to-hand": [

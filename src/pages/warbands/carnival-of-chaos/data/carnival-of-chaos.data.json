@@ -5,6 +5,7 @@
     "lore": "Essas figuras conduzem os diabólicos Carnavais do Caos. São os escolhidos de Nurgle e empunham poderes arcanos concedidos por seu deus pestilento. O Mestre é um indivíduo obcecado por poder que lidera sua trupe de artistas daemônicos pelos ermos do Império, espalhando a praga por vários assentamentos. Para o campesinato atrasado das áreas rurais do Império, o Mestre se apresenta como um showman exótico e carismático, trazendo entretenimentos extravagantes a suas vidas monótonas. É a astúcia do Mestre de Cerimônias — e seus encantamentos engenhosos — que mantém seus asseclas sempre um passo à frente das patrulhas dos inúmeros Caçadores de Bruxas que rondam a região.",
     "role": "Líder",
     "quantity": "1",
+    "race": "Humanos",
     "stats": {
       "move": 10,
       "fight": "+2",
@@ -79,7 +80,7 @@
           "id": "alabarda"
         }
       ],
-      
+
       "ranged": [
         {
           "name": "Arco Curto",
@@ -129,6 +130,7 @@
     "lore": "São um tipo muito específico de mutante cuja constituição foi reforçada pela vitalidade s0brenatural do Senhor da Decadência. A atenção pútrida de Nurgle transformou o que antes eram homens em criaturas maciças e imponentes, repletas de músculos praguejados e vigor interminável. Brutamontes são indivíduos imensamente fortes e, no grande engodo que é o Carnaval do Caos, atuam como halterofilistas, realizando façanhas de força para entreter as multidões. Quase sempre andam encapuzados como um carrasco, pois embora seus corpos pareçam exteriormente fortes e saudáveis, seus rostos costumam estar tomados por varíola e pústulas. Em batalha, empunham marretas e estrelas da manhã com uma violência terrível, girando-as sobre as cabeças como se fossem brinquedos.",
     "role": "Herói",
     "quantity": "0-2",
+    "race": "Humanos",
     "stats": {
       "move": 9,
       "fight": "+3",
@@ -173,6 +175,7 @@
     "lore": "Os Apodrecidos são aqueles mais abençoados e favorecidos pelo Pai Nurgle. Ocupam um lugar de grande importância na hierarquia do circo. Costumam andar pesadamente trajados e protegidos por poderosos encantamentos, pois sob as vestes escondem-se horrores indizíveis. Seus corpos estão tão destruidos por doenças e mutações que é perigoso até para outros mortais do bando tocarem sua pele. Ironicamente, fazem o papel mais prestigioso no Carnaval — o palhaço. Vestidos como bobos da corte, saltitam e brincam entre a plateia durante as apresentações, rindo e gracejando enquanto a infectam com suas inúmeras e terríveis enfermidades. Essas criaturas retorcidas também são oponentes excepcionalmente perigosos em combate, pois estão contaminados com a terrível Podridãon de Nurgle.",
     "role": "Herói",
     "quantity": "0-2",
+    "race": "Humanos",
     "stats": {
       "move": 10,
       "fight": "+1",
@@ -389,6 +392,7 @@
     "name": "Cultista",
     "lore": "Os Cultistas são seguidores enlouquecidos e devotos de Nurgle, o Senhor da Decadência. Abraçaram por completo a filosofia do Grande Senhor da Putrefação e trilharam de bom grado o caminho da condenação. A maioria está tomada por doenças incuráveis e alguns já começaram a apodrecer; seus rostos são cobertos por verrugas, pústulas e outros dons menores de seu patrono. No Circo, os Cultistas assumem todos os papéis menores — contrarregras, marionetistas, etc. — sustentando a farsa macabra que o espetáculo encena.",
     "quantity": "ilimitado",
+    "race": "Humanos",
     "stats": {
       "move": 10,
       "fight": "+1",

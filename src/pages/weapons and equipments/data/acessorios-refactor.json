@@ -544,7 +544,7 @@
     "specialRules": [
       {
         "label": "Velocidade Élfica",
-        "value": "As botas élficas aumentam o atributo de movimento da figura equipado em +4. Isso pode levar o valor de movimento de um guerreiro acima de seu limite racial."
+        "value": "As botas élficas aumentam o atributo de movimento da figura equipado em +4."
       }
     ]
   },

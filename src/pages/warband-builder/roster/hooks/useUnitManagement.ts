@@ -746,10 +746,11 @@ export function useUnitManagement({
             : category === "equipment"
               ? "equipmentModifiers"
               : "miscStatsModifiers";
+      const prev = (fig as any)[targetKey] || {};
       return {
         ...fig,
         [targetKey]: {
-          ...fig[targetKey],
+          ...prev,
           [stat]: value,
         },
       };
