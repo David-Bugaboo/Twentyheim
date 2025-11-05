@@ -2753,7 +2753,7 @@ const RosterUnitCard: React.FC<RosterUnitCardProps> = ({
                                 });
                               }
                             }}
-                            className="flex items-center gap-2 px-4 py-2 rounded bg-[#4a1a1a] hover:bg-[#5a2a2a] border border-red-600 text-white text-sm font-semibold transition-colors"
+                            className="flex items-center gap-2 px-4 py-2 rounded bg-purple-700 hover:bg-purple-600 border border-purple-600 text-white text-sm font-semibold transition-colors"
                           >
                             <svg className="w-5 h-5" viewBox="-16 0 512 512">
                               <path
