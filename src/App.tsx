@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Navbar from "./components/Navbar";
-import useScrollToTop from "./hooks/useScrollToTop";
-import ProtectedRosterRoute from "./components/ProtectedRosterRoute";
-
 import "./App.css";
 import { TOCProvider } from "./context/table-of-contents.context";
 import { AuthProvider } from "./context/AuthContext";
@@ -56,10 +53,6 @@ import SonsOfHashutPage from "./pages/warbands/sons-of-hashut/SonsOfHashutPage";
 import VampireCourtsPage from "./pages/warbands/vampire-courts/VampireCourtsPage";
 import WitchHuntersPage from "./pages/warbands/witch-hunters/WitchHuntersPage";
 import CarnivalOfChaosPage from "./pages/warbands/carnival-of-chaos/CarnivalOfChaosPage";
-import WarbandRosterPage from "./pages/warband-builder/roster/WarbandRosterPage";
-import WarbandBuilderPage from "./pages/warband-builder/builder/WarbandBuilderPage";
-import SharedWarbandPage from "./pages/share/SharedWarbandPage";
-
 import AttributeTestsPage from "./pages/rules/AttributeTestsPage";
 import CampaignPage from "./pages/campanha/CampaignPage";
 import ArcaneLoresPage from "./pages/spells/lores/ArcaneLoresPage";
@@ -91,8 +84,6 @@ import LegendsPage from "./pages/campanha/LegendsPage";
 import HiredSwordsPage from "./pages/campanha/MercenariesPage";
 import DarkGodsInvocationPage from "./pages/campanha/DarkGodsInvocationPage";
 import ChangelogPage from "./pages/ChangelogPage";
-import AdminPage from "./pages/admin/AdminPage";
-import MigrateDataPage from "./pages/admin/MigrateDataPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -373,19 +364,9 @@ function AppContent() {
           path="/warbands/carnival-of-chaos"
           element={<CarnivalOfChaosPage />}
         />
-        <Route path="/warband-builder" element={<WarbandBuilderPage />} />
-        <Route
-          path="/warband-builder/roster"
-          element={
-            <ProtectedRosterRoute>
-              <WarbandRosterPage />
-            </ProtectedRosterRoute>
-          }
-        />
-        <Route path="/share/warband/:id" element={<SharedWarbandPage />} />
+      
         <Route path="/changelog" element={<ChangelogPage />} />
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="/admin/migrate" element={<MigrateDataPage />} />
+        
       </Routes>
     </>
   );

@@ -22,8 +22,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import logoImage from "../assets/20heim.png";
-import { useAuth } from "../context/AuthContext";
-import { loginWithGoogle, logout } from "../firebase.ts";
 
 const ADMIN_EMAILS = [
   "david.faco@gmail.com",
@@ -49,7 +47,6 @@ const isAdmin = (user: any) => {
 
 const Navbar: React.FC = () => {
   const location = useLocation();
-  const { currentUser } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState<string | null>(
@@ -58,9 +55,17 @@ const Navbar: React.FC = () => {
   const [userMenuAnchor, setUserMenuAnchor] = useState<null | HTMLElement>(
     null
   );
+  const [isMockLoggedIn, setIsMockLoggedIn] = useState(false);
+
+  const mockUser = isMockLoggedIn
+    ? {
+        displayName: "David Faco (Mock)",
+        email: "david.faco@gmail.com",
+      }
+    : null;
 
   // Adiciona link Admin apenas para admins
-  const shouldShowAdmin = currentUser && isAdmin(currentUser);
+  const shouldShowAdmin = !!(mockUser && isAdmin(mockUser));
 
   const navItems = [
     { label: "Início", path: "/" },
@@ -322,10 +327,8 @@ const Navbar: React.FC = () => {
     }
   }, [desktopDropdownOpen]);
 
-  const handleLogin = async () => {
-    try {
-      await loginWithGoogle();
-    } catch {}
+  const handleMockLogin = () => {
+    setIsMockLoggedIn(true);
   };
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -333,12 +336,9 @@ const Navbar: React.FC = () => {
   };
   const handleCloseUserMenu = () => setUserMenuAnchor(null);
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } finally {
-      handleCloseUserMenu();
-    }
+  const handleMockLogout = () => {
+    setIsMockLoggedIn(false);
+    handleCloseUserMenu();
   };
 
   const getInitials = (displayName?: string | null, email?: string | null) => {
@@ -537,7 +537,7 @@ const Navbar: React.FC = () => {
 
         {/* Auth controls (desktop and mobile) */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          {currentUser ? (
+          {mockUser ? (
             <>
               <IconButton
                 onClick={handleOpenUserMenu}
@@ -563,7 +563,7 @@ const Navbar: React.FC = () => {
                   }}
                   aria-label="perfil"
                 >
-                  {getInitials(currentUser.displayName, currentUser.email)}
+                  {getInitials(mockUser.displayName, mockUser.email)}
                 </Box>
               </IconButton>
               <Menu
@@ -574,7 +574,7 @@ const Navbar: React.FC = () => {
                 transformOrigin={{ vertical: "top", horizontal: "right" }}
               >
                 <MenuItem disabled>
-                  {currentUser.email || currentUser.displayName}
+                  {mockUser.email || mockUser.displayName}
                 </MenuItem>
                 <MenuItem
                   component={Link}
@@ -583,12 +583,12 @@ const Navbar: React.FC = () => {
                 >
                   Meus Bandos
                 </MenuItem>
-                <MenuItem onClick={handleLogout}>Sair</MenuItem>
+                <MenuItem onClick={handleMockLogout}>Sair (Mock)</MenuItem>
               </Menu>
             </>
           ) : (
             <Button
-              onClick={handleLogin}
+              onClick={handleMockLogin}
               sx={{
                 color: "white",
                 textTransform: "none",
@@ -598,7 +598,7 @@ const Navbar: React.FC = () => {
                 "&:hover": { backgroundColor: "rgba(16, 185, 129, 0.1)" },
               }}
             >
-              Entrar
+              Entrar (Mock)
             </Button>
           )}
         </Box>
