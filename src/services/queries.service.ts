@@ -91,6 +91,7 @@ export type SupernaturalAbilityQueryResponse = {
   name: string;
   description?: string | null;
   category?: string | null;
+  cost?: string | number | null;
   createdAt?: string;
 };
 

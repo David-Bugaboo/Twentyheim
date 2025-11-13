@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
@@ -27,6 +33,7 @@ import {
 import {
   fetchSkillListBySlug,
   fetchSpellLoreBySlug,
+  fetchSupernaturalAbilities,
 } from "../../services/queries.service";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import { Spinner } from "./warband-detail/components/CommonComponents";
@@ -42,6 +49,7 @@ import { SpellsDialog } from "./warband-detail/components/SpellsDialog";
 import { VaultModal } from "./warband-detail/components/VaultModal";
 import { MercenaryModal } from "./warband-detail/components/MercenaryModal";
 import { LegendModal } from "./warband-detail/components/LegendModal";
+import { SupernaturalDialog } from "./warband-detail/components/SupernaturalDialog";
 import type {
   EquipmentSummary,
   FigureSummary,
@@ -56,6 +64,10 @@ import {
   extractSpellLoreSlugs,
   extractExtraSpellLoreSlugs,
 } from "./warband-detail/utils/helpers";
+import {
+  promoteSoldierToHero,
+  promoteSoldierToLeader,
+} from "../../services/soldiers.service";
 
 type SoldierRelations = {
   equipment: EquipmentToWarbandSoldier[];
@@ -151,6 +163,25 @@ const WarbandDetailPage: React.FC = () => {
   const [legendModalOpen, setLegendModalOpen] = useState(false);
   const [selectedLegendSlug, setSelectedLegendSlug] = useState("");
   const [legendHireLoading, setLegendHireLoading] = useState(false);
+  const [supernaturalDialogOpen, setSupernaturalDialogOpen] = useState(false);
+  const [supernaturalDialogTitle, setSupernaturalDialogTitle] = useState("");
+  const [supernaturalDialogLoading, setSupernaturalDialogLoading] =
+    useState(false);
+  const [supernaturalDialogError, setSupernaturalDialogError] = useState<
+    string | null
+  >(null);
+  const [supernaturalDialogAbilities, setSupernaturalDialogAbilities] =
+    useState<
+      Array<{
+        slug: string;
+        name: string;
+        description?: string | null;
+        cost?: string | number | null;
+      }>
+    >([]);
+  const supernaturalDialogControllerRef = useRef<AbortController | null>(null);
+  const [promoteHeroLoading, setPromoteHeroLoading] = useState(false);
+  const [promoteLeaderLoading, setPromoteLeaderLoading] = useState(false);
 
   useEffect(() => {
     if (!vaultModalOpen) return;
@@ -303,6 +334,51 @@ const WarbandDetailPage: React.FC = () => {
       );
 
     return result;
+  }, [baseFigures]);
+
+  const heroSkillOptions = useMemo(() => {
+    const optionMap = new Map<string, string>();
+
+    const extractOption = (entry: unknown) => {
+      if (!entry) {
+        return;
+      }
+      if (typeof entry === "string") {
+        const slug = entry.trim();
+        if (slug.length > 0 && !optionMap.has(slug)) {
+          optionMap.set(slug, slug);
+        }
+        return;
+      }
+      if (typeof entry === "object") {
+        const record = entry as Record<string, unknown>;
+        const nested = record.skillList as Record<string, unknown> | undefined;
+        const slug =
+          (record.skillListSlug as string | undefined) ??
+          (record.slug as string | undefined) ??
+          (nested?.slug as string | undefined);
+        const name =
+          (record.name as string | undefined) ??
+          (nested?.name as string | undefined) ??
+          slug ??
+          "";
+        if (slug && slug.trim().length > 0) {
+          optionMap.set(slug, name && name.trim().length > 0 ? name : slug);
+        }
+        return;
+      }
+    };
+
+    baseFigures.forEach(figure => {
+      const skillLists = figure.skillLists;
+      if (Array.isArray(skillLists)) {
+        skillLists.forEach(entry => extractOption(entry));
+      }
+    });
+
+    return Array.from(optionMap.entries())
+      .map(([slug, name]) => ({ slug, name }))
+      .sort((a, b) => a.name.localeCompare(b.name));
   }, [baseFigures]);
 
   const soldierGroups = useMemo(() => {
@@ -671,6 +747,118 @@ const WarbandDetailPage: React.FC = () => {
     setSpellsDialogSelectedSlug("");
   };
 
+  const handleOpenSupernaturalDialog = useCallback(
+    ({
+      soldierId,
+      category,
+      figureName,
+    }: {
+      soldierId: string;
+      category: "Mutação" | "Benção de Nurgle";
+      figureName: string;
+    }) => {
+      setSelectedSoldierId(soldierId);
+      setSupernaturalDialogTitle(`${category} disponíveis — ${figureName}`);
+      setSupernaturalDialogOpen(true);
+      setSupernaturalDialogLoading(true);
+      setSupernaturalDialogError(null);
+      setSupernaturalDialogAbilities([]);
+
+      if (supernaturalDialogControllerRef.current) {
+        supernaturalDialogControllerRef.current.abort();
+      }
+
+      const controller = new AbortController();
+      supernaturalDialogControllerRef.current = controller;
+
+      fetchSupernaturalAbilities(category, controller.signal)
+        .then(abilities => {
+          if (controller.signal.aborted) return;
+          const mapped = abilities.map(ability => ({
+            slug: ability.slug,
+            name: ability.name ?? ability.slug,
+            description: ability.description ?? null,
+            cost: ability.cost ?? null,
+          }));
+          setSupernaturalDialogAbilities(mapped);
+        })
+        .catch(error => {
+          if (controller.signal.aborted) {
+            return;
+          }
+          console.error(error);
+          setSupernaturalDialogError(
+            `Não foi possível carregar ${category.toLowerCase()} disponíveis.`
+          );
+        })
+        .finally(() => {
+          if (!controller.signal.aborted) {
+            setSupernaturalDialogLoading(false);
+          }
+        });
+    },
+    [setSelectedSoldierId]
+  );
+
+  const handleCloseSupernaturalDialog = useCallback(() => {
+    if (supernaturalDialogControllerRef.current) {
+      supernaturalDialogControllerRef.current.abort();
+      supernaturalDialogControllerRef.current = null;
+    }
+    setSupernaturalDialogOpen(false);
+    setSupernaturalDialogLoading(false);
+    setSupernaturalDialogError(null);
+    setSupernaturalDialogAbilities([]);
+  }, []);
+
+  const handlePromoteHero = useCallback(
+    async (soldierId: string, skillsListSlugs: string[]) => {
+      if (!warbandId) {
+        toast.error("Identificador do bando não encontrado.");
+        return;
+      }
+      if (skillsListSlugs.length !== 2) {
+        toast.error(
+          "Selecione duas listas de habilidades para promover o herói."
+        );
+        return;
+      }
+      setPromoteHeroLoading(true);
+      try {
+        await promoteSoldierToHero(soldierId, skillsListSlugs);
+        toast.success("Figura promovida a Herói com sucesso!");
+        await loadWarband(warbandId);
+      } catch (error) {
+        console.error(error);
+        toast.error("Não foi possível promover a figura a Herói.");
+      } finally {
+        setPromoteHeroLoading(false);
+      }
+    },
+    [warbandId, loadWarband]
+  );
+
+  const handlePromoteLeader = useCallback(
+    async (soldierId: string) => {
+      if (!warbandId) {
+        toast.error("Identificador do bando não encontrado.");
+        return;
+      }
+      setPromoteLeaderLoading(true);
+      try {
+        await promoteSoldierToLeader(soldierId);
+        toast.success("Figura promovida a Líder com sucesso!");
+        await loadWarband(warbandId);
+      } catch (error) {
+        console.error(error);
+        toast.error("Não foi possível promover a figura a Líder.");
+      } finally {
+        setPromoteLeaderLoading(false);
+      }
+    },
+    [warbandId, loadWarband]
+  );
+
   const handleOpenMercenaryModal = () => {
     setMercenaryModalOpen(true);
   };
@@ -844,6 +1032,7 @@ const WarbandDetailPage: React.FC = () => {
                   onOpenEquipmentDialog={handleOpenEquipmentDialog}
                   onOpenSkillsDialog={handleOpenSkillsDialog}
                   onOpenSpellsDialog={handleOpenSpellsDialog}
+                  onOpenSupernaturalDialog={handleOpenSupernaturalDialog}
                   soldierAction={soldierAction}
                 />
               </div>
@@ -862,6 +1051,11 @@ const WarbandDetailPage: React.FC = () => {
                   soldierExtraSpellLores={soldierExtraSpellLores}
                   warbandId={warbandId ?? null}
                   onReload={() => loadWarband(warbandId!)}
+                  heroSkillOptions={heroSkillOptions}
+                  onPromoteHero={handlePromoteHero}
+                  onPromoteLeader={handlePromoteLeader}
+                  promoteHeroLoading={promoteHeroLoading}
+                  promoteLeaderLoading={promoteLeaderLoading}
                 />
               </div>
             </div>
@@ -896,6 +1090,15 @@ const WarbandDetailPage: React.FC = () => {
         lores={spellsDialogLores}
         selectedSlug={spellsDialogSelectedSlug}
         onSelectSlug={setSpellsDialogSelectedSlug}
+      />
+
+      <SupernaturalDialog
+        open={supernaturalDialogOpen}
+        onClose={handleCloseSupernaturalDialog}
+        title={supernaturalDialogTitle}
+        loading={supernaturalDialogLoading}
+        error={supernaturalDialogError}
+        abilities={supernaturalDialogAbilities}
       />
 
       <MercenaryModal

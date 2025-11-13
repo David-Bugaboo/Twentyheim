@@ -27,6 +27,7 @@ export class BaseFigure {
   role!: Role;
   slug!: string;
   lore!: string;
+  upkeep?:number | null;
   avaiability!: string[];
   exclusions!: string[];
   quality!: number;

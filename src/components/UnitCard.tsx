@@ -19,7 +19,6 @@ export interface UnitStats {
   força?: number | string;
   For?: number | string;
   upkeep?: string;
-  equipmentSlots?: number | string;
   equipment?: {
     "hand-to-hand"?: Array<{ name: string; cost: string }>;
     ranged?: Array<{ name: string; cost: string }>;
@@ -627,12 +626,6 @@ const UnitCard: React.FC<UnitCardProps> = ({
 
             return (
               <div className="mb-6">
-                {stats.equipmentSlots !== undefined &&
-                  stats.equipmentSlots !== null && (
-                    <p className="text-xs text-gray-400 mb-2">
-                      Espaços de Equipamento: {stats.equipmentSlots}
-                    </p>
-                  )}
                 <h4
                   className="text-lg font-bold mb-3"
                   style={{ color: "#8fbc8f" }}

@@ -77,7 +77,6 @@ function SharedWarbandPage() {
               startingXp: fig?.xp ?? 0,
               strength: fig?.baseStats?.strength ?? 0,
               skills: fig?.avaiableSkills || [],
-              equipmentSlots: fig?.equipmentSlots ?? 5,
             },
             abilities: [],
             figure: fig as any,
@@ -316,9 +315,6 @@ function SharedWarbandPage() {
           ? `${Math.round(finalCost)} coroas`
           : `${finalCost} coroas`;
       })(),
-      spaces: toStr(
-        raw.spaces || raw.equipmentSpaces || raw.espacos || raw.slots
-      ),
       description: toArr(raw.description || raw.descricao),
       strength: toStr(
         raw.strength || raw.requisitoDeForca || raw.requisitosDeForca
@@ -478,9 +474,6 @@ function SharedWarbandPage() {
                               <div><strong>Tipo:</strong> ${safe(e?.type)}</div>
                               <div><strong>Custo:</strong> ${safe(
                                 e?.purchaseCost || e?.cost
-                              )}</div>
-                              <div><strong>Espaços:</strong> ${safe(
-                                e?.slots || e?.spaces
                               )}</div>
                               ${
                                 e?.damageModifier != null
@@ -1532,8 +1525,7 @@ function SharedWarbandPage() {
                                   )}
 
                                 {/* Equipment */}
-                                {(fig.equipmentSlots ?? 0) > 0 &&
-                                  fig.equiped &&
+                                {fig.equiped &&
                                   Array.isArray(fig.equiped) &&
                                   fig.equiped.length > 0 && (
                                     <div className="mb-6">

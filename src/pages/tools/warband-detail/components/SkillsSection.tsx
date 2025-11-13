@@ -80,7 +80,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
           }
           className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-sm font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {actionState?.type === "add" ? "Adicionando..." : "Adicionar habilidade"}
+          {actionState?.type === "add" ? "Adicionando..." : "Adicionar"}
         </button>
       </div>
 

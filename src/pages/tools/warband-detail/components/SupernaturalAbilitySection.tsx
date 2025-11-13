@@ -51,6 +51,21 @@ export const SupernaturalAbilitySection: React.FC<SupernaturalAbilitySectionProp
     onReload,
   });
 
+  const formatCost = (value?: string | number | null): string | null => {
+    if (value === null || value === undefined || value === "") {
+      return null;
+    }
+    if (typeof value === "number") {
+      return `${value}g`;
+    }
+    const normalized = String(value).trim();
+    if (!normalized) {
+      return null;
+    }
+    const hasLetters = /[a-zA-Z]/.test(normalized);
+    return hasLetters ? normalized : `${normalized}g`;
+  };
+
   if (!hasAccess) {
     return null;
   }
@@ -69,11 +84,16 @@ export const SupernaturalAbilitySection: React.FC<SupernaturalAbilitySectionProp
           className="w-full rounded border border-green-700 bg-[#0c0f0d] px-3 py-2 text-sm text-gray-200 outline-none transition focus:border-green-400 md:max-w-xs"
         >
           <option value="">-- Escolha uma {category.toLowerCase()} --</option>
-          {allAbilities.map(ability => (
-            <option key={ability.slug} value={ability.slug}>
-              {ability.name}
-            </option>
-          ))}
+          {allAbilities.map(ability => {
+            const formattedCost = formatCost(ability.cost);
+            return (
+              <option key={ability.slug} value={ability.slug}>
+                {formattedCost
+                  ? `${ability.name} — ${formattedCost}`
+                  : ability.name}
+              </option>
+            );
+          })}
         </select>
         <button
           type="button"
@@ -83,7 +103,7 @@ export const SupernaturalAbilitySection: React.FC<SupernaturalAbilitySectionProp
           }
           className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-sm font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {actionState?.type === "add" ? "Adicionando..." : `Adicionar ${category.toLowerCase()}`}
+          {actionState?.type === "add" ? "Adicionando..." : "Adicionar"}
         </button>
       </div>
 
@@ -116,6 +136,8 @@ export const SupernaturalAbilitySection: React.FC<SupernaturalAbilitySectionProp
               category;
             const abilityDescription =
               ability.superNaturalAbility?.description ?? null;
+            const abilityCost = ability.superNaturalAbility?.cost ?? null;
+            const formattedAbilityCost = formatCost(abilityCost);
             const removing =
               actionState?.type === "remove" &&
               actionState.targetId === ability.id;
@@ -133,6 +155,11 @@ export const SupernaturalAbilitySection: React.FC<SupernaturalAbilitySectionProp
                     <div className="text-[11px] text-gray-500">
                       Slug: {ability.superNaturalAbilitySlug ?? "—"}
                     </div>
+                    {formattedAbilityCost ? (
+                      <div className="text-[11px] text-gray-400">
+                        Custo: {formattedAbilityCost}
+                      </div>
+                    ) : null}
                     {abilityDescription ? (
                       <div className="mt-1 text-[11px] text-gray-400">
                         {abilityDescription}

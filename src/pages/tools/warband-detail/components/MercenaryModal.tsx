@@ -11,7 +11,7 @@ import {
   getSkillListLabel,
   getSpellLoreLabel,
 } from "../utils/helpers";
-import { extractEquipment } from "../utils/equipment-helpers";
+
 import { getSupernaturalAccess } from "../utils/supernatural-helpers";
 
 type MercenaryModalProps = {
@@ -35,7 +35,6 @@ export const MercenaryModal: React.FC<MercenaryModalProps> = ({
   onSelectSlug,
   onHire,
   actionLoading,
-  warband,
 }) => {
   // Os mercenários já vêm filtrados do backend
   const availableMercenaries = mercenaries;
@@ -220,7 +219,7 @@ export const MercenaryModal: React.FC<MercenaryModalProps> = ({
                   />
                   {FIGURE_STATS.map(stat => {
                     const rawValue = (
-                      selectedMercenary as Record<string, unknown>
+                      selectedMercenary as unknown as Record<string, unknown>
                     )[stat.key];
                     const displayValue =
                       rawValue === undefined || rawValue === null

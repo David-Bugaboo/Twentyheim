@@ -108,16 +108,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({
                         }}
                       />
                     ) : null}
-                    {item.slot != null ? (
-                      <Chip
-                        size="small"
-                        label={`Slots: ${item.slot}`}
-                        sx={{
-                          backgroundColor: "rgba(134, 239, 172, 0.2)",
-                          color: "#bbf7d0",
-                        }}
-                      />
-                    ) : null}
+                    
                   </div>
                 </div>
                 {item.description ? (

@@ -10,7 +10,6 @@ interface EquipmentCardProps {
   exclusive?: string | null;
   specialProperties?: string[] | null;
   cost: string | null;
-  spaces: string | null;
   description?: string[] | null;
   strength?: string | null;
   armorBonus?: string | null;
@@ -32,7 +31,6 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
   maxRange,
   exclusive,
   cost,
-  spaces,
   description = [],
   strength,
   armorBonus,
@@ -100,12 +98,6 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
               <span>
                 {availability ? availability.join(", ") : exclusive || "Comum"}
               </span>
-            </div>
-          )}
-          {spaces != null && (
-            <div className="mb-2">
-              <span className="font-bold">Espaços de Equipamento: </span>
-              <span>{spaces}</span>
             </div>
           )}
         </div>

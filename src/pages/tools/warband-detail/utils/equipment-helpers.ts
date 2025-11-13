@@ -61,10 +61,6 @@ export const extractEquipment = (
         (base?.damageBonus as number | undefined) ??
         (base?.damageModifier as number | undefined) ??
         null,
-      slot:
-        (base?.slot as number | undefined) ??
-        (base?.slots as number | undefined) ??
-        null,
     });
   });
 

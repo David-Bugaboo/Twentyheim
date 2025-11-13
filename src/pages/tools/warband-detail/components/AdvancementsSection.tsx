@@ -76,26 +76,7 @@ export const AdvancementsSection: React.FC<AdvancementsSectionProps> = ({
     setExperiencePreview(experienceValue);
   }, [experienceValue]);
 
-  const handleUpdateExperience = React.useCallback(
-    async (nextValue: number) => {
-      if (!selectedSoldier?.id) return;
-      try {
-        setSavingExperience(true);
-        await updateSoldier(selectedSoldier.id, {
-          experience: Math.max(0, nextValue),
-        });
-        toast.success("Experiência atualizada.");
-        await onReload();
-      } catch (err) {
-        console.error(err);
-        toast.error("Não foi possível atualizar a experiência.");
-        setExperiencePreview(experienceValue);
-      } finally {
-        setSavingExperience(false);
-      }
-    },
-    [experienceValue, onReload, selectedSoldier?.id]
-  );
+  
 
   const handleChangeExperience = React.useCallback((value: number) => {
     setExperiencePreview(Math.max(0, value));

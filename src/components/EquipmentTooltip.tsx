@@ -94,7 +94,6 @@ const EquipmentTooltip: React.FC<EquipmentTooltipProps> = ({
             maxRange={equipmentItem.maxRange}
             exclusive={equipmentItem.exclusive}
             cost={equipmentItem.purchaseCost}
-            spaces={equipmentItem.slots}
             strength={equipmentItem.strength}
             armorBonus={equipmentItem.armorBonus}
             movePenalty={equipmentItem.movePenalty}

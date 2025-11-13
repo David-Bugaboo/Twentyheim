@@ -234,3 +234,22 @@ function normalizeModifierValue(value: number | undefined): number {
   return value;
 }
 
+export async function promoteSoldierToHero(
+  soldierId: string,
+  skillsListSlugs: string[]
+) {
+  const response = await apiClient.post(
+    `/soldiers/${soldierId}/promote/hero`,
+    { skillsListSlugs }
+  );
+  return response.data;
+}
+
+export async function promoteSoldierToLeader(soldierId: string) {
+  const response = await apiClient.post(
+    `/soldiers/${soldierId}/promote/leader`,
+    {}
+  );
+  return response.data;
+}
+

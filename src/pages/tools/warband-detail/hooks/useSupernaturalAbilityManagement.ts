@@ -31,7 +31,12 @@ export const useSupernaturalAbilityManagement = ({
 }: UseSupernaturalAbilityManagementProps) => {
   const [expanded, setExpanded] = useState(true);
   const [allAbilities, setAllAbilities] = useState<
-    Array<{ slug: string; name: string; description?: string | null }>
+    Array<{
+      slug: string;
+      name: string;
+      description?: string | null;
+      cost?: string | number | null;
+    }>
   >([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -90,6 +95,7 @@ export const useSupernaturalAbilityManagement = ({
           slug: ability.slug,
           name: ability.name ?? ability.slug,
           description: ability.description ?? null,
+          cost: ability.cost ?? null,
         }));
 
         setAllAbilities(all);

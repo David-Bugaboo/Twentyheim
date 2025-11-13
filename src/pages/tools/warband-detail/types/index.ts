@@ -8,7 +8,6 @@ export type EquipmentSummary = {
   specialRules?: Array<{ label?: string; value?: string }>;
   armourBonus?: number | null;
   damageBonus?: number | null;
-  slot?: number | null;
   avaiability?: string[];
   exclusions?: string[];
 };

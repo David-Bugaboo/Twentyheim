@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Button,
   Chip,
@@ -40,6 +40,8 @@ import {
   formatDate,
   normalizeString,
   hasSpecialRuleLabel,
+  parseSpecialRules,
+  getRoleType,
 } from "../utils/helpers";
 import { useEquipmentManagement } from "../hooks/useEquipmentManagement";
 import type { SpellToWarbandSoldier } from "../../../../types/spell-to-warband-soldier.entity";
@@ -257,6 +259,14 @@ export interface SoldierDetailSectionProps {
   soldierExtraSpellLores: ExtraSpellLoreToWarbandSoldier[];
   warbandId: string | null;
   onReload: () => Promise<void>;
+  heroSkillOptions: Array<{ slug: string; name: string }>;
+  onPromoteHero: (
+    soldierId: string,
+    skillsListSlugs: string[]
+  ) => Promise<void> | void;
+  onPromoteLeader: (soldierId: string) => Promise<void> | void;
+  promoteHeroLoading: boolean;
+  promoteLeaderLoading: boolean;
 }
 
 type DisplayNaturalAttack = BaseNaturalAttack & { source?: string };
@@ -271,6 +281,11 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
   soldierExtraSpellLores,
   warbandId,
   onReload,
+  heroSkillOptions,
+  onPromoteHero,
+  onPromoteLeader,
+  promoteHeroLoading,
+  promoteLeaderLoading,
 }) => {
   const {
     selectedVaultEquipmentId,
@@ -301,11 +316,22 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
   const [attributeDialogOpen, setAttributeDialogOpen] = useState(false);
   const [nameFormValue, setNameFormValue] = useState("");
   const [notesFormValue, setNotesFormValue] = useState("");
-const [miscModifiersForm, setMiscModifiersForm] =
-  useState<SoldierMiscModifierPayload>({ ...EMPTY_MISC_MODIFIER });
+  const [miscModifiersForm, setMiscModifiersForm] =
+    useState<SoldierMiscModifierPayload>({ ...EMPTY_MISC_MODIFIER });
   const [savingName, setSavingName] = useState(false);
   const [savingNotes, setSavingNotes] = useState(false);
   const [savingMiscModifiers, setSavingMiscModifiers] = useState(false);
+  const [specialRulesExpanded, setSpecialRulesExpanded] = useState(true);
+  const [promotionsExpanded, setPromotionsExpanded] = useState(true);
+  const [promoteHeroDialogOpen, setPromoteHeroDialogOpen] = useState(false);
+  const [promoteLeaderDialogOpen, setPromoteLeaderDialogOpen] = useState(false);
+  const [heroSkillSelection, setHeroSkillSelection] = useState<{
+    first: string;
+    second: string;
+  }>({ first: "", second: "" });
+  const [heroSelectionError, setHeroSelectionError] = useState<string | null>(
+    null
+  );
 
   useEffect(() => {
     setNameFormValue(selectedSoldier?.campaignName ?? "");
@@ -453,18 +479,23 @@ const [miscModifiersForm, setMiscModifiersForm] =
             })
           | undefined;
         const armourBonusRaw = (() => {
-          const direct = equipmentRecord ? equipmentRecord["armourBonus"] : null;
+          const direct = equipmentRecord
+            ? equipmentRecord["armourBonus"]
+            : null;
           if (typeof direct === "number") return direct;
           const alt = equipmentRecord ? equipmentRecord["armorBonus"] : null;
           return typeof alt === "number" ? alt : null;
         })();
         const movementPenaltyRaw =
-          equipmentRecord && typeof equipmentRecord["movementPenalty"] === "number"
+          equipmentRecord &&
+          typeof equipmentRecord["movementPenalty"] === "number"
             ? (equipmentRecord["movementPenalty"] as number)
             : null;
         const category = item.equipment?.category ?? "";
         const normalizedCategory = category ? normalizeString(category) : "";
-        const normalizedName = equipmentName ? normalizeString(equipmentName) : "";
+        const normalizedName = equipmentName
+          ? normalizeString(equipmentName)
+          : "";
         const isShield =
           normalizedCategory.includes("escudo") ||
           normalizedCategory.includes("shield") ||
@@ -477,12 +508,15 @@ const [miscModifiersForm, setMiscModifiersForm] =
           item.armorEquiped === true;
         const armourBonusContribution =
           isArmour || isShield
-            ? typeof armourBonusRaw === "number" && !Number.isNaN(armourBonusRaw)
+            ? typeof armourBonusRaw === "number" &&
+              !Number.isNaN(armourBonusRaw)
               ? armourBonusRaw
               : null
             : null;
         const movementPenaltyContribution =
-          isArmour && typeof movementPenaltyRaw === "number" && !Number.isNaN(movementPenaltyRaw)
+          isArmour &&
+          typeof movementPenaltyRaw === "number" &&
+          !Number.isNaN(movementPenaltyRaw)
             ? -Math.abs(movementPenaltyRaw)
             : null;
         return {
@@ -774,9 +808,7 @@ const [miscModifiersForm, setMiscModifiersForm] =
       setAttributeDialogOpen(false);
     } catch (error) {
       console.error(error);
-      toast.error(
-        "Não foi possível atualizar o modificador personalizado."
-      );
+      toast.error("Não foi possível atualizar o modificador personalizado.");
     } finally {
       setSavingMiscModifiers(false);
     }
@@ -815,6 +847,100 @@ const [miscModifiersForm, setMiscModifiersForm] =
     ...baseNaturalAttacks,
     ...abilityNaturalAttacks,
   ];
+
+  const combinedSpecialRules = useMemo(() => {
+    const rules: Array<{
+      label: string;
+      value: string;
+      source?: string;
+    }> = [];
+
+    const baseFigureRules = parseSpecialRules(
+      selectedBaseFigure?.specialRules ?? null
+    );
+    baseFigureRules.forEach(entry => {
+      rules.push({
+        label: entry.label,
+        value: entry.value,
+        source: selectedBaseFigure?.name
+          ? `Figura Base: ${selectedBaseFigure.name}`
+          : "Figura Base",
+      });
+    });
+
+    const soldierExtraRules = parseSpecialRules(
+      selectedSoldier?.extraSpecialRules ?? null
+    );
+    soldierExtraRules.forEach(entry => {
+      rules.push({
+        label: entry.label,
+        value: entry.value,
+        source: "Regra Extra",
+      });
+    });
+
+    return rules;
+  }, [
+    selectedBaseFigure?.specialRules,
+    selectedBaseFigure?.name,
+    selectedSoldier?.extraSpecialRules,
+  ]);
+
+  const currentRoleType = getRoleType(
+    selectedSoldier?.effectiveRole ?? selectedBaseFigure?.role ?? null
+  );
+  const hasSelectedSoldier = Boolean(selectedSoldier);
+  const canPromoteToHero = hasSelectedSoldier && currentRoleType === "soldier";
+  const canPromoteToLeader = hasSelectedSoldier && currentRoleType === "hero";
+  const hasHeroSkillChoices = heroSkillOptions.length >= 2;
+
+  const heroDefaultSelection = useMemo(() => {
+    const first = heroSkillOptions[0]?.slug ?? "";
+    const secondCandidate =
+      heroSkillOptions.find(option => option.slug !== first)?.slug ?? "";
+    return { first, second: secondCandidate };
+  }, [heroSkillOptions]);
+
+  const handleOpenPromoteHeroDialog = () => {
+    if (!selectedSoldier || !hasHeroSkillChoices) return;
+    setHeroSkillSelection(heroDefaultSelection);
+    setHeroSelectionError(null);
+    setPromoteHeroDialogOpen(true);
+  };
+
+  const handleConfirmPromoteHero = async () => {
+    if (!selectedSoldier) return;
+    if (!hasHeroSkillChoices) {
+      setHeroSelectionError(
+        "É necessário ter ao menos duas listas de habilidades disponíveis."
+      );
+      return;
+    }
+    const { first, second } = heroSkillSelection;
+    if (!first || !second) {
+      setHeroSelectionError("Selecione duas listas de habilidades.");
+      return;
+    }
+    if (first === second) {
+      setHeroSelectionError("Escolha duas listas diferentes.");
+      return;
+    }
+    setHeroSelectionError(null);
+    await onPromoteHero(selectedSoldier.id, [first, second]);
+    setPromoteHeroDialogOpen(false);
+  };
+
+  const handleConfirmPromoteLeader = async () => {
+    if (!selectedSoldier) return;
+    await onPromoteLeader(selectedSoldier.id);
+    setPromoteLeaderDialogOpen(false);
+  };
+
+  useEffect(() => {
+    if (promoteHeroDialogOpen) {
+      setHeroSkillSelection(heroDefaultSelection);
+    }
+  }, [heroDefaultSelection, promoteHeroDialogOpen]);
 
   return (
     <SectionCard title="Detalhes da Figura">
@@ -935,9 +1061,105 @@ const [miscModifiersForm, setMiscModifiersForm] =
           </div>
         ) : null}
 
+        {canPromoteToHero || canPromoteToLeader ? (
+          <CollapsibleSection
+            title="Promoções"
+            expanded={promotionsExpanded}
+            onToggle={() => setPromotionsExpanded(prev => !prev)}
+          >
+            <div className="space-y-3 text-xs text-green-100">
+              {canPromoteToHero ? (
+                <div className="rounded border border-green-800/30 bg-[#101d12] p-3">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <div className="font-semibold text-green-200">
+                        Promover a Herói
+                      </div>
+                      <div className="text-[11px] text-gray-400">
+                        Escolha duas listas de habilidades para o novo herói.
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleOpenPromoteHeroDialog}
+                      disabled={promoteHeroLoading || !hasHeroSkillChoices}
+                      className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {promoteHeroLoading ? "Promovendo..." : "Promover"}
+                    </button>
+                  </div>
+                  {!hasHeroSkillChoices ? (
+                    <div className="mt-2 text-[11px] text-yellow-300">
+                      É necessário ter pelo menos duas listas de habilidades
+                      disponíveis para promover um herói.
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {canPromoteToLeader ? (
+                <div className="rounded border border-green-800/30 bg-[#101d12] p-3">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <div className="font-semibold text-green-200">
+                        Promover a Líder
+                      </div>
+                      <div className="text-[11px] text-gray-400">
+                        Esta figura assumirá o comando do bando.
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setPromoteLeaderDialogOpen(true)}
+                      disabled={promoteLeaderLoading}
+                      className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {promoteLeaderLoading ? "Promovendo..." : "Promover"}
+                    </button>
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          </CollapsibleSection>
+        ) : null}
+
+        {combinedSpecialRules.length > 0 ? (
+          <CollapsibleSection
+            title="Regras Especiais"
+            expanded={specialRulesExpanded}
+            onToggle={() => setSpecialRulesExpanded(prev => !prev)}
+          >
+            <div className="space-y-3 text-xs text-green-100">
+              {combinedSpecialRules.map((rule, index) => (
+                <div
+                  key={`special-rule-${index}-${rule.label}`}
+                  className="rounded border border-green-800/30 bg-[#101d12] px-3 py-2"
+                >
+                  {rule.source &&
+                  !rule.source.toLowerCase().startsWith("figura base") ? (
+                    <div className="text-[11px] uppercase text-green-400">
+                      {rule.source}
+                    </div>
+                  ) : null}
+                  <div className="text-sm font-semibold text-green-200">
+                    {rule.label}
+                  </div>
+                  {rule.value ? (
+                    <GameText
+                      component="div"
+                      className="mt-1 text-[11px] text-green-100 whitespace-pre-wrap"
+                    >
+                      {rule.value}
+                    </GameText>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          </CollapsibleSection>
+        ) : null}
+
         {relations.equipment.length > 0 ? (
           <div className="space-y-3">
-            <h5 className="font-semibold text-green-300">Equipamentos</h5>
             <div className="space-y-4 text-xs">
               <CollapsibleSection
                 title="Itens equipados"
@@ -1119,14 +1341,15 @@ const [miscModifiersForm, setMiscModifiersForm] =
                         typeof strengthSummary === "number" &&
                         !Number.isNaN(strengthSummary)
                           ? strengthSummary
-                          : parseStatToNumber(
-                              (selectedBaseFigure as unknown as Record<
-                                string,
-                                unknown
-                              >)?.strength as number | string | null | undefined
-                            ) ?? 0;
-                      const meleeTotalDamage =
-                        strengthValue + damageBonusValue;
+                          : (parseStatToNumber(
+                              (
+                                selectedBaseFigure as unknown as Record<
+                                  string,
+                                  unknown
+                                >
+                              )?.strength as number | string | null | undefined
+                            ) ?? 0);
+                      const meleeTotalDamage = strengthValue + damageBonusValue;
 
                       let damageSection: React.ReactNode = null;
 
@@ -1464,7 +1687,7 @@ const [miscModifiersForm, setMiscModifiersForm] =
                                 </div>
                               ) : null}
 
-                      <div className="mt-3 flex flex-col gap-2 border-t border-green-900/40 pt-3">
+                              <div className="mt-3 flex flex-col gap-2 border-t border-green-900/40 pt-3">
                                 {slotButtons.map(action => {
                                   const equipInProgressForSlot =
                                     slotActionInProgress?.type === "equip" &&
@@ -1528,7 +1751,7 @@ const [miscModifiersForm, setMiscModifiersForm] =
                                         )
                                       }
                                       disabled={disabled}
-                              className="inline-flex w-full items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                                      className="inline-flex w-full items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
                                     >
                                       {label}
                                     </button>
@@ -1552,7 +1775,7 @@ const [miscModifiersForm, setMiscModifiersForm] =
                                       (slotActionInProgress !== null &&
                                         slotActionInProgress.type !== "equip")
                                     }
-                            className="inline-flex w-full items-center justify-center rounded border border-red-600/60 bg-red-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-red-200 transition hover:border-red-400 hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                                    className="inline-flex w-full items-center justify-center rounded border border-red-600/60 bg-red-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-red-200 transition hover:border-red-400 hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-60"
                                   >
                                     {returning
                                       ? "Devolvendo..."
@@ -1735,6 +1958,122 @@ const [miscModifiersForm, setMiscModifiersForm] =
             variant="contained"
           >
             {savingNotes ? "Salvando..." : "Salvar"}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={promoteHeroDialogOpen}
+        onClose={() => {
+          if (!promoteHeroLoading) setPromoteHeroDialogOpen(false);
+        }}
+        fullWidth
+        maxWidth="xs"
+      >
+        <DialogTitle>Promover a Herói</DialogTitle>
+        <DialogContent dividers>
+          <div className="space-y-3">
+            <p className="text-xs text-gray-300">
+              Escolha duas listas de habilidades para o novo herói.
+            </p>
+            <div className="space-y-2">
+              <div>
+                <label className="text-[11px] uppercase text-green-300">
+                  Primeira lista
+                </label>
+                <select
+                  value={heroSkillSelection.first}
+                  onChange={event =>
+                    setHeroSkillSelection(prev => ({
+                      ...prev,
+                      first: event.target.value,
+                    }))
+                  }
+                  className="mt-1 w-full rounded border border-green-700 bg-[#0c0f0d] px-3 py-2 text-sm text-gray-200 outline-none transition focus:border-green-400"
+                >
+                  <option value="">-- Escolha uma lista --</option>
+                  {heroSkillOptions.map(option => (
+                    <option key={option.slug} value={option.slug}>
+                      {option.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="text-[11px] uppercase text-green-300">
+                  Segunda lista
+                </label>
+                <select
+                  value={heroSkillSelection.second}
+                  onChange={event =>
+                    setHeroSkillSelection(prev => ({
+                      ...prev,
+                      second: event.target.value,
+                    }))
+                  }
+                  className="mt-1 w-full rounded border border-green-700 bg-[#0c0f0d] px-3 py-2 text-sm text-gray-200 outline-none transition focus:border-green-400"
+                >
+                  <option value="">-- Escolha uma lista --</option>
+                  {heroSkillOptions.map(option => (
+                    <option key={option.slug} value={option.slug}>
+                      {option.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            {heroSelectionError ? (
+              <div className="text-[11px] text-red-300">
+                {heroSelectionError}
+              </div>
+            ) : null}
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setPromoteHeroDialogOpen(false)}
+            disabled={promoteHeroLoading}
+          >
+            Cancelar
+          </Button>
+          <Button
+            onClick={handleConfirmPromoteHero}
+            disabled={promoteHeroLoading}
+            variant="contained"
+          >
+            {promoteHeroLoading ? "Promovendo..." : "Confirmar"}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={promoteLeaderDialogOpen}
+        onClose={() => {
+          if (!promoteLeaderLoading) setPromoteLeaderDialogOpen(false);
+        }}
+        maxWidth="xs"
+        fullWidth
+      >
+        <DialogTitle>Promover a Líder</DialogTitle>
+        <DialogContent>
+          <p className="text-sm text-gray-300">
+            Confirmar a promoção desta figura para Líder?
+          </p>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setPromoteLeaderDialogOpen(false)}
+            disabled={promoteLeaderLoading}
+          >
+            Cancelar
+          </Button>
+          <Button
+            onClick={handleConfirmPromoteLeader}
+            disabled={promoteLeaderLoading}
+            variant="contained"
+            color="primary"
+          >
+            {promoteLeaderLoading ? "Promovendo..." : "Promover"}
           </Button>
         </DialogActions>
       </Dialog>
