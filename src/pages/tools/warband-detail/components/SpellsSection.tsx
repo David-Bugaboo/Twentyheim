@@ -34,6 +34,8 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
     actionState,
     handleAdd,
     handleRemove,
+    handleFortify,
+    handleUnfortify,
   } = useSpellsManagement({
     selectedSoldier,
     selectedBaseFigure,
@@ -111,17 +113,49 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
               spell.spell?.name ?? spell.spellSlug ?? "Magia";
             const spellDescription = spell.spell?.description ?? null;
             const difficultyClass = spell.spell?.difficultyClass ?? null;
+            const rawModifier = (() => {
+              const modifierFromRelation = (spell as unknown as {
+                modifier?: number | string | null;
+              })?.modifier;
+              if (typeof modifierFromRelation === "number") {
+                return modifierFromRelation;
+              }
+              if (
+                typeof modifierFromRelation === "string" &&
+                modifierFromRelation.trim().length > 0
+              ) {
+                const parsed = Number(modifierFromRelation.replace(",", "."));
+                if (!Number.isNaN(parsed)) return parsed;
+              }
+              return 0;
+            })();
+            const adjustedDifficulty =
+              typeof difficultyClass === "number" && !Number.isNaN(difficultyClass)
+                ? Math.max(0, difficultyClass - rawModifier)
+                : difficultyClass;
             const keywords = spell.spell?.keywords ?? null;
             const removing =
               actionState?.type === "remove" &&
               actionState.targetId === spell.id;
+            const fortifying =
+              actionState?.type === "fortify" &&
+              actionState.targetId === spell.id;
+            const unfortifying =
+              actionState?.type === "unfortify" &&
+              actionState.targetId === spell.id;
+            const hasFortification = rawModifier > 0;
+            const canFortifyMore =
+              typeof difficultyClass === "number" &&
+              !Number.isNaN(difficultyClass)
+                ? difficultyClass - rawModifier > 6
+                : true;
 
             return (
               <li
                 key={spell.id}
                 className="rounded border border-green-800/40 bg-[#101010] p-3"
               >
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <div className="flex flex-col gap-3">
                   <div>
                     <div className="text-sm font-semibold text-green-200">
                       {spellName}
@@ -131,7 +165,13 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
                     </div>
                     {difficultyClass !== null ? (
                       <div className="text-[11px] text-gray-500">
-                        CD: {difficultyClass}
+                        CD: {adjustedDifficulty}
+                        {rawModifier !== 0 ? (
+                          <span className="text-[10px] text-gray-400">
+                            {" "}
+                            (Base {difficultyClass} − {rawModifier})
+                          </span>
+                        ) : null}
                       </div>
                     ) : null}
                     {keywords && keywords.length > 0 ? (
@@ -145,12 +185,43 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
                       </div>
                     ) : null}
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col gap-2 border-t border-green-900/40 pt-3">
+                    {hasFortification ? (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => handleUnfortify(spell.id, spellName)}
+                          disabled={unfortifying}
+                          className="inline-flex w-full items-center justify-center rounded border border-amber-600/60 bg-amber-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-amber-200 transition hover:border-amber-400 hover:bg-amber-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                        >
+                          {unfortifying ? "Revertendo..." : "Desfazer Fortificação"}
+                        </button>
+                        {canFortifyMore ? (
+                          <button
+                            type="button"
+                            onClick={() => handleFortify(spell.id, spellName)}
+                            disabled={fortifying}
+                            className="inline-flex w-full items-center justify-center rounded border border-sky-600/60 bg-sky-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-sky-200 transition hover:border-sky-400 hover:bg-sky-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                          >
+                            {fortifying ? "Fortificando..." : "Fortificar"}
+                          </button>
+                        ) : null}
+                      </>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => handleFortify(spell.id, spellName)}
+                        disabled={fortifying}
+                        className="inline-flex w-full items-center justify-center rounded border border-sky-600/60 bg-sky-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-sky-200 transition hover:border-sky-400 hover:bg-sky-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                      >
+                        {fortifying ? "Fortificando..." : "Fortificar"}
+                      </button>
+                    )}
                     <button
                       type="button"
                       onClick={() => handleRemove(spell.id, spellName)}
                       disabled={removing}
-                      className="inline-flex items-center justify-center rounded border border-red-600/60 bg-red-900/20 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-red-200 transition hover:border-red-400 hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="inline-flex w-full items-center justify-center rounded border border-red-600/60 bg-red-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-red-200 transition hover:border-red-400 hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       {removing ? "Removendo..." : "Remover"}
                     </button>

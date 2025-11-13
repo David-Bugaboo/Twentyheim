@@ -94,36 +94,36 @@ export const InjuriesSection: React.FC<InjuriesSectionProps> = ({
                 actionState.targetId === injury.id;
 
               return (
-                <li
-                  key={injury.id}
-                  className="rounded border border-red-800/40 bg-[#101010] p-3"
-                >
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                    <div>
-                      <div className="text-sm font-semibold text-red-200">
-                        {injuryName}
-                      </div>
-                      <div className="text-[11px] text-gray-500">
-                        Slug: {injury.injurySlug ?? "—"}
-                      </div>
-                      {injuryDescription ? (
-                        <div className="mt-1 text-[11px] text-gray-400">
-                          {injuryDescription}
-                        </div>
-                      ) : null}
+              <li
+                key={injury.id}
+                className="rounded border border-red-800/40 bg-[#101010] p-3"
+              >
+                <div className="flex flex-col gap-3">
+                  <div>
+                    <div className="text-sm font-semibold text-red-200">
+                      {injuryName}
                     </div>
-                    <div className="flex gap-2">
-                      <button
-                        type="button"
-                        onClick={() => handleRemove(injury.id, injuryName)}
-                        disabled={removing}
-                        className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
-                      >
-                        {removing ? "Curando..." : "Curar"}
-                      </button>
+                    <div className="text-[11px] text-gray-500">
+                      Slug: {injury.injurySlug ?? "—"}
                     </div>
+                    {injuryDescription ? (
+                      <div className="mt-1 text-[11px] text-gray-400">
+                        {injuryDescription}
+                      </div>
+                    ) : null}
                   </div>
-                </li>
+                  <div className="flex flex-col gap-2 border-t border-red-900/40 pt-3">
+                    <button
+                      type="button"
+                      onClick={() => handleRemove(injury.id, injuryName)}
+                      disabled={removing}
+                      className="inline-flex w-full items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {removing ? "Curando..." : "Curar"}
+                    </button>
+                  </div>
+                </div>
+              </li>
               );
             })}
           </ul>

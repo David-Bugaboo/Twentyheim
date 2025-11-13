@@ -18,69 +18,47 @@ export const rollAdvancement = (
 ): AdvancementRollResult => {
   const roll = Math.floor(Math.random() * 20) + 1; // 1-20
 
-  if (usesHeroLeaderTable && roll >= 1 && roll <= 4) {
-    // Tabela de habilidades/magias (1-4)
-    const options = [
-      allAdvancements.find(adv => adv.slug === "nova-habilidade"),
-      allAdvancements.find(adv => adv.slug === "nova-magia"),
-      allAdvancements.find(adv => adv.slug === "fortalecer-magia"),
-    ].filter(
-      (adv): adv is { slug: string; name: string; description?: string | null } =>
-        adv !== undefined
-    );
-    return { roll, options };
+  const findOptions = (...slugs: string[]) =>
+    slugs
+      .map(slug => allAdvancements.find(adv => adv.slug === slug))
+      .filter(
+        (adv): adv is { slug: string; name: string; description?: string | null } =>
+          adv !== undefined
+      );
+
+  if (usesHeroLeaderTable) {
+    if (roll >= 1 && roll <= 4) {
+      // Tabela especial de habilidades/magias
+      return {
+        roll,
+        options: findOptions("nova-habilidade", "nova-magia", "fortalecer-magia"),
+      };
+    }
+    if (roll >= 5 && roll <= 8) {
+      return { roll, options: findOptions("1-forca", "1-impeto") };
+    }
+    if (roll >= 9 && roll <= 12) {
+      return { roll, options: findOptions("1-precisao", "2-movimento") };
+    }
+    if (roll >= 13 && roll <= 16) {
+      return { roll, options: findOptions("1-armadura", "2-vida") };
+    }
+    return { roll, options: findOptions("2-vida", "1-vontade") };
   }
 
-  // Tabela de aumento de atributo
+  // Tabela de soldados / demais figuras
   if (roll >= 1 && roll <= 4) {
-    // +1 Força ou +1 Ímpeto
-    const options = [
-      allAdvancements.find(adv => adv.slug === "1-forca"),
-      allAdvancements.find(adv => adv.slug === "1-impeto"),
-    ].filter(
-      (adv): adv is { slug: string; name: string; description?: string | null } =>
-        adv !== undefined
-    );
-    return { roll, options };
-  } else if (roll >= 5 && roll <= 8) {
-    // +1 Precisão ou +2 Movimento
-    const options = [
-      allAdvancements.find(adv => adv.slug === "1-precisao"),
-      allAdvancements.find(adv => adv.slug === "2-movimento"),
-    ].filter(
-      (adv): adv is { slug: string; name: string; description?: string | null } =>
-        adv !== undefined
-    );
-    return { roll, options };
-  } else if (roll >= 9 && roll <= 12) {
-    // +1 Armadura ou +2 Vida
-    const options = [
-      allAdvancements.find(adv => adv.slug === "1-armadura"),
-      allAdvancements.find(adv => adv.slug === "2-vida"),
-    ].filter(
-      (adv): adv is { slug: string; name: string; description?: string | null } =>
-        adv !== undefined
-    );
-    return { roll, options };
-  } else if (roll >= 13 && roll <= 16) {
-    // +2 Vida ou +1 Vontade
-    const options = [
-      allAdvancements.find(adv => adv.slug === "2-vida"),
-      allAdvancements.find(adv => adv.slug === "1-vontade"),
-    ].filter(
-      (adv): adv is { slug: string; name: string; description?: string | null } =>
-        adv !== undefined
-    );
-    return { roll, options };
-  } else {
-    // 17-20: O Moleque Tem Talento!
-    const options = [
-      allAdvancements.find(adv => adv.slug === "o-moleque-tem-talento"),
-    ].filter(
-      (adv): adv is { slug: string; name: string; description?: string | null } =>
-        adv !== undefined
-    );
-    return { roll, options };
+    return { roll, options: findOptions("1-forca", "1-impeto") };
   }
+  if (roll >= 5 && roll <= 8) {
+    return { roll, options: findOptions("1-precisao", "2-movimento") };
+  }
+  if (roll >= 9 && roll <= 12) {
+    return { roll, options: findOptions("1-armadura", "2-vida") };
+  }
+  if (roll >= 13 && roll <= 16) {
+    return { roll, options: findOptions("2-vida", "1-vontade") };
+  }
+  return { roll, options: findOptions("o-moleque-tem-talento") };
 };
 

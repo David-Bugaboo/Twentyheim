@@ -277,8 +277,11 @@ function ExperienceRollPage() {
               rolagens.
             </MobileText>
 
-            <HeaderH2>Tabela de Avanço de Heróis e Campeões</HeaderH2>
-            <MobileText>Role 1d20 e consulte a tabela abaixo:</MobileText>
+            <HeaderH2>Tabela de Avanço de Heróis, Líderes e Mercenários</HeaderH2>
+            <MobileText>
+              Role 1d20 e consulte a tabela abaixo. Esses resultados também se
+              aplicam aos mercenários que acompanham o bando.
+            </MobileText>
             <GenericTable
               data={[
                 {

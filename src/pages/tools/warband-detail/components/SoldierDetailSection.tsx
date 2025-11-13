@@ -36,8 +36,6 @@ import type { SkillAttributeModifiers } from "../../../../types/skill.entity";
 import { EQUIPMENT_SLOT_LABELS, EQUIPPED_SLOT_SECTIONS } from "../types";
 import EditIcon from "@mui/icons-material/Edit";
 import StickyNote2Icon from "@mui/icons-material/StickyNote2";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import {
   formatDate,
   normalizeString,
@@ -303,9 +301,8 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
   const [attributeDialogOpen, setAttributeDialogOpen] = useState(false);
   const [nameFormValue, setNameFormValue] = useState("");
   const [notesFormValue, setNotesFormValue] = useState("");
-  const [miscModifiersForm, setMiscModifiersForm] = useState<
-    SoldierMiscModifierPayload[]
-  >([]);
+const [miscModifiersForm, setMiscModifiersForm] =
+  useState<SoldierMiscModifierPayload>({ ...EMPTY_MISC_MODIFIER });
   const [savingName, setSavingName] = useState(false);
   const [savingNotes, setSavingNotes] = useState(false);
   const [savingMiscModifiers, setSavingMiscModifiers] = useState(false);
@@ -320,11 +317,10 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
 
   useEffect(() => {
     const existingRaw = selectedSoldier?.miscModifiers;
-    const normalizedExisting = normalizeModifierList(existingRaw);
-    if (normalizedExisting.length > 0) {
-      setMiscModifiersForm(normalizedExisting.map(convertToPayload));
+    if (existingRaw) {
+      setMiscModifiersForm(convertToPayload(existingRaw));
     } else {
-      setMiscModifiersForm([]);
+      setMiscModifiersForm({ ...EMPTY_MISC_MODIFIER });
     }
   }, [selectedSoldier?.miscModifiers]);
 
@@ -446,19 +442,66 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
           item.helmetEquiped ||
           item.twoHandedEquiped
       )
-      .map(item => ({
-        label: `Equipamento: ${
-          item.equipment?.name ?? item.equipmentSlug ?? "Desconhecido"
-        }`,
-        modifier: item.modifier?.attributeModifiers ?? null,
-      }));
+      .map(item => {
+        const equipmentName =
+          item.equipment?.name ?? item.equipmentSlug ?? "Desconhecido";
+        const equipmentRecord = item.equipment as
+          | (Record<string, unknown> & {
+              armourBonus?: number | null;
+              armorBonus?: number | null;
+              movementPenalty?: number | null;
+            })
+          | undefined;
+        const armourBonusRaw = (() => {
+          const direct = equipmentRecord ? equipmentRecord["armourBonus"] : null;
+          if (typeof direct === "number") return direct;
+          const alt = equipmentRecord ? equipmentRecord["armorBonus"] : null;
+          return typeof alt === "number" ? alt : null;
+        })();
+        const movementPenaltyRaw =
+          equipmentRecord && typeof equipmentRecord["movementPenalty"] === "number"
+            ? (equipmentRecord["movementPenalty"] as number)
+            : null;
+        const category = item.equipment?.category ?? "";
+        const normalizedCategory = category ? normalizeString(category) : "";
+        const normalizedName = equipmentName ? normalizeString(equipmentName) : "";
+        const isShield =
+          normalizedCategory.includes("escudo") ||
+          normalizedCategory.includes("shield") ||
+          normalizedName.includes("escudo") ||
+          normalizedName.includes("shield");
+        const isArmour =
+          normalizedCategory.includes("armadura") ||
+          normalizedCategory.includes("armour") ||
+          normalizedCategory.includes("armor") ||
+          item.armorEquiped === true;
+        const armourBonusContribution =
+          isArmour || isShield
+            ? typeof armourBonusRaw === "number" && !Number.isNaN(armourBonusRaw)
+              ? armourBonusRaw
+              : null
+            : null;
+        const movementPenaltyContribution =
+          isArmour && typeof movementPenaltyRaw === "number" && !Number.isNaN(movementPenaltyRaw)
+            ? -Math.abs(movementPenaltyRaw)
+            : null;
+        return {
+          label: `Equipamento: ${equipmentName}`,
+          modifier: item.modifier?.attributeModifiers ?? null,
+          armourBonusContribution,
+          movementPenaltyContribution,
+        };
+      });
 
-    const soldierMiscEntries = normalizeModifierList(
-      selectedSoldier.miscModifiers
-    ).map((modifier, index) => ({
-      label: `Modificador Personalizado #${index + 1}`,
-      modifier,
-    }));
+    const soldierMiscModifier = selectedSoldier.miscModifiers;
+    const soldierMiscEntries = soldierMiscModifier
+      ? [
+          {
+            label: "Modificador Personalizado",
+            modifier: soldierMiscModifier,
+          },
+        ]
+      : [];
 
     const attributeSummaryMap: Record<AttributeKey, AttributeSummary> = {
       movement: {
@@ -560,6 +603,38 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
         const value = entry.modifier?.[modifierProperty] ?? 0;
         applyContribution(key, entry.label, value, false);
       });
+
+      if (key === "armour") {
+        equipmentEntries.forEach(entry => {
+          if (
+            typeof entry.armourBonusContribution === "number" &&
+            entry.armourBonusContribution !== 0
+          ) {
+            applyContribution(
+              "armour",
+              `${entry.label} (Bônus de Armadura)`,
+              entry.armourBonusContribution,
+              false
+            );
+          }
+        });
+      }
+
+      if (key === "movement") {
+        equipmentEntries.forEach(entry => {
+          if (
+            typeof entry.movementPenaltyContribution === "number" &&
+            entry.movementPenaltyContribution !== 0
+          ) {
+            applyContribution(
+              "movement",
+              `${entry.label} (Penalidade de Movimento)`,
+              entry.movementPenaltyContribution,
+              false
+            );
+          }
+        });
+      }
 
       if (key === "fight" && hasTwoWeaponFighting) {
         applyContribution(key, "Lutando com Duas Armas", 1, false);
@@ -670,64 +745,37 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
   }, [notesFormValue, onReload, selectedSoldierId]);
 
   const handleMiscModifierChange = useCallback(
-    (index: number, field: keyof SoldierMiscModifierPayload, value: string) => {
+    (field: keyof SoldierMiscModifierPayload, value: string) => {
       setMiscModifiersForm(prev => {
-        const next = [...prev];
         const numeric = Number(value);
-        next[index] = {
-          ...next[index],
+        return {
+          ...prev,
           [field]: Number.isNaN(numeric) ? 0 : numeric,
         };
-        return next;
       });
     },
     []
   );
 
-  const handleAddMiscModifierRow = useCallback(() => {
-    setMiscModifiersForm(prev => [...prev, { ...EMPTY_MISC_MODIFIER }]);
-  }, []);
-
-  const handleRemoveMiscModifierRow = useCallback((index: number) => {
-    setMiscModifiersForm(prev => prev.filter((_, i) => i !== index));
-  }, []);
-
   const handleSaveMiscModifiers = useCallback(async () => {
     if (!selectedSoldierId) return;
     try {
       setSavingMiscModifiers(true);
-      const normalizedEntries = (
-        miscModifiersForm.length > 0 ? miscModifiersForm : []
-      ).map(modifier =>
-        normalizePayload({
-          ...EMPTY_MISC_MODIFIER,
-          ...modifier,
-        })
-      );
-
-      const aggregated = normalizedEntries.reduce(
-        (acc, entry) => ({
-          move: acc.move + entry.move,
-          fight: acc.fight + entry.fight,
-          shoot: acc.shoot + entry.shoot,
-          armour: acc.armour + entry.armour,
-          will: acc.will + entry.will,
-          health: acc.health + entry.health,
-          strength: acc.strength + entry.strength,
-        }),
-        { ...EMPTY_MISC_MODIFIER }
-      );
+      const normalized = normalizePayload({
+        ...EMPTY_MISC_MODIFIER,
+        ...miscModifiersForm,
+      });
 
       await updateSoldier(selectedSoldierId, {
-        miscModifiers: aggregated,
+        miscModifiers: normalized,
       });
-      toast.success("Modificadores personalizados atualizados.");
+      toast.success("Modificador personalizado atualizado.");
       await onReload();
       setAttributeDialogOpen(false);
     } catch (error) {
       console.error(error);
       toast.error(
-        "Não foi possível atualizar os modificadores personalizados."
+        "Não foi possível atualizar o modificador personalizado."
       );
     } finally {
       setSavingMiscModifiers(false);
@@ -981,6 +1029,146 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
                         >
                       ).filter(([, value]) => value);
 
+                      const rawEquipmentName =
+                        slotItem.equipment?.name ?? slotItem.equipmentSlug;
+                      const equipmentCategory =
+                        slotItem.equipment?.category ?? "";
+                      const normalizedCategory = equipmentCategory
+                        ? normalizeString(equipmentCategory)
+                        : "";
+                      const normalizedName = rawEquipmentName
+                        ? normalizeString(rawEquipmentName)
+                        : "";
+                      const equipmentRecord = slotItem.equipment as
+                        | (Record<string, unknown> & {
+                            damageModifier?: number | string | null;
+                            range?: number | string | null;
+                          })
+                        | undefined;
+                      const rawDamageBonus =
+                        (slotItem.equipment?.damageBonus as
+                          | number
+                          | string
+                          | null
+                          | undefined) ??
+                        (equipmentRecord?.damageModifier as
+                          | number
+                          | string
+                          | null
+                          | undefined);
+                      const damageBonusValue =
+                        parseStatToNumber(rawDamageBonus) ?? 0;
+                      const rawRange =
+                        (equipmentRecord?.range as
+                          | number
+                          | string
+                          | null
+                          | undefined) ?? slotItem.equipment?.range;
+                      const hasRangeValue =
+                        rawRange !== null &&
+                        rawRange !== undefined &&
+                        String(rawRange).trim().length > 0;
+                      const rangeDisplay = hasRangeValue
+                        ? typeof rawRange === "number"
+                          ? formatNumber(rawRange)
+                          : String(rawRange)
+                        : "-";
+                      const isRangedCategory =
+                        normalizedCategory.includes("distancia") ||
+                        normalizedCategory.includes("ranged") ||
+                        normalizedCategory.includes("tiro") ||
+                        normalizedCategory.includes("arma de fogo") ||
+                        normalizedCategory.includes("firearm") ||
+                        normalizedCategory.includes("projeteis") ||
+                        normalizedCategory.includes("projetil") ||
+                        normalizedCategory.includes("arco") ||
+                        normalizedCategory.includes("arma a distancia") ||
+                        normalizedCategory.includes("arma de projeteis");
+                      const isMeleeCategory =
+                        normalizedCategory.includes("corpo a corpo") ||
+                        normalizedCategory.includes("melee") ||
+                        normalizedCategory.includes("hand-to-hand") ||
+                        normalizedCategory.includes("arma branca") ||
+                        normalizedCategory.includes("duas maos") ||
+                        normalizedName.includes("espada") ||
+                        normalizedName.includes("machado") ||
+                        normalizedName.includes("martelo") ||
+                        normalizedName.includes("maça") ||
+                        normalizedName.includes("maca") ||
+                        normalizedName.includes("lança") ||
+                        normalizedName.includes("lanca") ||
+                        normalizedName.includes("arma de duas") ||
+                        normalizedName.includes("arma duas");
+                      const isRangedWeapon =
+                        isRangedCategory ||
+                        hasRangeValue ||
+                        normalizedName.includes("arco") ||
+                        normalizedName.includes("besta") ||
+                        normalizedName.includes("pistola") ||
+                        normalizedName.includes("arcabuz") ||
+                        normalizedName.includes("mosquete") ||
+                        normalizedName.includes("arma de fogo");
+                      const isMeleeWeapon = isMeleeCategory && !isRangedWeapon;
+                      const shouldShowDamageSection =
+                        !isTwoHandProxy &&
+                        section.slot === "mainHandEquiped" &&
+                        (isMeleeWeapon || isRangedWeapon);
+                      const strengthSummary =
+                        attributeSummaries?.strength?.total;
+                      const strengthValue =
+                        typeof strengthSummary === "number" &&
+                        !Number.isNaN(strengthSummary)
+                          ? strengthSummary
+                          : parseStatToNumber(
+                              (selectedBaseFigure as unknown as Record<
+                                string,
+                                unknown
+                              >)?.strength as number | string | null | undefined
+                            ) ?? 0;
+                      const meleeTotalDamage =
+                        strengthValue + damageBonusValue;
+
+                      let damageSection: React.ReactNode = null;
+
+                      if (shouldShowDamageSection) {
+                        if (isMeleeWeapon) {
+                          damageSection = (
+                            <div className="mt-3 rounded border border-green-900/30 bg-[#10160f] p-2">
+                              <div className="text-[11px] font-semibold uppercase text-green-300">
+                                Dano
+                              </div>
+                              <div className="text-sm font-semibold text-green-100">
+                                {formatNumber(meleeTotalDamage)}
+                              </div>
+                              <div className="mt-1 text-[11px] text-green-200">
+                                Força: {formatNumber(strengthValue)}
+                                {damageBonusValue !== 0 ? (
+                                  <>
+                                    {" "}
+                                    · Bônus da arma:{" "}
+                                    {formatStatValue(damageBonusValue, true)}
+                                  </>
+                                ) : null}
+                              </div>
+                            </div>
+                          );
+                        } else if (isRangedWeapon) {
+                          damageSection = (
+                            <div className="mt-3 rounded border border-sky-900/30 bg-[#0c141a] p-2">
+                              <div className="text-[11px] font-semibold uppercase text-sky-300">
+                                Dano
+                              </div>
+                              <div className="text-sm font-semibold text-sky-100">
+                                {formatStatValue(damageBonusValue, true)}
+                              </div>
+                              <div className="mt-1 text-[11px] text-sky-200">
+                                Alcance: {rangeDisplay}
+                              </div>
+                            </div>
+                          );
+                        }
+                      }
+
                       const cardClasses = isTwoHandProxy
                         ? "rounded border border-green-900/30 bg-[#101010]/60 opacity-70"
                         : "rounded border border-green-800/40 bg-[#101010]";
@@ -1050,12 +1238,14 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
                             </div>
                           ) : null}
 
+                          {damageSection}
+
                           {isTwoHandProxy ? (
                             <p className="mt-2 text-[10px] italic text-gray-500">
                               Ocupado pela arma de duas mãos.
                             </p>
                           ) : (
-                            <div className="mt-3 flex flex-wrap gap-2">
+                            <div className="mt-3 flex flex-col gap-2 border-t border-yellow-900/40 pt-3">
                               <button
                                 type="button"
                                 onClick={() =>
@@ -1064,7 +1254,7 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
                                 disabled={
                                   otherOperationInProgress || unequipInProgress
                                 }
-                                className="inline-flex items-center justify-center rounded border border-yellow-600/60 bg-yellow-900/20 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-yellow-200 transition hover:border-yellow-400 hover:bg-yellow-900/30 disabled:cursor-not-allowed disabled:opacity-60"
+                                className="inline-flex w-full items-center justify-center rounded border border-yellow-600/60 bg-yellow-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-yellow-200 transition hover:border-yellow-400 hover:bg-yellow-900/30 disabled:cursor-not-allowed disabled:opacity-60"
                               >
                                 {unequipInProgress
                                   ? "Desequipando..."
@@ -1274,7 +1464,7 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
                                 </div>
                               ) : null}
 
-                              <div className="mt-3 flex flex-wrap gap-2">
+                      <div className="mt-3 flex flex-col gap-2 border-t border-green-900/40 pt-3">
                                 {slotButtons.map(action => {
                                   const equipInProgressForSlot =
                                     slotActionInProgress?.type === "equip" &&
@@ -1338,7 +1528,7 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
                                         )
                                       }
                                       disabled={disabled}
-                                      className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                              className="inline-flex w-full items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
                                     >
                                       {label}
                                     </button>
@@ -1362,7 +1552,7 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
                                       (slotActionInProgress !== null &&
                                         slotActionInProgress.type !== "equip")
                                     }
-                                    className="inline-flex items-center justify-center rounded border border-red-600/60 bg-red-900/20 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-red-200 transition hover:border-red-400 hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                            className="inline-flex w-full items-center justify-center rounded border border-red-600/60 bg-red-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-red-200 transition hover:border-red-400 hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-60"
                                   >
                                     {returning
                                       ? "Devolvendo..."
@@ -1615,71 +1805,32 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
             )}
 
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <h6 className="text-xs font-semibold uppercase tracking-wide text-green-200">
-                  Modificadores Personalizados
-                </h6>
-                <Button
-                  startIcon={<AddCircleOutlineIcon />}
-                  onClick={handleAddMiscModifierRow}
-                  disabled={savingMiscModifiers}
-                  size="small"
-                >
-                  Adicionar Modificador
-                </Button>
-              </div>
+              <h6 className="text-xs font-semibold uppercase tracking-wide text-green-200">
+                Modificador Personalizado
+              </h6>
 
-              {miscModifiersForm.length === 0 ? (
-                <p className="text-xs text-gray-400">
-                  Nenhum modificador personalizado aplicado.
-                </p>
-              ) : (
-                <div className="space-y-3">
-                  {miscModifiersForm.map((modifier, index) => (
-                    <div
-                      key={`misc-modifier-${index}`}
-                      className="rounded border border-green-800/40 bg-[#101010] p-3"
-                    >
-                      <div className="mb-2 flex items-center justify-between text-xs font-semibold text-green-200">
-                        <span>Modificador #{index + 1}</span>
-                        <IconButton
-                          size="small"
-                          onClick={() => handleRemoveMiscModifierRow(index)}
-                          disabled={savingMiscModifiers}
-                          sx={{
-                            color: "rgba(252,165,165,1)",
-                            border: "1px solid rgba(248,113,113,0.4)",
-                            padding: "2px",
-                          }}
-                        >
-                          <RemoveCircleOutlineIcon fontSize="small" />
-                        </IconButton>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-                        {ATTRIBUTE_CONFIG.map(({ key, label }) => {
-                          const payloadKey = PAYLOAD_FIELD_MAP[key];
-                          return (
-                            <TextField
-                              key={`${index}-${key}`}
-                              label={label}
-                              type="number"
-                              size="small"
-                              value={modifier[payloadKey]}
-                              onChange={event =>
-                                handleMiscModifierChange(
-                                  index,
-                                  payloadKey,
-                                  event.target.value
-                                )
-                              }
-                            />
-                          );
-                        })}
-                      </div>
-                    </div>
-                  ))}
+              <div className="rounded border border-green-800/40 bg-[#101010] p-3">
+                <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
+                  {ATTRIBUTE_CONFIG.map(({ key, label }) => {
+                    const payloadKey = PAYLOAD_FIELD_MAP[key];
+                    return (
+                      <TextField
+                        key={`misc-modifier-${key}`}
+                        label={label}
+                        type="number"
+                        size="small"
+                        value={miscModifiersForm[payloadKey]}
+                        onChange={event =>
+                          handleMiscModifierChange(
+                            payloadKey,
+                            event.target.value
+                          )
+                        }
+                      />
+                    );
+                  })}
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </DialogContent>

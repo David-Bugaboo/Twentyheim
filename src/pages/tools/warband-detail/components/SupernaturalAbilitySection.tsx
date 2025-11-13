@@ -125,7 +125,7 @@ export const SupernaturalAbilitySection: React.FC<SupernaturalAbilitySectionProp
                 key={ability.id}
                 className="rounded border border-green-800/40 bg-[#101010] p-3"
               >
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <div className="flex flex-col gap-3">
                   <div>
                     <div className="text-sm font-semibold text-green-200">
                       {abilityName}
@@ -139,12 +139,12 @@ export const SupernaturalAbilitySection: React.FC<SupernaturalAbilitySectionProp
                       </div>
                     ) : null}
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-col gap-2 border-t border-green-900/40 pt-3">
                     <button
                       type="button"
                       onClick={() => handleRemove(ability.id, abilityName)}
                       disabled={removing}
-                      className="inline-flex items-center justify-center rounded border border-red-600/60 bg-red-900/20 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-red-200 transition hover:border-red-400 hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="inline-flex w-full items-center justify-center rounded border border-red-600/60 bg-red-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-red-200 transition hover:border-red-400 hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       {removing ? "Removendo..." : "Remover"}
                     </button>

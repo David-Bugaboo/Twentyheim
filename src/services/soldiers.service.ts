@@ -97,6 +97,28 @@ export async function removeSpellFromSoldier(
   return response.data;
 }
 
+export async function fortifySpellForSoldier(
+  soldierId: string,
+  spellToWarbandSoldierId: string
+) {
+  const response = await apiClient.post(
+    `/soldiers/${soldierId}/spells/${spellToWarbandSoldierId}/fortify`,
+    {}
+  );
+  return response.data;
+}
+
+export async function unfortifySpellForSoldier(
+  soldierId: string,
+  spellToWarbandSoldierId: string
+) {
+  const response = await apiClient.post(
+    `/soldiers/${soldierId}/spells/${spellToWarbandSoldierId}/unfortify`,
+    {}
+  );
+  return response.data;
+}
+
 export async function addAdvancementToSoldier(
   soldierId: string,
   advancementSlug: string
@@ -177,6 +199,7 @@ export type UpdateSoldierPayload = {
   notes?: string | null;
   twoWeaponFighting?: boolean;
   miscModifiers?: SoldierMiscModifiers;
+  experience?: number;
 };
 
 export async function updateSoldier(

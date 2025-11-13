@@ -5,7 +5,12 @@ import type { BaseFigure } from "../../../../types/base-figure.entity";
 import type { ExtraSpellLoreToWarbandSoldier } from "../../../../types/extra-spell-lore-to-warband-soldier.entity";
 import type { SpellToWarbandSoldier } from "../../../../types/spell-to-warband-soldier.entity";
 import { fetchSpellLoreBySlug } from "../../../../services/queries.service";
-import { addSpellToSoldier, removeSpellFromSoldier } from "../../../../services/soldiers.service";
+import {
+  addSpellToSoldier,
+  removeSpellFromSoldier,
+  fortifySpellForSoldier,
+  unfortifySpellForSoldier,
+} from "../../../../services/soldiers.service";
 import {
   extractSpellLoreSlugs,
   extractExtraSpellLoreSlugs,
@@ -37,6 +42,8 @@ export const useSpellsManagement = ({
   const [actionState, setActionState] = useState<
     | { type: "add"; targetId: string | null }
     | { type: "remove"; targetId: string }
+    | { type: "fortify"; targetId: string }
+    | { type: "unfortify"; targetId: string }
     | null
   >(null);
 
@@ -253,6 +260,52 @@ export const useSpellsManagement = ({
     [onReload, removeSpellFromSoldier, selectedSoldier, warbandId]
   );
 
+  const handleFortify = useCallback(
+    async (spellRecordId: string, spellName: string) => {
+      if (!selectedSoldier) {
+        toast.error("Selecione uma figura antes de fortificar magias.");
+        return;
+      }
+
+      setActionState({ type: "fortify", targetId: spellRecordId });
+
+      try {
+        await fortifySpellForSoldier(selectedSoldier.id, spellRecordId);
+        toast.success(`Magia "${spellName}" fortificada.`);
+        await onReload();
+      } catch (error) {
+        console.error(error);
+        toast.error("Não foi possível fortificar a magia.");
+      } finally {
+        setActionState(null);
+      }
+    },
+    [onReload, selectedSoldier]
+  );
+
+  const handleUnfortify = useCallback(
+    async (spellRecordId: string, spellName: string) => {
+      if (!selectedSoldier) {
+        toast.error("Selecione uma figura antes de desfazer a fortificação.");
+        return;
+      }
+
+      setActionState({ type: "unfortify", targetId: spellRecordId });
+
+      try {
+        await unfortifySpellForSoldier(selectedSoldier.id, spellRecordId);
+        toast.success(`Fortificação da magia "${spellName}" removida.`);
+        await onReload();
+      } catch (error) {
+        console.error(error);
+        toast.error("Não foi possível desfazer a fortificação da magia.");
+      } finally {
+        setActionState(null);
+      }
+    },
+    [onReload, selectedSoldier]
+  );
+
   return {
     expanded,
     setExpanded,
@@ -264,6 +317,8 @@ export const useSpellsManagement = ({
     actionState,
     handleAdd,
     handleRemove,
+    handleFortify,
+    handleUnfortify,
   };
 };
 
