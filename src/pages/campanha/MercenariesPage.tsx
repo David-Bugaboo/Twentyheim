@@ -5,7 +5,9 @@ import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
 import QuickNavigation from "../../components/QuickNavigation";
 import GenericTable from "../../components/GenericTable";
-import UnitCard from "../../components/UnitCard";
+import UnitCard, {
+  type NaturalAttack as UnitNaturalAttack,
+} from "../../components/UnitCard";
 import hiredSwordsData from "./data/hired-swords.data.json";
 
 function HiredSwordsPage() {
@@ -160,7 +162,16 @@ function HiredSwordsPage() {
 
             <HeaderH2>Detalhes dos Mercenários</HeaderH2>
 
-            {hiredSwordsData.map((mercenary) => (
+            {hiredSwordsData.map((mercenary) => {
+              const naturalAttacks = Array.isArray(
+                (mercenary as { naturalAttacks?: UnitNaturalAttack[] })
+                  .naturalAttacks
+              )
+                ? (mercenary as { naturalAttacks?: UnitNaturalAttack[] })
+                    .naturalAttacks
+                : undefined;
+
+              return (
               <div key={mercenary.id}>
                 <UnitCard
                   id={mercenary.id}
@@ -180,9 +191,11 @@ function HiredSwordsPage() {
                       : undefined
                   }
                   abilities={mercenary.abilities}
+                  naturalAttacks={naturalAttacks}
                 />
               </div>
-            ))}
+            );
+            })}
 
             <MobileText
               variant="quote"

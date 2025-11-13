@@ -91,9 +91,9 @@ function SurvivalTestPage() {
               Role mais 3 vezes nessa tabela. Re-role qualquer resultado de
               Morto, Capturado e Múltiplos Ferimentos.
             </MobileText>
-            <HeaderH3>3 - Ferimento na Perna</HeaderH3>
+            <HeaderH3>3 - Fratura Exposta na Perna</HeaderH3>
             <MobileText>
-              A perna da figura está quebrada. Ele sofre uma penalidade de -2 em
+              A perna da figura está quebrada de uma forma horrível. Ele sofre uma penalidade de -2 em
               seu atributo de Movimento a partir de agora.
             </MobileText>
             <HeaderH3>4 - Ferimento no Braço</HeaderH3>
@@ -114,23 +114,21 @@ function SurvivalTestPage() {
               <br />
               <br />
               1-5:Insanidade(Estupidez). A figura ganha a característica
-              estupidez, e não é substituida como Líder do bando pelo héroi com
-              mais experência.
+              estupidez.
               <br />
               <br />
               6-20:Insanidade (Fúria). A figura ganha a característica Fúria.
-              combate.
             </MobileText>
             <HeaderH3>6 - Perna Esmagada</HeaderH3>
             <MobileText>
               Role o dado novamente:
               <br />
               <br />
-              1-5:Fratura Exposta na Perna. A figura não pode mais tomar ações
+              1-5:Fêmur Quebrado. A figura não pode mais tomar ações
               de disparada ou escalar.
               <br />
               <br />
-              6-20:Perna Deslocada. A figura não pode participar do próximo
+              6-20:Joelho Deslocado. A figura não pode participar do próximo
               jogo.
             </MobileText>
             <HeaderH3>7 - Costelas Quebradas</HeaderH3>
@@ -159,9 +157,9 @@ function SurvivalTestPage() {
               O sistema nervoso da figura foi danificado. Sua Vontade é reduzida
               em -1.
             </MobileText>
-            <HeaderH3>11 - Mão Esmigalhada</HeaderH3>
+            <HeaderH3>11 - Dedo Quebrado</HeaderH3>
             <MobileText>
-              Mão Esmigalhada:A mão da figura está gravemente ferida. Seu Ímpeto é reduzido
+              Um ou mais dedos da figura foram irreversívelmente quebrados. Seu Ímpeto é reduzido
               permanentemente em -1.
             </MobileText>
             <HeaderH3>12 - Ferimento Profundo</HeaderH3>

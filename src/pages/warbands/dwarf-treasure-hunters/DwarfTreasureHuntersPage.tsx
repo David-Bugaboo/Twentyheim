@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+/*import React, { useMemo } from "react";
 import { useJsonData } from "../../../hooks/useJsonData";
 import { getStaticImport } from "../../../data/jsonFileMap";
 import { createWarbandNavigationSections } from "../../../utils/navigationSections";
@@ -211,4 +211,4 @@ const DwarfTreasureHuntersPage: React.FC = () => {
   );
 };
 
-export default DwarfTreasureHuntersPage;
+export default DwarfTreasureHuntersPage; */

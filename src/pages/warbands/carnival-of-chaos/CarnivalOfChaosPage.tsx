@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+/*import React, { useMemo } from "react";
 import { useJsonData } from "../../../hooks/useJsonData";
 import { getStaticImport } from "../../../data/jsonFileMap";
 import { createWarbandNavigationSections } from "../../../utils/navigationSections";
@@ -341,4 +341,4 @@ const CarnivalOfChaosPage: React.FC = () => {
   );
 };
 
-export default CarnivalOfChaosPage;
+export default CarnivalOfChaosPage; */

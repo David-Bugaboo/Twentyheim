@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+/* import React, { useMemo } from "react";
 import { useJsonData } from "../../../hooks/useJsonData";
 import { getStaticImport } from "../../../data/jsonFileMap";
 import { createWarbandNavigationSections } from "../../../utils/navigationSections";
@@ -172,7 +172,7 @@ const HomemFerasRaidersPage: React.FC = () => {
             </MobileText>
           </MobileSection>
 
-          {/* Líder */}
+         
           {leader && (
             <MobileSection id="lider">
               <HeaderH2>Líder</HeaderH2>
@@ -191,7 +191,7 @@ const HomemFerasRaidersPage: React.FC = () => {
             </MobileSection>
           )}
 
-          {/* Heróis */}
+     
           {heroes.length > 0 && (
             <MobileSection id="herois">
               <HeaderH2>Heróis</HeaderH2>
@@ -214,7 +214,7 @@ const HomemFerasRaidersPage: React.FC = () => {
             </MobileSection>
           )}
 
-          {/* Soldados */}
+       
           {soldiers.length > 0 && (
             <MobileSection id="soldados">
               <HeaderH2>Soldados</HeaderH2>
@@ -242,4 +242,4 @@ const HomemFerasRaidersPage: React.FC = () => {
   );
 };
 
-export default HomemFerasRaidersPage;
+export default HomemFerasRaidersPage; */

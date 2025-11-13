@@ -1,0 +1,42 @@
+import { BaseFigureToWarbandSoldier } from './base-figure-to-warband-soldier.entity';
+import { EquipmentToWarbandSoldier } from './equipment-to-warband-soldier.entity';
+import { ExtraSkillListToWarbandSoldier } from './extra-skill-list-to-warband-soldier.entity';
+import { ExtraSpellLoreToWarbandSoldier } from './extra-spell-lore-to-warband-soldier.entity';
+import { GiftOfTzeentchToWarbandSoldier } from './gift-of-tzeentch-to-warband-soldier.entity';
+import { InjuryToWarbandSoldier } from './injury-to-warband-soldier.entity';
+import { SkillToWarbandSoldier } from './skill-to-warband-soldier.entity';
+import { SpellToWarbandSoldier } from './spell-to-warband-soldier.entity';
+import { AdvancementToWarbandSoldier } from './advancement-to-warband-soldier.entity';
+import { SuperNaturalAbilityToWarbandSoldier } from './super-natural-ability-to-warband-soldier.entity';
+import { PromotedHeroSkillLists } from './promoted-hero-skill-list.entity';
+import type { Role } from './base-figure.entity';
+import type { SkillAttributeModifiers } from "./skill.entity";
+import { Warband } from './warband.entity';
+
+export class WarbandSoldier {
+  id!: string;
+  campaignName?: string | null;
+  notes?: string | null;
+  warbandId!: string;
+  experience!: number;
+  effectiveRole?: Role | null;
+  createdAt!: Date;
+  twoWeaponFighting?: boolean | null;
+  extraSpecialRules?: unknown;
+  advancements?: AdvancementToWarbandSoldier[];
+  baseFigure?: BaseFigureToWarbandSoldier[];
+  equipment?: EquipmentToWarbandSoldier[];
+  extraSkillLists?: ExtraSkillListToWarbandSoldier[];
+  extraSkillsLists?: ExtraSkillListToWarbandSoldier[];
+  extraSpellLists?: ExtraSpellLoreToWarbandSoldier[];
+  extraSpellLores?: ExtraSpellLoreToWarbandSoldier[];
+  extraSpellsLores?: ExtraSpellLoreToWarbandSoldier[];
+  giftsOfTzeentch?: GiftOfTzeentchToWarbandSoldier[];
+  injuries?: InjuryToWarbandSoldier[];
+  skills?: SkillToWarbandSoldier[];
+  spells?: SpellToWarbandSoldier[];
+  supernaturalAbilities?: SuperNaturalAbilityToWarbandSoldier[];
+  promotedHeroSkillLists?: PromotedHeroSkillLists[];
+  warband?: Warband;
+  miscModifiers?: SkillAttributeModifiers | null;
+}

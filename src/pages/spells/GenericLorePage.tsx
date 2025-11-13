@@ -1,11 +1,11 @@
-import { useMemo } from "react";
+/*import { useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import PageTitle from "../../components/PageTitle";
 import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
 import QuickNavigation from "../../components/QuickNavigation";
 import LoreSpellCard from "../../components/LoreSpellCard";
-import { useJsonData } from "../../hooks/useJsonData";
+
 import { getStaticImport } from "../../data/jsonFileMap";
 
 interface Spell {
@@ -173,3 +173,4 @@ function GenericLorePage() {
 }
 
 export default GenericLorePage;
+*/

@@ -5,7 +5,7 @@ import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
 import QuickNavigation from "../../components/QuickNavigation";
 import GenericTable from "../../components/GenericTable";
-import UnitCard from "../../components/UnitCard";
+import UnitCard, { type NaturalAttack as UnitNaturalAttack } from "../../components/UnitCard";
 import legendsData from "./data/lendas.data.json";
 
 function LegendsPage() {
@@ -171,7 +171,14 @@ function LegendsPage() {
 
             <HeaderH2>Detalhes das Lendas</HeaderH2>
 
-            {legendsData.map((legend) => (
+            {legendsData.map((legend) => {
+              const naturalAttacks = Array.isArray(
+                (legend as { naturalAttacks?: UnitNaturalAttack[] }).naturalAttacks
+              )
+                ? (legend as { naturalAttacks?: UnitNaturalAttack[] }).naturalAttacks
+                : undefined;
+
+              return (
               <div key={legend.id} id={legend.id}>
                 <UnitCard
                   id={legend.id}
@@ -189,9 +196,11 @@ function LegendsPage() {
                       : undefined
                   }
                   abilities={legend.abilities}
+                  naturalAttacks={naturalAttacks}
                 />
               </div>
-            ))}
+            );
+            })}
 
             <MobileText
               variant="quote"

@@ -22,28 +22,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import logoImage from "../assets/20heim.png";
-
-const ADMIN_EMAILS = [
-  "david.faco@gmail.com",
-  "davidfaco@gmail.com",
-  "davidfaco.ufc@gmail.com",
-];
-
-const isAdmin = (user: any) => {
-  if (!user) return false;
-  
-  const userEmail = user.email?.toLowerCase();
-  if (userEmail && ADMIN_EMAILS.some(admin => admin.toLowerCase() === userEmail)) {
-    return true;
-  }
-  
-  const userName = user.displayName?.toLowerCase();
-  if (userName && userName.includes("david") && userName.includes("faco")) {
-    return true;
-  }
-  
-  return false;
-};
+import { useAuth } from "../context/AuthContext";
+import AuthModal, { type AuthMode } from "./AuthModal";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -55,17 +35,11 @@ const Navbar: React.FC = () => {
   const [userMenuAnchor, setUserMenuAnchor] = useState<null | HTMLElement>(
     null
   );
-  const [isMockLoggedIn, setIsMockLoggedIn] = useState(false);
+  const { currentUser, loading: authLoading, logout } = useAuth();
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState<AuthMode>("login");
 
-  const mockUser = isMockLoggedIn
-    ? {
-        displayName: "David Faco (Mock)",
-        email: "david.faco@gmail.com",
-      }
-    : null;
-
-  // Adiciona link Admin apenas para admins
-  const shouldShowAdmin = !!(mockUser && isAdmin(mockUser));
+  const shouldShowAdmin = currentUser?.role === "ADMIN";
 
   const navItems = [
     { label: "Início", path: "/" },
@@ -272,6 +246,7 @@ const Navbar: React.FC = () => {
       path: "/tools",
       children: (() => {
         const tools = [
+          { label: "Gerenciador de Bandos", path: "/tools/warband-manager" },
           { label: "Gestor de Bando (Beta)", path: "/warband-builder" },
     { label: "Changelog", path: "/changelog" },
         ];
@@ -327,18 +302,23 @@ const Navbar: React.FC = () => {
     }
   }, [desktopDropdownOpen]);
 
-  const handleMockLogin = () => {
-    setIsMockLoggedIn(true);
-  };
-
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setUserMenuAnchor(event.currentTarget);
   };
   const handleCloseUserMenu = () => setUserMenuAnchor(null);
 
-  const handleMockLogout = () => {
-    setIsMockLoggedIn(false);
+  const handleLogout = () => {
+    logout();
     handleCloseUserMenu();
+  };
+
+  const handleOpenAuthModal = (mode: AuthMode) => {
+    setAuthModalMode(mode);
+    setAuthModalOpen(true);
+  };
+
+  const handleCloseAuthModal = () => {
+    setAuthModalOpen(false);
   };
 
   const getInitials = (displayName?: string | null, email?: string | null) => {
@@ -537,7 +517,7 @@ const Navbar: React.FC = () => {
 
         {/* Auth controls (desktop and mobile) */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          {mockUser ? (
+          {currentUser ? (
             <>
               <IconButton
                 onClick={handleOpenUserMenu}
@@ -563,7 +543,7 @@ const Navbar: React.FC = () => {
                   }}
                   aria-label="perfil"
                 >
-                  {getInitials(mockUser.displayName, mockUser.email)}
+                  {getInitials(currentUser.name, currentUser.email)}
                 </Box>
               </IconButton>
               <Menu
@@ -574,21 +554,22 @@ const Navbar: React.FC = () => {
                 transformOrigin={{ vertical: "top", horizontal: "right" }}
               >
                 <MenuItem disabled>
-                  {mockUser.email || mockUser.displayName}
+                  {currentUser.email || currentUser.name}
                 </MenuItem>
                 <MenuItem
                   component={Link}
-                  to="/warband-builder"
+                  to="/tools/warband-manager"
                   onClick={handleCloseUserMenu}
                 >
                   Meus Bandos
                 </MenuItem>
-                <MenuItem onClick={handleMockLogout}>Sair (Mock)</MenuItem>
+                <MenuItem onClick={handleLogout}>Sair</MenuItem>
               </Menu>
             </>
           ) : (
             <Button
-              onClick={handleMockLogin}
+              onClick={() => handleOpenAuthModal("login")}
+              disabled={authLoading}
               sx={{
                 color: "white",
                 textTransform: "none",
@@ -598,7 +579,7 @@ const Navbar: React.FC = () => {
                 "&:hover": { backgroundColor: "rgba(16, 185, 129, 0.1)" },
               }}
             >
-              Entrar (Mock)
+              Entrar
             </Button>
           )}
         </Box>
@@ -662,6 +643,57 @@ const Navbar: React.FC = () => {
             <IconButton onClick={handleCloseMobileMenu} sx={{ color: "white" }}>
               <CloseIcon />
             </IconButton>
+          </Box>
+          <Box
+            sx={{
+              padding: 2,
+              borderBottom: "1px solid #333",
+              display: "flex",
+              flexDirection: "column",
+              gap: 1,
+            }}
+          >
+            {currentUser ? (
+              <>
+                <Typography
+                  variant="body2"
+                  sx={{ color: "#8fbc8f", fontFamily: '"Crimson Text", serif' }}
+                >
+                  Olá, {currentUser.name}
+                </Typography>
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    handleCloseMobileMenu();
+                    logout();
+                  }}
+                  sx={{
+                    borderColor: "rgba(16, 185, 129, 0.5)",
+                    color: "white",
+                    textTransform: "none",
+                    "&:hover": { backgroundColor: "rgba(16, 185, 129, 0.1)" },
+                  }}
+                >
+                  Sair
+                </Button>
+              </>
+            ) : (
+              <Button
+                onClick={() => {
+                  handleCloseMobileMenu();
+                  handleOpenAuthModal("login");
+                }}
+                disabled={authLoading}
+                sx={{
+                  border: "1px solid rgba(16, 185, 129, 0.5)",
+                  color: "white",
+                  textTransform: "none",
+                  "&:hover": { backgroundColor: "rgba(16, 185, 129, 0.1)" },
+                }}
+              >
+                Entrar
+              </Button>
+            )}
           </Box>
 
           {/* Navigation Items */}
@@ -812,6 +844,12 @@ const Navbar: React.FC = () => {
           </List>
         </Box>
       </Modal>
+      <AuthModal
+        open={authModalOpen}
+        mode={authModalMode}
+        onClose={handleCloseAuthModal}
+        onSwitchMode={(mode) => setAuthModalMode(mode)}
+      />
     </AppBar>
   );
 };

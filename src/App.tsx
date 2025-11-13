@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -40,19 +40,8 @@ import ModifiersPage from "./pages/weapons and equipments/ModifiersPage";
 import RemediesAndPoisonsPage from "./pages/weapons and equipments/RemediesAndPoisonsPage";
 import AccessoriesPage from "./pages/weapons and equipments/AccessoriesPage";
 import WarbandsIndexPage from "./pages/warbands/WarbandsIndexPage";
-import HomemFerasRaidersPage from "./pages/warbands/beastman-raiders/BeastmenRaidersPage";
-import CultOfThePossessedPage from "./pages/warbands/cult-of-the-possessed/CultOfThePossessedPage";
-import DarkElfCorsairsPage from "./pages/warbands/dark-elf-corsairs/DarkElfCorsairsPage";
-import DwarfTreasureHuntersPage from "./pages/warbands/dwarf-treasure-hunters/DwarfTreasureHuntersPage";
-import LizardmenPage from "./pages/warbands/lizardmen/LizardmenPage";
-import MercenariesPage from "./pages/warbands/mercenaries/MercenariesPage";
-import OrcMobPage from "./pages/warbands/orc-mob/OrcMobPage";
-import SistersOfSigmarPage from "./pages/warbands/sisters-of-sigmar/SistersOfSigmarPage";
-import SkavenPage from "./pages/warbands/skaven/SkavenPage";
-import SonsOfHashutPage from "./pages/warbands/sons-of-hashut/SonsOfHashutPage";
-import VampireCourtsPage from "./pages/warbands/vampire-courts/VampireCourtsPage";
-import WitchHuntersPage from "./pages/warbands/witch-hunters/WitchHuntersPage";
-import CarnivalOfChaosPage from "./pages/warbands/carnival-of-chaos/CarnivalOfChaosPage";
+
+
 import AttributeTestsPage from "./pages/rules/AttributeTestsPage";
 import CampaignPage from "./pages/campanha/CampaignPage";
 import ArcaneLoresPage from "./pages/spells/lores/ArcaneLoresPage";
@@ -60,10 +49,9 @@ import HappeningsPage from "./pages/rules/Happenings";
 import ReactionsPage from "./pages/rules/ReactionsPage";
 import ChargeActionsPage from "./pages/rules/ChargeActionsPage";
 import FightActionsPage from "./pages/rules/FightActionsPage";
-import GenericLorePage from "./pages/spells/GenericLorePage";
-import GenericSkillsPage from "./pages/skills/GenericSkillsPage";
+
 import ScenariosPage from "./pages/scenarios/ScenariosPage";
-import GoblinsPage from "./pages/warbands/goblins/GoblinsPage";
+
 import DefendTheFindPage from "./pages/scenarios/defend-the-find/DefendTheFindPage";
 import SkirmishPage from "./pages/scenarios/skirmish/SkirmishPage";
 import WyrdstoneHuntPage from "./pages/scenarios/wyrdstone-hunt/WyrdstoneHuntPage";
@@ -84,6 +72,8 @@ import LegendsPage from "./pages/campanha/LegendsPage";
 import HiredSwordsPage from "./pages/campanha/MercenariesPage";
 import DarkGodsInvocationPage from "./pages/campanha/DarkGodsInvocationPage";
 import ChangelogPage from "./pages/ChangelogPage";
+import WarbandManagerPage from "./pages/tools/WarbandManagerPage";
+import WarbandDetailPage from "./pages/tools/WarbandDetailPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -196,7 +186,11 @@ function App() {
 }
 
 function AppContent() {
-  useScrollToTop();
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [location.pathname]);
 
   return (
     <>
@@ -303,7 +297,7 @@ function AppContent() {
         />
         <Route path="/campaign/skills-index" element={<SkillsIndexPage />} />
         <Route path="/skills" element={<SkillsIndexPage />} />
-        <Route path="/skills/:slug" element={<GenericSkillsPage />} />
+        
         <Route path="/equipment" element={<WeaponsAndEquipmentsPage />} />
         <Route path="/equipment/melee-weapons" element={<MeleeWeaponsPage />} />
         <Route
@@ -323,48 +317,20 @@ function AppContent() {
         <Route path="/equipment/accessories" element={<AccessoriesPage />} />
         <Route path="/magic" element={<MagicRulesPage />} />
         <Route path="/magic/arcane-lores" element={<ArcaneLoresPage />} />
-        <Route path="/magic/:slug" element={<GenericLorePage />} />
+        
         <Route
           path="magic/magic-of-the-dark-gods"
           element={<DarkGodsInvocationPage />}
         />
         <Route path="/warbands" element={<WarbandsIndexPage />} />
         <Route
-          path="/warbands/beastman-raiders"
-          element={<HomemFerasRaidersPage />}
+          path="/tools/warband-manager"
+          element={<WarbandManagerPage />}
         />
         <Route
-          path="/warbands/cult-of-the-possessed"
-          element={<CultOfThePossessedPage />}
+          path="/tools/warband-manager/:warbandId"
+          element={<WarbandDetailPage />}
         />
-        <Route
-          path="/warbands/dark-elf-corsairs"
-          element={<DarkElfCorsairsPage />}
-        />
-        <Route
-          path="/warbands/dwarf-treasure-hunters"
-          element={<DwarfTreasureHuntersPage />}
-        />
-        <Route path="/warbands/goblins" element={<GoblinsPage />} />
-        <Route path="/warbands/lizardmen" element={<LizardmenPage />} />
-        <Route path="/warbands/mercenaries" element={<MercenariesPage />} />
-        <Route path="/warbands/orc-mob" element={<OrcMobPage />} />
-        <Route
-          path="/warbands/sisters-of-sigmar"
-          element={<SistersOfSigmarPage />}
-        />
-        <Route path="/warbands/skaven" element={<SkavenPage />} />
-        <Route path="/warbands/sons-of-hashut" element={<SonsOfHashutPage />} />
-        <Route
-          path="/warbands/vampire-courts"
-          element={<VampireCourtsPage />}
-        />
-        <Route path="/warbands/witch-hunters" element={<WitchHuntersPage />} />
-        <Route
-          path="/warbands/carnival-of-chaos"
-          element={<CarnivalOfChaosPage />}
-        />
-      
         <Route path="/changelog" element={<ChangelogPage />} />
         
       </Routes>
