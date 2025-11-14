@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { Spinner } from "./CommonComponents";
+import { formatCrownsValue } from "../utils/helpers";
 
 type SupernaturalAbilityEntry = {
   slug: string;
@@ -34,10 +35,8 @@ export const SupernaturalDialog: React.FC<SupernaturalDialogProps> = ({
 }) => {
   const formatCost = (value?: string | number | null): string | null => {
     if (value === null || value === undefined || value === "") return null;
-    if (typeof value === "number") return `${value}g`;
-    const normalized = String(value).trim();
-    if (!normalized) return null;
-    return /[a-zA-Z]/.test(normalized) ? normalized : `${normalized}g`;
+    const formatted = formatCrownsValue(value);
+    return formatted === "-" ? null : formatted;
   };
 
   return (

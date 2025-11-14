@@ -42,6 +42,7 @@ import {
   hasSpecialRuleLabel,
   parseSpecialRules,
   getRoleType,
+  formatCrownsValue,
 } from "../utils/helpers";
 import { useEquipmentManagement } from "../hooks/useEquipmentManagement";
 import type { SpellToWarbandSoldier } from "../../../../types/spell-to-warband-soldier.entity";
@@ -52,6 +53,7 @@ import {
   updateSoldier,
   type SoldierMiscModifierPayload,
 } from "../../../../services/soldiers.service";
+import type { FigureToAvaiableEquipment } from "../../../../types/figure-to-avaiable-equipment.entity";
 
 type AttributeKey =
   | "movement"
@@ -267,11 +269,21 @@ export interface SoldierDetailSectionProps {
   onPromoteLeader: (soldierId: string) => Promise<void> | void;
   promoteHeroLoading: boolean;
   promoteLeaderLoading: boolean;
+  hasLeaderInWarband: boolean;
+  promotionRequest: { soldierId: string; type: "hero" | "leader" } | null;
+  onClearPromotionRequest: () => void;
 }
+
+type SoldierDetailContentProps = Omit<
+  SoldierDetailSectionProps,
+  "selectedSoldier"
+> & {
+  selectedSoldier: WarbandSoldier;
+};
 
 type DisplayNaturalAttack = BaseNaturalAttack & { source?: string };
 
-export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
+const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
   selectedSoldier,
   selectedBaseFigure,
   factionSlug,
@@ -286,6 +298,9 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
   onPromoteLeader,
   promoteHeroLoading,
   promoteLeaderLoading,
+  hasLeaderInWarband,
+  promotionRequest,
+  onClearPromotionRequest,
 }) => {
   const {
     selectedVaultEquipmentId,
@@ -322,7 +337,6 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
   const [savingNotes, setSavingNotes] = useState(false);
   const [savingMiscModifiers, setSavingMiscModifiers] = useState(false);
   const [specialRulesExpanded, setSpecialRulesExpanded] = useState(true);
-  const [promotionsExpanded, setPromotionsExpanded] = useState(true);
   const [promoteHeroDialogOpen, setPromoteHeroDialogOpen] = useState(false);
   const [promoteLeaderDialogOpen, setPromoteLeaderDialogOpen] = useState(false);
   const [heroSkillSelection, setHeroSkillSelection] = useState<{
@@ -332,6 +346,16 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
   const [heroSelectionError, setHeroSelectionError] = useState<string | null>(
     null
   );
+
+  const baseFigureAvailableEquipment =
+    ((selectedBaseFigure as { avaiableEquipment?: FigureToAvaiableEquipment[] } | null)
+      ?.avaiableEquipment ?? []) as FigureToAvaiableEquipment[];
+  const hasBaseFigureAvailableEquipment =
+    baseFigureAvailableEquipment.length > 0;
+  const hasEquippedItems = relations.equipment.length > 0;
+  const hasInventoryItems = unequippedEquipment.length > 0;
+  const shouldShowEquipmentSections =
+    hasBaseFigureAvailableEquipment || hasEquippedItems || hasInventoryItems;
 
   useEffect(() => {
     setNameFormValue(selectedSoldier?.campaignName ?? "");
@@ -350,16 +374,6 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
     }
   }, [selectedSoldier?.miscModifiers]);
 
-  if (!selectedSoldier) {
-    return (
-      <SectionCard title="Detalhes da Figura">
-        <MobileText className="text-sm text-gray-400">
-          Selecione uma figura para visualizar detalhes.
-        </MobileText>
-      </SectionCard>
-    );
-  }
-
   // Verificar se é mercenário ou lenda baseado no role (priorizando effectiveRole)
   const effectiveRole = selectedSoldier?.effectiveRole;
   const role = effectiveRole ?? selectedBaseFigure?.role ?? "";
@@ -377,6 +391,18 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
   );
   const narrativeName = selectedSoldier.campaignName?.trim() ?? "";
   const selectedSoldierId = selectedSoldier.id;
+  const baseFigureQuality =
+    parseStatToNumber(
+      (selectedBaseFigure as unknown as Record<string, unknown>)?.quality
+    ) ?? 0;
+  const baseFigureUpkeepRaw =
+    (selectedBaseFigure as unknown as Record<string, unknown>)?.upkeep ?? null;
+  const baseFigureUpkeepValue =
+    typeof baseFigureUpkeepRaw === "number"
+      ? baseFigureUpkeepRaw
+      : typeof baseFigureUpkeepRaw === "string"
+        ? Number(baseFigureUpkeepRaw.replace(/[^\d.-]/g, ""))
+        : 0;
 
   type AttributeContribution = {
     label: string;
@@ -521,7 +547,7 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
             : null;
         return {
           label: `Equipamento: ${equipmentName}`,
-          modifier: item.modifier?.attributeModifiers ?? null,
+        modifier: item.modifier?.attributeModifiers ?? null,
           armourBonusContribution,
           movementPenaltyContribution,
         };
@@ -796,7 +822,7 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
     try {
       setSavingMiscModifiers(true);
       const normalized = normalizePayload({
-        ...EMPTY_MISC_MODIFIER,
+          ...EMPTY_MISC_MODIFIER,
         ...miscModifiersForm,
       });
 
@@ -886,13 +912,76 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
     selectedSoldier?.extraSpecialRules,
   ]);
 
+  const advancementSummary = useMemo(() => {
+    let skillAdvancements = 0;
+    let spellAdvancements = 0;
+    let fortifyAdvancements = 0;
+    relations.advancements.forEach(entry => {
+      const rawSlug =
+        entry.advancement?.slug ??
+        (entry as unknown as { advancementSlug?: string }).advancementSlug ??
+        "";
+      if (!rawSlug) return;
+      const normalized = rawSlug
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+      if (normalized.includes("nova") && normalized.includes("habilidade")) {
+        skillAdvancements += 1;
+      } else if (normalized.includes("nova") && normalized.includes("magia")) {
+        spellAdvancements += 1;
+      } else if (
+        normalized.includes("fortal") &&
+        normalized.includes("magia")
+      ) {
+        fortifyAdvancements += 1;
+      }
+    });
+    return { skillAdvancements, spellAdvancements, fortifyAdvancements };
+  }, [relations.advancements]);
+
+  const currentSkillCount = relations.skills.length;
+  const currentSpellCount = relations.spells.length;
+  const totalFortifyModifier = useMemo(() => {
+    return relations.spells.reduce((sum, spellEntry) => {
+      const modifierRaw = (spellEntry as unknown as {
+        modifier?: number | string | null;
+      })?.modifier;
+      let numeric = 0;
+      if (typeof modifierRaw === "number" && Number.isFinite(modifierRaw)) {
+        numeric = modifierRaw;
+      } else if (
+        typeof modifierRaw === "string" &&
+        modifierRaw.trim().length > 0
+      ) {
+        const parsed = Number(
+          modifierRaw
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(",", ".")
+        );
+        numeric = Number.isFinite(parsed) ? parsed : 0;
+      }
+      return sum + Math.max(0, numeric);
+    }, 0);
+  }, [relations.spells]);
+
   const currentRoleType = getRoleType(
     selectedSoldier?.effectiveRole ?? selectedBaseFigure?.role ?? null
   );
   const hasSelectedSoldier = Boolean(selectedSoldier);
-  const canPromoteToHero = hasSelectedSoldier && currentRoleType === "soldier";
-  const canPromoteToLeader = hasSelectedSoldier && currentRoleType === "hero";
+  const soldierNoXp = Boolean(
+    ((selectedSoldier as unknown as { noXp?: boolean })?.noXp ??
+      (selectedBaseFigure as unknown as { noXp?: boolean } | null)?.noXp ??
+      false)
+  );
+  const promotionsAllowed = hasSelectedSoldier && !soldierNoXp;
+  const canPromoteToHero =
+    promotionsAllowed && currentRoleType === "soldier";
+  const canPromoteToLeader =
+    promotionsAllowed && currentRoleType === "hero" && !hasLeaderInWarband;
   const hasHeroSkillChoices = heroSkillOptions.length >= 2;
+
 
   const heroDefaultSelection = useMemo(() => {
     const first = heroSkillOptions[0]?.slug ?? "";
@@ -942,6 +1031,36 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
     }
   }, [heroDefaultSelection, promoteHeroDialogOpen]);
 
+  useEffect(() => {
+    if (
+      !promotionRequest ||
+      promotionRequest.soldierId !== selectedSoldier?.id
+    ) {
+      return;
+    }
+    setPromotionsExpanded(true);
+    if (promotionRequest.type === "hero") {
+      if (canPromoteToHero && hasHeroSkillChoices) {
+        setHeroSelectionError(null);
+        setHeroSkillSelection(heroDefaultSelection);
+        setPromoteHeroDialogOpen(true);
+      }
+    } else if (promotionRequest.type === "leader") {
+      if (canPromoteToLeader) {
+        setPromoteLeaderDialogOpen(true);
+      }
+    }
+    onClearPromotionRequest();
+  }, [
+    promotionRequest,
+    selectedSoldier?.id,
+    canPromoteToHero,
+    canPromoteToLeader,
+    hasHeroSkillChoices,
+    heroDefaultSelection,
+    onClearPromotionRequest,
+  ]);
+
   return (
     <SectionCard title="Detalhes da Figura">
       <div className="space-y-4 text-sm text-gray-200">
@@ -977,6 +1096,16 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
                 <EditIcon fontSize="small" />
               </IconButton>
             </div>
+            {baseFigureQuality > 0 ? (
+              <div className="text-xs text-gray-300">
+                <strong>Qualidade:</strong> {baseFigureQuality}
+              </div>
+            ) : null}
+            {baseFigureUpkeepValue > 0 ? (
+              <div className="text-xs text-amber-200">
+                Manutenção: {formatCrownsValue(baseFigureUpkeepRaw)}
+              </div>
+            ) : null}
             <div className="text-xs text-gray-400">
               Adicionado em {formatDate(selectedSoldier.createdAt)}
             </div>
@@ -1061,67 +1190,7 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
           </div>
         ) : null}
 
-        {canPromoteToHero || canPromoteToLeader ? (
-          <CollapsibleSection
-            title="Promoções"
-            expanded={promotionsExpanded}
-            onToggle={() => setPromotionsExpanded(prev => !prev)}
-          >
-            <div className="space-y-3 text-xs text-green-100">
-              {canPromoteToHero ? (
-                <div className="rounded border border-green-800/30 bg-[#101d12] p-3">
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                      <div className="font-semibold text-green-200">
-                        Promover a Herói
-                      </div>
-                      <div className="text-[11px] text-gray-400">
-                        Escolha duas listas de habilidades para o novo herói.
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={handleOpenPromoteHeroDialog}
-                      disabled={promoteHeroLoading || !hasHeroSkillChoices}
-                      className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
-                    >
-                      {promoteHeroLoading ? "Promovendo..." : "Promover"}
-                    </button>
-                  </div>
-                  {!hasHeroSkillChoices ? (
-                    <div className="mt-2 text-[11px] text-yellow-300">
-                      É necessário ter pelo menos duas listas de habilidades
-                      disponíveis para promover um herói.
-                    </div>
-                  ) : null}
-                </div>
-              ) : null}
-
-              {canPromoteToLeader ? (
-                <div className="rounded border border-green-800/30 bg-[#101d12] p-3">
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                      <div className="font-semibold text-green-200">
-                        Promover a Líder
-                      </div>
-                      <div className="text-[11px] text-gray-400">
-                        Esta figura assumirá o comando do bando.
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setPromoteLeaderDialogOpen(true)}
-                      disabled={promoteLeaderLoading}
-                      className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
-                    >
-                      {promoteLeaderLoading ? "Promovendo..." : "Promover"}
-                    </button>
-                  </div>
-                </div>
-              ) : null}
-            </div>
-          </CollapsibleSection>
-        ) : null}
+        
 
         {combinedSpecialRules.length > 0 ? (
           <CollapsibleSection
@@ -1158,7 +1227,7 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
           </CollapsibleSection>
         ) : null}
 
-        {relations.equipment.length > 0 ? (
+        {shouldShowEquipmentSections ? (
           <div className="space-y-3">
             <div className="space-y-4 text-xs">
               <CollapsibleSection
@@ -1172,7 +1241,27 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
                       relations.equipment.find(item => item.twoHandedEquiped) ??
                       null;
 
-                    return EQUIPPED_SLOT_SECTIONS.map(section => {
+                    const baseAvailableCategories = baseFigureAvailableEquipment.map(
+                      entry =>
+                        normalizeString(entry.equipment?.category ?? "") ??
+                        ""
+                    );
+                    const baseAllowsArmor = baseAvailableCategories.some(cat =>
+                      cat.includes("armadura")
+                    );
+                    const baseAllowsHelmet = baseAvailableCategories.some(cat =>
+                      cat.includes("elmo")
+                    );
+
+                    return EQUIPPED_SLOT_SECTIONS.filter(section => {
+                      if (section.slot === "armorEquiped" && !baseAllowsArmor) {
+                        return false;
+                      }
+                      if (section.slot === "helmetEquiped" && !baseAllowsHelmet) {
+                        return false;
+                      }
+                      return true;
+                    }).map(section => {
                       let slotItem =
                         relations.equipment.find(entry =>
                           Boolean(entry[section.slot])
@@ -1508,12 +1597,22 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
                         className="w-full rounded border border-green-700 bg-[#0c0f0d] px-3 py-2 text-sm text-gray-200 outline-none transition focus:border-green-400 md:max-w-xs"
                       >
                         <option value="">-- Escolha um item do cofre --</option>
-                        {equipableVaultItems.map(item => (
-                          <option key={item.id} value={item.id}>
-                            {item.equipment?.name ?? item.equipmentSlug}
-                            {item.customPrice ? ` — ${item.customPrice}g` : ""}
-                          </option>
-                        ))}
+                        {equipableVaultItems.map(item => {
+                          const baseName =
+                            item.equipment?.name ?? item.equipmentSlug;
+                          const modifierName = item.modifier?.name ?? null;
+                          const displayName = modifierName
+                            ? `${baseName} [${modifierName}]`
+                            : baseName;
+                          return (
+                            <option key={item.id} value={item.id}>
+                              {displayName}
+                              {item.customPrice
+                                ? ` — ${formatCrownsValue(item.customPrice)}`
+                                : ""}
+                            </option>
+                          );
+                        })}
                       </select>
                       <button
                         type="button"
@@ -1802,6 +1901,8 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
           relations={relations as { skills: SkillToWarbandSoldier[] }}
           warbandId={warbandId}
           onReload={onReload}
+          skillAdvancementLimit={advancementSummary.skillAdvancements}
+          currentSkillCount={currentSkillCount}
         />
 
         <SpellsSection
@@ -1811,13 +1912,14 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
           relations={relations as { spells: SpellToWarbandSoldier[] }}
           warbandId={warbandId}
           onReload={onReload}
+          spellAdvancementLimit={advancementSummary.spellAdvancements}
+          fortifyAdvancementLimit={advancementSummary.fortifyAdvancements}
+          currentSpellCount={currentSpellCount}
+          totalFortifyModifier={totalFortifyModifier}
         />
 
         {(() => {
-          const hasNoXp = Boolean(
-            (selectedBaseFigure as { noXp?: boolean } | null)?.noXp
-          );
-          if (hasNoXp) {
+          if (soldierNoXp) {
             return null;
           }
           return (
@@ -1841,13 +1943,15 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
           onReload={onReload}
         />
 
-        <SurvivalRollSection
-          selectedSoldier={selectedSoldier}
-          selectedBaseFigure={selectedBaseFigure}
-          factionSlug={factionSlug}
-          warbandId={warbandId}
-          onReload={onReload}
-        />
+        {(currentRoleType === "soldier" || isMercenary) ? (
+          <SurvivalRollSection
+            selectedSoldier={selectedSoldier}
+            selectedBaseFigure={selectedBaseFigure}
+            factionSlug={factionSlug}
+            warbandId={warbandId}
+            onReload={onReload}
+          />
+        ) : null}
 
         <SupernaturalAbilitySection
           selectedSoldier={selectedSoldier}
@@ -2144,32 +2248,32 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
             )}
 
             <div className="space-y-3">
-              <h6 className="text-xs font-semibold uppercase tracking-wide text-green-200">
+                <h6 className="text-xs font-semibold uppercase tracking-wide text-green-200">
                 Modificador Personalizado
-              </h6>
+                </h6>
 
               <div className="rounded border border-green-800/40 bg-[#101010] p-3">
-                <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-                  {ATTRIBUTE_CONFIG.map(({ key, label }) => {
-                    const payloadKey = PAYLOAD_FIELD_MAP[key];
-                    return (
-                      <TextField
+                      <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
+                        {ATTRIBUTE_CONFIG.map(({ key, label }) => {
+                          const payloadKey = PAYLOAD_FIELD_MAP[key];
+                          return (
+                            <TextField
                         key={`misc-modifier-${key}`}
-                        label={label}
-                        type="number"
-                        size="small"
+                              label={label}
+                              type="number"
+                              size="small"
                         value={miscModifiersForm[payloadKey]}
-                        onChange={event =>
-                          handleMiscModifierChange(
-                            payloadKey,
-                            event.target.value
-                          )
-                        }
-                      />
-                    );
-                  })}
-                </div>
-              </div>
+                              onChange={event =>
+                                handleMiscModifierChange(
+                                  payloadKey,
+                                  event.target.value
+                                )
+                              }
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
             </div>
           </div>
         </DialogContent>
@@ -2190,5 +2294,59 @@ export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = ({
         </DialogActions>
       </Dialog>
     </SectionCard>
+  );
+};
+
+export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = props => {
+  const {
+    selectedSoldier,
+    selectedBaseFigure,
+    factionSlug,
+    relations,
+    equipableVaultItems,
+    soldierExtraSkillLists,
+    soldierExtraSpellLores,
+    warbandId,
+    onReload,
+    heroSkillOptions,
+    onPromoteHero,
+    onPromoteLeader,
+    promoteHeroLoading,
+    promoteLeaderLoading,
+    hasLeaderInWarband,
+    promotionRequest,
+    onClearPromotionRequest,
+  } = props;
+
+  if (!selectedSoldier) {
+    return (
+      <SectionCard title="Detalhes da Figura">
+        <MobileText className="text-sm text-gray-400">
+          Selecione uma figura para visualizar detalhes.
+        </MobileText>
+      </SectionCard>
+    );
+  }
+
+  return (
+    <SoldierDetailContent
+      selectedSoldier={selectedSoldier}
+      selectedBaseFigure={selectedBaseFigure}
+      factionSlug={factionSlug}
+      relations={relations}
+      equipableVaultItems={equipableVaultItems}
+      soldierExtraSkillLists={soldierExtraSkillLists}
+      soldierExtraSpellLores={soldierExtraSpellLores}
+      warbandId={warbandId}
+      onReload={onReload}
+      heroSkillOptions={heroSkillOptions}
+      onPromoteHero={onPromoteHero}
+      onPromoteLeader={onPromoteLeader}
+      promoteHeroLoading={promoteHeroLoading}
+      promoteLeaderLoading={promoteLeaderLoading}
+      hasLeaderInWarband={hasLeaderInWarband}
+      promotionRequest={promotionRequest}
+      onClearPromotionRequest={onClearPromotionRequest}
+    />
   );
 };

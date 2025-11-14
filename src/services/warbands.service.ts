@@ -43,6 +43,7 @@ export async function fireWarbandSoldier(
 
 export interface AddVaultItemPayload {
   equipmentSlug: string;
+  modifierSlug?: string;
 }
 
 export async function addItemToVault(
@@ -75,6 +76,55 @@ export async function updateVaultItem(
       },
     }
   );
+  return response.data;
+}
+
+export async function deleteWarband(warbandId: string) {
+  const response = await apiClient.delete(`/warbands/${warbandId}`);
+  return response.data;
+}
+
+export interface UpdateWarbandPayload {
+  name?: string;
+  crowns?: number;
+  wyrdstone?: number;
+}
+
+export async function updateWarband(
+  warbandId: string,
+  payload: UpdateWarbandPayload
+) {
+  const response = await apiClient.patch<Warband>(
+    `/warbands/${warbandId}`,
+    payload
+  );
+  return response.data;
+}
+
+export interface FactionSummary {
+  slug: string;
+  name: string;
+}
+
+export async function fetchFactions(signal?: AbortSignal) {
+  const response = await apiClient.get<FactionSummary[]>(
+    `/queries/factions`,
+    { signal }
+  );
+  return response.data;
+}
+
+export interface CreateWarbandPayload {
+  name: string;
+  crowns?: number;
+  wyrdstone?: number;
+}
+
+export async function createWarband(
+  factionSlug: string,
+  payload: CreateWarbandPayload
+) {
+  const response = await apiClient.post(`/warbands/${factionSlug}`, payload);
   return response.data;
 }
 

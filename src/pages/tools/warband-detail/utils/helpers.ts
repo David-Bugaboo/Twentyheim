@@ -131,6 +131,31 @@ export const extractExtraSpellLoreSlugs = (
     .filter(slug => typeof slug === "string" && slug.length > 0);
 };
 
+const crownsNumberFormatter = new Intl.NumberFormat("pt-BR", {
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 2,
+});
+
+export const formatCrownsValue = (value: unknown): string => {
+  if (value === null || value === undefined) return "-";
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return `${crownsNumberFormatter.format(value)} coroas`;
+  }
+  const str = String(value).trim();
+  if (!str) return "-";
+  const numeric = Number(str.replace(/[^\d.-]/g, ""));
+  if (!Number.isNaN(numeric) && Number.isFinite(numeric)) {
+    return `${crownsNumberFormatter.format(numeric)} coroas`;
+  }
+  if (/[a-zA-Z]/.test(str) && !/[0-9]/.test(str)) {
+    return str;
+  }
+  if (/coroas?/i.test(str) || /\bc\b$/i.test(str)) {
+    return str;
+  }
+  return `${str} coroas`;
+};
+
 export const hasSpecialRuleLabel = (specialRules: unknown, search: string) => {
   if (!specialRules) return false;
   const normalizedSearch = normalizeString(search);
@@ -218,8 +243,8 @@ export const formatEquipmentCost = (
   value: number | string | null | undefined
 ): string => {
   if (value === null || value === undefined || value === "") return "-";
-  if (typeof value === "number") return `${value}g`;
-  return String(value);
+  const formatted = formatCrownsValue(value);
+  return formatted === "-" ? String(value) : formatted;
 };
 
 export const formatEquipmentStat = (

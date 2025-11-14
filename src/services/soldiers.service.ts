@@ -253,3 +253,8 @@ export async function promoteSoldierToLeader(soldierId: string) {
   return response.data;
 }
 
+export async function toggleSoldierActive(soldierId: string) {
+  const response = await apiClient.post(`/soldiers/${soldierId}/toggle`, {});
+  return response.data;
+}
+

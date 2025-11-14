@@ -146,3 +146,97 @@ export const fetchLegends = async (
   );
   return response.data;
 };
+
+export type ModifierQueryResponse = {
+  id: string;
+  slug: string;
+  name: string;
+  category: string;
+  effect: string;
+  multiplier: number;
+};
+
+export const fetchModifiers = async (
+  signal?: AbortSignal
+): Promise<ModifierQueryResponse[]> => {
+  const response = await apiClient.get<ModifierQueryResponse[]>(
+    "/queries/modifiers",
+    { signal }
+  );
+  return response.data;
+};
+
+export type EquipmentDetailQueryResponse = {
+  slug?: string;
+  name?: string;
+  description?: string | string[] | null;
+  effect?: string | null;
+  cost?: string | number | null;
+  category?: string | null;
+  type?: string | null;
+  armourBonus?: number | null;
+  armorBonus?: number | null;
+  damageBonus?: number | null;
+  damage?: number | null;
+  specialRules?: Array<
+    | string
+    | {
+        label?: string;
+        name?: string;
+        title?: string;
+        value?: string;
+        description?: string;
+      }
+  > | null;
+};
+
+export const fetchEquipmentBySlug = async (
+  equipmentSlug: string,
+  signal?: AbortSignal
+): Promise<EquipmentDetailQueryResponse> => {
+  const response = await apiClient.get<EquipmentDetailQueryResponse>(
+    `/queries/equipment/${equipmentSlug}`,
+    { signal }
+  );
+  return response.data;
+};
+
+export type SkillQueryResponse = {
+  slug?: string;
+  name?: string;
+  description?: string | null;
+  effect?: string | null;
+  keywords?: string[] | null;
+};
+
+export const fetchSkillBySlug = async (
+  skillSlug: string,
+  signal?: AbortSignal
+): Promise<SkillQueryResponse> => {
+  const response = await apiClient.get<SkillQueryResponse>(
+    `/queries/skills/${skillSlug}`,
+    { signal }
+  );
+  return response.data;
+};
+
+export type SpellQueryResponse = {
+  slug?: string;
+  name?: string;
+  description?: string | null;
+  difficultyClass?: number | null;
+  difficulty?: number | null;
+  keywords?: string[] | null;
+  range?: string | null;
+};
+
+export const fetchSpellBySlug = async (
+  spellSlug: string,
+  signal?: AbortSignal
+): Promise<SpellQueryResponse> => {
+  const response = await apiClient.get<SpellQueryResponse>(
+    `/queries/spells/${spellSlug}`,
+    { signal }
+  );
+  return response.data;
+};

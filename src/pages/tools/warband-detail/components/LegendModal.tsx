@@ -10,6 +10,7 @@ import {
   parseSpecialRules,
   getSkillListLabel,
   getSpellLoreLabel,
+  formatCrownsValue,
 } from "../utils/helpers";
 import { extractEquipment } from "../utils/equipment-helpers";
 import { getSupernaturalAccess } from "../utils/supernatural-helpers";
@@ -130,7 +131,7 @@ export const LegendModal: React.FC<LegendModalProps> = ({
                 </option>
                 {availableLegends.map(legend => (
                   <option key={legend.slug} value={legend.slug}>
-                    {legend.name} — {legend.cost}g
+                    {legend.name} — {formatCrownsValue(legend.cost)}
                     {legend.upkeep ? ` (${legend.upkeep})` : ""}
                   </option>
                 ))}
@@ -213,7 +214,10 @@ export const LegendModal: React.FC<LegendModalProps> = ({
                 ) : null}
 
                 <div className="grid grid-cols-2 gap-2 text-xs text-gray-300">
-                  <StatRow label="Custo" value={`${selectedLegend.cost}g`} />
+                  <StatRow
+                    label="Custo"
+                    value={formatCrownsValue(selectedLegend.cost)}
+                  />
                   <StatRow
                     label="Manutenção"
                     value={selectedLegend.upkeep ?? "-"}

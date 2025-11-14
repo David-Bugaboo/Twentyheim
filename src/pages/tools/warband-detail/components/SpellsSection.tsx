@@ -13,6 +13,10 @@ type SpellsSectionProps = {
   relations: { spells: SpellToWarbandSoldier[] };
   warbandId: string | null;
   onReload: () => Promise<void>;
+  spellAdvancementLimit: number;
+  fortifyAdvancementLimit: number;
+  currentSpellCount: number;
+  totalFortifyModifier: number;
 };
 
 export const SpellsSection: React.FC<SpellsSectionProps> = ({
@@ -22,6 +26,10 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
   relations,
   warbandId,
   onReload,
+  spellAdvancementLimit,
+  fortifyAdvancementLimit,
+  currentSpellCount,
+  totalFortifyModifier,
 }) => {
   const {
     expanded,
@@ -53,6 +61,10 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
     return null;
   }
 
+  const fortifyLimitReached =
+    fortifyAdvancementLimit <= 0 ||
+    totalFortifyModifier >= fortifyAdvancementLimit;
+
   return (
     <CollapsibleSection
       title="Magias"
@@ -78,11 +90,14 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
           type="button"
           onClick={handleAdd}
           disabled={
-            !selectedSlugToAdd || loading || actionState?.type === "add"
+            !selectedSlugToAdd ||
+            loading ||
+            actionState?.type === "add" ||
+            currentSpellCount >= spellAdvancementLimit
           }
           className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-sm font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {actionState?.type === "add" ? "Adicionando..." : "Adicionar"}
+          {actionState?.type === "add" ? "Adicionando..." : "Adicionar magia"}
         </button>
       </div>
 
@@ -144,11 +159,13 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
               actionState?.type === "unfortify" &&
               actionState.targetId === spell.id;
             const hasFortification = rawModifier > 0;
-            const canFortifyMore =
+            const meetsDifficultyLimit =
               typeof difficultyClass === "number" &&
               !Number.isNaN(difficultyClass)
                 ? difficultyClass - rawModifier > 6
                 : true;
+            const canFortifySpell =
+              !fortifyLimitReached && meetsDifficultyLimit;
 
             return (
               <li
@@ -196,7 +213,7 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
                         >
                           {unfortifying ? "Revertendo..." : "Desfazer Fortificação"}
                         </button>
-                        {canFortifyMore ? (
+                        {canFortifySpell ? (
                           <button
                             type="button"
                             onClick={() => handleFortify(spell.id, spellName)}
@@ -211,7 +228,7 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
                       <button
                         type="button"
                         onClick={() => handleFortify(spell.id, spellName)}
-                        disabled={fortifying}
+                        disabled={fortifying || !canFortifySpell}
                         className="inline-flex w-full items-center justify-center rounded border border-sky-600/60 bg-sky-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-sky-200 transition hover:border-sky-400 hover:bg-sky-900/40 disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         {fortifying ? "Fortificando..." : "Fortificar"}

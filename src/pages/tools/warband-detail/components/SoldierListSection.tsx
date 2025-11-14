@@ -8,12 +8,15 @@ import {
   MenuItem,
 } from "@mui/material";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
 import DangerousOutlinedIcon from "@mui/icons-material/DangerousOutlined";
 import UndoIcon from "@mui/icons-material/Undo";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import BiotechOutlinedIcon from "@mui/icons-material/BiotechOutlined";
 import CoronavirusIcon from "@mui/icons-material/Coronavirus";
+import MilitaryTechOutlinedIcon from "@mui/icons-material/MilitaryTechOutlined";
+import WorkspacePremiumOutlinedIcon from "@mui/icons-material/WorkspacePremiumOutlined";
 import MobileText from "../../../../components/MobileText";
 import { SectionCard } from "./CommonComponents";
 import type { WarbandSoldier } from "../../../../types/warband-soldier.entity";
@@ -22,6 +25,7 @@ import type { ExtraSkillListToWarbandSoldier } from "../../../../types/extra-ski
 import type { ExtraSpellLoreToWarbandSoldier } from "../../../../types/extra-spell-lore-to-warband-soldier.entity";
 import { extractEquipment } from "../utils/equipment-helpers";
 import { getSupernaturalAccess } from "../utils/supernatural-helpers";
+import { formatCrownsValue } from "../utils/helpers";
 
 type SupernaturalDialogCategory = "Mutação" | "Benção de Nurgle";
 
@@ -51,19 +55,23 @@ type SoldierListSectionProps = {
     figureData: unknown,
     extraLores?: ExtraSpellLoreToWarbandSoldier[] | null
   ) => void;
-  onPromoteHero: (soldierId: string) => void;
-  onPromoteLeader: (soldierId: string) => void;
-  canPromoteToHero: (roleType: ReturnType<typeof getRoleType>) => boolean;
-  canPromoteToLeader: (roleType: ReturnType<typeof getRoleType>) => boolean;
+  onRequestPromoteHero: (soldierId: string) => void;
+  onRequestPromoteLeader: (soldierId: string) => void;
+  hasLeader: boolean;
   onOpenSupernaturalDialog: (options: {
     soldierId: string;
     category: SupernaturalDialogCategory;
     figureName: string;
   }) => void;
   soldierAction: {
-    type: "fire" | "kill" | "undo";
+    type: "fire" | "kill" | "undo" | "toggleActive";
     soldierId: string;
   } | null;
+  onToggleSoldierActive: (
+    soldierId: string,
+    figureName: string,
+    isCurrentlyInactive: boolean
+  ) => void;
 };
 
 type SoldierCardProps = {
@@ -71,7 +79,7 @@ type SoldierCardProps = {
   baseFigure: BaseFigure | null;
   label: string;
   isActive: boolean;
-  actionInProgress: "fire" | "kill" | "undo" | null;
+  actionInProgress: "fire" | "kill" | "undo" | "toggleActive" | null;
   supernaturalAccess: ReturnType<typeof getSupernaturalAccess>;
   onSelectSoldier: (soldierId: string) => void;
   onFireSoldier: (soldierId: string) => void;
@@ -88,11 +96,21 @@ type SoldierCardProps = {
     figureData: unknown,
     extraLores?: ExtraSpellLoreToWarbandSoldier[] | null
   ) => void;
+  onRequestPromoteHero: (soldierId: string) => void;
+  onRequestPromoteLeader: (soldierId: string) => void;
+  roleType: "leader" | "hero" | "legend" | "soldier";
+  hasLeader: boolean;
   onOpenSupernaturalDialog: (options: {
     soldierId: string;
     category: SupernaturalDialogCategory;
     figureName: string;
   }) => void;
+  onToggleSoldierActive: (
+    soldierId: string,
+    figureName: string,
+    isCurrentlyInactive: boolean
+  ) => void;
+  toggleActionInProgress: boolean;
 };
 
 const SoldierCard: React.FC<SoldierCardProps> = ({
@@ -109,14 +127,24 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
   onOpenEquipmentDialog,
   onOpenSkillsDialog,
   onOpenSpellsDialog,
+  onRequestPromoteHero,
+  onRequestPromoteLeader,
+  roleType,
+  hasLeader,
   onOpenSupernaturalDialog,
+  onToggleSoldierActive,
+  toggleActionInProgress,
 }) => {
   const [actionsAnchorEl, setActionsAnchorEl] = useState<null | HTMLElement>(
     null
   );
   const actionsMenuOpen = Boolean(actionsAnchorEl);
-  const actionsDisabled = actionInProgress !== null;
+  const isToggleInProgress =
+    actionInProgress === "toggleActive" || toggleActionInProgress;
+  const actionsDisabled =
+    actionInProgress !== null && actionInProgress !== "toggleActive";
   const figureName = baseFigure?.name ?? label;
+  const isInactive = soldier.active === false;
 
   const handleOpenActionsMenu = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -138,6 +166,7 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
     category: SupernaturalDialogCategory
   ) => {
     event.stopPropagation();
+    if (isInactive || isToggleInProgress) return;
     onSelectSoldier(soldier.id);
     onOpenSupernaturalDialog({
       soldierId: soldier.id,
@@ -152,10 +181,38 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
     actionInProgress === "kill" ? "Marcando..." : "Matar";
   const undoLabel =
     actionInProgress === "undo" ? "Desfazendo..." : "Desfazer";
+  const toggleLabel = isToggleInProgress
+    ? soldier.active === false
+      ? "Ativando..."
+      : "Desativando..."
+    : soldier.active === false
+      ? "Ativar figura"
+      : "Desativar figura";
 
-  const cardClasses = isActive
+  const soldierNoXp = Boolean(
+    ((soldier as unknown as { noXp?: boolean })?.noXp ??
+      (baseFigure as unknown as { noXp?: boolean } | null)?.noXp ??
+      false)
+  );
+
+  const showPromoteHero =
+    !soldierNoXp &&
+    roleType === "soldier" &&
+    typeof onRequestPromoteHero === "function";
+  const showPromoteLeader =
+    !soldierNoXp &&
+    roleType === "hero" &&
+    !hasLeader &&
+    typeof onRequestPromoteLeader === "function";
+
+  let cardClasses = isActive
     ? "border-green-500 bg-green-900/30 text-green-100"
     : "border-green-800/40 bg-[#111111] text-gray-200 hover:border-green-500/60";
+
+  if (isInactive) {
+    cardClasses =
+      "border-gray-700 bg-[#1b1b1b] text-gray-400 opacity-70";
+  }
 
   return (
     <div className={`rounded border px-3 py-3 text-sm transition ${cardClasses}`}>
@@ -163,7 +220,12 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
         <button
           type="button"
           onClick={handleSelectSoldier}
-          className="flex-1 text-left"
+          className={`flex-1 text-left ${
+            isInactive || isToggleInProgress
+              ? "pointer-events-none cursor-not-allowed"
+              : ""
+          }`}
+          disabled={isInactive || isToggleInProgress}
         >
           <div className="flex items-center justify-between">
             <span className="font-semibold">{label}</span>
@@ -172,12 +234,18 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
             </span>
           </div>
           <div className="mt-1 flex items-center gap-2">
-            <div className="text-xs text-gray-400">
+            <div className="flex flex-wrap items-center gap-2 text-xs text-gray-400">
               {baseFigure ? (
                 <>
                   <span>{baseFigure.role}</span>
                   {" · "}
-                  <span>{baseFigure.cost}g</span>
+                  <span>{formatCrownsValue(baseFigure.cost)}</span>
+                  {baseFigure?.upkeep != null &&
+                  Number(baseFigure.upkeep) !== 0 ? (
+                    <span className="text-amber-200">
+                      Manutenção: {formatCrownsValue(baseFigure.upkeep)}
+                    </span>
+                  ) : null}
                 </>
               ) : (
                 <span>Base desconhecida</span>
@@ -231,6 +299,11 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
                 ) : null}
               </div>
             )}
+            {isInactive ? (
+              <span className="text-xs uppercase tracking-wide text-amber-300">
+                Desativado
+              </span>
+            ) : null}
           </div>
         </button>
 
@@ -240,6 +313,7 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
           aria-label="Ações da figura"
           aria-haspopup="true"
           color="inherit"
+          disabled={isToggleInProgress}
         >
           <SettingsOutlinedIcon fontSize="small" />
         </IconButton>
@@ -256,9 +330,54 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
             onClick={event => {
               event.stopPropagation();
               handleCloseActionsMenu();
+              onToggleSoldierActive(soldier.id, figureName, isInactive);
+            }}
+            disabled={isToggleInProgress}
+          >
+            <ListItemIcon>
+              <PowerSettingsNewIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary={toggleLabel} />
+          </MenuItem>
+        {showPromoteHero ? (
+          <MenuItem
+            onClick={event => {
+              event.stopPropagation();
+              handleCloseActionsMenu();
+              onSelectSoldier(soldier.id);
+              onRequestPromoteHero?.(soldier.id);
+            }}
+            disabled={actionsDisabled || isInactive}
+          >
+            <ListItemIcon>
+              <MilitaryTechOutlinedIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Promover a Herói" />
+          </MenuItem>
+        ) : null}
+        {showPromoteLeader ? (
+          <MenuItem
+            onClick={event => {
+              event.stopPropagation();
+              handleCloseActionsMenu();
+              onSelectSoldier(soldier.id);
+              onRequestPromoteLeader?.(soldier.id);
+            }}
+            disabled={actionsDisabled || isInactive}
+          >
+            <ListItemIcon>
+              <WorkspacePremiumOutlinedIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Promover a Líder" />
+          </MenuItem>
+        ) : null}
+          <MenuItem
+            onClick={event => {
+              event.stopPropagation();
+              handleCloseActionsMenu();
               onFireSoldier(soldier.id);
             }}
-            disabled={actionsDisabled}
+            disabled={actionsDisabled || isInactive}
           >
             <ListItemIcon>
               <PersonOffIcon fontSize="small" />
@@ -271,7 +390,7 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
               handleCloseActionsMenu();
               onKillSoldier(soldier.id);
             }}
-            disabled={actionsDisabled}
+            disabled={actionsDisabled || isInactive}
           >
             <ListItemIcon>
               <DangerousOutlinedIcon fontSize="small" />
@@ -284,7 +403,7 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
               handleCloseActionsMenu();
               onUndoSoldier(soldier.id);
             }}
-            disabled={actionsDisabled}
+            disabled={actionsDisabled || isInactive}
           >
             <ListItemIcon>
               <UndoIcon fontSize="small" />
@@ -306,7 +425,8 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
                 extractEquipment(baseFigure)
               );
             }}
-            className="inline-flex w-full items-center justify-center gap-2 rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40"
+            disabled={isInactive || isToggleInProgress}
+            className="inline-flex w-full items-center justify-center gap-2 rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Inventory2OutlinedIcon fontSize="small" sx={{ fontSize: "16px" }} />
             Equipamentos disponíveis
@@ -327,7 +447,8 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
                   null
               );
             }}
-            className="inline-flex w-full items-center justify-center gap-2 rounded border border-purple-600/60 bg-purple-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-purple-200 transition hover:border-purple-400 hover:bg-purple-900/40"
+            disabled={isInactive || isToggleInProgress}
+            className="inline-flex w-full items-center justify-center gap-2 rounded border border-purple-600/60 bg-purple-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-purple-200 transition hover:border-purple-400 hover:bg-purple-900/40 disabled:cursor-not-allowed disabled:opacity-60"
           >
             Habilidades disponíveis
           </button>
@@ -347,7 +468,8 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
                   null
               );
             }}
-            className="inline-flex w-full items-center justify-center gap-2 rounded border border-blue-600/60 bg-blue-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-blue-200 transition hover:border-blue-400 hover:bg-blue-900/40"
+            disabled={isInactive || isToggleInProgress}
+            className="inline-flex w-full items-center justify-center gap-2 rounded border border-blue-600/60 bg-blue-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-blue-200 transition hover:border-blue-400 hover:bg-blue-900/40 disabled:cursor-not-allowed disabled:opacity-60"
           >
             Magias disponíveis
           </button>
@@ -359,7 +481,8 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
             onClick={event =>
               handleSupernaturalButtonClick(event, "Mutação")
             }
-            className="inline-flex w-full items-center justify-center gap-2 rounded border border-amber-600/60 bg-amber-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-amber-200 transition hover:border-amber-400 hover:bg-amber-900/40"
+            disabled={isInactive || isToggleInProgress}
+            className="inline-flex w-full items-center justify-center gap-2 rounded border border-amber-600/60 bg-amber-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-amber-200 transition hover:border-amber-400 hover:bg-amber-900/40 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <BiotechOutlinedIcon fontSize="small" sx={{ fontSize: "16px" }} />
             Mutações disponíveis
@@ -372,7 +495,8 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
             onClick={event =>
               handleSupernaturalButtonClick(event, "Benção de Nurgle")
             }
-            className="inline-flex w-full items-center justify-center gap-2 rounded border border-lime-600/60 bg-lime-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-lime-200 transition hover:border-lime-400 hover:bg-lime-900/40"
+            disabled={isInactive || isToggleInProgress}
+            className="inline-flex w-full items-center justify-center gap-2 rounded border border-lime-600/60 bg-lime-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-lime-200 transition hover:border-lime-400 hover:bg-lime-900/40 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <CoronavirusIcon fontSize="small" sx={{ fontSize: "16px" }} />
             Bençãos de Nurgle
@@ -393,7 +517,11 @@ export const SoldierListSection: React.FC<SoldierListSectionProps> = ({
   onOpenEquipmentDialog,
   onOpenSkillsDialog,
   onOpenSpellsDialog,
+  onRequestPromoteHero,
+  onRequestPromoteLeader,
+  hasLeader,
   onOpenSupernaturalDialog,
+  onToggleSoldierActive,
   soldierAction,
 }) => {
   return (
@@ -410,7 +538,7 @@ export const SoldierListSection: React.FC<SoldierListSectionProps> = ({
                 {group.title}
               </h4>
               <div className="space-y-3">
-                {group.items.map(({ soldier, baseFigure }) => {
+                {group.items.map(({ soldier, baseFigure, roleType }) => {
                   const label = soldier.campaignName
                     ? `${soldier.campaignName} (${baseFigure?.name ?? "Sem base"})`
                     : (baseFigure?.name ?? "Figura sem nome");
@@ -440,7 +568,13 @@ export const SoldierListSection: React.FC<SoldierListSectionProps> = ({
                       onOpenEquipmentDialog={onOpenEquipmentDialog}
                       onOpenSkillsDialog={onOpenSkillsDialog}
                       onOpenSpellsDialog={onOpenSpellsDialog}
+                      onRequestPromoteHero={onRequestPromoteHero}
+                      onRequestPromoteLeader={onRequestPromoteLeader}
+                      roleType={roleType}
+                      hasLeader={hasLeader}
                       onOpenSupernaturalDialog={onOpenSupernaturalDialog}
+                      onToggleSoldierActive={onToggleSoldierActive}
+                      toggleActionInProgress={actionInProgress === "toggleActive"}
                     />
                   );
                 })}

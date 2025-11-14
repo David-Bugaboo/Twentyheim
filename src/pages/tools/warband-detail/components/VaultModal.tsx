@@ -3,16 +3,18 @@ import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { Spinner, StatRow } from "./CommonComponents";
 import type { EquipmentCatalogItem } from "../../../../services/equipment.service";
-import type { EquipmentCatalogFilter} from "../types";
+import type { EquipmentCatalogFilter } from "../types";
 import { EQUIPMENT_CATALOG_FILTERS } from "../types";
 import {
   formatEquipmentCost,
   formatEquipmentStat,
   parseSpecialRules,
   normalizeString,
+  formatCrownsValue,
 } from "../utils/helpers";
 import { checkEquipmentAvailability } from "../utils/equipment-helpers";
 import type { Warband } from "../../../../types/warband.entity";
+import type { ModifierQueryResponse } from "../../../../services/queries.service";
 
 type VaultModalProps = {
   open: boolean;
@@ -23,6 +25,11 @@ type VaultModalProps = {
   onFilterChange: (filter: EquipmentCatalogFilter) => void;
   selectedSlug: string;
   onSelectSlug: (slug: string) => void;
+  modifiers: ModifierQueryResponse[];
+  modifiersLoading: boolean;
+  selectedModifierSlug: string;
+  onSelectModifier: (slug: string) => void;
+  modifierCategory: "melee" | "armor" | null;
   onBuy: () => void;
   onLoot: () => void;
   actionLoading: "buy" | "loot" | null;
@@ -38,6 +45,11 @@ export const VaultModal: React.FC<VaultModalProps> = ({
   onFilterChange,
   selectedSlug,
   onSelectSlug,
+  modifiers,
+  modifiersLoading,
+  selectedModifierSlug,
+  onSelectModifier,
+  modifierCategory,
   onBuy,
   onLoot,
   actionLoading,
@@ -106,10 +118,83 @@ export const VaultModal: React.FC<VaultModalProps> = ({
     [selectedEquipmentCatalogItem]
   );
 
+  const showModifierSelector = Boolean(modifierCategory);
+  const modifierLabel =
+    modifierCategory === "melee"
+      ? "Modificador de Arma Corpo a Corpo"
+      : "Modificador de Armadura";
+
+  const modifierOptions = useMemo(() => {
+    if (!showModifierSelector) return [];
+    const keywords =
+      modifierCategory === "melee"
+        ? [
+            "modificador de arma corpo a corpo",
+            "modificadores de arma corpo a corpo",
+          ]
+        : ["modificador de armadura", "modificadores de armadura"];
+    return modifiers.filter(mod => {
+      const normalized = normalizeString(mod.category ?? "");
+      return keywords.some(keyword => normalized.includes(keyword));
+    });
+  }, [modifierCategory, modifiers, showModifierSelector]);
+
+  const selectedModifier = useMemo(
+    () =>
+      showModifierSelector
+        ? modifierOptions.find(mod => mod.slug === selectedModifierSlug) ?? null
+        : null,
+    [modifierOptions, selectedModifierSlug, showModifierSelector]
+  );
+
   const canBuyFromVault =
     Boolean(selectedEquipmentCatalogItem) &&
     Boolean(selectedEquipmentAvailability?.available);
   const canLootToVault = Boolean(selectedEquipmentCatalogItem);
+  const isModifiedSelection = Boolean(selectedModifier);
+
+  const equipmentBaseCost =
+    selectedEquipmentCatalogItem?.cost ?? selectedEquipmentCatalogItem?.price;
+  const normalizedCost =
+    typeof equipmentBaseCost === "number"
+      ? equipmentBaseCost
+      : typeof equipmentBaseCost === "string"
+        ? Number(equipmentBaseCost.replace(/[^\d.,-]/g, "").replace(",", "."))
+        : null;
+
+  const modifierMultiplier =
+    selectedModifier && Number.isFinite(selectedModifier.multiplier)
+      ? selectedModifier.multiplier
+      : 1;
+
+  const finalCostValue =
+    normalizedCost !== null && Number.isFinite(normalizedCost)
+      ? normalizedCost * modifierMultiplier
+      : null;
+
+  const formattedFinalCost =
+    finalCostValue !== null ? formatCrownsValue(finalCostValue) : null;
+  const formattedBaseCost =
+    normalizedCost !== null && Number.isFinite(normalizedCost)
+      ? formatCrownsValue(normalizedCost)
+      : null;
+
+  const buyButtonLabel =
+    actionLoading === "buy"
+      ? "Comprando..."
+      : isModifiedSelection
+        ? formattedFinalCost
+          ? `Comprar ${formattedFinalCost} (x${modifierMultiplier})`
+          : "Comprar com modificador"
+        : formattedFinalCost
+        ? `Comprar ${formattedFinalCost}`
+        : formattedBaseCost
+        ? `Comprar ${formattedBaseCost}`
+        : "Comprar";
+
+  const buyButtonClass = isModifiedSelection
+    ? "inline-flex items-center justify-center rounded border border-cyan-500/70 bg-cyan-900/30 px-4 py-2 text-xs font-semibold text-cyan-100 transition hover:border-cyan-300 hover:bg-cyan-900/50 disabled:cursor-not-allowed disabled:opacity-60"
+    : "inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-4 py-2 text-xs font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60";
 
   return (
     <Dialog
@@ -187,7 +272,10 @@ export const VaultModal: React.FC<VaultModalProps> = ({
               <select
                 id="equipment-selector"
                 value={selectedSlug}
-                onChange={event => onSelectSlug(event.target.value)}
+                onChange={event => {
+                  onSelectSlug(event.target.value);
+                  onSelectModifier("");
+                }}
                 disabled={filteredEquipmentCatalog.length === 0}
                 className="mt-2 w-full rounded border border-green-700 bg-[#0f1010] px-3 py-2 text-sm text-gray-200 outline-none transition focus:border-green-400"
               >
@@ -220,6 +308,36 @@ export const VaultModal: React.FC<VaultModalProps> = ({
                 </p>
               ) : null}
             </div>
+
+            {showModifierSelector ? (
+              <div>
+                <p className="text-xs uppercase tracking-wide text-green-300">
+                  {modifierLabel}
+                </p>
+                {modifiersLoading ? (
+                  <div className="mt-2 flex justify-center rounded border border-green-800/40 bg-[#0b0e0c] py-4">
+                    <Spinner label="Carregando modificadores..." />
+                  </div>
+                ) : modifierOptions.length > 0 ? (
+                  <select
+                    value={selectedModifierSlug}
+                    onChange={event => onSelectModifier(event.target.value)}
+                    className="mt-2 w-full rounded border border-green-700 bg-[#0f1010] px-3 py-2 text-sm text-gray-200 outline-none transition focus:border-cyan-400"
+                  >
+                    <option value="">Sem modificador</option>
+                    {modifierOptions.map(modifier => (
+                      <option key={modifier.id ?? modifier.slug} value={modifier.slug}>
+                        {modifier.name}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <p className="mt-2 text-xs text-yellow-300">
+                    Nenhum modificador disponível para este equipamento.
+                  </p>
+                )}
+              </div>
+            ) : null}
 
             {selectedEquipmentCatalogItem ? (
               <div className="space-y-3 rounded border border-green-800/40 bg-[#0c0f0d] p-4 text-sm text-gray-200">
@@ -349,6 +467,20 @@ export const VaultModal: React.FC<VaultModalProps> = ({
                     ))}
                   </div>
                 ) : null}
+
+                {selectedModifier ? (
+                  <div className="space-y-1 rounded border border-cyan-600/50 bg-cyan-900/20 p-3 text-xs text-cyan-100">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-cyan-300">
+                      Modificador selecionado
+                    </p>
+                    <p className="text-sm text-cyan-100">{selectedModifier.name}</p>
+                    {selectedModifier.effect ? (
+                      <p className="mt-1 text-[13px] leading-relaxed text-cyan-100/90">
+                        {selectedModifier.effect}
+                      </p>
+                    ) : null}
+                  </div>
+                ) : null}
               </div>
             ) : null}
 
@@ -365,9 +497,9 @@ export const VaultModal: React.FC<VaultModalProps> = ({
                   type="button"
                   onClick={onBuy}
                   disabled={!canBuyFromVault || actionLoading !== null}
-                  className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-4 py-2 text-xs font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                  className={buyButtonClass}
                 >
-                  {actionLoading === "buy" ? "Comprando..." : "Comprar"}
+                  {buyButtonLabel}
                 </button>
                 <button
                   type="button"

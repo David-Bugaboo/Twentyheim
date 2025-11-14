@@ -2,7 +2,6 @@ import React from "react";
 import { Tooltip } from "@mui/material";
 import { Chip } from "@mui/material";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { SectionCard, StatRow } from "./CommonComponents";
 import MobileText from "../../../../components/MobileText";
 import type { FigureSummary } from "../types";
@@ -12,6 +11,9 @@ import {
   parseSpecialRules,
   getSkillListLabel,
   getSpellLoreLabel,
+  normalizeString,
+  formatCrownsValue,
+  getRoleType,
 } from "../utils/helpers";
 import { extractEquipment } from "../utils/equipment-helpers";
 import { getSupernaturalAccess } from "../utils/supernatural-helpers";
@@ -26,12 +28,15 @@ type AvailableFiguresSectionProps = {
   onToggleFigure: (figureId: string) => void;
   onAddFigure: (figureSlug: string, figureName: string) => void;
   onOpenEquipmentDialog: (figureName: string, items: unknown[]) => void;
-  onOpenMercenaryModal?: () => void;
-  hasAvailableMercenaries?: boolean;
-  onOpenLegendModal?: () => void;
-  hasAvailableLegends?: boolean;
   addingFigureSlug: string | null;
   warbandId: string | null;
+  hasLeader: boolean;
+  warbandCrowns: number | null;
+  onOpenSkillsDialog?: (figureName: string, slug: string) => void;
+  onOpenSpellsDialog?: (figureName: string, slug: string) => void;
+  onOpenStartingSkill?: (figureName: string, slug: string) => void;
+  onOpenStartingSpell?: (figureName: string, slug: string) => void;
+  onOpenStartingEquipment?: (figureName: string, slug: string) => void;
 };
 
 export const AvailableFiguresSection: React.FC<AvailableFiguresSectionProps> = ({
@@ -40,13 +45,67 @@ export const AvailableFiguresSection: React.FC<AvailableFiguresSectionProps> = (
   onToggleFigure,
   onAddFigure,
   onOpenEquipmentDialog,
-  onOpenMercenaryModal,
-  hasAvailableMercenaries,
-  onOpenLegendModal,
-  hasAvailableLegends,
   addingFigureSlug,
   warbandId,
+  hasLeader,
+  warbandCrowns,
+  onOpenSkillsDialog,
+  onOpenSpellsDialog,
+  onOpenStartingSkill,
+  onOpenStartingSpell,
+  onOpenStartingEquipment,
 }) => {
+  const toTitleCase = (value: string) =>
+    value
+      .replace(/[-_]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .replace(/\b\w/g, match => match.toUpperCase());
+
+  const extractStartingEntries = (
+    source: unknown,
+    slugKeys: string[],
+    labelKeys: string[]
+  ): Array<{ slug: string; label: string }> => {
+    if (!Array.isArray(source)) {
+      return [];
+    }
+    return source
+      .map((entry, index) => {
+        if (!entry) return null;
+        if (typeof entry === "string") {
+          const slug = entry.trim();
+          if (!slug) return null;
+          return { slug, label: toTitleCase(slug) };
+        }
+        if (typeof entry === "object") {
+          const record = entry as Record<string, unknown>;
+          const slugValue = slugKeys
+            .map(key => record[key])
+            .find(
+              value => typeof value === "string" && value.trim().length > 0
+            );
+          if (!slugValue || typeof slugValue !== "string") {
+            return null;
+          }
+          const slug = slugValue.trim();
+          if (!slug) return null;
+          const labelValue = labelKeys
+            .map(key => record[key])
+            .find(
+              value => typeof value === "string" && value.trim().length > 0
+            ) as string | undefined;
+          const label =
+            labelValue?.trim().length ? labelValue.trim() : toTitleCase(slug);
+          return { slug, label };
+        }
+        return null;
+      })
+      .filter(
+        (entry): entry is { slug: string; label: string } => entry !== null
+      );
+  };
+
   return (
     <SectionCard title="Figuras Disponíveis">
       {baseFigureGroups.length === 0 ? (
@@ -74,6 +133,47 @@ export const AvailableFiguresSection: React.FC<AvailableFiguresSectionProps> = (
                   )
                     ? baseFigure?.naturalAttacks ?? []
                     : [];
+                  const normalizedRole = normalizeString(figure.role ?? "");
+                  const roleType = getRoleType(figure.role);
+                  const isLegend = roleType === "legend";
+                  const isMercenary = normalizedRole.includes("mercen");
+                  const record = figure as Record<string, unknown>;
+                  const legendStartingSkills = isLegend
+                    ? extractStartingEntries(
+                        record["legendStartingSkills"] ??
+                          record["startingSkills"] ??
+                          [],
+                        ["skillSlug", "slug", "startingSkillSlug"],
+                        ["name", "skillName", "label", "title"]
+                      )
+                    : [];
+                  const legendStartingSpells = isLegend
+                    ? extractStartingEntries(
+                        record["legendStartingSpells"] ??
+                          record["startingSpells"] ??
+                          [],
+                        ["spellSlug", "slug", "startingSpellSlug"],
+                        ["name", "spellName", "label", "title"]
+                      )
+                    : [];
+                  const legendStartingEquipment = isLegend
+                    ? extractStartingEntries(
+                        record["legendStartingEquipment"] ??
+                          record["startingEquipment"] ??
+                          [],
+                        ["equipmentSlug", "slug", "startingEquipmentSlug"],
+                        ["name", "equipmentName", "label", "title"]
+                      )
+                    : [];
+                  const mercenaryStartingEquipment = isMercenary
+                    ? extractStartingEntries(
+                        record["mercenaryStartingEquipment"] ??
+                          record["startingEquipment"] ??
+                          [],
+                        ["equipmentSlug", "slug", "startingEquipmentSlug"],
+                        ["name", "equipmentName", "label", "title"]
+                      )
+                    : [];
                   return (
                     <div
                       key={figure.id}
@@ -84,14 +184,24 @@ export const AvailableFiguresSection: React.FC<AvailableFiguresSectionProps> = (
                           <div className="font-semibold text-green-200">
                             {figure.name}
                           </div>
-                          <div className="mt-1 flex items-center gap-2">
-                            <div className="text-xs text-gray-400">
-                              <span className="uppercase text-green-400">
-                                {figure.role}
+                          <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-gray-400">
+                            <span className="uppercase text-green-400">
+                              {figure.role}
+                            </span>
+                            {" · "}
+                            <span>{formatCrownsValue(figure.cost)}</span>
+                            {figure.upkeep != null &&
+                            Number(figure.upkeep) !== 0 ? (
+                              <span className="text-amber-200">
+                                Manutenção: {formatCrownsValue(figure.upkeep)}
                               </span>
-                              {" · "}
-                              <span>{figure.cost}g</span>
-                            </div>
+                            ) : null}
+                            {figure.quality != null &&
+                            Number(figure.quality) !== 0 ? (
+                              <span className="ml-2 text-green-300">
+                                Qualidade: {String(figure.quality)}
+                              </span>
+                            ) : null}
                             {(supernaturalAccess.mutations ||
                               supernaturalAccess.sacredMarks ||
                               supernaturalAccess.blessings) && (
@@ -152,18 +262,67 @@ export const AvailableFiguresSection: React.FC<AvailableFiguresSectionProps> = (
                         </button>
                       </div>
 
-                      <button
-                        type="button"
-                        onClick={() => onAddFigure(figure.slug, figure.name)}
-                        disabled={
-                          addingFigureSlug === figure.slug || !warbandId
+                      {(() => {
+                        const normalizedRole = normalizeString(
+                          figure.role ?? ""
+                        );
+                        const isLeaderFigure =
+                          normalizedRole.includes("lider") ||
+                          normalizedRole.includes("leader");
+                        const rawCost = figure.cost as unknown;
+                        const numericCost = (() => {
+                          if (typeof rawCost === "number") return rawCost;
+                          if (typeof rawCost === "string") {
+                            const parsed = Number(
+                              rawCost
+                                .replace(/[^\d.,-]/g, "")
+                                .replace(",", ".")
+                            );
+                            return Number.isFinite(parsed) ? parsed : null;
+                          }
+                          return null;
+                        })();
+                        const canAfford =
+                          numericCost === null ||
+                          numericCost < 0 ||
+                          warbandCrowns === null ||
+                          warbandCrowns >= numericCost;
+                        let disabledReason: string | null = null;
+                        if (hasLeader && isLeaderFigure) {
+                          disabledReason =
+                            "Já existe um líder neste bando.";
+                        } else if (!canAfford) {
+                          disabledReason =
+                            "Coroas insuficientes para contratar esta figura.";
                         }
-                        className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded border border-green-500/60 bg-green-900/20 px-3 py-2 text-sm font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
-                      >
-                        {addingFigureSlug === figure.slug
-                          ? "Adicionando..."
-                          : "Adicionar ao bando"}
-                      </button>
+                        const isAdding = addingFigureSlug === figure.slug;
+                        const buttonDisabled =
+                          isAdding || !warbandId || Boolean(disabledReason);
+                        const buttonElement = (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              onAddFigure(figure.slug, figure.name)
+                            }
+                            disabled={buttonDisabled}
+                            className="inline-flex w-full items-center justify-center gap-2 rounded border border-green-500/60 bg-green-900/20 px-3 py-2 text-sm font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                          >
+                            {isAdding ? "Adicionando..." : "Adicionar ao bando"}
+                          </button>
+                        );
+
+                        if (disabledReason && !isAdding) {
+                          return (
+                            <Tooltip title={disabledReason} placement="top" arrow>
+                              <span className="mt-3 block">{buttonElement}</span>
+                            </Tooltip>
+                          );
+                        }
+
+                        return (
+                          <div className="mt-3">{buttonElement}</div>
+                        );
+                      })()}
 
                       {isExpanded ? (
                         <div className="mt-3 space-y-3 text-xs text-gray-400">
@@ -273,58 +432,215 @@ export const AvailableFiguresSection: React.FC<AvailableFiguresSectionProps> = (
                             </div>
                           ) : null}
 
-                          <div className="grid gap-3 md:grid-cols-2">
-                            <div className="rounded border border-green-800/30 bg-[#0f1310] p-2">
-                              <h4 className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-green-300">
-                                Listas de Habilidade
-                              </h4>
-                              {figure.skillLists &&
-                              figure.skillLists.length > 0 ? (
-                                <ul className="space-y-1 text-[11px] text-green-100">
-                                  {figure.skillLists.map((skillList, index) => (
-                                    <li
-                                      key={
-                                        skillList.id ??
-                                        `${figure.id}-skill-${index}`
-                                      }
-                                      className="rounded bg-green-900/20 px-2 py-1"
-                                    >
-                                      {getSkillListLabel(skillList)}
-                                    </li>
-                                  ))}
-                                </ul>
-                              ) : (
-                                <p className="text-[11px] text-gray-500">
-                                  Sem listas de habilidade.
-                                </p>
-                              )}
+                          {(() => {
+                            const skillLists = Array.isArray(figure.skillLists)
+                              ? figure.skillLists
+                              : [];
+                            const spellLores = Array.isArray(figure.spellLores)
+                              ? figure.spellLores
+                              : [];
+                            const showKnowledgeRow =
+                              skillLists.length > 0 || spellLores.length > 0;
+
+                            if (!showKnowledgeRow) {
+                              return null;
+                            }
+
+                          return (
+                            <div className="mt-3 space-y-2 text-[11px]">
+                              {skillLists.length > 0 ? (
+                                <div>
+                                  <p className="mb-1 uppercase font-semibold tracking-wide text-green-300">
+                                    Listas de Habilidade
+                                  </p>
+                                  <div className="flex flex-wrap items-center gap-2">
+                                    {skillLists.map((skillList, index) => {
+                                      const slug =
+                                        (skillList as {
+                                          slug?: string;
+                                          skillListSlug?: string;
+                                        })?.slug ??
+                                        (skillList as {
+                                          slug?: string;
+                                          skillListSlug?: string;
+                                        })?.skillListSlug ??
+                                        null;
+                                      const label = getSkillListLabel(skillList);
+                                      return (
+                                        <button
+                                          key={
+                                            skillList.id ??
+                                            `${figure.id}-skill-${index}`
+                                          }
+                                          type="button"
+                                          onClick={event => {
+                                            event.stopPropagation();
+                                            if (slug) {
+                                              onOpenSkillsDialog?.(
+                                                figure.name,
+                                                slug
+                                              );
+                                            }
+                                          }}
+                                          className="rounded-full border border-green-500/40 bg-green-900/30 px-2 py-1 text-xs text-green-100 transition hover:border-green-400 hover:bg-green-900/50"
+                                        >
+                                          {label}
+                                        </button>
+                                      );
+                                    })}
+                                  </div>
+                                </div>
+                              ) : null}
+                              {spellLores.length > 0 ? (
+                                <div>
+                                  <p className="mb-1 uppercase font-semibold tracking-wide text-blue-300">
+                                    Tradições Mágicas
+                                  </p>
+                                  <div className="flex flex-wrap items-center gap-2">
+                                    {spellLores.map((spellLore, index) => {
+                                      const slug =
+                                        (spellLore as {
+                                          slug?: string;
+                                          spellLoreSlug?: string;
+                                        })?.slug ??
+                                        (spellLore as {
+                                          slug?: string;
+                                          spellLoreSlug?: string;
+                                        })?.spellLoreSlug ??
+                                        null;
+                                      const label = getSpellLoreLabel(spellLore);
+                                      return (
+                                        <button
+                                          key={
+                                            spellLore.id ??
+                                            `${figure.id}-spell-${index}`
+                                          }
+                                          type="button"
+                                          onClick={event => {
+                                            event.stopPropagation();
+                                            if (slug) {
+                                              onOpenSpellsDialog?.(
+                                                figure.name,
+                                                slug
+                                              );
+                                            }
+                                          }}
+                                          className="rounded-full border border-blue-600/40 bg-blue-900/30 px-2 py-1 text-xs text-blue-200 transition hover:border-blue-400 hover:bg-blue-900/50"
+                                        >
+                                          {label}
+                                        </button>
+                                      );
+                                    })}
+                                  </div>
+                                </div>
+                                ) : null}
+                              </div>
+                            );
+                          })()}
+
+                          {isLegend && legendStartingSkills.length > 0 ? (
+                            <div className="space-y-2 text-[11px]">
+                              <p className="mb-1 uppercase font-semibold tracking-wide text-green-300">
+                                Habilidades Iniciais (Lenda)
+                              </p>
+                              <div className="flex flex-wrap items-center gap-2">
+                                {legendStartingSkills.map(entry => (
+                                  <button
+                                    key={`${figure.id}-legend-skill-${entry.slug}`}
+                                    type="button"
+                                    onClick={event => {
+                                      event.stopPropagation();
+                                      onOpenStartingSkill?.(
+                                        figure.name,
+                                        entry.slug
+                                      );
+                                    }}
+                                    className="rounded-full border border-green-500/40 bg-green-900/30 px-2 py-1 text-xs text-green-100 transition hover:border-green-400 hover:bg-green-900/50"
+                                  >
+                                    {entry.label}
+                                  </button>
+                                ))}
+                              </div>
                             </div>
-                            <div className="rounded border border-blue-800/30 bg-[#0f1013] p-2">
-                              <h4 className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-blue-300">
-                                Tradições Mágicas
-                              </h4>
-                              {figure.spellLores &&
-                              figure.spellLores.length > 0 ? (
-                                <ul className="space-y-1 text-[11px] text-blue-100">
-                                  {figure.spellLores.map((spellLore, index) => (
-                                    <li
-                                      key={
-                                        spellLore.id ??
-                                        `${figure.id}-spell-${index}`
-                                      }
-                                      className="rounded bg-blue-900/20 px-2 py-1"
-                                    >
-                                      {getSpellLoreLabel(spellLore)}
-                                    </li>
-                                  ))}
-                                </ul>
-                              ) : (
-                                <p className="text-[11px] text-gray-500">
-                                  Sem tradições mágicas.
-                                </p>
-                              )}
+                          ) : null}
+
+                          {isLegend && legendStartingSpells.length > 0 ? (
+                            <div className="space-y-2 text-[11px]">
+                              <p className="mb-1 uppercase font-semibold tracking-wide text-blue-300">
+                                Magias Iniciais (Lenda)
+                              </p>
+                              <div className="flex flex-wrap items-center gap-2">
+                                {legendStartingSpells.map(entry => (
+                                  <button
+                                    key={`${figure.id}-legend-spell-${entry.slug}`}
+                                    type="button"
+                                    onClick={event => {
+                                      event.stopPropagation();
+                                      onOpenStartingSpell?.(
+                                        figure.name,
+                                        entry.slug
+                                      );
+                                    }}
+                                    className="rounded-full border border-blue-600/40 bg-blue-900/30 px-2 py-1 text-xs text-blue-200 transition hover:border-blue-400 hover:bg-blue-900/50"
+                                  >
+                                    {entry.label}
+                                  </button>
+                                ))}
+                              </div>
                             </div>
-                          </div>
+                          ) : null}
+
+                          {isLegend && legendStartingEquipment.length > 0 ? (
+                            <div className="space-y-2 text-[11px]">
+                              <p className="mb-1 uppercase font-semibold tracking-wide text-amber-300">
+                                Equipamentos Iniciais (Lenda)
+                              </p>
+                              <div className="flex flex-wrap items-center gap-2">
+                                {legendStartingEquipment.map(entry => (
+                                  <button
+                                    key={`${figure.id}-legend-equipment-${entry.slug}`}
+                                    type="button"
+                                    onClick={event => {
+                                      event.stopPropagation();
+                                      onOpenStartingEquipment?.(
+                                        figure.name,
+                                        entry.slug
+                                      );
+                                    }}
+                                    className="rounded-full border border-amber-600/40 bg-amber-900/30 px-2 py-1 text-xs text-amber-200 transition hover:border-amber-400 hover:bg-amber-900/50"
+                                  >
+                                    {entry.label}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          ) : null}
+
+                          {isMercenary && mercenaryStartingEquipment.length > 0 ? (
+                            <div className="space-y-2 text-[11px]">
+                              <p className="mb-1 uppercase font-semibold tracking-wide text-amber-300">
+                                Equipamentos Iniciais (Mercenário)
+                              </p>
+                              <div className="flex flex-wrap items-center gap-2">
+                                {mercenaryStartingEquipment.map(entry => (
+                                  <button
+                                    key={`${figure.id}-merc-equipment-${entry.slug}`}
+                                    type="button"
+                                    onClick={event => {
+                                      event.stopPropagation();
+                                      onOpenStartingEquipment?.(
+                                        figure.name,
+                                        entry.slug
+                                      );
+                                    }}
+                                    className="rounded-full border border-amber-600/40 bg-amber-900/30 px-2 py-1 text-xs text-amber-200 transition hover:border-amber-400 hover:bg-amber-900/50"
+                                  >
+                                    {entry.label}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          ) : null}
 
                           <div>
                             <Tooltip title="Ver equipamentos disponíveis da figura">
@@ -358,30 +674,6 @@ export const AvailableFiguresSection: React.FC<AvailableFiguresSectionProps> = (
           ))}
         </div>
       )}
-      {hasAvailableMercenaries && onOpenMercenaryModal ? (
-        <div className="mt-4">
-          <button
-            type="button"
-            onClick={onOpenMercenaryModal}
-            className="inline-flex w-full items-center justify-center gap-2 rounded border border-green-500/60 bg-green-900/20 px-4 py-2 text-sm font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40"
-          >
-            <PersonAddIcon fontSize="small" sx={{ fontSize: "18px" }} />
-            Contratar Mercenário
-          </button>
-        </div>
-      ) : null}
-      {hasAvailableLegends && onOpenLegendModal ? (
-        <div className="mt-4">
-          <button
-            type="button"
-            onClick={onOpenLegendModal}
-            className="inline-flex w-full items-center justify-center gap-2 rounded border border-green-500/60 bg-green-900/20 px-4 py-2 text-sm font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40"
-          >
-            <PersonAddIcon fontSize="small" sx={{ fontSize: "18px" }} />
-            Contratar Lenda
-          </button>
-        </div>
-      ) : null}
     </SectionCard>
   );
 };

@@ -2,7 +2,6 @@ import React from "react";
 import { SectionCard } from "./CommonComponents";
 import MobileText from "../../../../components/MobileText";
 import type { EquipmentToVault } from "../../../../types/equipment-to-vault.entity";
-
 type VaultSectionProps = {
   vaultItems: EquipmentToVault[];
   onOpenVaultModal: () => void;
@@ -41,7 +40,11 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
           {vaultItems.map(item => (
             <div
               key={item.id}
-              className="rounded border border-green-800/40 bg-[#101010] p-3 text-gray-200"
+              className={`rounded border p-3 text-gray-200 transition ${
+                item.modifier
+                  ? "border-cyan-500/60 bg-cyan-950/30 shadow-[0_0_12px_rgba(8,145,178,0.35)]"
+                  : "border-green-800/40 bg-[#101010]"
+              }`}
             >
               <div className="flex items-center justify-between">
                 <span className="font-semibold text-green-200">
@@ -57,10 +60,19 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
                 <div>
                   Categoria: {item.equipment?.category ?? "Desconhecida"}
                 </div>
-                {item.modifier ? (
-                  <div>Modificador: {item.modifier.name}</div>
-                ) : null}
               </div>
+              {item.modifier ? (
+                <div className="mt-2 space-y-1 rounded border border-cyan-600/50 bg-cyan-900/25 p-2 text-xs text-cyan-100">
+                  <div className="font-semibold text-cyan-200">
+                    Modificador: {item.modifier.name}
+                  </div>
+                  {item.modifier.effect ? (
+                    <div className="text-cyan-100/90">
+                      {item.modifier.effect}
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
               <div className="mt-3 flex flex-wrap gap-2">
                 <button
                   type="button"

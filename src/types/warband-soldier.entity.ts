@@ -21,6 +21,7 @@ export class WarbandSoldier {
   experience!: number;
   effectiveRole?: Role | null;
   createdAt!: Date;
+  active?: boolean;
   twoWeaponFighting?: boolean | null;
   extraSpecialRules?: unknown;
   advancements?: AdvancementToWarbandSoldier[];

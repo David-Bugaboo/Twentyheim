@@ -10,6 +10,7 @@ import {
   parseSpecialRules,
   getSkillListLabel,
   getSpellLoreLabel,
+  formatCrownsValue,
 } from "../utils/helpers";
 
 import { getSupernaturalAccess } from "../utils/supernatural-helpers";
@@ -129,7 +130,7 @@ export const MercenaryModal: React.FC<MercenaryModalProps> = ({
                 </option>
                 {availableMercenaries.map(mercenary => (
                   <option key={mercenary.slug} value={mercenary.slug}>
-                    {mercenary.name} — {mercenary.cost}g
+                    {mercenary.name} — {formatCrownsValue(mercenary.cost)}
                     {mercenary.upkeep ? ` (${mercenary.upkeep})` : ""}
                   </option>
                 ))}
@@ -212,7 +213,10 @@ export const MercenaryModal: React.FC<MercenaryModalProps> = ({
                 ) : null}
 
                 <div className="grid grid-cols-2 gap-2 text-xs text-gray-300">
-                  <StatRow label="Custo" value={`${selectedMercenary.cost}g`} />
+                  <StatRow
+                    label="Custo"
+                    value={formatCrownsValue(selectedMercenary.cost)}
+                  />
                   <StatRow
                     label="Manutenção"
                     value={selectedMercenary.upkeep ?? "-"}

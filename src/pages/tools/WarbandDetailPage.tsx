@@ -5,12 +5,13 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
 import {
   addItemToVault,
   updateVaultItem,
+  updateWarband,
 } from "../../services/warbands.service";
 import type { EquipmentToVault } from "../../types/equipment-to-vault.entity";
 import type { WarbandSoldier } from "../../types/warband-soldier.entity";
@@ -34,9 +35,15 @@ import {
   fetchSkillListBySlug,
   fetchSpellLoreBySlug,
   fetchSupernaturalAbilities,
+  fetchModifiers,
+  fetchSkillBySlug,
+  fetchSpellBySlug,
+  fetchEquipmentBySlug,
+  type ModifierQueryResponse,
 } from "../../services/queries.service";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import { Spinner } from "./warband-detail/components/CommonComponents";
+import { CollapsibleSection } from "./warband-detail/components/CollapsibleSection";
 import { useWarbandData } from "./warband-detail/hooks/useWarbandData";
 import { useSoldierManagement } from "./warband-detail/hooks/useSoldierManagement";
 import { AvailableFiguresSection } from "./warband-detail/components/AvailableFiguresSection";
@@ -47,8 +54,6 @@ import { EquipmentDialog } from "./warband-detail/components/EquipmentDialog";
 import { SkillsDialog } from "./warband-detail/components/SkillsDialog";
 import { SpellsDialog } from "./warband-detail/components/SpellsDialog";
 import { VaultModal } from "./warband-detail/components/VaultModal";
-import { MercenaryModal } from "./warband-detail/components/MercenaryModal";
-import { LegendModal } from "./warband-detail/components/LegendModal";
 import { SupernaturalDialog } from "./warband-detail/components/SupernaturalDialog";
 import type {
   EquipmentSummary,
@@ -57,7 +62,7 @@ import type {
   SkillListDialogEntry,
   SpellLoreDialogEntry,
 } from "./warband-detail/types";
-import { getRoleType, formatDate } from "./warband-detail/utils/helpers";
+import { getRoleType, formatDate, normalizeString } from "./warband-detail/utils/helpers";
 import {
   extractSkillListSlugs,
   extractExtraSkillListSlugs,
@@ -92,6 +97,7 @@ const getSoldierRelations = (
 const WarbandDetailPage: React.FC = () => {
   const { warbandId } = useParams<{ warbandId: string }>();
   const { currentUser } = useAuth();
+  const navigate = useNavigate();
 
   const {
     warband,
@@ -102,6 +108,56 @@ const WarbandDetailPage: React.FC = () => {
     loadWarband,
   } = useWarbandData({ warbandId });
 
+  useEffect(() => {
+    const handleRuntimeError = (event: ErrorEvent) => {
+      console.error("[WarbandDetail] runtime error", {
+        message: event.message,
+        filename: event.filename,
+        lineno: event.lineno,
+        colno: event.colno,
+        stack: event.error?.stack ?? null,
+      });
+    };
+
+    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+      console.error("[WarbandDetail] unhandled rejection", {
+        reason: event.reason,
+      });
+    };
+
+    window.addEventListener("error", handleRuntimeError);
+    window.addEventListener("unhandledrejection", handleUnhandledRejection);
+    return () => {
+      window.removeEventListener("error", handleRuntimeError);
+      window.removeEventListener("unhandledrejection", handleUnhandledRejection);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!loading && warband) {
+      if (!currentUser || warband.userId !== currentUser.id) {
+        toast.error("Você não tem acesso a esse bando.");
+        navigate("/tools/warband-manager", { replace: true });
+      }
+    }
+  }, [loading, warband, currentUser, navigate]);
+
+  const resetAndReloadWarband = useCallback(
+    async (options?: { nextSelectedSoldierId?: string | null }) => {
+      if (!warbandId) return;
+      const targetId =
+        options && "nextSelectedSoldierId" in options
+          ? options.nextSelectedSoldierId
+          : selectedSoldierId;
+      setSelectedSoldierId(null);
+      await loadWarband(warbandId);
+      if (targetId) {
+        setSelectedSoldierId(targetId);
+      }
+    },
+    [warbandId, loadWarband, selectedSoldierId, setSelectedSoldierId]
+  );
+
   const {
     addingFigureSlug,
     soldierAction,
@@ -109,9 +165,10 @@ const WarbandDetailPage: React.FC = () => {
     handleFireSoldier,
     handleKillSoldier,
     handleUndoSoldier,
+    handleToggleSoldierActive,
   } = useSoldierManagement({
     warbandId: warbandId ?? null,
-    onReload: () => loadWarband(warbandId!),
+    onReload: resetAndReloadWarband,
   });
 
   const [equipmentDialogOpen, setEquipmentDialogOpen] = useState(false);
@@ -125,8 +182,11 @@ const WarbandDetailPage: React.FC = () => {
   >([]);
   const [equipmentCatalogLoading, setEquipmentCatalogLoading] = useState(false);
   const [selectedCatalogSlug, setSelectedCatalogSlug] = useState<string>("");
+  const [selectedModifierSlug, setSelectedModifierSlug] = useState<string>("");
   const [catalogFilter, setCatalogFilter] =
     useState<EquipmentCatalogFilter>("all");
+  const [modifiers, setModifiers] = useState<ModifierQueryResponse[]>([]);
+  const [modifiersLoading, setModifiersLoading] = useState(false);
   const [vaultActionLoading, setVaultActionLoading] = useState<
     "buy" | "loot" | null
   >(null);
@@ -137,6 +197,10 @@ const WarbandDetailPage: React.FC = () => {
   const [expandedAvailableFigures, setExpandedAvailableFigures] = useState<
     Record<string, boolean>
   >({});
+  const [promotionRequest, setPromotionRequest] = useState<{
+    soldierId: string;
+    type: "hero" | "leader";
+  } | null>(null);
   const [skillsDialogOpen, setSkillsDialogOpen] = useState(false);
   const [skillsDialogTitle, setSkillsDialogTitle] = useState("");
   const [skillsDialogLoading, setSkillsDialogLoading] = useState(false);
@@ -157,12 +221,6 @@ const WarbandDetailPage: React.FC = () => {
     SpellLoreDialogEntry[]
   >([]);
   const [spellsDialogSelectedSlug, setSpellsDialogSelectedSlug] = useState("");
-  const [mercenaryModalOpen, setMercenaryModalOpen] = useState(false);
-  const [selectedMercenarySlug, setSelectedMercenarySlug] = useState("");
-  const [mercenaryHireLoading, setMercenaryHireLoading] = useState(false);
-  const [legendModalOpen, setLegendModalOpen] = useState(false);
-  const [selectedLegendSlug, setSelectedLegendSlug] = useState("");
-  const [legendHireLoading, setLegendHireLoading] = useState(false);
   const [supernaturalDialogOpen, setSupernaturalDialogOpen] = useState(false);
   const [supernaturalDialogTitle, setSupernaturalDialogTitle] = useState("");
   const [supernaturalDialogLoading, setSupernaturalDialogLoading] =
@@ -182,6 +240,12 @@ const WarbandDetailPage: React.FC = () => {
   const supernaturalDialogControllerRef = useRef<AbortController | null>(null);
   const [promoteHeroLoading, setPromoteHeroLoading] = useState(false);
   const [promoteLeaderLoading, setPromoteLeaderLoading] = useState(false);
+  const [editingWarband, setEditingWarband] = useState(false);
+  const [warbandNameDraft, setWarbandNameDraft] = useState("");
+  const [warbandCrownsDraft, setWarbandCrownsDraft] = useState("");
+  const [warbandWyrdstoneDraft, setWarbandWyrdstoneDraft] = useState("");
+  const [savingWarband, setSavingWarband] = useState(false);
+  const [vaultExpanded, setVaultExpanded] = useState(false);
 
   useEffect(() => {
     if (!vaultModalOpen) return;
@@ -212,39 +276,6 @@ const WarbandDetailPage: React.FC = () => {
     };
   }, [vaultModalOpen]);
 
-  // Verificar se há mercenários disponíveis (já filtrados pelo backend)
-  const hasAvailableMercenaries = useMemo(
-    () => (warband?.mercenaries?.length ?? 0) > 0,
-    [warband?.mercenaries]
-  );
-
-  // Verificar se há lendas disponíveis (já filtradas pelo backend)
-  const hasAvailableLegends = useMemo(
-    () => (warband?.legends?.length ?? 0) > 0,
-    [warband?.legends]
-  );
-
-  // Atualizar selectedSlug quando o modal abrir
-  useEffect(() => {
-    if (
-      mercenaryModalOpen &&
-      warband?.mercenaries &&
-      warband.mercenaries.length > 0
-    ) {
-      if (!warband.mercenaries.find(m => m.slug === selectedMercenarySlug)) {
-        setSelectedMercenarySlug(warband.mercenaries[0].slug);
-      }
-    }
-  }, [mercenaryModalOpen, warband?.mercenaries, selectedMercenarySlug]);
-
-  useEffect(() => {
-    if (legendModalOpen && warband?.legends && warband.legends.length > 0) {
-      if (!warband.legends.find(l => l.slug === selectedLegendSlug)) {
-        setSelectedLegendSlug(warband.legends[0].slug);
-      }
-    }
-  }, [legendModalOpen, warband?.legends, selectedLegendSlug]);
-
   const vaultItems = useMemo<EquipmentToVault[]>(
     () => warband?.vault ?? [],
     [warband]
@@ -253,6 +284,11 @@ const WarbandDetailPage: React.FC = () => {
   const soldiers = useMemo<WarbandSoldier[]>(
     () => warband?.warbandSoldiers ?? [],
     [warband]
+  );
+
+  const activeSoldiers = useMemo(
+    () => soldiers.filter(soldier => soldier.active !== false),
+    [soldiers]
   );
 
   const baseFigures = useMemo<FigureSummary[]>(
@@ -296,6 +332,73 @@ const WarbandDetailPage: React.FC = () => {
     [vaultItems]
   );
 
+  const selectedCatalogItem = useMemo(() => {
+    if (!selectedCatalogSlug) return null;
+    return (
+      equipmentCatalog.find(item => item.slug === selectedCatalogSlug) ?? null
+    );
+  }, [equipmentCatalog, selectedCatalogSlug]);
+
+  const MEC_MODIFIER_KEYWORDS = useMemo(
+    () => [
+      "modificador de arma corpo a corpo",
+      "modificadores de arma corpo a corpo",
+    ],
+    []
+  );
+  const ARMOR_MODIFIER_KEYWORDS = useMemo(
+    () => ["modificador de armadura", "modificadores de armadura"],
+    []
+  );
+
+  const modifierCategory = useMemo<"melee" | "armor" | null>(() => {
+    if (!selectedCatalogItem) return null;
+    const normalizedCategory = normalizeString(
+      selectedCatalogItem.category ?? ""
+    );
+    if (normalizedCategory.includes("arma corpo a corpo")) {
+      return "melee";
+    }
+    if (
+      normalizedCategory.includes("armadura") ||
+      normalizedCategory.includes("escudo") ||
+      normalizedCategory.includes("elmo")
+    ) {
+      return "armor";
+    }
+    return null;
+  }, [selectedCatalogItem]);
+
+  useEffect(() => {
+    if (!modifierCategory && selectedModifierSlug) {
+      setSelectedModifierSlug("");
+      return;
+    }
+    if (modifierCategory && selectedModifierSlug) {
+      const categoryFilters =
+        modifierCategory === "melee"
+          ? MEC_MODIFIER_KEYWORDS
+          : ARMOR_MODIFIER_KEYWORDS;
+      const isValid = modifiers.some(mod => {
+        const normalizedCategory = normalizeString(mod.category ?? "");
+        return (
+          categoryFilters.some(keyword =>
+            normalizedCategory.includes(keyword)
+          ) && mod.slug === selectedModifierSlug
+        );
+      });
+      if (!isValid) {
+        setSelectedModifierSlug("");
+      }
+    }
+  }, [
+    modifierCategory,
+    modifiers,
+    selectedModifierSlug,
+    MEC_MODIFIER_KEYWORDS,
+    ARMOR_MODIFIER_KEYWORDS,
+  ]);
+
   const baseFigureGroups = useMemo(() => {
     const orderMap = {
       leader: 0,
@@ -335,6 +438,50 @@ const WarbandDetailPage: React.FC = () => {
 
     return result;
   }, [baseFigures]);
+
+  const mercenaryFigures = useMemo<BaseFigure[]>(
+    () => warband?.mercenaries ?? [],
+    [warband?.mercenaries]
+  );
+
+  const legendFigures = useMemo<BaseFigure[]>(
+    () => warband?.legends ?? [],
+    [warband?.legends]
+  );
+
+  const availableFigureGroups = useMemo(
+    () => {
+      const groups: Array<{ title: string; items: FigureSummary[] }> = [
+        ...baseFigureGroups.map(group => ({
+          title: group.title,
+          items: group.items,
+        })),
+      ];
+
+      if (mercenaryFigures.length > 0) {
+        const sortedMercenaries = [...mercenaryFigures].sort((a, b) =>
+          (a.name ?? "").localeCompare(b.name ?? "")
+        );
+        groups.push({
+          title: "Mercenários Disponíveis",
+          items: sortedMercenaries as unknown as FigureSummary[],
+        });
+      }
+
+      if (legendFigures.length > 0) {
+        const sortedLegends = [...legendFigures].sort((a, b) =>
+          (a.name ?? "").localeCompare(b.name ?? "")
+        );
+        groups.push({
+          title: "Lendas Disponíveis",
+          items: sortedLegends as unknown as FigureSummary[],
+        });
+      }
+
+      return groups;
+    },
+    [baseFigureGroups, mercenaryFigures, legendFigures]
+  );
 
   const heroSkillOptions = useMemo(() => {
     const optionMap = new Map<string, string>();
@@ -393,8 +540,9 @@ const WarbandDetailPage: React.FC = () => {
       const baseFigureRelation = soldier.baseFigure?.[0];
       const baseFigure = baseFigureRelation?.baseFigure ?? null;
       const role =
+        (soldier.effectiveRole ? String(soldier.effectiveRole) : null) ??
         baseFigure?.role ??
-        (soldier.effectiveRole ? String(soldier.effectiveRole) : null);
+        null;
       return {
         soldier,
         baseFigure,
@@ -426,6 +574,38 @@ const WarbandDetailPage: React.FC = () => {
     ].filter(group => group.items.length > 0);
   }, [soldiers]);
 
+  const parseNumericValue = (value: unknown): number => {
+    if (typeof value === "number" && Number.isFinite(value)) {
+      return value;
+    }
+    if (typeof value === "string") {
+      const parsed = Number(value.replace(",", "."));
+      return Number.isFinite(parsed) ? parsed : 0;
+    }
+    return 0;
+  };
+
+  const warbandRating = useMemo(() => {
+    const memberCount = activeSoldiers.length;
+    const totalQualityAndXp = activeSoldiers.reduce((acc, soldier) => {
+      const baseQuality = parseNumericValue(
+        soldier.baseFigure?.[0]?.baseFigure?.quality
+      );
+      const experienceValue = parseNumericValue(soldier.experience);
+      return acc + baseQuality + experienceValue;
+    }, 0);
+    return memberCount * 5 + totalQualityAndXp;
+  }, [activeSoldiers]);
+
+  const hasLeader = useMemo(
+    () =>
+      soldierGroups.some(group =>
+        group.items.some(item => item.roleType === "leader")
+      ),
+    [soldierGroups]
+  );
+  const warbandCrowns = warband?.crowns ?? null;
+
   const handleToggleAvailableFigure = useCallback((figureId: string) => {
     setExpandedAvailableFigures(prev => ({
       ...prev,
@@ -433,14 +613,21 @@ const WarbandDetailPage: React.FC = () => {
     }));
   }, []);
 
-  const handleOpenEquipmentDialog = (
-    figureName: string,
-    items: EquipmentSummary[] | unknown[]
-  ) => {
-    setEquipmentDialogTitle(figureName);
-    setEquipmentDialogItems(items as EquipmentSummary[]);
-    setEquipmentDialogOpen(true);
-  };
+  useEffect(() => {
+    if (!warband || editingWarband) return;
+    setWarbandNameDraft(warband.name ?? "");
+    setWarbandCrownsDraft(String(warband.crowns ?? 0));
+    setWarbandWyrdstoneDraft(String(warband.wyrdstone ?? 0));
+  }, [warband, editingWarband]);
+
+  const handleOpenEquipmentDialog = useCallback(
+    (figureName: string, items: EquipmentSummary[] | unknown[]) => {
+      setEquipmentDialogTitle(figureName);
+      setEquipmentDialogItems(items as EquipmentSummary[]);
+      setEquipmentDialogOpen(true);
+    },
+    []
+  );
 
   const handleCloseEquipmentDialog = () => {
     setEquipmentDialogOpen(false);
@@ -449,11 +636,26 @@ const WarbandDetailPage: React.FC = () => {
 
   const handleOpenVaultModal = () => {
     setVaultModalOpen(true);
+    if (!modifiers.length && !modifiersLoading) {
+      setModifiersLoading(true);
+      fetchModifiers()
+        .then(response => {
+          setModifiers(response);
+        })
+        .catch(error => {
+          console.error(error);
+          toast.error("Não foi possível carregar os modificadores.");
+        })
+        .finally(() => {
+          setModifiersLoading(false);
+        });
+    }
   };
 
   const handleCloseVaultModal = () => {
     setVaultModalOpen(false);
     setSelectedCatalogSlug("");
+    setSelectedModifierSlug("");
     setVaultActionLoading(null);
   };
 
@@ -463,28 +665,37 @@ const WarbandDetailPage: React.FC = () => {
       return;
     }
 
-    const selectedItem = equipmentCatalog.find(
-      item => item.slug === selectedCatalogSlug
-    );
+    const selectedItem = selectedCatalogItem;
     if (!selectedItem) {
       toast.error("Equipamento selecionado não encontrado.");
       return;
     }
 
+    const applicableModifierSlug =
+      modifierCategory && selectedModifierSlug
+        ? selectedModifierSlug
+        : undefined;
+    const modifierName = applicableModifierSlug
+      ? modifiers.find(mod => mod.slug === applicableModifierSlug)?.name ?? null
+      : null;
+
     try {
       setVaultActionLoading(loot ? "loot" : "buy");
       await addItemToVault(
         warbandId,
-        { equipmentSlug: selectedCatalogSlug },
+        { equipmentSlug: selectedCatalogSlug, modifierSlug: applicableModifierSlug },
         { loot }
       );
       toast.success(
         loot
           ? `Loot registrado para "${selectedItem.name}".`
-          : `Equipamento "${selectedItem.name}" comprado para o cofre.`
+          : modifierName
+              ? `Equipamento "${selectedItem.name}" com "${modifierName}" adicionado ao cofre.`
+              : `Equipamento "${selectedItem.name}" comprado para o cofre.`
       );
-      await loadWarband(warbandId);
+      await resetAndReloadWarband();
       setSelectedCatalogSlug("");
+      setSelectedModifierSlug("");
       setVaultModalOpen(false);
     } catch (error) {
       console.error(error);
@@ -510,15 +721,27 @@ const WarbandDetailPage: React.FC = () => {
       return;
     }
 
+    const existingModifierSlug =
+      item.modifier?.slug ?? item.modifierSlug ?? undefined;
+    const modifierName = item.modifier?.name ?? null;
+
     try {
       setVaultItemAction({ itemId: item.id, type: "buy" });
-      await addItemToVault(warbandId, { equipmentSlug }, { loot: false });
-      toast.success(
-        `Equipamento "${
-          item.equipment?.name ?? equipmentSlug
-        }" comprado novamente.`
+      await addItemToVault(
+        warbandId,
+        { equipmentSlug, modifierSlug: existingModifierSlug },
+        { loot: false }
       );
-      await loadWarband(warbandId);
+      toast.success(
+        modifierName
+          ? `Equipamento "${
+              item.equipment?.name ?? equipmentSlug
+            }" com "${modifierName}" comprado novamente.`
+          : `Equipamento "${
+              item.equipment?.name ?? equipmentSlug
+            }" comprado novamente.`
+      );
+      await resetAndReloadWarband();
     } catch (error) {
       console.error(error);
       toast.error("Não foi possível comprar o equipamento novamente.");
@@ -549,7 +772,7 @@ const WarbandDetailPage: React.FC = () => {
               item.equipment?.name ?? item.equipmentSlug
             }".`
       );
-      await loadWarband(warbandId);
+      await resetAndReloadWarband();
     } catch (error) {
       console.error(error);
       toast.error(
@@ -647,6 +870,86 @@ const WarbandDetailPage: React.FC = () => {
     [soldierExtraSkillLists]
   );
 
+  const handleOpenSkillBadge = useCallback(
+    async (figureName: string, slug: string | undefined | null) => {
+      const targetSlug = slug?.trim();
+      if (!targetSlug) return;
+
+      setSkillsDialogTitle(`Habilidades disponíveis — ${figureName}`);
+      setSkillsDialogError(null);
+      setSkillsDialogLists([]);
+      setSkillsDialogOpen(true);
+      setSkillsDialogLoading(true);
+
+      try {
+        const data = await fetchSkillListBySlug(targetSlug);
+        const entry: SkillListDialogEntry = {
+          slug: targetSlug,
+          name: data?.name ?? targetSlug,
+          description: data?.description ?? null,
+          skills:
+            data?.skills?.map(skill => ({
+              slug: skill.slug,
+              name: skill.name ?? skill.slug ?? "Habilidade",
+              description: skill.description ?? null,
+            })) ?? [],
+        };
+        setSkillsDialogLists([entry]);
+        setSkillsDialogSelectedSlug(entry.slug);
+      } catch (error) {
+        console.error(error);
+        setSkillsDialogLists([]);
+        setSkillsDialogError(
+          "Não foi possível carregar as habilidades desta figura."
+        );
+      } finally {
+        setSkillsDialogLoading(false);
+      }
+    },
+    []
+  );
+
+  const handleOpenStartingSkill = useCallback(
+    async (figureName: string, skillSlug: string) => {
+      const targetSlug = skillSlug?.trim();
+      if (!targetSlug) return;
+
+      setSkillsDialogTitle(`Habilidade inicial — ${figureName}`);
+      setSkillsDialogError(null);
+      setSkillsDialogLists([]);
+      setSkillsDialogOpen(true);
+      setSkillsDialogLoading(true);
+
+      try {
+        const data = await fetchSkillBySlug(targetSlug);
+        const entry: SkillListDialogEntry = {
+          slug: targetSlug,
+          name: data?.name ?? targetSlug,
+          description: data?.description ?? data?.effect ?? null,
+          skills: [
+            {
+              slug: data?.slug ?? targetSlug,
+              name: data?.name ?? targetSlug,
+              description: data?.description ?? data?.effect ?? null,
+            },
+          ],
+        };
+        setSkillsDialogLists([entry]);
+        setSkillsDialogSelectedSlug(entry.slug);
+      } catch (error) {
+        console.error(error);
+        setSkillsDialogLists([]);
+        setSkillsDialogSelectedSlug("");
+        setSkillsDialogError(
+          "Não foi possível carregar a habilidade inicial."
+        );
+      } finally {
+        setSkillsDialogLoading(false);
+      }
+    },
+    []
+  );
+
   const handleCloseSkillsDialog = () => {
     setSkillsDialogOpen(false);
     setSkillsDialogLists([]);
@@ -740,12 +1043,169 @@ const WarbandDetailPage: React.FC = () => {
     [soldierExtraSpellLores]
   );
 
+  const handleOpenSpellBadge = useCallback(
+    async (figureName: string, slug: string | undefined | null) => {
+      const targetSlug = slug?.trim();
+      if (!targetSlug) return;
+
+      setSpellsDialogTitle(`Tradições mágicas — ${figureName}`);
+      setSpellsDialogError(null);
+      setSpellsDialogLores([]);
+      setSpellsDialogOpen(true);
+      setSpellsDialogLoading(true);
+
+      try {
+        const data = await fetchSpellLoreBySlug(targetSlug);
+        const entry: SpellLoreDialogEntry = {
+          slug: targetSlug,
+          name: data?.name ?? targetSlug,
+          description: data?.description ?? null,
+          spells:
+            data?.spells?.map(spell => ({
+              slug: spell.slug,
+              name: spell.name ?? spell.slug ?? "Magia",
+              description: spell.description ?? null,
+              difficultyClass: spell.difficultyClass ?? null,
+              keywords: spell.keywords ?? null,
+            })) ?? [],
+        };
+        setSpellsDialogLores([entry]);
+        setSpellsDialogSelectedSlug(entry.slug);
+      } catch (error) {
+        console.error(error);
+        setSpellsDialogLores([]);
+        setSpellsDialogError(
+          "Não foi possível carregar as tradições mágicas desta figura."
+        );
+      } finally {
+        setSpellsDialogLoading(false);
+      }
+    },
+    []
+  );
+
+  const handleOpenStartingSpell = useCallback(
+    async (figureName: string, spellSlug: string) => {
+      const targetSlug = spellSlug?.trim();
+      if (!targetSlug) return;
+
+      setSpellsDialogTitle(`Magia inicial — ${figureName}`);
+      setSpellsDialogError(null);
+      setSpellsDialogLores([]);
+      setSpellsDialogOpen(true);
+      setSpellsDialogLoading(true);
+
+      try {
+        const data = await fetchSpellBySlug(targetSlug);
+        const difficulty =
+          typeof data?.difficultyClass === "number"
+            ? data.difficultyClass
+            : typeof data?.difficulty === "number"
+              ? data.difficulty
+              : null;
+        const keywords =
+          Array.isArray(data?.keywords) && data.keywords.length > 0
+            ? data.keywords
+            : typeof data?.keywords === "string"
+              ? [data.keywords]
+              : [];
+        const entry: SpellLoreDialogEntry = {
+          slug: targetSlug,
+          name: data?.name ?? targetSlug,
+          description: data?.description ?? null,
+          spells: [
+            {
+              slug: data?.slug ?? targetSlug,
+              name: data?.name ?? targetSlug,
+              description: data?.description ?? null,
+              difficultyClass: difficulty,
+              keywords,
+            },
+          ],
+        };
+        setSpellsDialogLores([entry]);
+        setSpellsDialogSelectedSlug(entry.slug);
+      } catch (error) {
+        console.error(error);
+        setSpellsDialogLores([]);
+        setSpellsDialogSelectedSlug("");
+        setSpellsDialogError("Não foi possível carregar a magia inicial.");
+      } finally {
+        setSpellsDialogLoading(false);
+      }
+    },
+    []
+  );
+
   const handleCloseSpellsDialog = () => {
     setSpellsDialogOpen(false);
     setSpellsDialogLores([]);
     setSpellsDialogError(null);
     setSpellsDialogSelectedSlug("");
   };
+
+  const handleOpenStartingEquipment = useCallback(
+    async (figureName: string, equipmentSlug: string) => {
+      const targetSlug = equipmentSlug?.trim();
+      if (!targetSlug) return;
+
+      try {
+        const data = await fetchEquipmentBySlug(targetSlug);
+        const descriptionValue =
+          Array.isArray(data?.description) && data.description.length > 0
+            ? data.description
+            : data?.description ?? data?.effect ?? null;
+        const specialRules = Array.isArray(data?.specialRules)
+          ? data.specialRules.map(rule => {
+              if (typeof rule === "string") {
+                return { label: "Regra Especial", value: rule };
+              }
+              const record = rule ?? {};
+              return {
+                label:
+                  (record.label as string | undefined) ??
+                  (record.name as string | undefined) ??
+                  (record.title as string | undefined) ??
+                  "Regra Especial",
+                value:
+                  (record.value as string | undefined) ??
+                  (record.description as string | undefined) ??
+                  "",
+              };
+            })
+          : undefined;
+        const armourBonus =
+          typeof data?.armourBonus === "number"
+            ? data.armourBonus
+            : typeof data?.armorBonus === "number"
+              ? data.armorBonus
+              : undefined;
+        const damageBonus =
+          typeof data?.damageBonus === "number"
+            ? data.damageBonus
+            : typeof data?.damage === "number"
+              ? data.damage
+              : undefined;
+        const entry: EquipmentSummary = {
+          name: data?.name ?? data?.slug ?? targetSlug,
+          category: data?.category ?? data?.type ?? undefined,
+          cost: data?.cost ?? null,
+          description: descriptionValue ?? undefined,
+          specialRules,
+          armourBonus: armourBonus ?? null,
+          damageBonus: damageBonus ?? null,
+        };
+        handleOpenEquipmentDialog(
+          `${figureName} — Equipamento inicial`,
+          [entry]
+        );
+      } catch (error) {
+        console.error(error);
+        toast.error("Não foi possível carregar o equipamento inicial.");
+      }
+    },
+    [handleOpenEquipmentDialog]
+  );
 
   const handleOpenSupernaturalDialog = useCallback(
     ({
@@ -827,7 +1287,7 @@ const WarbandDetailPage: React.FC = () => {
       try {
         await promoteSoldierToHero(soldierId, skillsListSlugs);
         toast.success("Figura promovida a Herói com sucesso!");
-        await loadWarband(warbandId);
+        await resetAndReloadWarband({ nextSelectedSoldierId: soldierId });
       } catch (error) {
         console.error(error);
         toast.error("Não foi possível promover a figura a Herói.");
@@ -835,7 +1295,7 @@ const WarbandDetailPage: React.FC = () => {
         setPromoteHeroLoading(false);
       }
     },
-    [warbandId, loadWarband]
+    [warbandId, resetAndReloadWarband]
   );
 
   const handlePromoteLeader = useCallback(
@@ -848,7 +1308,7 @@ const WarbandDetailPage: React.FC = () => {
       try {
         await promoteSoldierToLeader(soldierId);
         toast.success("Figura promovida a Líder com sucesso!");
-        await loadWarband(warbandId);
+        await resetAndReloadWarband({ nextSelectedSoldierId: soldierId });
       } catch (error) {
         console.error(error);
         toast.error("Não foi possível promover a figura a Líder.");
@@ -856,62 +1316,99 @@ const WarbandDetailPage: React.FC = () => {
         setPromoteLeaderLoading(false);
       }
     },
-    [warbandId, loadWarband]
+    [warbandId, resetAndReloadWarband]
   );
 
-  const handleOpenMercenaryModal = () => {
-    setMercenaryModalOpen(true);
+  const handleRequestPromoteHeroFromList = useCallback(
+    (soldierId: string) => {
+      setSelectedSoldierId(soldierId);
+      setPromotionRequest({ soldierId, type: "hero" });
+    },
+    [setSelectedSoldierId]
+  );
+
+  const handleRequestPromoteLeaderFromList = useCallback(
+    (soldierId: string) => {
+      setSelectedSoldierId(soldierId);
+      setPromotionRequest({ soldierId, type: "leader" });
+    },
+    [setSelectedSoldierId]
+  );
+
+  const handleClearPromotionRequest = useCallback(() => {
+    setPromotionRequest(null);
+  }, []);
+
+  const handleStartEditWarband = () => {
+    setEditingWarband(true);
   };
 
-  const handleCloseMercenaryModal = () => {
-    setMercenaryModalOpen(false);
-    setSelectedMercenarySlug("");
+  const handleCancelEditWarband = () => {
+    if (warband) {
+      setWarbandNameDraft(warband.name ?? "");
+      setWarbandCrownsDraft(String(warband.crowns ?? 0));
+      setWarbandWyrdstoneDraft(String(warband.wyrdstone ?? 0));
+    }
+    setEditingWarband(false);
   };
 
-  const handleHireMercenary = useCallback(async () => {
-    if (!selectedMercenarySlug || !warbandId || !warband?.mercenaries) return;
-    const selectedMercenary = warband.mercenaries.find(
-      m => m.slug === selectedMercenarySlug
-    );
-    const mercenaryName = selectedMercenary?.name ?? selectedMercenarySlug;
+  const parseNumericDraft = (draft: string): number | null => {
+    const trimmed = draft.trim();
+    if (!trimmed) return 0;
+    const normalized = Number(trimmed.replace(",", "."));
+    return Number.isFinite(normalized) ? normalized : null;
+  };
+
+  const handleSaveWarbandDetails = async () => {
+    if (!warbandId || !warband) return;
+    const nextName = warbandNameDraft.trim();
+    const crownsValue = parseNumericDraft(warbandCrownsDraft);
+    const wyrdstoneValue = parseNumericDraft(warbandWyrdstoneDraft);
+
+    if (crownsValue === null || crownsValue < 0) {
+      toast.error("Informe um valor válido para coroas.");
+      return;
+    }
+    if (wyrdstoneValue === null || wyrdstoneValue < 0) {
+      toast.error("Informe um valor válido para pedra-bruxa.");
+      return;
+    }
+
+    const payload: {
+      name?: string;
+      crowns?: number;
+      wyrdstone?: number;
+    } = {};
+
+    if (nextName && nextName !== warband.name) {
+      payload.name = nextName;
+    }
+    if (crownsValue !== warband.crowns) {
+      payload.crowns = crownsValue;
+    }
+    if (wyrdstoneValue !== warband.wyrdstone) {
+      payload.wyrdstone = wyrdstoneValue;
+    }
+
+    if (Object.keys(payload).length === 0) {
+      toast.info("Nenhuma alteração para salvar.");
+      setEditingWarband(false);
+      return;
+    }
+
     try {
-      setMercenaryHireLoading(true);
-      await handleAddFigure(selectedMercenarySlug, mercenaryName);
-      handleCloseMercenaryModal();
+      setSavingWarband(true);
+      await updateWarband(warbandId, payload);
+      toast.success("Dados do bando atualizados.");
+      await resetAndReloadWarband({ nextSelectedSoldierId: selectedSoldierId });
+      setEditingWarband(false);
     } catch (error) {
       console.error(error);
-      toast.error("Não foi possível contratar o mercenário.");
+      toast.error("Não foi possível atualizar o bando.");
     } finally {
-      setMercenaryHireLoading(false);
+      setSavingWarband(false);
     }
-  }, [selectedMercenarySlug, warbandId, handleAddFigure, warband?.mercenaries]);
-
-  const handleOpenLegendModal = () => {
-    setLegendModalOpen(true);
   };
-
-  const handleCloseLegendModal = () => {
-    setLegendModalOpen(false);
-    setSelectedLegendSlug("");
-  };
-
-  const handleHireLegend = useCallback(async () => {
-    if (!selectedLegendSlug || !warbandId || !warband?.legends) return;
-    const selectedLegend = warband.legends.find(
-      l => l.slug === selectedLegendSlug
-    );
-    const legendName = selectedLegend?.name ?? selectedLegendSlug;
-    try {
-      setLegendHireLoading(true);
-      await handleAddFigure(selectedLegendSlug, legendName);
-      handleCloseLegendModal();
-    } catch (error) {
-      console.error(error);
-      toast.error("Não foi possível contratar a lenda.");
-    } finally {
-      setLegendHireLoading(false);
-    }
-  }, [selectedLegendSlug, warbandId, handleAddFigure, warband?.legends]);
 
   if (loading && !warband) {
     return (
@@ -953,17 +1450,31 @@ const WarbandDetailPage: React.FC = () => {
 
   return (
     <div className="relative flex h-screen w-full flex-col overflow-hidden bg-[#121212] dark group/design-root">
-      {loading ? (
+      {loading || savingWarband ? (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <Spinner label="Atualizando dados..." />
+          <Spinner
+            label={
+              savingWarband ? "Salvando dados do bando..." : "Atualizando dados..."
+            }
+          />
         </div>
       ) : null}
       <div className="py-6 overflow-y-auto xl:flex xl:flex-1 xl:flex-col xl:overflow-hidden">
         <div className="px-4 md:px-8 lg:px-16 xl:flex xl:h-full xl:flex-1 xl:flex-col xl:overflow-hidden xl:px-24 2xl:px-32">
-          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <div>
-              <PageTitle>{warband.name}</PageTitle>
-              <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-gray-300">
+          <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+            <div className="flex flex-col gap-2">
+              {editingWarband ? (
+                <input
+                  value={warbandNameDraft}
+                  onChange={event => setWarbandNameDraft(event.target.value)}
+                  className="w-full rounded border border-green-600/70 bg-[#101510] px-3 py-2 text-3xl font-semibold text-green-200 outline-none transition focus:border-green-400 focus:ring-1 focus:ring-green-500"
+                  placeholder="Nome do bando"
+                  maxLength={80}
+                />
+              ) : (
+                <PageTitle>{warband.name}</PageTitle>
+              )}
+              <div className="mt-1 flex flex-wrap items-center gap-3 text-sm text-gray-300">
                 <span className="rounded bg-green-900/30 px-3 py-1 font-semibold text-green-200">
                   {faction?.name ??
                     warband.faction?.name ??
@@ -972,49 +1483,119 @@ const WarbandDetailPage: React.FC = () => {
                 <span>
                   <strong>Jogador:</strong> {warbandOwnerName}
                 </span>
+                {editingWarband ? (
+                  <label className="flex items-center gap-2">
+                    <strong>Coroas:</strong>
+                    <input
+                      type="number"
+                      min={0}
+                      value={warbandCrownsDraft}
+                      onChange={event => setWarbandCrownsDraft(event.target.value)}
+                      className="w-24 rounded border border-green-700 bg-[#0f1010] px-2 py-1 text-sm text-green-100 outline-none transition focus:border-green-400"
+                    />
+                  </label>
+                ) : (
+                  <span>
+                    <strong>Coroas:</strong> {crowns}
+                  </span>
+                )}
+                {editingWarband ? (
+                  <label className="flex items-center gap-2">
+                    <strong>Pedra-bruxa:</strong>
+                    <input
+                      type="number"
+                      min={0}
+                      value={warbandWyrdstoneDraft}
+                      onChange={event =>
+                        setWarbandWyrdstoneDraft(event.target.value)
+                      }
+                      className="w-24 rounded border border-green-700 bg-[#0f1010] px-2 py-1 text-sm text-green-100 outline-none transition focus:border-green-400"
+                    />
+                  </label>
+                ) : (
+                  <span>
+                    <strong>Pedra-bruxa:</strong> {wyrdstone}
+                  </span>
+                )}
                 <span>
-                  <strong>Coroas:</strong> {crowns}
-                </span>
-                <span>
-                  <strong>Pedra-bruxa:</strong> {wyrdstone}
+                  <strong>Qualidade do bando:</strong> {warbandRating}
                 </span>
                 <span>
                   <strong>Criado em:</strong> {formatDate(warband.createdAt)}
                 </span>
               </div>
             </div>
-            <Link
-              to="/tools/warband-manager"
-              className="inline-flex items-center justify-center rounded border border-green-500 px-4 py-2 text-sm font-semibold text-green-200 transition hover:bg-green-700/20"
-            >
-              ← Voltar para Meus Bandos
-            </Link>
+            <div className="flex items-center gap-2">
+              {editingWarband ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={handleCancelEditWarband}
+                    disabled={savingWarband}
+                    className="inline-flex items-center justify-center rounded border border-gray-500/60 bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 transition hover:border-gray-300 hover:bg-gray-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleSaveWarbandDetails}
+                    disabled={savingWarband}
+                    className="inline-flex items-center justify-center rounded border border-green-500/70 bg-green-900/30 px-4 py-2 text-sm font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/50 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {savingWarband ? "Salvando..." : "Salvar"}
+                  </button>
+                </>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleStartEditWarband}
+                  className="inline-flex items-center justify-center rounded border border-green-500/70 bg-green-900/20 px-4 py-2 text-sm font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40"
+                >
+                  Editar bando
+                </button>
+              )}
+              <Link
+                to="/tools/warband-manager"
+                className="inline-flex items-center justify-center rounded border border-green-500 px-4 py-2 text-sm font-semibold text-green-200 transition hover:bg-green-700/20"
+              >
+                ← Voltar para Meus Bandos
+              </Link>
+            </div>
           </div>
 
           <div className="grid gap-6 xl:flex-1 xl:min-h-0 xl:grid-cols-[360px_minmax(320px,1fr)_360px] xl:items-stretch xl:overflow-hidden">
-            {/* Column 1: Faction figures + Vault */}
+            {/* Column 1: Vault + Faction figures */}
             <div className="xl:flex xl:h-full xl:min-h-0 xl:flex-col">
               <div className="space-y-6 xl:flex-1 xl:min-h-0 xl:overflow-y-auto xl:pr-3">
+                <CollapsibleSection
+                  title="Cofre do Bando"
+                  expanded={vaultExpanded}
+                  onToggle={() => setVaultExpanded(prev => !prev)}
+                >
+                  <VaultSection
+                    vaultItems={vaultItems}
+                    onOpenVaultModal={handleOpenVaultModal}
+                    onVaultRebuy={handleVaultRebuy}
+                    onVaultUpdate={handleVaultUpdate}
+                    vaultItemAction={vaultItemAction}
+                  />
+                </CollapsibleSection>
+
                 <AvailableFiguresSection
-                  baseFigureGroups={baseFigureGroups}
+                  baseFigureGroups={availableFigureGroups}
                   expandedAvailableFigures={expandedAvailableFigures}
                   onToggleFigure={handleToggleAvailableFigure}
                   onAddFigure={handleAddFigure}
                   onOpenEquipmentDialog={handleOpenEquipmentDialog}
-                  onOpenMercenaryModal={handleOpenMercenaryModal}
-                  hasAvailableMercenaries={hasAvailableMercenaries}
-                  onOpenLegendModal={handleOpenLegendModal}
-                  hasAvailableLegends={hasAvailableLegends}
                   addingFigureSlug={addingFigureSlug}
                   warbandId={warbandId ?? null}
-                />
-
-                <VaultSection
-                  vaultItems={vaultItems}
-                  onOpenVaultModal={handleOpenVaultModal}
-                  onVaultRebuy={handleVaultRebuy}
-                  onVaultUpdate={handleVaultUpdate}
-                  vaultItemAction={vaultItemAction}
+                  hasLeader={hasLeader}
+                  warbandCrowns={warbandCrowns}
+                  onOpenSkillsDialog={handleOpenSkillBadge}
+                  onOpenSpellsDialog={handleOpenSpellBadge}
+                  onOpenStartingSkill={handleOpenStartingSkill}
+                  onOpenStartingSpell={handleOpenStartingSpell}
+                  onOpenStartingEquipment={handleOpenStartingEquipment}
                 />
               </div>
             </div>
@@ -1029,9 +1610,13 @@ const WarbandDetailPage: React.FC = () => {
                   onFireSoldier={handleFireSoldier}
                   onKillSoldier={handleKillSoldier}
                   onUndoSoldier={handleUndoSoldier}
+                  onToggleSoldierActive={handleToggleSoldierActive}
                   onOpenEquipmentDialog={handleOpenEquipmentDialog}
                   onOpenSkillsDialog={handleOpenSkillsDialog}
                   onOpenSpellsDialog={handleOpenSpellsDialog}
+                  onRequestPromoteHero={handleRequestPromoteHeroFromList}
+                  onRequestPromoteLeader={handleRequestPromoteLeaderFromList}
+                  hasLeader={hasLeader}
                   onOpenSupernaturalDialog={handleOpenSupernaturalDialog}
                   soldierAction={soldierAction}
                 />
@@ -1050,12 +1635,15 @@ const WarbandDetailPage: React.FC = () => {
                   soldierExtraSkillLists={soldierExtraSkillLists}
                   soldierExtraSpellLores={soldierExtraSpellLores}
                   warbandId={warbandId ?? null}
-                  onReload={() => loadWarband(warbandId!)}
+                  onReload={() => resetAndReloadWarband()}
                   heroSkillOptions={heroSkillOptions}
                   onPromoteHero={handlePromoteHero}
                   onPromoteLeader={handlePromoteLeader}
                   promoteHeroLoading={promoteHeroLoading}
                   promoteLeaderLoading={promoteLeaderLoading}
+                  hasLeaderInWarband={hasLeader}
+                  promotionRequest={promotionRequest}
+                  onClearPromotionRequest={handleClearPromotionRequest}
                 />
               </div>
             </div>
@@ -1101,30 +1689,6 @@ const WarbandDetailPage: React.FC = () => {
         abilities={supernaturalDialogAbilities}
       />
 
-      <MercenaryModal
-        open={mercenaryModalOpen}
-        onClose={handleCloseMercenaryModal}
-        loading={false}
-        mercenaries={warband.mercenaries ?? []}
-        selectedSlug={selectedMercenarySlug}
-        onSelectSlug={setSelectedMercenarySlug}
-        onHire={handleHireMercenary}
-        actionLoading={mercenaryHireLoading}
-        warband={warband}
-      />
-
-      <LegendModal
-        open={legendModalOpen}
-        onClose={handleCloseLegendModal}
-        loading={false}
-        legends={warband.legends ?? []}
-        selectedSlug={selectedLegendSlug}
-        onSelectSlug={setSelectedLegendSlug}
-        onHire={handleHireLegend}
-        actionLoading={legendHireLoading}
-        warband={warband}
-      />
-
       <VaultModal
         open={vaultModalOpen}
         onClose={handleCloseVaultModal}
@@ -1134,6 +1698,11 @@ const WarbandDetailPage: React.FC = () => {
         onFilterChange={setCatalogFilter}
         selectedSlug={selectedCatalogSlug}
         onSelectSlug={setSelectedCatalogSlug}
+        modifiers={modifiers}
+        modifiersLoading={modifiersLoading}
+        selectedModifierSlug={selectedModifierSlug}
+        onSelectModifier={setSelectedModifierSlug}
+        modifierCategory={modifierCategory}
         onBuy={() => handleVaultAdd(false)}
         onLoot={() => handleVaultAdd(true)}
         actionLoading={vaultActionLoading}

@@ -13,6 +13,8 @@ type SkillsSectionProps = {
   relations: { skills: SkillToWarbandSoldier[] };
   warbandId: string | null;
   onReload: () => Promise<void>;
+  skillAdvancementLimit: number;
+  currentSkillCount: number;
 };
 
 export const SkillsSection: React.FC<SkillsSectionProps> = ({
@@ -22,6 +24,8 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
   relations,
   warbandId,
   onReload,
+  skillAdvancementLimit,
+  currentSkillCount,
 }) => {
   const {
     expanded,
@@ -76,7 +80,10 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
           type="button"
           onClick={handleAdd}
           disabled={
-            !selectedSlugToAdd || loading || actionState?.type === "add"
+            !selectedSlugToAdd ||
+            loading ||
+            actionState?.type === "add" ||
+            currentSkillCount >= skillAdvancementLimit
           }
           className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-sm font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
         >

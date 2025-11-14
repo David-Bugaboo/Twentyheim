@@ -5,6 +5,7 @@ import { CollapsibleSection } from "./CollapsibleSection";
 import { useSupernaturalAbilityManagement } from "../hooks/useSupernaturalAbilityManagement";
 import type { WarbandSoldier } from "../../../../types/warband-soldier.entity";
 import type { BaseFigure } from "../../../../types/base-figure.entity";
+import { formatCrownsValue } from "../utils/helpers";
 
 type SupernaturalAbilitySectionProps = {
   selectedSoldier: WarbandSoldier | null;
@@ -55,15 +56,8 @@ export const SupernaturalAbilitySection: React.FC<SupernaturalAbilitySectionProp
     if (value === null || value === undefined || value === "") {
       return null;
     }
-    if (typeof value === "number") {
-      return `${value}g`;
-    }
-    const normalized = String(value).trim();
-    if (!normalized) {
-      return null;
-    }
-    const hasLetters = /[a-zA-Z]/.test(normalized);
-    return hasLetters ? normalized : `${normalized}g`;
+    const formatted = formatCrownsValue(value);
+    return formatted === "-" ? null : formatted;
   };
 
   if (!hasAccess) {

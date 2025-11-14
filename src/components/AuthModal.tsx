@@ -22,6 +22,8 @@ interface AuthModalProps {
   mode: AuthMode;
   onClose: () => void;
   onSwitchMode: (mode: AuthMode) => void;
+  forceMode?: boolean;
+  onBack?: () => void;
 }
 
 const defaultFormState = {
@@ -35,10 +37,14 @@ const AuthModal: React.FC<AuthModalProps> = ({
   mode,
   onClose,
   onSwitchMode,
+  forceMode = false,
+  onBack,
 }) => {
   const { login, register } = useAuth();
   const [formState, setFormState] = useState(defaultFormState);
   const [submitting, setSubmitting] = useState(false);
+
+  const isForced = Boolean(forceMode);
 
   useEffect(() => {
     if (!open) {
@@ -121,6 +127,12 @@ const AuthModal: React.FC<AuthModalProps> = ({
     onSwitchMode(mode === "login" ? "register" : "login");
   };
 
+  const handleBack = () => {
+    if (isForced && onBack) {
+      onBack();
+    }
+  };
+
   const title = mode === "login" ? "Entrar" : "Criar conta";
   const submitLabel = mode === "login" ? "Entrar" : "Registrar";
   const switchMessage =
@@ -133,7 +145,8 @@ const AuthModal: React.FC<AuthModalProps> = ({
   return (
     <Dialog
       open={open}
-      onClose={submitting ? undefined : onClose}
+      onClose={isForced || submitting ? undefined : onClose}
+      disableEscapeKeyDown={isForced}
       fullWidth
       maxWidth="xs"
       PaperProps={{
@@ -154,14 +167,16 @@ const AuthModal: React.FC<AuthModalProps> = ({
           }}
         >
           {title}
-          <IconButton
-            onClick={onClose}
-            size="small"
-            sx={{ color: "#8fbc8f" }}
-            disabled={submitting}
-          >
-            <CloseIcon />
-          </IconButton>
+          {!isForced ? (
+            <IconButton
+              onClick={onClose}
+              size="small"
+              sx={{ color: "#8fbc8f" }}
+              disabled={submitting}
+            >
+              <CloseIcon />
+            </IconButton>
+          ) : null}
         </DialogTitle>
         <DialogContent
           dividers
@@ -256,6 +271,20 @@ const AuthModal: React.FC<AuthModalProps> = ({
               {switchAction}
             </Button>
           </Typography>
+          {isForced ? (
+            <Button
+              type="button"
+              onClick={handleBack}
+              disabled={submitting}
+              sx={{
+                textTransform: "none",
+                fontFamily: '"Cinzel", serif',
+                color: "#cbd5f5",
+              }}
+            >
+              Voltar para a página inicial
+            </Button>
+          ) : null}
         </DialogActions>
       </form>
     </Dialog>

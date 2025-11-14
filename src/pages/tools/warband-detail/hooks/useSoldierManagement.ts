@@ -4,11 +4,15 @@ import {
   addFigureToWarband,
   fireWarbandSoldier,
 } from "../../../../services/warbands.service";
-import { killSoldier, undoSoldier } from "../../../../services/soldiers.service";
+import {
+  killSoldier,
+  undoSoldier,
+  toggleSoldierActive,
+} from "../../../../services/soldiers.service";
 
 type UseSoldierManagementProps = {
   warbandId: string | null;
-  onReload: () => Promise<void>;
+  onReload: (options?: { nextSelectedSoldierId?: string | null }) => Promise<void>;
 };
 
 export const useSoldierManagement = ({
@@ -17,7 +21,7 @@ export const useSoldierManagement = ({
 }: UseSoldierManagementProps) => {
   const [addingFigureSlug, setAddingFigureSlug] = useState<string | null>(null);
   const [soldierAction, setSoldierAction] = useState<{
-    type: "fire" | "kill" | "undo";
+    type: "fire" | "kill" | "undo" | "toggleActive";
     soldierId: string;
   } | null>(null);
 
@@ -46,7 +50,7 @@ export const useSoldierManagement = ({
         setSoldierAction({ type: "fire", soldierId: warbandSoldierId });
         await fireWarbandSoldier(warbandId, warbandSoldierId);
         toast.success("Figura dispensada do bando.");
-        await onReload();
+        await onReload({ nextSelectedSoldierId: null });
       } catch (error) {
         console.error(error);
         toast.error("Não foi possível dispensar a figura.");
@@ -91,6 +95,31 @@ export const useSoldierManagement = ({
     [onReload]
   );
 
+  const handleToggleSoldierActive = useCallback(
+    async (
+      soldierId: string,
+      figureName: string,
+      isCurrentlyInactive: boolean
+    ) => {
+      try {
+        setSoldierAction({ type: "toggleActive", soldierId });
+        await toggleSoldierActive(soldierId);
+        toast.success(
+          `"${figureName}" foi ${isCurrentlyInactive ? "ativado" : "desativado"}.`
+        );
+        await onReload({
+          nextSelectedSoldierId: isCurrentlyInactive ? soldierId : null,
+        });
+      } catch (error) {
+        console.error(error);
+        toast.error("Não foi possível alterar o estado da figura.");
+      } finally {
+        setSoldierAction(null);
+      }
+    },
+    [onReload]
+  );
+
   return {
     addingFigureSlug,
     soldierAction,
@@ -98,6 +127,7 @@ export const useSoldierManagement = ({
     handleFireSoldier,
     handleKillSoldier,
     handleUndoSoldier,
+    handleToggleSoldierActive,
   };
 };
 

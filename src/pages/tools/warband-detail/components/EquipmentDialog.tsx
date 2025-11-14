@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogTitle, IconButton, Chip } from "@mui/mater
 import CloseIcon from "@mui/icons-material/Close";
 
 import type { EquipmentSummary } from "../types";
+import { formatCrownsValue } from "../utils/helpers";
 
 type EquipmentDialogProps = {
   open: boolean;
@@ -81,7 +82,7 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({
                     {item.cost != null ? (
                       <Chip
                         size="small"
-                        label={`${item.cost}g`}
+                        label={formatCrownsValue(item.cost)}
                         sx={{
                           backgroundColor: "rgba(74, 222, 128, 0.2)",
                           color: "#bbf7d0",
