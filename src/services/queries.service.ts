@@ -195,7 +195,7 @@ export const fetchEquipmentBySlug = async (
   signal?: AbortSignal
 ): Promise<EquipmentDetailQueryResponse> => {
   const response = await apiClient.get<EquipmentDetailQueryResponse>(
-    `/queries/equipment/${equipmentSlug}`,
+    `/queries/equipments/${equipmentSlug}`,
     { signal }
   );
   return response.data;

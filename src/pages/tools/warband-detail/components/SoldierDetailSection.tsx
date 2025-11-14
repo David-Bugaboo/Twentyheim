@@ -44,6 +44,7 @@ import {
   getRoleType,
   formatCrownsValue,
 } from "../utils/helpers";
+import { extractEquipment } from "../utils/equipment-helpers";
 import { useEquipmentManagement } from "../hooks/useEquipmentManagement";
 import type { SpellToWarbandSoldier } from "../../../../types/spell-to-warband-soldier.entity";
 import GameText from "../../../../components/GameText";
@@ -347,15 +348,103 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
     null
   );
 
-  const baseFigureAvailableEquipment =
-    ((selectedBaseFigure as { avaiableEquipment?: FigureToAvaiableEquipment[] } | null)
-      ?.avaiableEquipment ?? []) as FigureToAvaiableEquipment[];
+  const baseFigureAvailableEquipment = ((
+    selectedBaseFigure as {
+      avaiableEquipment?: FigureToAvaiableEquipment[];
+    } | null
+  )?.avaiableEquipment ?? []) as FigureToAvaiableEquipment[];
   const hasBaseFigureAvailableEquipment =
     baseFigureAvailableEquipment.length > 0;
-  const hasEquippedItems = relations.equipment.length > 0;
-  const hasInventoryItems = unequippedEquipment.length > 0;
-  const shouldShowEquipmentSections =
-    hasBaseFigureAvailableEquipment || hasEquippedItems || hasInventoryItems;
+
+  // Verificar quais slots devem aparecer baseado nos equipamentos disponíveis da figura base
+  const availableEquipmentList = selectedBaseFigure
+    ? extractEquipment(selectedBaseFigure)
+    : [];
+
+  // Também verificar os dados brutos da figura base como fallback
+  const checkEquipmentInRawData = (searchTerms: string[]): boolean => {
+    if (!selectedBaseFigure) return false;
+    const rawEquipment = (
+      selectedBaseFigure as unknown as Record<string, unknown>
+    ).avaiableEquipment;
+    if (!Array.isArray(rawEquipment)) return false;
+
+    return rawEquipment.some(entry => {
+      if (!entry || typeof entry !== "object") return false;
+      const record = entry as Record<string, unknown>;
+      const equipment = record.avaiableEquipment ?? record.equipment ?? record;
+      const category = normalizeString(
+        ((equipment as Record<string, unknown>)?.category as string) ?? ""
+      );
+      const name = normalizeString(
+        ((equipment as Record<string, unknown>)?.name as string) ??
+          (record.equipmentSlug as string) ??
+          ""
+      );
+
+      return searchTerms.some(
+        term => category.includes(term) || name.includes(term)
+      );
+    });
+  };
+
+  const hasWeaponsAvailable =
+    availableEquipmentList.some(eq => {
+      const category = normalizeString(eq.category ?? "");
+      const name = normalizeString(eq.name ?? "");
+      return (
+        category.includes("arma") ||
+        category.includes("weapon") ||
+        name.includes("arma") ||
+        name.includes("weapon")
+      );
+    }) || checkEquipmentInRawData(["arma", "weapon"]);
+
+  const hasArmorAvailable =
+    availableEquipmentList.some(eq => {
+      const category = normalizeString(eq.category ?? "");
+      const name = normalizeString(eq.name ?? "");
+      return (
+        category.includes("armadura") ||
+        category.includes("armor") ||
+        category.includes("armour") ||
+        name.includes("armadura") ||
+        name.includes("armor") ||
+        name.includes("armour")
+      );
+    }) || checkEquipmentInRawData(["armadura", "armor", "armour"]);
+
+  const hasHelmetAvailable =
+    availableEquipmentList.some(eq => {
+      const category = normalizeString(eq.category ?? "");
+      const name = normalizeString(eq.name ?? "");
+      return (
+        category.includes("elmo") ||
+        category.includes("helmet") ||
+        name.includes("elmo") ||
+        name.includes("helmet")
+      );
+    }) || checkEquipmentInRawData(["elmo", "helmet"]);
+
+  const hasShieldAvailable =
+    availableEquipmentList.some(eq => {
+      const category = normalizeString(eq.category ?? "");
+      const name = normalizeString(eq.name ?? "");
+      return (
+        category.includes("escudo") ||
+        category.includes("shield") ||
+        name.includes("escudo") ||
+        name.includes("shield")
+      );
+    }) || checkEquipmentInRawData(["escudo", "shield"]);
+
+  // Slots aparecem se houver equipamentos disponíveis que possam ser equipados neles
+  const shouldShowMainHandSlot = hasWeaponsAvailable;
+  const shouldShowOffHandSlot = hasWeaponsAvailable || hasShieldAvailable;
+  const shouldShowArmorSlot = hasArmorAvailable;
+  const shouldShowHelmetSlot = hasHelmetAvailable;
+
+  const shouldShowEquipmentSections = hasBaseFigureAvailableEquipment;
 
   useEffect(() => {
     setNameFormValue(selectedSoldier?.campaignName ?? "");
@@ -547,7 +636,7 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
             : null;
         return {
           label: `Equipamento: ${equipmentName}`,
-        modifier: item.modifier?.attributeModifiers ?? null,
+          modifier: item.modifier?.attributeModifiers ?? null,
           armourBonusContribution,
           movementPenaltyContribution,
         };
@@ -822,7 +911,7 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
     try {
       setSavingMiscModifiers(true);
       const normalized = normalizePayload({
-          ...EMPTY_MISC_MODIFIER,
+        ...EMPTY_MISC_MODIFIER,
         ...miscModifiersForm,
       });
 
@@ -944,9 +1033,11 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
   const currentSpellCount = relations.spells.length;
   const totalFortifyModifier = useMemo(() => {
     return relations.spells.reduce((sum, spellEntry) => {
-      const modifierRaw = (spellEntry as unknown as {
-        modifier?: number | string | null;
-      })?.modifier;
+      const modifierRaw = (
+        spellEntry as unknown as {
+          modifier?: number | string | null;
+        }
+      )?.modifier;
       let numeric = 0;
       if (typeof modifierRaw === "number" && Number.isFinite(modifierRaw)) {
         numeric = modifierRaw;
@@ -971,17 +1062,15 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
   );
   const hasSelectedSoldier = Boolean(selectedSoldier);
   const soldierNoXp = Boolean(
-    ((selectedSoldier as unknown as { noXp?: boolean })?.noXp ??
+    (selectedSoldier as unknown as { noXp?: boolean })?.noXp ??
       (selectedBaseFigure as unknown as { noXp?: boolean } | null)?.noXp ??
-      false)
+      false
   );
   const promotionsAllowed = hasSelectedSoldier && !soldierNoXp;
-  const canPromoteToHero =
-    promotionsAllowed && currentRoleType === "soldier";
+  const canPromoteToHero = promotionsAllowed && currentRoleType === "soldier";
   const canPromoteToLeader =
     promotionsAllowed && currentRoleType === "hero" && !hasLeaderInWarband;
   const hasHeroSkillChoices = heroSkillOptions.length >= 2;
-
 
   const heroDefaultSelection = useMemo(() => {
     const first = heroSkillOptions[0]?.slug ?? "";
@@ -1190,8 +1279,6 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
           </div>
         ) : null}
 
-        
-
         {combinedSpecialRules.length > 0 ? (
           <CollapsibleSection
             title="Regras Especiais"
@@ -1241,23 +1328,29 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                       relations.equipment.find(item => item.twoHandedEquiped) ??
                       null;
 
-                    const baseAvailableCategories = baseFigureAvailableEquipment.map(
-                      entry =>
-                        normalizeString(entry.equipment?.category ?? "") ??
-                        ""
-                    );
-                    const baseAllowsArmor = baseAvailableCategories.some(cat =>
-                      cat.includes("armadura")
-                    );
-                    const baseAllowsHelmet = baseAvailableCategories.some(cat =>
-                      cat.includes("elmo")
-                    );
-
                     return EQUIPPED_SLOT_SECTIONS.filter(section => {
-                      if (section.slot === "armorEquiped" && !baseAllowsArmor) {
+                      if (
+                        section.slot === "mainHandEquiped" &&
+                        !shouldShowMainHandSlot
+                      ) {
                         return false;
                       }
-                      if (section.slot === "helmetEquiped" && !baseAllowsHelmet) {
+                      if (
+                        section.slot === "offHandEquiped" &&
+                        !shouldShowOffHandSlot
+                      ) {
+                        return false;
+                      }
+                      if (
+                        section.slot === "armorEquiped" &&
+                        !shouldShowArmorSlot
+                      ) {
+                        return false;
+                      }
+                      if (
+                        section.slot === "helmetEquiped" &&
+                        !shouldShowHelmetSlot
+                      ) {
                         return false;
                       }
                       return true;
@@ -1943,7 +2036,7 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
           onReload={onReload}
         />
 
-        {(currentRoleType === "soldier" || isMercenary) ? (
+        {currentRoleType === "soldier" || isMercenary ? (
           <SurvivalRollSection
             selectedSoldier={selectedSoldier}
             selectedBaseFigure={selectedBaseFigure}
@@ -2248,32 +2341,32 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
             )}
 
             <div className="space-y-3">
-                <h6 className="text-xs font-semibold uppercase tracking-wide text-green-200">
+              <h6 className="text-xs font-semibold uppercase tracking-wide text-green-200">
                 Modificador Personalizado
-                </h6>
+              </h6>
 
               <div className="rounded border border-green-800/40 bg-[#101010] p-3">
-                      <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-                        {ATTRIBUTE_CONFIG.map(({ key, label }) => {
-                          const payloadKey = PAYLOAD_FIELD_MAP[key];
-                          return (
-                            <TextField
+                <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
+                  {ATTRIBUTE_CONFIG.map(({ key, label }) => {
+                    const payloadKey = PAYLOAD_FIELD_MAP[key];
+                    return (
+                      <TextField
                         key={`misc-modifier-${key}`}
-                              label={label}
-                              type="number"
-                              size="small"
+                        label={label}
+                        type="number"
+                        size="small"
                         value={miscModifiersForm[payloadKey]}
-                              onChange={event =>
-                                handleMiscModifierChange(
-                                  payloadKey,
-                                  event.target.value
-                                )
-                              }
-                            />
-                          );
-                        })}
-                      </div>
-                    </div>
+                        onChange={event =>
+                          handleMiscModifierChange(
+                            payloadKey,
+                            event.target.value
+                          )
+                        }
+                      />
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </DialogContent>
@@ -2297,7 +2390,9 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
   );
 };
 
-export const SoldierDetailSection: React.FC<SoldierDetailSectionProps> = props => {
+export const SoldierDetailSection: React.FC<
+  SoldierDetailSectionProps
+> = props => {
   const {
     selectedSoldier,
     selectedBaseFigure,

@@ -43,11 +43,8 @@ import {
 } from "../../services/queries.service";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import { Spinner } from "./warband-detail/components/CommonComponents";
-import { CollapsibleSection } from "./warband-detail/components/CollapsibleSection";
 import { useWarbandData } from "./warband-detail/hooks/useWarbandData";
 import { useSoldierManagement } from "./warband-detail/hooks/useSoldierManagement";
-import { AvailableFiguresSection } from "./warband-detail/components/AvailableFiguresSection";
-import { VaultSection } from "./warband-detail/components/VaultSection";
 import { SoldierListSection } from "./warband-detail/components/SoldierListSection";
 import { SoldierDetailSection } from "./warband-detail/components/SoldierDetailSection";
 import { EquipmentDialog } from "./warband-detail/components/EquipmentDialog";
@@ -55,6 +52,8 @@ import { SkillsDialog } from "./warband-detail/components/SkillsDialog";
 import { SpellsDialog } from "./warband-detail/components/SpellsDialog";
 import { VaultModal } from "./warband-detail/components/VaultModal";
 import { SupernaturalDialog } from "./warband-detail/components/SupernaturalDialog";
+import { VaultSidebar } from "./warband-detail/components/VaultSidebar";
+import { AvailableFiguresSidebar } from "./warband-detail/components/AvailableFiguresSidebar";
 import type {
   EquipmentSummary,
   FigureSummary,
@@ -245,7 +244,8 @@ const WarbandDetailPage: React.FC = () => {
   const [warbandCrownsDraft, setWarbandCrownsDraft] = useState("");
   const [warbandWyrdstoneDraft, setWarbandWyrdstoneDraft] = useState("");
   const [savingWarband, setSavingWarband] = useState(false);
-  const [vaultExpanded, setVaultExpanded] = useState(false);
+  const [vaultSidebarOpen, setVaultSidebarOpen] = useState(false);
+  const [availableFiguresSidebarOpen, setAvailableFiguresSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (!vaultModalOpen) return;
@@ -1563,44 +1563,8 @@ const WarbandDetailPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid gap-6 xl:flex-1 xl:min-h-0 xl:grid-cols-[360px_minmax(320px,1fr)_360px] xl:items-stretch xl:overflow-hidden">
-            {/* Column 1: Vault + Faction figures */}
-            <div className="xl:flex xl:h-full xl:min-h-0 xl:flex-col">
-              <div className="space-y-6 xl:flex-1 xl:min-h-0 xl:overflow-y-auto xl:pr-3">
-                <CollapsibleSection
-                  title="Cofre do Bando"
-                  expanded={vaultExpanded}
-                  onToggle={() => setVaultExpanded(prev => !prev)}
-                >
-                  <VaultSection
-                    vaultItems={vaultItems}
-                    onOpenVaultModal={handleOpenVaultModal}
-                    onVaultRebuy={handleVaultRebuy}
-                    onVaultUpdate={handleVaultUpdate}
-                    vaultItemAction={vaultItemAction}
-                  />
-                </CollapsibleSection>
-
-                <AvailableFiguresSection
-                  baseFigureGroups={availableFigureGroups}
-                  expandedAvailableFigures={expandedAvailableFigures}
-                  onToggleFigure={handleToggleAvailableFigure}
-                  onAddFigure={handleAddFigure}
-                  onOpenEquipmentDialog={handleOpenEquipmentDialog}
-                  addingFigureSlug={addingFigureSlug}
-                  warbandId={warbandId ?? null}
-                  hasLeader={hasLeader}
-                  warbandCrowns={warbandCrowns}
-                  onOpenSkillsDialog={handleOpenSkillBadge}
-                  onOpenSpellsDialog={handleOpenSpellBadge}
-                  onOpenStartingSkill={handleOpenStartingSkill}
-                  onOpenStartingSpell={handleOpenStartingSpell}
-                  onOpenStartingEquipment={handleOpenStartingEquipment}
-                />
-              </div>
-            </div>
-
-            {/* Column 2: Soldiers list */}
+          <div className="grid gap-6 xl:flex-1 xl:min-h-0 xl:grid-cols-2 xl:items-stretch xl:overflow-hidden">
+            {/* Column 1: Soldiers list */}
             <div className="xl:flex xl:h-full xl:min-h-0 xl:flex-col">
               <div className="space-y-4 xl:flex-1 xl:min-h-0 xl:overflow-y-auto xl:pr-2">
                 <SoldierListSection
@@ -1623,7 +1587,7 @@ const WarbandDetailPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Column 3: Soldier detail */}
+            {/* Column 2: Soldier detail */}
             <div className="xl:flex xl:h-full xl:min-h-0 xl:flex-col">
               <div className="space-y-4 xl:flex-1 xl:min-h-0 xl:overflow-y-auto xl:pr-2">
                 <SoldierDetailSection
@@ -1707,6 +1671,77 @@ const WarbandDetailPage: React.FC = () => {
         onLoot={() => handleVaultAdd(true)}
         actionLoading={vaultActionLoading}
         warband={warband}
+      />
+
+      {/* Floating Buttons */}
+      <button
+        onClick={() => setVaultSidebarOpen(true)}
+        className="fixed bottom-24 right-6 z-40 bg-green-800 text-white p-4 md:p-8 rounded-full shadow-lg hover:bg-green-700 transition-colors"
+        aria-label="Abrir cofre"
+      >
+        <svg
+          className="w-6 h-6 md:w-12 md:h-12"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+          />
+        </svg>
+      </button>
+
+      <button
+        onClick={() => setAvailableFiguresSidebarOpen(true)}
+        className="fixed bottom-6 right-6 z-40 bg-green-800 text-white p-4 md:p-8 rounded-full shadow-lg hover:bg-green-700 transition-colors"
+        aria-label="Abrir figuras disponíveis"
+      >
+        <svg
+          className="w-6 h-6 md:w-12 md:h-12"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
+      </button>
+
+      {/* Sidebars */}
+      <VaultSidebar
+        open={vaultSidebarOpen}
+        onClose={() => setVaultSidebarOpen(false)}
+        vaultItems={vaultItems}
+        onOpenVaultModal={handleOpenVaultModal}
+        onVaultRebuy={handleVaultRebuy}
+        onVaultUpdate={handleVaultUpdate}
+        vaultItemAction={vaultItemAction}
+      />
+
+      <AvailableFiguresSidebar
+        open={availableFiguresSidebarOpen}
+        onClose={() => setAvailableFiguresSidebarOpen(false)}
+        baseFigureGroups={availableFigureGroups}
+        expandedAvailableFigures={expandedAvailableFigures}
+        onToggleFigure={handleToggleAvailableFigure}
+        onAddFigure={handleAddFigure}
+        onOpenEquipmentDialog={handleOpenEquipmentDialog}
+        addingFigureSlug={addingFigureSlug}
+        warbandId={warbandId ?? null}
+        hasLeader={hasLeader}
+        warbandCrowns={warbandCrowns}
+        onOpenSkillsDialog={handleOpenSkillBadge}
+        onOpenSpellsDialog={handleOpenSpellBadge}
+        onOpenStartingSkill={handleOpenStartingSkill}
+        onOpenStartingSpell={handleOpenStartingSpell}
+        onOpenStartingEquipment={handleOpenStartingEquipment}
       />
     </div>
   );

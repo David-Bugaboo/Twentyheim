@@ -25,7 +25,7 @@ import type { ExtraSkillListToWarbandSoldier } from "../../../../types/extra-ski
 import type { ExtraSpellLoreToWarbandSoldier } from "../../../../types/extra-spell-lore-to-warband-soldier.entity";
 import { extractEquipment } from "../utils/equipment-helpers";
 import { getSupernaturalAccess } from "../utils/supernatural-helpers";
-import { formatCrownsValue } from "../utils/helpers";
+import { formatCrownsValue, extractSkillListSlugs, extractSpellLoreSlugs } from "../utils/helpers";
 
 type SupernaturalDialogCategory = "Mutação" | "Benção de Nurgle";
 
@@ -414,7 +414,7 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
       </div>
 
       <div className="mt-3 flex flex-col gap-2">
-        {baseFigure ? (
+        {baseFigure && extractEquipment(baseFigure).length > 0 ? (
           <button
             type="button"
             onClick={event => {
@@ -433,7 +433,7 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
           </button>
         ) : null}
 
-        {baseFigure ? (
+        {baseFigure && extractSkillListSlugs(baseFigure).length > 0 ? (
           <button
             type="button"
             onClick={event => {
@@ -454,7 +454,7 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
           </button>
         ) : null}
 
-        {baseFigure ? (
+        {baseFigure && extractSpellLoreSlugs(baseFigure).length > 0 ? (
           <button
             type="button"
             onClick={event => {
