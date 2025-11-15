@@ -81,11 +81,11 @@ export const SupernaturalAbilitySection: React.FC<SupernaturalAbilitySectionProp
           {allAbilities.map(ability => {
             const formattedCost = formatCost(ability.cost);
             return (
-              <option key={ability.slug} value={ability.slug}>
+            <option key={ability.slug} value={ability.slug}>
                 {formattedCost
                   ? `${ability.name} — ${formattedCost}`
                   : ability.name}
-              </option>
+            </option>
             );
           })}
         </select>
@@ -146,13 +146,10 @@ export const SupernaturalAbilitySection: React.FC<SupernaturalAbilitySectionProp
                     <div className="text-sm font-semibold text-green-200">
                       {abilityName}
                     </div>
-                    <div className="text-[11px] text-gray-500">
-                      Slug: {ability.superNaturalAbilitySlug ?? "—"}
-                    </div>
                     {formattedAbilityCost ? (
                       <div className="text-[11px] text-gray-400">
                         Custo: {formattedAbilityCost}
-                      </div>
+                    </div>
                     ) : null}
                     {abilityDescription ? (
                       <div className="mt-1 text-[11px] text-gray-400">

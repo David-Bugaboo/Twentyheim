@@ -31,10 +31,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
           position: "absolute",
           top: 0,
           right: 0,
-          width: "80%",
+          width: { xs: "100%", sm: "90%", md: "85%", lg: "80%" },
+          maxWidth: { xs: "100%", lg: "600px" },
           height: "100%",
           backgroundColor: "#1a1a1a",
-          borderLeft: "1px solid #333",
+          borderLeft: { xs: "none", sm: "1px solid #333" },
           display: "flex",
           flexDirection: "column",
         }}
@@ -45,7 +46,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            padding: 2,
+            padding: { xs: 1.5, sm: 2 },
             borderBottom: "1px solid #333",
           }}
         >
@@ -55,6 +56,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               color: "#8fbc8f",
               fontFamily: '"Cinzel", serif',
               fontWeight: "bold",
+              fontSize: { xs: "1rem", sm: "1.25rem" },
             }}
           >
             {title}
@@ -71,9 +73,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <Box
           sx={{
             flex: 1,
-            padding: 2,
+            padding: { xs: 1.5, sm: 2 },
             overflow: "auto",
-            maxHeight: "calc(100vh - 80px)",
+            maxHeight: { xs: "calc(100vh - 60px)", sm: "calc(100vh - 80px)" },
             "&::-webkit-scrollbar": {
               width: "8px",
             },

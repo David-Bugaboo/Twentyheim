@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -30,7 +35,7 @@ import RewardsPage from "./pages/campanha/RewardsPage";
 import ExplorationPage from "./pages/campanha/ExplorationPage";
 import ExplorationEventsPage from "./pages/campanha/ExplorationEventsPage";
 import WyrdstoneSellingPage from "./pages/campanha/WyrdstoneSellingPage";
-import SkillsIndexPage from "./pages/skills/SkillsIndexPage";
+import AllSkillsPage from "./pages/skills/AllSkillsPage";
 import WeaponsAndEquipmentsPage from "./pages/weapons and equipments/WeaponsAndEquipmentsPage";
 import MeleeWeaponsPage from "./pages/weapons and equipments/MeleeWeaponsPage";
 import ArmorAndShieldsPage from "./pages/weapons and equipments/ArmorAndShieldsPage";
@@ -41,10 +46,10 @@ import RemediesAndPoisonsPage from "./pages/weapons and equipments/RemediesAndPo
 import AccessoriesPage from "./pages/weapons and equipments/AccessoriesPage";
 import WarbandsIndexPage from "./pages/warbands/WarbandsIndexPage";
 
-
 import AttributeTestsPage from "./pages/rules/AttributeTestsPage";
 import CampaignPage from "./pages/campanha/CampaignPage";
 import ArcaneLoresPage from "./pages/spells/lores/ArcaneLoresPage";
+import GenericLorePage from "./pages/spells/GenericLorePage";
 import HappeningsPage from "./pages/rules/Happenings";
 import ReactionsPage from "./pages/rules/ReactionsPage";
 import ChargeActionsPage from "./pages/rules/ChargeActionsPage";
@@ -74,6 +79,8 @@ import DarkGodsInvocationPage from "./pages/campanha/DarkGodsInvocationPage";
 import ChangelogPage from "./pages/ChangelogPage";
 import WarbandManagerPage from "./pages/tools/WarbandManagerPage";
 import WarbandDetailPage from "./pages/tools/WarbandDetailPage";
+import SharedWarbandPageNew from "./pages/share/SharedWarbandPageNew";
+import GenericWarbandPage from "./pages/warbands/GenericWarbandPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -121,7 +128,10 @@ function App() {
   const [showInstallHint, setShowInstallHint] = useState<boolean>(false);
 
   useEffect(() => {
-    const isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || (window.navigator as any).standalone;
+    const isStandalone =
+      (window.matchMedia &&
+        window.matchMedia("(display-mode: standalone)").matches) ||
+      (window.navigator as any).standalone;
     const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
     const handler = (e: any) => {
       // Intercepta o prompt automático para mostrar nosso botão
@@ -130,8 +140,8 @@ function App() {
       // Mostra botão apenas se não estiver instalado e não for iOS (iOS usa Share > Add)
       setShowInstallHint(!isStandalone && !isIOS);
     };
-    window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('beforeinstallprompt', handler);
+    window.addEventListener("beforeinstallprompt", handler);
+    return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
 
   const handleInstallClick = async () => {
@@ -139,7 +149,7 @@ function App() {
       if (!deferredInstallPrompt) return;
       deferredInstallPrompt.prompt();
       const { outcome } = await deferredInstallPrompt.userChoice;
-      if (outcome === 'accepted') {
+      if (outcome === "accepted") {
         setShowInstallHint(false);
         setDeferredInstallPrompt(null);
       }
@@ -295,9 +305,9 @@ function AppContent() {
           path="/campaign/dark-gods-invocation"
           element={<DarkGodsInvocationPage />}
         />
-        <Route path="/campaign/skills-index" element={<SkillsIndexPage />} />
-        <Route path="/skills" element={<SkillsIndexPage />} />
-        
+
+        <Route path="/skills" element={<AllSkillsPage />} />
+
         <Route path="/equipment" element={<WeaponsAndEquipmentsPage />} />
         <Route path="/equipment/melee-weapons" element={<MeleeWeaponsPage />} />
         <Route
@@ -317,22 +327,22 @@ function AppContent() {
         <Route path="/equipment/accessories" element={<AccessoriesPage />} />
         <Route path="/magic" element={<MagicRulesPage />} />
         <Route path="/magic/arcane-lores" element={<ArcaneLoresPage />} />
-        
+        <Route path="/magic/spell-lore/:slug" element={<GenericLorePage />} />
+        <Route path="/spells/:slug" element={<GenericLorePage />} />
+
         <Route
           path="magic/magic-of-the-dark-gods"
           element={<DarkGodsInvocationPage />}
         />
         <Route path="/warbands" element={<WarbandsIndexPage />} />
-        <Route
-          path="/tools/warband-manager"
-          element={<WarbandManagerPage />}
-        />
+        <Route path="/warbands/:factionSlug" element={<GenericWarbandPage />} />
+        <Route path="/tools/warband-manager" element={<WarbandManagerPage />} />
         <Route
           path="/tools/warband-manager/:warbandId"
           element={<WarbandDetailPage />}
         />
+        <Route path="/warbands/share/:id" element={<SharedWarbandPageNew />} />
         <Route path="/changelog" element={<ChangelogPage />} />
-        
       </Routes>
     </>
   );

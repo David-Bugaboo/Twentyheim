@@ -9,7 +9,7 @@ import {
   IconButton,
   TextField,
 } from "@mui/material";
-import { SectionCard, StatRow } from "./CommonComponents";
+import { StatRow } from "./CommonComponents";
 import MobileText from "../../../../components/MobileText";
 import { SkillsSection } from "./SkillsSection";
 import { SpellsSection } from "./SpellsSection";
@@ -71,8 +71,8 @@ const ATTRIBUTE_CONFIG: Array<{
   signed: boolean;
 }> = [
   { key: "movement", label: "Movimento", signed: false },
-  { key: "fight", label: "Combate", signed: true },
-  { key: "shoot", label: "Tiro", signed: true },
+  { key: "fight", label: "Ímpeto", signed: true },
+  { key: "shoot", label: "Precisão", signed: true },
   { key: "armour", label: "Armadura", signed: false },
   { key: "strength", label: "Força", signed: true },
   { key: "will", label: "Vontade", signed: true },
@@ -373,8 +373,9 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
       if (!entry || typeof entry !== "object") return false;
       const record = entry as Record<string, unknown>;
       const equipment = record.avaiableEquipment ?? record.equipment ?? record;
+      const categoryRaw = (equipment as Record<string, unknown>)?.category;
       const category = normalizeString(
-        ((equipment as Record<string, unknown>)?.category as string) ?? ""
+        typeof categoryRaw === "string" ? categoryRaw : ""
       );
       const name = normalizeString(
         ((equipment as Record<string, unknown>)?.name as string) ??
@@ -382,9 +383,12 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
           ""
       );
 
-      return searchTerms.some(
-        term => category.includes(term) || name.includes(term)
-      );
+      return searchTerms.some(term => {
+        // Verifica se a categoria é exatamente igual ao termo ou contém o termo
+        return (
+          category === term || category.includes(term) || name.includes(term)
+        );
+      });
     });
   };
 
@@ -418,7 +422,9 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
     availableEquipmentList.some(eq => {
       const category = normalizeString(eq.category ?? "");
       const name = normalizeString(eq.name ?? "");
+      // Verifica se a categoria é exatamente "elmo" ou contém "elmo"/"helmet"
       return (
+        category === "elmo" ||
         category.includes("elmo") ||
         category.includes("helmet") ||
         name.includes("elmo") ||
@@ -474,6 +480,80 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
     roleUpper === "LEGENDA" ||
     roleUpper.includes("LENDA");
   const isMercenaryOrLegend = isMercenary || isLegend;
+
+  // Verificar se tem equipamentos iniciais para mercenários ou lendas
+  const baseFigureRecord = selectedBaseFigure as unknown as Record<
+    string,
+    unknown
+  >;
+  const mercenaryStartingEquipment =
+    baseFigureRecord.mercenaryStartingEquipment as unknown[] | undefined;
+  const legendStartingEquipment = baseFigureRecord.legendStartingEquipment as
+    | unknown[]
+    | undefined;
+  const hasMercenaryStartingEquipment =
+    Array.isArray(mercenaryStartingEquipment) &&
+    mercenaryStartingEquipment.length > 0;
+  const hasLegendStartingEquipment =
+    Array.isArray(legendStartingEquipment) &&
+    legendStartingEquipment.length > 0;
+  const hasStartingEquipment =
+    (isMercenary && hasMercenaryStartingEquipment) ||
+    (isLegend && hasLegendStartingEquipment);
+
+  // Para mercenários e lendas, verificar equipamentos do warbandSoldier para determinar slots
+  let finalShouldShowMainHandSlot = shouldShowMainHandSlot;
+  let finalShouldShowOffHandSlot = shouldShowOffHandSlot;
+  let finalShouldShowArmorSlot = shouldShowArmorSlot;
+  let finalShouldShowHelmetSlot = shouldShowHelmetSlot;
+  let finalShouldShowEquipmentSections = shouldShowEquipmentSections;
+
+  if (isMercenaryOrLegend && hasStartingEquipment) {
+    // Verificar equipamentos do warbandSoldier
+    const soldierEquipment = relations.equipment ?? [];
+    const hasAnyEquipment = soldierEquipment.length > 0;
+
+    // Verificar se tem armadura nos equipamentos do warbandSoldier
+    const hasArmorInInventory = soldierEquipment.some(item => {
+      const category = item.equipment?.category ?? "";
+      const normalizedCategory = normalizeString(category);
+      return (
+        normalizedCategory === "armadura" ||
+        normalizedCategory.includes("armadura")
+      );
+    });
+
+    // Verificar se tem elmo nos equipamentos do warbandSoldier
+    const hasHelmetInInventory = soldierEquipment.some(item => {
+      const category = item.equipment?.category ?? "";
+      const normalizedCategory = normalizeString(category);
+      return (
+        normalizedCategory === "elmo" || normalizedCategory.includes("elmo")
+      );
+    });
+
+    // Mão principal e secundária sempre mostram se tiver equipamentos
+    finalShouldShowMainHandSlot = hasAnyEquipment;
+    finalShouldShowOffHandSlot = hasAnyEquipment;
+
+    // Armadura só mostra se tiver equipamento com categoria Armadura
+    finalShouldShowArmorSlot = hasArmorInInventory;
+
+    // Elmo só mostra se tiver equipamento com categoria Elmo
+    finalShouldShowHelmetSlot = hasHelmetInInventory;
+
+    // Seções aparecem se tiver equipamentos iniciais
+    finalShouldShowEquipmentSections = hasStartingEquipment;
+  } else if (hasStartingEquipment) {
+    // Para outros casos com equipamentos iniciais, manter a lógica anterior
+    finalShouldShowMainHandSlot =
+      hasStartingEquipment || shouldShowMainHandSlot;
+    finalShouldShowOffHandSlot = hasStartingEquipment || shouldShowOffHandSlot;
+    finalShouldShowArmorSlot = hasStartingEquipment || shouldShowArmorSlot;
+    finalShouldShowHelmetSlot = hasStartingEquipment || shouldShowHelmetSlot;
+    finalShouldShowEquipmentSections =
+      hasStartingEquipment || shouldShowEquipmentSections;
+  }
   const hasTwoWeaponFighting = Boolean(
     (selectedSoldier as { twoWeaponFighting?: boolean } | null)
       ?.twoWeaponFighting
@@ -482,7 +562,11 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
   const selectedSoldierId = selectedSoldier.id;
   const baseFigureQuality =
     parseStatToNumber(
-      (selectedBaseFigure as unknown as Record<string, unknown>)?.quality
+      (selectedBaseFigure as unknown as Record<string, unknown>)?.quality as
+        | number
+        | string
+        | null
+        | undefined
     ) ?? 0;
   const baseFigureUpkeepRaw =
     (selectedBaseFigure as unknown as Record<string, unknown>)?.upkeep ?? null;
@@ -540,6 +624,7 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
     });
 
     const racialLimits = getRacialLimits(selectedBaseFigure.race);
+    const isAnao = normalizeString(selectedBaseFigure.race ?? "") === "anao";
 
     const advancementEntries = relations.advancements.map(entry => ({
       label: `Avanço: ${entry.advancement?.name ?? entry.advancementSlug}`,
@@ -634,11 +719,64 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
           !Number.isNaN(movementPenaltyRaw)
             ? -Math.abs(movementPenaltyRaw)
             : null;
+
+        // Verifica se está apenas na mão secundária
+        const isOnlyOffHand =
+          item.offHandEquiped === true &&
+          !item.mainHandEquiped &&
+          !item.armorEquiped &&
+          !item.helmetEquiped &&
+          !item.twoHandedEquiped;
+
+        // Obtém os attributeModifiers do equipamento base
+        const equipmentAttributeModifiers =
+          equipmentRecord?.attributeModifiers as
+            | {
+                movement?: number;
+                fight?: number;
+                shoot?: number;
+                armour?: number;
+                will?: number;
+                health?: number;
+                strength?: number;
+              }
+            | null
+            | undefined;
+
+        // Combina os modificadores do equipamento base com os do modificador aplicado
+        // Se estiver apenas na offhand, ignora ambos
+        let combinedModifier: SkillAttributeModifiers | null = null;
+        if (!isOnlyOffHand) {
+          const modifierAttrMods = item.modifier?.attributeModifiers ?? null;
+          const baseAttrMods = equipmentAttributeModifiers ?? null;
+
+          // Combina os dois, somando os valores se ambos existirem
+          if (modifierAttrMods || baseAttrMods) {
+            combinedModifier = {
+              move:
+                (modifierAttrMods?.move ?? 0) + (baseAttrMods?.movement ?? 0),
+              fight:
+                (modifierAttrMods?.fight ?? 0) + (baseAttrMods?.fight ?? 0),
+              shoot:
+                (modifierAttrMods?.shoot ?? 0) + (baseAttrMods?.shoot ?? 0),
+              armour:
+                (modifierAttrMods?.armour ?? 0) + (baseAttrMods?.armour ?? 0),
+              will: (modifierAttrMods?.will ?? 0) + (baseAttrMods?.will ?? 0),
+              health:
+                (modifierAttrMods?.health ?? 0) + (baseAttrMods?.health ?? 0),
+              strength:
+                (modifierAttrMods?.strength ?? 0) +
+                (baseAttrMods?.strength ?? 0),
+            };
+          }
+        }
+
         return {
           label: `Equipamento: ${equipmentName}`,
-          modifier: item.modifier?.attributeModifiers ?? null,
+          modifier: combinedModifier,
           armourBonusContribution,
           movementPenaltyContribution,
+          isOnlyOffHand,
         };
       });
 
@@ -749,6 +887,17 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
       });
 
       equipmentEntries.forEach(entry => {
+        // Anões ignoram modificadores de movimento de equipamentos (positivos e negativos)
+        if (key === "movement" && isAnao) {
+          return; // Ignora modificadores de movimento de equipamentos para anões
+        }
+
+        // Ignora modificadores de atributos de equipamentos apenas na mão secundária
+        if (entry.isOnlyOffHand) {
+          return; // Ignora modificadores de atributos de equipamentos apenas na mão secundária
+        }
+
+        // Aplica modificadores do equipamento (combina attributeModifiers do equipamento base + modificador)
         const value = entry.modifier?.[modifierProperty] ?? 0;
         applyContribution(key, entry.label, value, false);
       });
@@ -770,19 +919,22 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
       }
 
       if (key === "movement") {
-        equipmentEntries.forEach(entry => {
-          if (
-            typeof entry.movementPenaltyContribution === "number" &&
-            entry.movementPenaltyContribution !== 0
-          ) {
-            applyContribution(
-              "movement",
-              `${entry.label} (Penalidade de Movimento)`,
-              entry.movementPenaltyContribution,
-              false
-            );
-          }
-        });
+        // Anões ignoram modificadores de movimento de equipamentos (positivos e negativos)
+        if (!isAnao) {
+          equipmentEntries.forEach(entry => {
+            if (
+              typeof entry.movementPenaltyContribution === "number" &&
+              entry.movementPenaltyContribution !== 0
+            ) {
+              applyContribution(
+                "movement",
+                `${entry.label} (Penalidade de Movimento)`,
+                entry.movementPenaltyContribution,
+                false
+              );
+            }
+          });
+        }
       }
 
       if (key === "fight" && hasTwoWeaponFighting) {
@@ -958,9 +1110,32 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
     })
     .filter((attack): attack is DisplayNaturalAttack => attack !== null);
 
+  const skillNaturalAttacks: DisplayNaturalAttack[] = relations.skills
+    .map(entry => {
+      const skill = entry.skill;
+      if (!skill) return null;
+
+      const naturalAttack = (skill as any).extraNaturalAttack ?? null;
+
+      if (!naturalAttack) return null;
+
+      return {
+        ...naturalAttack,
+        range: naturalAttack.range ?? undefined,
+        source: skill.name
+          ? `Habilidade: ${skill.name}`
+          : `Habilidade (${entry.skillSlug ?? skill.slug})`,
+      } as DisplayNaturalAttack;
+    })
+    .filter(
+      (attack): attack is DisplayNaturalAttack =>
+        attack !== null && attack !== undefined
+    );
+
   const combinedNaturalAttacks: DisplayNaturalAttack[] = [
     ...baseNaturalAttacks,
     ...abilityNaturalAttacks,
+    ...skillNaturalAttacks,
   ];
 
   const combinedSpecialRules = useMemo(() => {
@@ -1032,7 +1207,7 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
   const currentSkillCount = relations.skills.length;
   const currentSpellCount = relations.spells.length;
   const totalFortifyModifier = useMemo(() => {
-    return relations.spells.reduce((sum, spellEntry) => {
+    return relations.spells.reduce((sum: number, spellEntry) => {
       const modifierRaw = (
         spellEntry as unknown as {
           modifier?: number | string | null;
@@ -1079,12 +1254,8 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
     return { first, second: secondCandidate };
   }, [heroSkillOptions]);
 
-  const handleOpenPromoteHeroDialog = () => {
-    if (!selectedSoldier || !hasHeroSkillChoices) return;
-    setHeroSkillSelection(heroDefaultSelection);
-    setHeroSelectionError(null);
-    setPromoteHeroDialogOpen(true);
-  };
+  // Função removida - não está sendo usada
+  // const _handleOpenPromoteHeroDialog = () => { ... }
 
   const handleConfirmPromoteHero = async () => {
     if (!selectedSoldier) return;
@@ -1127,7 +1298,7 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
     ) {
       return;
     }
-    setPromotionsExpanded(true);
+    // setPromotionsExpanded(true); // Removido - função não existe mais
     if (promotionRequest.type === "hero") {
       if (canPromoteToHero && hasHeroSkillChoices) {
         setHeroSelectionError(null);
@@ -1151,7 +1322,7 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
   ]);
 
   return (
-    <SectionCard title="Detalhes da Figura">
+    <>
       <div className="space-y-4 text-sm text-gray-200">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex flex-col gap-2">
@@ -1173,17 +1344,19 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                   Nenhum nome narrativo definido.
                 </span>
               )}
-              <IconButton
-                size="small"
-                onClick={() => setNameDialogOpen(true)}
-                sx={{
-                  color: "rgba(134,239,172,1)",
-                  border: "1px solid rgba(34,197,94,0.4)",
-                  padding: "2px",
-                }}
-              >
-                <EditIcon fontSize="small" />
-              </IconButton>
+              {!isLegend ? (
+                <IconButton
+                  size="small"
+                  onClick={() => setNameDialogOpen(true)}
+                  sx={{
+                    color: "rgba(134,239,172,1)",
+                    border: "1px solid rgba(34,197,94,0.4)",
+                    padding: "2px",
+                  }}
+                >
+                  <EditIcon fontSize="small" />
+                </IconButton>
+              ) : null}
             </div>
             {baseFigureQuality > 0 ? (
               <div className="text-xs text-gray-300">
@@ -1314,7 +1487,7 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
           </CollapsibleSection>
         ) : null}
 
-        {shouldShowEquipmentSections ? (
+        {finalShouldShowEquipmentSections ? (
           <div className="space-y-3">
             <div className="space-y-4 text-xs">
               <CollapsibleSection
@@ -1331,25 +1504,25 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                     return EQUIPPED_SLOT_SECTIONS.filter(section => {
                       if (
                         section.slot === "mainHandEquiped" &&
-                        !shouldShowMainHandSlot
+                        !finalShouldShowMainHandSlot
                       ) {
                         return false;
                       }
                       if (
                         section.slot === "offHandEquiped" &&
-                        !shouldShowOffHandSlot
+                        !finalShouldShowOffHandSlot
                       ) {
                         return false;
                       }
                       if (
                         section.slot === "armorEquiped" &&
-                        !shouldShowArmorSlot
+                        !finalShouldShowArmorSlot
                       ) {
                         return false;
                       }
                       if (
                         section.slot === "helmetEquiped" &&
-                        !shouldShowHelmetSlot
+                        !finalShouldShowHelmetSlot
                       ) {
                         return false;
                       }
@@ -1649,7 +1822,7 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                             <p className="mt-2 text-[10px] italic text-gray-500">
                               Ocupado pela arma de duas mãos.
                             </p>
-                          ) : (
+                          ) : !isLegend ? (
                             <div className="mt-3 flex flex-col gap-2 border-t border-yellow-900/40 pt-3">
                               <button
                                 type="button"
@@ -1666,7 +1839,7 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                                   : "Desequipar"}
                               </button>
                             </div>
-                          )}
+                          ) : null}
                         </div>
                       );
                     });
@@ -1769,6 +1942,10 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                             specialRules,
                             "desbalanceada"
                           );
+                          const hasParRule = hasSpecialRuleLabel(
+                            specialRules,
+                            "par"
+                          );
                           const showWeaponButtons =
                             !isArmor &&
                             !isHelmet &&
@@ -1776,14 +1953,18 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                           const showMainHandButton =
                             showWeaponButtons &&
                             !isShield &&
-                            (!hasTwoHandRule || hasVersatileRule);
+                            (!hasTwoHandRule || hasVersatileRule) &&
+                            !hasParRule;
                           const showOffHandButton =
                             showWeaponButtons &&
-                            (isShield || hasLightRule || hasPistolRule);
+                            (isShield || hasLightRule || hasPistolRule) &&
+                            !hasParRule;
                           const showTwoHandButton =
                             showWeaponButtons &&
                             !isShield &&
                             (hasTwoHandRule || hasVersatileRule);
+                          const showParButton =
+                            showWeaponButtons && !isShield && hasParRule;
                           const twoHandEquippedElsewhere = Boolean(
                             equipmentState.twoHanded &&
                               equipmentState.twoHanded.id !== item.id
@@ -1803,17 +1984,24 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                               label: "Equipar elmo",
                             });
                           } else {
-                            if (showMainHandButton) {
+                            if (showParButton) {
                               slotButtons.push({
                                 slot: "mainHandEquiped",
-                                label: "Equipar mão principal",
+                                label: "Equipar par de armas",
                               });
-                            }
-                            if (showOffHandButton) {
-                              slotButtons.push({
-                                slot: "offHandEquiped",
-                                label: "Equipar mão secundária",
-                              });
+                            } else {
+                              if (showMainHandButton) {
+                                slotButtons.push({
+                                  slot: "mainHandEquiped",
+                                  label: "Equipar mão principal",
+                                });
+                              }
+                              if (showOffHandButton) {
+                                slotButtons.push({
+                                  slot: "offHandEquiped",
+                                  label: "Equipar mão secundária",
+                                });
+                              }
                             }
                             if (showTwoHandButton) {
                               slotButtons.push({
@@ -1996,6 +2184,7 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
           onReload={onReload}
           skillAdvancementLimit={advancementSummary.skillAdvancements}
           currentSkillCount={currentSkillCount}
+          isLegend={isLegend}
         />
 
         <SpellsSection
@@ -2008,7 +2197,8 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
           spellAdvancementLimit={advancementSummary.spellAdvancements}
           fortifyAdvancementLimit={advancementSummary.fortifyAdvancements}
           currentSpellCount={currentSpellCount}
-          totalFortifyModifier={totalFortifyModifier}
+          totalFortifyModifier={totalFortifyModifier as number}
+          isLegend={isLegend}
         />
 
         {(() => {
@@ -2345,8 +2535,8 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                 Modificador Personalizado
               </h6>
 
-              <div className="rounded border border-green-800/40 bg-[#101010] p-3">
-                <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
+              <div className="rounded border border-green-800/40 bg-[#101010] p-2 sm:p-3">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-4">
                   {ATTRIBUTE_CONFIG.map(({ key, label }) => {
                     const payloadKey = PAYLOAD_FIELD_MAP[key];
                     return (
@@ -2386,7 +2576,7 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
           </Button>
         </DialogActions>
       </Dialog>
-    </SectionCard>
+    </>
   );
 };
 
@@ -2415,11 +2605,11 @@ export const SoldierDetailSection: React.FC<
 
   if (!selectedSoldier) {
     return (
-      <SectionCard title="Detalhes da Figura">
+      <div>
         <MobileText className="text-sm text-gray-400">
           Selecione uma figura para visualizar detalhes.
         </MobileText>
-      </SectionCard>
+      </div>
     );
   }
 

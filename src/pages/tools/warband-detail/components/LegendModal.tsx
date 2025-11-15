@@ -12,7 +12,6 @@ import {
   getSpellLoreLabel,
   formatCrownsValue,
 } from "../utils/helpers";
-import { extractEquipment } from "../utils/equipment-helpers";
 import { getSupernaturalAccess } from "../utils/supernatural-helpers";
 
 type LegendModalProps = {
@@ -36,14 +35,17 @@ export const LegendModal: React.FC<LegendModalProps> = ({
   onSelectSlug,
   onHire,
   actionLoading,
-  warband,
+  warband: _warband,
 }) => {
   // As lendas já vêm filtradas do backend
   const availableLegends = legends;
 
   // Atualiza o selectedSlug quando as lendas disponíveis mudarem
   useEffect(() => {
-    if (availableLegends.length > 0 && !availableLegends.find(l => l.slug === selectedSlug)) {
+    if (
+      availableLegends.length > 0 &&
+      !availableLegends.find(l => l.slug === selectedSlug)
+    ) {
       onSelectSlug(availableLegends[0].slug);
     }
   }, [availableLegends, selectedSlug, onSelectSlug]);
@@ -51,16 +53,14 @@ export const LegendModal: React.FC<LegendModalProps> = ({
   const selectedLegend = useMemo(
     () =>
       selectedSlug
-        ? availableLegends.find(l => l.slug === selectedSlug) ?? null
+        ? (availableLegends.find(l => l.slug === selectedSlug) ?? null)
         : null,
     [availableLegends, selectedSlug]
   );
 
   const selectedLegendRules = useMemo(
     () =>
-      selectedLegend
-        ? parseSpecialRules(selectedLegend.specialRules)
-        : [],
+      selectedLegend ? parseSpecialRules(selectedLegend.specialRules) : [],
     [selectedLegend]
   );
 
@@ -97,11 +97,7 @@ export const LegendModal: React.FC<LegendModalProps> = ({
         }}
       >
         Contratar Lenda
-        <IconButton
-          onClick={onClose}
-          size="small"
-          sx={{ color: "#9ca3af" }}
-        >
+        <IconButton onClick={onClose} size="small" sx={{ color: "#9ca3af" }}>
           <CloseIcon fontSize="small" />
         </IconButton>
       </DialogTitle>
@@ -224,7 +220,7 @@ export const LegendModal: React.FC<LegendModalProps> = ({
                   />
                   {FIGURE_STATS.map(stat => {
                     const rawValue = (
-                      selectedLegend as Record<string, unknown>
+                      selectedLegend as unknown as Record<string, unknown>
                     )[stat.key];
                     const displayValue =
                       rawValue === undefined || rawValue === null
@@ -377,4 +373,3 @@ export const LegendModal: React.FC<LegendModalProps> = ({
     </Dialog>
   );
 };
-

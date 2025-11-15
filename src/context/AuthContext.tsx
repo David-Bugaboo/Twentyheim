@@ -8,6 +8,7 @@ import {
   register as registerRequest,
 } from "../services/auth.service";
 import { setAuthToken } from "../services/apiClient";
+import axios from "axios";
 
 interface AuthContextType {
   currentUser: AuthUser | null;
@@ -65,12 +66,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       try {
         setAuthToken(storedToken);
+        // Sempre fazer requisição /me para validar o token
         const user = await fetchCurrentUser();
         setCurrentUser(user);
         setWarbands(user.warbands ?? []);
       } catch (error) {
         console.error("Failed to recover session", error);
+        
+        // Se for erro 401, significa token inválido - limpar tudo
+        const isUnauthorized = axios.isAxiosError(error) && error.response?.status === 401;
+        if (isUnauthorized) {
+          clearSession();
+        } else {
+          // Para outros erros, também limpar a sessão por segurança
         clearSession();
+        }
       } finally {
         setLoading(false);
       }

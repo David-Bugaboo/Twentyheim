@@ -53,7 +53,7 @@ function LoreSpellCard({
       <HeaderH3 className={`${colors.title} mb-2`}>{name}</HeaderH3>
       <div className="mb-3">
         <div className={`${colors.accent} font-bold text-sm mb-1`}>
-          Número de Conjuração: {castingNumber}
+          Classe de Dificuldade: {castingNumber}
         </div>
       </div>
       <div className="mb-3">
@@ -63,7 +63,7 @@ function LoreSpellCard({
         <div className="text-white text-sm flex flex-wrap gap-1">
           {keywords.map((keyword, index) => (
             <span key={index}>
-              <MagicTermTooltip term={keyword.trim()}>
+              <MagicTermTooltip>
                 {keyword.trim()}
               </MagicTermTooltip>
             </span>

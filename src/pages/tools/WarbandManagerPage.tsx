@@ -18,12 +18,10 @@ import {
 const WarbandManagerPage: React.FC = () => {
   const { currentUser, loading } = useAuth();
   const navigate = useNavigate();
-  const warbands = useMemo(
-    () => currentUser?.warbands ?? [],
-    [currentUser]
-  );
+  const warbands = useMemo(() => currentUser?.warbands ?? [], [currentUser]);
   const isLoading = loading && !currentUser;
-  const hasWarbands = warbands.length > 0;
+  // Variável removida - não está sendo usada
+  // const _hasWarbands = warbands.length > 0;
   const [displayWarbands, setDisplayWarbands] = useState(warbands);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [createOpen, setCreateOpen] = useState(false);
@@ -115,7 +113,8 @@ const WarbandManagerPage: React.FC = () => {
   const creationDisabled = useMemo(() => {
     if (!warbandName.trim() || !selectedFaction) return true;
     if (creating) return true;
-    if (crownsValue.trim().length > 0 && parsedCrowns === undefined) return true;
+    if (crownsValue.trim().length > 0 && parsedCrowns === undefined)
+      return true;
     if (wyrdstoneValue.trim().length > 0 && parsedWyrdstone === undefined) {
       return true;
     }
@@ -186,6 +185,16 @@ const WarbandManagerPage: React.FC = () => {
             </MobileText>
           </MobileSection>
 
+          <div className="mt-6 flex justify-center">
+            <button
+              type="button"
+              onClick={handleOpenCreate}
+              className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40"
+            >
+              Criar novo bando
+            </button>
+          </div>
+
           <MobileSection className="mt-4">
             {isLoading ? (
               <MobileText>Carregando bandos...</MobileText>
@@ -200,12 +209,14 @@ const WarbandManagerPage: React.FC = () => {
               </MobileText>
             ) : (
               <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 mt-4">
-                {displayWarbands.map((warband) => (
+                {displayWarbands.map(warband => (
                   <div
                     key={warband.id}
                     role="button"
                     tabIndex={0}
-                    onClick={() => navigate(`/tools/warband-manager/${warband.id}`)}
+                    onClick={() =>
+                      navigate(`/tools/warband-manager/${warband.id}`)
+                    }
                     onKeyDown={event => {
                       if (event.key === "Enter" || event.key === " ") {
                         event.preventDefault();
@@ -265,16 +276,6 @@ const WarbandManagerPage: React.FC = () => {
               </div>
             )}
           </MobileSection>
-
-          <div className="mt-6 flex justify-center">
-            <button
-              type="button"
-              onClick={handleOpenCreate}
-              className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40"
-            >
-              Criar novo bando
-            </button>
-          </div>
         </div>
       </div>
 
@@ -302,7 +303,9 @@ const WarbandManagerPage: React.FC = () => {
                 <select
                   value={selectedFaction}
                   onChange={event => setSelectedFaction(event.target.value)}
-                  disabled={factionsLoading || factions.length === 0 || creating}
+                  disabled={
+                    factionsLoading || factions.length === 0 || creating
+                  }
                   className="w-full rounded border border-green-700 bg-[#0c0f0d] px-3 py-2 text-sm text-gray-200 outline-none transition focus:border-green-400"
                 >
                   {factions.length === 0 ? (
@@ -411,4 +414,3 @@ export default function WarbandManagerPageWithBoundary() {
     </ErrorBoundary>
   );
 }
-

@@ -17,6 +17,7 @@ type SpellsSectionProps = {
   fortifyAdvancementLimit: number;
   currentSpellCount: number;
   totalFortifyModifier: number;
+  isLegend?: boolean;
 };
 
 export const SpellsSection: React.FC<SpellsSectionProps> = ({
@@ -26,10 +27,11 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
   relations,
   warbandId,
   onReload,
-  spellAdvancementLimit,
-  fortifyAdvancementLimit,
-  currentSpellCount,
-  totalFortifyModifier,
+  spellAdvancementLimit: _spellAdvancementLimit,
+  fortifyAdvancementLimit: _fortifyAdvancementLimit,
+  currentSpellCount: _currentSpellCount,
+  totalFortifyModifier: _totalFortifyModifier,
+  isLegend = false,
 }) => {
   const {
     expanded,
@@ -61,10 +63,6 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
     return null;
   }
 
-  const fortifyLimitReached =
-    fortifyAdvancementLimit <= 0 ||
-    totalFortifyModifier >= fortifyAdvancementLimit;
-
   return (
     <CollapsibleSection
       title="Magias"
@@ -90,10 +88,7 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
           type="button"
           onClick={handleAdd}
           disabled={
-            !selectedSlugToAdd ||
-            loading ||
-            actionState?.type === "add" ||
-            currentSpellCount >= spellAdvancementLimit
+            !selectedSlugToAdd || loading || actionState?.type === "add"
           }
           className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-sm font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
         >
@@ -107,9 +102,7 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
         </p>
       ) : null}
 
-      {error ? (
-        <p className="text-[11px] text-red-300">{error}</p>
-      ) : null}
+      {error ? <p className="text-[11px] text-red-300">{error}</p> : null}
 
       {!loading && error == null && availableOptions.length === 0 ? (
         <p className="text-[11px] text-gray-500">
@@ -118,20 +111,19 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
       ) : null}
 
       {relations.spells.length === 0 ? (
-        <p className="text-[11px] text-gray-500">
-          Nenhuma magia registrada.
-        </p>
+        <p className="text-[11px] text-gray-500">Nenhuma magia registrada.</p>
       ) : (
         <ul className="space-y-2">
           {relations.spells.map(spell => {
-            const spellName =
-              spell.spell?.name ?? spell.spellSlug ?? "Magia";
+            const spellName = spell.spell?.name ?? spell.spellSlug ?? "Magia";
             const spellDescription = spell.spell?.description ?? null;
             const difficultyClass = spell.spell?.difficultyClass ?? null;
             const rawModifier = (() => {
-              const modifierFromRelation = (spell as unknown as {
-                modifier?: number | string | null;
-              })?.modifier;
+              const modifierFromRelation = (
+                spell as unknown as {
+                  modifier?: number | string | null;
+                }
+              )?.modifier;
               if (typeof modifierFromRelation === "number") {
                 return modifierFromRelation;
               }
@@ -145,7 +137,8 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
               return 0;
             })();
             const adjustedDifficulty =
-              typeof difficultyClass === "number" && !Number.isNaN(difficultyClass)
+              typeof difficultyClass === "number" &&
+              !Number.isNaN(difficultyClass)
                 ? Math.max(0, difficultyClass - rawModifier)
                 : difficultyClass;
             const keywords = spell.spell?.keywords ?? null;
@@ -159,13 +152,6 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
               actionState?.type === "unfortify" &&
               actionState.targetId === spell.id;
             const hasFortification = rawModifier > 0;
-            const meetsDifficultyLimit =
-              typeof difficultyClass === "number" &&
-              !Number.isNaN(difficultyClass)
-                ? difficultyClass - rawModifier > 6
-                : true;
-            const canFortifySpell =
-              !fortifyLimitReached && meetsDifficultyLimit;
 
             return (
               <li
@@ -176,9 +162,6 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
                   <div>
                     <div className="text-sm font-semibold text-green-200">
                       {spellName}
-                    </div>
-                    <div className="text-[11px] text-gray-500">
-                      Slug: {spell.spellSlug ?? "—"}
                     </div>
                     {difficultyClass !== null ? (
                       <div className="text-[11px] text-gray-500">
@@ -211,37 +194,39 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
                           disabled={unfortifying}
                           className="inline-flex w-full items-center justify-center rounded border border-amber-600/60 bg-amber-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-amber-200 transition hover:border-amber-400 hover:bg-amber-900/40 disabled:cursor-not-allowed disabled:opacity-60"
                         >
-                          {unfortifying ? "Revertendo..." : "Desfazer Fortificação"}
+                          {unfortifying
+                            ? "Revertendo..."
+                            : "Desfazer Fortificação"}
                         </button>
-                        {canFortifySpell ? (
-                          <button
-                            type="button"
-                            onClick={() => handleFortify(spell.id, spellName)}
-                            disabled={fortifying}
-                            className="inline-flex w-full items-center justify-center rounded border border-sky-600/60 bg-sky-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-sky-200 transition hover:border-sky-400 hover:bg-sky-900/40 disabled:cursor-not-allowed disabled:opacity-60"
-                          >
-                            {fortifying ? "Fortificando..." : "Fortificar"}
-                          </button>
-                        ) : null}
+                        <button
+                          type="button"
+                          onClick={() => handleFortify(spell.id, spellName)}
+                          disabled={fortifying}
+                          className="inline-flex w-full items-center justify-center rounded border border-sky-600/60 bg-sky-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-sky-200 transition hover:border-sky-400 hover:bg-sky-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                        >
+                          {fortifying ? "Fortificando..." : "Fortificar"}
+                        </button>
                       </>
                     ) : (
                       <button
                         type="button"
                         onClick={() => handleFortify(spell.id, spellName)}
-                        disabled={fortifying || !canFortifySpell}
+                        disabled={fortifying}
                         className="inline-flex w-full items-center justify-center rounded border border-sky-600/60 bg-sky-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-sky-200 transition hover:border-sky-400 hover:bg-sky-900/40 disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         {fortifying ? "Fortificando..." : "Fortificar"}
                       </button>
                     )}
-                    <button
-                      type="button"
-                      onClick={() => handleRemove(spell.id, spellName)}
-                      disabled={removing}
-                      className="inline-flex w-full items-center justify-center rounded border border-red-600/60 bg-red-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-red-200 transition hover:border-red-400 hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-60"
-                    >
-                      {removing ? "Removendo..." : "Remover"}
-                    </button>
+                    {!isLegend ? (
+                      <button
+                        type="button"
+                        onClick={() => handleRemove(spell.id, spellName)}
+                        disabled={removing}
+                        className="inline-flex w-full items-center justify-center rounded border border-red-600/60 bg-red-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-red-200 transition hover:border-red-400 hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                      >
+                        {removing ? "Removendo..." : "Remover"}
+                      </button>
+                    ) : null}
                   </div>
                 </div>
               </li>
@@ -252,4 +237,3 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
     </CollapsibleSection>
   );
 };
-

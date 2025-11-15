@@ -80,28 +80,25 @@ export default function WeaponsAndEquipmentsPage() {
             </div>
 
             <MobileText>
-              Como explicado na seção de "Criando um Bando", cada figura tem uma
-              quantidade determinada de espaços de itens, podendo carregar até 5
-              espaços de equipamento, 6 no caso de figuras grandes. Cada item
-              gasta uma quantidade de espaços de item, exceto a primeira de cada
-              arma leve.
+              Como explicado na seção de "Criando um Bando", cada figura pode
+              carregar uma armadura , duas armas corpo a corpo ou escudos e 2
+              armas a distâncias. Outras categorias de equipamento não tem
+              limite de quantos podem ser carregados.
             </MobileText>
 
             <MobileText>
-              Com acessórios há outra regra a se levar em conta. Só um tipo de
-              acessório pode ser carregado por vez. Por exemplo apenas 1
-              amuleto, 1 anel, 1 manto e etc.
-            </MobileText>
-
-            <MobileText>
-              Durante a criação de bando qualquer equipamento das listas do
-              bando pode ser comprado, mas depois apenas se procurar os itens
-              durante a fase de atividades.
+              Durante a criação de bando qualquer equipamento dentre os
+              disponíveis para as figuras do bando pode ser comprado, mas apenas
+              itens de raridade comum durante a fase de atividades da campanha.
+              Se quiser buscar itens de raridade 2 ou superior, deve buscaro
+              item com a atividade "Buscar no Mercado Negro" durante a etapa de
+              atividades da fase de campanha.
             </MobileText>
 
             <MobileText>
               Uma figura só pode usar equipamentos descritos em seus
-              equipamentos disponíveis e nunca pode mudar essa lista.
+              equipamentos disponíveis e nunca pode mudar essa lista, exceto se
+              tiver as habilidades Mestre do Arsenal ou Mestre Atirador.
             </MobileText>
 
             <div id="categorias">

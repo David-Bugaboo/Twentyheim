@@ -18,14 +18,19 @@ type AvailableFiguresSidebarProps = {
   warbandId: string | null;
   hasLeader: boolean;
   warbandCrowns: number | null;
+  figureCountsBySlug: Map<string, number>;
   onOpenSkillsDialog?: (figureName: string, slug: string) => void;
   onOpenSpellsDialog?: (figureName: string, slug: string) => void;
   onOpenStartingSkill?: (figureName: string, slug: string) => void;
   onOpenStartingSpell?: (figureName: string, slug: string) => void;
   onOpenStartingEquipment?: (figureName: string, slug: string) => void;
+  onOpenMutationsDialog?: (figureName: string) => void;
+  onOpenBlessingsDialog?: (figureName: string) => void;
 };
 
-export const AvailableFiguresSidebar: React.FC<AvailableFiguresSidebarProps> = ({
+export const AvailableFiguresSidebar: React.FC<
+  AvailableFiguresSidebarProps
+> = ({
   open,
   onClose,
   baseFigureGroups,
@@ -37,11 +42,14 @@ export const AvailableFiguresSidebar: React.FC<AvailableFiguresSidebarProps> = (
   warbandId,
   hasLeader,
   warbandCrowns,
+  figureCountsBySlug,
   onOpenSkillsDialog,
   onOpenSpellsDialog,
   onOpenStartingSkill,
   onOpenStartingSpell,
   onOpenStartingEquipment,
+  onOpenMutationsDialog,
+  onOpenBlessingsDialog,
 }) => {
   return (
     <Sidebar open={open} onClose={onClose} title="Figuras Disponíveis">
@@ -55,13 +63,45 @@ export const AvailableFiguresSidebar: React.FC<AvailableFiguresSidebarProps> = (
         warbandId={warbandId}
         hasLeader={hasLeader}
         warbandCrowns={warbandCrowns}
-        onOpenSkillsDialog={onOpenSkillsDialog}
-        onOpenSpellsDialog={onOpenSpellsDialog}
+        figureCountsBySlug={figureCountsBySlug}
+        onOpenSkillsDialog={
+          onOpenSkillsDialog
+            ? (figureName: string, figureData: unknown) => {
+                // Converter figureData para slug se necessário
+                const slug =
+                  typeof figureData === "string"
+                    ? figureData
+                    : ((figureData as { slug?: string })?.slug ?? "");
+                if (slug) {
+                  onOpenSkillsDialog(figureName, slug);
+                }
+              }
+            : (undefined as
+                | ((figureName: string, figureData: unknown) => void)
+                | undefined)
+        }
+        onOpenSpellsDialog={
+          onOpenSpellsDialog
+            ? (figureName: string, figureData: unknown) => {
+                // Converter figureData para slug se necessário
+                const slug =
+                  typeof figureData === "string"
+                    ? figureData
+                    : ((figureData as { slug?: string })?.slug ?? "");
+                if (slug) {
+                  onOpenSpellsDialog(figureName, slug);
+                }
+              }
+            : (undefined as
+                | ((figureName: string, figureData: unknown) => void)
+                | undefined)
+        }
         onOpenStartingSkill={onOpenStartingSkill}
         onOpenStartingSpell={onOpenStartingSpell}
         onOpenStartingEquipment={onOpenStartingEquipment}
+        onOpenMutationsDialog={onOpenMutationsDialog}
+        onOpenBlessingsDialog={onOpenBlessingsDialog}
       />
     </Sidebar>
   );
 };
-

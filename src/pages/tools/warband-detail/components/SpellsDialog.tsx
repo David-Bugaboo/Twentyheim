@@ -1,8 +1,18 @@
 import React from "react";
-import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
+import {
+  Dialog,
+  DialogContent,
+  IconButton,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { Spinner } from "./CommonComponents";
 import type { SpellLoreDialogEntry } from "../types";
+import MagicTermTooltip from "../../../../components/MagicTermTooltip";
+import GameText from "../../../../components/GameText";
 
 type SpellsDialogProps = {
   open: boolean;
@@ -18,14 +28,15 @@ type SpellsDialogProps = {
 export const SpellsDialog: React.FC<SpellsDialogProps> = ({
   open,
   onClose,
-  title,
+  title: _title,
   loading,
   error,
   lores,
   selectedSlug,
   onSelectSlug,
 }) => {
-  const selectedLore = lores.find(entry => entry.slug === selectedSlug) ?? lores[0] ?? null;
+  const selectedLore =
+    lores.find(entry => entry.slug === selectedSlug) ?? lores[0] ?? null;
 
   return (
     <Dialog
@@ -40,62 +51,98 @@ export const SpellsDialog: React.FC<SpellsDialogProps> = ({
         },
       }}
     >
-      <DialogTitle
+      <DialogContent
+        dividers
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          color: "#86efac",
-          fontFamily: '"Cinzel", serif',
+          borderColor: "rgba(134, 239, 172, 0.2)",
+          color: "#e4e4e7",
+          position: "relative",
+          paddingTop: 3,
         }}
       >
-        {title}
         <IconButton
           size="small"
           onClick={onClose}
-          sx={{ color: "#86efac" }}
+          sx={{
+            color: "#86efac",
+            position: "absolute",
+            top: 2,
+            right: 8,
+            zIndex: 1,
+          }}
         >
           <CloseIcon fontSize="small" />
         </IconButton>
-      </DialogTitle>
-      <DialogContent
-        dividers
-        sx={{ borderColor: "rgba(134, 239, 172, 0.2)", color: "#e4e4e7" }}
-      >
         {loading ? (
           <div className="flex justify-center py-8">
             <Spinner label="Carregando magias..." />
           </div>
         ) : (
           <div className="space-y-4">
-            {error ? (
-              <div className="text-xs text-red-300">{error}</div>
-            ) : null}
+            {error ? <div className="text-xs text-red-300">{error}</div> : null}
             {lores.length === 0 ? (
               <div className="text-xs text-gray-400">
                 Nenhuma magia registrada.
               </div>
             ) : (
               <div className="space-y-3">
-                <div className="flex flex-wrap gap-2">
-                  {lores.map(entry => {
-                    const isActive = entry.slug === selectedSlug;
-                    return (
-                      <button
+                <FormControl fullWidth size="small">
+                  <InputLabel
+                    sx={{
+                      color: "#86efac",
+                      "&.Mui-focused": {
+                        color: "#86efac",
+                      },
+                    }}
+                  >
+                    Selecionar Tradição Mágica
+                  </InputLabel>
+                  <Select
+                    value={selectedSlug || ""}
+                    onChange={event =>
+                      onSelectSlug(event.target.value as string)
+                    }
+                    label="Selecionar Tradição Mágica"
+                    sx={{
+                      color: "#86efac",
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(134, 239, 172, 0.3)",
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "rgba(134, 239, 172, 0.5)",
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#86efac",
+                      },
+                      "& .MuiSvgIcon-root": {
+                        color: "#86efac",
+                      },
+                      backgroundColor: "#0b0e0c",
+                    }}
+                  >
+                    {lores.map(entry => (
+                      <MenuItem
                         key={entry.slug}
-                        type="button"
-                        onClick={() => onSelectSlug(entry.slug)}
-                        className={`inline-flex items-center justify-center rounded border px-3 py-1 text-[11px] font-semibold uppercase tracking-wide transition ${
-                          isActive
-                            ? "border-green-500 bg-green-900/30 text-green-200"
-                            : "border-green-800/60 bg-[#0b0e0c] text-green-300 hover:border-green-500 hover:bg-green-900/20"
-                        }`}
+                        value={entry.slug}
+                        sx={{
+                          color: "#86efac",
+                          backgroundColor: "#0b0e0c",
+                          "&:hover": {
+                            backgroundColor: "rgba(134, 239, 172, 0.1)",
+                          },
+                          "&.Mui-selected": {
+                            backgroundColor: "rgba(134, 239, 172, 0.2)",
+                            "&:hover": {
+                              backgroundColor: "rgba(134, 239, 172, 0.3)",
+                            },
+                          },
+                        }}
                       >
                         {entry.name}
-                      </button>
-                    );
-                  })}
-                </div>
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
 
                 {selectedLore ? (
                   <div className="space-y-2">
@@ -105,9 +152,6 @@ export const SpellsDialog: React.FC<SpellsDialogProps> = ({
                           <h3 className="text-lg font-semibold text-green-200">
                             {selectedLore.name}
                           </h3>
-                          <span className="text-xs uppercase text-green-400">
-                            {selectedLore.slug}
-                          </span>
                         </div>
                         <div className="text-xs text-gray-300">
                           {selectedLore.description}
@@ -131,12 +175,11 @@ export const SpellsDialog: React.FC<SpellsDialogProps> = ({
                                     <h4 className="text-md font-semibold text-green-200">
                                       {spell.name}
                                     </h4>
-                                    <span className="text-xs uppercase text-green-400">
-                                      {spell.slug}
-                                    </span>
                                   </div>
                                   <div className="text-xs text-gray-300">
-                                    {spell.description}
+                                    <GameText component="div">
+                                      {spell.description || "-"}
+                                    </GameText>
                                   </div>
                                   {typeof spell.difficultyClass === "number" ? (
                                     <div className="text-[11px] text-blue-300">
@@ -145,8 +188,23 @@ export const SpellsDialog: React.FC<SpellsDialogProps> = ({
                                   ) : null}
                                   {Array.isArray(spell.keywords) &&
                                   spell.keywords.length > 0 ? (
-                                    <div className="text-[11px] text-blue-200">
-                                      Palavras-chave: {spell.keywords.join(", ")}
+                                    <div className="text-[11px] text-blue-200 flex flex-wrap items-center gap-1">
+                                      <span>Palavras-chave:</span>
+                                      {spell.keywords.map(
+                                        (keyword, index, arr) => (
+                                          <span
+                                            key={index}
+                                            className="inline-flex items-center"
+                                          >
+                                            <MagicTermTooltip component="span">
+                                              {keyword.trim()}
+                                            </MagicTermTooltip>
+                                            {index < arr.length - 1 && (
+                                              <span>,</span>
+                                            )}
+                                          </span>
+                                        )
+                                      )}
                                     </div>
                                   ) : null}
                                 </div>
@@ -170,4 +228,3 @@ export const SpellsDialog: React.FC<SpellsDialogProps> = ({
     </Dialog>
   );
 };
-

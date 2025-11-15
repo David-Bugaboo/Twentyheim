@@ -197,7 +197,17 @@ function GameText({
 
   // Garante que children seja uma string antes de processar
   const textToProcess = children != null ? String(children) : "";
-  return <Component {...props}>{processText(textToProcess)}</Component>;
+  return (
+    <Component
+      {...props}
+      sx={{
+        fontSize: "1.1em",
+        ...props.sx,
+      }}
+    >
+      {processText(textToProcess)}
+    </Component>
+  );
 }
 
 // Advanced weapon data with detailed stats
@@ -400,7 +410,7 @@ interface WeaponTooltipProps {
 
 function WeaponTooltip({ weaponName, children }: WeaponTooltipProps) {
   const [open, setOpen] = useState(false);
-  const weapon = weaponDatabase.find((w) => w.name === weaponName);
+  const weapon = weaponDatabase.find(w => w.name === weaponName);
 
   if (!weapon) {
     return <span>{children}</span>;

@@ -1,93 +1,81 @@
-/*import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { fetchSpellLoreBySlug } from "../../services/queries.service";
+import type { SpellLoreQueryResponse } from "../../services/queries.service";
 import PageTitle from "../../components/PageTitle";
 import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
 import QuickNavigation from "../../components/QuickNavigation";
-import LoreSpellCard from "../../components/LoreSpellCard";
-
-import { getStaticImport } from "../../data/jsonFileMap";
-
-interface Spell {
-  name: string;
-  castingNumber: number;
-  keywords: string[];
-  effect: string;
-}
-
-// Mapeamento de slugs para fileIds e nomes
-const loreConfig: Record<string, { name: string; fileId: string }> = {
-  "lore-of-horned-rat": {
-    name: "Tradição do Rato Chifrudo",
-    fileId: "lore-of-horned-rat",
-  },
-  "lore-of-necromancy": {
-    name: "Tradição da Necromancia",
-    fileId: "lore-of-necromancy",
-  },
-  "druchii-magic": { 
-    name: "Magia Druchii", 
-    fileId: "druchii-magic" 
-  },
-  "magic-of-the-old-ones": {
-    name: "Magia dos Antigos",
-    fileId: "magic-of-the-old-ones",
-  },
-  "rituals-of-chaos": {
-    name: "Rituais do Caos",
-    fileId: "rituals-of-chaos",
-  },
-  "rituals-of-hashut": {
-    name: "Rituais de Hashut",
-    fileId: "rituals-of-hashut",
-  },
-  "magic-of-the-goblins": {
-    name: "Magia dos Goblins",
-    fileId: "magic-of-the-goblins",
-  },
-  "magic-of-the-waaaaagh": {
-    name: "Magia da WAAAAAAAGH!",
-    fileId: "magic-of-the-waaaaagh",
-  },
-  "lesser-magic": {
-    name: "Magia Inferior",
-    fileId: "lesser-magic",
-  },
-  "prayers-of-sigmar": {
-    name: "Orações de Sigmar",
-    fileId: "prayers-of-sigmar",
-  },
-  "prayers-of-ulric": {
-    name: "Orações de Ulric",
-    fileId: "prayers-of-ulric",
-  },
-  "rituals-of-nurgle": {
-    name: "Rituais de Nurgle",
-    fileId: "rituals-of-nurgle",
-  },
-};
+import GameText from "../../components/GameText";
+import MagicTermTooltip from "../../components/MagicTermTooltip";
 
 function GenericLorePage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  
-  // Obtém a configuração baseada no slug
-  const config = slug ? loreConfig[slug] : null;
-  
-  // Cria o staticImport apenas se o slug for válido
-  const staticImportFn = useMemo(() => {
-    if (!config) return () => Promise.resolve({ default: [] });
-    return () => getStaticImport(config.fileId)();
-  }, [config]);
-  
-  // Carrega dados via hook (Firestore -> IndexedDB -> Static)
-  const { data: spells, loading, error: loadError } = useJsonData<Spell[]>({
-    fileId: config?.fileId || "",
-    staticImport: staticImportFn,
-    enabled: !!config,
-  });
+  const [spellLore, setSpellLore] = useState<SpellLoreQueryResponse | null>(
+    null
+  );
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const error = config ? null : `Tradição "${slug}" não encontrada`;
+  useEffect(() => {
+    if (!slug) {
+      setError("Slug da tradição mágica não fornecido");
+      setLoading(false);
+      return;
+    }
+
+    let abort = false;
+    const controller = new AbortController();
+
+    const loadSpellLore = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const lore = await fetchSpellLoreBySlug(slug, controller.signal);
+        if (!abort) {
+          setSpellLore(lore);
+        }
+      } catch (err) {
+        if (!abort) {
+          console.error("Erro ao carregar tradição mágica:", err);
+          setError("Não foi possível carregar a tradição mágica.");
+        }
+      } finally {
+        if (!abort) {
+          setLoading(false);
+        }
+      }
+    };
+
+    void loadSpellLore();
+
+    return () => {
+      abort = true;
+      controller.abort();
+    };
+  }, [slug]);
+
+  const navigationSections = useMemo(() => {
+    const baseSections = [
+      {
+        id: "introducao",
+        title: spellLore?.name || "Tradição Mágica",
+        level: 0,
+      },
+    ];
+    if (spellLore?.spells) {
+      return [
+        ...baseSections,
+        ...spellLore.spells.map((spell, index) => ({
+          id: `spell-${spell.slug || index}`,
+          title: spell.name || `Magia ${index + 1}`,
+          level: 1,
+        })),
+      ];
+    }
+    return baseSections;
+  }, [spellLore]);
 
   if (loading) {
     return (
@@ -106,14 +94,16 @@ function GenericLorePage() {
     );
   }
 
-  if (error || loadError || !config) {
+  if (error || !spellLore) {
     return (
       <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
         <div className="py-4">
           <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
             <MobileSection>
               <PageTitle>Erro</PageTitle>
-              <MobileText>{error || loadError?.message || "Tradição não encontrada"}</MobileText>
+              <MobileText>
+                {error || "Tradição mágica não encontrada"}
+              </MobileText>
               <button
                 onClick={() => navigate("/magic")}
                 className="mt-4 px-4 py-2 bg-green-900/20 border border-green-500/40 hover:bg-green-800/30 hover:border-green-400/60 text-white rounded-lg transition-colors duration-200"
@@ -127,43 +117,78 @@ function GenericLorePage() {
     );
   }
 
-  const spellsArray = (spells || []) as Spell[];
-  const navigationSections = [
-    { id: "intro", title: config.name, level: 0 },
-    ...spellsArray.map((spell, index) => ({
-      id: `spell-${index}`,
-      title: spell.name,
-      level: 1,
-    })),
-  ];
-
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
           <QuickNavigation sections={navigationSections} loading={loading} />
-          <MobileSection>
-            <div id="intro">
-              <PageTitle>{config.name}</PageTitle>
-            </div>
+          <MobileSection id="introducao">
+            <PageTitle>{spellLore.name}</PageTitle>
+            {spellLore.description && (
+              <MobileText>
+                <GameText>{spellLore.description}</GameText>
+              </MobileText>
+            )}
 
-            {loading ? (
-              <MobileText>Carregando magias...</MobileText>
-            ) : spellsArray.length === 0 ? (
-              <MobileText>Nenhuma magia encontrada para esta tradição.</MobileText>
-            ) : (
-            <div className="space-y-6 mt-6">
-                {spellsArray.map((spell, index) => (
-                <div key={index} id={`spell-${index}`}>
-                  <LoreSpellCard
-                    name={spell.name}
-                    castingNumber={spell.castingNumber}
-                    keywords={spell.keywords}
-                    effect={spell.effect}
-                  />
+            {spellLore.spells && spellLore.spells.length > 0 ? (
+              <div className="space-y-2 mt-6">
+                <h4 className="font-semibold text-blue-300 text-sm uppercase tracking-wide mb-3">
+                  Magias
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {spellLore.spells.map(spell => (
+                    <div
+                      key={spell.slug || spell.id}
+                      id={`spell-${spell.slug || spell.id}`}
+                      className="rounded border border-blue-800/40 bg-[#101010] p-2"
+                    >
+                      <div className="flex flex-col gap-2">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <h4 className="text-md font-semibold text-blue-200">
+                            {spell.name}
+                          </h4>
+                        </div>
+                        {spell.description && (
+                          <div className="text-xs text-gray-300">
+                            <GameText component="div">
+                              {spell.description}
+                            </GameText>
+                          </div>
+                        )}
+                        {typeof spell.difficultyClass === "number" ? (
+                          <div className="text-[11px] text-blue-300">
+                            Dificuldade: {spell.difficultyClass}
+                          </div>
+                        ) : null}
+                        {Array.isArray(spell.keywords) &&
+                        spell.keywords.length > 0 ? (
+                          <div className="text-[11px] text-blue-200 flex flex-wrap items-center gap-1">
+                            <span>Palavras-chave:</span>
+                            {spell.keywords.map((keyword, index) => (
+                              <span
+                                key={index}
+                                className="inline-flex items-center"
+                              >
+                                <MagicTermTooltip component="span">
+                                  {keyword.trim()}
+                                </MagicTermTooltip>
+                                {spell.keywords &&
+                                  index < spell.keywords.length - 1 && (
+                                    <span>,</span>
+                                  )}
+                              </span>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ) : (
+              <MobileText className="mt-6">
+                Nenhuma magia encontrada para esta tradição.
+              </MobileText>
             )}
           </MobileSection>
         </div>
@@ -173,4 +198,3 @@ function GenericLorePage() {
 }
 
 export default GenericLorePage;
-*/

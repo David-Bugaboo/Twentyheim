@@ -1,25 +1,68 @@
+import { useEffect, useState } from "react";
 import PageTitle from "../../components/PageTitle";
 import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
 import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
-import EquipmentCard from "../../components/EquipmentCard";
 import WarningBox from "../../components/WarningBox";
 import QuickNavigation from "../../components/QuickNavigation";
-import meleeWeapons from "../weapons and equipments/data/armas-corpo-a-corpo-refactor.json";
-import armor from "../weapons and equipments/data/armaduras-e-escudos-refactor.json";
-import accessories from "../weapons and equipments/data/acessorios-refactor.json";
+import EquipmentDetailCard from "../../components/EquipmentDetailCard";
 import { useNavigate } from "react-router-dom";
+import { fetchEquipmentBySlug } from "../../services/queries.service";
+import type { EquipmentDetailQueryResponse } from "../../services/queries.service";
 
 function EquipmentRulesPage() {
-  // Buscar a adaga real dos dados
-  const daggerData = meleeWeapons.find(item => item.id === "adaga");
-
-  const armorData = armor.find(item => item.id === "armadura-pesada");
-
-  const torchData = accessories.find(item => item.id === "tocha");
-
   const navigate = useNavigate();
+  const [daggerData, setDaggerData] =
+    useState<EquipmentDetailQueryResponse | null>(null);
+  const [armorData, setArmorData] =
+    useState<EquipmentDetailQueryResponse | null>(null);
+  const [torchData, setTorchData] =
+    useState<EquipmentDetailQueryResponse | null>(null);
+  const [tearsData, setTearsData] =
+    useState<EquipmentDetailQueryResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let abort = false;
+    const controller = new AbortController();
+
+    const loadEquipments = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const [dagger, armor, torch, tears] = await Promise.all([
+          fetchEquipmentBySlug("adaga", controller.signal),
+          fetchEquipmentBySlug("armadura-pesada", controller.signal),
+          fetchEquipmentBySlug("tocha", controller.signal),
+          fetchEquipmentBySlug("lagrimas-de-shallaya", controller.signal),
+        ]);
+        if (!abort) {
+          setDaggerData(dagger);
+          setArmorData(armor);
+          setTorchData(torch);
+          setTearsData(tears);
+        }
+      } catch (err) {
+        if (!abort) {
+          console.error("Erro ao carregar equipamentos:", err);
+          setError("Não foi possível carregar os equipamentos.");
+        }
+      } finally {
+        if (!abort) {
+          setLoading(false);
+        }
+      }
+    };
+
+    void loadEquipments();
+
+    return () => {
+      abort = true;
+      controller.abort();
+    };
+  }, []);
 
   const navigationSections = [
     { id: "intro", title: "Equipamentos", level: 0 },
@@ -33,6 +76,8 @@ function EquipmentRulesPage() {
     { id: "exemplo-armadura", title: "Exemplo: Armadura Pesada", level: 1 },
     { id: "acessorios", title: "Acessórios", level: 0 },
     { id: "exemplo-tocha", title: "Exemplo: Tocha", level: 1 },
+    { id: "remedios-e-venenos", title: "Remédios e Venenos", level: 0 },
+    { id: "exemplo-lagrimas", title: "Exemplo: Lágrimas de Shallya", level: 1 },
     { id: "categorias", title: "Categorias de Equipamentos", level: 0 },
   ];
 
@@ -100,19 +145,24 @@ function EquipmentRulesPage() {
             </MobileText>
 
             <div id="espacos-item">
-              <HeaderH1>Espaços de Item</HeaderH1>
+              <HeaderH1>Limite de Carga</HeaderH1>
             </div>
             <MobileText>
-              Figuras têm uma quantidade de espaços de item delimitados em sua
-              ficha. Espaços de item representam quantas coisas uma figura pode
-              carregar e não apenas armas e armaduras. Uma aljava, por exemplo,
-              gasta um espaço de item assim como o arco para quem fornece
-              flechas. É importante lembrar que equipamentos particularmente
-              volumosos como armaduras pesadas e armas de duas mãos ocupam dois
-              espaços de item, tornando importante pensar estratégicamente no
-              que carregar. Por exemplo, um guerreiro carregando uma armadura
-              pesada e uma arma de duas mãos só teria espaço para mais um item,
-              diminuindo suas escolhas estratégicas.
+              Figuras podem carregar uma armadura , duas armas corpo a corpo ou
+              escudos e 2 armas a distâncias. Outras categorias de equipamento
+              não tem limite de quantos podem ser carregados.
+            </MobileText>
+
+            <div id="espacos-de-equipamento">
+              <HeaderH1>Espaços de Equipamento</HeaderH1>
+            </div>
+            <MobileText>
+              Uma figura pode ter um elmo, uma armadura, e uma arma equipada na
+              mão primaria e/ou secundária. Apenas escudos e armas com a
+              característica Leve ou Pistola podem ser equipadas na mão
+              secundária. Qualquer arma, mas não escudos podem ser equipados na
+              mão principal. Armas de duas mãos ocupam ambas as mãos, e armas
+              versáteis podem ser equipados com duas mãos.
             </MobileText>
 
             <div id="armas">
@@ -135,11 +185,9 @@ function EquipmentRulesPage() {
               adiciona ou subtrai de um ataque desferido.
               <br />• <strong>Alcance Máximo:</strong> Para armas de distância.
               A distância máxima que a arma pode atingir.
-              <br />• <strong>Exclusivo:</strong> Se o equipamento é exclusivo
-              de alguma facção específica.
-              <br />• <strong>Propriedades Especiais:</strong> Quaisquer
-              propriedades especiais que a arma tenha, como Leve, Penetração de
-              Armadura (X) e etcetera.
+              <br />• <strong>Palavras-chave:</strong> Quaisquer propriedades
+              especiais que a arma tenha, como Leve, Penetração de Armadura (X)
+              e etcetera.
             </MobileText>
 
             <WarningBox title="Importante" type="warning">
@@ -153,15 +201,10 @@ function EquipmentRulesPage() {
             <div id="exemplo-adaga">
               <HeaderH2>Exemplo: Adaga</HeaderH2>
             </div>
-            <EquipmentCard
-              name={daggerData?.name || null}
-              type="Arma Corpo a Corpo"
-              damageModifier={daggerData?.damageModifier || null}
-              cost={daggerData?.purchaseCost || "primeira grátis/2 coroas"}
-              spaces={daggerData?.slots || "1"}
-              requirements={daggerData?.requirements || null}
-              description={[daggerData?.flavorText || ""]}
-              specialRules={daggerData?.specialRules || []}
+            <EquipmentDetailCard
+              equipment={daggerData ?? ({} as EquipmentDetailQueryResponse)}
+              loading={loading}
+              error={error}
             />
             <div id="armaduras">
               <HeaderH1>Armaduras</HeaderH1>
@@ -184,10 +227,9 @@ function EquipmentRulesPage() {
               a Armadura.
               <br />• <strong>Penalidade de Movimento:</strong> Quanto a
               característica Movimento é penalizada.
-              <br />• <strong>Propriedades Especiais:</strong> Quaisquer
-              propriedades especiais que a arma tenha, como ocupar mais de um
-              espaço de equipamento, fornecer resistência a tipos específicos e
-              etcetera.
+              <br />• <strong>Palavras-chave:</strong> Quaisquer propriedades
+              especiais que a arma tenha, como ocupar mais de um espaço de
+              equipamento, fornecer resistência a tipos específicos e etcetera.
             </MobileText>
 
             <WarningBox title="Importante" type="warning">
@@ -200,17 +242,10 @@ function EquipmentRulesPage() {
             <div id="exemplo-armadura">
               <HeaderH2>Exemplo: Armadura Pesada</HeaderH2>
             </div>
-            <EquipmentCard
-              name={armorData?.name || null}
-              type="Armadura"
-              damageModifier={armorData?.damageModifier || null}
-              cost={armorData?.purchaseCost || "10 coroas"}
-              spaces={armorData?.slots || "1"}
-              armorBonus={armorData?.armorBonus}
-              movePenalty={armorData?.movePenalty}
-              requirements={armorData?.requirements || null}
-              description={[armorData?.flavorText || ""]}
-              specialRules={armorData?.specialRules || []}
+            <EquipmentDetailCard
+              equipment={armorData ?? ({} as EquipmentDetailQueryResponse)}
+              loading={loading}
+              error={error}
             />
 
             <div id="acessorios">
@@ -229,15 +264,31 @@ function EquipmentRulesPage() {
             <div id="exemplo-tocha">
               <HeaderH2>Exemplo: Tocha</HeaderH2>
             </div>
-            <EquipmentCard
-              name={torchData?.name || null}
-              type="Acessório"
-              damageModifier={torchData?.damageModifier || null}
-              cost={torchData?.purchaseCost || "5 coroas"}
-              spaces={torchData?.slots || "1"}
-              requirements={torchData?.requirements || null}
-              description={[torchData?.flavorText || ""]}
-              specialRules={torchData?.specialRules || []}
+            <EquipmentDetailCard
+              equipment={torchData ?? ({} as EquipmentDetailQueryResponse)}
+              loading={loading}
+              error={error}
+            />
+
+            <div id="remedios-e-venenos">
+              <HeaderH1>Remédios e Venenos</HeaderH1>
+            </div>
+            <MobileText>
+              Em Mordheim, onde cada ferimento pode ser fatal e cada cura é
+              preciosa, remédios e venenos são ferramentas essenciais para a
+              sobrevivência. Remédios podem salvar a vida de um guerreiro
+              ferido, enquanto venenos podem garantir que um inimigo não se
+              levante novamente. Cada item tem suas próprias propriedades e
+              efeitos únicos.
+            </MobileText>
+
+            <div id="exemplo-lagrimas">
+              <HeaderH2>Exemplo: Lágrimas de Shallya</HeaderH2>
+            </div>
+            <EquipmentDetailCard
+              equipment={tearsData ?? ({} as EquipmentDetailQueryResponse)}
+              loading={loading}
+              error={error}
             />
 
             <div id="categorias">

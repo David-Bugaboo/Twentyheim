@@ -1,31 +1,38 @@
+// Import the functions you need from the SDKs you need
+
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
+
+// TODO: Add SDKs for Firebase products that you want to use
+
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA9u9f7iZV193eLAmpJQIi43aSkVnAuCUM",
-  authDomain: "heim-warbandbuilder.firebaseapp.com",
-  projectId: "heim-warbandbuilder",
-  storageBucket: "heim-warbandbuilder.firebasestorage.app",
-  messagingSenderId: "910310085071",
-  appId: "1:910310085071:web:2a2a74e62199780ecbc2ba",
-  measurementId: "G-6RFYBV54S3",
+  apiKey: "AIzaSyDsz1Xi9s6MFkIYk_AbV9_A6BtqoI7v60o",
+
+  authDomain: "twentyhammer-webpage.firebaseapp.com",
+
+  projectId: "twentyhammer-webpage",
+
+  storageBucket: "twentyhammer-webpage.firebasestorage.app",
+
+  messagingSenderId: "570931430820",
+
+  appId: "1:570931430820:web:293daa5329c8ff6076ad31",
+
+  measurementId: "G-Q88SZEQD5V",
 };
 
+// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
-getAnalytics(app);
 
 export const db = getFirestore(app);
-export const auth = getAuth(app);
-
-export const googleProvider = new GoogleAuthProvider();
-
-export const loginWithGoogle = () => signInWithPopup(auth, googleProvider);
-
-export const logout = () => signOut(auth);
+// Analytics inicializado mas não usado no momento
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+void getAnalytics(app);

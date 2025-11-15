@@ -1,9 +1,10 @@
 import React from "react";
-import { Dialog, DialogContent, DialogTitle, IconButton, Chip } from "@mui/material";
+import { Dialog, DialogContent, IconButton, Chip } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 import type { EquipmentSummary } from "../types";
 import { formatCrownsValue } from "../utils/helpers";
+import GameText from "../../../../components/GameText";
 
 type EquipmentDialogProps = {
   open: boolean;
@@ -15,7 +16,7 @@ type EquipmentDialogProps = {
 export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({
   open,
   onClose,
-  title,
+  title: _title,
   items,
 }) => {
   return (
@@ -31,28 +32,28 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({
         },
       }}
     >
-      <DialogTitle
+      <DialogContent
+        dividers
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          color: "#86efac",
-          fontFamily: '"Cinzel", serif',
+          borderColor: "rgba(134, 239, 172, 0.2)",
+          color: "#e4e4e7",
+          position: "relative",
+          paddingTop: 3,
         }}
       >
-        Equipamentos Disponíveis – {title}
         <IconButton
           size="small"
           onClick={onClose}
-          sx={{ color: "#86efac" }}
+          sx={{
+            color: "#86efac",
+            position: "absolute",
+            top: 2,
+            right: 8,
+            zIndex: 1,
+          }}
         >
           <CloseIcon fontSize="small" />
         </IconButton>
-      </DialogTitle>
-      <DialogContent
-        dividers
-        sx={{ borderColor: "rgba(134, 239, 172, 0.2)", color: "#e4e4e7" }}
-      >
         {items.length === 0 ? (
           <p className="text-sm text-gray-400">
             Esta figura não possui equipamentos associados.
@@ -109,7 +110,6 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({
                         }}
                       />
                     ) : null}
-                    
                   </div>
                 </div>
                 {item.description ? (
@@ -136,7 +136,9 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({
                           <span className="font-semibold text-green-200">
                             {rule.label ?? "Regra"}:
                           </span>{" "}
-                          <span>{rule.value ?? "-"}</span>
+                          <span>
+                            <GameText>{rule.value ?? "-"}</GameText>
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -150,4 +152,3 @@ export const EquipmentDialog: React.FC<EquipmentDialogProps> = ({
     </Dialog>
   );
 };
-

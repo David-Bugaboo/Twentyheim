@@ -103,9 +103,6 @@ export const InjuriesSection: React.FC<InjuriesSectionProps> = ({
                     <div className="text-sm font-semibold text-red-200">
                       {injuryName}
                     </div>
-                    <div className="text-[11px] text-gray-500">
-                      Slug: {injury.injurySlug ?? "—"}
-                    </div>
                     {injuryDescription ? (
                       <div className="mt-1 text-[11px] text-gray-400">
                         {injuryDescription}

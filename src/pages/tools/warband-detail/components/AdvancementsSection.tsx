@@ -126,7 +126,7 @@ export const AdvancementsSection: React.FC<AdvancementsSectionProps> = ({
       normalizedRole.includes("lider") ||
       normalizedRole.includes("herói") ||
       normalizedRole.includes("heroi");
-    const columns = isLargeTrack ? 15 : Math.min(baseCount, 14);
+    const columns = 30;
     const baseHighlightsLarge = new Set([
       2, 4, 6, 8, 11, 14, 17, 20, 24, 28, 32, 26, 41, 46, 51, 57, 63, 69, 76, 83,
       90,
@@ -138,6 +138,7 @@ export const AdvancementsSection: React.FC<AdvancementsSectionProps> = ({
       base: baseCount,
       boxes,
       columns,
+      mobileColumns: 15,
       highlights,
       maxValue: isLargeTrack ? 90 : baseCount,
     };
@@ -154,13 +155,13 @@ export const AdvancementsSection: React.FC<AdvancementsSectionProps> = ({
       >
         <div className="space-y-4">
           <div className="rounded border border-green-800/40 bg-[#0d1610] p-3">
-            <div className="flex flex-wrap items-start justify-between gap-4">
-              <div>
+            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-between gap-3 sm:gap-4">
+              <div className="flex-1 min-w-0">
                 <div className="text-[11px] font-semibold uppercase tracking-wide text-green-300/80">
                   Experiência Atual
                 </div>
-                <div className="mt-1 flex items-center gap-2">
-                  <div className="flex items-center gap-2">
+                <div className="mt-1 flex flex-wrap items-center gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
                     <button
                       type="button"
                       onClick={() => handleChangeExperience(experiencePreview - 1)}
@@ -192,14 +193,14 @@ export const AdvancementsSection: React.FC<AdvancementsSectionProps> = ({
                       type="button"
                       onClick={handleSaveExperience}
                       disabled={savingExperience || !selectedSoldier}
-                      className="rounded border border-green-600/60 bg-green-900/30 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/50 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="rounded border border-green-600/60 bg-green-900/30 px-2 sm:px-3 py-1 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/50 disabled:cursor-not-allowed disabled:opacity-60 whitespace-nowrap"
                     >
                       {savingExperience ? "Salvando..." : "Salvar"}
                     </button>
                   </div>
                 </div>
               </div>
-              <div className="text-[11px] text-gray-400">
+              <div className="text-[11px] text-gray-400 flex-shrink-0">
                 {startingExperienceValue != null ? (
                   <div>
                     XP Inicial:{" "}
@@ -217,11 +218,20 @@ export const AdvancementsSection: React.FC<AdvancementsSectionProps> = ({
               </div>
             </div>
 
-            <div className="mt-3 space-y-1">
+            <div className="mt-3 space-y-1 overflow-x-auto">
+              <style>{`
+                @media (min-width: 640px) {
+                  .xp-grid-responsive {
+                    grid-template-columns: repeat(${trackerConfig.columns}, minmax(0, 1fr)) !important;
+                    min-width: ${trackerConfig.columns * 16}px !important;
+                  }
+                }
+              `}</style>
               <div
-                className="grid gap-1"
+                className="grid gap-0.5 sm:gap-1 xp-grid-responsive"
                 style={{
-                  gridTemplateColumns: `repeat(${trackerConfig.columns}, minmax(0, 1fr))`,
+                  gridTemplateColumns: `repeat(${trackerConfig.mobileColumns}, minmax(0, 1fr))`,
+                  minWidth: `${trackerConfig.mobileColumns * 16}px`,
                 }}
               >
                 {trackerConfig.boxes.map(value => {
@@ -301,9 +311,6 @@ export const AdvancementsSection: React.FC<AdvancementsSectionProps> = ({
                         <div className="text-sm font-semibold text-green-200">
                           {advancementName}
                         </div>
-                        <div className="text-[11px] text-gray-500">
-                          Slug: {advancement.advancementSlug ?? "—"}
-                        </div>
                         {advancementDescription ? (
                           <div className="mt-1 text-[11px] text-gray-400">
                             {advancementDescription}
@@ -339,6 +346,8 @@ export const AdvancementsSection: React.FC<AdvancementsSectionProps> = ({
         onReroll={handleReroll}
         selecting={actionState?.type === "add" || false}
         rolling={rolling}
+        selectedBaseFigure={selectedBaseFigure}
+        currentAdvancements={relations.advancements}
       />
     </>
   );

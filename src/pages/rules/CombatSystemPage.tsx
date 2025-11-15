@@ -100,11 +100,11 @@ function CombatSystemPage() {
             <MobileText>
               No começo de cada turno, todos os bandos que tenham perdido mais
               de um quarto das suas figuras devem rolar um{" "}
-              <strong>teste de debandada</strong>. É um teste de Vontade CD 12
-              que deve ser feito pelo <strong>Líder</strong>. Se o Líder estiver
-              morto, um <strong>herói à escolha do jogador</strong> pode fazer.
-              Se não tiverem líderes ou heróis vivos, o bando debanda
-              automaticamente.
+              <strong>teste de debandada</strong>. É um teste de Vontade CD +
+              número de figuras reduzidas a 0 de vida, que deve ser feito pelo{" "}
+              <strong>Líder</strong>. Se o Líder estiver morto, um{" "}
+              <strong>herói à escolha do jogador</strong> pode fazer. Se não
+              tiverem líderes ou heróis vivos, o bando debanda automaticamente.
             </MobileText>
             <MobileText>
               Um bando que debanda remove todas as suas figuras da mesa e está
@@ -145,20 +145,31 @@ function CombatSystemPage() {
             </MobileText>
 
             <WarningBox title="Ativação em Grupo" type="info">
-              Um <strong>herói</strong>, <strong>campeão</strong> ou{" "}
-              <strong>soldado</strong> cuja habilidade permita pode declarar uma
-              ativação em grupo. Escolha uma quantidade de soldados que poderiam
-              ser ativados junto à figura que declarou a ativação em grupo:
+              Quando um líder usa sua regra especial Líder para ativar outras
+              figuras junto a si, ele pode declarar uma{" "}
+              <strong>Ativação em Grupo</strong>
               <strong>
                 {" "}
-                todos eles realizam primeiro sua ação de movimento
+                todos as figuras envoilvidas na ativação realizam primeiro sua
+                ação de movimento
               </strong>
               , em qualquer ordem. Em seguida,{" "}
-              <strong>todos realizam uma segunda ação</strong>, também em
+              <strong>todos realizam sua segunda ação</strong>, também em
               qualquer ordem. É extremamente útil para{" "}
               <strong>cercar inimigos</strong> ou flanquear posições
               estratégicas.{" "}
             </WarningBox>
+
+            <div id="trocar-equipamentos">
+              <HeaderH1>Trocar Equipamentos</HeaderH1>
+            </div>
+            <MobileText>
+              No começo da sua ativação, uma figura pode trocar quais itens
+              carregas estão equipados em qualquer uma de suas mãos ou ambas.
+              Esse é o unico momento que uma figura pode trocar seus
+              equipamentos durante a partida, embora nunca possa trocar elmos ou
+              armaduras, visto que só pode carregar um de cada desses itens.
+            </MobileText>
 
             <div id="figuras-nao-controladas">
               <HeaderH1>Ativação de Figuras Não Controladas</HeaderH1>
@@ -267,41 +278,6 @@ function CombatSystemPage() {
               </MobileText>
             </WarningBox>
 
-            <div id="vigilancia">
-              <HeaderH1>Vigilância: a força da elite contra as hordas</HeaderH1>
-            </div>
-            <MobileText>
-              Em Mordheim, alguns bandos têm muitos mais soldados que os outros.
-              Em um sistema em que as ativações são alternadas, isso poderia
-              significar que apenas encher seu bando com soldados baratos
-              poderia vencer qualquer jogo pela força dos números. Contudo,
-              soldados experientes e bem treinados não cairão para esse tipo de
-              tática tão facilmente.
-            </MobileText>
-            <MobileText>
-              Sempre que um jogador tiver ativado todas as suas figuras, para
-              cada figura de outro jogador que ativar, ele ganha um{" "}
-              <strong>Marcador de Vigilância</strong>. Um marcador de vigilância
-              pode ser usado de duas formas:
-              <ul>
-                <li>
-                  Consumir o marcador para fazer um ataque a distância em uma
-                  figura que se mova dentro de 15cm do usuário do marcador.
-                </li>
-                <li>
-                  Consumir o marcador para se mover até 8cm em direção a uma
-                  figura inimiga que se mova dentro de 8cm do usuário do
-                  marcador (pode forçar combate imediatamente depois).
-                </li>
-              </ul>
-            </MobileText>
-            <MobileText>
-              Marcadores de Vigilância não são ganhos em jogos com mais de 2
-              jogadores. Nesse tipo de jogo as interações entre os diferentes
-              jogadores e as possíveis alianças forjadas já podem compensar
-              adequadamente pela diferença de figuras.
-            </MobileText>
-
             <div id="acoes">
               <HeaderH1>As Ações</HeaderH1>
             </div>
@@ -344,9 +320,7 @@ function CombatSystemPage() {
             <div id="tipos-acao">
               <HeaderH2>Tipos de Ação</HeaderH2>
             </div>
-            <MobileText variant="quote" className="mb-4">
-              "Cada ação é uma aposta com a morte. Escolha sabiamente."
-            </MobileText>
+            
 
             <MobileText>
               Durante sua ativação, cada figura pode realizar duas ações.

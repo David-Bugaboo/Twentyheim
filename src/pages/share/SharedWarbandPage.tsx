@@ -50,7 +50,7 @@ function SharedWarbandPage() {
     }
 
     const ref = doc(db, "warband-snapshots", id);
-    const unsub = onSnapshot(ref, (snap) => {
+    const unsub = onSnapshot(ref, snap => {
       if (!snap.exists()) {
         setNotFound(true);
         setLoading(false);
@@ -215,6 +215,128 @@ function SharedWarbandPage() {
     const misc = Number((u.figure?.miscStatsModifiers as any)?.[statKey] || 0);
     let total = base + adv + inj + misc;
 
+    // Aplica modificadores de atributos de equipamentos (do equipamento base e do modificador aplicado)
+    // Ignora quando o equipamento está apenas na mão secundária
+    if (u.figure?.equiped && Array.isArray(u.figure.equiped)) {
+      for (const equip of u.figure.equiped) {
+        // Ignora modificadores de atributos quando o equipamento está apenas na mão secundária
+        const isOnlyOffHand =
+          equip.offHandEquiped === true &&
+          !equip.mainHandEquiped &&
+          !equip.armorEquiped &&
+          !equip.helmetEquiped &&
+          !equip.twoHandedEquiped;
+
+        if (isOnlyOffHand) {
+          continue; // Ignora modificadores de atributos quando o equipamento está apenas na mão secundária
+        }
+
+        // Aplica modificadores de atributos do equipamento base (attributeModifiers)
+        if (equip.attributeModifiers) {
+          const baseAttrMods = equip.attributeModifiers;
+          if (statKey === "move" && typeof baseAttrMods.movement === "number") {
+            total += baseAttrMods.movement;
+          } else if (
+            statKey === "fight" &&
+            typeof baseAttrMods.fight === "number"
+          ) {
+            total += baseAttrMods.fight;
+          } else if (
+            statKey === "shoot" &&
+            typeof baseAttrMods.shoot === "number"
+          ) {
+            total += baseAttrMods.shoot;
+          } else if (
+            statKey === "strength" &&
+            typeof baseAttrMods.strength === "number"
+          ) {
+            total += baseAttrMods.strength;
+          } else if (
+            statKey === "will" &&
+            typeof baseAttrMods.will === "number"
+          ) {
+            total += baseAttrMods.will;
+          } else if (
+            statKey === "health" &&
+            typeof baseAttrMods.health === "number"
+          ) {
+            total += baseAttrMods.health;
+          } else if (
+            statKey === "armour" &&
+            typeof baseAttrMods.armour === "number"
+          ) {
+            total += baseAttrMods.armour;
+          }
+        }
+
+        // Aplica modificadores de atributos do modificador associado ao equipamento (statModifiers)
+        if (equip.modifier?.statModifiers) {
+          const statModifiers = equip.modifier.statModifiers;
+          if (statKey === "move" && typeof statModifiers.move === "number") {
+            total += statModifiers.move;
+          } else if (
+            statKey === "fight" &&
+            typeof statModifiers.fight === "number"
+          ) {
+            total += statModifiers.fight;
+          } else if (
+            statKey === "shoot" &&
+            typeof statModifiers.shoot === "number"
+          ) {
+            total += statModifiers.shoot;
+          } else if (
+            statKey === "strength" &&
+            typeof statModifiers.strength === "number"
+          ) {
+            total += statModifiers.strength;
+          } else if (
+            statKey === "will" &&
+            typeof statModifiers.will === "number"
+          ) {
+            total += statModifiers.will;
+          } else if (
+            statKey === "health" &&
+            typeof statModifiers.health === "number"
+          ) {
+            total += statModifiers.health;
+          }
+        }
+
+        // Aplica modificadores de atributos do modificador associado ao equipamento (attributeModifiers)
+        if (equip.modifier?.attributeModifiers) {
+          const attrModifiers = equip.modifier.attributeModifiers;
+          if (statKey === "move" && typeof attrModifiers.move === "number") {
+            total += attrModifiers.move;
+          } else if (
+            statKey === "fight" &&
+            typeof attrModifiers.fight === "number"
+          ) {
+            total += attrModifiers.fight;
+          } else if (
+            statKey === "shoot" &&
+            typeof attrModifiers.shoot === "number"
+          ) {
+            total += attrModifiers.shoot;
+          } else if (
+            statKey === "strength" &&
+            typeof attrModifiers.strength === "number"
+          ) {
+            total += attrModifiers.strength;
+          } else if (
+            statKey === "will" &&
+            typeof attrModifiers.will === "number"
+          ) {
+            total += attrModifiers.will;
+          } else if (
+            statKey === "health" &&
+            typeof attrModifiers.health === "number"
+          ) {
+            total += attrModifiers.health;
+          }
+        }
+      }
+    }
+
     // Para armadura, adiciona bônus de equipamentos
     if (statKey === "armour" && u.figure?.equiped) {
       let equipmentArmorBonus = 0;
@@ -280,7 +402,7 @@ function SharedWarbandPage() {
           });
         }
       }
-      return out.filter((r) => r.value);
+      return out.filter(r => r.value);
     };
 
     const base = {
@@ -424,7 +546,7 @@ function SharedWarbandPage() {
                     ];
                     return (
                       allMods.find(
-                        (m) => String(m.name).toLowerCase() === modNameLc
+                        m => String(m.name).toLowerCase() === modNameLc
                       ) || e.modifier
                     );
                   };
@@ -546,7 +668,7 @@ function SharedWarbandPage() {
                             name: r?.name || "",
                             description: r?.description || "",
                           }))
-                          .filter((r) => r.name)
+                          .filter(r => r.name)
                       : [];
 
                     // Calcula armadura total incluindo bônus de equipamentos
@@ -704,7 +826,7 @@ function SharedWarbandPage() {
                         <div class="rules-block">
                           ${specialRules
                             .map(
-                              (r) =>
+                              r =>
                                 `<div class="rule-item"><strong>${safe(
                                   r.name
                                 )}:</strong> ${safe(r.description)}</div>`
@@ -788,7 +910,7 @@ function SharedWarbandPage() {
                       const specHtml = specialAbilities.length
                         ? specialAbilities
                             .map(
-                              (a) => `
+                              a => `
                               <div class="equip-card">
                                 <div class="equip-title">${safe(a.name)}</div>
                                 <div>${safe(a.description)}</div>
@@ -865,13 +987,13 @@ function SharedWarbandPage() {
                           <div><strong>Facção:</strong> ${safe(
                             sheet.faction
                           )} &nbsp; | &nbsp; <strong>Warband Rating:</strong> ${safe(
-                    String(warbandRating)
-                  )}</div>
+                            String(warbandRating)
+                          )}</div>
                           <div><strong>Coroas:</strong> ${safe(
                             sheet.gold
                           )} &nbsp; | &nbsp; <strong>Pedra-Bruxa:</strong> ${safe(
-                    sheet.wyrdstone
-                  )}</div>
+                            sheet.wyrdstone
+                          )}</div>
                         </div>
                         ${unitsHtml}
                         <div class="page-break"></div>
@@ -1064,8 +1186,8 @@ function SharedWarbandPage() {
                                 {isLenda
                                   ? u.name
                                   : narrativeName
-                                  ? `${narrativeName}, ${u.name}`
-                                  : u.name}
+                                    ? `${narrativeName}, ${u.name}`
+                                    : u.name}
                               </h3>
                               <button
                                 className="text-white text-2xl transition-transform"
@@ -1132,55 +1254,58 @@ function SharedWarbandPage() {
                                       </div>
                                       {!isAdvCollapsed && (
                                         <div className="mt-3 space-y-3">
-                                          {fig.advancements.map((a: any, idx: number) => {
-                                            const advDesc: Record<
-                                              string,
-                                              string
-                                            > = {
-                                              "Nova Habilidade":
-                                                "Aprenda uma nova habilidade dentre as listas de habilidades da figura. Adicione a habilidade na ficha da figura.",
-                                              "Nova Magia":
-                                                "Esse avanço pode ser ganho no lugar de 'Aprender nova Habilidade' para figuras capazes de conjurar magias ou orações. Adicione uma nova magia da tradição indicada na ficha da figura ou da tradição Magia Menor.",
-                                              "Fortalecer Magia":
-                                                "Esse avanço pode ser ganho no lugar de 'Aprender nova Habilidade' para figuras capazes de conjurar magias ou orações. Escolha uma magia que a figura sabe. Aquela magia tem sua Classe de Dificuldade diminuída em 1.",
-                                              "+1 Ímpeto":
-                                                "Aumente seu atributo de Ímpeto em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
-                                              "+1 Precisão":
-                                                "Aumente seu atributo de Precisão em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
-                                              "+1 Armadura":
-                                                "Aumente seu atributo de Armadura em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
-                                              "+2 Vida":
-                                                "Aumente seu atributo de Vida em +2. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
-                                              "+2 Movimento":
-                                                "Aumente seu atributo de Movimento em +2. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
-                                              "+1 Vontade":
-                                                "Aumente seu atributo de Vontade em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
-                                              "+1 Força":
-                                                "Aumente seu atributo de Força em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
-                                              "O Moleque Tem Talento!":
-                                                "O soldado se torna um herói! Ele continua usando sua mesma ficha e continua sendo o que era antes (um Barba Curta continua sendo um Barba Curta) e mantém seu nível, mas agora pode fazer todas as atividades que um herói pode e ganha experiência e sobe de nível como herói. Escolha duas listas de habilidades entre as que heróis do bando têm acesso e ganhe acesso a elas.",
-                                            };
-                                            const advName =
-                                              typeof a === "string"
-                                                ? a
-                                                : a.name || "";
-                                            const desc = advDesc[advName] || "";
-                                            return (
-                                              <div
-                                                key={idx}
-                                                className="relative bg-[#2a2a2a] rounded p-3 border border-gray-700"
-                                              >
-                                                <div className="text-white font-semibold">
-                                                  {advName}
-                                                </div>
-                                                {desc && (
-                                                  <div className="text-sm text-gray-300 mt-1">
-                                                    {desc}
+                                          {fig.advancements.map(
+                                            (a: any, idx: number) => {
+                                              const advDesc: Record<
+                                                string,
+                                                string
+                                              > = {
+                                                "Nova Habilidade":
+                                                  "Aprenda uma nova habilidade dentre as listas de habilidades da figura. Adicione a habilidade na ficha da figura.",
+                                                "Nova Magia":
+                                                  "Esse avanço pode ser ganho no lugar de 'Aprender nova Habilidade' para figuras capazes de conjurar magias ou orações. Adicione uma nova magia da tradição indicada na ficha da figura ou da tradição Magia Menor.",
+                                                "Fortalecer Magia":
+                                                  "Esse avanço pode ser ganho no lugar de 'Aprender nova Habilidade' para figuras capazes de conjurar magias ou orações. Escolha uma magia que a figura sabe. Aquela magia tem sua Classe de Dificuldade diminuída em 1.",
+                                                "+1 Ímpeto":
+                                                  "Aumente seu atributo de Ímpeto em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
+                                                "+1 Precisão":
+                                                  "Aumente seu atributo de Precisão em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
+                                                "+1 Armadura":
+                                                  "Aumente seu atributo de Armadura em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
+                                                "+2 Vida":
+                                                  "Aumente seu atributo de Vida em +2. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
+                                                "+2 Movimento":
+                                                  "Aumente seu atributo de Movimento em +2. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
+                                                "+1 Vontade":
+                                                  "Aumente seu atributo de Vontade em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
+                                                "+1 Força":
+                                                  "Aumente seu atributo de Força em +1. Note que cada raça tem limites de aumento de atributo que devem ser respeitados.",
+                                                "O Moleque Tem Talento!":
+                                                  "O soldado se torna um herói! Ele continua usando sua mesma ficha e continua sendo o que era antes (um Barba Curta continua sendo um Barba Curta) e mantém seu nível, mas agora pode fazer todas as atividades que um herói pode e ganha experiência e sobe de nível como herói. Escolha duas listas de habilidades entre as que heróis do bando têm acesso e ganhe acesso a elas.",
+                                              };
+                                              const advName =
+                                                typeof a === "string"
+                                                  ? a
+                                                  : a.name || "";
+                                              const desc =
+                                                advDesc[advName] || "";
+                                              return (
+                                                <div
+                                                  key={idx}
+                                                  className="relative bg-[#2a2a2a] rounded p-3 border border-gray-700"
+                                                >
+                                                  <div className="text-white font-semibold">
+                                                    {advName}
                                                   </div>
-                                                )}
-                                              </div>
-                                            );
-                                          })}
+                                                  {desc && (
+                                                    <div className="text-sm text-gray-300 mt-1">
+                                                      {desc}
+                                                    </div>
+                                                  )}
+                                                </div>
+                                              );
+                                            }
+                                          )}
                                         </div>
                                       )}
                                     </div>
@@ -1384,23 +1509,25 @@ function SharedWarbandPage() {
                                         HABILIDADES
                                       </h4>
                                       <div className="space-y-3">
-                                        {fig.skills.map((skill: any, idx: number) => {
-                                          const skillObj: any =
-                                            typeof skill === "string"
-                                              ? { name: skill }
-                                              : skill;
-                                          return (
-                                            <div key={idx}>
-                                              <SkillCard
-                                                name={skillObj.name || ""}
-                                                description={
-                                                  skillObj.description || ""
-                                                }
-                                                footer={undefined}
-                                              />
-                                            </div>
-                                          );
-                                        })}
+                                        {fig.skills.map(
+                                          (skill: any, idx: number) => {
+                                            const skillObj: any =
+                                              typeof skill === "string"
+                                                ? { name: skill }
+                                                : skill;
+                                            return (
+                                              <div key={idx}>
+                                                <SkillCard
+                                                  name={skillObj.name || ""}
+                                                  description={
+                                                    skillObj.description || ""
+                                                  }
+                                                  footer={undefined}
+                                                />
+                                              </div>
+                                            );
+                                          }
+                                        )}
                                       </div>
                                     </div>
                                   )}
@@ -1418,29 +1545,31 @@ function SharedWarbandPage() {
                                         MAGIAS
                                       </h4>
                                       <div className="space-y-3">
-                                        {fig.spells.map((spell: any, idx: number) => {
-                                          const spellObj: any =
-                                            typeof spell === "string"
-                                              ? { name: spell }
-                                              : spell;
-                                          return (
-                                            <div key={idx}>
-                                              <LoreSpellCard
-                                                name={spellObj.name || ""}
-                                                castingNumber={
-                                                  spellObj.castingNumber ||
-                                                  spellObj.cn ||
-                                                  0
-                                                }
-                                                keywords={
-                                                  spellObj.keywords || []
-                                                }
-                                                effect={spellObj.effect || ""}
-                                                footer={undefined}
-                                              />
-                                            </div>
-                                          );
-                                        })}
+                                        {fig.spells.map(
+                                          (spell: any, idx: number) => {
+                                            const spellObj: any =
+                                              typeof spell === "string"
+                                                ? { name: spell }
+                                                : spell;
+                                            return (
+                                              <div key={idx}>
+                                                <LoreSpellCard
+                                                  name={spellObj.name || ""}
+                                                  castingNumber={
+                                                    spellObj.castingNumber ||
+                                                    spellObj.cn ||
+                                                    0
+                                                  }
+                                                  keywords={
+                                                    spellObj.keywords || []
+                                                  }
+                                                  effect={spellObj.effect || ""}
+                                                  footer={undefined}
+                                                />
+                                              </div>
+                                            );
+                                          }
+                                        )}
                                       </div>
                                     </div>
                                   )}
@@ -1537,35 +1666,37 @@ function SharedWarbandPage() {
                                       </h4>
                                       <div className="bg-[#2a2a2a] p-4 rounded">
                                         <div className="space-y-2">
-                                          {fig.equiped.map((eq: any, idx: number) => {
-                                            const eqObj =
-                                              typeof eq === "string"
-                                                ? { name: eq }
-                                                : eq;
-                                            const eqName = eqObj?.name || "";
-                                            const eqMod =
-                                              typeof eq === "object" &&
-                                              eq?.modifier?.name
-                                                ? ` ${eq.modifier.name}`
-                                                : "";
-                                            return (
-                                              <div
-                                                key={idx}
-                                                className="flex items-center justify-between py-2 border-b border-gray-600 last:border-b-0"
-                                              >
-                                                <button
-                                                  type="button"
-                                                  onClick={() =>
-                                                    openPreview(eqObj)
-                                                  }
-                                                  className="text-white hover:text-green-300 transition-colors cursor-pointer"
+                                          {fig.equiped.map(
+                                            (eq: any, idx: number) => {
+                                              const eqObj =
+                                                typeof eq === "string"
+                                                  ? { name: eq }
+                                                  : eq;
+                                              const eqName = eqObj?.name || "";
+                                              const eqMod =
+                                                typeof eq === "object" &&
+                                                eq?.modifier?.name
+                                                  ? ` ${eq.modifier.name}`
+                                                  : "";
+                                              return (
+                                                <div
+                                                  key={idx}
+                                                  className="flex items-center justify-between py-2 border-b border-gray-600 last:border-b-0"
                                                 >
-                                                  {eqName}
-                                                  {eqMod}
-                                                </button>
-                                              </div>
-                                            );
-                                          })}
+                                                  <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                      openPreview(eqObj)
+                                                    }
+                                                    className="text-white hover:text-green-300 transition-colors cursor-pointer"
+                                                  >
+                                                    {eqName}
+                                                    {eqMod}
+                                                  </button>
+                                                </div>
+                                              );
+                                            }
+                                          )}
                                         </div>
                                       </div>
                                     </div>

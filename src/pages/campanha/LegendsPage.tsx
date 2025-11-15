@@ -1,47 +1,99 @@
+import { useEffect, useMemo, useState } from "react";
+import { fetchBaseFigures } from "../../services/queries.service";
+import type { BaseFigure } from "../../types/base-figure.entity";
 import PageTitle from "../../components/PageTitle";
 import MobileText from "../../components/MobileText";
 import MobileSection from "../../components/MobileSection";
 import HeaderH1 from "../../components/HeaderH1";
 import HeaderH2 from "../../components/HeaderH2";
 import QuickNavigation from "../../components/QuickNavigation";
-import GenericTable from "../../components/GenericTable";
-import UnitCard, { type NaturalAttack as UnitNaturalAttack } from "../../components/UnitCard";
-import legendsData from "./data/lendas.data.json";
+import { StatRow } from "../tools/warband-detail/components/CommonComponents";
+import { FIGURE_STATS } from "../tools/warband-detail/types";
+import {
+  parseSpecialRules,
+  getSkillListLabel,
+  getSpellLoreLabel,
+  formatCrownsValue,
+} from "../tools/warband-detail/utils/helpers";
+import { getSupernaturalAccess } from "../tools/warband-detail/utils/supernatural-helpers";
+import GameText from "../../components/GameText";
 
 function LegendsPage() {
-  const navigationSections = [
-    { id: "intro", title: "Dramatis Personae", level: 0 },
-    { id: "procurando-lendas", title: "Procurando Lendas", level: 0 },
-    { id: "taxa-contratacao", title: "Taxa de Contratação", level: 0 },
-    {
-      id: "experiencia-ferimentos",
-      title: "Experiência, Ferimentos e Equipamento",
-      level: 0,
-    },
-    { id: "lista-lendas", title: "Lista de Lendas", level: 0 },
-    ...legendsData.map((legend) => ({
-      id: legend.id,
-      title: legend.name,
-      level: 1,
-    })),
-  ];
+  const [legends, setLegends] = useState<BaseFigure[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [expandedLegends, setExpandedLegends] = useState<
+    Record<string, boolean>
+  >({});
 
-  // Criar tabela de lendas
-  const legendsTable = legendsData.map((legend) => ({
-    Nome: legend.name,
-    Custo: legend.stats.cost,
-    Manutenção: legend.stats.upkeep,
-    Qualidade: legend.qualidade,
-    Disponibilidade: Array.isArray(legend.availability)
-      ? legend.availability.join(", ")
-      : legend.availability,
-  }));
+  useEffect(() => {
+    let abort = false;
+    const controller = new AbortController();
+
+    const loadLegends = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await fetchBaseFigures(
+          { role: "LENDA" },
+          controller.signal
+        );
+        if (!abort) {
+          setLegends(data);
+        }
+      } catch (err) {
+        if (!abort) {
+          console.error("Erro ao carregar lendas:", err);
+          setError("Não foi possível carregar as lendas.");
+        }
+      } finally {
+        if (!abort) {
+          setLoading(false);
+        }
+      }
+    };
+
+    void loadLegends();
+
+    return () => {
+      abort = true;
+      controller.abort();
+    };
+  }, []);
+
+  const toggleLegend = (legendId: string) => {
+    setExpandedLegends(prev => ({
+      ...prev,
+      [legendId]: !prev[legendId],
+    }));
+  };
+
+  const navigationSections = useMemo(() => {
+    const baseSections = [
+      { id: "intro", title: "Dramatis Personae", level: 0 },
+      { id: "procurando-lendas", title: "Procurando Lendas", level: 0 },
+      { id: "taxa-contratacao", title: "Taxa de Contratação", level: 0 },
+      {
+        id: "experiencia-ferimentos",
+        title: "Experiência, Ferimentos e Equipamento",
+        level: 0,
+      },
+    ];
+    return [
+      ...baseSections,
+      ...legends.map(legend => ({
+        id: legend.id || legend.slug,
+        title: legend.name,
+        level: 1,
+      })),
+    ];
+  }, [legends]);
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#121212] dark group/design-root overflow-x-hidden">
       <div className="py-4">
         <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-48">
-          <QuickNavigation sections={navigationSections} />
+          <QuickNavigation sections={navigationSections} loading={loading} />
           <MobileSection>
             <div id="intro">
               <PageTitle>Lendas</PageTitle>
@@ -94,36 +146,52 @@ function LegendsPage() {
               dado tiver um resultado maior que 16, o Herói encontrou a lenda.
             </MobileText>
 
-            <GenericTable
-              data={[
-                {
-                  Passo: "1",
-                  Ação: "Decida qual lenda procurar",
-                  Detalhes: "Escolha uma lenda específica da lista",
-                },
-                {
-                  Passo: "2",
-                  Ação: "Envie Heróis para procurar",
-                  Detalhes: "Apenas Heróis podem procurar (não feridos)",
-                },
-                {
-                  Passo: "3",
-                  Ação: "Role 1D6 por buscador",
-                  Detalhes: "Cada Herói rola um dado",
-                },
-                {
-                  Passo: "4",
-                  Ação: "Verifique sucesso",
-                  Detalhes: "Se rolar abaixo da Iniciativa = encontrou",
-                },
-                {
-                  Passo: "5",
-                  Ação: "Pague taxa de contratação",
-                  Detalhes: "Se encontrou e pode pagar",
-                },
-              ]}
-              scrollable={false}
-            />
+            <div className="mt-4 space-y-3">
+              <div className="rounded border border-green-800/30 bg-[#0f1a14] p-4">
+                <ol className="space-y-3 list-decimal list-inside text-sm text-gray-200">
+                  <li>
+                    <strong className="text-green-300">
+                      Decida qual lenda procurar:
+                    </strong>{" "}
+                    <span className="text-gray-300">
+                      Escolha uma lenda específica da lista
+                    </span>
+                  </li>
+                  <li>
+                    <strong className="text-green-300">
+                      Envie Heróis para procurar:
+                    </strong>{" "}
+                    <span className="text-gray-300">
+                      Apenas Heróis podem procurar (não feridos)
+                    </span>
+                  </li>
+                  <li>
+                    <strong className="text-green-300">
+                      Role 1D20 por buscador:
+                    </strong>{" "}
+                    <span className="text-gray-300">
+                      Cada Herói rola um dado e deve tirar mais que 16.
+                    </span>
+                  </li>
+                  <li>
+                    <strong className="text-green-300">
+                      Verifique sucesso:
+                    </strong>{" "}
+                    <span className="text-gray-300">
+                      Se rolar abaixo da Iniciativa = encontrou
+                    </span>
+                  </li>
+                  <li>
+                    <strong className="text-green-300">
+                      Pague taxa de contratação:
+                    </strong>{" "}
+                    <span className="text-gray-300">
+                      Se encontrou e pode pagar
+                    </span>
+                  </li>
+                </ol>
+              </div>
+            </div>
 
             <div id="taxa-contratacao">
               <HeaderH1>Taxa de Contratação</HeaderH1>
@@ -163,52 +231,312 @@ function LegendsPage() {
               sempre que uma lenda for contratada.
             </MobileText>
 
-            <div id="lista-lendas">
-              <HeaderH1>Lista de Lendas</HeaderH1>
-            </div>
+            {loading ? (
+              <MobileText>Carregando lendas...</MobileText>
+            ) : error ? (
+              <MobileText className="text-red-300">{error}</MobileText>
+            ) : legends.length === 0 ? (
+              <MobileText>Nenhuma lenda encontrada.</MobileText>
+            ) : (
+              <>
+                <HeaderH2>Detalhes das Lendas</HeaderH2>
 
-            <GenericTable data={legendsTable} scrollable={true} />
+                <div className="space-y-3">
+                  {legends.map(legend => {
+                    const isExpanded = expandedLegends[legend.id] ?? false;
+                    const supernaturalAccess = getSupernaturalAccess(
+                      legend,
+                      []
+                    );
+                    const naturalAttacks = Array.isArray(legend.naturalAttacks)
+                      ? (legend.naturalAttacks ?? [])
+                      : [];
+                    const figureId = legend.id || legend.slug;
 
-            <HeaderH2>Detalhes das Lendas</HeaderH2>
+                    return (
+                      <div
+                        key={legend.id}
+                        id={figureId}
+                        className="rounded border border-green-800/40 bg-[#101010] px-5 py-3 text-sm text-gray-200"
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex-1">
+                            <div className="font-semibold text-green-200">
+                              {legend.name}
+                            </div>
+                            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-gray-400">
+                              <span className="uppercase text-green-400">
+                                {legend.role}
+                              </span>
+                              {" · "}
+                              <span>
+                                {formatCrownsValue(legend.cost)}
+                                {legend.quality != null &&
+                                Number(legend.quality) > 0 ? (
+                                  <span className="ml-2 text-green-300">
+                                    · Qualidade: {String(legend.quality)}
+                                  </span>
+                                ) : null}
+                              </span>
+                              {legend.upkeep != null &&
+                              Number(legend.upkeep) !== 0 ? (
+                                <span className="text-amber-200">
+                                  Manutenção: {formatCrownsValue(legend.upkeep)}
+                                </span>
+                              ) : null}
+                              {(supernaturalAccess.mutations ||
+                                supernaturalAccess.sacredMarks ||
+                                supernaturalAccess.blessings) && (
+                                <div className="flex flex-wrap gap-1">
+                                  {supernaturalAccess.mutations ? (
+                                    <span
+                                      className="rounded-full border border-purple-500/40 bg-purple-900/30 px-2 py-1 text-[10px] text-purple-200"
+                                      style={{
+                                        backgroundColor:
+                                          "rgba(147, 51, 234, 0.2)",
+                                        borderColor: "rgba(147, 51, 234, 0.4)",
+                                        color: "rgba(196, 181, 253, 1)",
+                                      }}
+                                    >
+                                      Mutação
+                                    </span>
+                                  ) : null}
+                                  {supernaturalAccess.sacredMarks ? (
+                                    <span
+                                      className="rounded-full border border-blue-500/40 bg-blue-900/30 px-2 py-1 text-[10px] text-blue-200"
+                                      style={{
+                                        backgroundColor:
+                                          "rgba(59, 130, 246, 0.2)",
+                                        borderColor: "rgba(59, 130, 246, 0.4)",
+                                        color: "rgba(147, 197, 253, 1)",
+                                      }}
+                                    >
+                                      Marca Sagrada
+                                    </span>
+                                  ) : null}
+                                  {supernaturalAccess.blessings ? (
+                                    <span
+                                      className="rounded-full border border-lime-500/40 bg-lime-900/30 px-2 py-1 text-[10px] text-lime-200"
+                                      style={{
+                                        backgroundColor:
+                                          "rgba(34, 197, 94, 0.2)",
+                                        borderColor: "rgba(34, 197, 94, 0.4)",
+                                        color: "rgba(134, 239, 172, 1)",
+                                      }}
+                                    >
+                                      Benção de Nurgle
+                                    </span>
+                                  ) : null}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => toggleLegend(legend.id)}
+                            className="rounded border border-green-700/40 bg-green-900/20 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-500/60 hover:bg-green-900/40"
+                            aria-expanded={isExpanded}
+                          >
+                            {isExpanded ? "Recolher" : "Expandir"}
+                          </button>
+                        </div>
 
-            {legendsData.map((legend) => {
-              const naturalAttacks = Array.isArray(
-                (legend as { naturalAttacks?: UnitNaturalAttack[] }).naturalAttacks
-              )
-                ? (legend as { naturalAttacks?: UnitNaturalAttack[] }).naturalAttacks
-                : undefined;
+                        {isExpanded ? (
+                          <div className="mt-3 space-y-3 text-xs text-gray-400">
+                            {/* Lore */}
+                            {legend.lore ? (
+                              <div className="rounded border border-blue-800/30 bg-[#0f141a] p-3 text-blue-100">
+                                <p className="mb-2 font-semibold uppercase tracking-wide text-blue-300">
+                                  Lore
+                                </p>
+                                <div className="whitespace-pre-wrap text-blue-100">
+                                  <GameText>{legend.lore}</GameText>
+                                </div>
+                              </div>
+                            ) : null}
 
-              return (
-              <div key={legend.id} id={legend.id}>
-                <UnitCard
-                  id={legend.id}
-                  name={legend.name}
-                  role={legend.role}
-                  stats={legend.stats}
-                  lore={legend.lore}
-                  availability={legend.availability}
-                  qualidade={
-                    legend.qualidade ? String(legend.qualidade) : undefined
-                  }
-                  spellAffinity={
-                    "spellAffinity" in legend
-                      ? (legend as any).spellAffinity
-                      : undefined
-                  }
-                  abilities={legend.abilities}
-                  naturalAttacks={naturalAttacks}
-                />
-              </div>
-            );
-            })}
+                            {/* Stats */}
+                            <div className="grid grid-cols-2 gap-2">
+                              {FIGURE_STATS.filter(
+                                stat => stat.key !== "quality"
+                              ).map(stat => {
+                                const rawValue = (
+                                  legend as unknown as Record<string, unknown>
+                                )[stat.key];
+                                const displayValue =
+                                  rawValue === undefined || rawValue === null
+                                    ? "-"
+                                    : String(rawValue);
+                                return (
+                                  <StatRow
+                                    key={`${legend.id}-${stat.key}`}
+                                    label={stat.label}
+                                    value={displayValue}
+                                  />
+                                );
+                              })}
+                            </div>
 
-            <MobileText
-              variant="quote"
-              className="text-center text-lg leading-relaxed mt-8 italic"
-            >
-              "Em Mordheim, até mesmo as lendas têm um preço, e aqueles que
-              podem pagá-lo descobrem que o poder vem com um custo terrível."
-            </MobileText>
+                            {/* Special Rules */}
+                            {legend.specialRules &&
+                            parseSpecialRules(legend.specialRules).length >
+                              0 ? (
+                              <div className="rounded border border-green-800/30 bg-[#0f1a14] p-3 text-green-100">
+                                <p className="mb-2 font-semibold uppercase tracking-wide text-green-300">
+                                  Regras Especiais
+                                </p>
+                                <div className="space-y-2">
+                                  {parseSpecialRules(legend.specialRules).map(
+                                    (entry, index) => (
+                                      <div
+                                        key={`${legend.id}-rule-${index}`}
+                                        className="rounded bg-green-900/20 px-3 py-2 text-[11px] text-green-100"
+                                      >
+                                        <span className="block font-semibold text-green-200">
+                                          {entry.label}
+                                        </span>
+                                        <div className="mt-1 block whitespace-pre-wrap text-green-100">
+                                          <GameText>{entry.value}</GameText>
+                                        </div>
+                                      </div>
+                                    )
+                                  )}
+                                </div>
+                              </div>
+                            ) : null}
+
+                            {/* Natural Attacks */}
+                            {naturalAttacks.length > 0 ? (
+                              <div className="rounded border border-amber-800/30 bg-[#181207] p-3 text-amber-100">
+                                <p className="mb-2 font-semibold uppercase tracking-wide text-amber-300">
+                                  Ataques Naturais
+                                </p>
+                                <div className="space-y-3">
+                                  {naturalAttacks.map((attack, index) => (
+                                    <div
+                                      key={`${legend.id}-natural-${index}`}
+                                      className="rounded border border-amber-700/30 bg-[#1f1406] px-3 py-2 text-xs text-amber-100"
+                                    >
+                                      <div className="flex flex-wrap items-center justify-between gap-2">
+                                        <span className="font-semibold text-amber-200">
+                                          {attack.name}
+                                        </span>
+                                        <span className="text-[11px] uppercase text-amber-300">
+                                          {attack.type}
+                                        </span>
+                                      </div>
+                                      <div className="mt-1 flex flex-wrap gap-3 text-[11px] text-amber-200">
+                                        <span>
+                                          <strong>Dano:</strong>{" "}
+                                          {attack.damage ?? "-"}
+                                        </span>
+                                        {attack.range ? (
+                                          <span>
+                                            <strong>Alcance:</strong>{" "}
+                                            {attack.range}
+                                          </span>
+                                        ) : null}
+                                      </div>
+                                      {Array.isArray(attack.specialRules) &&
+                                      attack.specialRules.length > 0 ? (
+                                        <div className="mt-2 space-y-1">
+                                          {attack.specialRules.map(
+                                            (rule, ruleIndex) => (
+                                              <div
+                                                key={`${legend.id}-natural-${index}-rule-${ruleIndex}`}
+                                                className="text-[11px] text-amber-100"
+                                              >
+                                                <span className="font-semibold text-amber-200">
+                                                  {rule.label || rule.title}:
+                                                </span>{" "}
+                                                {rule.value ? (
+                                                  <GameText
+                                                    component="span"
+                                                    className="text-amber-100"
+                                                  >
+                                                    {rule.value}
+                                                  </GameText>
+                                                ) : null}
+                                              </div>
+                                            )
+                                          )}
+                                        </div>
+                                      ) : null}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            ) : null}
+
+                            {/* Skill Lists */}
+                            {(() => {
+                              const skillLists = legend.skillLists ?? [];
+                              const hasSkillLists =
+                                Array.isArray(skillLists) &&
+                                skillLists.length > 0;
+
+                              if (!hasSkillLists) return null;
+
+                              return (
+                                <div className="space-y-2 text-[11px]">
+                                  <p className="mb-1 uppercase font-semibold tracking-wide text-green-300">
+                                    Listas de Habilidades
+                                  </p>
+                                  <div className="flex flex-wrap items-center gap-2">
+                                    {skillLists.map((entry, index) => {
+                                      const label = getSkillListLabel(entry);
+                                      return (
+                                        <span
+                                          key={`${legend.id}-skill-list-${index}`}
+                                          className="rounded-full border border-green-600/40 bg-green-900/30 px-2 py-1 text-xs text-green-200"
+                                        >
+                                          {label}
+                                        </span>
+                                      );
+                                    })}
+                                  </div>
+                                </div>
+                              );
+                            })()}
+
+                            {/* Spell Lores */}
+                            {(() => {
+                              const spellLores = legend.spellLores ?? [];
+                              const hasSpellLores =
+                                Array.isArray(spellLores) &&
+                                spellLores.length > 0;
+
+                              if (!hasSpellLores) return null;
+
+                              return (
+                                <div className="space-y-2 text-[11px]">
+                                  <p className="mb-1 uppercase font-semibold tracking-wide text-green-300">
+                                    Tradições Mágicas
+                                  </p>
+                                  <div className="flex flex-wrap items-center gap-2">
+                                    {spellLores.map((entry, index) => {
+                                      const label = getSpellLoreLabel(entry);
+                                      return (
+                                        <span
+                                          key={`${legend.id}-spell-lore-${index}`}
+                                          className="rounded-full border border-green-600/40 bg-green-900/30 px-2 py-1 text-xs text-green-200"
+                                        >
+                                          {label}
+                                        </span>
+                                      );
+                                    })}
+                                  </div>
+                                </div>
+                              );
+                            })()}
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </MobileSection>
         </div>
       </div>

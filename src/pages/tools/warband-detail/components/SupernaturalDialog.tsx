@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-} from "@mui/material";
+import { Dialog, DialogContent, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { Spinner } from "./CommonComponents";
 import { formatCrownsValue } from "../utils/helpers";
@@ -28,7 +23,7 @@ type SupernaturalDialogProps = {
 export const SupernaturalDialog: React.FC<SupernaturalDialogProps> = ({
   open,
   onClose,
-  title,
+  title: _title,
   loading,
   error,
   abilities,
@@ -52,37 +47,35 @@ export const SupernaturalDialog: React.FC<SupernaturalDialogProps> = ({
         },
       }}
     >
-      <DialogTitle
+      <DialogContent
+        dividers
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          color: "#86efac",
-          fontFamily: '"Cinzel", serif',
+          borderColor: "rgba(134, 239, 172, 0.2)",
+          color: "#e4e4e7",
+          position: "relative",
+          paddingTop: 3,
         }}
       >
-        {title}
         <IconButton
           size="small"
           onClick={onClose}
-          sx={{ color: "#86efac" }}
+          sx={{
+            color: "#86efac",
+            position: "absolute",
+            top: 2,
+            right: 8,
+            zIndex: 1,
+          }}
         >
           <CloseIcon fontSize="small" />
         </IconButton>
-      </DialogTitle>
-      <DialogContent
-        dividers
-        sx={{ borderColor: "rgba(134, 239, 172, 0.2)", color: "#e4e4e7" }}
-      >
         {loading ? (
           <div className="flex justify-center py-8">
             <Spinner label="Carregando opções..." />
           </div>
         ) : (
           <div className="space-y-3">
-            {error ? (
-              <div className="text-xs text-red-300">{error}</div>
-            ) : null}
+            {error ? <div className="text-xs text-red-300">{error}</div> : null}
 
             {!error && abilities.length === 0 ? (
               <div className="text-xs text-gray-400">
@@ -100,9 +93,6 @@ export const SupernaturalDialog: React.FC<SupernaturalDialogProps> = ({
                     <h3 className="text-base font-semibold text-green-200">
                       {ability.name}
                     </h3>
-                    <span className="text-xs uppercase text-green-400">
-                      {ability.slug}
-                    </span>
                   </div>
                   {formatCost(ability.cost) ? (
                     <div className="text-xs text-gray-300">
@@ -127,5 +117,3 @@ export const SupernaturalDialog: React.FC<SupernaturalDialogProps> = ({
     </Dialog>
   );
 };
-
-

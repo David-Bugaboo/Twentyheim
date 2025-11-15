@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   AppBar,
   Toolbar,
@@ -24,6 +24,16 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import logoImage from "../assets/20heim.png";
 import { useAuth } from "../context/AuthContext";
 import AuthModal, { type AuthMode } from "./AuthModal";
+import {
+  fetchFactions,
+  type FactionSummary,
+} from "../services/warbands.service";
+import {
+  fetchSpellLores,
+  fetchSkillLists,
+  type SpellLoreQueryResponse,
+  type SkillListQueryResponse,
+} from "../services/queries.service";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -38,226 +48,213 @@ const Navbar: React.FC = () => {
   const { currentUser, loading: authLoading, logout } = useAuth();
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState<AuthMode>("login");
+  const [factions, setFactions] = useState<FactionSummary[]>([]);
+  const [spellLores, setSpellLores] = useState<SpellLoreQueryResponse[]>([]);
+  const [skillLists, setSkillLists] = useState<SkillListQueryResponse[]>([]);
+  const [loadingNavData, setLoadingNavData] = useState(true);
 
   const shouldShowAdmin = currentUser?.role === "ADMIN";
 
-  const navItems = [
-    { label: "Início", path: "/" },
-    {
-      label: "Regras",
-      path: "/rules",
-      children: [
-        { label: "Figuras e Atributos", path: "/rules/figures-and-attributes" },
-        { label: "Testes de Atributos", path: "/rules/attribute-tests" },
-        { label: "Criação de Bando", path: "/rules/warband-creation" },
-        { label: "Regras de Equipamentos", path: "/rules/equipment-rules" },
-        { label: "Preparação do Jogo", path: "/rules/game-setup" },
-        { label: "Sistema de Combate", path: "/rules/combat-system" },
-        { label: "Fim do Jogo", path: "/rules/game-end" },
-        { label: "Acontecimentos", path: "/rules/happenings" },
-      ],
-    },
-    {
-      label: "Facções",
-      path: "/warbands",
-      children: [
-        { label: "Todos as Facções", path: "/warbands" },
-        { label: "Mercenários", path: "/warbands/mercenaries" },
-        { label: "Irmãs de Sigmar", path: "/warbands/sisters-of-sigmar" },
-        { label: "Skaven", path: "/warbands/skaven" },
-        {
-          label: "Saqueadores Homem-Fera",
-          path: "/warbands/beastman-raiders",
-        },
-        {
-          label: "Caçadores de Tesouro Anões",
-          path: "/warbands/dwarf-treasure-hunters",
-        },
-        {
-          label: "Culto dos Possuídos",
-          path: "/warbands/cult-of-the-possessed",
-        },
-        { label: "Cortes Vampíricas", path: "/warbands/vampire-courts" },
-        { label: "Caçadores de Bruxas", path: "/warbands/witch-hunters" },
-        { label: "Reptilianos", path: "/warbands/lizardmen" },
-        { label: "Horda Orc", path: "/warbands/orc-mob" },
-        { label: "Goblins", path: "/warbands/goblins" },
-        { label: "Filhos de Hashut", path: "/warbands/sons-of-hashut" },
-        { label: "Circo do Caos", path: "/warbands/carnival-of-chaos" },
-      ],
-    },
-    {
-      label: "Combate",
-      path: "/rules/combat-system",
-      children: [
-        { label: "Sistema de Combate", path: "/rules/combat-system" },
-        { label: "Ações de Movimento", path: "/rules/movement-actions" },
-        { label: "Reações", path: "/rules/reactions" },
-        { label: "Ações de Combate", path: "/rules/combat-actions" },
-        { label: "Ações de Ataque a Distância", path: "/rules/ranged-actions" },
-        { label: "Ações de Conjuração", path: "/rules/spellcasting-actions" },
-        { label: "Ações de Habilidade", path: "/rules/skill-actions" },
-        { label: "Ações de Pedra-bruxa", path: "/rules/wyrdstone-actions" },
-        { label: "Outras Ações", path: "/rules/other-actions" },
-        { label: "Áreas de Efeito", path: "/rules/area-of-effect" },
-        { label: "Dano e Condições", path: "/rules/negative-conditions" },
-      ],
-    },
-    {
-      label: "Magias",
-      path: "/magic",
-      children: [
-        { label: "Regras de Magia", path: "/magic" },
-        { label: "Áreas de Efeito", path: "/rules/area-of-effect" },
-        { label: "Magia Daemonica", path: "/magic/magic-of-the-dark-gods" },
-        {
-          label: "Tradição do Rato Chifrudo",
-          path: "/magic/lore-of-horned-rat",
-        },
-        { label: "Tradição da Necromancia", path: "/magic/lore-of-necromancy" },
-        { label: "Magia Druchii", path: "/magic/druchii-magic" },
-        { label: "Rituais de Nurgle", path: "/magic/rituals-of-nurgle" },
-        { label: "Magia dos Antigos", path: "/magic/magic-of-the-old-ones" },
-        { label: "Rituais do Caos", path: "/magic/rituals-of-chaos" },
-        { label: "Rituais de Hashut", path: "/magic/rituals-of-hashut" },
-        { label: "Magia dos Goblins", path: "/magic/magic-of-the-goblins" },
-        { label: "Magia da WAAAAAAAGH!", path: "/magic/magic-of-the-waaaaagh" },
-        { label: "Magia Inferior", path: "/magic/lesser-magic" },
-        { label: "Orações de Sigmar", path: "/magic/prayers-of-sigmar" },
-        { label: "Orações de Ulric", path: "/magic/prayers-of-ulric" },
-      ],
-    },
-    {
-      label: "Habilidades",
-      path: "/skills",
-      children: [
-        { label: "Habilidades", path: "/skills" },
-        { label: "Combate", path: "/skills/combate" },
-        { label: "Atirador", path: "/skills/atirador" },
-        { label: "Acadêmica", path: "/skills/academica" },
-        { label: "Força", path: "/skills/forca" },
-        { label: "Velocidade", path: "/skills/agilidade" },
-        { label: "Irmãs de Sigmar", path: "/skills/irmas-de-sigmar" },
-        { label: "Skaven do Clã Enshin", path: "/skills/skaven-do-cla-enshin" },
-        {
-          label: "Saqueadores Homem-Fera",
-          path: "/skills/saqueadores-homem-fera",
-        },
-        {
-          label: "Caçadores de Tesouro Anões",
-          path: "/skills/cacadores-de-tesouro-anoes",
-        },
-        {
-          label: "Habilidades Von Carstein",
-          path: "/skills/habilidades-von-carstein",
-        },
-        {
-          label: "Habilidades de Dragão Carmesim",
-          path: "/skills/habilidades-de-dragao-carmesim",
-        },
-        {
-          label: "Habilidades dos Necrarcas",
-          path: "/skills/habilidades-dos-necrarcas",
-        },
-        {
-          label: "Habilidades de Lahmia",
-          path: "/skills/habilidades-de-lahmia",
-        },
-        {
-          label: "Habilidades de Strigoi",
-          path: "/skills/habilidades-de-strigoi",
-        },
-        { label: "Corsários Druchii", path: "/skills/corsarios-druchii" },
-        {
-          label: "Habilidades de Geckos",
-          path: "/skills/habilidades-de-geckos",
-        },
-        {
-          label: "Habilidades de Saurídeo",
-          path: "/skills/habilidades-de-saurideo",
-        },
-        { label: "Hordas Orc", path: "/skills/hordas-orc" },
-        { label: "Filhos de Hashut", path: "/skills/filhos-de-hashut" },
-      ],
-    },
-    {
-      label: "Itens",
-      path: "/equipment",
-      children: [
-        { label: "Regras de Equipamentos", path: "/equipment" },
-        { label: "Armas Corpo a Corpo", path: "/equipment/melee-weapons" },
-        { label: "Armas a Distância", path: "/equipment/ranged-weapons" },
-        { label: "Armas de Fogo", path: "/equipment/firearms" },
-        { label: "Armaduras e Escudos", path: "/equipment/armor-and-shields" },
-        { label: "Acessórios", path: "/equipment/accessories" },
-        {
-          label: "Modificadores",
-          path: "/equipment/modifiers",
-        },
-        {
-          label: "Remédios e Venenos",
-          path: "/equipment/remedies-and-poisons",
-        },
-      ],
-    },
-    {
-      label: "Campanha",
-      path: "/campaign",
-      children: [
-        { label: "Fase de Campanha", path: "/campaign" },
-        { label: "Sobrevivência de Heróis", path: "/campaign/survival-test" },
-        { label: "Experiência", path: "/campaign/experience-roll" },
-        { label: "Atividades", path: "/campaign/activities" },
-        {
-          label: "Eventos de Exploração",
-          path: "/campaign/exploration-events",
-        },
-        { label: "Venda de Pedra-bruxa", path: "/campaign/wyrdstone-selling" },
-        { label: "Gastando Coroas", path: "/campaign/rewards" },
-        { label: "Mercenários", path: "/campaign/mercenaries" },
-        { label: "Lendas", path: "/campaign/legends" },
-        { label: "Magia Daemonica", path: "/campaign/dark-gods-invocation" },
-      ],
-    },
-    {
-      label: "Cenários",
-      path: "/scenarios",
-      children: [
-        { label: "Todos os Cenários", path: "/scenarios" },
-        { label: "Defender o Tesouro", path: "/scenarios/defend-the-find" },
-        { label: "Escaramuça", path: "/scenarios/skirmish" },
-        { label: "Caça à Pedra-Bruxa", path: "/scenarios/wyrdstone-hunt" },
-        { label: "Romper Linhas", path: "/scenarios/breakthrough" },
-        { label: "Briga de Rua", path: "/scenarios/street-fight" },
-        { label: "Encontro Casual", path: "/scenarios/chance-encounter" },
-        { label: "Tesouro Escondido", path: "/scenarios/hidden-treasure" },
-        { label: "Ocupar", path: "/scenarios/occupy" },
-        { label: "Ataque Surpresa", path: "/scenarios/surprise-attack" },
-        { label: "Mansão do Bruxo", path: "/scenarios/wizard-mansion" },
-        { label: "Caça ao Tesouro", path: "/scenarios/treasure-hunt" },
-        { label: "Briga de Rua", path: "/scenarios/street-brawl" },
-        { label: "O Roubo", path: "/scenarios/heist" },
-        { label: "O Lago", path: "/scenarios/the-pool" },
-        { label: "O Herdeiro Perdido", path: "/scenarios/lost-prince" },
-      ],
-    },
-    {
-      label: "Ferramentas",
-      path: "/tools",
-      children: (() => {
-        const tools = [
-          { label: "Gerenciador de Bandos", path: "/tools/warband-manager" },
-          { label: "Gestor de Bando (Beta)", path: "/warband-builder" },
-    { label: "Changelog", path: "/changelog" },
-        ];
-        // Adiciona Admin apenas para admins
-        if (shouldShowAdmin) {
-          tools.push({ label: "Admin", path: "/admin" });
+  // Buscar dados dinâmicos
+  useEffect(() => {
+    let abort = false;
+    const controller = new AbortController();
+
+    const loadNavData = async () => {
+      setLoadingNavData(true);
+      try {
+        const [factionsData, spellLoresData, skillListsData] =
+          await Promise.all([
+            fetchFactions(controller.signal),
+            fetchSpellLores(controller.signal),
+            fetchSkillLists(controller.signal),
+          ]);
+        if (!abort) {
+          setFactions(factionsData);
+          setSpellLores(spellLoresData);
+          setSkillLists(skillListsData);
         }
-        return tools;
-      })(),
-    },
-  ];
+      } catch (err) {
+        if (!abort) {
+          console.error("Erro ao carregar dados da navbar:", err);
+        }
+      } finally {
+        if (!abort) {
+          setLoadingNavData(false);
+        }
+      }
+    };
+
+    void loadNavData();
+
+    return () => {
+      abort = true;
+      controller.abort();
+    };
+  }, []);
+
+  const navItems = useMemo(
+    () => [
+      { label: "Início", path: "/" },
+      {
+        label: "Regras",
+        path: "/rules",
+        children: [
+          {
+            label: "Figuras e Atributos",
+            path: "/rules/figures-and-attributes",
+          },
+          { label: "Testes de Atributos", path: "/rules/attribute-tests" },
+          { label: "Criação de Bando", path: "/rules/warband-creation" },
+          { label: "Regras de Equipamentos", path: "/rules/equipment-rules" },
+          { label: "Preparação do Jogo", path: "/rules/game-setup" },
+          { label: "Sistema de Combate", path: "/rules/combat-system" },
+          { label: "Fim do Jogo", path: "/rules/game-end" },
+          { label: "Acontecimentos", path: "/rules/happenings" },
+        ],
+      },
+      {
+        label: "Facções",
+        path: "/warbands",
+        children: loadingNavData
+          ? [{ label: "Carregando...", path: "/warbands" }]
+          : factions.map(faction => ({
+              label: faction.name,
+              path: `/warbands/${faction.slug}`,
+            })),
+      },
+      {
+        label: "Combate",
+        path: "/rules/combat-system",
+        children: [
+          { label: "Sistema de Combate", path: "/rules/combat-system" },
+          { label: "Ações de Movimento", path: "/rules/movement-actions" },
+          { label: "Reações", path: "/rules/reactions" },
+          { label: "Ações de Combate", path: "/rules/combat-actions" },
+          {
+            label: "Ações de Ataque a Distância",
+            path: "/rules/ranged-actions",
+          },
+          { label: "Ações de Conjuração", path: "/rules/spellcasting-actions" },
+          { label: "Ações de Habilidade", path: "/rules/skill-actions" },
+          { label: "Ações de Pedra-bruxa", path: "/rules/wyrdstone-actions" },
+          { label: "Outras Ações", path: "/rules/other-actions" },
+          { label: "Áreas de Efeito", path: "/rules/area-of-effect" },
+          { label: "Dano e Condições", path: "/rules/negative-conditions" },
+        ],
+      },
+      {
+        label: "Magias",
+        path: "/magic",
+        children: loadingNavData
+          ? [{ label: "Carregando...", path: "/magic" }]
+          : [
+              { label: "Regras de Magia", path: "/magic" },
+              { label: "Áreas de Efeito", path: "/rules/area-of-effect" },
+              ...spellLores.map(lore => ({
+                label: lore.name,
+                path: `/magic/spell-lore/${lore.slug}`,
+              })),
+            ],
+      },
+      {
+        label: "Habilidades",
+        path: "/skills",
+        children: loadingNavData
+          ? [{ label: "Carregando...", path: "/skills" }]
+          : [
+              { label: "Habilidades", path: "/skills" },
+              ...skillLists.map(list => ({
+                label: list.name,
+                path: `/skills?list=${list.slug}`,
+              })),
+            ],
+      },
+      {
+        label: "Itens",
+        path: "/equipment",
+        children: [
+          { label: "Regras de Equipamentos", path: "/equipment" },
+          { label: "Armas Corpo a Corpo", path: "/equipment/melee-weapons" },
+          { label: "Armas a Distância", path: "/equipment/ranged-weapons" },
+          { label: "Armas de Fogo", path: "/equipment/firearms" },
+          {
+            label: "Armaduras e Escudos",
+            path: "/equipment/armor-and-shields",
+          },
+          { label: "Acessórios", path: "/equipment/accessories" },
+          {
+            label: "Modificadores",
+            path: "/equipment/modifiers",
+          },
+          {
+            label: "Remédios e Venenos",
+            path: "/equipment/remedies-and-poisons",
+          },
+        ],
+      },
+      {
+        label: "Campanha",
+        path: "/campaign",
+        children: [
+          { label: "Fase de Campanha", path: "/campaign" },
+          { label: "Sobrevivência de Heróis", path: "/campaign/survival-test" },
+          { label: "Experiência", path: "/campaign/experience-roll" },
+          { label: "Atividades", path: "/campaign/activities" },
+          {
+            label: "Eventos de Exploração",
+            path: "/campaign/exploration-events",
+          },
+          {
+            label: "Venda de Pedra-bruxa",
+            path: "/campaign/wyrdstone-selling",
+          },
+          { label: "Gastando Coroas", path: "/campaign/rewards" },
+          { label: "Mercenários", path: "/campaign/mercenaries" },
+          { label: "Lendas", path: "/campaign/legends" },
+          
+        ],
+      },
+      {
+        label: "Cenários",
+        path: "/scenarios",
+        children: [
+          { label: "Todos os Cenários", path: "/scenarios" },
+          { label: "Defender o Tesouro", path: "/scenarios/defend-the-find" },
+          { label: "Escaramuça", path: "/scenarios/skirmish" },
+          { label: "Caça à Pedra-Bruxa", path: "/scenarios/wyrdstone-hunt" },
+          { label: "Romper Linhas", path: "/scenarios/breakthrough" },
+          { label: "Briga de Rua", path: "/scenarios/street-fight" },
+          { label: "Encontro Casual", path: "/scenarios/chance-encounter" },
+          { label: "Tesouro Escondido", path: "/scenarios/hidden-treasure" },
+          { label: "Ocupar", path: "/scenarios/occupy" },
+          { label: "Ataque Surpresa", path: "/scenarios/surprise-attack" },
+          { label: "Mansão do Bruxo", path: "/scenarios/wizard-mansion" },
+          { label: "Caça ao Tesouro", path: "/scenarios/treasure-hunt" },
+          { label: "Briga de Rua", path: "/scenarios/street-brawl" },
+          { label: "O Roubo", path: "/scenarios/heist" },
+          { label: "O Lago", path: "/scenarios/the-pool" },
+          { label: "O Herdeiro Perdido", path: "/scenarios/lost-prince" },
+        ],
+      },
+      {
+        label: "Ferramentas",
+        path: "/tools",
+        children: (() => {
+          const tools = [
+            { label: "Gerenciador de Bandos", path: "/tools/warband-manager" },
+            { label: "Changelog", path: "/changelog" },
+          ];
+          // Adiciona Admin apenas para admins
+          if (shouldShowAdmin) {
+            tools.push({ label: "Admin", path: "/admin" });
+          }
+          return tools;
+        })(),
+      },
+    ],
+    [shouldShowAdmin, loadingNavData, factions, spellLores, skillLists]
+  );
 
   const handleCloseMobileMenu = () => {
     setIsMobileMenuOpen(false);
@@ -265,9 +262,9 @@ const Navbar: React.FC = () => {
   };
 
   const handleToggleCategory = (categoryLabel: string) => {
-    setExpandedCategories((prev) =>
+    setExpandedCategories(prev =>
       prev.includes(categoryLabel)
-        ? prev.filter((cat) => cat !== categoryLabel)
+        ? prev.filter(cat => cat !== categoryLabel)
         : [...prev, categoryLabel]
     );
   };
@@ -277,7 +274,7 @@ const Navbar: React.FC = () => {
   };
 
   const handleDesktopDropdownToggle = (categoryLabel: string) => {
-    setDesktopDropdownOpen((prev) =>
+    setDesktopDropdownOpen(prev =>
       prev === categoryLabel ? null : categoryLabel
     );
   };
@@ -378,7 +375,7 @@ const Navbar: React.FC = () => {
               position: "relative",
             }}
           >
-            {navItems.map((item) => (
+            {navItems.map(item => (
               <Box key={item.path} sx={{ position: "relative" }}>
                 {item.children ? (
                   // Category with dropdown
@@ -446,7 +443,7 @@ const Navbar: React.FC = () => {
                           },
                         }}
                       >
-                        {item.children.map((child) => (
+                        {item.children.map(child => (
                           <Button
                             key={child.path}
                             component={Link}
@@ -462,7 +459,7 @@ const Navbar: React.FC = () => {
                               padding: "12px 16px",
                               borderRadius: 0,
                               backgroundColor:
-                                location.pathname === child.path
+                                location.pathname === child.path.split("?")[0]
                                   ? "rgba(16, 185, 129, 0.2)"
                                   : "transparent",
                               border: "none",
@@ -760,7 +757,7 @@ const Navbar: React.FC = () => {
                         unmountOnExit
                       >
                         <List component="div" disablePadding>
-                          {item.children.map((child) => (
+                          {item.children.map(child => (
                             <ListItem key={child.path} disablePadding>
                               <ListItemButton
                                 component={Link}
@@ -769,7 +766,8 @@ const Navbar: React.FC = () => {
                                 sx={{
                                   color: "white",
                                   backgroundColor:
-                                    location.pathname === child.path
+                                    location.pathname ===
+                                    child.path.split("?")[0]
                                       ? "rgba(143, 188, 143, 0.2)"
                                       : "transparent",
                                   border: "none",
@@ -848,7 +846,7 @@ const Navbar: React.FC = () => {
         open={authModalOpen}
         mode={authModalMode}
         onClose={handleCloseAuthModal}
-        onSwitchMode={(mode) => setAuthModalMode(mode)}
+        onSwitchMode={mode => setAuthModalMode(mode)}
       />
     </AppBar>
   );

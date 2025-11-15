@@ -13,7 +13,10 @@ import { fetchSupernaturalAbilities } from "../../../../services/queries.service
 type UseSupernaturalAbilityManagementProps = {
   selectedSoldier: WarbandSoldier | null;
   selectedBaseFigure: BaseFigure | null;
-  relations: { skills: SkillToWarbandSoldier[]; supernatural: SuperNaturalAbilityToWarbandSoldier[] };
+  relations: {
+    skills: SkillToWarbandSoldier[];
+    supernatural: SuperNaturalAbilityToWarbandSoldier[];
+  };
   category: "Mutação" | "Marca Sagrada" | "Benção de Nurgle";
   canGetFlag: "canGetMutations" | "canGetSacredMarks" | "canGetBlessings";
   warbandId: string | null;
@@ -82,9 +85,11 @@ export const useSupernaturalAbilityManagement = ({
       setError(null);
 
       try {
-        const abilities = await fetchSupernaturalAbilities(
-          category,
+        const allAbilities = await fetchSupernaturalAbilities(
           controller.signal
+        );
+        const abilities = allAbilities.filter(
+          ability => ability.category === category
         );
 
         if (abort) {
@@ -110,7 +115,9 @@ export const useSupernaturalAbilityManagement = ({
         }
         console.error(error);
         setAllAbilities([]);
-        setError(`Não foi possível carregar ${category.toLowerCase()} disponíveis.`);
+        setError(
+          `Não foi possível carregar ${category.toLowerCase()} disponíveis.`
+        );
       } finally {
         if (!abort) {
           setLoading(false);
@@ -128,7 +135,9 @@ export const useSupernaturalAbilityManagement = ({
 
   const handleAdd = useCallback(async () => {
     if (!selectedSoldier) {
-      toast.error(`Selecione uma figura antes de adicionar ${category.toLowerCase()}.`);
+      toast.error(
+        `Selecione uma figura antes de adicionar ${category.toLowerCase()}.`
+      );
       return;
     }
 
@@ -138,14 +147,19 @@ export const useSupernaturalAbilityManagement = ({
     }
 
     if (!selectedSlugToAdd) {
-      toast.error(`Escolha uma ${category.toLowerCase()} disponível antes de adicionar.`);
+      toast.error(
+        `Escolha uma ${category.toLowerCase()} disponível antes de adicionar.`
+      );
       return;
     }
 
     setActionState({ type: "add", targetId: selectedSlugToAdd });
 
     try {
-      await addSupernaturalAbilityToSoldier(selectedSoldier.id, selectedSlugToAdd);
+      await addSupernaturalAbilityToSoldier(
+        selectedSoldier.id,
+        selectedSlugToAdd
+      );
       const addedAbility = allAbilities.find(
         ability => ability.slug === selectedSlugToAdd
       );
@@ -161,12 +175,21 @@ export const useSupernaturalAbilityManagement = ({
     } finally {
       setActionState(null);
     }
-  }, [allAbilities, onReload, selectedSoldier, warbandId, selectedSlugToAdd, category]);
+  }, [
+    allAbilities,
+    onReload,
+    selectedSoldier,
+    warbandId,
+    selectedSlugToAdd,
+    category,
+  ]);
 
   const handleRemove = useCallback(
     async (abilityRecordId: string, abilityName: string) => {
       if (!selectedSoldier) {
-        toast.error(`Selecione uma figura antes de remover ${category.toLowerCase()}.`);
+        toast.error(
+          `Selecione uma figura antes de remover ${category.toLowerCase()}.`
+        );
         return;
       }
 
@@ -178,7 +201,10 @@ export const useSupernaturalAbilityManagement = ({
       setActionState({ type: "remove", targetId: abilityRecordId });
 
       try {
-        await removeSupernaturalAbilityFromSoldier(selectedSoldier.id, abilityRecordId);
+        await removeSupernaturalAbilityFromSoldier(
+          selectedSoldier.id,
+          abilityRecordId
+        );
         toast.success(`${category} "${abilityName}" removida da figura.`);
         await onReload();
       } catch (error) {
@@ -206,4 +232,3 @@ export const useSupernaturalAbilityManagement = ({
     hasAccess,
   };
 };
-

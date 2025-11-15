@@ -15,6 +15,7 @@ type SkillsSectionProps = {
   onReload: () => Promise<void>;
   skillAdvancementLimit: number;
   currentSkillCount: number;
+  isLegend?: boolean;
 };
 
 export const SkillsSection: React.FC<SkillsSectionProps> = ({
@@ -24,8 +25,9 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
   relations,
   warbandId,
   onReload,
-  skillAdvancementLimit,
-  currentSkillCount,
+  skillAdvancementLimit: _skillAdvancementLimit,
+  currentSkillCount: _currentSkillCount,
+  isLegend = false,
 }) => {
   const {
     expanded,
@@ -80,10 +82,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
           type="button"
           onClick={handleAdd}
           disabled={
-            !selectedSlugToAdd ||
-            loading ||
-            actionState?.type === "add" ||
-            currentSkillCount >= skillAdvancementLimit
+            !selectedSlugToAdd || loading || actionState?.type === "add"
           }
           className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-3 py-2 text-sm font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
         >
@@ -97,9 +96,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
         </p>
       ) : null}
 
-      {error ? (
-        <p className="text-[11px] text-red-300">{error}</p>
-      ) : null}
+      {error ? <p className="text-[11px] text-red-300">{error}</p> : null}
 
       {!loading && error == null && availableOptions.length === 0 ? (
         <p className="text-[11px] text-gray-500">
@@ -131,25 +128,24 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
                     <div className="text-sm font-semibold text-green-200">
                       {skillName}
                     </div>
-                    <div className="text-[11px] text-gray-500">
-                      Slug: {skill.skillSlug ?? "—"}
-                    </div>
                     {skillDescription ? (
                       <div className="mt-1 text-[11px] text-gray-400">
                         {skillDescription}
                       </div>
                     ) : null}
                   </div>
-                  <div className="flex flex-col gap-2 border-t border-green-900/40 pt-3">
-                    <button
-                      type="button"
-                      onClick={() => handleRemove(skill.id, skillName)}
-                      disabled={removing}
-                      className="inline-flex w-full items-center justify-center rounded border border-red-600/60 bg-red-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-red-200 transition hover:border-red-400 hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-60"
-                    >
-                      {removing ? "Removendo..." : "Remover"}
-                    </button>
-                  </div>
+                  {!isLegend ? (
+                    <div className="flex flex-col gap-2 border-t border-green-900/40 pt-3">
+                      <button
+                        type="button"
+                        onClick={() => handleRemove(skill.id, skillName)}
+                        disabled={removing}
+                        className="inline-flex w-full items-center justify-center rounded border border-red-600/60 bg-red-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-red-200 transition hover:border-red-400 hover:bg-red-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                      >
+                        {removing ? "Removendo..." : "Remover"}
+                      </button>
+                    </div>
+                  ) : null}
                 </div>
               </li>
             );
@@ -159,4 +155,3 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
     </CollapsibleSection>
   );
 };
-

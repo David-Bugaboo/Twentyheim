@@ -1,5 +1,13 @@
 import React, { useMemo } from "react";
-import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
+import {
+  Dialog,
+  DialogContent,
+  IconButton,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { Spinner, StatRow } from "./CommonComponents";
 import type { EquipmentCatalogItem } from "../../../../services/equipment.service";
@@ -73,7 +81,9 @@ export const VaultModal: React.FC<VaultModalProps> = ({
             category.includes("arma à distância")
           );
         case "firearm":
-          return name.includes("arma de fogo") || category.includes("arma de fogo");
+          return (
+            name.includes("arma de fogo") || category.includes("arma de fogo")
+          );
         case "armor":
           return (
             category.includes("armadura") ||
@@ -96,8 +106,8 @@ export const VaultModal: React.FC<VaultModalProps> = ({
   const selectedEquipmentCatalogItem = useMemo(
     () =>
       selectedSlug
-        ? filteredEquipmentCatalog.find(item => item.slug === selectedSlug) ??
-          null
+        ? (filteredEquipmentCatalog.find(item => item.slug === selectedSlug) ??
+          null)
         : null,
     [filteredEquipmentCatalog, selectedSlug]
   );
@@ -142,7 +152,8 @@ export const VaultModal: React.FC<VaultModalProps> = ({
   const selectedModifier = useMemo(
     () =>
       showModifierSelector
-        ? modifierOptions.find(mod => mod.slug === selectedModifierSlug) ?? null
+        ? (modifierOptions.find(mod => mod.slug === selectedModifierSlug) ??
+          null)
         : null,
     [modifierOptions, selectedModifierSlug, showModifierSelector]
   );
@@ -153,8 +164,7 @@ export const VaultModal: React.FC<VaultModalProps> = ({
   const canLootToVault = Boolean(selectedEquipmentCatalogItem);
   const isModifiedSelection = Boolean(selectedModifier);
 
-  const equipmentBaseCost =
-    selectedEquipmentCatalogItem?.cost ?? selectedEquipmentCatalogItem?.price;
+  const equipmentBaseCost = selectedEquipmentCatalogItem?.cost;
   const normalizedCost =
     typeof equipmentBaseCost === "number"
       ? equipmentBaseCost
@@ -187,10 +197,10 @@ export const VaultModal: React.FC<VaultModalProps> = ({
           ? `Comprar ${formattedFinalCost} (x${modifierMultiplier})`
           : "Comprar com modificador"
         : formattedFinalCost
-        ? `Comprar ${formattedFinalCost}`
-        : formattedBaseCost
-        ? `Comprar ${formattedBaseCost}`
-        : "Comprar";
+          ? `Comprar ${formattedFinalCost}`
+          : formattedBaseCost
+            ? `Comprar ${formattedBaseCost}`
+            : "Comprar";
 
   const buyButtonClass = isModifiedSelection
     ? "inline-flex items-center justify-center rounded border border-cyan-500/70 bg-cyan-900/30 px-4 py-2 text-xs font-semibold text-cyan-100 transition hover:border-cyan-300 hover:bg-cyan-900/50 disabled:cursor-not-allowed disabled:opacity-60"
@@ -210,57 +220,90 @@ export const VaultModal: React.FC<VaultModalProps> = ({
         },
       }}
     >
-      <DialogTitle
+      <DialogContent
+        dividers
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          color: "#d1fae5",
-          fontFamily: '"Cinzel", serif',
-          fontSize: "1.1rem",
+          borderColor: "rgba(16,185,129,0.25)",
+          position: "relative",
+          paddingTop: 3,
         }}
       >
-        Selecionar equipamento para o cofre
         <IconButton
           onClick={onClose}
           size="small"
-          sx={{ color: "#9ca3af" }}
+          sx={{
+            color: "#9ca3af",
+            position: "absolute",
+            top: 2,
+            right: 8,
+            zIndex: 1,
+          }}
         >
           <CloseIcon fontSize="small" />
         </IconButton>
-      </DialogTitle>
-      <DialogContent dividers sx={{ borderColor: "rgba(16,185,129,0.25)" }}>
         {loading ? (
           <div className="flex justify-center py-8">
             <Spinner label="Carregando equipamentos..." />
           </div>
         ) : (
           <div className="space-y-4">
-            <div>
-              <p className="text-xs uppercase tracking-wide text-green-300">
+            <FormControl fullWidth size="small">
+              <InputLabel
+                sx={{
+                  color: "#86efac",
+                  "&.Mui-focused": {
+                    color: "#86efac",
+                  },
+                }}
+              >
                 Filtrar por tipo
-              </p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {EQUIPMENT_CATALOG_FILTERS.map(option => {
-                  const isActive = catalogFilter === option.key;
-                  return (
-                    <button
-                      key={option.key}
-                      type="button"
-                      onClick={() => onFilterChange(option.key)}
-                      aria-pressed={isActive}
-                      className={`inline-flex items-center justify-center rounded border px-3 py-1 text-[11px] font-semibold uppercase tracking-wide transition ${
-                        isActive
-                          ? "border-green-500 bg-green-900/30 text-green-200"
-                          : "border-green-800/60 bg-[#0b0e0c] text-green-300 hover:border-green-500 hover:bg-green-900/20"
-                      }`}
-                    >
-                      {option.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+              </InputLabel>
+              <Select
+                value={catalogFilter}
+                onChange={event =>
+                  onFilterChange(event.target.value as EquipmentCatalogFilter)
+                }
+                label="Filtrar por tipo"
+                sx={{
+                  color: "#86efac",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(134, 239, 172, 0.3)",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(134, 239, 172, 0.5)",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#86efac",
+                  },
+                  "& .MuiSvgIcon-root": {
+                    color: "#86efac",
+                  },
+                  backgroundColor: "#0b0e0c",
+                }}
+              >
+                {EQUIPMENT_CATALOG_FILTERS.map(option => (
+                  <MenuItem
+                    key={option.key}
+                    value={option.key}
+                    sx={{
+                      color: "#86efac",
+                      backgroundColor: "#0b0e0c",
+                      "&:hover": {
+                        backgroundColor: "rgba(134, 239, 172, 0.1)",
+                      },
+                      "&.Mui-selected": {
+                        backgroundColor: "rgba(134, 239, 172, 0.2)",
+                        "&:hover": {
+                          backgroundColor: "rgba(134, 239, 172, 0.3)",
+                        },
+                      },
+                    }}
+                  >
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
             <div>
               <label
@@ -283,7 +326,10 @@ export const VaultModal: React.FC<VaultModalProps> = ({
                   -- Escolha um item --
                 </option>
                 {filteredEquipmentCatalog.map(item => {
-                  const availability = checkEquipmentAvailability(item, warband);
+                  const availability = checkEquipmentAvailability(
+                    item,
+                    warband
+                  );
                   const formattedCost = formatEquipmentCost(item.cost);
                   return (
                     <option
@@ -326,7 +372,10 @@ export const VaultModal: React.FC<VaultModalProps> = ({
                   >
                     <option value="">Sem modificador</option>
                     {modifierOptions.map(modifier => (
-                      <option key={modifier.id ?? modifier.slug} value={modifier.slug}>
+                      <option
+                        key={modifier.id ?? modifier.slug}
+                        value={modifier.slug}
+                      >
                         {modifier.name}
                       </option>
                     ))}
@@ -352,7 +401,9 @@ export const VaultModal: React.FC<VaultModalProps> = ({
                 <div className="grid grid-cols-2 gap-2 text-xs text-gray-300">
                   <StatRow
                     label="Custo"
-                    value={formatEquipmentCost(selectedEquipmentCatalogItem.cost)}
+                    value={formatEquipmentCost(
+                      selectedEquipmentCatalogItem.cost
+                    )}
                   />
                   <StatRow
                     label="Dano"
@@ -368,7 +419,9 @@ export const VaultModal: React.FC<VaultModalProps> = ({
                   />
                   <StatRow
                     label="Alcance"
-                    value={formatEquipmentStat(selectedEquipmentCatalogItem.range)}
+                    value={formatEquipmentStat(
+                      selectedEquipmentCatalogItem.range
+                    )}
                   />
                 </div>
 
@@ -473,7 +526,9 @@ export const VaultModal: React.FC<VaultModalProps> = ({
                     <p className="text-xs font-semibold uppercase tracking-wide text-cyan-300">
                       Modificador selecionado
                     </p>
-                    <p className="text-sm text-cyan-100">{selectedModifier.name}</p>
+                    <p className="text-sm text-cyan-100">
+                      {selectedModifier.name}
+                    </p>
                     {selectedModifier.effect ? (
                       <p className="mt-1 text-[13px] leading-relaxed text-cyan-100/90">
                         {selectedModifier.effect}
@@ -517,4 +572,3 @@ export const VaultModal: React.FC<VaultModalProps> = ({
     </Dialog>
   );
 };
-

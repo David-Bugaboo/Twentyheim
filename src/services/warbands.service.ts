@@ -128,3 +128,42 @@ export async function createWarband(
   return response.data;
 }
 
+export interface SharedLinkResponse {
+  id: string;
+  warbandId: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export async function createSharedLink(warbandId: string) {
+  const response = await apiClient.post<SharedLinkResponse>(
+    `/warbands/${warbandId}/share`
+  );
+  return response.data;
+}
+
+export async function updateSharedLink(
+  warbandId: string,
+  linkId: string
+) {
+  const response = await apiClient.patch<SharedLinkResponse>(
+    `/warbands/${warbandId}/share`,
+    { linkId }
+  );
+  return response.data;
+}
+
+export interface SharedWarbandData {
+  warband: Warband;
+  bandSnapShot: unknown;
+}
+
+export async function fetchSharedLinkById(linkId: string, signal?: AbortSignal) {
+  const response = await apiClient.get<SharedWarbandData>(
+    `/warbands/shared-link/${linkId}`,
+    { signal }
+  );
+  return response.data;
+}
+
+

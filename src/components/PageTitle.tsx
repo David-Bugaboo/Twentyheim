@@ -8,7 +8,7 @@ interface PageTitleProps {
 const PageTitle: React.FC<PageTitleProps> = ({ children, className = "" }) => {
   return (
     <h1
-      className={`text-green-300 text-3xl md:text-5xl font-bold text-center mb-8 ${className}`}
+      className={`text-green-300 text-3xl md:text-5xl font-bold mb-8 ${className || "text-center"}`}
       style={{
         fontFamily: "Cinzel, serif",
         textTransform: "none",
