@@ -48,6 +48,7 @@ import { extractEquipment } from "../utils/equipment-helpers";
 import { useEquipmentManagement } from "../hooks/useEquipmentManagement";
 import type { SpellToWarbandSoldier } from "../../../../types/spell-to-warband-soldier.entity";
 import GameText from "../../../../components/GameText";
+import EquipmentDetailCard from "../../../../components/EquipmentDetailCard";
 import racialLimitsData from "../../../campanha/data/racial-limits.data.json";
 import { toast } from "react-toastify";
 import {
@@ -330,6 +331,10 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
   const [nameDialogOpen, setNameDialogOpen] = useState(false);
   const [notesDialogOpen, setNotesDialogOpen] = useState(false);
   const [attributeDialogOpen, setAttributeDialogOpen] = useState(false);
+  const [equipmentDetailOpen, setEquipmentDetailOpen] = useState(false);
+  const [equipmentDetailData, setEquipmentDetailData] = useState<
+    Record<string, unknown> | null
+  >(null);
   const [nameFormValue, setNameFormValue] = useState("");
   const [notesFormValue, setNotesFormValue] = useState("");
   const [miscModifiersForm, setMiscModifiersForm] =
@@ -1146,6 +1151,23 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
     ...skillNaturalAttacks,
   ];
 
+  // Força total para cálculo de dano em armas/ataques naturais
+  const strengthTotalForDamage = useMemo(() => {
+    const summary = attributeSummaries?.strength?.total;
+    if (typeof summary === "number" && !Number.isNaN(summary)) {
+      return summary;
+    }
+    const parsed =
+      parseStatToNumber(
+        (selectedBaseFigure as unknown as Record<string, unknown>)?.strength as
+          | number
+          | string
+          | null
+          | undefined
+      ) ?? 0;
+    return parsed;
+  }, [attributeSummaries?.strength?.total, selectedBaseFigure]);
+
   const combinedSpecialRules = useMemo(() => {
     const rules: Array<{
       label: string;
@@ -1400,7 +1422,17 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
               Ataques Naturais
             </h5>
             <div className="space-y-3">
-              {combinedNaturalAttacks.map((attack, index) => (
+              {combinedNaturalAttacks.map((attack, index) => {
+                const attackDamage =
+                  parseStatToNumber(
+                    (attack as unknown as { damage?: number | string | null })
+                      ?.damage ?? null
+                  ) ?? null;
+                const totalNaturalDamage =
+                  attackDamage != null
+                    ? attackDamage + strengthTotalForDamage
+                    : null;
+                return (
                 <div
                   key={`natural-attack-${index}-${attack.name}`}
                   className="rounded border border-amber-700/30 bg-[#1f1406] px-3 py-2"
@@ -1416,10 +1448,15 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                   <div className="mt-1 flex flex-wrap gap-3 text-[11px] text-amber-200">
                     <span>
                       <strong>Dano:</strong>{" "}
-                      {attack.damage !== undefined && attack.damage !== null
-                        ? String(attack.damage)
+                      {totalNaturalDamage !== null
+                        ? `${formatNumber(totalNaturalDamage)}`
                         : "-"}
                     </span>
+                    {attackDamage != null ? (
+                      <span className="text-amber-300">
+                        (Base {formatNumber(attackDamage)} + Força {formatNumber(strengthTotalForDamage)})
+                      </span>
+                    ) : null}
                     {attack.range ? (
                       <span>
                         <strong>Alcance:</strong> {attack.range}
@@ -1455,7 +1492,8 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                     </div>
                   ) : null}
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         ) : null}
@@ -1694,6 +1732,11 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                         normalizedName.includes("mosquete") ||
                         normalizedName.includes("arma de fogo");
                       const isMeleeWeapon = isMeleeCategory && !isRangedWeapon;
+                      const equipmentSpecialRules = slotItem.equipment?.specialRules;
+                      const hasVersatileRuleEquipped = hasSpecialRuleLabel(
+                        equipmentSpecialRules,
+                        "versatil"
+                      );
                       const shouldShowDamageSection =
                         !isTwoHandProxy &&
                         section.slot === "mainHandEquiped" &&
@@ -1712,7 +1755,14 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                                 >
                               )?.strength as number | string | null | undefined
                             ) ?? 0);
-                      const meleeTotalDamage = strengthValue + damageBonusValue;
+                      const versatileBonusWhenTwoHanded =
+                        slotItem.twoHandedEquiped && hasVersatileRuleEquipped
+                          ? 1
+                          : 0;
+                      const meleeTotalDamage =
+                        strengthValue +
+                        damageBonusValue +
+                        versatileBonusWhenTwoHanded;
 
                       let damageSection: React.ReactNode = null;
 
@@ -1733,6 +1783,12 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                                     {" "}
                                     · Bônus da arma:{" "}
                                     {formatStatValue(damageBonusValue, true)}
+                                  </>
+                                ) : null}
+                                {versatileBonusWhenTwoHanded > 0 ? (
+                                  <>
+                                    {" "}
+                                    · Versátil (duas mãos): +1
                                   </>
                                 ) : null}
                               </div>
@@ -1776,6 +1832,15 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                                     ? "text-gray-300"
                                     : "text-green-200"
                                 }`}
+                                onClick={() => {
+                                  if (slotItem.equipment) {
+                                    setEquipmentDetailData(
+                                      slotItem.equipment as unknown as Record<string, unknown>
+                                    );
+                                    setEquipmentDetailOpen(true);
+                                  }
+                                }}
+                                style={{ cursor: slotItem.equipment ? "pointer" : "default" }}
                               >
                                 {slotItem.equipment?.name ??
                                   slotItem.equipmentSlug}
@@ -2045,7 +2110,19 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                                 <div>
                                   <div className="text-sm font-semibold text-green-200">
-                                    {equipmentName}
+                                    <span
+                                      onClick={() => {
+                                        if (item.equipment) {
+                                          setEquipmentDetailData(
+                                            item.equipment as unknown as Record<string, unknown>
+                                          );
+                                          setEquipmentDetailOpen(true);
+                                        }
+                                      }}
+                                      style={{ cursor: item.equipment ? "pointer" : "default" }}
+                                    >
+                                      {equipmentName}
+                                    </span>
                                   </div>
                                   <div className="mt-1 text-[11px] text-gray-500">
                                     Categoria:{" "}
@@ -2103,6 +2180,8 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                                     (isMainHandAction ||
                                       isOffHandAction ||
                                       isTwoHandAction);
+                                  const blockedByExistingOffHand =
+                                    isOffHandAction && offHandOccupiedByOther;
                                   const blockedByUnbalancedMain =
                                     isMainHandAction &&
                                     hasUnbalancedRule &&
@@ -2122,7 +2201,8 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
                                     blockedByUnbalancedMain ||
                                     blockedOffHandByUnbalanced ||
                                     otherHandOccupiedForTwoHand ||
-                                    blockedByExistingMainHand;
+                                    blockedByExistingMainHand ||
+                                    blockedByExistingOffHand;
 
                                   const label = equipInProgressForSlot
                                     ? "Equipando..."
@@ -2470,6 +2550,29 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
           >
             {promoteLeaderLoading ? "Promovendo..." : "Promover"}
           </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={equipmentDetailOpen}
+        onClose={() => setEquipmentDetailOpen(false)}
+        fullWidth
+        maxWidth="sm"
+      >
+        <DialogTitle>Detalhes do Equipamento</DialogTitle>
+        <DialogContent dividers>
+          {equipmentDetailData ? (
+            <EquipmentDetailCard
+              equipment={equipmentDetailData as unknown as any}
+            />
+          ) : (
+            <MobileText className="text-gray-400">
+              Nenhum equipamento selecionado.
+            </MobileText>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setEquipmentDetailOpen(false)}>Fechar</Button>
         </DialogActions>
       </Dialog>
 
