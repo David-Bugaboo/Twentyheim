@@ -277,8 +277,8 @@ const SoldierCard: React.FC<SoldierCardProps> = ({
                   })()
                 : null}
             </span>
-            <span className="text-xs text-gray-400">
-              XP: {soldier.experience ?? 0}
+            <span className={`text-xs ${soldierNoXp ? "text-red-400 font-semibold" : "text-gray-400"}`}>
+              {soldierNoXp ? "SEM XP" : `XP: ${soldier.experience ?? 0}`}
             </span>
           </div>
           <div className="mt-1 flex items-center gap-2">

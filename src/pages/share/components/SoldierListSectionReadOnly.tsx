@@ -73,6 +73,12 @@ const SoldierCardReadOnly: React.FC<SoldierCardReadOnlyProps> = ({
   const isInactive = soldier.active === false;
   const figureName = baseFigure?.name ?? "Figura sem nome";
 
+  const soldierNoXp = Boolean(
+    (soldier as unknown as { noXp?: boolean })?.noXp ??
+      (baseFigure as unknown as { noXp?: boolean } | null)?.noXp ??
+      false
+  );
+
   const cardClasses = isActive
     ? "border-green-500 bg-green-900/30 text-green-100"
     : "border-green-800/40 bg-[#111111] text-gray-200 hover:border-green-500/60";
@@ -129,8 +135,8 @@ const SoldierCardReadOnly: React.FC<SoldierCardReadOnlyProps> = ({
                 ) : null;
               })() : null}
             </span>
-            <span className="text-xs text-gray-400">
-              XP: {soldier.experience ?? 0}
+            <span className={`text-xs ${soldierNoXp ? "text-red-400 font-semibold" : "text-gray-400"}`}>
+              {soldierNoXp ? "SEM XP" : `XP: ${soldier.experience ?? 0}`}
             </span>
           </div>
           <div className="mt-1 flex items-center gap-2">

@@ -14,6 +14,8 @@ import {
   createWarband,
   type FactionSummary,
 } from "../../services/warbands.service";
+import { fetchCurrentUser } from "../../services/auth.service";
+import { setAuthToken } from "../../services/apiClient";
 
 const WarbandManagerPage: React.FC = () => {
   const { currentUser, loading } = useAuth();
@@ -38,6 +40,41 @@ const WarbandManagerPage: React.FC = () => {
   useEffect(() => {
     setDisplayWarbands(warbands);
   }, [warbands]);
+
+  // Sempre recarregar os dados do usuário ao carregar a página
+  useEffect(() => {
+    if (loading) return; // Esperar o carregamento inicial terminar
+    if (!currentUser) return; // Se não houver usuário, não fazer nada
+
+    let abort = false;
+    const controller = new AbortController();
+
+    const loadUserData = async () => {
+      const token = localStorage.getItem("twentyheim_token");
+      if (!token) return;
+
+      try {
+        setAuthToken(token);
+        const user = await fetchCurrentUser(controller.signal);
+        if (!abort) {
+          // Atualizar os bandos com os dados mais recentes
+          setDisplayWarbands(user.warbands ?? []);
+        }
+      } catch (error) {
+        if (!abort) {
+          console.error("Erro ao recarregar dados do usuário:", error);
+          // Não mostrar erro ao usuário, apenas logar
+        }
+      }
+    };
+
+    void loadUserData();
+
+    return () => {
+      abort = true;
+      controller.abort();
+    };
+  }, [loading, currentUser]); // Executar quando o loading terminar ou quando o usuário mudar
 
   const requiresAuth = !loading && !currentUser;
 

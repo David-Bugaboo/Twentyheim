@@ -222,47 +222,86 @@ export const AvailableFiguresSection: React.FC<
                               if (minNum === null && maxNum === null)
                                 return null;
 
-                              const currentCount =
-                                figureCountsBySlug.get(figure.slug) || 0;
-                              const maxValue =
-                                maxNum !== null
-                                  ? maxNum === 999
-                                    ? Infinity
-                                    : maxNum
-                                  : null;
+                              // Aplicar cores apenas no gestor de bando (quando warbandId não é null)
+                              const shouldColorize = warbandId !== null;
 
-                              // Se não tiver máximo, não mostrar contagem
-                              if (maxValue === null) return null;
+                              if (shouldColorize) {
+                                // No gestor de bando, mostra currentCount/maxValue
+                                const currentCount =
+                                  figureCountsBySlug.get(figure.slug) || 0;
+                                const maxValue =
+                                  maxNum !== null
+                                    ? maxNum === 999
+                                      ? Infinity
+                                      : maxNum
+                                    : null;
 
-                              const displayText =
-                                maxValue === Infinity
-                                  ? `${currentCount}/∞`
-                                  : `${currentCount}/${maxValue}`;
+                                // Se não tiver máximo, não mostrar contagem
+                                if (maxValue === null) return null;
 
-                              // Mostrar em vermelho se for menor que o mínimo OU maior que o máximo
-                              const isBelowMin =
-                                minNum !== null && currentCount < minNum;
-                              const isAboveMax =
-                                maxValue !== Infinity &&
-                                currentCount > maxValue;
-                              const shouldShowRed = isBelowMin || isAboveMax;
+                                const displayText =
+                                  maxValue === Infinity
+                                    ? `${currentCount}/∞`
+                                    : `${currentCount}/${maxValue}`;
 
-                              // Mostrar em verde se estiver dentro do intervalo (>= min e <= max)
-                              const isInRange =
-                                (minNum === null || currentCount >= minNum) &&
-                                (maxValue === Infinity ||
-                                  currentCount <= maxValue);
+                                // Mostrar em vermelho se for menor que o mínimo OU maior que o máximo
+                                const isBelowMin =
+                                  minNum !== null && currentCount < minNum;
+                                const isAboveMax =
+                                  maxValue !== Infinity &&
+                                  currentCount > maxValue;
+                                const shouldShowRed = isBelowMin || isAboveMax;
+
+                                // Mostrar em verde se estiver dentro do intervalo (>= min e <= max)
+                                const isInRange =
+                                  (minNum === null || currentCount >= minNum) &&
+                                  (maxValue === Infinity ||
+                                    currentCount <= maxValue);
+
+                                return (
+                                  <span
+                                    className={`ml-2 text-xs font-normal ${
+                                      shouldShowRed
+                                        ? "text-red-400"
+                                        : isInRange
+                                          ? "text-green-400"
+                                          : "text-gray-400"
+                                    }`}
+                                  >
+                                    ({displayText})
+                                  </span>
+                                );
+                              }
+
+                              // Na página de informações da facção, mostra min-max ou apenas o número se forem iguais
+                              let displayText = "";
+                              if (minNum !== null && maxNum !== null) {
+                                if (minNum === maxNum) {
+                                  // Se forem iguais, mostra apenas o número
+                                  displayText = String(minNum);
+                                } else if (maxNum === 999) {
+                                  // Se o máximo for ilimitado (999), mostra min-∞
+                                  displayText = `${minNum}-∞`;
+                                } else {
+                                  // Caso contrário, mostra min-max
+                                  displayText = `${minNum}-${maxNum}`;
+                                }
+                              } else if (minNum !== null) {
+                                // Se só tiver mínimo
+                                displayText = String(minNum);
+                              } else if (maxNum !== null) {
+                                // Se só tiver máximo
+                                if (maxNum === 999) {
+                                  displayText = "∞";
+                                } else {
+                                  displayText = String(maxNum);
+                                }
+                              }
+
+                              if (!displayText) return null;
 
                               return (
-                                <span
-                                  className={`ml-2 text-xs font-normal ${
-                                    shouldShowRed
-                                      ? "text-red-400"
-                                      : isInRange
-                                        ? "text-green-400"
-                                        : "text-gray-400"
-                                  }`}
-                                >
+                                <span className="ml-2 text-xs font-normal text-gray-400">
                                   ({displayText})
                                 </span>
                               );

@@ -11,11 +11,13 @@ const HeaderH1: React.FC<HeaderH1Props> = ({
   className = "",
   id,
 }) => {
+  const isCentered = className.includes("text-center");
+  
   return (
     <div className={`mb-6 ${className}`}>
       <h1
         id={id}
-        className="text-green-300 text-2xl font-bold text-left mb-3"
+        className={`text-green-300 text-2xl font-bold mb-3 ${isCentered ? "text-center" : "text-left"}`}
         style={{
           fontFamily: "Cinzel, serif",
           textTransform: "none",
@@ -25,7 +27,7 @@ const HeaderH1: React.FC<HeaderH1Props> = ({
         }}
       >
         <span
-          className="text-3xl inline-block mr-1"
+          className={`text-3xl inline-block ${isCentered ? "" : "mr-1"}`}
           style={{ fontFamily: "Cinzel, serif" }}
         >
           {children}

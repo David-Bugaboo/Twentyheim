@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
-import { fetchFactionBySlug } from "../../services/warbands.service";
+import { useParams, useNavigate } from "react-router-dom";
+import { fetchFactionBySlug, createWarband } from "../../services/warbands.service";
 import {
   fetchSpellLoreBySlug,
   fetchSkillListBySlug,
@@ -36,9 +36,13 @@ import type {
   SpellLoreDialogEntry,
   EquipmentSummary,
 } from "../tools/warband-detail/types";
+import { toast } from "react-toastify";
+import type { Warband } from "../../types/warband.entity";
+import { resolveWarband } from "./helpers/resolveWarband";
 
 const GenericWarbandPage: React.FC = () => {
   const { factionSlug } = useParams<{ factionSlug: string }>();
+  const navigate = useNavigate();
   const [faction, setFaction] = useState<Faction | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -46,6 +50,11 @@ const GenericWarbandPage: React.FC = () => {
     Record<string, boolean>
   >({}); // Todas as figuras começam expandidas (true por padrão)
   const [loreExpanded, setLoreExpanded] = useState(false);
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [warbandName, setWarbandName] = useState("");
+  const [crownsValue, setCrownsValue] = useState("");
+  const [wyrdstoneValue, setWyrdstoneValue] = useState("");
+  const [creating, setCreating] = useState(false);
   const [spellLores, setSpellLores] = useState<
     Record<string, SpellLoreQueryResponse>
   >({});
@@ -97,11 +106,25 @@ const GenericWarbandPage: React.FC = () => {
     useState("");
 
   const warbandInfo = useMemo(() => {
-    if (!faction) return null;
-    // Extrair dados do faction para compatibilidade com código existente
+    if (!faction || !factionSlug) return null;
+    
+    // Buscar dados do helper resolveWarband
+    const resolvedData = resolveWarband(factionSlug);
+    
+    // Extrair dados do faction para spell lores e skill lists
+    // Se o helper não tiver esses dados, usa os extraídos da faction
     const allSpellLores = new Set<string>();
     const allSkillLists = new Set<string>();
 
+    // Adicionar spell lores e skill lists do helper primeiro (se existirem)
+    if (resolvedData?.spellLores) {
+      resolvedData.spellLores.forEach(slug => allSpellLores.add(slug));
+    }
+    if (resolvedData?.skillLists) {
+      resolvedData.skillLists.forEach(slug => allSkillLists.add(slug));
+    }
+
+    // Depois adicionar os extraídos da faction (para completar se necessário)
     faction.figures?.forEach(figure => {
       figure.spellLores?.forEach(lore => {
         if (lore.slug) allSpellLores.add(lore.slug);
@@ -114,13 +137,13 @@ const GenericWarbandPage: React.FC = () => {
     return {
       spellLores: Array.from(allSpellLores),
       skillLists: Array.from(allSkillLists),
-      specialRules: [] as Array<string | { label: string; value?: string }>,
-      showMutations: false,
-      showBlessings: false,
-      lore: null as string | null,
-      bandStructure: null as string | null,
+      specialRules: resolvedData?.specialRules ?? [],
+      showMutations: resolvedData?.showMutations ?? false,
+      showBlessings: resolvedData?.showBlessings ?? false,
+      lore: resolvedData?.lore ?? null,
+      bandStructure: resolvedData?.bandStructure ?? null,
     };
-  }, [faction]);
+  }, [faction, factionSlug]);
 
   useEffect(() => {
     if (!factionSlug) {
@@ -537,6 +560,62 @@ const GenericWarbandPage: React.FC = () => {
     setBlessingsDialogFigureName("");
   }, []);
 
+  const parsedCrowns = useMemo(() => {
+    const trimmed = crownsValue.trim();
+    if (!trimmed) return undefined;
+    const parsed = Number(trimmed.replace(",", "."));
+    return Number.isFinite(parsed) ? parsed : undefined;
+  }, [crownsValue]);
+
+  const parsedWyrdstone = useMemo(() => {
+    const trimmed = wyrdstoneValue.trim();
+    if (!trimmed) return undefined;
+    const parsed = Number(trimmed.replace(",", "."));
+    return Number.isFinite(parsed) ? parsed : undefined;
+  }, [wyrdstoneValue]);
+
+  const handleCreateWarband = useCallback(async () => {
+    if (!factionSlug || !warbandName.trim()) return;
+    
+    const hasInvalidCrowns = crownsValue.trim().length > 0 && parsedCrowns === undefined;
+    const hasInvalidWyrdstone = wyrdstoneValue.trim().length > 0 && parsedWyrdstone === undefined;
+    
+    if (hasInvalidCrowns || hasInvalidWyrdstone) return;
+
+    try {
+      setCreating(true);
+      const payload = {
+        name: warbandName.trim(),
+        crowns: parsedCrowns,
+        wyrdstone: parsedWyrdstone,
+      };
+      
+      const created = await createWarband(factionSlug, payload) as Warband;
+      toast.success("Bando criado com sucesso.");
+      
+      // Redirecionar para a página do bando criado
+      if (created?.id) {
+        navigate(`/tools/warband-manager/${created.id}`);
+      } else {
+        // Se não tiver ID, redirecionar para a página de gestão de bandos
+        navigate("/tools/warband-manager");
+      }
+    } catch (error: any) {
+      console.error(error);
+      toast.error(error?.response?.data?.message || "Não foi possível criar o bando.");
+    } finally {
+      setCreating(false);
+    }
+  }, [factionSlug, warbandName, parsedCrowns, parsedWyrdstone, crownsValue, wyrdstoneValue, navigate]);
+
+  const handleCloseCreateModal = useCallback(() => {
+    if (creating) return;
+    setCreateModalOpen(false);
+    setWarbandName("");
+    setCrownsValue("");
+    setWyrdstoneValue("");
+  }, [creating]);
+
   const navigationSections = useMemo(() => {
     const baseSections: Array<{
       id: string;
@@ -722,11 +801,24 @@ const GenericWarbandPage: React.FC = () => {
           <QuickNavigation sections={navigationSections} loading={loading} />
           <PageTitle>{faction?.name ?? "Bando"}</PageTitle>
 
+          {/* Botão Criar Bando - Aparece acima do lore */}
+          <MobileSection>
+            <div className="mt-4 mb-4 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setCreateModalOpen(true)}
+                className="inline-flex items-center justify-center rounded border border-green-600/60 bg-green-900/20 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/40"
+              >
+                Criar Bando
+              </button>
+            </div>
+          </MobileSection>
+
           {/* Lore - Colapsável */}
           {warbandInfo?.lore && (
             <MobileSection id="lore">
               <CollapsibleSection
-                title="Lore"
+                title="NARRATIVA"
                 expanded={loreExpanded}
                 onToggle={() => setLoreExpanded(!loreExpanded)}
               >
@@ -1009,7 +1101,9 @@ const GenericWarbandPage: React.FC = () => {
 
           {/* Figuras */}
           <MobileSection id="figuras">
-            <HeaderH1 id="figuras">Figuras</HeaderH1>
+            <HeaderH1 id="figuras" className="text-center">
+              <span className="block">Figuras</span>
+            </HeaderH1>
             <AvailableFiguresSection
               baseFigureGroups={baseFigureGroups}
               expandedAvailableFigures={expandedAvailableFigures}
@@ -1078,6 +1172,97 @@ const GenericWarbandPage: React.FC = () => {
         category="Benção de Nurgle"
         figureName={blessingsDialogFigureName}
       />
+
+      {/* Modal de Criar Bando */}
+      {createModalOpen && (
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/70 px-4">
+          <div className="w-full max-w-lg rounded-lg border border-green-700/60 bg-[#101010] p-5 shadow-2xl">
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-lg font-semibold text-green-200">
+                Criar Bando - {faction?.name}
+              </h2>
+              <button
+                type="button"
+                onClick={handleCloseCreateModal}
+                disabled={creating}
+                className="rounded border border-gray-600/60 bg-gray-900/20 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-gray-200 transition hover:border-gray-400 hover:bg-gray-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="space-y-3">
+              <div className="space-y-1">
+                <label className="text-xs font-semibold uppercase tracking-wide text-green-300">
+                  Nome do bando
+                </label>
+                <input
+                  type="text"
+                  value={warbandName}
+                  onChange={event => setWarbandName(event.target.value)}
+                  placeholder="Digite o nome do bando"
+                  className="w-full rounded border border-green-700 bg-[#0c0f0d] px-3 py-2 text-sm text-gray-200 outline-none transition focus:border-green-400"
+                  disabled={creating}
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold uppercase tracking-wide text-green-300">
+                    Coroas
+                  </label>
+                  <input
+                    type="number"
+                    inputMode="decimal"
+                    value={crownsValue}
+                    onChange={event => setCrownsValue(event.target.value)}
+                    placeholder="500"
+                    className="w-full rounded border border-green-700 bg-[#0c0f0d] px-3 py-2 text-sm text-gray-200 outline-none transition focus:border-green-400"
+                    disabled={creating}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold uppercase tracking-wide text-green-300">
+                    Pedra-bruxa
+                  </label>
+                  <input
+                    type="number"
+                    inputMode="decimal"
+                    value={wyrdstoneValue}
+                    onChange={event => setWyrdstoneValue(event.target.value)}
+                    placeholder="0"
+                    className="w-full rounded border border-green-700 bg-[#0c0f0d] px-3 py-2 text-sm text-gray-200 outline-none transition focus:border-green-400"
+                    disabled={creating}
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-4">
+                <button
+                  type="button"
+                  onClick={handleCloseCreateModal}
+                  disabled={creating}
+                  className="rounded border border-gray-600/60 bg-gray-900/20 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-gray-200 transition hover:border-gray-400 hover:bg-gray-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCreateWarband}
+                  disabled={
+                    creating ||
+                    !warbandName.trim() ||
+                    (crownsValue.trim().length > 0 && parsedCrowns === undefined) ||
+                    (wyrdstoneValue.trim().length > 0 && parsedWyrdstone === undefined)
+                  }
+                  className="rounded border border-green-600/60 bg-green-900/30 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-green-200 transition hover:border-green-400 hover:bg-green-900/50 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {creating ? "Criando..." : "Criar bando"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

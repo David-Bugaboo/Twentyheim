@@ -139,7 +139,7 @@ export const extractEquipment = (
 
 export const checkEquipmentAvailability = (
   equipment: EquipmentCatalogItem | EquipmentSummary | null | undefined,
-  warband: { faction?: { name?: string | null; slug?: string | null } | null; factionSlug?: string | null } | null
+  warband: { faction?: { name?: string | null; slug?: string | null } | null; factionSlug?: string | null; warbandSoldiers?: Array<{ skills?: Array<{ skillSlug?: string; skill?: { slug?: string; name?: string } }> | null }> } | null
 ) => {
   if (!equipment) {
     return { available: false, reason: "Item inválido." };
@@ -172,6 +172,54 @@ export const checkEquipmentAvailability = (
       available: false,
       reason: "Este item não pode ser adquirido por esta facção.",
     };
+  }
+
+  // Regras de negócio globais do bando
+  // Se QUALQUER figura do bando tiver "Mestre do Arsenal", pode comprar QUALQUER arma corpo a corpo
+  // Se QUALQUER figura do bando tiver "Mestre Atirador", pode comprar QUALQUER arma à distância e de fogo
+  try {
+    const hasSkillOnWarband = (matcher: (value: string) => boolean) => {
+      const soldiers = warband?.warbandSoldiers ?? [];
+      for (const soldier of soldiers) {
+        const skillLinks = (soldier?.skills ?? []) as Array<{
+          skillSlug?: string;
+          skill?: { slug?: string; name?: string };
+        }>;
+        for (const link of skillLinks) {
+          const slug = normalizeText(link?.skill?.slug ?? link?.skillSlug ?? "");
+          const name = normalizeText(link?.skill?.name ?? "");
+          if (matcher(slug) || matcher(name)) return true;
+        }
+      }
+      return false;
+    };
+
+    const hasArsenalMaster = hasSkillOnWarband(value =>
+      value.includes("mestre-do-arsenal")
+    );
+    const hasSharpshooter = hasSkillOnWarband(value =>
+      value.includes("mestre-atirador")
+    );
+
+    if (hasArsenalMaster || hasSharpshooter) {
+      const category = normalizeText((equipment as any)?.category ?? "");
+      const name = normalizeText((equipment as any)?.name ?? "");
+
+      const isMelee = category.includes("arma corpo a corpo");
+      const isRanged =
+        category.includes("arma a distancia") ||
+        category.includes("arma à distância") ||
+        category.includes("arma de disparo") ||
+        category.includes("arma de arremesso") ||
+        category.includes("arma à dist\u00e2ncia");
+      const isFirearm = category.includes("arma de fogo") || name.includes("arma de fogo");
+
+      if ((hasArsenalMaster && isMelee) || (hasSharpshooter && (isRanged || isFirearm))) {
+        return { available: true, reason: "Disponível por habilidades do bando." };
+      }
+    }
+  } catch {
+    // Silenciar qualquer erro nessa verificação extra
   }
 
   if (availabilityList.length === 0) {

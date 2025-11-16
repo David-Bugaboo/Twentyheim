@@ -23,6 +23,7 @@ import {
 import { checkEquipmentAvailability } from "../utils/equipment-helpers";
 import type { Warband } from "../../../../types/warband.entity";
 import type { ModifierQueryResponse } from "../../../../services/queries.service";
+import { Chip } from "@mui/material";
 
 type VaultModalProps = {
   open: boolean;
@@ -331,6 +332,8 @@ export const VaultModal: React.FC<VaultModalProps> = ({
                     warband
                   );
                   const formattedCost = formatEquipmentCost(item.cost);
+                  const rarityNum = (item as any)?.rarity as number | null | undefined;
+                  const rarityLabel = rarityNum === 1 ? "Comum" : rarityNum != null ? `Raridade ${rarityNum}` : null;
                   return (
                     <option
                       key={item.id ?? item.slug}
@@ -340,6 +343,7 @@ export const VaultModal: React.FC<VaultModalProps> = ({
                       }}
                     >
                       {item.name}
+                      {rarityLabel ? ` — [${rarityLabel}]` : ""}
                       {formattedCost && formattedCost !== "-"
                         ? ` — ${formattedCost}`
                         : ""}
@@ -390,13 +394,20 @@ export const VaultModal: React.FC<VaultModalProps> = ({
 
             {selectedEquipmentCatalogItem ? (
               <div className="space-y-3 rounded border border-green-800/40 bg-[#0c0f0d] p-4 text-sm text-gray-200">
-                <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-lg font-semibold text-green-200">
                     {selectedEquipmentCatalogItem.name}
                   </h3>
-                  <span className="text-xs uppercase text-green-400">
-                    {selectedEquipmentCatalogItem.category ?? "Sem categoria"}
-                  </span>
+                  {selectedEquipmentCatalogItem.rarity != null ? (
+                    <Chip
+                      size="small"
+                      label={selectedEquipmentCatalogItem.rarity === 1 ? "Comum" : `Raridade ${selectedEquipmentCatalogItem.rarity}`}
+                      sx={{
+                        backgroundColor: "rgba(234, 179, 8, 0.2)",
+                        color: "#fde68a",
+                      }}
+                    />
+                  ) : null}
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-xs text-gray-300">
                   <StatRow
