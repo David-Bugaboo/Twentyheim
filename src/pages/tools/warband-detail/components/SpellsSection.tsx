@@ -5,6 +5,7 @@ import { useSpellsManagement } from "../hooks/useSpellsManagement";
 import type { WarbandSoldier } from "../../../../types/warband-soldier.entity";
 import type { BaseFigure } from "../../../../types/base-figure.entity";
 import type { ExtraSpellLoreToWarbandSoldier } from "../../../../types/extra-spell-lore-to-warband-soldier.entity";
+import MagicTermTooltip from "../../../../components/MagicTermTooltip";
 
 type SpellsSectionProps = {
   selectedSoldier: WarbandSoldier | null;
@@ -176,7 +177,13 @@ export const SpellsSection: React.FC<SpellsSectionProps> = ({
                     ) : null}
                     {keywords && keywords.length > 0 ? (
                       <div className="text-[11px] text-gray-500">
-                        Palavras-chave: {keywords.join(", ")}
+                        Palavras-chave:{" "}
+                        {keywords.map((kw, idx) => (
+                          <span key={`${spell.id}-kw-${idx}`} className="text-gray-400">
+                            <MagicTermTooltip component="span">{kw}</MagicTermTooltip>
+                            {idx < keywords.length - 1 ? ", " : ""}
+                          </span>
+                        ))}
                       </div>
                     ) : null}
                     {spellDescription ? (

@@ -517,9 +517,17 @@ const SoldierDetailContent: React.FC<SoldierDetailContentProps> = ({
     const hasArmorInInventory = soldierEquipment.some(item => {
       const category = item.equipment?.category ?? "";
       const normalizedCategory = normalizeString(category);
+      const isHelmet =
+        normalizedCategory === "elmo" || normalizedCategory.includes("elmo");
+      // Elmos NÃO contam como armaduras para esta checagem
+      if (isHelmet) return false;
       return (
         normalizedCategory === "armadura" ||
-        normalizedCategory.includes("armadura")
+        normalizedCategory.includes("armadura") ||
+        normalizedCategory === "armor" ||
+        normalizedCategory.includes("armor") ||
+        normalizedCategory === "armour" ||
+        normalizedCategory.includes("armour")
       );
     });
 

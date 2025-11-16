@@ -20,6 +20,7 @@ import {
   parseSpecialRules,
 } from "../../tools/warband-detail/utils/helpers";
 import GameText from "../../../components/GameText";
+import MagicTermTooltip from "../../../components/MagicTermTooltip";
 
 type SoldierDetailSectionReadOnlyProps = {
   selectedSoldier: WarbandSoldier | null;
@@ -1281,9 +1282,12 @@ export const SoldierDetailSectionReadOnly: React.FC<
                   {skill.skill?.name ?? skill.skillSlug}
                 </div>
                 {skill.skill?.description && (
-                  <div className="mt-1 text-gray-300">
+                  <GameText
+                    component="div"
+                    className="mt-1 text-gray-300"
+                  >
                     {skill.skill.description}
-                  </div>
+                  </GameText>
                 )}
               </div>
             ))}
@@ -1307,10 +1311,25 @@ export const SoldierDetailSectionReadOnly: React.FC<
                 <div className="font-semibold text-blue-200">
                   {spell.spell?.name ?? spell.spellSlug}
                 </div>
-                {spell.spell?.description && (
-                  <div className="mt-1 text-gray-300">
-                    {spell.spell.description}
+                {Array.isArray(spell.spell?.keywords) &&
+                (spell.spell?.keywords?.length ?? 0) > 0 ? (
+                  <div className="mt-0.5 text-[11px] text-gray-400">
+                    Palavras-chave:{" "}
+                    {spell.spell!.keywords!.map((kw, i) => (
+                      <span key={`kw-${spell.id ?? index}-${i}`} className="text-gray-300">
+                        <MagicTermTooltip component="span">{kw}</MagicTermTooltip>
+                        {i < (spell.spell!.keywords!.length - 1) ? ", " : ""}
+                      </span>
+                    ))}
                   </div>
+                ) : null}
+                {spell.spell?.description && (
+                  <GameText
+                    component="div"
+                    className="mt-1 text-gray-300"
+                  >
+                    {spell.spell.description}
+                  </GameText>
                 )}
               </div>
             ))}
