@@ -68,8 +68,8 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
     if (submitting) return;
 
     // Validações
-    if (password.length < 100) {
-      setError("A senha deve ter pelo menos 100 caracteres.");
+    if (password.length < 6) {
+      setError("A senha deve ter pelo menos 6 caracteres.");
       return;
     }
 
@@ -166,8 +166,8 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
                 setPassword(e.target.value);
                 setError(null);
               }}
-              helperText={`Mínimo de 100 caracteres (${password.length}/100)`}
-              error={password.length > 0 && password.length < 100}
+              helperText={`Mínimo de 6 caracteres (${password.length}/6)`}
+              error={password.length > 0 && password.length < 6}
               InputLabelProps={{ sx: { color: "#cbd5f5" } }}
               InputProps={{
                 sx: {
@@ -176,7 +176,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
               }}
               FormHelperTextProps={{
                 sx: {
-                  color: password.length > 0 && password.length < 100 ? "#ef4444" : "#cbd5f5",
+                  color: password.length > 0 && password.length < 6 ? "#ef4444" : "#cbd5f5",
                 },
               }}
             />
@@ -221,7 +221,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
           <Button
             type="submit"
             variant="contained"
-            disabled={submitting || password.length < 100 || password !== confirmPassword}
+            disabled={submitting || password.length < 6 || password !== confirmPassword}
             sx={{
               backgroundColor: "#166534",
               "&:hover": { backgroundColor: "#15803d" },
