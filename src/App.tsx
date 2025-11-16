@@ -81,6 +81,7 @@ import WarbandManagerPage from "./pages/tools/WarbandManagerPage";
 import WarbandDetailPage from "./pages/tools/WarbandDetailPage";
 import SharedWarbandPageNew from "./pages/share/SharedWarbandPageNew";
 import GenericWarbandPage from "./pages/warbands/GenericWarbandPage";
+import ChangePasswordPage from "./pages/auth/ChangePasswordPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -342,6 +343,7 @@ function AppContent() {
           element={<WarbandDetailPage />}
         />
         <Route path="/warbands/share/:id" element={<SharedWarbandPageNew />} />
+        <Route path="/change-password" element={<ChangePasswordPage />} />
         <Route path="/changelog" element={<ChangelogPage />} />
       </Routes>
     </>

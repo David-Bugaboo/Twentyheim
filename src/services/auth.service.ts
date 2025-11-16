@@ -62,3 +62,16 @@ export async function fetchCurrentUser(signal?: AbortSignal) {
   });
   return response.data;
 }
+
+export async function changePassword(password: string, accessToken: string) {
+  const response = await apiClient.post(
+    "/auth/change-password",
+    { password },
+    {
+      params: {
+        access_token: accessToken,
+      },
+    }
+  );
+  return response.data;
+}
