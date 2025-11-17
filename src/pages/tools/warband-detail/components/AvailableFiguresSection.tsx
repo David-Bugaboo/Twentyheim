@@ -118,7 +118,8 @@ export const AvailableFiguresSection: React.FC<
   };
 
   return (
-    <div>
+    <div className="flex flex-col h-full min-h-0">
+      <div className="flex-1 overflow-y-auto min-h-0">
       {baseFigureGroups.length === 0 ? (
         <MobileText className="text-sm text-gray-400">
           Nenhuma figura encontrada para esta facção.
@@ -871,6 +872,7 @@ export const AvailableFiguresSection: React.FC<
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 };
