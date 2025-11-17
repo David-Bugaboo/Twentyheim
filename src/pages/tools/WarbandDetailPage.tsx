@@ -218,7 +218,7 @@ const WarbandDetailPage: React.FC = () => {
   >(null);
   const [vaultItemAction, setVaultItemAction] = useState<{
     itemId: string;
-    type: "buy" | "sell" | "undo";
+    type: "buy" | "sell" | "undo" | "destroy";
   } | null>(null);
   const [expandedAvailableFigures, setExpandedAvailableFigures] = useState<
     Record<string, boolean>
@@ -789,46 +789,7 @@ const WarbandDetailPage: React.FC = () => {
     }
   };
 
-  const handleVaultRebuy = async (item: EquipmentToVault) => {
-    if (!warbandId) return;
-
-    const equipmentSlug = item.equipment?.slug ?? item.equipmentSlug ?? "";
-
-    if (!equipmentSlug) {
-      toast.error(
-        "Não foi possível identificar o equipamento para comprar novamente."
-      );
-      return;
-    }
-
-    const existingModifierSlug =
-      item.modifier?.slug ?? item.modifierSlug ?? undefined;
-    const modifierName = item.modifier?.name ?? null;
-
-    try {
-      setVaultItemAction({ itemId: item.id, type: "buy" });
-      await addItemToVault(
-        warbandId,
-        { equipmentSlug, modifierSlug: existingModifierSlug },
-        { loot: false }
-      );
-      toast.success(
-        modifierName
-          ? `Equipamento "${
-              item.equipment?.name ?? equipmentSlug
-            }" com "${modifierName}" comprado novamente.`
-          : `Equipamento "${
-          item.equipment?.name ?? equipmentSlug
-        }" comprado novamente.`
-      );
-      await resetAndReloadWarband();
-    } catch (error) {
-      console.error(error);
-      toast.error("Não foi possível comprar o equipamento novamente.");
-    } finally {
-      setVaultItemAction(null);
-    }
-  };
+  
 
   const handleVaultUpdate = async (
     item: EquipmentToVault,
@@ -1903,7 +1864,6 @@ const WarbandDetailPage: React.FC = () => {
         onClose={() => setVaultSidebarOpen(false)}
         vaultItems={vaultItems}
         onOpenVaultModal={handleOpenVaultModal}
-        onVaultRebuy={handleVaultRebuy}
         onVaultUpdate={handleVaultUpdate}
         vaultItemAction={vaultItemAction}
       />

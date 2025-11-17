@@ -8,7 +8,6 @@ type VaultSidebarProps = {
   onClose: () => void;
   vaultItems: EquipmentToVault[];
   onOpenVaultModal: () => void;
-  onVaultRebuy: (item: EquipmentToVault) => void;
   onVaultUpdate: (item: EquipmentToVault, options: { sell?: boolean; destroy?: boolean }) => void;
   vaultItemAction: {
     itemId: string;
@@ -21,7 +20,6 @@ export const VaultSidebar: React.FC<VaultSidebarProps> = ({
   onClose,
   vaultItems,
   onOpenVaultModal,
-  onVaultRebuy,
   onVaultUpdate,
   vaultItemAction,
 }) => {
@@ -30,7 +28,6 @@ export const VaultSidebar: React.FC<VaultSidebarProps> = ({
       <VaultSection
         vaultItems={vaultItems}
         onOpenVaultModal={onOpenVaultModal}
-        onVaultRebuy={onVaultRebuy}
         onVaultUpdate={onVaultUpdate}
         vaultItemAction={vaultItemAction}
       />
