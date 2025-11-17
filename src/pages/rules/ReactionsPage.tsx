@@ -127,7 +127,7 @@ function ReactionsPage() {
                 <strong>3cm de distância</strong> de uma figura que tenha{" "}
                 <strong>linha de visão</strong> contra ela, esta pode declarar
                 uma <strong>interceptação</strong>. Uma figura não pode
-                interceptar uma figura inimiga se ela for o alvo de uma carga desta
+                interceptar uma figura inimiga se ela for o alvo de uma carga daquela
                 figura inimiga.
               </MobileText>
 
