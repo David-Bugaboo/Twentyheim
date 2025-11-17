@@ -737,7 +737,7 @@ const WarbandDetailPage: React.FC = () => {
     setVaultActionLoading(null);
   };
 
-  const handleVaultAdd = async (loot: boolean) => {
+  const handleVaultAdd = async (loot: boolean, discount?: number) => {
     if (!warbandId || !selectedCatalogSlug) {
       toast.error("Selecione um equipamento válido antes de continuar.");
       return;
@@ -766,7 +766,7 @@ const WarbandDetailPage: React.FC = () => {
           equipmentSlug: selectedCatalogSlug,
           modifierSlug: applicableModifierSlug,
         },
-        { loot }
+        { loot, discount }
       );
       toast.success(
         loot
@@ -832,33 +832,42 @@ const WarbandDetailPage: React.FC = () => {
 
   const handleVaultUpdate = async (
     item: EquipmentToVault,
-    options: { sell: boolean }
+    options: { sell?: boolean; destroy?: boolean }
   ) => {
     if (!warbandId) return;
     try {
+      const actionType = options.destroy
+        ? "destroy"
+        : options.sell
+          ? "sell"
+          : "undo";
       setVaultItemAction({
         itemId: item.id,
-        type: options.sell ? "sell" : "undo",
+        type: actionType as "buy" | "sell" | "undo" | "destroy",
       });
-      await updateVaultItem(warbandId, item.id, {
-        sell: options.sell,
-      });
+      await updateVaultItem(warbandId, item.id, options);
       toast.success(
-        options.sell
-          ? `Venda do item "${
+        options.destroy
+          ? `Item "${
               item.equipment?.name ?? item.equipmentSlug
-            }" registrada.`
-          : `Venda desfeita para "${
-              item.equipment?.name ?? item.equipmentSlug
-            }".`
+            }" destruído.`
+          : options.sell
+            ? `Venda do item "${
+                item.equipment?.name ?? item.equipmentSlug
+              }" registrada.`
+            : `Compra desfeita para "${
+                item.equipment?.name ?? item.equipmentSlug
+              }".`
       );
       await resetAndReloadWarband();
     } catch (error) {
       console.error(error);
       toast.error(
-        options.sell
-          ? "Não foi possível registrar a venda do item."
-          : "Não foi possível desfazer a venda do item."
+        options.destroy
+          ? "Não foi possível destruir o item."
+          : options.sell
+            ? "Não foi possível registrar a venda do item."
+            : "Não foi possível desfazer a compra do item."
       );
     } finally {
       setVaultItemAction(null);
@@ -1816,7 +1825,7 @@ const WarbandDetailPage: React.FC = () => {
         selectedModifierSlug={selectedModifierSlug}
         onSelectModifier={setSelectedModifierSlug}
         modifierCategory={modifierCategory}
-        onBuy={() => handleVaultAdd(false)}
+        onBuy={(discount) => handleVaultAdd(false, discount)}
         onLoot={() => handleVaultAdd(true)}
         actionLoading={vaultActionLoading}
         warband={warband}

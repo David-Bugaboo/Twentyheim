@@ -14,11 +14,13 @@ import { formatCrownsValue } from "../utils/helpers";
 type VaultSectionProps = {
   vaultItems: EquipmentToVault[];
   onOpenVaultModal: () => void;
-  onVaultRebuy: (item: EquipmentToVault) => void;
-  onVaultUpdate: (item: EquipmentToVault, options: { sell: boolean }) => void;
+  onVaultUpdate: (
+    item: EquipmentToVault,
+    options: { sell?: boolean; destroy?: boolean }
+  ) => void;
   vaultItemAction: {
     itemId: string;
-    type: "buy" | "sell" | "undo";
+    type: "buy" | "sell" | "undo" | "destroy";
   } | null;
 };
 
@@ -32,7 +34,6 @@ type ExpandedItemState = {
 export const VaultSection: React.FC<VaultSectionProps> = ({
   vaultItems,
   onOpenVaultModal,
-  onVaultRebuy,
   onVaultUpdate,
   vaultItemAction,
 }) => {
@@ -348,20 +349,6 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
                 <div className="mt-3 flex flex-wrap gap-2">
                   <button
                     type="button"
-                    onClick={() => onVaultRebuy(item)}
-                    disabled={
-                      vaultItemAction?.itemId === item.id &&
-                      vaultItemAction.type === "buy"
-                    }
-                    className="inline-flex items-center justify-center gap-2 rounded border border-green-600/60 bg-green-900/20 px-2 py-1 text-xs font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
-                  >
-                    {vaultItemAction?.itemId === item.id &&
-                    vaultItemAction.type === "buy"
-                      ? "Comprando..."
-                      : "Comprar novamente"}
-                  </button>
-                  <button
-                    type="button"
                     onClick={() => onVaultUpdate(item, { sell: true })}
                     disabled={
                       vaultItemAction?.itemId === item.id &&
@@ -386,7 +373,21 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
                     {vaultItemAction?.itemId === item.id &&
                     vaultItemAction.type === "undo"
                       ? "Desfazendo..."
-                      : "Desfazer venda"}
+                      : "Desfazer compra"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onVaultUpdate(item, { destroy: true })}
+                    disabled={
+                      vaultItemAction?.itemId === item.id &&
+                      vaultItemAction.type === "destroy"
+                    }
+                    className="inline-flex items-center justify-center gap-2 rounded border border-red-600/60 bg-red-900/20 px-2 py-1 text-xs font-semibold text-red-200 transition hover:border-red-400 hover:bg-red-900/30 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {vaultItemAction?.itemId === item.id &&
+                    vaultItemAction.type === "destroy"
+                      ? "Destruindo..."
+                      : "Destruir"}
                   </button>
                 </div>
               </div>

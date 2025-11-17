@@ -49,15 +49,19 @@ export interface AddVaultItemPayload {
 export async function addItemToVault(
   warbandId: string,
   payload: AddVaultItemPayload,
-  options?: { loot?: boolean }
+  options?: { loot?: boolean; discount?: number }
 ) {
+  const params: Record<string, unknown> = {
+    loot: options?.loot ?? false,
+  };
+  if (options?.discount !== undefined && options.discount > 0) {
+    params.discount = options.discount;
+  }
   const response = await apiClient.post<Warband>(
     `/warbands/${warbandId}/vault`,
     payload,
     {
-      params: {
-        loot: options?.loot ?? false,
-      },
+      params,
     }
   );
   return response.data;
@@ -66,14 +70,18 @@ export async function addItemToVault(
 export async function updateVaultItem(
   warbandId: string,
   vaultItemId: string,
-  options?: { sell?: boolean }
+  options?: { sell?: boolean; destroy?: boolean }
 ) {
+  const params: Record<string, unknown> = {
+    sell: options?.sell ?? false,
+  };
+  if (options?.destroy === true) {
+    params.destroy = true;
+  }
   const response = await apiClient.delete<Warband>(
     `/warbands/${warbandId}/undoFromVault/${vaultItemId}`,
     {
-      params: {
-        sell: options?.sell ?? false,
-      },
+      params,
     }
   );
   return response.data;

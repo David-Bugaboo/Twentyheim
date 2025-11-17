@@ -58,15 +58,50 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const init = async () => {
-      const storedToken = localStorage.getItem("twentyheim_token");
-      if (!storedToken) {
+      // Verificar se há token na URL (autenticação via callback)
+      const hash = window.location.hash;
+      const urlParams = new URLSearchParams(hash.substring(1));
+      const accessToken = urlParams.get("access_token");
+      
+      let tokenToUse: string | null = null;
+
+      if (accessToken) {
+        // Token encontrado na URL - usar ele
+        tokenToUse = accessToken;
+        // Salvar o token
+        localStorage.setItem("twentyheim_token", accessToken);
+        
+        // Limpar os parâmetros da URL
+        const hashWithoutPrefix = hash.startsWith("#") ? hash.substring(1) : hash;
+        const params = new URLSearchParams(hashWithoutPrefix);
+        params.delete("access_token");
+        params.delete("expires_at");
+        params.delete("expires_in");
+        params.delete("refresh_token");
+        params.delete("token_type");
+        params.delete("type");
+        
+        const remainingParams = params.toString();
+        
+        // Atualizar a URL sem recarregar a página
+        if (remainingParams) {
+          window.history.replaceState(null, "", `#${remainingParams}`);
+        } else {
+          window.history.replaceState(null, "", window.location.pathname + window.location.search);
+        }
+      } else {
+        // Tentar usar token armazenado
+        tokenToUse = localStorage.getItem("twentyheim_token");
+      }
+
+      if (!tokenToUse) {
         setLoading(false);
         return;
       }
 
       try {
-        setAuthToken(storedToken);
-        // Sempre fazer requisição /me para validar o token
+        setAuthToken(tokenToUse);
+        // Sempre fazer requisição /me para validar o token e popular dados do usuário
         const user = await fetchCurrentUser();
         setCurrentUser(user);
         setWarbands(user.warbands ?? []);
@@ -79,7 +114,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           clearSession();
         } else {
           // Para outros erros, também limpar a sessão por segurança
-        clearSession();
+          clearSession();
         }
       } finally {
         setLoading(false);

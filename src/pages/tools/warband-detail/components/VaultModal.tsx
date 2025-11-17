@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -39,7 +39,7 @@ type VaultModalProps = {
   selectedModifierSlug: string;
   onSelectModifier: (slug: string) => void;
   modifierCategory: "melee" | "armor" | null;
-  onBuy: () => void;
+  onBuy: (discount?: number) => void;
   onLoot: () => void;
   actionLoading: "buy" | "loot" | null;
   warband: Warband | null;
@@ -159,6 +159,8 @@ export const VaultModal: React.FC<VaultModalProps> = ({
     [modifierOptions, selectedModifierSlug, showModifierSelector]
   );
 
+  const [discount, setDiscount] = useState<string>("");
+
   const canBuyFromVault =
     Boolean(selectedEquipmentCatalogItem) &&
     Boolean(selectedEquipmentAvailability?.available);
@@ -178,9 +180,19 @@ export const VaultModal: React.FC<VaultModalProps> = ({
       ? selectedModifier.multiplier
       : 1;
 
-  const finalCostValue =
+  const discountValue = (() => {
+    const parsed = Number(discount.replace(/[^\d.,-]/g, "").replace(",", "."));
+    return Number.isFinite(parsed) && parsed >= 0 ? parsed : 0;
+  })();
+
+  const costAfterModifier =
     normalizedCost !== null && Number.isFinite(normalizedCost)
       ? normalizedCost * modifierMultiplier
+      : null;
+
+  const finalCostValue =
+    costAfterModifier !== null
+      ? Math.max(0, costAfterModifier - discountValue)
       : null;
 
   const formattedFinalCost =
@@ -550,6 +562,31 @@ export const VaultModal: React.FC<VaultModalProps> = ({
               </div>
             ) : null}
 
+            {selectedEquipmentCatalogItem ? (
+              <div className="space-y-1 rounded border border-amber-600/50 bg-amber-900/20 p-3 text-xs text-amber-100">
+                <label
+                  htmlFor="discount-input"
+                  className="text-xs font-semibold uppercase tracking-wide text-amber-300"
+                >
+                  Desconto
+                </label>
+                <input
+                  id="discount-input"
+                  type="text"
+                  value={discount}
+                  onChange={event => setDiscount(event.target.value)}
+                  placeholder="0"
+                  className="mt-1 w-full rounded border border-amber-700 bg-[#0f1010] px-3 py-2 text-sm text-gray-200 outline-none transition focus:border-amber-400"
+                />
+                {discountValue > 0 && costAfterModifier !== null ? (
+                  <p className="mt-1 text-xs text-amber-200">
+                    Custo original: {formatCrownsValue(costAfterModifier)} → 
+                    Custo final: {formatCrownsValue(finalCostValue ?? 0)}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
+
             <div className="flex justify-end gap-2 pt-2">
               <button
                 type="button"
@@ -561,7 +598,7 @@ export const VaultModal: React.FC<VaultModalProps> = ({
               <div className="flex flex-col items-stretch gap-2 sm:flex-row">
                 <button
                   type="button"
-                  onClick={onBuy}
+                  onClick={() => onBuy(discountValue > 0 ? discountValue : undefined)}
                   disabled={!canBuyFromVault || actionLoading !== null}
                   className={buyButtonClass}
                 >

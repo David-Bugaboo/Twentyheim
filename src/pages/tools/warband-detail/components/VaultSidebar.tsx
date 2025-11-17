@@ -9,10 +9,10 @@ type VaultSidebarProps = {
   vaultItems: EquipmentToVault[];
   onOpenVaultModal: () => void;
   onVaultRebuy: (item: EquipmentToVault) => void;
-  onVaultUpdate: (item: EquipmentToVault, options: { sell: boolean }) => void;
+  onVaultUpdate: (item: EquipmentToVault, options: { sell?: boolean; destroy?: boolean }) => void;
   vaultItemAction: {
     itemId: string;
-    type: "buy" | "sell" | "undo";
+    type: "buy" | "sell" | "undo" | "destroy";
   } | null;
 };
 
