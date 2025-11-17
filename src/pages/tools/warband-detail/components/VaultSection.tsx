@@ -95,8 +95,8 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
   }, []);
 
   return (
-    <div>
-      <div className="mb-3 flex justify-end">
+    <div className="flex flex-col h-full">
+      <div className="mb-3 flex justify-end flex-shrink-0">
         <button
           type="button"
           onClick={onOpenVaultModal}
@@ -110,7 +110,7 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
           Nenhum item no cofre.
         </MobileText>
       ) : (
-        <div className="max-h-[40vh] space-y-3 overflow-y-auto pr-2 text-sm xl:max-h-none xl:overflow-visible xl:pr-0">
+        <div className="flex-1 space-y-3 overflow-y-auto pr-2 text-sm min-h-0">
           {vaultItems.map(item => {
             const isExpanded = expandedItems.has(item.id);
             const detailState = equipmentDetails.get(item.id);

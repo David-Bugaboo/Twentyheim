@@ -74,8 +74,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
           sx={{
             flex: 1,
             padding: { xs: 1.5, sm: 2 },
-            overflow: "auto",
-            maxHeight: { xs: "calc(100vh - 60px)", sm: "calc(100vh - 80px)" },
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            minHeight: 0,
             "&::-webkit-scrollbar": {
               width: "8px",
             },

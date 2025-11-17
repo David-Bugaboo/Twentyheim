@@ -170,10 +170,15 @@ const WarbandDetailPage: React.FC = () => {
         options && "nextSelectedSoldierId" in options
           ? options.nextSelectedSoldierId
           : selectedSoldierId;
+      setReloadingWarband(true);
       setSelectedSoldierId(null);
-      await loadWarband(warbandId);
-      if (targetId) {
-        setSelectedSoldierId(targetId);
+      try {
+        await loadWarband(warbandId);
+        if (targetId) {
+          setSelectedSoldierId(targetId);
+        }
+      } finally {
+        setReloadingWarband(false);
       }
     },
     [warbandId, loadWarband, selectedSoldierId, setSelectedSoldierId]
@@ -287,6 +292,7 @@ const WarbandDetailPage: React.FC = () => {
   const [shareLinkLoading, setShareLinkLoading] = useState(false);
   const [shareLinkUrl, setShareLinkUrl] = useState<string | null>(null);
   const [exportingPDF, setExportingPDF] = useState(false);
+  const [reloadingWarband, setReloadingWarband] = useState(false);
 
   useEffect(() => {
     if (!vaultModalOpen) return;
@@ -694,9 +700,9 @@ const WarbandDetailPage: React.FC = () => {
 
   const handleOpenEquipmentDialog = useCallback(
     (figureName: string, items: EquipmentSummary[] | unknown[]) => {
-      setEquipmentDialogTitle(figureName);
-      setEquipmentDialogItems(items as EquipmentSummary[]);
-      setEquipmentDialogOpen(true);
+    setEquipmentDialogTitle(figureName);
+    setEquipmentDialogItems(items as EquipmentSummary[]);
+    setEquipmentDialogOpen(true);
     },
     []
   );
@@ -770,9 +776,7 @@ const WarbandDetailPage: React.FC = () => {
             : `Equipamento "${selectedItem.name}" comprado para o cofre.`
       );
       await resetAndReloadWarband();
-      setSelectedCatalogSlug("");
-      setSelectedModifierSlug("");
-      setVaultModalOpen(false);
+      // Modal permanece aberto com as mesmas opções selecionadas - só fecha se o usuário clicar em Cancelar ou no X
     } catch (error) {
       console.error(error);
       toast.error(
@@ -814,8 +818,8 @@ const WarbandDetailPage: React.FC = () => {
               item.equipment?.name ?? equipmentSlug
             }" com "${modifierName}" comprado novamente.`
           : `Equipamento "${
-              item.equipment?.name ?? equipmentSlug
-            }" comprado novamente.`
+          item.equipment?.name ?? equipmentSlug
+        }" comprado novamente.`
       );
       await resetAndReloadWarband();
     } catch (error) {
@@ -1311,10 +1315,10 @@ const WarbandDetailPage: React.FC = () => {
         await promoteSoldierToHero(soldierId, skillsListSlugs);
         toast.success("Figura promovida a Herói com sucesso!");
         await resetAndReloadWarband({ nextSelectedSoldierId: soldierId });
-      } catch (error) {
-        console.error(error);
+    } catch (error) {
+      console.error(error);
         toast.error("Não foi possível promover a figura a Herói.");
-      } finally {
+    } finally {
         setPromoteHeroLoading(false);
       }
     },
@@ -1561,13 +1565,15 @@ const WarbandDetailPage: React.FC = () => {
 
   return (
     <div className="relative flex h-screen w-full flex-col overflow-hidden bg-[#121212] dark group/design-root">
-      {loading || savingWarband ? (
+      {loading || savingWarband || reloadingWarband ? (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
           <Spinner
             label={
               savingWarband
                 ? "Salvando dados do bando..."
-                : "Atualizando dados..."
+                : reloadingWarband
+                  ? "Atualizando dados..."
+                  : "Carregando dados..."
             }
           />
         </div>
@@ -1612,9 +1618,9 @@ const WarbandDetailPage: React.FC = () => {
                     />
                   </label>
                 ) : (
-                  <span>
-                    <strong>Coroas:</strong> {crowns}
-                  </span>
+                <span>
+                  <strong>Coroas:</strong> {crowns}
+                </span>
                 )}
                 {editingWarband ? (
                   <label className="flex items-center gap-2">
@@ -1630,8 +1636,8 @@ const WarbandDetailPage: React.FC = () => {
                     />
                   </label>
                 ) : (
-                  <span>
-                    <strong>Pedra-bruxa:</strong> {wyrdstone}
+                <span>
+                  <strong>Pedra-bruxa:</strong> {wyrdstone}
                   </span>
                 )}
                 <span>
@@ -1693,14 +1699,14 @@ const WarbandDetailPage: React.FC = () => {
                   </button>
                 </>
               )}
-              <Link
-                to="/tools/warband-manager"
+            <Link
+              to="/tools/warband-manager"
                 className="inline-flex items-center justify-center rounded border border-green-500 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-green-200 transition hover:bg-green-700/20 whitespace-nowrap"
-              >
+            >
                 ← Voltar
-              </Link>
+            </Link>
+              </div>
             </div>
-          </div>
 
           <div className="xl:flex-1 xl:min-h-0 xl:overflow-hidden">
             {/* Soldiers list */}

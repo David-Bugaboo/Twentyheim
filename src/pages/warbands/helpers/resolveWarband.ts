@@ -477,7 +477,6 @@ const warbandData: WarbandInfo[] = [
               <br />• <strong>Irmã Superior:</strong> Seu bando pode incluir até três Irmãs Superiores (0-3).
               <br />• <strong>Áugure:</strong> Seu bando pode incluir até um Áugure (0-1).
               <br />• <strong>Irmã Sigmarita:</strong> Seu bando pode incluir de uma a cinco Irmãs Sigmaritas (1-5).
-              <br />• <strong>Irmã Hospitalária:</strong> Seu bando pode incluir até duas Irmãs Hospitalárias (0-2).
               <br />• <strong>Noviça:</strong> Seu bando pode incluir até dez Noviças (0-10).
            </p>
           `,
