@@ -118,8 +118,7 @@ export const AvailableFiguresSection: React.FC<
   };
 
   return (
-    <div className="flex flex-col h-full min-h-0">
-      <div className="flex-1 overflow-y-auto min-h-0">
+    <div>
       {baseFigureGroups.length === 0 ? (
         <MobileText className="text-sm text-gray-400">
           Nenhuma figura encontrada para esta facção.
@@ -467,9 +466,13 @@ export const AvailableFiguresSection: React.FC<
                           maxValue !== null &&
                           maxValue !== Infinity &&
                           currentCount >= maxValue;
+                        // Não renderizar o botão se não houver warbandId (páginas de informação)
+                        if (!warbandId) {
+                          return null;
+                        }
+
                         const buttonDisabled =
                           isAdding ||
-                          !warbandId ||
                           Boolean(disabledReason) ||
                           isAtMax;
                         const buttonElement = (
@@ -872,7 +875,6 @@ export const AvailableFiguresSection: React.FC<
           ))}
         </div>
       )}
-      </div>
     </div>
   );
 };

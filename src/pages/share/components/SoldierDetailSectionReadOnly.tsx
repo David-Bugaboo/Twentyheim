@@ -795,8 +795,7 @@ export const SoldierDetailSectionReadOnly: React.FC<
   );
 
   return (
-    <div className="flex flex-col h-full min-h-0">
-      <div className="flex-1 space-y-4 text-sm text-gray-200 overflow-y-auto min-h-0">
+    <div className="space-y-4 text-sm text-gray-200">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-2">
           <div className="font-semibold text-green-200">
@@ -1545,7 +1544,6 @@ export const SoldierDetailSectionReadOnly: React.FC<
           </div>
         </CollapsibleSection>
       )}
-      </div>
     </div>
   );
 };

@@ -5,7 +5,10 @@ import { Chip } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import type { EquipmentToVault } from "../../../../types/equipment-to-vault.entity";
-import { fetchEquipmentBySlug, type EquipmentDetailQueryResponse } from "../../../../services/queries.service";
+import {
+  fetchEquipmentBySlug,
+  type EquipmentDetailQueryResponse,
+} from "../../../../services/queries.service";
 import { formatCrownsValue } from "../utils/helpers";
 
 type VaultSectionProps = {
@@ -34,14 +37,16 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
   vaultItemAction,
 }) => {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
-  const [equipmentDetails, setEquipmentDetails] = useState<Map<string, ExpandedItemState>>(new Map());
+  const [equipmentDetails, setEquipmentDetails] = useState<
+    Map<string, ExpandedItemState>
+  >(new Map());
 
   const toggleExpand = useCallback(async (item: EquipmentToVault) => {
     const itemId = item.id;
-    
+
     setExpandedItems(prev => {
       const isExpanded = prev.has(itemId);
-      
+
       if (isExpanded) {
         // Recolher
         const next = new Set(prev);
@@ -50,19 +55,24 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
       } else {
         // Expandir
         const next = new Set(prev).add(itemId);
-        
+
         // Buscar detalhes do equipamento se ainda não foram buscados
         setEquipmentDetails(prevDetails => {
           if (prevDetails.has(itemId)) {
             return prevDetails; // Já temos os dados
           }
-          
+
           const slug = item.equipmentSlug;
           if (!slug) return prevDetails;
 
           const nextDetails = new Map(prevDetails);
-          nextDetails.set(itemId, { itemId, loading: true, data: null, error: null });
-          
+          nextDetails.set(itemId, {
+            itemId,
+            loading: true,
+            data: null,
+            error: null,
+          });
+
           // Buscar dados de forma assíncrona
           fetchEquipmentBySlug(slug)
             .then(data => {
@@ -80,23 +90,24 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
                   itemId,
                   loading: false,
                   data: null,
-                  error: "Não foi possível carregar os detalhes do equipamento.",
+                  error:
+                    "Não foi possível carregar os detalhes do equipamento.",
                 });
                 return next;
               });
             });
-          
+
           return nextDetails;
         });
-        
+
         return next;
       }
     });
   }, []);
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="mb-3 flex justify-end flex-shrink-0">
+    <div>
+      <div className="mb-3 flex justify-end">
         <button
           type="button"
           onClick={onOpenVaultModal}
@@ -110,7 +121,7 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
           Nenhum item no cofre.
         </MobileText>
       ) : (
-        <div className="flex-1 space-y-3 overflow-y-auto pr-2 text-sm min-h-0">
+        <div className="space-y-3 pr-2 text-sm">
           {vaultItems.map(item => {
             const isExpanded = expandedItems.has(item.id);
             const detailState = equipmentDetails.get(item.id);
@@ -119,31 +130,31 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
             const error = detailState?.error;
 
             return (
-            <div
-              key={item.id}
-              className={`rounded border p-3 text-gray-200 transition ${
-                item.modifier
-                  ? "border-cyan-500/60 bg-cyan-950/30 shadow-[0_0_12px_rgba(8,145,178,0.35)]"
-                  : "border-green-800/40 bg-[#101010]"
-              }`}
-            >
+              <div
+                key={item.id}
+                className={`rounded border p-3 text-gray-200 transition ${
+                  item.modifier
+                    ? "border-cyan-500/60 bg-cyan-950/30 shadow-[0_0_12px_rgba(8,145,178,0.35)]"
+                    : "border-green-800/40 bg-[#101010]"
+                }`}
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
-              <div className="flex items-center justify-between">
-                <span className="font-semibold text-green-200">
-                  {item.equipment?.name ?? item.equipmentSlug}
-                </span>
-                {item.customPrice ? (
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold text-green-200">
+                        {item.equipment?.name ?? item.equipmentSlug}
+                      </span>
+                      {item.customPrice ? (
                         <span className="text-xs text-green-400 ml-2">
-                    {item.customPrice}g
-                  </span>
-                ) : null}
-              </div>
-              <div className="mt-1 text-xs text-gray-400">
-                <div>
-                  Categoria: {item.equipment?.category ?? "Desconhecida"}
-                </div>
-              </div>
+                          {item.customPrice}g
+                        </span>
+                      ) : null}
+                    </div>
+                    <div className="mt-1 text-xs text-gray-400">
+                      <div>
+                        Categoria: {item.equipment?.category ?? "Desconhecida"}
+                      </div>
+                    </div>
                   </div>
                   <button
                     type="button"
@@ -159,18 +170,18 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
                   </button>
                 </div>
 
-              {item.modifier ? (
-                <div className="mt-2 space-y-1 rounded border border-cyan-600/50 bg-cyan-900/25 p-2 text-xs text-cyan-100">
-                  <div className="font-semibold text-cyan-200">
-                    Modificador: {item.modifier.name}
-                  </div>
-                  {item.modifier.effect ? (
-                    <div className="text-cyan-100/90">
-                      {item.modifier.effect}
+                {item.modifier ? (
+                  <div className="mt-2 space-y-1 rounded border border-cyan-600/50 bg-cyan-900/25 p-2 text-xs text-cyan-100">
+                    <div className="font-semibold text-cyan-200">
+                      Modificador: {item.modifier.name}
                     </div>
-                  ) : null}
-                </div>
-              ) : null}
+                    {item.modifier.effect ? (
+                      <div className="text-cyan-100/90">
+                        {item.modifier.effect}
+                      </div>
+                    ) : null}
+                  </div>
+                ) : null}
 
                 {/* Card expandido com informações completas */}
                 {isExpanded && (
@@ -211,7 +222,8 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
                               }}
                             />
                           ) : null}
-                          {detail.armourBonus != null || detail.armorBonus != null ? (
+                          {detail.armourBonus != null ||
+                          detail.armorBonus != null ? (
                             <Chip
                               size="small"
                               label={`Armadura +${detail.armourBonus ?? detail.armorBonus}`}
@@ -270,14 +282,18 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
                             <div className="font-semibold text-amber-200 mb-1">
                               Efeito:
                             </div>
-                            <GameText component="div" className="text-amber-100">
+                            <GameText
+                              component="div"
+                              className="text-amber-100"
+                            >
                               {detail.effect}
                             </GameText>
                           </div>
                         ) : null}
 
                         {/* Regras Especiais */}
-                        {detail.specialRules && detail.specialRules.length > 0 ? (
+                        {detail.specialRules &&
+                        detail.specialRules.length > 0 ? (
                           <div className="rounded border border-green-800/30 bg-[#102015] p-2 text-[11px] text-green-100">
                             <p className="mb-1 font-semibold uppercase tracking-wide text-green-300">
                               Regras Especiais
@@ -290,7 +306,9 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
                                       <span className="font-semibold text-green-200">
                                         Regra Especial:
                                       </span>{" "}
-                                      <GameText component="span">{rule}</GameText>
+                                      <GameText component="span">
+                                        {rule}
+                                      </GameText>
                                     </li>
                                   );
                                 }
@@ -313,7 +331,9 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
                                     <span className="font-semibold text-green-200">
                                       {label}:
                                     </span>{" "}
-                                    <GameText component="span">{value}</GameText>
+                                    <GameText component="span">
+                                      {value}
+                                    </GameText>
                                   </li>
                                 );
                               })}
@@ -325,51 +345,51 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
                   </div>
                 )}
 
-              <div className="mt-3 flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={() => onVaultRebuy(item)}
-                  disabled={
-                    vaultItemAction?.itemId === item.id &&
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => onVaultRebuy(item)}
+                    disabled={
+                      vaultItemAction?.itemId === item.id &&
+                      vaultItemAction.type === "buy"
+                    }
+                    className="inline-flex items-center justify-center gap-2 rounded border border-green-600/60 bg-green-900/20 px-2 py-1 text-xs font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {vaultItemAction?.itemId === item.id &&
                     vaultItemAction.type === "buy"
-                  }
-                  className="inline-flex items-center justify-center gap-2 rounded border border-green-600/60 bg-green-900/20 px-2 py-1 text-xs font-semibold text-green-200 transition hover:border-green-400 hover:bg-green-900/40 disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {vaultItemAction?.itemId === item.id &&
-                  vaultItemAction.type === "buy"
-                    ? "Comprando..."
-                    : "Comprar novamente"}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onVaultUpdate(item, { sell: true })}
-                  disabled={
-                    vaultItemAction?.itemId === item.id &&
+                      ? "Comprando..."
+                      : "Comprar novamente"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onVaultUpdate(item, { sell: true })}
+                    disabled={
+                      vaultItemAction?.itemId === item.id &&
+                      vaultItemAction.type === "sell"
+                    }
+                    className="inline-flex items-center justify-center gap-2 rounded border border-yellow-600/60 bg-yellow-900/20 px-2 py-1 text-xs font-semibold text-yellow-200 transition hover:border-yellow-400 hover:bg-yellow-900/30 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {vaultItemAction?.itemId === item.id &&
                     vaultItemAction.type === "sell"
-                  }
-                  className="inline-flex items-center justify-center gap-2 rounded border border-yellow-600/60 bg-yellow-900/20 px-2 py-1 text-xs font-semibold text-yellow-200 transition hover:border-yellow-400 hover:bg-yellow-900/30 disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {vaultItemAction?.itemId === item.id &&
-                  vaultItemAction.type === "sell"
-                    ? "Vendendo..."
-                    : "Vender"}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onVaultUpdate(item, { sell: false })}
-                  disabled={
-                    vaultItemAction?.itemId === item.id &&
+                      ? "Vendendo..."
+                      : "Vender"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onVaultUpdate(item, { sell: false })}
+                    disabled={
+                      vaultItemAction?.itemId === item.id &&
+                      vaultItemAction.type === "undo"
+                    }
+                    className="inline-flex items-center justify-center gap-2 rounded border border-blue-600/60 bg-blue-900/20 px-2 py-1 text-xs font-semibold text-blue-200 transition hover:border-blue-400 hover:bg-blue-900/30 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {vaultItemAction?.itemId === item.id &&
                     vaultItemAction.type === "undo"
-                  }
-                  className="inline-flex items-center justify-center gap-2 rounded border border-blue-600/60 bg-blue-900/20 px-2 py-1 text-xs font-semibold text-blue-200 transition hover:border-blue-400 hover:bg-blue-900/30 disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {vaultItemAction?.itemId === item.id &&
-                  vaultItemAction.type === "undo"
-                    ? "Desfazendo..."
-                    : "Desfazer venda"}
-                </button>
+                      ? "Desfazendo..."
+                      : "Desfazer venda"}
+                  </button>
+                </div>
               </div>
-            </div>
             );
           })}
         </div>
@@ -377,4 +397,3 @@ export const VaultSection: React.FC<VaultSectionProps> = ({
     </div>
   );
 };
-
