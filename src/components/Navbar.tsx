@@ -107,9 +107,8 @@ const Navbar: React.FC = () => {
           { label: "Testes de Atributos", path: "/rules/attribute-tests" },
           { label: "Criação de Bando", path: "/rules/warband-creation" },
           { label: "Regras de Equipamentos", path: "/rules/equipment-rules" },
-          { label: "Preparação do Jogo", path: "/rules/game-setup" },
           { label: "Sistema de Combate", path: "/rules/combat-system" },
-          { label: "Fim do Jogo", path: "/rules/game-end" },
+
           { label: "Acontecimentos", path: "/rules/happenings" },
         ],
       },
